@@ -1,4 +1,4 @@
-// Note: These are the rules that formats use
+﻿// Note: These are the rules that formats use
 // The list of formats is stored in config/formats.js
 
 'use strict';
@@ -15,6 +15,13 @@ let BattleFormats = {
 		desc: "The standard ruleset for all offical Smogon singles tiers (Ubers, OU, etc.)",
 		ruleset: ['Sleep Clause Mod', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
 		banlist: ['Unreleased', 'Illegal'],
+	},
+	draft: {
+		effectType: 'ValidatorRule',
+		name: 'Draft',
+		desc: "The custom Draft League ruleset",
+		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
+		banlist: ['Illegal'],
 	},
 	standardnext: {
 		effectType: 'ValidatorRule',

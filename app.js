@@ -95,6 +95,8 @@ if (Config.watchconfig) {
  * Set up most of our globals
  *********************************************************/
 
+global.WL = {};
+ 
 global.Dex = require('./sim/dex');
 global.toId = Dex.getId;
 
@@ -106,6 +108,7 @@ global.Users = require('./users');
 
 global.Punishments = require('./punishments');
 
+global.WL = require('./WL.js').WL;
 global.Chat = require('./chat');
 
 global.Rooms = require('./rooms');

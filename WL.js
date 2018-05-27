@@ -14,7 +14,7 @@ exports.WL = {
 	// usage: WL.nameColor(user.name, true) for bold OR WL.nameColor(user.name, false) for non-bolded.
 
 	messageSeniorStaff: function (message, pmName, from) {
-		pmName = (pmName ? pmName : '~Wavelength Server');
+		pmName = (pmName ? pmName : '~Sports Server');
 		from = (from ? ' (PM from ' + from + ')' : '');
 		Users.users.forEach(curUser => {
 			if (curUser.can('roomowner')) {
@@ -83,7 +83,7 @@ exports.WL = {
 	},
 
 	reloadCSS: function () {
-		const cssPath = 'wavelength'; // This should be the server id if Config.serverid doesn't exist. Ex: 'serverid'
+		const cssPath = 'sports'; // This should be the server id if Config.serverid doesn't exist. Ex: 'serverid'
 		let req = https.get('https://play.pokemonshowdown.com/customcss.php?server=' + (Config.serverid || cssPath), () => {});
 		req.end();
 	},
@@ -109,7 +109,7 @@ exports.WL = {
 			Db.DailyBonus.set(ip, [reward, Date.now()]);
 		}
 		Economy.writeMoney(user.userid, reward);
-		user.send('|popup||wide||html| <center><u><b><font size="3">Wavelength Daily Bonus</font></b></u><br>You have been awarded ' + reward + ' Stardust.<br>' + showDailyRewardAni(reward) + '<br>Because you have connected to the server for the past ' + (reward === 1 ? 'Day' : reward + ' Days') + '.</center>');
+		user.send('|popup||wide||html| <center><u><b><font size="3">Sports Daily Bonus</font></b></u><br>You have been awarded ' + reward + ' Stardust.<br>' + showDailyRewardAni(reward) + '<br>Because you have connected to the server for the past ' + (reward === 1 ? 'Day' : reward + ' Days') + '.</center>');
 	},
 };
 

@@ -16,13 +16,6 @@ let BattleFormats = {
 		ruleset: ['Sleep Clause Mod', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
 		banlist: ['Unreleased', 'Illegal'],
 	},
-	draft: {
-		effectType: 'ValidatorRule',
-		name: 'Draft',
-		desc: "The custom Draft League ruleset",
-		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
-		banlist: ['Illegal'],
-	},
 	standardnext: {
 		effectType: 'ValidatorRule',
 		name: 'Standard NEXT',

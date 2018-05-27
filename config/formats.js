@@ -1,30 +1,10 @@
-﻿'use strict';
+'use strict';
 
 // Note: This is the list of formats
 // The rules that formats use are stored in data/rulesets.js
 
 /**@type {(FormatsData | {section: string, column?: number})[]} */
 let Formats = [
-
-	// Custom Tiers
-	///////////////////////////////////////////////////////////////////
-	{
-		section: "Custom Tiers",
-	},
-	{
-		name: "[Gen 7] Draft League",
-
-		mod: 'gen7',
-		ruleset: ['Pokemon', 'Draft', 'Team Preview'],
-		banlist: ['Illegal'],
-	},
-	{
-		name: "[Gen 7] No Team Preview",
-
-		mod: 'gen7',
-		ruleset: ['Pokemon', 'Draft'],
-		banlist: ['Illegal'],
-	},
 
 	// US/UM Singles
 	///////////////////////////////////////////////////////////////////
@@ -417,6 +397,44 @@ let Formats = [
 	///////////////////////////////////////////////////////////////////
 
 	{
+		section: "OM of the Month",
+		column: 2,
+	},
+	{
+		name: "[Gen 7] ZU",
+		desc: `The usage-based tier below PU.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3629669/">ZU</a>`,
+		],
+
+		mod: 'gen7',
+		ruleset: ['[Gen 7] PU'],
+		banlist: [
+			// PU
+			'Abomasnow', 'Absol', 'Aggron', 'Archeops', 'Articuno', 'Audino', 'Aurorus', 'Claydol', 'Clefairy', 'Drampa',
+			'Eelektross', 'Exeggutor-Alola', 'Ferroseed', 'Floatzel', 'Gastrodon', 'Golurk', 'Gourgeist-Super', 'Gurdurr',
+			'Haunter', 'Hitmonchan', 'Kabutops', 'Kangaskhan', 'Kecleon', 'Kingler', 'Komala', 'Lanturn', 'Lilligant',
+			'Mesprit', 'Mudsdale', 'Oricorio-Sensu', 'Passimian', 'Persian-Alola', 'Primeape', 'Pyroar', 'Raichu-Alola',
+			'Regirock', 'Sableye', 'Sandslash-Alola', 'Silvally-Fairy', 'Silvally-Ghost', 'Skuntank', 'Spiritomb', 'Swanna',
+			'Stoutland', 'Togedemaru', 'Ursaring', 'Weezing', 'Zangoose',
+			// ZUBL
+			'Carracosta', 'Crabominable', 'Exeggutor', 'Gorebyss', 'Jynx', 'Ludicolo', 'Musharna', 'Raticate-Alola',
+			'Raticate-Alola-Totem', 'Throh', 'Turtonator', 'Type: Null', 'Victreebel',
+		],
+	},
+	{
+		name: "[Gen 7] Inverse",
+		desc: `The type effectiveness chart is inverted.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3590154/">Inverse</a>`,
+		],
+
+		mod: 'gen7',
+		ruleset: ['[Gen 7] OU', 'Inverse Mod'],
+		banlist: ['Diggersby', 'Hoopa-Unbound', 'Kartana', 'Kyurem-Black', 'Serperior', 'Tapu Bulu', 'Tapu Lele'],
+		unbanlist: ['Aegislash', 'Dialga', 'Giratina', 'Lucario-Mega', 'Solgaleo'],
+	},
+	{
 		section: "Other Metagames",
 		column: 2,
 	},
@@ -555,7 +573,7 @@ let Formats = [
 		ruleset: ['[Gen 7] OU'],
 		banlist: ['Kartana', 'Kyurem-Black', 'Shedinja'],
 		onModifyTemplate: function (template, target, source) {
-			if (source) return;
+			if (!source) return;
 			let types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => this.getMove(move.id).type))];
 			return Object.assign({}, template, {types: types});
 		},
@@ -597,51 +615,6 @@ let Formats = [
 		searchShow: false,
 		ruleset: ['Pokemon', 'Standard NEXT', 'Team Preview'],
 		banlist: ['Uber'],
-	},
-	{
-		name: "[Gen 7] Rhet Clause",
-		desc: `Effectively removes stall as a playstyle and other unfair game mechanics.`,
-		threads: [
-			`&bullet; <a href="https://pastebin.com/yweMqbtW">Full rules</a>`,
-		],
-		mod: 'gen7',
-		searchShow: false,
-		ruleset: ['Pokemon', 'Draft', 'Team Preview'],
-		banlist: ['Assault Vest', 'Black Sludge', 'Choice Scarf', 'Damp Rock', 'Life Orb', 'Razor Fang', 'Weakness Policy',
-			'Amnesia', 'Baton Pass', 'Haze', 'Iron Defense', 'Lucky Chant', 'Pain Split', 'Protect', 'Rest', 'Roar', 'Dark Void', 'Hidden Power > 3',
-			'Uber', 'Kyurem-Black', 'Hoopa-Unbound', 'Charizard-Mega-X', 'Beedrill-Mega', 'Necrozma', 'Smeargle', 'Goodra', 'Sucker Punch + Bisharp',
-			'Intimidate', 'Natural Cure', 'Immunity', 'Snow Cloak', 'Gluttony', 'Regenerator',],
-		unbanlist: ['Darkrai', 'Landorus', 'Blaziken', 'Arceus-Bug'],
-		
-		onValidateTeam: function (team) {
-			const stallmons = ['Sableye-Mega', 'Venusaur-Mega', 'Aggron-Mega', 'Slowbro-Mega', 'Chansey', 'Blissey', 'Tangrowth', 'Amoonguss', 'Skarmory', 'Quagsire', 'Clefable', 'Dugtrio', 'Gothitelle', 'Toxapex', 'Alomomola', 'Registeel', 'Mew', 'Slowbro', 'Slowking', 'Gliscor', 'Gligar', 'Cresselia', 'Mandibuzz', 'Shedinja', 'Pyukumuku', 'Sylveon', 'Umbreon', 'Vaporeon', 'Hippowdon', 'Ferrothorn', 'Tangela', 'Zapdos', 'Suicune', 'Tapu Fini', 'Bronzong', 'Forretress'];
-			let n = 0;
-			for (const set of team) {
-				let baseSpecies = this.getTemplate(set.species).baseSpecies;
-				if (stallmons.includes(baseSpecies)) n++;
-				if (n > 1) return ["You can only use one restricted stall Pok\u00E9mon."];
-			}
-		},
-		
-		onValidateSet: function (set) {
-			let problems = [];
-			if (set.moves) {
-				for (const moveId of set.moves) {
-					let move = this.getMove(moveId);
-					if (move.accuracy < 90 && move.accuracy !== true) problems.push(move.name + ' is banned as it has less than 90 accuracy.');
-				}
-			}
-			if (set.item) {
-				let item = this.getItem(set.item);
-				let template = this.getTemplate(set.species)
-				if (item.zMove == true) {
-					let typeTable = template.types;
-					typeTable = typeTable.filter(type => type==item.zMoveType)
-					if (!typeTable.length) problems.push(set.species + "'s Z-Crystal does not match its type.");
-				}
-			}
-			return problems;
-		},
 	},
 
 	// Randomized Metas
@@ -782,6 +755,46 @@ let Formats = [
 		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 
+	// RoA Spotlight
+	///////////////////////////////////////////////////////////////////
+
+	{
+		section: "RoA Spotlight",
+		column: 3,
+	},
+	{
+		name: "[Gen 2] NU",
+		threads: [`&bullet; <a href="https://www.smogon.com/forums/posts/3570888/">GSC NU</a>`],
+
+		mod: 'gen2',
+		ruleset: ['[Gen 2] UU'],
+		banlist: ['UU'],
+	},
+	{
+		name: "[Gen 6] UU",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/dex/xy/tags/uu/">ORAS UU Banlist</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3598164/">ORAS UU Viability Rankings</a>`,
+		],
+
+		mod: 'gen6',
+		// searchShow: false,
+		ruleset: ['[Gen 6] OU'],
+		banlist: ['OU', 'UUBL', 'Drizzle', 'Drought'],
+	},
+	{
+		name: "[Gen 5] LC",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3485860/">BW2 LC Viability Ranking</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/posts/6431094/">BW2 Sample Teams</a>`,
+		],
+
+		mod: 'gen5',
+		// searchShow: false,
+		maxLevel: 5,
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Little Cup'],
+		banlist: ['Berry Juice', 'Soul Dew', 'Dragon Rage', 'Sonic Boom', 'LC Uber', 'Gligar', 'Murkrow', 'Scyther', 'Sneasel', 'Tangela'],
+	},
 
 	// Past Gens OU
 	///////////////////////////////////////////////////////////////////
@@ -935,7 +948,7 @@ let Formats = [
 			'Aegislash', 'Altaria-Mega', 'Arceus', 'Blaziken', 'Charizard-Mega-X', 'Darkrai', 'Deoxys-Base', 'Deoxys-Attack', 'Dialga', 'Genesect', 'Gengar-Mega',
 			'Giratina', 'Greninja', 'Groudon', 'Ho-Oh', 'Hoopa-Unbound', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-White', 'Lucario-Mega', 'Lugia', 'Mawile-Mega', 'Metagross-Mega',
 			'Mewtwo', 'Palkia', 'Rayquaza', 'Reshiram', 'Sableye-Mega', 'Salamence-Mega', 'Shaymin-Sky', 'Slowbro-Mega', 'Talonflame', 'Xerneas', 'Yveltal', 'Zekrom',
-			'Damp Rock', 'Smooth Rock', 'Soul Dew',
+			'Shadow Tag', 'Damp Rock', 'Smooth Rock', 'Soul Dew', 'Baton Pass',
 		],
 	},
 	{

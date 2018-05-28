@@ -68,7 +68,7 @@ exports.commands = {
 		add: function (target, room, user) {
 			let parts = target.split(',');
 			for (let u in parts) parts[u] = parts[u].trim();
-			if (!this.can('forcewin')) return false;
+			if (!this.can('emote')) return false;
 			if (!parts[1]) return this.sendReply(`Usage: /emoticon add [name], [url] - Remember to resize the image first! (recommended 30x30)`);
 			if (emoticons[parts[0]]) return this.sendReply(`"${parts[0]}" is already an emoticon.`);
 			emoticons[parts[0]] = parts[1];
@@ -81,7 +81,7 @@ exports.commands = {
 		rem: 'delete',
 		del: 'delete',
 		delete: function (target, room, user) {
-			if (!this.can('forcewin')) return false;
+			if (!this.can('emote')) return false;
 			if (!target) return this.sendReply(`Usage: /emoticon del [name]`);
 			if (!emoticons[target]) return this.sendReply(`The emoticon "${target}" does not exist.`);
 			delete emoticons[target];

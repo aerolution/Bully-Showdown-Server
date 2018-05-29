@@ -2805,11 +2805,15 @@ const commands = {
 					if (manager.filename.startsWith(FS('chat-plugins').path)) {
 						manager.destroy();
 					}
+					if (manager.filename.startsWith(FS('custom-plugins').path)) {
+						manager.destroy();
+					}
 				}
 
 				Chat.uncache('./chat');
 				Chat.uncache('./chat-commands');
 				Chat.uncacheDir('./chat-plugins');
+				Chat.uncacheDir('./custom-plugins');
 				global.Chat = require('./chat');
 
 				let runningTournaments = Tournaments.tournaments;

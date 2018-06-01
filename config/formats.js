@@ -19,6 +19,14 @@ let Formats = [
 		banlist: ['Illegal'],
 	},
 	{
+		name: "[Gen 7] WiFi Draft League",
+
+		mod: 'gen7',
+		maxForcedLevel: 50,
+		ruleset: ['Pokemon', 'Draft', 'Team Preview'],
+		banlist: ['Illegal'],
+	},
+	{
 		name: "[Gen 7] No Team Preview",
 
 		mod: 'gen7',

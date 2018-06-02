@@ -727,6 +727,13 @@ let Formats = [
 		ruleset: ['Pokemon', 'Same Type Clause', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
+		name: "[Gen 7] Challenge Cup",
+
+		mod: 'gen7',
+		team: 'randomCC',
+		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
+	},
+	{
 		name: "[Gen 7] Challenge Cup 1v1",
 
 		mod: 'gen7',
@@ -734,18 +741,6 @@ let Formats = [
 		teamLength: {
 			battle: 1,
 		},
-		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
-	},
-	{
-		name: "[Gen 7] Challenge Cup 2v2",
-
-		mod: 'gen7',
-		team: 'randomCC',
-		gameType: 'doubles',
-		teamLength: {
-			battle: 2,
-		},
-		searchShow: false,
 		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
 	},
 	{
@@ -762,7 +757,6 @@ let Formats = [
 		mod: 'gen7',
 		gameType: 'doubles',
 		team: 'randomHC',
-		searchShow: false,
 		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{

@@ -1589,6 +1589,10 @@ class RandomTeams extends Dex.ModdedDex {
 			item = 'Cheri Berry';
 			level += 2;
 		}
+		
+		if (this.format.id === 'gen7extremetiershift') {
+			level = 100;
+		}
 
 		// Prepare optimal HP
 		let srWeakness = this.getEffectiveness('Rock', template);

@@ -661,7 +661,7 @@ let Formats = [
 	},
 	{
 		name: "[Gen 7] Illusion Random Battle",
-		desc: `All Pok&eacute;mon have the Illusion ability.`,
+		desc: `All Pok&eacute;mon have the Illusion effect on top of their regular ability.`,
 		
 		mod: 'gen7',
 		team: 'random',
@@ -697,27 +697,82 @@ let Formats = [
 	},
 	{
 		name: "[Gen 7] VoltTurn Mayhem",
-		desc: "All Pok&eacute;mon automatically switch out upon using a move that affects the opponent.",
+		desc: 'All Pok&eacute;mon automatically switch out upon using a move that affects the opponent.',
 		
 		mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		onValidateTeam: function (team, format) {
-			let fakeCount = 0;
-			let move = {};
-			for (let i = 0; i < team.length; i++) {
-				if (team[i].moves) {
-					for (let j = 0; j < team[i].moves.length; j++) {
-						move = this.getMove(team[i].moves[j]);
-						if (move.id === "fakeout" && fakeCount > 0) return ["You are limited to one user of Fake Out per team.", "(" + (team[i].name || team[i].species) + " has Fake Out)"];
-						if (move.id === "fakeout") fakeCount += 1;
-					}
-				}
+		onModifyMovePriority: -1,
+		onModifyMove: function (move) {
+			switch (move.target) {
+			case 'normal':
+			case 'randomNormal':
+			case 'allAdjacent':
+			case 'allAdjacentFoes':
+			case 'any':
+			case 'scripted':
+				move.selfSwitch = true;
 			}
 		},
-		onModifyMove: function (move) {
-			let validTargets = {"normal":1, "any":1, "randomNormal":1, "allAdjacent":1, "allAdjacentFoes":1, "scripted":1};
-			if (move.target && !move.nonGhostTarget && (move.target in validTargets)) move.selfSwitch = true;
+	},
+	{
+		name: "[Gen 7] Protean Palace",
+		desc: `All Pok&eacute;mon have the Protean effect on top of their regular ability.`,
+		
+		mod: 'gen7',
+		team: 'random',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		onPrepareHitPriority: -1,
+		onPrepareHit: function (source, target, move) {
+			if (move.hasBounced) return;
+			let type = move.type;
+			if (!type) return;
+			if (type === '???') return;
+			if (source.getTypes().join() === type) return;
+			if (!source.setType(type)) return;
+			this.add('-start', source, 'typechange', type);
+		},
+	},
+	{
+		name: "[Gen 7] Extreme Tier Shift",
+		desc: `Pok&eacute;mon get a +10 boost to each stat per tier below OU they are in.`,
+		
+		mod: 'gen7',
+		team: 'random',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		onModifyTemplate: function (template, target, source, effect) {
+			if (!source) return;
+			if (target.set.ability in {'Drizzle': 1, 'Drought': 1, 'Shadow Tag': 1}) return;
+
+			if (!template.abilities) return false;
+			
+			let boosts = {
+				'UU': 10,
+				'BL2': 10,
+				'RU': 20,
+				'BL3': 20,
+				'NU': 30,
+				'BL4': 30,
+				'PU': 40,
+				'NFE': 40,
+				'LC Uber': 40,
+				'LC': 40,
+			};
+			let tier = template.tier;
+			if (target.set.item) {
+				let item = this.getItem(target.set.item);
+				if (item.megaEvolves === template.species) tier = this.getTemplate(item.megaStone).tier;
+			}
+			if (tier[0] === '(') tier = tier.slice(1, -1);
+			if (!(tier in boosts)) return;
+
+			let boost = target.set.moves.includes('chatter') ? 30 : boosts[tier];
+			template = Object.assign({}, template);
+			template.baseStats = Object.assign({}, template.baseStats);
+			for (let statName in template.baseStats) {
+				template.baseStats[statName] = this.clampIntRange(template.baseStats[statName] + boost, 1, 255);
+			}
+			return template;
 		},
 	},
 	{

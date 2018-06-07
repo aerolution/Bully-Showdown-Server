@@ -9,7 +9,7 @@ let Formats = [
 	// Custom Tiers
 	///////////////////////////////////////////////////////////////////
 	{
-		section: "Custom Tiers",
+		section: "Draft League Tiers",
 	},
 	{
 		name: "[Gen 7] Draft League",
@@ -32,42 +32,6 @@ let Formats = [
 		mod: 'gen7',
 		ruleset: ['Pokemon', 'Draft'],
 		banlist: ['Illegal'],
-	},
-	{
-		name: "[Gen 7] Illusion Random Battle",
-		desc: `All Pok&eacute;mon have the Illusion ability.`,
-		
-		mod: 'gen7',
-		team: 'random',
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		onBeforeSwitchIn: function (pokemon) {
-			pokemon.illusion = null;
-			let i;
-			for (i = pokemon.side.pokemon.length - 1; i > pokemon.position; i--) {
-				if (!pokemon.side.pokemon[i]) continue;
-				if (!pokemon.side.pokemon[i].fainted) break;
-			}
-			if (!pokemon.side.pokemon[i]) return;
-			if (pokemon === pokemon.side.pokemon[i]) return;
-			pokemon.illusion = pokemon.side.pokemon[i];
-		},
-		onAfterDamage: function (damage, target, source, effect) {
-			if (target.illusion && effect && effect.effectType === 'Move' && effect.id !== 'confused') {
-				this.singleEvent('End', this.getAbility('Illusion'), target.abilityData, target, source, effect);
-			}
-		},
-		onEnd: function (pokemon) {
-			if (pokemon.illusion) {
-				this.debug('illusion cleared');
-				pokemon.illusion = null;
-				let details = pokemon.template.species + (pokemon.level === 100 ? '' : ', L' + pokemon.level) + (pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
-				this.add('replace', pokemon, details);
-				this.add('-end', pokemon, 'Illusion');
-			}
-		},
-		onFaint: function (pokemon) {
-			pokemon.illusion = null;
-		},
 	},
 
 	// US/UM Singles
@@ -694,6 +658,67 @@ let Formats = [
 	{
 		section: "Randomized Metas",
 		column: 2,
+	},
+	{
+		name: "[Gen 7] Illusion Random Battle",
+		desc: `All Pok&eacute;mon have the Illusion ability.`,
+		
+		mod: 'gen7',
+		team: 'random',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		onBeforeSwitchIn: function (pokemon) {
+			pokemon.illusion = null;
+			let i;
+			for (i = pokemon.side.pokemon.length - 1; i > pokemon.position; i--) {
+				if (!pokemon.side.pokemon[i]) continue;
+				if (!pokemon.side.pokemon[i].fainted) break;
+			}
+			if (!pokemon.side.pokemon[i]) return;
+			if (pokemon === pokemon.side.pokemon[i]) return;
+			pokemon.illusion = pokemon.side.pokemon[i];
+		},
+		onAfterDamage: function (damage, target, source, effect) {
+			if (target.illusion && effect && effect.effectType === 'Move' && effect.id !== 'confused') {
+				this.singleEvent('End', this.getAbility('Illusion'), target.abilityData, target, source, effect);
+			}
+		},
+		onEnd: function (pokemon) {
+			if (pokemon.illusion) {
+				this.debug('illusion cleared');
+				pokemon.illusion = null;
+				let details = pokemon.template.species + (pokemon.level === 100 ? '' : ', L' + pokemon.level) + (pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
+				this.add('replace', pokemon, details);
+				this.add('-end', pokemon, 'Illusion');
+			}
+		},
+		onFaint: function (pokemon) {
+			pokemon.illusion = null;
+		},
+	},
+	{
+		name: "[Gen 7] VoltTurn Mayhem",
+		desc: "All Pok&eacute;mon automatically switch out upon using a move that affects the opponent.",
+		
+		mod: 'gen7',
+		team: 'random',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		onValidateTeam: function (team, format) {
+			let fakeCount = 0;
+			let move = {};
+			for (let i = 0; i < team.length; i++) {
+				if (team[i].moves) {
+					for (let j = 0; j < team[i].moves.length; j++) {
+						move = this.getMove(team[i].moves[j]);
+						if (move.id === "fakeout" && fakeCount > 0) return ["You are limited to one user of Fake Out per team.", "(" + (team[i].name || team[i].species) + " has Fake Out)"];
+						if (move.id === "fakeout") fakeCount += 1;
+					}
+				}
+			}
+		},
+		onModifyMove: function (move) {
+			let validTargets = {"normal":1, "any":1, "randomNormal":1, "allAdjacent":1, "allAdjacentFoes":1, "scripted":1};
+			if (move.target && !move.nonGhostTarget && (move.target in validTargets)) move.selfSwitch = true;
+		},
 	},
 	{
 		name: "[Gen 7] Battle Factory",

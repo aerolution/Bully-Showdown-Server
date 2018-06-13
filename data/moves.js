@@ -15831,7 +15831,7 @@ let BattleMovedex = {
 		name: "Spider Web",
 		pp: 10,
 		priority: 0,
-		flags: {protect: 0, reflectable: 1, mirror: 1},
+		flags: {protect: 1, reflectable: 1, mirror: 1},
 		onHit: function (target, source, move) {
 			return target.addVolatile('trapped', source, move, 'trapper');
 		},

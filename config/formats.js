@@ -23,6 +23,7 @@ let Formats = [
 
 		mod: 'gen7',
 		maxForcedLevel: 50,
+		timer: {starting: 6 * 60 + 30 - 10, perTurn: 10, maxPerTurn: 55, maxFirstTurn: 90, timeoutAutoChoose: true},
 		ruleset: ['Pokemon', 'Draft', 'Team Preview'],
 		banlist: ['Illegal'],
 	},

@@ -625,7 +625,7 @@ let BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "A random move among those known by the user's party members is selected for use. Does not select Assist, Belch, Bestow, Bounce, Chatter, Circle Throw, Copycat, Counter, Covet, Destiny Bond, Detect, Dig, Dive, Dragon Tail, Endure, Feint, Fly, Focus Punch, Follow Me, Helping Hand, Hold Hands, King's Shield, Mat Block, Me First, Metronome, Mimic, Mirror Coat, Mirror Move, Nature Power, Phantom Force, Protect, Rage Powder, Roar, Shadow Force, Sketch, Sky Drop, Sleep Talk, Snatch, Spiky Shield, Struggle, Switcheroo, Thief, Transform, Trick, or Whirlwind.",
+		desc: "A random move among those known by the user's party members is selected for use. Does not select Assist, Baneful Bunker, Beak Blast, Belch, Bestow, Bounce, Chatter, Circle Throw, Copycat, Counter, Covet, Destiny Bond, Detect, Dig, Dive, Dragon Tail, Endure, Feint, Fly, Focus Punch, Follow Me, Helping Hand, Hold Hands, King's Shield, Mat Block, Me First, Metronome, Mimic, Mirror Coat, Mirror Move, Nature Power, Phantom Force, Protect, Rage Powder, Roar, Shadow Force, Shell Trap, Sketch, Sky Drop, Sleep Talk, Snatch, Spiky Shield, Spotlight, Struggle, Switcheroo, Thief, Transform, Trick, Whirlwind, or Z-Moves.",
 		shortDesc: "Uses a random move known by a team member.",
 		id: "assist",
 		name: "Assist",
@@ -639,7 +639,7 @@ let BattleMovedex = {
 				for (const moveSlot of pokemon.moveSlots) {
 					let move = moveSlot.id;
 					let noAssist = [
-						'assist', 'belch', 'bestow', 'bounce', 'chatter', 'circlethrow', 'copycat', 'counter', 'covet', 'destinybond', 'detect', 'dig', 'dive', 'dragontail', 'endure', 'feint', 'fly', 'focuspunch', 'followme', 'helpinghand', 'kingsshield', 'matblock', 'mefirst', 'metronome', 'mimic', 'mirrorcoat', 'mirrormove', 'naturepower', 'phantomforce', 'protect', 'ragepowder', 'roar', 'shadowforce', 'sketch', 'skydrop', 'sleeptalk', 'snatch', 'spikyshield', 'struggle', 'switcheroo', 'thief', 'transform', 'trick', 'whirlwind',
+						'assist', 'banefulbunker', 'beakblast', 'belch', 'bestow', 'bounce', 'chatter', 'circlethrow', 'copycat', 'counter', 'covet', 'destinybond', 'detect', 'dig', 'dive', 'dragontail', 'endure', 'feint', 'fly', 'focuspunch', 'followme', 'helpinghand', 'holdhands', 'kingsshield', 'matblock', 'mefirst', 'metronome', 'mimic', 'mirrorcoat', 'mirrormove', 'naturepower', 'phantomforce', 'protect', 'ragepowder', 'roar', 'shadowforce', 'shelltrap', 'sketch', 'skydrop', 'sleeptalk', 'snatch', 'spikyshield', 'spotlight', 'struggle', 'switcheroo', 'thief', 'transform', 'trick', 'whirlwind',
 					];
 					if (!noAssist.includes(move) && !this.getMove(move).isZ) {
 						moves.push(move);
@@ -11205,12 +11205,6 @@ let BattleMovedex = {
 			onResidual: function (pokemon) {
 				this.damage(pokemon.maxhp / 4);
 			},
-			onUpdate: function (pokemon) {
-				if (pokemon.status !== 'slp' && !pokemon.hasAbility('comatose')) {
-					pokemon.removeVolatile('nightmare');
-					this.add('-end', pokemon, 'Nightmare', '[silent]');
-				}
-			},
 		},
 		secondary: false,
 		target: "normal",
@@ -12589,12 +12583,14 @@ let BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		onHit: function (target, pokemon) {
-			if (pokemon.status && !target.status && target.trySetStatus(pokemon.status)) {
+		onPrepareHit: function (target, source, move) {
+			if (!source.status) return false;
+			move.status = source.status;
+		},
+		self: {
+			onHit: function (pokemon) {
 				pokemon.cureStatus();
-			} else {
-				return false;
-			}
+			},
 		},
 		secondary: false,
 		target: "normal",
@@ -13319,8 +13315,12 @@ let BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
+		onTryMove: function (pokemon) {
+			if (pokemon.hp < pokemon.maxhp && pokemon.status !== 'slp' && !pokemon.hasAbility('comatose')) return;
+			this.add('-fail', pokemon);
+			return null;
+		},
 		onHit: function (target) {
-			if (target.hp >= target.maxhp) return false;
 			if (!target.setStatus('slp')) return false;
 			target.statusData.time = 3;
 			target.statusData.startTime = 3;
@@ -13802,6 +13802,7 @@ let BattleMovedex = {
 			onResidualOrder: 20,
 			onTypePriority: -1,
 			onType: function (types, pokemon) {
+				this.effectData.typeWas = types;
 				return types.filter(type => type !== 'Flying');
 			},
 		},
@@ -15830,7 +15831,7 @@ let BattleMovedex = {
 		name: "Spider Web",
 		pp: 10,
 		priority: 0,
-		flags: {protect: 1, reflectable: 1, mirror: 1},
+		flags: {protect: 0, reflectable: 1, mirror: 1},
 		onHit: function (target, source, move) {
 			return target.addVolatile('trapped', source, move, 'trapper');
 		},

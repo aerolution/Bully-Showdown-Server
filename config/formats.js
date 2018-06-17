@@ -747,7 +747,7 @@ let Formats = [
 	},
 	{
 		name: "[Gen 7] Passive Aggressive",
-		desc: `All passive damage is calculated as type damage (i.e. works the same way as Stealth Rock).`,
+		desc: `All passive damage is treated as type damage and affected by type effectiveness.`,
 		
 		mod: 'gen7',
 		team: 'random',
@@ -777,7 +777,7 @@ let Formats = [
 				break;
 			case 'brn':
 				type = 'Fire';
-				damage = target.maxhp / 8;
+				damage = target.maxhp / 16;
 				break;
 			case 'psn':
 				type = 'Poison';
@@ -806,44 +806,48 @@ let Formats = [
 		},
 	},
 	{
-		name: "[Gen 7] Type Reflectors",
-		desc: `The secondary type of all Pok&eacute;mon is changed to the primary type of the Pok&eacute;mon in the first slot.`,
+		name: "[Gen 7] Random Haxmons",
+		desc: `Every RNG event that can happen will happen.`,
 		
 		mod: 'gen7',
 		team: 'random',
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		onBegin: function () {
-			for (let i = 0; i < this.sides.length; i++) {
-				this.sides[i].pokemon[0].isReflector = true;
-				this.sides[i].reflectedType = this.sides[i].pokemon[0].types[0];
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod', 'Freeze Clause'],
+		banlist: ["King's Rock", 'Razor Fang', 'Stench'],
+		onModifyMovePriority: -100,
+		onModifyMove: function (move) {
+			if (move.accuracy !== true && move.accuracy < 100) move.accuracy = 0;
+			move.willCrit = true;
+			if (move.secondaries) {
+				for (var i = 0; i < move.secondaries.length; i++) {
+					move.secondaries[i].chance = 100;
+				}
 			}
-		},
-		onSwitchInPriority: 2,
-		onSwitchIn: function (pokemon) {
-			if (pokemon.isReflector) return;
-			let type = pokemon.side.reflectedType;
-			if (pokemon.types.indexOf(type) > 0 || pokemon.types.length === 1 && pokemon.types[0] === type) return;
-			if (pokemon.template.isMega && pokemon.types.join() !== this.getTemplate(pokemon.template.baseSpecies).types.join()) return;
-			if (pokemon.types.length > 1 && pokemon.types[0] === type) {
-				pokemon.setType(type);
-			} else {
-				pokemon.setType([pokemon.types[0], type]);
-			}
-			this.add('-start', pokemon, 'typechange', pokemon.types.join('/'), null);
-		},
-		onAfterMega: function (pokemon) {
-			if (pokemon.isReflector) return;
-			let type = pokemon.side.reflectedType;
-			if (pokemon.types.indexOf(type) > 0 || pokemon.types.length === 1 && pokemon.types[0] === type) return;
-			if (pokemon.types.join() !== this.getTemplate(pokemon.template.baseSpecies).types.join()) return;
-			if (pokemon.types.length > 1 && pokemon.types[0] === type) {
-				pokemon.setType(type);
-			} else {
-				pokemon.setType([pokemon.types[0], type]);
-			}
-			this.add('-start', pokemon, 'typechange', pokemon.types.join('/'), null);
-		},
+		}
 	},
+	{
+        name: "[Gen 7] Random Camomons",
+        desc: "Pok&eacute;mon change type to match their first two moves.",
+		
+        mod: 'gen7',
+		team: 'random',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+        onBegin: function () {
+            let allPokemon = this.p1.pokemon.concat(this.p2.pokemon);
+            for (let i = 0, len = allPokemon.length; i < len; i++) {
+                let pokemon = allPokemon[i];
+                let types = [this.getMove(pokemon.moves[0]).type];
+                if (pokemon.moves[1] && this.getMove(pokemon.moves[1]).type !== types[0]) types.push(this.getMove(pokemon.moves[1]).type);
+                pokemon.baseTemplate = pokemon.template = Object.assign({}, pokemon.template);
+                pokemon.types = pokemon.template.types = types;
+            }
+        },
+        onAfterMega: function (pokemon) {
+            let types = [this.getMove(pokemon.moves[0]).type];
+            if (pokemon.moves[1] && this.getMove(pokemon.moves[1]).type !== types[0]) types.push(this.getMove(pokemon.moves[1]).type);
+            pokemon.baseTemplate = pokemon.template = Object.assign({}, pokemon.template);
+            pokemon.types = pokemon.template.types = types;
+        },
+    },
 	{
 		name: "[Gen 7] Extreme Tier Shift",
 		desc: `Pok&eacute;mon get a +10 boost to each stat per tier below OU they are in.`,

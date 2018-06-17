@@ -746,7 +746,7 @@ let Formats = [
 		},
 	},
 	{
-		name: "[Gen 7] Passive aggressive",
+		name: "[Gen 7] Passive Aggressive",
 		desc: `All passive damage is calculated as type damage (i.e. works the same way as Stealth Rock).`,
 		
 		mod: 'gen7',

@@ -814,7 +814,7 @@ let Formats = [
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod', 'Freeze Clause Mod'],
 		onModifyMovePriority: -100,
 		onModifyMove: function (move) {
-			if (move.accuracy !== true && move.accuracy < 100) move.accuracy = 0;
+			if (move.accuracy !== true && move.accuracy > 50) move.accuracy = 100;
 			move.willCrit = true;
 			if (move.secondaries) {
 				for (var i = 0; i < move.secondaries.length; i++) {

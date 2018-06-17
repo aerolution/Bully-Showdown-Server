@@ -661,7 +661,7 @@ let Formats = [
 		column: 2,
 	},
 	{
-		name: "[Gen 7] Illusion Random Battle",
+		name: "[Gen 7] Shifting Illusions",
 		desc: `All Pok&eacute;mon have the Illusion effect on top of their regular ability.`,
 		
 		mod: 'gen7',
@@ -732,6 +732,116 @@ let Formats = [
 			if (source.getTypes().join() === type) return;
 			if (!source.setType(type)) return;
 			this.add('-start', source, 'typechange', type);
+		},
+	},
+	{
+		name: "[Gen 7] Tormenting Spirits",
+		desc: `Pok&eacute;mon can't select the same move twice in a row.`,
+		
+		mod: 'gen7',
+		team: 'random',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		onDisableMove: function (pokemon) {
+			if (pokemon.lastMove !== 'struggle') pokemon.disableMove(pokemon.lastMove);
+		},
+	},
+	{
+		name: "[Gen 7] Passive aggressive",
+		desc: `All passive damage is calculated as type damage (i.e. works the same way as Stealth Rock).`,
+		
+		mod: 'gen7',
+		team: 'random',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		onDamage: function (damage, target, source, effect) {
+			let type;
+			switch (effect.id) {
+			default:
+				return;
+			case 'blacksludge':
+				type = 'Poison';
+				damage = target.maxhp / 8;
+				break;
+			case 'curse':
+			case 'nightmare':
+				type = 'Ghost';
+				damage = target.maxhp / 4;
+				break;
+			case 'leechseed':
+			case 'spikyshield':
+				type = 'Grass';
+				damage = target.maxhp / 8;
+				break;
+			case 'spikes':
+				type = 'Ground';
+				damage = target.maxhp / 2 / (5 - target.side.sideConditions.spikes.layers);
+				break;
+			case 'brn':
+				type = 'Fire';
+				damage = target.maxhp / 8;
+				break;
+			case 'psn':
+				type = 'Poison';
+				damage = target.maxhp / 8;
+				break;
+			case 'tox':
+				return this.clampIntRange(target.maxhp >> 4 - this.getEffectiveness('Poison', target), 1) * target.statusData.stage;
+			case 'partiallytrapped':
+				let effectData = target.volatiles.partiallytrapped;
+				damage = target.maxhp / (effectData.source.hasItem('bindingband') ? 6 : 8);
+				type = effectData.sourceEffect;
+				break;
+			case 'sandstorm':
+				type = 'Rock';
+				damage = target.maxhp / 16;
+				break;
+			case 'hail':
+				type = 'Ice';
+				damage = target.maxhp / 16;
+				break;
+			case 'recoil':
+				type = this.activeMove;
+				break;
+			}
+			return damage * Math.pow(2, this.getEffectiveness(type, target));
+		},
+	},
+	{
+		name: "[Gen 7] Type Reflectors",
+		desc: `The secondary type of all Pok&eacute;mon is changed to the primary type of the Pok&eacute;mon in the first slot.`,
+		
+		mod: 'gen7',
+		team: 'random',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		onBegin: function () {
+			for (let i = 0; i < this.sides.length; i++) {
+				this.sides[i].pokemon[0].isReflector = true;
+				this.sides[i].reflectedType = this.sides[i].pokemon[0].types[0];
+			}
+		},
+		onSwitchInPriority: 2,
+		onSwitchIn: function (pokemon) {
+			if (pokemon.isReflector) return;
+			let type = pokemon.side.reflectedType;
+			if (pokemon.types.indexOf(type) > 0 || pokemon.types.length === 1 && pokemon.types[0] === type) return;
+			if (pokemon.template.isMega && pokemon.types.join() !== this.getTemplate(pokemon.template.baseSpecies).types.join()) return;
+			if (pokemon.types.length > 1 && pokemon.types[0] === type) {
+				pokemon.setType(type);
+			} else {
+				pokemon.setType([pokemon.types[0], type]);
+			}
+			this.add('-start', pokemon, 'typechange', pokemon.types.join('/'), null);
+		},
+		onAfterMega: function (pokemon) {
+			if (pokemon.isReflector) return;
+			let type = pokemon.side.reflectedType;
+			if (pokemon.types.indexOf(type) > 0 || pokemon.types.length === 1 && pokemon.types[0] === type) return;
+			if (pokemon.types.join() !== this.getTemplate(pokemon.template.baseSpecies).types.join()) return;
+			if (pokemon.types.length > 1 && pokemon.types[0] === type) {
+				pokemon.setType(type);
+			} else {
+				pokemon.setType([pokemon.types[0], type]);
+			}
+			this.add('-start', pokemon, 'typechange', pokemon.types.join('/'), null);
 		},
 	},
 	{

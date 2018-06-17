@@ -811,7 +811,7 @@ let Formats = [
 		
 		mod: 'gen7',
 		team: 'random',
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod', 'Freeze Clause'],
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod', 'Freeze Clause Mod'],
 		onModifyMovePriority: -100,
 		onModifyMove: function (move) {
 			if (move.accuracy !== true && move.accuracy < 100) move.accuracy = 0;

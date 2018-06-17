@@ -830,23 +830,12 @@ let Formats = [
         mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-        onBegin: function () {
-            let allPokemon = this.p1.pokemon.concat(this.p2.pokemon);
-            for (let i = 0, len = allPokemon.length; i < len; i++) {
-                let pokemon = allPokemon[i];
-				let types = [this.getMove(pokemon.moves[0]).type];
-				if (pokemon.moves[1] && this.getMove(pokemon.moves[1]).type !== types[0]) types.push(this.getMove(pokemon.moves[1]).type);
-				pokemon.baseTemplate = pokemon.template = Object.assign({}, pokemon.template);
-				if (pokemon.template.species === 'Shedinja') types = pokemon.template.types;
-				pokemon.types = pokemon.template.types = types;
-            }
-        },
-        onAfterMega: function (pokemon) {
-            let types = [this.getMove(pokemon.moves[0]).type];
-            if (pokemon.moves[1] && this.getMove(pokemon.moves[1]).type !== types[0]) types.push(this.getMove(pokemon.moves[1]).type);
-            pokemon.baseTemplate = pokemon.template = Object.assign({}, pokemon.template);
-            pokemon.types = pokemon.template.types = types;
-        },
+        onModifyTemplate: function (template, target, source) {
+			if (!source) return;
+			if (template.species === 'Shedinja') return;
+			let types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => this.getMove(move.id).type))];
+			return Object.assign({}, template, {types: types});
+		},
     },
 	{
 		name: "[Gen 7] Extreme Tier Shift",

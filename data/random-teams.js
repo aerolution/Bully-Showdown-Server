@@ -1801,7 +1801,6 @@ class RandomTeams extends Dex.ModdedDex {
 				uberCount++;
 			} else if (tier === 'PU') {
 				puCount++;
-			}
 			} else if (tier === 'LC') {
 				lcCount++;
 			}

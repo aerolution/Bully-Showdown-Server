@@ -891,11 +891,13 @@ class RandomTeams extends Dex.ModdedDex {
 					if ((hasMove['closecombat'] || hasMove['machpunch']) && counter.setupType !== 'Special') rejected = true;
 					break;
 				case 'fierydance': case 'firefang': case 'firepunch': case 'flamethrower': case 'flareblitz':
-					if (hasMove['blazekick'] || (hasMove['fireblast'] && counter.setupType !== 'Physical') || hasMove['heatwave'] || hasMove['overheat'] || hasMove['sacredfire']) rejected = true;
+					if (hasMove['blazekick'] || hasMove['heatwave'] || hasMove['overheat'] || hasMove['sacredfire']) rejected = true;
+					if (hasMove['fireblast'] && counter.setupType !== 'Physical' && !hasAbility['Reckless']) rejected = true;
 					break;
 				case 'fireblast':
 					if (hasMove['lavaplume'] && !counter.setupType && !counter['speedsetup']) rejected = true;
 					if (hasMove['mindblown'] && counter.setupType) rejected = true;
+					if (hasMove['flareblitz'] && hasAbility['Reckless']) rejected = true;
 					break;
 				case 'lavaplume':
 					if (hasMove['firepunch'] || hasMove['fireblast'] && (counter.setupType || !!counter['speedsetup'])) rejected = true;
@@ -1405,7 +1407,7 @@ class RandomTeams extends Dex.ModdedDex {
 			item = 'Flyinium Z';
 		} else if (hasMove['solarbeam'] && !hasAbility['Drought'] && !hasMove['sunnyday'] && !teamDetails['sun']) {
 			item = !teamDetails.zMove ? 'Grassium Z' : 'Power Herb';
-		} else if (template.evos.length) {
+		} else if (this.format.id != 'gen7randomscalemons' && template.evos.length) {
 			item = (ability === 'Technician' && counter.Physical >= 4) ? 'Choice Band' : 'Eviolite';
 		} else if (template.species === 'Latias' || template.species === 'Latios') {
 			item = 'Soul Dew';
@@ -1643,6 +1645,7 @@ class RandomTeams extends Dex.ModdedDex {
 		let pokemon = [];
 
 		let excludedTiers = ['NFE', 'LC Uber', 'LC'];
+		if (this.format.id === 'gen7randomscalemons') excludedTiers = ['CAP'];
 		let allowedNFE = ['Chansey', 'Doublade', 'Gligar', 'Porygon2', 'Scyther', 'Togetic'];
 
 		// For Monotype
@@ -1685,7 +1688,7 @@ class RandomTeams extends Dex.ModdedDex {
 			if (baseFormes[template.baseSpecies]) continue;
 
 			// Only certain NFE Pokemon are allowed
-			if (template.evos.length && !allowedNFE.includes(template.species)) continue;
+			if (this.format.id != 'gen7randomscalemons' && template.evos.length && !allowedNFE.includes(template.species)) continue;
 
 			let tier = template.tier;
 			switch (tier) {

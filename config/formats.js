@@ -806,6 +806,30 @@ let Formats = [
 		},
 	},
 	{
+		name: "[Gen 7] Random Scalemons",
+		desc: `Every Pok&eacute;mon's stats, barring HP, are scaled to give them a BST as close to 600 as possible.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3607934/">Scalemons</a>`,
+		],
+
+		mod: 'gen7',
+		team: 'random',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		onModifyTemplate: function (template, target, source) {
+			template = Object.assign({}, template);
+			template.baseStats = Object.assign({}, template.baseStats);
+			let stats = ['atk', 'def', 'spa', 'spd', 'spe'];
+			// @ts-ignore
+			let pst = stats.map(stat => template.baseStats[stat]).reduce((x, y) => x + y);
+			let scale = 600 - template.baseStats['hp'];
+			for (const stat of stats) {
+				// @ts-ignore
+				template.baseStats[stat] = this.clampIntRange(template.baseStats[stat] * scale / pst, 1, 255);
+			}
+			return template;
+		},
+	},
+	{
 		name: "[Gen 7] Random Haxmons",
 		desc: `Every RNG event that can happen will happen.`,
 		

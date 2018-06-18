@@ -1677,6 +1677,7 @@ class RandomTeams extends Dex.ModdedDex {
 		let baseFormes = {};
 		let uberCount = 0;
 		let puCount = 0;
+		let lcCount = 0;
 		/**@type {RandomTeamsTypes["TeamDetails"]} */
 		let teamDetails = {};
 
@@ -1699,6 +1700,9 @@ class RandomTeams extends Dex.ModdedDex {
 			case 'PU':
 				// PUs are limited to 2 but have a 20% chance of being added anyway.
 				if (puCount > 1 && this.randomChance(4, 5)) continue;
+				break;
+			case 'LC':
+				if (this.format.id === 'gen7randomscalemons' && lcCount > 1 && this.randomChance(4, 5)) continue;
 				break;
 			case 'Unreleased': case 'CAP':
 				// Unreleased and CAP have 20% the normal rate
@@ -1797,6 +1801,9 @@ class RandomTeams extends Dex.ModdedDex {
 				uberCount++;
 			} else if (tier === 'PU') {
 				puCount++;
+			}
+			} else if (tier === 'LC') {
+				lcCount++;
 			}
 
 			// Team has Mega/weather/hazards

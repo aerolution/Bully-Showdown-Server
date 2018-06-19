@@ -856,7 +856,7 @@ let Formats = [
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
         onModifyTemplate: function (template, target, source) {
 			if (!source) return;
-			if (template.species === 'Shedinja') return;
+			if (template.species === 'Shedinja' || template.species === 'Unown') return;
 			let types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => this.getMove(move.id).type))];
 			return Object.assign({}, template, {types: types});
 		},

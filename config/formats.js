@@ -23,7 +23,7 @@ let Formats = [
 
 		mod: 'gen7',
 		maxForcedLevel: 50,
-		timer: {starting: 6 * 60 + 30 - 10, perTurn: 10, maxPerTurn: 55, maxFirstTurn: 90, timeoutAutoChoose: true},
+		timer: {starting: 60*60, perTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, accelerate: false},
 		ruleset: ['Pokemon', 'Draft', 'Team Preview'],
 		banlist: ['Illegal'],
 	},
@@ -32,6 +32,15 @@ let Formats = [
 
 		mod: 'gen7',
 		ruleset: ['Pokemon', 'Draft'],
+		banlist: ['Illegal'],
+	},
+	{
+		name: "[Gen 7] DS Timer Draft League",
+
+		mod: 'gen7',
+		searchShow: false,
+		timer: {starting: 60*60, perTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, accelerate: false},
+		ruleset: ['Pokemon', 'Draft', 'Team Preview'],
 		banlist: ['Illegal'],
 	},
 

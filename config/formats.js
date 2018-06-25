@@ -625,9 +625,9 @@ let Formats = [
 		mod: 'gen7',
 		searchShow: false,
 		ruleset: ['Pokemon', 'Draft', 'Team Preview'],
-		banlist: ['Assault Vest', 'Black Sludge', 'Choice Scarf', 'Damp Rock', 'Life Orb', 'Razor Fang', 'Weakness Policy',
+		banlist: ['Assault Vest', 'Black Sludge', 'Choice Scarf', 'Damp Rock', 'Life Orb', 'Razor Fang', 'Weakness Policy', 'Manectite',
 			'Amnesia', 'Baton Pass', 'Haze', 'Iron Defense', 'Lucky Chant', 'Pain Split', 'Protect', 'Rest', 'Roar', 'Dark Void', 'Hidden Power > 3',
-			'Uber', 'Kyurem-Black', 'Hoopa-Unbound', 'Charizard-Mega-X', 'Beedrill-Mega', 'Necrozma', 'Smeargle', 'Goodra', 'Sucker Punch + Bisharp',
+			'Uber', 'Kyurem-Black', 'Hoopa', 'Charizard-Mega-X', 'Beedrill-Mega', 'Necrozma', 'Smeargle', 'Goodra', 'Sucker Punch + Bisharp',
 			'Intimidate', 'Natural Cure', 'Immunity', 'Snow Cloak', 'Gluttony', 'Regenerator',],
 		unbanlist: ['Darkrai', 'Landorus', 'Blaziken', 'Arceus-Bug'],
 		

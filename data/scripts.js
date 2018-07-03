@@ -95,6 +95,7 @@ let BattleScripts = {
 			pokemon.side.zMoveUsed = true;
 		}
 		let moveDidSomething = this.useMove(baseMove, pokemon, target, sourceEffect, zMove);
+		if (this.activeMove) move = this.activeMove;
 		this.singleEvent('AfterMove', move, null, pokemon, target, move);
 		this.runEvent('AfterMove', pokemon, target, move);
 
@@ -144,9 +145,11 @@ let BattleScripts = {
 			let baseMove = move;
 			this.singleEvent('ModifyMove', move, null, pokemon, target, move, move);
 			move = this.getZMoveCopy(move, pokemon);
+			move.zPowered = true;
 			if (move.type !== 'Normal') sourceEffect = baseMove;
 		} else if (zMove || (move.category !== 'Status' && sourceEffect && sourceEffect.isZ && sourceEffect.id !== 'instruct')) {
 			move = this.getZMoveCopy(move, pokemon);
+			move.zPowered = true;
 		}
 		if (this.activeMove) {
 			move.priority = this.activeMove.priority;

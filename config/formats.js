@@ -563,22 +563,6 @@ let Formats = [
 		},
 	},
 	{
-		name: "[Gen 7] Camomons",
-		desc: `Pok&eacute;mon change type to match their first two moves.`,
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3598418/">Camomons</a>`,
-		],
-		mod: 'gen7',
-		// searchShow: false,
-		ruleset: ['[Gen 7] OU'],
-		banlist: ['Kartana', 'Kyurem-Black', 'Shedinja'],
-		onModifyTemplate: function (template, target, source) {
-			if (source) return;
-			let types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => this.getMove(move.id).type))];
-			return Object.assign({}, template, {types: types});
-		},
-	},
-	{
 		name: "[Gen 7] STABmons",
 		desc: `Pok&eacute;mon can use any move of their typing, in addition to the moves they can normally learn.`,
 		threads: [

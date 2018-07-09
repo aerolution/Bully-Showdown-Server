@@ -7075,8 +7075,6 @@ let BattleFormatsData = {
 		randomDoubleBattleMoves: ["moonblast", "psychic", "dazzlinggleam", "focusblast", "protect", "taunt", "shadowball", "thunderbolt"],
 		eventPokemon: [
 			{"generation": 7, "level": 60, "isHidden": false, "moves": ["naturesmadness", "extrasensory", "flatter", "moonblast"]},
-		],
-		eventPokemon: [
 			{"generation": 7, "level": 60, "isHidden": true, "moves": ["naturesmadness", "extrasensory", "flatter", "moonblast"]},
 		],
 		eventOnly: true,

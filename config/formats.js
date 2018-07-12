@@ -38,7 +38,6 @@ let Formats = [
 		name: "[Gen 7] DS Timer Draft League",
 
 		mod: 'gen7',
-		searchShow: false,
 		timer: {starting: 60*60, perTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, accelerate: false},
 		ruleset: ['Pokemon', 'Draft', 'Team Preview'],
 		banlist: ['Illegal'],

@@ -618,9 +618,9 @@ const commands = {
 		this.sendReply(buffer);
 	},
 	datahelp: [
-		`/data [pokemon/item/move/ability] - Get details on this pokemon/item/move/ability/nature.`,
-		`/data [pokemon/item/move/ability], Gen [generation number/format name] - Get details on this pokemon/item/move/ability/nature for that generation/format.`,
-		`!data [pokemon/item/move/ability] - Show everyone these details. Requires: + % @ * # & ~`,
+		`/data [pokemon/item/move/ability/nature] - Get details on this pokemon/item/move/ability/nature.`,
+		`/data [pokemon/item/move/ability/nature], Gen [generation number/format name] - Get details on this pokemon/item/move/ability/nature for that generation/format.`,
+		`!data [pokemon/item/move/ability/nature] - Show everyone these details. Requires: + % @ * # & ~`,
 	],
 
 	'!details': true,
@@ -630,9 +630,9 @@ const commands = {
 		this.run('data');
 	},
 	detailshelp: [
-		`/details [pokemon/item/move/ability] - Get additional details on this pokemon/item/move/ability/nature.`,
-		`/details [pokemon/item/move/ability], Gen [generation number/format name] - Get details on this pokemon/item/move/ability/nature for that generation/format.`,
-		`!details [pokemon/item/move/ability] - Show everyone these details. Requires: + % @ * # & ~`,
+		`/details [pokemon/item/move/ability/nature] - Get additional details on this pokemon/item/move/ability/nature.`,
+		`/details [pokemon/item/move/ability/nature], Gen [generation number/format name] - Get details on this pokemon/item/move/ability/nature for that generation/format.`,
+		`!details [pokemon/item/move/ability/nature] - Show everyone these details. Requires: + % @ * # & ~`,
 	],
 
 	'!weakness': true,
@@ -2101,6 +2101,8 @@ const commands = {
 	pr: 'pickrandom',
 	pick: 'pickrandom',
 	pickrandom: function (target, room, user) {
+		target = this.canTalk(target);
+		if (!target) return false;
 		let options = target.split(',');
 		if (options.length < 2) return this.parse('/help pick');
 		if (!this.runBroadcast(true)) return false;

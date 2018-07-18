@@ -854,7 +854,7 @@ let Formats = [
 		},
     },
 	{
-		name: "[Gen 7] Extreme Tier Shift",
+		name: "[Gen 7] Tier Shift",
 		desc: `Pok&eacute;mon get a +10 boost to each stat per tier below OU they are in.`,
 		
 		mod: 'gen7',
@@ -868,11 +868,11 @@ let Formats = [
 			
 			let boosts = {
 				'UU': 10,
-				'BL2': 10,
+				'RUBL': 10,
 				'RU': 20,
-				'BL3': 20,
+				'NUBL': 20,
 				'NU': 30,
-				'BL4': 30,
+				'PUBL': 30,
 				'PU': 40,
 				'NFE': 40,
 				'LC Uber': 40,

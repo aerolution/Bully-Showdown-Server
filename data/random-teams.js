@@ -1588,7 +1588,7 @@ class RandomTeams extends Dex.ModdedDex {
 			level += 2;
 		}
 		
-		if (this.format.id === 'gen7extremetiershift' || this.format.id === 'gen7randomscalemons') {
+		if (this.format.id === 'gen7tiershift' || this.format.id === 'gen7randomscalemons') {
 			level = 100;
 		}
 

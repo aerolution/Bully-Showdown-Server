@@ -17,7 +17,7 @@ class Hangman extends Rooms.RoomGame {
 	constructor(room, user, word, hint = '') {
 		super(room);
 
-		room.gameNumber++;
+		this.gameNumber = ++room.gameNumber;
 
 		this.gameid = 'hangman';
 		this.title = 'Hangman';
@@ -134,7 +134,7 @@ class Hangman extends Rooms.RoomGame {
 		return false;
 	}
 
-	get hangingMan() {
+	hangingMan() {
 		return `<img width="120" height="120" src="//play.pokemonshowdown.com/fx/hangman${this.incorrectGuesses === -1 ? 7 : this.incorrectGuesses}.png" />`;
 	}
 
@@ -151,7 +151,7 @@ class Hangman extends Rooms.RoomGame {
 		const message = result === 1 ? 'Too bad! The mon has been hanged.' : (result === 2 ? 'The word has been guessed. Congratulations!' : 'Hangman');
 		let output = `<div class="broadcast-${color}">`;
 		output += `<p style="text-align:left;font-weight:bold;font-size:10pt;margin:5px 0 0 15px">${message}</p>`;
-		output += `<table><tr><td style="text-align:center;">${this.hangingMan}</td><td style="text-align:center;width:100%;word-wrap:break-word">`;
+		output += `<table><tr><td style="text-align:center;">${this.hangingMan()}</td><td style="text-align:center;width:100%;word-wrap:break-word">`;
 
 		let wordString = this.wordSoFar.join('');
 		if (result === 1) {
@@ -190,14 +190,14 @@ class Hangman extends Rooms.RoomGame {
 	 */
 	display(user, broadcast = false) {
 		if (broadcast) {
-			this.room.add(`|uhtml|hangman${this.room.gameNumber}|${this.generateWindow()}`);
+			this.room.add(`|uhtml|hangman${this.gameNumber}|${this.generateWindow()}`);
 		} else {
-			user.sendTo(this.room, `|uhtml|hangman${this.room.gameNumber}|${this.generateWindow()}`);
+			user.sendTo(this.room, `|uhtml|hangman${this.gameNumber}|${this.generateWindow()}`);
 		}
 	}
 
 	update() {
-		this.room.add(`|uhtmlchange|hangman${this.room.gameNumber}|${this.generateWindow()}`);
+		this.room.add(`|uhtmlchange|hangman${this.gameNumber}|${this.generateWindow()}`);
 
 		if (this.incorrectGuesses === maxMistakes) {
 			this.finish();
@@ -205,13 +205,13 @@ class Hangman extends Rooms.RoomGame {
 	}
 
 	end() {
-		this.room.add(`|uhtmlchange|hangman${this.room.gameNumber}|<div class="infobox">(The game of hangman was ended.)</div>`);
+		this.room.add(`|uhtmlchange|hangman${this.gameNumber}|<div class="infobox">(The game of hangman was ended.)</div>`);
 		this.room.add("The game of hangman was ended.");
 		delete this.room.game;
 	}
 
 	finish() {
-		this.room.add(`|uhtmlchange|hangman${this.room.gameNumber}|<div class="infobox">(The game of hangman has ended &ndash; scroll down to see the results)</div>`);
+		this.room.add(`|uhtmlchange|hangman${this.gameNumber}|<div class="infobox">(The game of hangman has ended &ndash; scroll down to see the results)</div>`);
 		this.room.add(`|html|${this.generateWindow()}`);
 		delete this.room.game;
 	}
@@ -250,7 +250,7 @@ const commands = {
 			room.game = game;
 			game.display(user, true);
 
-			this.modlog('HANGMAN', null);
+			this.modlog('HANGMAN');
 			return this.privateModAction(`(A game of hangman was started by ${user.name}.)`);
 		},
 		createhelp: ["/hangman create [word], [hint] - Makes a new hangman game. Requires: % @ * # & ~"],
@@ -276,7 +276,7 @@ const commands = {
 
 			const game = /** @type {Hangman} */ (room.game);
 			game.end();
-			this.modlog('ENDHANGMAN', null);
+			this.modlog('ENDHANGMAN');
 			return this.privateModAction(`(The game of hangman was ended by ${user.name}.)`);
 		},
 		endhelp: ["/hangman end - Ends the game of hangman before the man is hanged or word is guessed. Requires: % @ * # & ~"],

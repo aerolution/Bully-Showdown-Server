@@ -4,10 +4,6 @@
   "description": "The server for the Pokémon Showdown battle simulator",
   "version": "0.11.2",
   "dependencies": {
-	"autolinker": "^1.4.4",
-    "nef": "^1.1.0",
-    "nef-fs": "^1.0.0",
-    "request": "^2.83.0",
     "sockjs": "0.3.18"
   },
   "optionalDependencies": {
@@ -25,7 +21,6 @@
     "test": "eslint --cache . && tsc && mocha",
     "tsc": "tsc",
     "lint": "eslint --cache .",
-    "precommit": "npm run lint",
     "prepush": "npm test"
   },
   "bin": "./pokemon-showdown",

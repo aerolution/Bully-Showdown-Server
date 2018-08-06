@@ -319,7 +319,10 @@ class Pokemon {
 	 * @param {Side} side
 	 */
 	getDetailsInner(side) {
-		if (this.illusion) return this.illusion.details + '|' + this.getHealthInner(side);
+		if (this.illusion) {
+			let illusionDetails = this.illusion.species + (this.level === 100 ? '' : ', L' + this.level) + (this.illusion.gender === '' ? '' : ', ' + this.illusion.gender) + (this.illusion.set.shiny ? ', shiny' : '');
+			return illusionDetails + '|' + this.getHealthInner(side);
+		}
 		return this.details + '|' + this.getHealthInner(side);
 	}
 
@@ -882,7 +885,7 @@ class Pokemon {
 	 * @param {boolean} [isPermanent]
 	 * @param {string} [message]
 	 */
-	formeChange(templateId, source = this.battle.effect, isPermanent, message) {
+	formeChange(templateId, source = this.battle.effect, isPermanent, message, abilitySlot = '0') {
 		let rawTemplate = this.battle.getTemplate(templateId);
 
 		if (!rawTemplate.abilities) return false;
@@ -948,7 +951,7 @@ class Pokemon {
 				if (this.illusion) {
 					this.ability = ''; // Don't allow Illusion to wear off
 				}
-				this.setAbility(template.abilities['0'], null, true);
+				this.setAbility(template.abilities[abilitySlot], null, true);
 				if (isPermanent) this.baseAbility = this.ability;
 			}
 		}
@@ -1529,10 +1532,11 @@ class Pokemon {
 	 * @param {Side | boolean} side
 	 */
 	getHealthInner(side) {
-		if (!this.hp) return '0 fnt';
 		let hpstring;
 		// side === true in replays
-		if (side === this.side || side === true) {
+		if (!this.hp) {
+			hpstring = '0';
+		} else if (side === this.side || side === true) {
 			hpstring = '' + this.hp + '/' + this.maxhp;
 		} else {
 			let ratio = this.hp / this.maxhp;

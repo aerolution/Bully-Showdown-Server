@@ -61,14 +61,7 @@ class Giveaway {
 		// The massive amounts of typescipt ignores are to work around something that is impossible to implement in the current typescipt version, but should be available soon.
 		// I don't feel the need to fully overhaul the code structure to temporarily shut tsc up. I would rather use ignores for the time being to accomplish that.
 
-		// @ts-ignore
-		if (room.gaNumber) {
-			// @ts-ignore
-			room.gaNumber++;
-		} else {
-			// @ts-ignore
-			room.gaNumber = 1;
-		}
+		this.gaNumber = ++room.gameNumber;
 		this.host = host;
 		this.giver = giver;
 		this.room = room;
@@ -98,8 +91,7 @@ class Giveaway {
 	 * @param {string} content
 	 */
 	send(content) {
-		// @ts-ignore
-		this.room.add(`|uhtml|giveaway${this.room.gaNumber}${this.phase}|<div class="broadcast-blue">${content}</div>`);
+		this.room.add(`|uhtml|giveaway${this.gaNumber}${this.phase}|<div class="broadcast-blue">${content}</div>`);
 		this.room.update();
 	}
 
@@ -107,8 +99,7 @@ class Giveaway {
 	 * @param {string} content
 	 */
 	changeUhtml(content) {
-		// @ts-ignore
-		this.room.add(`|uhtmlchange|giveaway${this.room.gaNumber}${this.phase}|<div class="broadcast-blue">${content}</div>`);
+		this.room.add(`|uhtmlchange|giveaway${this.gaNumber}${this.phase}|<div class="broadcast-blue">${content}</div>`);
 		this.room.update();
 	}
 
@@ -136,8 +127,7 @@ class Giveaway {
 	kickUser(user) {
 		for (let ip in this.joined) {
 			if (user.latestIp === ip || this.joined[ip] in user.prevNames) {
-				// @ts-ignore
-				user.sendTo(this.room, `|uhtmlchange|giveaway${this.room.gaNumber}${this.phase}|<div class="broadcast-blue">${this.generateReminder()}</div>`);
+				user.sendTo(this.room, `|uhtmlchange|giveaway${this.gaNumber}${this.phase}|<div class="broadcast-blue">${this.generateReminder()}</div>`);
 				delete this.joined[ip];
 			}
 		}
@@ -147,7 +137,6 @@ class Giveaway {
 	 * @param {User} user
 	 */
 	checkExcluded(user) {
-		if (Giveaway.checkBanned(this.room, user)) return true;
 		if (user === this.giver || user.latestIp in this.giver.ips || toId(user) in this.giver.prevNames) return true;
 		return false;
 	}
@@ -313,6 +302,7 @@ class QuestionGiveaway extends Giveaway {
 		if (this.phase !== 'started') return user.sendTo(this.room, "The giveaway has not started yet.");
 
 		if (this.checkJoined(user) && Object.values(this.joined).indexOf(user.userid) < 0) return user.sendTo(this.room, "You have already joined the giveaway.");
+		if (Giveaway.checkBanned(this.room, user)) return user.sendTo(this.room, "You are banned from entering giveaways.");
 		if (this.checkExcluded(user)) return user.sendTo(this.room, "You are disallowed from entering the giveaway.");
 
 		if (!this.answered[user.userid]) this.answered[user.userid] = 0;
@@ -450,11 +440,9 @@ class LotteryGiveaway extends Giveaway {
 		for (let i in this.room.users) {
 			let thisUser = this.room.users[i];
 			if (this.checkJoined(thisUser)) {
-				// @ts-ignore
-				thisUser.sendTo(this.room, `|uhtmlchange|giveaway${this.room.gaNumber}${this.phase}|<div class="broadcast-blue">${joined}</div>`);
+				thisUser.sendTo(this.room, `|uhtmlchange|giveaway${this.gaNumber}${this.phase}|<div class="broadcast-blue">${joined}</div>`);
 			} else {
-				// @ts-ignore
-				thisUser.sendTo(this.room, `|uhtmlchange|giveaway${this.room.gaNumber}${this.phase}|<div class="broadcast-blue">${notJoined}</div>`);
+				thisUser.sendTo(this.room, `|uhtmlchange|giveaway${this.gaNumber}${this.phase}|<div class="broadcast-blue">${notJoined}</div>`);
 			}
 		}
 	}
@@ -467,11 +455,11 @@ class LotteryGiveaway extends Giveaway {
 
 		if (!user.named) return user.sendTo(this.room, "You need to choose a name before joining a lottery giveaway.");
 		if (this.checkJoined(user)) return user.sendTo(this.room, "You have already joined the giveaway.");
+		if (Giveaway.checkBanned(this.room, user)) return user.sendTo(this.room, "You are banned from entering giveaways.");
 		if (this.checkExcluded(user)) return user.sendTo(this.room, "You are disallowed from entering the giveaway.");
 
 		this.joined[user.latestIp] = user.userid;
-		// @ts-ignore
-		user.sendTo(this.room, `|uhtmlchange|giveaway${this.room.gaNumber}${this.phase}|<div class="broadcast-blue">${this.generateReminder(true)}</div>`);
+		user.sendTo(this.room, `|uhtmlchange|giveaway${this.gaNumber}${this.phase}|<div class="broadcast-blue">${this.generateReminder(true)}</div>`);
 		user.sendTo(this.room, "You have successfully joined the lottery giveaway.");
 	}
 
@@ -486,8 +474,7 @@ class LotteryGiveaway extends Giveaway {
 				delete this.joined[ip];
 			}
 		}
-		// @ts-ignore
-		user.sendTo(this.room, `|uhtmlchange|giveaway${this.room.gaNumber}${this.phase}|<div class="broadcast-blue">${this.generateReminder(false)}</div>`);
+		user.sendTo(this.room, `|uhtmlchange|giveaway${this.gaNumber}${this.phase}|<div class="broadcast-blue">${this.generateReminder(false)}</div>`);
 		user.sendTo(this.room, "You have left the lottery giveaway.");
 	}
 
@@ -543,14 +530,7 @@ class GtsGiveaway {
 	 * @param {string} lookfor
 	 */
 	constructor(room, giver, amount, summary, deposit, lookfor) {
-		// @ts-ignore
-		if (room.gtsNumber) {
-			// @ts-ignore
-			room.gtsNumber++;
-		} else {
-			// @ts-ignore
-			room.gtsNumber = 1;
-		}
+		this.gtsNumber = ++room.gameNumber;
 		this.room = room;
 		this.giver = giver;
 		this.left = amount;
@@ -577,8 +557,7 @@ class GtsGiveaway {
 	 * @param {string} content
 	 */
 	send(content) {
-		// @ts-ignore
-		this.room.add(`|uhtml|gtsga${this.room.gtsNumber}|<div class="broadcast-blue">${content}</div>`);
+		this.room.add(`|uhtml|gtsga${this.gtsNumber}|<div class="broadcast-blue">${content}</div>`);
 		this.room.update();
 	}
 
@@ -586,8 +565,7 @@ class GtsGiveaway {
 	 * @param {string} content
 	 */
 	changeUhtml(content) {
-		// @ts-ignore
-		this.room.add(`|uhtmlchange|gtsga${this.room.gtsNumber}|<div class="broadcast-blue">${content}</div>`);
+		this.room.add(`|uhtmlchange|gtsga${this.gtsNumber}|<div class="broadcast-blue">${content}</div>`);
 		this.room.update();
 	}
 

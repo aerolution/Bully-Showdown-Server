@@ -23,7 +23,7 @@ let Formats = [
 
 		mod: 'gen7',
 		maxForcedLevel: 50,
-		timer: {starting: 60*60, perTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, accelerate: false},
+		timer: {starting: 60*60, perTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, accelerate: false, dcTimerBank: false},
 		ruleset: ['Pokemon', 'Draft', 'Team Preview'],
 		banlist: ['Illegal'],
 	},
@@ -38,7 +38,7 @@ let Formats = [
 		name: "[Gen 7] DS Timer Draft League",
 
 		mod: 'gen7',
-		timer: {starting: 60*60, perTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, accelerate: false},
+		timer: {starting: 60*60, perTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, accelerate: false, dcTimerBank: false},
 		ruleset: ['Pokemon', 'Draft', 'Team Preview'],
 		banlist: ['Illegal'],
 	},
@@ -615,6 +615,47 @@ let Formats = [
 			if (!source) return;
 			let types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => this.getMove(move.id).type))];
 			return Object.assign({}, template, {types: types});
+		},
+	},
+	{
+		name: "[Gen 7] Benjamin Butterfree",
+		desc: `Pok&eacute;mon that faint reincarnate as their prevo, but without the moves they can't learn.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3605680/">Benjamin Butterfree</a>`,
+		],
+
+		mod: 'gen7',
+		ruleset: ['[Gen 7] OU'],
+		onBeforeFaint: function (pokemon) {
+			let prevo = pokemon.baseTemplate.isMega ? this.getTemplate(pokemon.baseTemplate.baseSpecies).prevo : pokemon.baseTemplate.prevo;
+			if (!prevo || pokemon.set.ability === 'Battle Bond') return;
+			let template = this.getTemplate(pokemon.set.species);
+			// @ts-ignore
+			let abilitySlot = Object.keys(template.abilities).find(slot => template.abilities[slot] === pokemon.set.ability);
+			template = this.getTemplate(prevo);
+			// @ts-ignore
+			if (!template.abilities[abilitySlot]) abilitySlot = '0';
+			pokemon.faintQueued = false;
+			if (Object.values(pokemon.boosts).find(boost => boost !== 0)) {
+				pokemon.clearBoosts();
+				this.add('-clearboost', pokemon);
+			}
+			pokemon.formeChange(template, this.getFormat(), true, '', abilitySlot);
+			this.add('-message', `${pokemon.name} has devolved into ${template.species}!`);
+			let newHP = Math.floor(Math.floor(2 * pokemon.template.baseStats['hp'] + pokemon.set.ivs['hp'] + Math.floor(pokemon.set.evs['hp'] / 4) + 100) * pokemon.level / 100 + 10);
+			pokemon.maxhp = pokemon.hp = newHP;
+			this.add('-heal', pokemon, pokemon.getHealth, '[silent]');
+			pokemon.cureStatus(true);
+			let learnset = template.learnset || this.getTemplate(template.baseSpecies).learnset || {};
+			let prevoset = template.prevo && this.getTemplate(template.prevo).learnset || {};
+			for (const moveSlot of pokemon.baseMoveSlots) {
+				if (!learnset[moveSlot.id] && !prevoset[moveSlot.id]) {
+					moveSlot.used = true;
+					moveSlot.pp = 0;
+				}
+			}
+			pokemon.canMegaEvo = null;
+			return false;
 		},
 	},
 	{

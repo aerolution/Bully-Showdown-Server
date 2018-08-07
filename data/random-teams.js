@@ -751,7 +751,7 @@ class RandomTeams extends Dex.ModdedDex {
 					if (counter.setupType || hasMove['spikes'] || (hasMove['rest'] && hasMove['sleeptalk']) || teamDetails.hazardClear) rejected = true;
 					break;
 				case 'fakeout':
-					if (counter.setupType || hasMove['substitute'] || hasMove['switcheroo'] || hasMove['trick']) rejected = true;
+					if (counter.setupType || hasMove['substitute'] || hasMove['switcheroo'] || hasMove['trick'] || hasAbility['Sheer Force']) rejected = true;
 					break;
 				case 'foulplay':
 					if (counter.setupType || !!counter['speedsetup'] || counter['Dark'] > 2 || (hasMove['rest'] && hasMove['sleeptalk'])) rejected = true;

@@ -933,7 +933,7 @@ let Formats = [
         onModifyTemplate: function (template, target, source) {
 			if (!source) return;
 			if (template.species === 'Shedinja' || template.species === 'Unown') return;
-			let types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => this.type))];
+			let types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => move.type))];
 			return Object.assign({}, template, {types: types});
 		},
     },

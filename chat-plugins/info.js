@@ -1455,8 +1455,8 @@ const commands = {
 			`An introduction to the Create-A-Pok&eacute;mon project:<br />` +
 			`- <a href="https://www.smogon.com/cap/">CAP project website and description</a><br />` +
 			`- <a href="https://www.smogon.com/forums/threads/48782/">What Pok&eacute;mon have been made?</a><br />` +
-			`- <a href="https://www.smogon.com/forums/forums/311">Talk about the metagame here</a><br />` +
-			`- <a href="https://www.smogon.com/forums/threads/3593752/">Sample SM CAP teams</a>`
+			`- <a href="https://www.smogon.com/forums/forums/477">Talk about the metagame here</a><br />` +
+			`- <a href="https://www.smogon.com/forums/threads/3634419/">Sample SM CAP teams</a>`
 		);
 	},
 	caphelp: [
@@ -1734,6 +1734,9 @@ const commands = {
 		if (showAll || target === 'coil') {
 			buffer.push(`<a href="https://www.smogon.com/forums/threads/3508013/">What is COIL?</a>`);
 		}
+		if (showAll || target === 'ladder' || target === 'ladderhelp' || target === 'decay') {
+			buffer.push(`<a href="https://pokemonshowdown.com/pages/ladderhelp">How the ladder works</a>`);
+		}
 		if (showAll || target === 'tiering' || target === 'tiers' || target === 'tier') {
 			buffer.push(`<a href="https://www.smogon.com/ingame/battle/tiering-faq">Tiering FAQ</a>`);
 		}
@@ -1746,8 +1749,8 @@ const commands = {
 		this.sendReplyBox(buffer.join(`<br />`));
 	},
 	faqhelp: [
-		`/faq [theme] - Provides a link to the FAQ. Add deviation, doubles, randomcap, restart, or staff for a link to these questions. Add all for all of them.`,
-		`!faq [theme] - Shows everyone a link to the FAQ. Add deviation, doubles, randomcap, restart, or staff for a link to these questions. Add all for all of them. Requires: + % @ * # & ~`,
+		`/faq [theme] - Provides a link to the FAQ. Add autoconfirmed, badges, coil, ladder, staff, or tiers for a link to these questions. Add all for all of them.`,
+		`!faq [theme] - Shows everyone a link to the FAQ. Add autoconfirmed, badges, coil, ladder, staff, or tiers for a link to these questions. Add all for all of them. Requires: + % @ * # & ~`,
 	],
 
 	'!smogdex': true,

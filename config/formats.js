@@ -23,9 +23,17 @@ let Formats = [
 
 		mod: 'gen7',
 		maxForcedLevel: 50,
-		timer: {starting: 60*60, perTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, accelerate: false, dcTimerBank: false},
+		timer: {starting: 7 * 60 + 90 - 10, perTurn: 10, maxPerTurn: 55, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Pokemon', 'Draft', 'Team Preview'],
 		banlist: ['Illegal'],
+	},
+	{
+		name: "[Gen 7] LC Draft League",
+
+		mod: 'gen7',
+		maxLevel: 5,
+		ruleset: ['Pokemon', 'Draft', 'Team Preview', 'Double Item Clause', 'Little Cup'],
+		banlist: ['Illegal', 'Eevium Z', 'Dragon Rage', 'Sonic Boom',],
 	},
 	{
 		name: "[Gen 7] No Team Preview",
@@ -318,6 +326,91 @@ let Formats = [
 		gameType: 'doubles',
 		ruleset: ['[Gen 7] Doubles OU'],
 		banlist: ['DOU', 'DBL'],
+	},
+	{
+		name: "[Gen 7] VGC 2019 Sun Series",
+
+		mod: 'gen7',
+		gameType: 'doubles',
+		forcedLevel: 50,
+		teamLength: {
+			validate: [4, 6],
+			battle: 4,
+		},
+		timer: {starting: 7 * 60 + 90 - 10, perTurn: 10, maxPerTurn: 55, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['Pokemon', 'Minimal GBU'],
+		banlist: ['Unown', 'Dragon Ascent'],
+		requirePlus: true,
+		onValidateTeam: function (team) {
+			const legends = ['Mewtwo', 'Lugia', 'Ho-Oh', 'Kyogre', 'Groudon', 'Rayquaza', 'Dialga', 'Palkia', 'Giratina', 'Reshiram', 'Zekrom', 'Kyurem', 'Xerneas', 'Yveltal', 'Zygarde', 'Cosmog', 'Cosmoem', 'Solgaleo', 'Lunala', 'Necrozma'];
+			let n = 0;
+			let problems = [];
+			for (const set of team) {
+				const baseSpecies = this.getTemplate(set.species).baseSpecies;
+				if (legends.includes(baseSpecies)) {
+					n++;
+					if (n === 3) problems.push(`You can only use up to two legendary Pok\u00E9mon.`);
+				}
+				const item = this.getItem(set.item);
+				if (item.zMove || item.megaStone || ['redorb', 'blueorb'].includes(item.id)) problems.push(`${set.name || set.species}'s item ${item.name} is banned.`);
+			}
+			return problems;
+		},
+	},
+	{
+		name: "[Gen 7] VGC 2019 Moon Series",
+
+		mod: 'gen7',
+		gameType: 'doubles',
+		searchShow: false,
+		forcedLevel: 50,
+		teamLength: {
+			validate: [4, 6],
+			battle: 4,
+		},
+		timer: {starting: 7 * 60 + 90 - 10, perTurn: 10, maxPerTurn: 55, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['Pokemon', 'Minimal GBU'],
+		banlist: ['Unown', 'Dragon Ascent'],
+		requirePlus: true,
+		onValidateTeam: function (team) {
+			const legends = ['Mewtwo', 'Lugia', 'Ho-Oh', 'Kyogre', 'Groudon', 'Rayquaza', 'Dialga', 'Palkia', 'Giratina', 'Reshiram', 'Zekrom', 'Kyurem', 'Xerneas', 'Yveltal', 'Zygarde', 'Cosmog', 'Cosmoem', 'Solgaleo', 'Lunala', 'Necrozma'];
+			let n = 0;
+			let problems = [];
+			for (const set of team) {
+				const baseSpecies = this.getTemplate(set.species).baseSpecies;
+				if (legends.includes(baseSpecies)) {
+					n++;
+					if (n === 3) problems.push(`You can only use up to two legendary Pok\u00E9mon.`);
+				}
+				const item = this.getItem(set.item);
+				if (item.megaStone || ['redorb', 'blueorb', 'ultranecroziumz'].includes(item.id)) problems.push(`${set.name || set.species}'s item ${item.name} is banned.`);
+			}
+			return problems;
+		},
+	},
+	{
+		name: "[Gen 7] VGC 2019 Ultra Series",
+
+		mod: 'gen7',
+		gameType: 'doubles',
+		forcedLevel: 50,
+		teamLength: {
+			validate: [4, 6],
+			battle: 4,
+		},
+		timer: {starting: 7 * 60 + 90 - 10, perTurn: 10, maxPerTurn: 55, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['Pokemon', 'Minimal GBU'],
+		banlist: ['Unown'],
+		requirePlus: true,
+		onValidateTeam: function (team) {
+			const legends = ['Mewtwo', 'Lugia', 'Ho-Oh', 'Kyogre', 'Groudon', 'Rayquaza', 'Dialga', 'Palkia', 'Giratina', 'Reshiram', 'Zekrom', 'Kyurem', 'Xerneas', 'Yveltal', 'Zygarde', 'Cosmog', 'Cosmoem', 'Solgaleo', 'Lunala', 'Necrozma'];
+			let n = 0;
+			for (const set of team) {
+				const baseSpecies = this.getTemplate(set.species).baseSpecies;
+				if (legends.includes(baseSpecies)) n++;
+				if (n > 2) return [`You can only use up to two legendary Pok\u00E9mon.`];
+			}
+		},
 	},
 	{
 		name: "[Gen 7] VGC 2018",
@@ -626,6 +719,7 @@ let Formats = [
 
 		mod: 'gen7',
 		ruleset: ['[Gen 7] OU'],
+		banlist: ['Blissey'],
 		onBeforeFaint: function (pokemon) {
 			let prevo = pokemon.baseTemplate.isMega ? this.getTemplate(pokemon.baseTemplate.baseSpecies).prevo : pokemon.baseTemplate.prevo;
 			if (!prevo || pokemon.set.ability === 'Battle Bond') return;
@@ -636,16 +730,17 @@ let Formats = [
 			// @ts-ignore
 			if (!template.abilities[abilitySlot]) abilitySlot = '0';
 			pokemon.faintQueued = false;
+			pokemon.hp = pokemon.maxhp;
 			if (Object.values(pokemon.boosts).find(boost => boost !== 0)) {
 				pokemon.clearBoosts();
 				this.add('-clearboost', pokemon);
 			}
 			pokemon.formeChange(template, this.getFormat(), true, '', abilitySlot);
 			this.add('-message', `${pokemon.name} has devolved into ${template.species}!`);
+			pokemon.cureStatus(true);
 			let newHP = Math.floor(Math.floor(2 * pokemon.template.baseStats['hp'] + pokemon.set.ivs['hp'] + Math.floor(pokemon.set.evs['hp'] / 4) + 100) * pokemon.level / 100 + 10);
 			pokemon.maxhp = pokemon.hp = newHP;
 			this.add('-heal', pokemon, pokemon.getHealth, '[silent]');
-			pokemon.cureStatus(true);
 			let learnset = template.learnset || this.getTemplate(template.baseSpecies).learnset || {};
 			let prevoset = template.prevo && this.getTemplate(template.prevo).learnset || {};
 			for (const moveSlot of pokemon.baseMoveSlots) {
@@ -944,39 +1039,27 @@ let Formats = [
 		mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		onModifyTemplate: function (template, target, source, effect) {
-			if (!source) return;
-			if (target.set.ability in {'Drizzle': 1, 'Drought': 1, 'Shadow Tag': 1}) return;
-
-			if (!template.abilities) return false;
-			
-			let boosts = {
-				'UU': 10,
-				'RUBL': 10,
-				'RU': 20,
-				'NUBL': 20,
-				'NU': 30,
-				'PUBL': 30,
-				'PU': 40,
-				'NFE': 40,
-				'LC Uber': 40,
-				'LC': 40,
-			};
-			let tier = template.tier;
-			if (target.set.item) {
-				let item = this.getItem(target.set.item);
-				if (item.megaEvolves === template.species) tier = this.getTemplate(item.megaStone).tier;
+		onModifyTemplate: function (template, pokemon) {
+			let tsTemplate = Object.assign({}, template);
+			const boosts = {'UU': 10, 'RUBL': 10, 'RU': 20, 'NUBL': 20, 'NU': 30, 'PUBL': 30, 'PU': 40, 'NFE': 40, 'LC Uber': 40, 'LC': 40};
+			let tier = tsTemplate.tier;
+			if (pokemon && pokemon.set.item) {
+				let item = this.getItem(pokemon.set.item);
+				if (item.megaEvolves === tsTemplate.species) tier = this.getTemplate(item.megaStone).tier;
 			}
-			if (tier[0] === '(') tier = tier.slice(1, -1);
-			if (!(tier in boosts)) return;
-
-			let boost = target.set.moves.includes('chatter') ? 30 : boosts[tier];
-			template = Object.assign({}, template);
-			template.baseStats = Object.assign({}, template.baseStats);
-			for (let statName in template.baseStats) {
-				template.baseStats[statName] = this.clampIntRange(template.baseStats[statName] + boost, 1, 255);
+			if (tier.charAt(0) === '(') tier = tier.slice(1, -1);
+			let boost = (tier in boosts) ? boosts[tier] : 0;
+			if (boost > 0 && pokemon && (pokemon.set.ability === 'Drizzle' || pokemon.set.item === 'Mewnium Z')) boost = 0;
+			if (boost > 10 && pokemon && pokemon.set.moves.includes('auroraveil')) boost = 10;
+			if (boost > 20 && pokemon && pokemon.set.ability === 'Drought') boost = 20;
+			tsTemplate.baseStats = Object.assign({}, tsTemplate.baseStats);
+			// `Dex` needs to be used in /data, `this` needs to be used in battles
+			const clampRange = this && this.clampIntRange ? this.clampIntRange : Dex.clampIntRange;
+			for (let statName in tsTemplate.baseStats) {
+				// @ts-ignore
+				tsTemplate.baseStats[statName] = clampRange(tsTemplate.baseStats[statName] + boost, 1, 255);
 			}
-			return template;
+			return tsTemplate;
 		},
 	},
 	{

@@ -61,7 +61,7 @@ let BattleFormats = {
 		effectType: 'ValidatorRule',
 		name: 'Minimal GBU',
 		desc: "The standard ruleset for official tournaments, but without Restricted Legendary bans",
-		ruleset: ['Species Clause', 'Nickname Clause', 'Item Clause', 'Cancel Mod'],
+		ruleset: ['Species Clause', 'Nickname Clause', 'Item Clause', 'Team Preview', 'Cancel Mod'],
 		banlist: ['Unreleased', 'Illegal', 'Battle Bond',
 			'Mew',
 			'Celebi',
@@ -473,6 +473,29 @@ let BattleFormats = {
 					return ["You are limited to one of each item by Item Clause.", "(You have more than one " + this.getItem(item).name + ")"];
 				}
 				itemTable[item] = true;
+			}
+		},
+	},
+	doubleitemclause: {
+		effectType: 'ValidatorRule',
+		name: 'Double Item Clause',
+		desc: "Prevents teams from having more than two Pok&eacute;mon with the same item",
+		onStart: function () {
+			this.add('rule', 'Item Clause: Limit two of each item');
+		},
+		onValidateTeam: function (team, format) {
+			let itemTable = {};
+			for (const set of team) {
+				let item = toId(set.item);
+				if (!item) continue;
+				if (item in itemTable) {
+					if (itemTable[item] >= 2) {
+						return ["You are limited to two of each item by the Double Item Clause.", "(You have more than two " + this.getItem(item).name + ")"];
+					}
+					itemTable[item]++;
+				} else {
+					itemTable[item] = 1;
+				}
 			}
 		},
 	},

@@ -548,13 +548,12 @@ let Formats = [
 			validate: [1, 3],
 			battle: 1,
 		},
-		ruleset: ['Pokemon', 'Species Clause', 'Nickname Clause', 'Moody Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Swagger Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
+		ruleset: ['Pokemon', 'Species Clause', 'Nickname Clause', 'Moody Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Accuracy Moves Clause', 'Swagger Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
 		banlist: [
-			'Illegal', 'Unreleased', 'Arceus', 'Darkrai', 'Deoxys-Base', 'Deoxys-Attack', 'Deoxys-Defense', 'Dialga', 'Giratina', 'Groudon', 'Ho-Oh',
-			'Jirachi', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Necrozma-Dawn-Wings',
-			'Necrozma-Dusk-Mane', 'Palkia', 'Rayquaza', 'Reshiram', 'Salamence-Mega', 'Shaymin-Sky', 'Solgaleo', 'Tapu Koko', 'Xerneas', 'Yveltal', 'Zekrom',
-			'Focus Sash', 'Flash', 'Kinesis', 'Leaf Tornado', 'Mirror Shot', 'Mud Bomb', 'Mud-Slap', 'Muddy Water', 'Night Daze', 'Octazooka', 'Perish Song', 'Sand Attack', 'Smokescreen',
-			'Chansey + Charm + Seismic Toss', 'Chansey + Charm + Psywave',
+			'Illegal', 'Unreleased', 'Arceus', 'Darkrai', 'Deoxys-Base', 'Deoxys-Attack', 'Deoxys-Defense', 'Dialga', 'Giratina', 'Groudon',
+			'Ho-Oh', 'Jirachi', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Mewtwo',
+			'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Rayquaza', 'Reshiram', 'Salamence-Mega', 'Shaymin-Sky',
+			'Solgaleo', 'Tapu Koko', 'Xerneas', 'Yveltal', 'Zekrom', 'Focus Sash', 'Perish Song',
 		],
 	},
 	{
@@ -892,6 +891,94 @@ let Formats = [
 			if (source.getTypes().join() === type) return;
 			if (!source.setType(type)) return;
 			this.add('-start', source, 'typechange', type);
+		},
+	},
+	{
+		name: "[Gen 7] Partners in Crime",
+		desc: `Doubles-based metagame where both active ally Pok&eacute;mon share abilities and moves.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3618488/">Partners in Crime</a>`,
+		],
+
+		mod: 'pic',
+		team: 'random',
+		gameType: 'doubles',
+		ruleset: ['[Gen 7] Doubles OU', 'Sleep Clause Mod'],
+		onSwitchInPriority: 2,
+		onSwitchIn: function (pokemon) {
+			if (this.p1.active.every(ally => ally && !ally.fainted)) {
+				let p1a = this.p1.active[0], p1b = this.p1.active[1];
+				if (p1a.ability !== p1b.ability) {
+					let p1aInnate = 'ability' + p1b.ability;
+					p1a.volatiles[p1aInnate] = {id: p1aInnate, target: p1a};
+					let p1bInnate = 'ability' + p1a.ability;
+					p1b.volatiles[p1bInnate] = {id: p1bInnate, target: p1b};
+				}
+			}
+			if (this.p2.active.every(ally => ally && !ally.fainted)) {
+				let p2a = this.p2.active[0], p2b = this.p2.active[1];
+				if (p2a.ability !== p2b.ability) {
+					let p2a_innate = 'ability' + p2b.ability;
+					p2a.volatiles[p2a_innate] = {id: p2a_innate, target: p2a};
+					let p2b_innate = 'ability' + p2a.ability;
+					p2b.volatiles[p2b_innate] = {id: p2b_innate, target: p2b};
+				}
+			}
+			let ally = pokemon.side.active.find(ally => ally && ally !== pokemon && !ally.fainted);
+			if (ally && ally.ability !== pokemon.ability) {
+				// @ts-ignore
+				if (!pokemon.innate) {
+					// @ts-ignore
+					pokemon.innate = 'ability' + ally.ability;
+					// @ts-ignore
+					delete pokemon.volatiles[pokemon.innate];
+					// @ts-ignore
+					pokemon.addVolatile(pokemon.innate);
+				}
+				// @ts-ignore
+				if (!ally.innate) {
+					// @ts-ignore
+					ally.innate = 'ability' + pokemon.ability;
+					// @ts-ignore
+					delete ally.volatiles[ally.innate];
+					// @ts-ignore
+					ally.addVolatile(ally.innate);
+				}
+			}
+		},
+		onSwitchOut: function (pokemon) {
+			// @ts-ignore
+			if (pokemon.innate) {
+				// @ts-ignore
+				pokemon.removeVolatile(pokemon.innate);
+				// @ts-ignore
+				delete pokemon.innate;
+			}
+			let ally = pokemon.side.active.find(ally => ally && ally !== pokemon && !ally.fainted);
+			// @ts-ignore
+			if (ally && ally.innate) {
+				// @ts-ignore
+				ally.removeVolatile(ally.innate);
+				// @ts-ignore
+				delete ally.innate;
+			}
+		},
+		onFaint: function (pokemon) {
+			// @ts-ignore
+			if (pokemon.innate) {
+				// @ts-ignore
+				pokemon.removeVolatile(pokemon.innate);
+				// @ts-ignore
+				delete pokemon.innate;
+			}
+			let ally = pokemon.side.active.find(ally => ally && ally !== pokemon && !ally.fainted);
+			// @ts-ignore
+			if (ally && ally.innate) {
+				// @ts-ignore
+				ally.removeVolatile(ally.innate);
+				// @ts-ignore
+				delete ally.innate;
+			}
 		},
 	},
 	{

@@ -901,6 +901,7 @@ let Formats = [
 		],
 
 		mod: 'pic',
+		team: 'random',
 		gameType: 'doubles',
 		ruleset: ['[Gen 7] Doubles OU', 'Sleep Clause Mod'],
 		onSwitchInPriority: 2,

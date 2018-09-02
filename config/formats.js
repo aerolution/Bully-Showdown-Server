@@ -893,7 +893,7 @@ let Formats = [
 			this.add('-start', source, 'typechange', type);
 		},
 	},
-	{
+	/**{
 		name: "[Gen 7] Partners in Crime",
 		desc: `Doubles-based metagame where both active ally Pok&eacute;mon share abilities and moves.`,
 		threads: [
@@ -979,7 +979,8 @@ let Formats = [
 				delete ally.innate;
 			}
 		},
-	},
+	}, 
+	**/
 	{
 		name: "[Gen 7] Tormenting Spirits",
 		desc: `Pok&eacute;mon can't select the same move twice in a row.`,

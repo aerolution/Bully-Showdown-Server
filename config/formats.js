@@ -552,7 +552,7 @@ let Formats = [
 		banlist: [
 			'Illegal', 'Unreleased', 'Arceus', 'Darkrai', 'Deoxys-Base', 'Deoxys-Attack', 'Deoxys-Defense', 'Dialga', 'Giratina', 'Groudon',
 			'Ho-Oh', 'Jirachi', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Mewtwo',
-			'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Rayquaza', 'Reshiram', 'Salamence-Mega', 'Shaymin-Sky',
+			'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Rayquaza', 'Reshiram', 'Salamence-Mega', 'Shaymin-Sky', 'Snorlax',
 			'Solgaleo', 'Tapu Koko', 'Xerneas', 'Yveltal', 'Zekrom', 'Focus Sash', 'Perish Song',
 		],
 	},
@@ -670,13 +670,12 @@ let Formats = [
 		ruleset: ['[Gen 7] PU'],
 		banlist: [
 			// PU
-			'Absol', 'Aggron', 'Altaria', 'Archeops', 'Aromatisse', 'Articuno', 'Audino', 'Aurorus', 'Claydol',
-			'Clefairy', 'Drampa', 'Eelektross', 'Exeggutor-Alola', 'Floatzel', 'Froslass', 'Golurk', 'Gourgeist-Super',
-			'Granbull', 'Gurdurr', 'Haunter', 'Hitmonchan', 'Kangaskhan', 'Kingler', 'Komala', 'Lanturn', 'Liepard',
-			'Lilligant', 'Lycanroc-Base', 'Manectric', 'Mesprit', 'Mudsdale', 'Omastar', 'Oricorio-Sensu', 'Passimian',
-			'Persian-Alola', 'Poliwrath', 'Primeape', 'Probopass', 'Pyroar', 'Pyukumuku', 'Quagsire', 'Qwilfish',
-			'Raichu-Alola', 'Regirock', 'Sableye', 'Sandslash-Alola', 'Scyther', 'Silvally-Fairy', 'Silvally-Ghost',
-			'Skuntank', 'Spiritomb', 'Swanna', 'Togedemaru', 'Weezing', 'Zangoose',
+			'Absol', 'Aggron', 'Altaria', 'Archeops', 'Aromatisse', 'Articuno', 'Audino', 'Aurorus', 'Claydol', 'Clefairy',
+			'Drampa', 'Eelektross', 'Exeggutor-Alola', 'Floatzel', 'Froslass', 'Golurk', 'Gourgeist-Super', 'Gurdurr',
+			'Haunter', 'Hitmonchan', 'Kangaskhan', 'Kingler', 'Komala', 'Lanturn', 'Liepard', 'Lilligant', 'Lycanroc-Base',
+			'Manectric', 'Mesprit', 'Mudsdale', 'Omastar', 'Oricorio-Sensu', 'Passimian', 'Persian-Alola', 'Poliwrath',
+			'Primeape', 'Pyukumuku', 'Quagsire', 'Qwilfish', 'Raichu-Alola', 'Regirock', 'Sableye', 'Sandslash-Alola',
+			'Scyther', 'Silvally-Fairy', 'Silvally-Ghost', 'Skuntank', 'Spiritomb', 'Swanna', 'Togedemaru', 'Weezing', 'Zangoose',
 			// ZUBL
 			'Carracosta', 'Crabominable', 'Exeggutor-Base', 'Gorebyss', 'Jynx', 'Kabutops', 'Ludicolo', 'Musharna',
 			'Raticate-Alola', 'Raticate-Alola-Totem', 'Throh', 'Turtonator', 'Type: Null', 'Ursaring', 'Victreebel',
@@ -757,6 +756,10 @@ let Formats = [
 		},
 		ruleset: ['[Gen 7] Doubles OU'],
 		banlist: ['Salamence-Mega', 'Tapu Lele', 'Focus Sash', 'Final Gambit', 'Perish Song'],
+		onValidateSet: function (set) {
+			const item = this.getItem(set.item);
+			if (item.zMove) return [(set.name || set.species) + "'s item " + item.name + " is banned."];
+		},
 	},
 	{
 		name: "[Gen 6] Gen-NEXT OU",

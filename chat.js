@@ -326,7 +326,7 @@ class CommandContext {
 						this.room.messageCount++;
 					}
 				}
-				this.room.add(`|c|${this.user.getIdentity(this.room.id)}|${message}`);
+				// this.room.add(`|c|${this.user.getIdentity(this.room.id)}|${message}`);
 			}
 		}
 

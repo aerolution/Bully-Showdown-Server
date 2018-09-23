@@ -2577,7 +2577,7 @@ let BattleMovedex = {
 			let possibleTypes = [];
 			let attackType = target.lastMove.type;
 			for (let type in this.data.TypeChart) {
-				if (source.hasType(type) || target.hasType(type)) continue;
+				if (source.hasType(type)) continue;
 				let typeCheck = this.data.TypeChart[type].damageTaken[attackType];
 				if (typeCheck === 2 || typeCheck === 3) {
 					possibleTypes.push(type);
@@ -8955,6 +8955,10 @@ let BattleMovedex = {
 			onStart: function (pokemon) {
 				this.add('-start', pokemon, 'move: Laser Focus');
 			},
+			onRestart: function (pokemon) {
+				this.effectData.duration = 2;
+				this.add('-start', pokemon, 'move: Laser Focus');
+			},
 			onModifyCritRatio: function (critRatio) {
 				return 5;
 			},
@@ -10344,7 +10348,7 @@ let BattleMovedex = {
 		accuracy: 100,
 		basePower: 150,
 		category: "Special",
-		desc: "Whether or not this move is successful, the user loses 1/2 of its maximum HP, rounded up, unless the user has the Magic Guard Ability. This move is prevented from executing and the user does not lose HP if any active Pokemon has the Damp Ability, or if this move is Fire type and the user is affected by Powder or the weather is Primordial Sea.",
+		desc: "Whether or not this move is successful and even if it would cause fainting, the user loses 1/2 of its maximum HP, rounded up, unless the user has the Magic Guard Ability. This move is prevented from executing and the user does not lose HP if any active Pokemon has the Damp Ability, or if this move is Fire type and the user is affected by Powder or the weather is Primordial Sea.",
 		shortDesc: "User loses 50% max HP. Hits adjacent Pokemon.",
 		id: "mindblown",
 		isViable: true,
@@ -14947,7 +14951,6 @@ let BattleMovedex = {
 
 				if (target.hasType('Flying')) {
 					this.add('-immune', target, '[msg]');
-					this.add('-end', target, 'Sky Drop');
 					return null;
 				}
 			} else {

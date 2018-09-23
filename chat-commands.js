@@ -1550,8 +1550,7 @@ const commands = {
 				this.privateModAction(displayMessage);
 			}
 		}
-		this.add(`|unlink|hide|${userid}`);
-		if (userid !== toId(this.inputUsername)) this.add(`|unlink|hide|${toId(this.inputUsername)}`);
+		room.hideText([userid, toId(this.inputUsername)]);
 
 		if (room.isPrivate !== true && room.chatRoomData) {
 			this.globalModlog("ROOMBAN", targetUser, ` by ${user.userid} ${(target ? `: ${target}` : ``)}`);
@@ -1860,8 +1859,7 @@ const commands = {
 			displayMessage = `(${name}'s ac account: ${acAccount})`;
 			this.privateModAction(displayMessage);
 		}
-		this.add(`|unlink|hide|${userid}`);
-		if (userid !== toId(this.inputUsername)) this.add(`|unlink|hide|${toId(this.inputUsername)}`);
+		room.hideText([userid, toId(this.inputUsername)]);
 
 		const globalReason = (target ? `: ${userReason} ${proof}` : '');
 		this.globalModlog((week ? "WEEKLOCK" : "LOCK"), targetUser || userid, ` by ${user.userid}${globalReason}`);
@@ -1982,8 +1980,7 @@ const commands = {
 			this.privateModAction(displayMessage);
 		}
 
-		this.add(`|unlink|hide|${userid}`);
-		if (userid !== toId(this.inputUsername)) this.add(`|unlink|hide|${toId(this.inputUsername)}`);
+		room.hideText([userid, toId(this.inputUsername)]);
 
 		const globalReason = (target ? `: ${userReason} ${proof}` : '');
 		this.globalModlog("BAN", targetUser, ` by ${user.userid}${globalReason}`);
@@ -2359,6 +2356,32 @@ const commands = {
 	},
 	announcehelp: [`/announce OR /wall [message] - Makes an announcement. Requires: % @ * # & ~`],
 
+	notifyoffrank: 'notifyrank',
+	notifyrank: function (target, room, user, connection, cmd) {
+		if (!target) return this.parse(`/help notifyrank`);
+		if (!this.can('addhtml', null, room)) return false;
+		if (!this.canTalk()) return;
+		let [rank, notification] = this.splitOne(target);
+		if (!(rank in Config.groups)) return this.errorReply(`Group '${rank}' does not exist.`);
+		const id = `${room.id}-rank-${Config.groups[rank].id}`;
+		if (cmd === 'notifyoffrank') {
+			room.sendRankedUsers(`|tempnotifyoff|${id}`, rank);
+		} else {
+			let [title, message] = this.splitOne(notification);
+			if (!title) title = `${room.title} ${Config.groups[rank].name}+ message!`;
+			if (!user.can('addhtml')) {
+				title += ` (notification from ${user.name})`;
+			}
+			if (message.length > 300) return this.errorReply(`Notifications should not exceed 300 characters.`);
+			room.sendRankedUsers(`|tempnotify|${id}|${title}|${message}`, rank);
+			this.modlog(`NOTIFYRANK`, null, target);
+		}
+	},
+	notifyrankhelp: [
+		`/notifyrank [rank], [title], [message] - Sends a notification to everyone with the specified rank or higher. Requires: # * & ~`,
+		`/notifyoffrank [rank] - Closes the notification previously sent with /notifyrank [rank]. Requires: # * & ~`,
+	],
+
 	fr: 'forcerename',
 	forcerename: function (target, room, user) {
 		if (!target) return this.parse('/help forcerename');
@@ -2380,6 +2403,7 @@ const commands = {
 		Ladders.cancelSearches(targetUser);
 		targetUser.resetName(true);
 		targetUser.send(`|nametaken||${user.name} considers your name inappropriate${(reason ? `: ${reason}` : ".")}`);
+		targetUser.trackRename = targetUser.name;
 		return true;
 	},
 	forcerenamehelp: [`/forcerename OR /fr [username], [reason] - Forcibly change a user's name and shows them the [reason]. Requires: % @ * & ~`],
@@ -2455,20 +2479,18 @@ const commands = {
 		if (!(user.can('lock') || localPunished)) return this.errorReply(`User ${name} is neither locked nor muted/banned from this room.`);
 
 		if (targetUser && (cmd === 'hidealtstext' || cmd === 'hidetextalts' || cmd === 'hidealttext')) {
-			this.addModAction(`${name}'s alts' messages were cleared from ${room.title} by ${user.name}.`);
+			room.sendByUser(user, `${name}'s alts messages were cleared from ${room.title} by ${user.name}.`);
+
 			this.modlog('HIDEALTSTEXT', targetUser, null, {noip: 1});
-			this.add(`|unlink|hide|${userid}`);
-			const alts = targetUser.getAltUsers(true);
-			for (const alt of alts) {
-				this.add(`|unlink|hide|${alt.getLastId()}`);
-			}
-			for (const prevName in targetUser.prevNames) {
-				this.add(`|unlink|hide|${targetUser.prevNames[prevName]}`);
-			}
+			room.hideText([
+				userid,
+				...Object.keys(targetUser.prevNames),
+				...targetUser.getAltUsers(true).map(user => user.getLastId()),
+			]);
 		} else {
-			this.addModAction(`${name}'s messages were cleared from ${room.title} by ${user.name}.`);
+			room.sendByUser(user, `${name}'s messages were cleared from ${room.title} by ${user.name}.`);
 			this.modlog('HIDETEXT', targetUser || userid, null, {noip: 1, noalts: 1});
-			this.add(`|unlink|hide|${userid}`);
+			room.hideText([userid]);
 		}
 	},
 	hidetexthelp: [

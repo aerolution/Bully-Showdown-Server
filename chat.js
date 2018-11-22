@@ -1717,6 +1717,12 @@ Chat.fitImage = async function (url, maxHeight = 300, maxWidth = 300) {
 	if (width <= maxWidth && height <= maxHeight) return [width, height];
 
 	let ratio;
+	if (height * (maxWidth / maxHeight) > width) {
+		ratio = maxHeight / height;
+	} else {
+		ratio = maxWidth / width;
+	}
+
 	return [Math.round(width * ratio), Math.round(height * ratio)];
 };
 

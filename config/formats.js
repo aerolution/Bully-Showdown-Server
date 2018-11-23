@@ -1112,6 +1112,7 @@ let Formats = [
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		onModifyTemplate: function (template, target, source) {
+			if (!source) return;
 			template = Object.assign({}, template);
 			template.baseStats = Object.assign({}, template.baseStats);
 			let stats = ['atk', 'def', 'spa', 'spd', 'spe'];

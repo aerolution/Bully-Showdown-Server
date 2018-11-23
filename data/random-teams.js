@@ -1449,7 +1449,7 @@ class RandomTeams extends Dex.ModdedDex {
 			item = 'Flyinium Z';
 		} else if (hasMove['solarbeam'] && !hasAbility['Drought'] && !hasMove['sunnyday'] && !teamDetails['sun']) {
 			item = !teamDetails.zMove ? 'Grassium Z' : 'Power Herb';
-		} else if (this.format.id != 'gen7randomscalemons' && this.format.id != 'gen7randomaveragemons' && template.evos.length) {
+		} else if (this.format.id !== 'gen7randomscalemons' && this.format.id !== 'gen7randomaveragemons' && template.evos.length) {
 			item = (ability === 'Technician' && counter.Physical >= 4) ? 'Choice Band' : 'Eviolite';
 		} else if (template.species === 'Latias' || template.species === 'Latios') {
 			item = 'Soul Dew';
@@ -1744,7 +1744,7 @@ class RandomTeams extends Dex.ModdedDex {
 			if (this.format.id === 'gen7randomaveragemons' && (template.baseSpecies === 'Shedinja')) continue;**/
 
 			// Only certain NFE Pokemon are allowed
-			if (this.format.id != 'gen7randomscalemons' && this.format.id != 'gen7randomaveragemons' && template.evos.length && !allowedNFE.includes(template.species)) continue;
+			if (this.format.id !== 'gen7randomscalemons' && this.format.id !== 'gen7randomaveragemons' && template.evos.length && !allowedNFE.includes(template.species)) continue;
 
 			let tier = template.tier;
 			switch (tier) {

@@ -1738,9 +1738,11 @@ class RandomTeams extends Dex.ModdedDex {
 			// Limit to one of each species (Species Clause)
 			if (baseFormes[template.baseSpecies]) continue;
 			
+			let templateAbility = (baseTemplate === template ? ability : template.abilities[0]);
 			if (this.format.id === 'gen7shiftingillusions' && template.baseSpecies === 'Ditto') continue;
 			if (this.format.id === 'gen7randomcamomons' && template.baseSpecies === 'Zoroark') continue;
 			if (this.format.id === 'gen7randomscalemons' && (template.baseSpecies === 'Abra' || template.baseSpecies === 'Carvanha' || template.baseSpecies === 'Gastly' || template.baseSpecies === 'Shedinja')) continue;
+			if (this.format.id === 'gen7randomaveragemons' && (template.baseSpecies === 'Shedinja' || templateAbility === 'Huge Power' || templateAbility === 'Pure Power' || templateAbility === 'Fur Coat')) continue;
 
 			// Only certain NFE Pokemon are allowed
 			if (this.format.id != 'gen7randomscalemons' && this.format.id != 'gen7randomaveragemons' && template.evos.length && !allowedNFE.includes(template.species)) continue;

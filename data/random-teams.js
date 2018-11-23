@@ -1691,8 +1691,7 @@ class RandomTeams extends Dex.ModdedDex {
 	randomTeam() {
 		let pokemon = [];
 
-		const excludedTiers;
-		if (this.format.id !== 'gen7randomscalemons' || this.format.id !== 'gen7randomaveragemons') excludedTiers = ['NFE', 'LC Uber', 'LC'];
+		const excludedTiers = ['NFE', 'LC Uber', 'LC'];
 		const allowedNFE = ['Chansey', 'Doublade', 'Gligar', 'Porygon2', 'Scyther', 'Togetic'];
 
 		// For Monotype
@@ -1708,7 +1707,7 @@ class RandomTeams extends Dex.ModdedDex {
 				if (template.battleOnly) types = this.getTemplate(template.baseSpecies).types;
 				if (types.indexOf(type) < 0) continue;
 			}
-			if (template.gen <= this.gen && !excludedTiers.includes(template.tier) && !template.isMega && !template.isPrimal && !template.isNonstandard && template.randomBattleMoves) {
+			if (template.gen <= this.gen && (!excludedTiers.includes(template.tier) || this.format.id === 'gen7randomscalemons' || this.format.id !== 'gen7randomaveragemons') && !template.isMega && !template.isPrimal && !template.isNonstandard && template.randomBattleMoves) {
 				pokemonPool.push(id);
 			}
 		}

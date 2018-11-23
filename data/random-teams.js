@@ -1691,8 +1691,8 @@ class RandomTeams extends Dex.ModdedDex {
 	randomTeam() {
 		let pokemon = [];
 
-		const excludedTiers = ['NFE', 'LC Uber', 'LC'];
-		if (this.format.id === 'gen7randomscalemons' || this.format.id === 'gen7randomaveragemons') excludedTiers = ['CAP'];
+		const excludedTiers;
+		if (this.format.id !== 'gen7randomscalemons' || this.format.id !== 'gen7randomaveragemons') excludedTiers = ['NFE', 'LC Uber', 'LC'];
 		const allowedNFE = ['Chansey', 'Doublade', 'Gligar', 'Porygon2', 'Scyther', 'Togetic'];
 
 		// For Monotype

@@ -450,16 +450,16 @@ class Pokemon {
 			// @ts-ignore
 			stat = this.battle.getStatCallback(stat, statName, this, unboosted);
 		}
+		if (statName === 'spe' && stat > 10000) stat = 10000;
 		return stat;
 	}
 
 	getActionSpeed() {
 		let speed = this.getStat('spe', false, false);
-		if (speed > 10000) speed = 10000;
 		if (this.battle.getPseudoWeather('trickroom')) {
 			speed = 0x2710 - speed;
 		}
-		return speed & 0x1FFF;
+		return this.battle.trunc(speed, 13);
 	}
 
 	/**
@@ -545,13 +545,15 @@ class Pokemon {
 			let selectedTarget = target;
 			if (!target || (target.fainted && target.side !== this.side)) {
 				// If a targeted foe faints, the move is retargeted
-				target = this.battle.resolveTarget(this, move);
+				const possibleTarget = this.battle.resolveTarget(this, move);
+				if (!possibleTarget) return [];
+				target = possibleTarget;
 			}
 			if (target.side.active.length > 1) {
 				if (!move.flags['charge'] || this.volatiles['twoturnmove'] ||
 						(move.id.startsWith('solarb') && this.battle.isWeather(['sunnyday', 'desolateland'])) ||
 						(this.hasItem('powerherb') && move.id !== 'skydrop')) {
-					target = this.battle.priorityEvent('RedirectTarget', this, this, move, target);
+					target = this.battle.priorityEvent('RedirectTarget', this, this, this.battle.getActiveMove(move), target);
 				}
 			}
 			if (selectedTarget !== target) {
@@ -626,7 +628,7 @@ class Pokemon {
 
 	/**
 	 * @param {string | Move} move
-	 * @param {number | false} damage
+	 * @param {number | false | undefined} damage
 	 * @param {Pokemon} source
 	 */
 	gotAttacked(move, damage, source) {
@@ -846,7 +848,8 @@ class Pokemon {
 		}
 		pokemon.clearVolatile();
 		for (let i in this.volatiles) {
-			this.battle.singleEvent('Copy', this.getVolatile(i), this.volatiles[i], this);
+			const volatile = /** @type {PureEffect} */ (this.getVolatile(i));
+			this.battle.singleEvent('Copy', volatile, this.volatiles[i], this);
 		}
 	}
 
@@ -1119,7 +1122,7 @@ class Pokemon {
 	damage(d, source = null, effect = null) {
 		if (!this.hp || isNaN(d) || d <= 0) return 0;
 		if (d < 1 && d > 0) d = 1;
-		d = Math.floor(d);
+		d = this.battle.trunc(d);
 		this.hp -= d;
 		if (this.hp <= 0) {
 			d += this.hp;
@@ -1182,7 +1185,7 @@ class Pokemon {
 	 */
 	heal(d, source = null, effect = null) {
 		if (!this.hp) return false;
-		d = Math.floor(d);
+		d = this.battle.trunc(d);
 		if (isNaN(d)) return false;
 		if (d <= 0) return false;
 		if (this.hp >= this.maxhp) return false;
@@ -1200,7 +1203,7 @@ class Pokemon {
 	 */
 	sethp(d) {
 		if (!this.hp) return 0;
-		d = Math.floor(d);
+		d = this.battle.trunc(d);
 		if (isNaN(d)) return;
 		if (d < 1) d = 1;
 		d = d - this.hp;
@@ -1237,9 +1240,9 @@ class Pokemon {
 
 	/**
 	 * @param {string | Effect} status
-	 * @param {Pokemon?} [source]
-	 * @param {Effect?} [sourceEffect]
-	 * @param {boolean} [ignoreImmunities]
+	 * @param {Pokemon?} source
+	 * @param {Effect?} sourceEffect
+	 * @param {boolean} ignoreImmunities
 	 */
 	setStatus(status, source = null, sourceEffect = null, ignoreImmunities = false) {
 		if (!this.hp) return false;
@@ -1248,6 +1251,7 @@ class Pokemon {
 			if (!source) source = this.battle.event.source;
 			if (!sourceEffect) sourceEffect = this.battle.effect;
 		}
+		if (!source) source = this;
 
 		if (this.status === status.id) {
 			if (sourceEffect && sourceEffect.status === this.status) {
@@ -1270,6 +1274,7 @@ class Pokemon {
 		let prevStatus = this.status;
 		let prevStatusData = this.statusData;
 		if (status.id) {
+			/** @type {boolean} */
 			let result = this.battle.runEvent('SetStatus', this, source, sourceEffect, status);
 			if (!result) {
 				this.battle.debug('set status [' + status.id + '] interrupted');
@@ -1489,10 +1494,10 @@ class Pokemon {
 	}
 
 	/**
-	 * @param {string | Effect} status
+	 * @param {string | PureEffect} status
 	 * @param {Pokemon?} source
 	 * @param {Effect?} sourceEffect
-	 * @param {string | Effect?} linkedStatus
+	 * @param {string | PureEffect?} linkedStatus
 	 * @return {boolean | any}
 	 */
 	addVolatile(status, source = null, sourceEffect = null, linkedStatus = null) {
@@ -1504,6 +1509,7 @@ class Pokemon {
 			if (!source) source = this.battle.event.source;
 			if (!sourceEffect) sourceEffect = this.battle.effect;
 		}
+		if (!source) source = this;
 
 		if (this.volatiles[status.id]) {
 			if (!status.onRestart) return false;
@@ -1707,14 +1713,19 @@ class Pokemon {
 	}
 
 	/**
-	 * @param {string | Move} move
+	 * @param {ActiveMove | string} moveOrType
 	 */
-	runEffectiveness(move) {
+	runEffectiveness(moveOrType) {
 		let totalTypeMod = 0;
+		let move = (typeof moveOrType !== 'string' ? moveOrType : null);
 		for (const type of this.getTypes()) {
-			let typeMod = this.battle.getEffectiveness(move, type);
-			typeMod = this.battle.singleEvent('Effectiveness', move, null, type, move, null, typeMod);
-			totalTypeMod += this.battle.runEvent('Effectiveness', this, type, move, typeMod);
+			let typeMod = this.battle.getEffectiveness(moveOrType, type);
+			if (move) {
+				typeMod = this.battle.singleEvent('Effectiveness', move, null, this, type, move, typeMod);
+				totalTypeMod += this.battle.runEvent('Effectiveness', this, type, move, typeMod);
+			} else {
+				totalTypeMod += typeMod;
+			}
 		}
 		return totalTypeMod;
 	}

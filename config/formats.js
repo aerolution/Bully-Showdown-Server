@@ -137,10 +137,6 @@ let Formats = [
 		mod: 'gen7',
 		ruleset: ['[Gen 7] RU'],
 		banlist: ['RU', 'NUBL', 'Drought'],
-		unbanlist: ['Abomasnow-Mega'],
-		onBegin: function () {
-			if (this.rated) this.add('html', `<div class="broadcast-green"><strong>NU is currently suspecting Mega Abomasnow! For information on how to participate check out the <a href="https://www.smogon.com/forums/threads/3643951/">suspect thread</a>.</strong></div>`);
-		},
 	},
 	{
 		name: "[Gen 7] PU",
@@ -152,7 +148,7 @@ let Formats = [
 
 		mod: 'gen7',
 		ruleset: ['[Gen 7] NU'],
-		banlist: ['NU', 'PUBL', 'Abomasnow-Mega'],
+		banlist: ['NU', 'PUBL'],
 	},
 	{
 		name: "[Gen 7] LC",
@@ -249,6 +245,7 @@ let Formats = [
 		canUseRandomTeam: true,
 		debug: true,
 		maxLevel: 9999,
+		onBegin() { this.trunc = n => Math.trunc(n); },
 		defaultLevel: 100,
 		teamLength: {
 			validate: [1, 24],
@@ -529,6 +526,7 @@ let Formats = [
 		searchShow: false,
 		canUseRandomTeam: true,
 		maxLevel: 9999,
+		onBegin() { this.trunc = n => Math.trunc(n); },
 		defaultLevel: 100,
 		debug: true,
 		teamLength: {
@@ -1552,6 +1550,7 @@ let Formats = [
 		canUseRandomTeam: true,
 		debug: true,
 		maxLevel: 9999,
+		onBegin() { this.trunc = n => Math.trunc(n); },
 		defaultLevel: 100,
 		// no restrictions, for serious (other than team preview)
 		ruleset: ['Team Preview', 'Cancel Mod'],
@@ -1633,6 +1632,7 @@ let Formats = [
 		searchShow: false,
 		canUseRandomTeam: true,
 		maxLevel: 9999,
+		onBegin() { this.trunc = n => Math.trunc(n); },
 		defaultLevel: 100,
 		debug: true,
 		// no restrictions, for serious (other than team preview)
@@ -1663,6 +1663,7 @@ let Formats = [
 		searchShow: false,
 		canUseRandomTeam: true,
 		maxLevel: 9999,
+		onBegin() { this.trunc = n => Math.trunc(n); },
 		defaultLevel: 100,
 		debug: true,
 		// no restrictions, for serious (other than team preview)
@@ -1696,8 +1697,8 @@ let Formats = [
 
 		mod: 'gen5',
 		searchShow: false,
-		ruleset: ['[Gen 5] OU'],
-		banlist: ['OU', 'UUBL', 'Drought', 'Sand Stream', 'Snow Warning'],
+		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Baton Pass Clause', 'Swagger Clause', 'Team Preview'],
+		banlist: ['Uber', 'OU', 'UUBL', 'Arena Trap', 'Drought', 'Sand Stream', 'Snow Warning'],
 	},
 	{
 		name: "[Gen 5] RU",
@@ -1709,7 +1710,7 @@ let Formats = [
 		mod: 'gen5',
 		searchShow: false,
 		ruleset: ['[Gen 5] UU'],
-		banlist: ['UU', 'RUBL', 'Shell Smash + Baton Pass', 'Snow Warning'],
+		banlist: ['UU', 'RUBL', 'Shell Smash + Baton Pass'],
 	},
 	{
 		name: "[Gen 5] NU",
@@ -1757,6 +1758,7 @@ let Formats = [
 		canUseRandomTeam: true,
 		debug: true,
 		maxLevel: 9999,
+		onBegin() { this.trunc = n => Math.trunc(n); },
 		defaultLevel: 100,
 		// no restrictions, for serious (other than team preview)
 		ruleset: ['Team Preview', 'Cancel Mod'],
@@ -1808,6 +1810,7 @@ let Formats = [
 		canUseRandomTeam: true,
 		debug: true,
 		maxLevel: 9999,
+		onBegin() { this.trunc = n => Math.trunc(n); },
 		defaultLevel: 100,
 		// no restrictions, for serious (other than team preview)
 		ruleset: ['Team Preview', 'Cancel Mod'],
@@ -1877,6 +1880,7 @@ let Formats = [
 		canUseRandomTeam: true,
 		debug: true,
 		maxLevel: 9999,
+		onBegin() { this.trunc = n => Math.trunc(n); },
 		defaultLevel: 100,
 		// no restrictions
 		ruleset: ['Cancel Mod'],
@@ -1909,6 +1913,7 @@ let Formats = [
 		canUseRandomTeam: true,
 		debug: true,
 		maxLevel: 9999,
+		onBegin() { this.trunc = n => Math.trunc(n); },
 		defaultLevel: 100,
 		// no restrictions
 		ruleset: ['Cancel Mod'],

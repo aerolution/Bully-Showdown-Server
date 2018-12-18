@@ -447,7 +447,7 @@ let BattleFormatsData = {
 			{"generation": 7, "level": 5, "perfectIVs": 6, "moves": ["thundershock", "tailwhip", "growl"], "pokeball": "pokeball"},
 		],
 		eventOnly: true,
-		isNonstandard: true,
+		isUnreleased: true,
 		tier: "Unreleased",
 	},
 	raichu: {
@@ -1623,7 +1623,7 @@ let BattleFormatsData = {
 			{"generation": 7, "level": 5, "perfectIVs": 6, "moves": ["tackle", "tailwhip", "growl"], "pokeball": "pokeball"},
 		],
 		eventOnly: true,
-		isNonstandard: true,
+		isUnreleased: true,
 		tier: "Unreleased",
 	},
 	vaporeon: {
@@ -7351,11 +7351,11 @@ let BattleFormatsData = {
 		doublesTier: "DOU",
 	},
 	meltan: {
-		isNonstandard: true,
+		isUnreleased: true,
 		tier: "Unreleased",
 	},
 	melmetal: {
-		isNonstandard: true,
+		isUnreleased: true,
 		tier: "Unreleased",
 	},
 	missingno: {

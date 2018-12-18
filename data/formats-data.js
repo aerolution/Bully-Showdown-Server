@@ -448,7 +448,7 @@ let BattleFormatsData = {
 		],
 		eventOnly: true,
 		isNonstandard: true,
-		tier: "Illegal",
+		tier: "Unreleased",
 	},
 	raichu: {
 		randomBattleMoves: ["nastyplot", "encore", "thunderbolt", "grassknot", "hiddenpowerice", "focusblast", "voltswitch"],
@@ -1624,7 +1624,7 @@ let BattleFormatsData = {
 		],
 		eventOnly: true,
 		isNonstandard: true,
-		tier: "Illegal",
+		tier: "Unreleased",
 	},
 	vaporeon: {
 		randomBattleMoves: ["wish", "protect", "scald", "roar", "icebeam", "healbell"],
@@ -7352,11 +7352,11 @@ let BattleFormatsData = {
 	},
 	meltan: {
 		isNonstandard: true,
-		tier: "Illegal",
+		tier: "Unreleased",
 	},
 	melmetal: {
 		isNonstandard: true,
-		tier: "Illegal",
+		tier: "Unreleased",
 	},
 	missingno: {
 		randomBattleMoves: ["watergun", "skyattack", "doubleedge", "metronome"],

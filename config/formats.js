@@ -43,10 +43,10 @@ let Formats = [
 		banlist: ['Illegal'],
 	},
 	{
-		name: "[Gen 7] No Timer Loss Draft League Tier",
+		name: "[Gen 7] DS Timer Draft League Tier",
 
 		mod: 'gen7',
-		timer: {perTurn: 20, maxPerTurn: 270, maxFirstTurn: 270, timeoutAutoChoose: true, accelerate: true},
+		timer: {starting: 60*60, perTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, accelerate: false, dcTimerBank: false},
 		ruleset: ['Pokemon', 'Draft', 'Team Preview'],
 		banlist: ['Illegal'],
 	},

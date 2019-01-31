@@ -41,7 +41,7 @@ To reload chat commands:
  */
 /** @typedef {(name: string, user: User) => (string)} NameFilter */
 
-const LINK_WHITELIST = ['*.pokemonshowdown.com', 'psim.us', 'smogtours.psim.us', '*.smogon.com', '*.pastebin.com', '*.hastebin.com'];
+const LINK_WHITELIST = ['*.pokemonshowdown.com', 'smogtours.psim.us', '*.smogon.com', '*.pastebin.com', '*.hastebin.com'];
 
 const MAX_MESSAGE_LENGTH = 300;
 
@@ -979,7 +979,7 @@ class CommandContext {
 		}
 
 		// If the corresponding config option is set, non-AC users cannot send links, except to staff.
-		if (Config.restrictLinks && !user.autoconfirmed) {
+		if (Config.restrictLinks && !user.can('lock')) {
 			const links = message.match(Chat.linkRegex);
 			const allLinksWhitelisted = !links || links.every(link => {
 				link = link.toLowerCase();

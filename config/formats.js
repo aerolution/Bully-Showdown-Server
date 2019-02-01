@@ -12,14 +12,14 @@ let Formats = [
 		section: "Draft League Tiers",
 	},
 	{
-		name: "[Gen 7] Draft League Tier",
+		name: "[Gen 7] Draft League",
 
 		mod: 'gen7',
 		ruleset: ['Pokemon', 'Draft', 'Team Preview'],
 		banlist: ['Illegal'],
 	},
 	{
-		name: "[Gen 7] WiFi Draft League Tier",
+		name: "[Gen 7] WiFi Draft League",
 
 		mod: 'gen7',
 		maxForcedLevel: 50,
@@ -28,7 +28,7 @@ let Formats = [
 		banlist: ['Illegal'],
 	},
 	{
-		name: "[Gen 7] LC Draft League Tier",
+		name: "[Gen 7] LC Draft League",
 
 		mod: 'gen7',
 		maxLevel: 5,
@@ -43,7 +43,7 @@ let Formats = [
 		banlist: ['Illegal'],
 	},
 	{
-		name: "[Gen 7] DS Timer Draft League Tier",
+		name: "[Gen 7] DS Timer Draft League",
 
 		mod: 'gen7',
 		timer: {starting: 600*60, perTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, accelerate: false, dcTimerBank: true},

@@ -16,13 +16,6 @@ let BattleFormats = {
 		ruleset: ['Sleep Clause Mod', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
 		banlist: ['Unreleased', 'Illegal'],
 	},
-	draft: {
-		effectType: 'ValidatorRule',
-		name: 'Draft',
-		desc: "The custom Draft League ruleset",
-		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
-		banlist: ['Illegal'],
-	},
 	standardnext: {
 		effectType: 'ValidatorRule',
 		name: 'Standard NEXT',
@@ -321,6 +314,7 @@ let BattleFormats = {
 		},
 		banlist: [
 			'Chansey + Charm + Seismic Toss', 'Chansey + Charm + Psywave',
+			'Blissey + Charm + Seismic Toss', 'Blissey + Charm + Psywave',
 			'Shiftry + Leaf Blade + Sucker Punch',
 		],
 	},
@@ -480,29 +474,6 @@ let BattleFormats = {
 					return ["You are limited to one of each item by Item Clause.", "(You have more than one " + this.getItem(item).name + ")"];
 				}
 				itemTable[item] = true;
-			}
-		},
-	},
-	doubleitemclause: {
-		effectType: 'ValidatorRule',
-		name: 'Double Item Clause',
-		desc: "Prevents teams from having more than two Pok&eacute;mon with the same item",
-		onStart: function () {
-			this.add('rule', 'Item Clause: Limit two of each item');
-		},
-		onValidateTeam: function (team, format) {
-			let itemTable = {};
-			for (const set of team) {
-				let item = toId(set.item);
-				if (!item) continue;
-				if (item in itemTable) {
-					if (itemTable[item] >= 2) {
-						return ["You are limited to two of each item by the Double Item Clause.", "(You have more than two " + this.getItem(item).name + ")"];
-					}
-					itemTable[item]++;
-				} else {
-					itemTable[item] = 1;
-				}
 			}
 		},
 	},
@@ -703,6 +674,18 @@ let BattleFormats = {
 		banlist: ['10,000,000 Volt Thunderbolt', 'Acid Downpour', 'All-Out Pummeling', 'Black Hole Eclipse', 'Bloom Doom', 'Breakneck Blitz', 'Catastropika', 'Clangorous Soulblaze', 'Continental Crush', 'Corkscrew Crash', 'Devastating Drake', 'Extreme Evoboost', 'Genesis Supernova', 'Gigavolt Havoc', 'Guardian of Alola', 'Hydro Vortex', 'Inferno Overdrive', 'Let\'s Snuggle Forever', 'Light That Burns the Sky', 'Malicious Moonsault', 'Menacing Moonraze Maelstrom', 'Never-Ending Nightmare', 'Oceanic Operetta', 'Pulverizing Pancake', 'Savage Spin-Out', 'Searing Sunraze Smash', 'Shattered Psyche', 'Sinister Arrow Raid', 'Soul-Stealing 7-Star Strike', 'Splintered Stormshards', 'Stoked Sparksurfer', 'Subzero Slammer', 'Supersonic Skystrike', 'Tectonic Rage', 'Twinkle Tackle'],
 		onStart: function () {
 			this.add('rule', 'CFZ Clause: Crystal-free Z-Moves are banned');
+		},
+	},
+	zmoveclause: {
+		effectType: 'ValidatorRule',
+		name: 'Z-Move Clause',
+		desc: "Bans Pok&eacute;mon from holding Z-Crystals",
+		onValidateSet: function (set) {
+			const item = this.getItem(set.item);
+			if (item.zMove) return [`${set.name || set.species}'s item ${item.name} is banned by Z-Move Clause.`];
+		},
+		onStart: function () {
+			this.add('rule', 'Z-Move Clause: Z-Moves are banned');
 		},
 	},
 	hppercentagemod: {

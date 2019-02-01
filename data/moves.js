@@ -624,7 +624,7 @@ let BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "A random move among those known by the user's party members is selected for use. Does not select Assist, Baneful Bunker, Beak Blast, Belch, Bestow, Bounce, Chatter, Circle Throw, Copycat, Counter, Covet, Destiny Bond, Detect, Dig, Dive, Dragon Tail, Endure, Feint, Fly, Focus Punch, Follow Me, Helping Hand, Hold Hands, King's Shield, Mat Block, Me First, Metronome, Mimic, Mirror Coat, Mirror Move, Nature Power, Phantom Force, Protect, Rage Powder, Roar, Shadow Force, Shell Trap, Sketch, Sky Drop, Sleep Talk, Snatch, Spiky Shield, Spotlight, Struggle, Switcheroo, Thief, Transform, Trick, Whirlwind, or any Z-Move.",
+		desc: "A random move among those known by the user's party members is selected for use. Does not select Assist, Baneful Bunker, Beak Blast, Belch, Bestow, Bounce, Celebrate, Chatter, Circle Throw, Copycat, Counter, Covet, Destiny Bond, Detect, Dig, Dive, Dragon Tail, Endure, Feint, Fly, Focus Punch, Follow Me, Helping Hand, Hold Hands, King's Shield, Mat Block, Me First, Metronome, Mimic, Mirror Coat, Mirror Move, Nature Power, Phantom Force, Protect, Rage Powder, Roar, Shadow Force, Shell Trap, Sketch, Sky Drop, Sleep Talk, Snatch, Spiky Shield, Spotlight, Struggle, Switcheroo, Thief, Transform, Trick, Whirlwind, or any Z-Move.",
 		shortDesc: "Uses a random move known by a team member.",
 		id: "assist",
 		name: "Assist",
@@ -638,7 +638,7 @@ let BattleMovedex = {
 				for (const moveSlot of pokemon.moveSlots) {
 					let move = moveSlot.id;
 					let noAssist = [
-						'assist', 'banefulbunker', 'beakblast', 'belch', 'bestow', 'bounce', 'chatter', 'circlethrow', 'copycat', 'counter', 'covet', 'destinybond', 'detect', 'dig', 'dive', 'dragontail', 'endure', 'feint', 'fly', 'focuspunch', 'followme', 'helpinghand', 'holdhands', 'kingsshield', 'matblock', 'mefirst', 'metronome', 'mimic', 'mirrorcoat', 'mirrormove', 'naturepower', 'phantomforce', 'protect', 'ragepowder', 'roar', 'shadowforce', 'shelltrap', 'sketch', 'skydrop', 'sleeptalk', 'snatch', 'spikyshield', 'spotlight', 'struggle', 'switcheroo', 'thief', 'transform', 'trick', 'whirlwind',
+						'assist', 'banefulbunker', 'beakblast', 'belch', 'bestow', 'bounce', 'celebrate', 'chatter', 'circlethrow', 'copycat', 'counter', 'covet', 'destinybond', 'detect', 'dig', 'dive', 'dragontail', 'endure', 'feint', 'fly', 'focuspunch', 'followme', 'helpinghand', 'holdhands', 'kingsshield', 'matblock', 'mefirst', 'metronome', 'mimic', 'mirrorcoat', 'mirrormove', 'naturepower', 'phantomforce', 'protect', 'ragepowder', 'roar', 'shadowforce', 'shelltrap', 'sketch', 'skydrop', 'sleeptalk', 'snatch', 'spikyshield', 'spotlight', 'struggle', 'switcheroo', 'thief', 'transform', 'trick', 'whirlwind',
 					];
 					if (!noAssist.includes(move) && !this.getMove(move).isZ) {
 						moves.push(move);
@@ -984,6 +984,7 @@ let BattleMovedex = {
 		desc: "This move summons Reflect for 5 turns upon use.",
 		shortDesc: "Summons Reflect.",
 		id: "baddybad",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Baddy Bad",
@@ -1031,7 +1032,6 @@ let BattleMovedex = {
 					return;
 				}
 				this.add('-activate', target, 'move: Protect');
-				source.moveThisTurnResult = true;
 				let lockedmove = source.getVolatile('lockedmove');
 				if (lockedmove) {
 					// Outrage counter is reset
@@ -1042,7 +1042,7 @@ let BattleMovedex = {
 				if (move.flags['contact']) {
 					source.trySetStatus('psn', target);
 				}
-				return null;
+				return this.NOT_FAILURE;
 			},
 			onHit: function (target, source, move) {
 				if (move.isZPowered && move.flags['contact']) {
@@ -1704,6 +1704,7 @@ let BattleMovedex = {
 		desc: "The user recovers 1/2 the HP lost by the target, rounded half up. If Big Root is held by the user, the HP recovered is 1.3x normal, rounded half down.",
 		shortDesc: "User recovers 50% of the damage dealt.",
 		id: "bouncybubble",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Bouncy Bubble",
@@ -2044,6 +2045,7 @@ let BattleMovedex = {
 		desc: "Has a 100% chance to paralyze the foe.",
 		shortDesc: "100% chance to paralyze the foe.",
 		id: "buzzybuzz",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Buzzy Buzz",
@@ -2655,7 +2657,7 @@ let BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "The user uses the last move used by any Pokemon, including itself. Fails if no move has been used, or if the last move used was Assist, Baneful Bunker, Beak Blast, Belch, Bestow, Chatter, Circle Throw, Copycat, Counter, Covet, Destiny Bond, Detect, Dragon Tail, Endure, Feint, Focus Punch, Follow Me, Helping Hand, Hold Hands, King's Shield, Mat Block, Me First, Metronome, Mimic, Mirror Coat, Mirror Move, Nature Power, Protect, Rage Powder, Roar, Shell Trap, Sketch, Sleep Talk, Snatch, Spiky Shield, Spotlight, Struggle, Switcheroo, Thief, Transform, Trick, Whirlwind, or any Z-Move.",
+		desc: "The user uses the last move used by any Pokemon, including itself. Fails if no move has been used, or if the last move used was Assist, Baneful Bunker, Beak Blast, Belch, Bestow, Celebrate, Chatter, Circle Throw, Copycat, Counter, Covet, Destiny Bond, Detect, Dragon Tail, Endure, Feint, Focus Punch, Follow Me, Helping Hand, Hold Hands, King's Shield, Mat Block, Me First, Metronome, Mimic, Mirror Coat, Mirror Move, Nature Power, Protect, Rage Powder, Roar, Shell Trap, Sketch, Sleep Talk, Snatch, Spiky Shield, Spotlight, Struggle, Switcheroo, Thief, Transform, Trick, Whirlwind, or any Z-Move.",
 		shortDesc: "Uses the last move used in the battle.",
 		id: "copycat",
 		name: "Copycat",
@@ -2663,7 +2665,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {},
 		onHit: function (pokemon) {
-			let noCopycat = ['assist', 'banefulbunker', 'bestow', 'chatter', 'circlethrow', 'copycat', 'counter', 'covet', 'destinybond', 'detect', 'dragontail', 'endure', 'feint', 'focuspunch', 'followme', 'helpinghand', 'mefirst', 'metronome', 'mimic', 'mirrorcoat', 'mirrormove', 'naturepower', 'protect', 'ragepowder', 'roar', 'sketch', 'sleeptalk', 'snatch', 'struggle', 'switcheroo', 'thief', 'transform', 'trick', 'whirlwind'];
+			let noCopycat = ['assist', 'banefulbunker', 'bestow', 'celebrate', 'chatter', 'circlethrow', 'copycat', 'counter', 'covet', 'destinybond', 'detect', 'dragontail', 'endure', 'feint', 'focuspunch', 'followme', 'helpinghand', 'mefirst', 'metronome', 'mimic', 'mirrorcoat', 'mirrormove', 'naturepower', 'protect', 'ragepowder', 'roar', 'sketch', 'sleeptalk', 'snatch', 'struggle', 'switcheroo', 'thief', 'transform', 'trick', 'whirlwind'];
 			if (!this.lastMove || noCopycat.includes(this.lastMove.id) || this.lastMove.isZ) {
 				return false;
 			}
@@ -2680,7 +2682,7 @@ let BattleMovedex = {
 		accuracy: 100,
 		basePower: 100,
 		category: "Special",
-		desc: "If the user moves after the target, the target's Ability is rendered ineffective as long as it remains active. If the target uses Baton Pass, the replacement will remain under this effect. If the target's Ability is Battle Bond, Comatose, Disguise, Multitype, Power Construct, RKS System, Schooling, Shields Down, or Stance Change, this effect does not happen, and receiving the effect through Baton Pass ends the effect immediately.",
+		desc: "If the user moves after the target, the target's Ability is rendered ineffective as long as it remains active. If the target uses Baton Pass, the replacement will remain under this effect. If the target's Ability is Battle Bond, Comatose, Disguise, Multitype, Power Construct, RKS System, Schooling, Shields Down, Stance Change, or Zen Mode, this effect does not happen, and receiving the effect through Baton Pass ends the effect immediately.",
 		shortDesc: "Nullifies the foe(s) Ability if the foe(s) move first.",
 		id: "coreenforcer",
 		isViable: true,
@@ -2689,12 +2691,12 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		onHit: function (target) {
-			if (['battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange'].includes(target.ability)) return;
+			if (['battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'zenmode'].includes(target.ability)) return;
 			if (target.newlySwitched || this.willMove(target)) return;
 			target.addVolatile('gastroacid');
 		},
 		onAfterSubDamage: function (damage, target) {
-			if (['battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange'].includes(target.ability)) return;
+			if (['battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'zenmode'].includes(target.ability)) return;
 			if (target.newlySwitched || this.willMove(target)) return;
 			target.addVolatile('gastroacid');
 		},
@@ -2912,8 +2914,7 @@ let BattleMovedex = {
 			onTryHit: function (target, source, move) {
 				if (move && (move.target === 'self' || move.category !== 'Status')) return;
 				this.add('-activate', target, 'move: Crafty Shield');
-				source.moveThisTurnResult = true;
-				return null;
+				return this.NOT_FAILURE;
 			},
 		},
 		secondary: null,
@@ -3718,6 +3719,7 @@ let BattleMovedex = {
 		desc: "Hits twice. If the first hit breaks the target's substitute, it will take damage for the second hit. Has a 30% chance to flinch the target.",
 		shortDesc: "Hits twice. 30% chance to flinch.",
 		id: "doubleironbash",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Double Iron Bash",
@@ -4345,8 +4347,10 @@ let BattleMovedex = {
 			},
 			onModifyMovePriority: -2,
 			onModifyMove: function (move) {
-				this.debug('Electrify making move type electric');
-				move.type = 'Electric';
+				if (move.id !== 'struggle') {
+					this.debug('Electrify making move type electric');
+					move.type = 'Electric';
+				}
 			},
 		},
 		secondary: null,
@@ -4818,7 +4822,7 @@ let BattleMovedex = {
 		effect: {
 			duration: 2,
 			onStart: function (target) {
-				this.add('-activate', target, 'move: Fairy Lock');
+				this.add('-fieldactivate', 'move: Fairy Lock');
 			},
 			onTrapPokemon: function (pokemon) {
 				pokemon.tryTrap();
@@ -5317,7 +5321,7 @@ let BattleMovedex = {
 			}
 			for (const ally of target.side.active) {
 				if (ally && this.isAdjacent(target, ally)) {
-					this.damage(ally.maxhp / 16, ally, source, move);
+					this.damage(ally.maxhp / 16, ally, source, this.getEffect('Flame Burst'));
 				}
 			}
 		},
@@ -5327,7 +5331,7 @@ let BattleMovedex = {
 			}
 			for (const ally of target.side.active) {
 				if (ally && this.isAdjacent(target, ally)) {
-					this.damage(ally.maxhp / 16, ally, source, move);
+					this.damage(ally.maxhp / 16, ally, source, this.getEffect('Flame Burst'));
 				}
 			}
 		},
@@ -5575,6 +5579,7 @@ let BattleMovedex = {
 		desc: "Has a 30% chance to flinch the target.",
 		shortDesc: "30% chance to flinch the target.",
 		id: "floatyfall",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Floaty Fall",
@@ -6019,6 +6024,7 @@ let BattleMovedex = {
 		desc: "Resets the stat stages of all active Pokemon to 0.",
 		shortDesc: "Eliminates all stat changes.",
 		id: "freezyfrost",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Freezy Frost",
@@ -6284,7 +6290,7 @@ let BattleMovedex = {
 		accuracy: 100,
 		basePower: 0,
 		category: "Status",
-		desc: "Causes the target's Ability to be rendered ineffective as long as it remains active. If the target uses Baton Pass, the replacement will remain under this effect. If the target's Ability is Battle Bond, Comatose, Disguise, Multitype, Power Construct, RKS System, Schooling, Shields Down, or Stance Change, this move fails, and receiving the effect through Baton Pass ends the effect immediately.",
+		desc: "Causes the target's Ability to be rendered ineffective as long as it remains active. If the target uses Baton Pass, the replacement will remain under this effect. If the target's Ability is Battle Bond, Comatose, Disguise, Multitype, Power Construct, RKS System, Schooling, Shields Down, Stance Change, or Zen Mode, this move fails, and receiving the effect through Baton Pass ends the effect immediately.",
 		shortDesc: "Nullifies the target's Ability.",
 		id: "gastroacid",
 		name: "Gastro Acid",
@@ -6293,7 +6299,7 @@ let BattleMovedex = {
 		flags: {protect: 1, reflectable: 1, mirror: 1, mystery: 1},
 		volatileStatus: 'gastroacid',
 		onTryHit: function (pokemon) {
-			let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange'];
+			let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'zenmode'];
 			if (bannedAbilities.includes(pokemon.ability)) {
 				return false;
 			}
@@ -6531,6 +6537,7 @@ let BattleMovedex = {
 		desc: "This move summons Light Screen for 5 turns upon use.",
 		shortDesc: "Summons Light Screen.",
 		id: "glitzyglow",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Glitzy Glow",
@@ -7968,7 +7975,7 @@ let BattleMovedex = {
 		flags: {contact: 1, protect: 1, mirror: 1, gravity: 1},
 		hasCustomRecoil: true,
 		onMoveFail: function (target, source, move) {
-			this.damage(source.maxhp / 2, source, source, move);
+			this.damage(source.maxhp / 2, source, source, this.getEffect('High Jump Kick'));
 		},
 		secondary: null,
 		target: "normal",
@@ -8757,7 +8764,7 @@ let BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "The target immediately uses its last used move. Fails if the target has not made a move, if the move has 0 PP, if the target is preparing to use Beak Blast, Focus Punch, or Shell Trap, or if the move is Assist, Beak Blast, Belch, Bide, Copycat, Focus Punch, Ice Ball, Instruct, King's Shield, Me First, Metronome, Mimic, Mirror Move, Nature Power, Outrage, Petal Dance, Rollout, Shell Trap, Sketch, Sleep Talk, Struggle, Thrash, Transform, Uproar, any two-turn move, any recharge move, or any Z-Move.",
+		desc: "The target immediately uses its last used move. Fails if the target has not made a move, if the move has 0 PP, if the target is preparing to use Beak Blast, Focus Punch, or Shell Trap, or if the move is Assist, Beak Blast, Belch, Bide, Celebrate, Copycat, Focus Punch, Ice Ball, Instruct, King's Shield, Me First, Metronome, Mimic, Mirror Move, Nature Power, Outrage, Petal Dance, Rollout, Shell Trap, Sketch, Sleep Talk, Struggle, Thrash, Transform, Uproar, any two-turn move, any recharge move, or any Z-Move.",
 		shortDesc: "The target immediately uses its last used move.",
 		id: "instruct",
 		name: "Instruct",
@@ -8769,11 +8776,13 @@ let BattleMovedex = {
 			let lastMove = target.lastMove;
 			let moveIndex = target.moves.indexOf(lastMove.id);
 			let noInstruct = [
-				'assist', 'beakblast', 'bide', 'copycat', 'focuspunch', 'iceball', 'instruct', 'kingsshield', 'mefirst', 'metronome', 'mimic', 'mirrormove', 'naturepower', 'outrage', 'petaldance', 'rollout', 'shelltrap', 'sketch', 'sleeptalk', 'thrash', 'transform',
+				'assist', 'beakblast', 'bide', 'celebrate', 'copycat', 'focuspunch', 'iceball', 'instruct', 'kingsshield', 'mefirst', 'metronome', 'mimic', 'mirrormove', 'naturepower', 'outrage', 'petaldance', 'rollout', 'shelltrap', 'sketch', 'sleeptalk', 'thrash', 'transform',
 			];
 			if (noInstruct.includes(lastMove.id) || lastMove.isZ || lastMove.flags['charge'] || lastMove.flags['recharge'] || target.volatiles['beakblast'] || target.volatiles['focuspunch'] || target.volatiles['shelltrap'] || (target.moveSlots[moveIndex] && target.moveSlots[moveIndex].pp <= 0)) {
 				return false;
 			}
+			// Instructed Fake Out etc. should fail
+			target.activeTurns++;
 			this.add('-singleturn', target, 'move: Instruct', '[of] ' + source);
 			this.runMove(target.lastMove.id, target, target.lastMoveTargetLoc);
 		},
@@ -8921,7 +8930,7 @@ let BattleMovedex = {
 		flags: {contact: 1, protect: 1, mirror: 1, gravity: 1},
 		hasCustomRecoil: true,
 		onMoveFail: function (target, source, move) {
-			this.damage(source.maxhp / 2, source, source, move);
+			this.damage(source.maxhp / 2, source, source, this.getEffect('Jump Kick'));
 		},
 		secondary: null,
 		target: "normal",
@@ -9002,7 +9011,6 @@ let BattleMovedex = {
 					return;
 				}
 				this.add('-activate', target, 'move: Protect');
-				source.moveThisTurnResult = true;
 				let lockedmove = source.getVolatile('lockedmove');
 				if (lockedmove) {
 					// Outrage counter is reset
@@ -9013,7 +9021,7 @@ let BattleMovedex = {
 				if (move.flags['contact']) {
 					this.boost({atk: -2}, source, target, this.getActiveMove("King's Shield"));
 				}
-				return null;
+				return this.NOT_FAILURE;
 			},
 			onHit: function (target, source, move) {
 				if (move.isZPowered && move.flags['contact']) {
@@ -10058,7 +10066,6 @@ let BattleMovedex = {
 				}
 				if (move && (move.target === 'self' || move.category === 'Status')) return;
 				this.add('-activate', target, 'move: Mat Block', move.name);
-				source.moveThisTurnResult = true;
 				let lockedmove = source.getVolatile('lockedmove');
 				if (lockedmove) {
 					// Outrage counter is reset
@@ -10066,7 +10073,7 @@ let BattleMovedex = {
 						delete source.volatiles['lockedmove'];
 					}
 				}
-				return null;
+				return this.NOT_FAILURE;
 			},
 		},
 		secondary: null,
@@ -11875,6 +11882,7 @@ let BattleMovedex = {
 		desc: "Power is equal to the greater of (user's Happiness * 2/5), rounded down, or 1.",
 		shortDesc: "Max happiness: 102 power. Can't miss.",
 		id: "pikapapow",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Pika Papow",
@@ -12507,7 +12515,6 @@ let BattleMovedex = {
 					return;
 				}
 				this.add('-activate', target, 'move: Protect');
-				source.moveThisTurnResult = true;
 				let lockedmove = source.getVolatile('lockedmove');
 				if (lockedmove) {
 					// Outrage counter is reset
@@ -12515,7 +12522,7 @@ let BattleMovedex = {
 						delete source.volatiles['lockedmove'];
 					}
 				}
-				return null;
+				return this.NOT_FAILURE;
 			},
 		},
 		secondary: null,
@@ -13027,7 +13034,6 @@ let BattleMovedex = {
 					return;
 				}
 				this.add('-activate', target, 'move: Quick Guard');
-				source.moveThisTurnResult = true;
 				let lockedmove = source.getVolatile('lockedmove');
 				if (lockedmove) {
 					// Outrage counter is reset
@@ -13035,7 +13041,7 @@ let BattleMovedex = {
 						delete source.volatiles['lockedmove'];
 					}
 				}
-				return null;
+				return this.NOT_FAILURE;
 			},
 		},
 		secondary: null,
@@ -13943,6 +13949,9 @@ let BattleMovedex = {
 		effect: {
 			duration: 1,
 			onResidualOrder: 20,
+			onStart: function (target) {
+				this.add('-singleturn', target, 'move: Roost');
+			},
 			onTypePriority: -1,
 			onType: function (types, pokemon) {
 				this.effectData.typeWas = types;
@@ -14193,6 +14202,7 @@ let BattleMovedex = {
 		desc: "This move summons Leech Seed on the foe.",
 		shortDesc: "Summons Leech Seed.",
 		id: "sappyseed",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Sappy Seed",
@@ -14892,7 +14902,7 @@ let BattleMovedex = {
 		accuracy: 100,
 		basePower: 0,
 		category: "Status",
-		desc: "Causes the target's Ability to become Simple. Fails if the target's Ability is Battle Bond, Comatose, Disguise, Multitype, Power Construct, RKS System, Schooling, Shields Down, Simple, Stance Change, or Truant.",
+		desc: "Causes the target's Ability to become Simple. Fails if the target's Ability is Battle Bond, Comatose, Disguise, Multitype, Power Construct, RKS System, Schooling, Shields Down, Simple, Stance Change, Truant, or Zen Mode.",
 		shortDesc: "The target's Ability becomes Simple.",
 		id: "simplebeam",
 		name: "Simple Beam",
@@ -14900,7 +14910,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1, mystery: 1},
 		onTryHit: function (pokemon) {
-			let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'simple', 'stancechange', 'truant'];
+			let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'simple', 'stancechange', 'truant', 'zenmode'];
 			if (bannedAbilities.includes(pokemon.ability)) {
 				return false;
 			}
@@ -14962,6 +14972,7 @@ let BattleMovedex = {
 		desc: "Has a 100% chance to burn the foe.",
 		shortDesc: "100% chance to burn the foe.",
 		id: "sizzlyslide",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Sizzly Slide",
@@ -15019,7 +15030,7 @@ let BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "The user swaps its Ability with the target's Ability. Fails if either the user or the target's Ability is Battle Bond, Comatose, Disguise, Illusion, Multitype, Power Construct, RKS System, Schooling, Shields Down, Stance Change, or Wonder Guard.",
+		desc: "The user swaps its Ability with the target's Ability. Fails if either the user or the target's Ability is Battle Bond, Comatose, Disguise, Illusion, Multitype, Power Construct, RKS System, Schooling, Shields Down, Stance Change, Wonder Guard, or Zen Mode.",
 		shortDesc: "The user and the target trade Abilities.",
 		id: "skillswap",
 		name: "Skill Swap",
@@ -15027,7 +15038,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1, authentic: 1, mystery: 1},
 		onTryHit: function (target, source) {
-			let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'illusion', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'wonderguard'];
+			let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'illusion', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'wonderguard', 'zenmode'];
 			if (bannedAbilities.includes(target.ability) || bannedAbilities.includes(source.ability)) {
 				return false;
 			}
@@ -15335,7 +15346,7 @@ let BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "One of the user's known moves, besides this move, is selected for use at random. Fails if the user is not asleep. The selected move does not have PP deducted from it, and can currently have 0 PP. This move cannot select Assist, Beak Blast, Belch, Bide, Chatter, Copycat, Focus Punch, Hold Hands, Me First, Metronome, Mimic, Mirror Move, Nature Power, Shell Trap, Sketch, Sleep Talk, Struggle, Uproar, any two-turn move, or any Z-Move.",
+		desc: "One of the user's known moves, besides this move, is selected for use at random. Fails if the user is not asleep. The selected move does not have PP deducted from it, and can currently have 0 PP. This move cannot select Assist, Beak Blast, Belch, Bide, Celebrate, Chatter, Copycat, Focus Punch, Hold Hands, Me First, Metronome, Mimic, Mirror Move, Nature Power, Shell Trap, Sketch, Sleep Talk, Struggle, Uproar, any two-turn move, or any Z-Move.",
 		shortDesc: "User must be asleep. Uses another known move.",
 		id: "sleeptalk",
 		isViable: true,
@@ -15352,7 +15363,7 @@ let BattleMovedex = {
 			for (const moveSlot of pokemon.moveSlots) {
 				const move = moveSlot.id;
 				const noSleepTalk = [
-					'assist', 'beakblast', 'belch', 'bide', 'chatter', 'copycat', 'focuspunch', 'mefirst', 'metronome', 'mimic', 'mirrormove', 'naturepower', 'shelltrap', 'sketch', 'sleeptalk', 'uproar',
+					'assist', 'beakblast', 'belch', 'bide', 'celebrate', 'chatter', 'copycat', 'focuspunch', 'mefirst', 'metronome', 'mimic', 'mirrormove', 'naturepower', 'shelltrap', 'sketch', 'sleeptalk', 'uproar',
 				];
 				if (move && !(noSleepTalk.includes(move) || this.getMove(move).flags['charge'] || (this.getMove(move).isZ && this.getMove(move).basePower !== 1))) {
 					moves.push(move);
@@ -15731,7 +15742,6 @@ let BattleMovedex = {
 					return;
 				}
 				this.add('-activate', target, 'move: Protect');
-				source.moveThisTurnResult = true;
 				let lockedmove = source.getVolatile('lockedmove');
 				if (lockedmove) {
 					// Outrage counter is reset
@@ -15742,7 +15752,7 @@ let BattleMovedex = {
 				if (move.flags['contact']) {
 					this.damage(source.maxhp / 8, source, target);
 				}
-				return null;
+				return this.NOT_FAILURE;
 			},
 			onHit: function (target, source, move) {
 				if (move.isZPowered && move.flags['contact']) {
@@ -16016,6 +16026,7 @@ let BattleMovedex = {
 		desc: "Every Pokemon in the user's party is cured of its major status condition.",
 		shortDesc: "Cures the user's party of all status conditions.",
 		id: "sparklyswirl",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Sparkly Swirl",
@@ -16222,6 +16233,7 @@ let BattleMovedex = {
 		desc: "Has a 30% chance to paralyze the target.",
 		shortDesc: "30% chance to paralyze the target.",
 		id: "splishysplash",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Splishy Splash",
@@ -18175,7 +18187,7 @@ let BattleMovedex = {
 		basePower: 0,
 		category: "Status",
 		desc: "For 5 turns, the Speed of every Pokemon is recalculated for the purposes of determining turn order. During the effect, each Pokemon's Speed is considered to be (10000 - its normal Speed), and if this value is greater than 8191, 8192 is subtracted from it. If this move is used during the effect, the effect ends.",
-		shortDesc: "For 5 turns, slower Pokemon move first.",
+		shortDesc: "Goes last. For 5 turns, turn order is reversed.",
 		id: "trickroom",
 		name: "Trick Room",
 		pp: 5,
@@ -18482,6 +18494,7 @@ let BattleMovedex = {
 		desc: "Power is equal to the greater of (user's Happiness * 2/5), rounded down, or 1.",
 		shortDesc: "Max happiness: 102 power. Can't miss.",
 		id: "veeveevolley",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Veevee Volley",
@@ -18992,7 +19005,6 @@ let BattleMovedex = {
 					return;
 				}
 				this.add('-activate', target, 'move: Wide Guard');
-				source.moveThisTurnResult = true;
 				let lockedmove = source.getVolatile('lockedmove');
 				if (lockedmove) {
 					// Outrage counter is reset
@@ -19000,7 +19012,7 @@ let BattleMovedex = {
 						delete source.volatiles['lockedmove'];
 					}
 				}
-				return null;
+				return this.NOT_FAILURE;
 			},
 		},
 		secondary: null,
@@ -19081,17 +19093,41 @@ let BattleMovedex = {
 		flags: {snatch: 1, heal: 1},
 		sideCondition: 'Wish',
 		effect: {
-			duration: 2,
 			onStart: function (side, source) {
-				this.effectData.hp = source.maxhp / 2;
+				this.effectData.positions = [];
+				for (let i = 0; i < side.active.length; i++) {
+					this.effectData.positions[i] = null;
+				}
+				this.effectData.positions[source.position] = {
+					source,
+					position: source.position,
+					hp: source.maxhp / 2,
+					duration: 2,
+				};
+				this.effectData.wishes = 1;
+			},
+			onRestart: function (side, source) {
+				if (this.effectData.positions[source.position]) return false;
+				this.effectData.positions[source.position] = {
+					source,
+					position: source.position,
+					hp: source.maxhp / 2,
+					duration: 2,
+				};
+				this.effectData.wishes++;
 			},
 			onResidualOrder: 4,
-			onEnd: function (side) {
-				let target = side.active[this.effectData.sourcePosition];
-				if (target && !target.fainted) {
-					let source = this.effectData.source;
-					let damage = this.heal(this.effectData.hp, target, target);
-					if (damage) this.add('-heal', target, target.getHealth, '[from] move: Wish', '[wisher] ' + source.name);
+			onResidual: function (side) {
+				for (const wish of this.effectData.positions) {
+					if (wish && --wish.duration === 0) {
+						let target = side.active[wish.position];
+						if (target && !target.fainted) {
+							let damage = this.heal(wish.hp, target, target);
+							if (damage) this.add('-heal', target, target.getHealth, '[from] move: Wish', '[wisher] ' + wish.source.name);
+						}
+						this.effectData.positions[wish.position] = null;
+						if (--this.effectData.wishes === 0) return side.removeSideCondition('wish');
+					}
 				}
 			},
 		},
@@ -19209,7 +19245,7 @@ let BattleMovedex = {
 		accuracy: 100,
 		basePower: 0,
 		category: "Status",
-		desc: "Causes the target's Ability to become Insomnia. Fails if the target's Ability is Battle Bond, Comatose, Disguise, Insomnia, Multitype, Power Construct, RKS System, Schooling, Shields Down, Stance Change, or Truant.",
+		desc: "Causes the target's Ability to become Insomnia. Fails if the target's Ability is Battle Bond, Comatose, Disguise, Insomnia, Multitype, Power Construct, RKS System, Schooling, Shields Down, Stance Change, Truant, or Zen Mode.",
 		shortDesc: "The target's Ability becomes Insomnia.",
 		id: "worryseed",
 		name: "Worry Seed",
@@ -19217,7 +19253,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1, mystery: 1},
 		onTryHit: function (pokemon) {
-			let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'insomnia', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'truant'];
+			let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'insomnia', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'truant', 'zenmode'];
 			if (bannedAbilities.includes(pokemon.ability)) {
 				return false;
 			}
@@ -19405,6 +19441,7 @@ let BattleMovedex = {
 		desc: "Will always result in a critical hit.",
 		shortDesc: "Nearly always goes first. Always crits.",
 		id: "zippyzap",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Zippy Zap",

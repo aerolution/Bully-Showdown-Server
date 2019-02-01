@@ -169,242 +169,23 @@ const commands = {
 	avatar: function (target, room, user) {
 		if (!target) return this.parse(`${this.cmdToken}avatars`);
 		let parts = target.split(',');
-		let avatarid = toId(parts[0]);
-		let avatar = 0;
-		let avatarTable = {
-			lucas: 1,
-			dawn: 2,
-			youngster: 3,
-			lass: 4,
-			camper: 5,
-			picnicker: 6,
-			bugcatcher: 7,
-			aromalady: 8,
-			twins: 9,
-			hiker: 10,
-			battlegirl: 11,
-			fisherman: 12,
-			cyclist: 13,
-			cyclistf: 14,
-			blackbelt: 15,
-			artist: 16,
-			pokemonbreeder: 17,
-			pokemonbreederf: 18,
-			cowgirl: 19,
-			jogger: 20,
-			pokefan: 21,
-			pokefanf: 22,
-			pokekid: 23,
-			youngcouple: 24,
-			acetrainer: 25,
-			acetrainerf: 26,
-			waitress: 27,
-			veteran: 28,
-			ninjaboy: 29,
-			dragontamer: 30,
-			birdkeeper: 31,
-			doubleteam: 32,
-			richboy: 33,
-			lady: 34,
-			gentleman: 35,
-			socialite: 36,
-			madame: 36,
-			beauty: 37,
-			collector: 38,
-			policeman: 39,
-			pokemonranger: 40,
-			pokemonrangerf: 41,
-			scientist: 42,
-			swimmer: 43,
-			swimmerf: 44,
-			tuber: 45,
-			tuberf: 46,
-			sailor: 47,
-			sisandbro: 48,
-			ruinmaniac: 49,
-			psychic: 50,
-			psychicf: 51,
-			gambler: 52,
-			dppguitarist: 53,
-			acetrainersnow: 54,
-			acetrainersnowf: 55,
-			skier: 56,
-			skierf: 57,
-			roughneck: 58,
-			clown: 59,
-			worker: 60,
-			schoolkid: 61,
-			schoolkidf: 62,
-			roark: 63,
-			barry: 64,
-			byron: 65,
-			aaron: 66,
-			bertha: 67,
-			flint: 68,
-			lucian: 69,
-			dppcynthia: 70,
-			bellepa: 71,
-			rancher: 72,
-			mars: 73,
-			galacticgrunt: 74,
-			gardenia: 75,
-			crasherwake: 76,
-			maylene: 77,
-			fantina: 78,
-			candice: 79,
-			volkner: 80,
-			parasollady: 81,
-			waiter: 82,
-			interviewers: 83,
-			cameraman: 84,
-			oli: 84,
-			reporter: 85,
-			roxy: 85,
-			idol: 86,
-			grace: 86,
-			cyrus: 87,
-			jupiter: 88,
-			saturn: 89,
-			galacticgruntf: 90,
-			argenta: 91,
-			palmer: 92,
-			thorton: 93,
-			buck: 94,
-			darach: 95,
-			marley: 96,
-			mira: 97,
-			cheryl: 98,
-			riley: 99,
-			dahlia: 100,
-			ethan: 101,
-			lyra: 102,
-
-			archer: 132,
-			ariana: 133,
-			proton: 134,
-			petrel: 135,
-			mysteryman: 136,
-			eusine: 136,
-			ptlucas: 137,
-			ptdawn: 138,
-
-			falkner: 141,
-			bugsy: 142,
-			whitney: 143,
-			morty: 144,
-			chuck: 145,
-			jasmine: 146,
-			pryce: 147,
-			clair: 148,
-			will: 149,
-			koga: 150,
-			bruno: 151,
-			karen: 152,
-			lance: 153,
-			brock: 154,
-			misty: 155,
-			ltsurge: 156,
-			erika: 157,
-			janine: 158,
-			sabrina: 159,
-			blaine: 160,
-			blue: 161,
-			red2: 162,
-			red: 163,
-			silver: 164,
-			giovanni: 165,
-			unknownf: 166,
-			unknownm: 167,
-			unknown: 168,
-			hilbert: 169,
-			hilda: 170,
-
-			chili: 179,
-			cilan: 180,
-			cress: 181,
-
-			lenora: 188,
-			burgh: 189,
-			elesa: 190,
-			clay: 191,
-			skyla: 192,
-
-			cheren: 206,
-			bianca: 207,
-
-			n: 209,
-
-			brycen: 222,
-			iris: 223,
-			drayden: 224,
-
-			shauntal: 246,
-			marshal: 247,
-			grimsley: 248,
-			caitlin: 249,
-			ghetsis: 250,
-
-			ingo: 256,
-			alder: 257,
-
-			cynthia: 260,
-			emmet: 261,
-			dueldiskhilbert: 262,
-			dueldiskhilda: 263,
-			hugh: 264,
-			rosa: 265,
-			nate: 266,
-			colress: 267,
-			bw2beauty: 268,
-			bw2ghetsis: 269,
-			bw2plasmagrunt: 270,
-			bw2plasmagruntf: 271,
-			bw2iris: 272,
-			brycenman: 273,
-			shadowtriad: 274,
-			rood: 275,
-			zinzolin: 276,
-			bw2cheren: 277,
-			marlon: 278,
-			roxie: 279,
-			roxanne: 280,
-			brawly: 281,
-			wattson: 282,
-			flannery: 283,
-			norman: 284,
-			winona: 285,
-			tate: 286,
-			liza: 287,
-			juan: 288,
-			guitarist: 289,
-			steven: 290,
-			wallace: 291,
-			magicqueen: 292,
-			bellelba: 292,
-			benga: 293,
-
-			bw2elesa: '#bw2elesa',
-			teamrocket: '#teamrocket',
-			yellow: '#yellow',
-			zinnia: '#zinnia',
-			clemont: '#clemont',
-			wally: '#wally',
-		};
-		if (avatarTable.hasOwnProperty(avatarid)) {
-			avatar = avatarTable[avatarid];
-		} else {
-			avatar = parseInt(avatarid);
-		}
-		if (typeof avatar === 'number' && (!avatar || avatar > 294 || avatar < 1)) {
-			if (!parts[1]) {
-				this.errorReply("Invalid avatar.");
+		let avatar = parts[0].toLowerCase().replace(/[^a-z0-9-]+/g, '');
+		let avatarTable = ['aaron', 'acetrainercouple-gen3', 'acetrainercouple', 'acetrainerf-gen1', 'acetrainerf-gen1rb', 'acetrainerf-gen2', 'acetrainerf-gen3', 'acetrainerf-gen3rs', 'acetrainerf-gen4dp', 'acetrainerf-gen4', 'acetrainerf', 'acetrainer-gen1', 'acetrainer-gen1rb', 'acetrainer-gen2', 'acetrainer-gen3jp', 'acetrainer-gen3', 'acetrainer-gen3rs', 'acetrainer-gen4dp', 'acetrainer-gen4', 'acetrainer', 'acetrainersnowf', 'acetrainersnow', 'agatha-gen1', 'agatha-gen1rb', 'agatha-gen3', 'alder', 'anabel-gen3', 'archer', 'archie-gen3', 'argenta', 'ariana', 'aromalady-gen3', 'aromalady-gen3rs', 'aromalady', 'artist-gen4', 'artist', 'ash', 'backersf', 'backers', 'backpackerf', 'backpacker', 'baker', 'barry', 'battlegirl-gen3', 'battlegirl-gen4', 'battlegirl', 'beauty-gen1', 'beauty-gen1rb', 'beauty-gen2jp', 'beauty-gen2', 'beauty-gen3', 'beauty-gen3rs', 'beauty-gen4dp', 'beauty-gen5bw2', 'beauty', 'bellelba', 'bellepa', 'benga', 'bertha', 'bianca', 'biker-gen1', 'biker-gen1rb', 'biker-gen2', 'biker-gen3', 'biker-gen4', 'biker', 'bill-gen3', 'birch-gen3', 'birdkeeper-gen1', 'birdkeeper-gen1rb', 'birdkeeper-gen2', 'birdkeeper-gen3', 'birdkeeper-gen3rs', 'birdkeeper-gen4dp', 'birdkeeper', 'blackbelt-gen1', 'blackbelt-gen1rb', 'blackbelt-gen2', 'blackbelt-gen3', 'blackbelt-gen3rs', 'blackbelt-gen4dp', 'blackbelt-gen4', 'blackbelt', 'blaine-gen1', 'blaine-gen1rb', 'blaine-gen2', 'blaine-gen3', 'blaine', 'blue-gen1champion', 'blue-gen1', 'blue-gen1rbchampion', 'blue-gen1rb', 'blue-gen1rbtwo', 'blue-gen1two', 'blue-gen2', 'blue-gen3champion', 'blue-gen3', 'blue-gen3two', 'blue', 'boarder-gen2', 'boarder', 'brandon-gen3', 'brawly-gen3', 'breederf', 'breeder', 'brendan-gen3', 'brendan-gen3rs', 'brock-gen1', 'brock-gen1rb', 'brock-gen2', 'brock-gen3', 'brock', 'bruno-gen1', 'bruno-gen1rb', 'bruno-gen2', 'bruno-gen3', 'bruno', 'brycenman', 'brycen', 'buck', 'bugcatcher-gen1', 'bugcatcher-gen1rb', 'bugcatcher-gen2', 'bugcatcher-gen3', 'bugcatcher-gen3rs', 'bugcatcher', 'bugmaniac-gen3', 'bugsy-gen2', 'bugsy', 'burgh', 'burglar-gen1', 'burglar-gen1rb', 'burglar-gen2', 'burglar-gen3', 'burglar', 'byron', 'caitlin', 'cameraman', 'camper-gen2', 'camper-gen3', 'camper-gen3rs', 'camper', 'candice', 'channeler-gen1', 'channeler-gen1rb', 'channeler-gen3', 'cheren-gen5bw2', 'cheren', 'cheryl', 'chili', 'chuck-gen2', 'chuck', 'cilan', 'clair-gen2', 'clair', 'clay', 'clemont', 'clerkf', 'clerk-gen5bw', 'clerk', 'clown', 'collector-gen3', 'collector', 'colress', 'courtney-gen3', 'cowgirl', 'crasherwake', 'cress', 'crushgirl-gen3', 'crushkin-gen3', 'cueball-gen1', 'cueball-gen1rb', 'cueball-gen3', 'cyclistf-gen4', 'cyclistf', 'cyclist-gen4', 'cyclist', 'cynthia-gen4', 'cynthia', 'cyrus', 'dahlia', 'dancer', 'darach', 'dawn-gen4pt', 'dawn', 'depotagent', 'doctor', 'doubleteam', 'dragontamer-gen3', 'dragontamer', 'drake-gen3', 'drayden', 'elesa-gen5bw2', 'elesa', 'emmet', 'engineer-gen1', 'engineer-gen1rb', 'engineer-gen3', 'erika-gen1', 'erika-gen1rb', 'erika-gen2', 'erika-gen3', 'erika', 'ethan-gen2c', 'ethan-gen2', 'ethan', 'eusine-gen2', 'eusine', 'expertf-gen3', 'expertm-gen3', 'falkner-gen2', 'falkner', 'fantina', 'firebreather-gen2', 'firebreather', 'fisherman-gen1', 'fisherman-gen1rb', 'fisherman-gen2jp', 'fisherman-gen3', 'fisherman-gen3rs', 'fisherman-gen4', 'fisherman', 'flannery-gen3', 'flint', 'galacticgruntf', 'galacticgrunt', 'gambler-gen1', 'gambler-gen1rb', 'gambler', 'gamer-gen3', 'gardenia', 'gentleman-gen1', 'gentleman-gen1rb', 'gentleman-gen3', 'gentleman-gen3rs', 'gentleman-gen4dp', 'gentleman-gen4', 'gentleman', 'ghetsis-gen5bw', 'ghetsis', 'giovanni-gen1', 'giovanni-gen1rb', 'giovanni-gen3', 'giovanni', 'glacia-gen3', 'greta-gen3', 'grimsley', 'guitarist-gen3', 'guitarist-gen4', 'guitarist', 'harlequin', 'hexmaniac-gen3jp', 'hexmaniac-gen3', 'hiker-gen1', 'hiker-gen1rb', 'hiker-gen3', 'hiker-gen3rs', 'hiker-gen4', 'hiker', 'hilbert-dueldisk', 'hilbert', 'hilda-dueldisk', 'hilda', 'hooligans', 'hoopster', 'hugh', 'idol', 'infielder', 'ingo', 'interviewer-gen3', 'interviewers', 'iris-gen5bw2', 'iris', 'janine-gen2', 'janine', 'janitor', 'jasmine-gen2', 'jasmine', 'jessiejames-gen1', 'jogger', 'jrtrainerf-gen1', 'jrtrainerf-gen1rb', 'jrtrainerm-gen1', 'jrtrainerm-gen1rb', 'juan-gen3', 'juggler-gen1', 'juggler-gen1rb', 'juggler-gen2', 'juggler-gen3', 'juggler', 'jupiter', 'karen-gen2', 'karen', 'kimonogirl', 'kindler-gen3', 'koga-gen1', 'koga-gen1rb', 'koga-gen3', 'koga', 'kris-gen2', 'lady-gen3', 'lady-gen3rs', 'lady-gen4', 'lady', 'lance-gen1', 'lance-gen1rb', 'lance-gen2', 'lance-gen3', 'lance', 'lass-gen1', 'lass-gen1rb', 'lass-gen2', 'lass-gen3', 'lass-gen3rs', 'lass-gen4dp', 'lass-gen4', 'lass', 'leaf-gen3', 'lenora', 'linebacker', 'li', 'lorelei-gen1', 'lorelei-gen1rb', 'lorelei-gen3', 'ltsurge-gen1', 'ltsurge-gen1rb', 'ltsurge-gen2', 'ltsurge-gen3', 'ltsurge', 'lucas-gen4pt', 'lucas', 'lucian', 'lucy-gen3', 'lyra', 'madame-gen4dp', 'madame-gen4', 'madame', 'maid', 'marley', 'marlon', 'marshal', 'mars', 'matt-gen3', 'maxie-gen3', 'may-gen3', 'may-gen3rs', 'maylene', 'medium-gen2jp', 'medium', 'mira', 'misty-gen1', 'misty-gen1rb', 'misty-gen3', 'misty', 'morty-gen2', 'morty', 'mrfuji-gen3', 'musician', 'nate', 'ninjaboy-gen3', 'ninjaboy', 'noland-gen3', 'norman-gen3', 'n', 'nurse', 'nurseryaide', 'oak-gen1', 'oak-gen1rb', 'oak-gen3', 'oldcouple-gen3', 'painter-gen3', 'palmer', 'parasollady-gen3', 'parasollady-gen4', 'parasollady', 'petrel', 'phoebe-gen3', 'picnicker-gen2', 'picnicker-gen3', 'picnicker-gen3rs', 'picnicker', 'pilot', 'plasmagruntf-gen5bw', 'plasmagruntf', 'plasmagrunt-gen5bw', 'plasmagrunt', 'pokefanf-gen2', 'pokefanf-gen3', 'pokefanf-gen4', 'pokefanf', 'pokefan-gen3', 'pokefan-gen4', 'pokefan', 'pokekid', 'pokemaniac-gen1', 'pokemaniac-gen1rb', 'pokemaniac-gen3', 'pokemaniac-gen3rs', 'pokemaniac', 'pokemonbreederf-gen3', 'pokemonbreederf', 'pokemonbreeder-gen3', 'pokemonbreederm-gen3', 'pokemonbreeder', 'pokemonrangerf-gen3', 'pokemonrangerf-gen3rs', 'pokemonrangerf-gen4', 'pokemonrangerf', 'pokemonranger-gen3', 'pokemonranger-gen3rs', 'pokemonranger-gen4', 'pokemonranger', 'policeman-gen4', 'policeman', 'preschoolerf', 'preschooler', 'proton', 'pryce', 'psychicf-gen3', 'psychicf-gen3rs', 'psychicf-gen4', 'psychicfjp-gen3', 'psychicf', 'psychic-gen1', 'psychic-gen1rb', 'psychic-gen3', 'psychic-gen3rs', 'psychic-gen4', 'psychic', 'rancher', 'red-gen1main', 'red-gen1', 'red-gen1rb', 'red-gen1title', 'red-gen3', 'red', 'reporter', 'richboy-gen3', 'richboy-gen4', 'richboy', 'riley', 'roark', 'rocker-gen1', 'rocker-gen1rb', 'rocker-gen3', 'rocket-gen1', 'rocket-gen1rb', 'rocketgruntf-gen2', 'rocketgruntf', 'rocketgruntm-gen2', 'rocketgrunt', 'rood', 'rosa', 'roughneck-gen4', 'roughneck', 'roxanne-gen3', 'roxie', 'ruinmaniac-gen3', 'ruinmaniac-gen3rs', 'ruinmaniac', 'sabrina-gen1', 'sabrina-gen1rb', 'sabrina-gen2', 'sabrina-gen3', 'sabrina', 'sage-gen2', 'sage-gen2jp', 'sage', 'sailor-gen1', 'sailor-gen1rb', 'sailor-gen2', 'sailor-gen3jp', 'sailor-gen3', 'sailor-gen3rs', 'sailor', 'saturn', 'schoolboy-gen2', 'schoolkidf-gen3', 'schoolkidf-gen4', 'schoolkidf', 'schoolkid-gen4dp', 'schoolkid-gen4', 'schoolkidm-gen3', 'schoolkid', 'scientistf', 'scientist-gen1', 'scientist-gen1rb', 'scientist-gen2', 'scientist-gen3', 'scientist-gen4dp', 'scientist-gen4', 'scientist', 'shadowtriad', 'shauntal', 'shelly-gen3', 'sidney-gen3', 'silver-gen2kanto', 'silver-gen2', 'silver', 'sisandbro-gen3', 'sisandbro-gen3rs', 'sisandbro', 'skierf-gen4dp', 'skierf', 'skier-gen2', 'skier', 'skyla', 'smasher', 'spenser-gen3', 'srandjr-gen3', 'steven-gen3', 'striker', 'supernerd-gen1', 'supernerd-gen1rb', 'supernerd-gen2', 'supernerd-gen3', 'supernerd', 'swimmerf-gen2', 'swimmerf-gen3', 'swimmerf-gen3rs', 'swimmerf-gen4dp', 'swimmerf-gen4', 'swimmerfjp-gen2', 'swimmerf', 'swimmer-gen1', 'swimmer-gen1rb', 'swimmer-gen4dp', 'swimmer-gen4', 'swimmerm-gen2', 'swimmerm-gen3', 'swimmerm-gen3rs', 'swimmer', 'tabitha-gen3', 'tamer-gen1', 'tamer-gen1rb', 'tamer-gen3', 'tateandliza-gen3', 'teacher-gen2', 'teacher', 'teamaquabeta-gen3', 'teamaquagruntf-gen3', 'teamaquagruntm-gen3', 'teammagmagruntf-gen3', 'teammagmagruntm-gen3', 'teamrocketgruntf-gen3', 'teamrocketgruntm-gen3', 'teamrocket', 'thorton', 'triathletebikerf-gen3', 'triathletebikerm-gen3', 'triathleterunnerf-gen3', 'triathleterunnerm-gen3', 'triathleteswimmerf-gen3', 'triathleteswimmerm-gen3', 'tuberf-gen3', 'tuberf-gen3rs', 'tuberf', 'tuber-gen3', 'tuber', 'tucker-gen3', 'twins-gen2', 'twins-gen3', 'twins-gen3rs', 'twins-gen4dp', 'twins-gen4', 'twins', 'unknownf', 'unknown', 'veteranf', 'veteran-gen4', 'veteran', 'volkner', 'waiter-gen4dp', 'waiter-gen4', 'waiter', 'waitress-gen4', 'waitress', 'wallace-gen3', 'wallace-gen3rs', 'wally-gen3', 'wally', 'wattson-gen3', 'whitney-gen2', 'whitney', 'will-gen2', 'will', 'winona-gen3', 'worker-gen4', 'workerice', 'worker', 'yellow', 'youngcouple-gen3', 'youngcouple-gen3rs', 'youngcouple-gen4dp', 'youngcouple', 'youngster-gen1', 'youngster-gen1rb', 'youngster-gen2', 'youngster-gen3', 'youngster-gen3rs', 'youngster-gen4', 'youngster', 'zinnia', 'zinzolin'];
+		if (!avatarTable.includes(avatar)) {
+			let avatarNum = parseInt(avatar);
+			if (!avatarNum || avatarNum > 294 || avatarNum < 1) {
+				if (!parts[1]) {
+					this.errorReply("Invalid avatar.");
+				}
+				return false;
 			}
-			return false;
+			avatar = '' + avatarNum;
 		}
 
 		user.avatar = avatar;
+		let avatarUrl = avatar.startsWith('#') ? `trainers-custom/${avatar.slice(1)}.png` : `trainers/${avatar}.png`;
 		if (!parts[1]) {
-			this.sendReply(`Avatar changed to:\n|raw|<img src="//play.pokemonshowdown.com/sprites/trainers/${(typeof avatar === 'string' ? avatar.substr(1) : avatar)}.png" alt="" width="80" height="80" />`);
+			this.sendReply(`Avatar changed to:\n|raw|<img src="//play.pokemonshowdown.com/sprites/${avatarUrl}" alt="${avatar}" width="80" height="80" />`);
 		}
 	},
 	avatarhelp: [`/avatar [avatar number 1 to 293] - Change your trainer sprite.`],
@@ -717,7 +498,7 @@ const commands = {
 		});
 		if (targetRoom) {
 			// The creator is a Room Owner in subroom groupchats and a Host otherwise..
-			targetRoom.auth[user.userid] = parent ? '#' : '\u2605';
+			targetRoom.auth[user.userid] = parent ? '#' : Users.HOST_SYMBOL;
 			// Join after creating room. No other response is given.
 			user.joinRoom(targetRoom.id);
 			user.popup(`You've just made a groupchat; it is now your responsibility, regardless of whether or not you actively partake in the room. For more info, read your groupchat's staff intro.`);
@@ -814,7 +595,7 @@ const commands = {
 	},
 	deleteroomhelp: [
 		`/deleteroom [roomname] - Deletes room [roomname]. Must be typed in the room to delete. Requires: & ~`,
-		`/deletegroupchat - Deletes the current room, if it's a groupchat. Requires: & ~ #`,
+		`/deletegroupchat - Deletes the current room, if it's a groupchat. Requires: ★ # & ~`,
 	],
 
 	hideroom: 'privateroom',
@@ -1619,11 +1400,13 @@ const commands = {
 		if (!target) return this.parse('/help warn');
 		if (!this.canTalk()) return;
 		if (room.isPersonal && !user.can('warn')) return this.errorReply("Warning is unavailable in group chats.");
+		// If used in staff, help tickets or battles, log the warn to the global modlog.
+		const global = room.id === 'staff' || room.id.startsWith('help-') || (room.battle && !room.parent);
 
 		target = this.splitTarget(target);
 		let targetUser = this.targetUser;
 		if (!targetUser || !targetUser.connected) return this.errorReply(`User '${this.targetUsername}' not found.`);
-		if (!(targetUser in room.users)) {
+		if (!(targetUser in room.users) && room.id !== 'staff') {
 			return this.errorReply(`User ${this.targetUsername} is not in the room ${room.id}.`);
 		}
 		if (target.length > MAX_REASON_LENGTH) {
@@ -1634,6 +1417,9 @@ const commands = {
 
 		this.addModAction(`${targetUser.name} was warned by ${user.name}.${(target ? ` (${target})` : ``)}`);
 		this.modlog('WARN', targetUser, target, {noalts: 1});
+		if (global) {
+			this.globalModlog('WARN', targetUser, ` by ${user.userid}${(target ? `: ${target}` : ``)}`);
+		}
 		targetUser.send(`|c|~|/warn ${target}`);
 		let userid = targetUser.getLastId();
 		this.add(`|unlink|${userid}`);
@@ -1782,23 +1568,6 @@ const commands = {
 			} else if (cmd === 'forcelock') {
 				return this.errorReply(`Use /lock; ${name} is not a trusted user.`);
 			}
-
-			let roomauth = [];
-			Rooms.rooms.forEach((curRoom, id) => {
-				if (id === 'global' || !curRoom.auth) return;
-				// Destroy personal rooms of the locked user.
-				if (curRoom.isPersonal && curRoom.auth[userid] === '#') {
-					curRoom.destroy();
-				} else {
-					if (curRoom.isPrivate || curRoom.battle) return;
-
-					let group = curRoom.auth[userid];
-
-					if (group) roomauth.push(`${group}${id}`);
-				}
-			});
-
-			if (roomauth.length) Monitor.log(`[CrisisMonitor] Locked user ${name} has public roomauth (${roomauth.join(', ')}), and should probably be demoted.`);
 		} else {
 			name = this.targetUsername;
 			userid = toId(this.targetUsername);
@@ -1814,26 +1583,6 @@ const commands = {
 			userReason = target.substr(0, proofIndex).trim();
 		}
 
-		let weekMsg = week ? ' for a week' : '';
-
-		if (targetUser) {
-			let appeal = ``;
-			if (Chat.pages.help) {
-				appeal += `<a href="view-help-request--appeal"><button class="button"><strong>Appeal your punishment</strong></button></a>`;
-			} else if (Config.appealurl) {
-				appeal += `appeal: <a href="${Config.appealurl}">${Config.appealurl}</a>`;
-			}
-			targetUser.send(`|popup||html||modal|${user.name} has locked you from talking in chats, battles, and PMing regular users${weekMsg}.${(userReason ? `\n\nReason: ${userReason}` : "")}\n\nIf you feel that your lock was unjustified, you can ${appeal}.\n\nYour lock will expire in a few days.`);
-		}
-
-		let lockMessage = `${name} was locked from talking${weekMsg} by ${user.name}.` + (userReason ? ` (${userReason})` : "");
-
-		this.addModAction(lockMessage);
-
-		// Notify staff room when a user is locked outside of it.
-		if (room.id !== 'staff' && Rooms('staff')) {
-			Rooms('staff').addByUser(user, `<<${room.id}>> ${lockMessage}`);
-		}
 
 		// Use default time for locks.
 		let duration = week ? Date.now() + 7 * 24 * 60 * 60 * 1000 : null;
@@ -1858,6 +1607,47 @@ const commands = {
 
 		const globalReason = (target ? `: ${userReason} ${proof}` : '');
 		this.globalModlog((week ? "WEEKLOCK" : "LOCK"), targetUser || userid, ` by ${user.userid}${globalReason}`);
+
+		let weekMsg = week ? ' for a week' : '';
+		let lockMessage = `${name} was locked from talking${weekMsg} by ${user.name}.` + (userReason ? ` (${userReason})` : "");
+		this.addModAction(lockMessage);
+		// Notify staff room when a user is locked outside of it.
+		if (room.id !== 'staff' && Rooms('staff')) {
+			Rooms('staff').addByUser(user, `<<${room.id}>> ${lockMessage}`);
+		}
+
+		if (targetUser) {
+			let message = `|popup||html|${user.name} has locked you from talking in chats, battles, and PMing regular users${weekMsg}`;
+			if (userReason) message += `\n\nReason: ${userReason}`;
+
+			let appeal = '';
+			if (Chat.pages.help) {
+				appeal += `<a href="view-help-request--appeal"><button class="button"><strong>Appeal your punishment</strong></button></a>`;
+			} else if (Config.appealurl) {
+				appeal += `appeal: <a href="${Config.appealurl}">${Config.appealurl}</a>`;
+			}
+
+			if (appeal) message += `\n\nIf you feel that your lock was unjustified, you can ${appeal}.`;
+			message += `\n\nYour lock will expire in a few days.`;
+			targetUser.send(message);
+
+			let roomauth = [];
+			for (const [id, curRoom] of Rooms.rooms) {
+				if (id === 'global' || !curRoom.auth) continue;
+				// Destroy personal rooms of the locked user.
+				if (curRoom.isPersonal && curRoom.auth[userid] === Users.HOST_SYMBOL) {
+					curRoom.destroy();
+				} else {
+					if (curRoom.isPrivate || curRoom.battle) continue;
+
+					let group = curRoom.auth[userid];
+
+					if (group) roomauth.push(`${group}${id}`);
+				}
+			}
+
+			if (roomauth.length) Monitor.log(`[CrisisMonitor] Locked user ${name} has public roomauth (${roomauth.join(', ')}), and should probably be demoted.`);
+		}
 
 		// Automatically upload replays as evidence/reference to the punishment
 		if (room.battle) this.parse('/savereplay');
@@ -1992,7 +1782,7 @@ const commands = {
 		for (const roomid of targetUser.inRooms) {
 			if (roomid === 'global') continue;
 			let targetRoom = Rooms.get(roomid);
-			if (targetRoom.isPersonal && targetRoom.auth[userid] === '#') {
+			if (targetRoom.isPersonal && targetRoom.auth[userid] === Users.HOST_SYMBOL) {
 				targetRoom.destroy();
 			}
 		}
@@ -2191,7 +1981,9 @@ const commands = {
 			return this.errorReply(`The note is too long. It cannot exceed ${MAX_REASON_LENGTH} characters.`);
 		}
 		if (!this.can('receiveauthmessages', null, room)) return false;
+		target = target.replace(/\n/g, "; ");
 		this.modlog('NOTE', null, target);
+		if (room.id === 'staff' || room.id === 'upperstaff') this.globalModlog('NOTE', null, ` by ${user.userid}: ${target}`);
 		return this.privateModAction(`(${user.name} notes: ${target})`);
 	},
 	modnotehelp: [`/modnote [note] - Adds a moderator note that can be read through modlog. Requires: % @ * # & ~`],
@@ -2447,8 +2239,8 @@ const commands = {
 		}
 		if (!this.can('forcerename', targetUser)) return false;
 
-		let entry = `${targetUser.name} was forced to choose a new name by ${user.name}${(reason ? `: ${reason}` : ``)}`;
-		this.privateModAction(`(${entry})`);
+		this.privateModAction(`(${targetUser.name} was forced to choose a new name by ${user.name}${(reason ? `: ${reason}` : ``)})`);
+		this.globalModlog('FORCERENAME', targetUser, ` by ${user.name}${(reason ? `: ${reason}` : ``)}`);
 		this.modlog('FORCERENAME', targetUser, reason, {noip: 1, noalts: 1});
 		Ladders.cancelSearches(targetUser);
 		targetUser.resetName(true);
@@ -2523,10 +2315,7 @@ const commands = {
 		if (!targetUser && !room.log.hasUsername(target)) return this.errorReply(`User ${target} not found or has no roomlogs.`);
 		if (!targetUser && !user.can('lock')) return this.errorReply(`User ${name} not found.`);
 		let userid = toId(this.inputUsername);
-		if (!user.can('mute', targetUser, room) && !this.can('ban', targetUser, room)) return;
-
-		const localPunished = (targetUser && (targetUser.locked || Punishments.isRoomBanned(targetUser, room.id) || room.isMuted(targetUser)));
-		if (!(user.can('lock') || localPunished)) return this.errorReply(`User ${name} is neither locked nor muted/banned from this room.`);
+		if (!this.can('mute', targetUser, room)) return;
 
 		if (targetUser && (cmd === 'hidealtstext' || cmd === 'hidetextalts' || cmd === 'hidealttext')) {
 			room.sendByUser(user, `${name}'s alts messages were cleared from ${room.title} by ${user.name}.`);
@@ -2544,8 +2333,8 @@ const commands = {
 		}
 	},
 	hidetexthelp: [
-		`/hidetext [username] - Removes a locked or muted/banned user's messages from chat. Requires: % @ * # & ~`,
-		`/hidealtstext [username] - Removes a locked or muted/banned user's messages, and their alternate account's messages from the chat.  Requires: % @ * # & ~`,
+		`/hidetext [username] - Removes a user's messages from chat. Requires: % @ * # & ~`,
+		`/hidealtstext [username] - Removes a user's messages, and their alternate account's messages from the chat.  Requires: % @ * # & ~`,
 	],
 
 	ab: 'blacklist',
@@ -2886,6 +2675,8 @@ const commands = {
 			} else if (target === 'chat' || target === 'commands') {
 				if (lock['chat']) return this.errorReply(`Hot-patching chat has been disabled by ${lock['chat'].by} (${lock['chat'].reason})`);
 				if (lock['tournaments']) return this.errorReply(`Hot-patching tournaments has been disabled by ${lock['tournaments'].by} (${lock['tournaments'].reason})`);
+
+				Chat.destroy();
 
 				const processManagers = require('./lib/process-manager').processManagers;
 				for (let manager of processManagers.slice()) {
@@ -4212,7 +4003,7 @@ exports.commands = commands;
 process.nextTick(() => {
 	// We might want to migrate most of this to a JSON schema of command attributes.
 	Chat.multiLinePattern.register(
-		'>>>? ', '/(?:room|staff)intro ', '/(?:staff)?topic ', '/(?:add|widen)datacenters ', '/bash ', '!code ', '/code ',
+		'>>>? ', '/(?:room|staff)intro ', '/(?:staff)?topic ', '/(?:add|widen)datacenters ', '/bash ', '!code ', '/code ', '/modnote ', '/mn ',
 		'/importinputlog '
 	);
 });

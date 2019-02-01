@@ -133,6 +133,8 @@ class Battle extends Dex.ModdedDex {
 		this.lastDamage = 0;
 
 		this.abilityOrder = 0;
+		/** @type {''} */
+		this.NOT_FAILURE = '';
 		/** @type {boolean} */
 		this.LEGACY_API_DO_NOT_USE = false;
 
@@ -588,6 +590,8 @@ class Battle extends Dex.ModdedDex {
 				}
 			}
 			this.singleEvent(eventid, status, statusObj.statusData, statusObj.thing, relayVar);
+			this.faintMessages();
+			if (this.ended) return;
 		}
 	}
 
@@ -897,7 +901,7 @@ class Battle extends Dex.ModdedDex {
 		}
 
 		this.eventDepth--;
-		if (this.event.modifier !== 1 && typeof relayVar === 'number') {
+		if (typeof relayVar === 'number' && relayVar === Math.abs(Math.floor(relayVar))) {
 			// this.debug(eventid + ' modifier: 0x' + ('0000' + (this.event.modifier * 4096).toString(16)).slice(-4).toUpperCase());
 			relayVar = this.modify(relayVar, this.event.modifier);
 		}
@@ -1831,10 +1835,10 @@ class Battle extends Dex.ModdedDex {
 		if (format.onBegin) {
 			format.onBegin.call(this);
 		}
-		this.getRuleTable(format).forEach((v, rule) => {
-			if (rule.startsWith('+') || rule.startsWith('-') || rule.startsWith('!')) return;
+		for (const rule of this.getRuleTable(format).keys()) {
+			if (rule.startsWith('+') || rule.startsWith('-') || rule.startsWith('!')) continue;
 			if (this.getFormat(rule).exists) this.addPseudoWeather(rule);
-		});
+		}
 
 		if (!this.p1.pokemon[0] || !this.p2.pokemon[0]) {
 			throw new Error('Battle not started: A player has an empty team.');
@@ -1988,14 +1992,16 @@ class Battle extends Dex.ModdedDex {
 			break;
 		}
 
-		if (this.gen <= 1 && effect.recoil && source) {
-			this.damage(this.clampIntRange(Math.floor(damage * effect.recoil[0] / effect.recoil[1]), 1), source, target, 'recoil');
-		}
-		if (this.gen <= 1 && effect.drain && source) {
-			this.heal(this.clampIntRange(Math.floor(damage * effect.drain[0] / effect.drain[1]), 1), source, target, 'drain');
-		}
-		if (this.gen > 1 && effect.drain && source) {
-			this.heal(Math.ceil(damage * effect.drain[0] / effect.drain[1]), source, target, 'drain');
+		if (damage) {
+			if (this.gen <= 1 && effect.recoil && source) {
+				this.damage(this.clampIntRange(Math.floor(damage * effect.recoil[0] / effect.recoil[1]), 1), source, target, 'recoil');
+			}
+			if (this.gen <= 4 && effect.drain && source) {
+				this.heal(this.clampIntRange(Math.floor(damage * effect.drain[0] / effect.drain[1]), 1), source, target, 'drain');
+			}
+			if (this.gen > 4 && effect.drain && source) {
+				this.heal(Math.round(damage * effect.drain[0] / effect.drain[1]), source, target, 'drain');
+			}
 		}
 
 		// @ts-ignore TODO: AfterDamage passes an Effect, not an ActiveMove
@@ -3480,7 +3486,7 @@ class Battle extends Dex.ModdedDex {
 	 * @param {Pokemon} target
 	 * @param {Pokemon} pokemon
 	 * @param {Move} move
-	 * @return {number | undefined | false}
+	 * @return {number | undefined | false | ''}
 	 */
 	tryMoveHit(target, pokemon, move) {
 		throw new Error(`The tryMoveHit function needs to be implemented in scripts.js or the battle format.`);

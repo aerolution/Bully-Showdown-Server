@@ -314,6 +314,8 @@ class Pokemon {
 
 		/**@type {string | undefined} */
 		this.innate = undefined;
+		/**@type {string[] | undefined} */
+		this.innates = undefined;
 		/**@type {string | undefined} */
 		this.originalSpecies = undefined;
 		/**@type {?boolean} */
@@ -340,7 +342,7 @@ class Pokemon {
 	 */
 	getDetailsInner(side) {
 		if (this.illusion) {
-			let illusionDetails = this.illusion.species + (this.level === 100 ? '' : ', L' + this.level) + (this.illusion.gender === '' ? '' : ', ' + this.illusion.gender) + (this.illusion.set.shiny ? ', shiny' : '');
+			let illusionDetails = this.illusion.template.species + (this.level === 100 ? '' : ', L' + this.level) + (this.illusion.gender === '' ? '' : ', ' + this.illusion.gender) + (this.illusion.set.shiny ? ', shiny' : '');
 			return illusionDetails + '|' + this.getHealthInner(side);
 		}
 		return this.details + '|' + this.getHealthInner(side);
@@ -525,6 +527,9 @@ class Pokemon {
 					}
 				}
 			}
+			if (targets.length && !targets.includes(target)) {
+				this.battle.retargetLastMove(targets[targets.length - 1]);
+			}
 			break;
 		case 'allAdjacent':
 		case 'allAdjacentFoes':
@@ -539,6 +544,9 @@ class Pokemon {
 				if (this.battle.isAdjacent(this, foeActive)) {
 					targets.push(foeActive);
 				}
+			}
+			if (targets.length && !targets.includes(target)) {
+				this.battle.retargetLastMove(targets[targets.length - 1]);
 			}
 			break;
 		default:
@@ -1172,7 +1180,6 @@ class Pokemon {
 			if (moveSlot.id === moveid && moveSlot.disabled !== true) {
 				moveSlot.disabled = (isHidden || true);
 				moveSlot.disabledSource = (sourceEffect ? sourceEffect.fullname : '');
-				break;
 			}
 		}
 	}
@@ -1454,6 +1461,7 @@ class Pokemon {
 		if (!isFromFormeChange) {
 			if (['illusion', 'battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange'].includes(ability.id)) return false;
 			if (['battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange'].includes(oldAbility)) return false;
+			if (this.battle.gen >= 7 && (ability.id === 'zenmode' || oldAbility === 'zenmode')) return false;
 		}
 		if (!this.battle.runEvent('SetAbility', this, source, this.battle.effect, ability)) return false;
 		this.battle.singleEvent('End', this.battle.getAbility(oldAbility), this.abilityData, this, source);

@@ -12,7 +12,8 @@
     "types": ["node"],
     "exclude": [
         "./mods/gen1/pokedex.js",
-        "./mods/pic/*.js"
+        "./mods/pic/*.js",
+        "./mods/pokebilities/*.js"
     ],
     "include": [
         "./config/formats.js",
@@ -40,6 +41,7 @@
         "./chat.js",
         "./users.js",
         "./chat-plugins/chat-monitor.js",
+        "./chat-plugins/daily-spotlight.js",
         "./chat-plugins/hangman.js",
         "./chat-plugins/helptickets.js",
         "./chat-plugins/mafia.js",

@@ -418,7 +418,7 @@ let BattleItems = {
 			/**@type {{[k: string]: number}} */
 			let heals = {drain: 1, leechseed: 1, ingrain: 1, aquaring: 1, strengthsap: 1};
 			if (heals[effect.id]) {
-				return Math.ceil((damage * 1.3) - 0.5); // Big Root rounds half down
+				return this.chainModify([0x14CC, 0x1000]);
 			}
 		},
 		num: 296,
@@ -1016,7 +1016,6 @@ let BattleItems = {
 	"custapberry": {
 		id: "custapberry",
 		name: "Custap Berry",
-		isUnreleased: true,
 		spritenum: 86,
 		isBerry: true,
 		naturalGift: {
@@ -1541,7 +1540,6 @@ let BattleItems = {
 	"enigmaberry": {
 		id: "enigmaberry",
 		name: "Enigma Berry",
-		isUnreleased: true,
 		spritenum: 124,
 		isBerry: true,
 		naturalGift: {
@@ -2615,7 +2613,6 @@ let BattleItems = {
 	"jabocaberry": {
 		id: "jabocaberry",
 		name: "Jaboca Berry",
-		isUnreleased: true,
 		spritenum: 230,
 		isBerry: true,
 		naturalGift: {
@@ -3534,7 +3531,6 @@ let BattleItems = {
 	"micleberry": {
 		id: "micleberry",
 		name: "Micle Berry",
-		isUnreleased: true,
 		spritenum: 290,
 		isBerry: true,
 		naturalGift: {
@@ -4837,7 +4833,6 @@ let BattleItems = {
 	"rowapberry": {
 		id: "rowapberry",
 		name: "Rowap Berry",
-		isUnreleased: true,
 		spritenum: 420,
 		isBerry: true,
 		naturalGift: {

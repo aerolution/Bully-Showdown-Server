@@ -133,6 +133,8 @@ Chat.basePages = undefined;
 /** @type {PageTable} */
 // @ts-ignore
 Chat.pages = undefined;
+/** @type {(() => (void))[]} */
+Chat.destroyHandlers = [];
 
 /*********************************************************
  * Load chat filters
@@ -146,6 +148,7 @@ Chat.filters = [];
  * @param {GameRoom | ChatRoom?} room
  * @param {Connection} connection
  * @param {User?} [targetUser]
+ * @return {string | false | null}
  */
 Chat.filter = function (context, message, user, room, connection, targetUser = null) {
 	// Chat filters can choose to:
@@ -576,6 +579,8 @@ class CommandContext {
 	/**
 	 * @param {BasicChatRoom | undefined?} room
 	 * @param {string} message
+	 *
+	 * @return {boolean}
 	 */
 	checkBanwords(room, message) {
 		if (!room) return true;
@@ -590,7 +595,7 @@ class CommandContext {
 		if (room.banwordRegex !== true && room.banwordRegex.test(message)) {
 			return false;
 		}
-		return true;
+		return this.checkBanwords(/** @type {ChatRoom} */ (room.parent), message);
 	}
 	checkGameFilter() {
 		if (!this.room || !this.room.game || !this.room.game.onChatMessage) return false;
@@ -1033,7 +1038,7 @@ class CommandContext {
 			user.lastMessageTime = Date.now();
 		}
 
-		if (room && room.highTraffic && toId(message).replace(/[^a-z]+/, '').length < 2 && !user.can('mute', null, room)) {
+		if (room && room.highTraffic && toId(message).replace(/[^a-z]+/, '').length < 2 && !user.can('broadcast', null, room)) {
 			this.errorReply('Due to this room being a high traffic room, your message must contain at least two letters.');
 			return false;
 		}
@@ -1341,6 +1346,8 @@ Chat.loadPlugins = function () {
 
 		Object.assign(commands, plugin.commands);
 		Object.assign(pages, plugin.pages);
+		
+		if (plugin.destroy) Chat.destroyHandlers.push(plugin.destroy);
 
 		if (plugin.chatfilter) Chat.filters.push(plugin.chatfilter);
 		if (plugin.namefilter) Chat.namefilters.push(plugin.namefilter);
@@ -1352,6 +1359,12 @@ Chat.loadPlugins = function () {
 		if (file.substr(-3) !== '.js') continue;
 		const customplugin = require(`./custom-plugins/${file}`);
 		Object.assign(commands, customplugin.commands);
+	}
+};
+
+Chat.destroy = function () {
+	for (const handler of Chat.destroyHandlers) {
+		handler();
 	}
 };
 

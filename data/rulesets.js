@@ -16,6 +16,13 @@ let BattleFormats = {
 		ruleset: ['Sleep Clause Mod', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
 		banlist: ['Unreleased', 'Illegal'],
 	},
+	draft: {
+		effectType: 'ValidatorRule',
+		name: 'Draft',
+		desc: "The custom Draft League ruleset",
+		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
+		banlist: ['Illegal'],
+	},
 	standardnext: {
 		effectType: 'ValidatorRule',
 		name: 'Standard NEXT',
@@ -474,6 +481,29 @@ let BattleFormats = {
 					return ["You are limited to one of each item by Item Clause.", "(You have more than one " + this.getItem(item).name + ")"];
 				}
 				itemTable[item] = true;
+			}
+		},
+	},
+	doubleitemclause: {
+		effectType: 'ValidatorRule',
+		name: 'Double Item Clause',
+		desc: "Prevents teams from having more than two Pok&eacute;mon with the same item",
+		onStart: function () {
+			this.add('rule', 'Item Clause: Limit two of each item');
+		},
+		onValidateTeam: function (team, format) {
+			let itemTable = {};
+			for (const set of team) {
+				let item = toId(set.item);
+				if (!item) continue;
+				if (item in itemTable) {
+					if (itemTable[item] >= 2) {
+						return ["You are limited to two of each item by the Double Item Clause.", "(You have more than two " + this.getItem(item).name + ")"];
+					}
+					itemTable[item]++;
+				} else {
+					itemTable[item] = 1;
+				}
 			}
 		},
 	},

@@ -55,6 +55,7 @@ exports.wsdeflate = {
  *  The client requires port 443, so if you use a different port here,
  *  it will need to be forwarded to 443 through iptables rules or
  *  something.
+ * @type {{port: number, options: {key: string, cert: string}} | null}
  */
 exports.ssl = null;
 
@@ -64,8 +65,8 @@ const fs = require('fs');
 exports.ssl = {
 	port: 443,
 	options: {
-		key: fs.readFileSync('./config/ssl/privkey.pem'),
-		cert: fs.readFileSync('./config/ssl/fullchain.pem'),
+		key: './config/ssl/privkey.pem',
+		cert: './config/ssl/fullchain.pem',
 	},
 };
 */
@@ -525,6 +526,7 @@ exports.grouplist = [
 		inherit: '%',
 		jurisdiction: 'u',
 		ban: true,
+		modchat: true,
 		roomvoice: true,
 		forcerename: true,
 		ip: true,
@@ -535,7 +537,7 @@ exports.grouplist = [
 	{
 		symbol: '%',
 		id: "driver",
-		name: "Big Fan",
+		name: "Driver",
 		inherit: '+',
 		jurisdiction: 'u',
 		announce: true,
@@ -546,7 +548,6 @@ exports.grouplist = [
 		forcerename: true,
 		timer: true,
 		modlog: true,
-		modchat: true,
 		alts: '%u',
 		bypassblocks: 'u%@&~',
 		receiveauthmessages: true,

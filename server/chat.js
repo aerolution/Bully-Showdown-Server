@@ -58,7 +58,6 @@ const TRANSLATION_DIRECTORY = 'translations/';
 /** @type {typeof import('../lib/fs').FS} */
 const FS = require(/** @type {any} */('../.lib-dist/fs')).FS;
 
-
 /** @type {(url: string) => Promise<{width: number, height: number}>} */
 // @ts-ignore ignoring until there is a ts typedef available for this module.
 const probe = require('probe-image-size');
@@ -579,12 +578,12 @@ class CommandContext extends MessageContext {
 			if (this.pmTarget) {
 				Chat.sendPM(message, this.user, this.pmTarget);
 			} else {
-				let emoticons = WL.parseEmoticons(message);
+				let emoticons = parseEmoticons(message);
 				if (emoticons && !this.room.disableEmoticons) {
 					for (let u in this.room.users) {
 						let curUser = Users(u);
 						if (!curUser || !curUser.connected) continue;
-						if (WL.ignoreEmotes[curUser.userid]) {
+						if (Users.ignoreEmotes[curUser.userid]) {
 							curUser.sendTo(this.room, (this.room.type === 'chat' ? '|c:|' + (~~(Date.now() / 1000)) + '|' : '|c|') + this.user.getIdentity(this.room.id) + '|' + message);
 							continue;
 						}
@@ -1444,9 +1443,9 @@ Chat.parse = function (message, room, user, connection) {
  */
 Chat.sendPM = function (message, user, pmTarget, onlyRecipient = null) {
 	let noEmotes = message;
-	let emoticons = WL.parseEmoticons(message);
+	let emoticons = parseEmoticons(message);
 	if (emoticons) message = "/html " + emoticons;
-	let buf = `|pm|${user.getIdentity()}|${pmTarget.getIdentity()}|${(WL.ignoreEmotes[user.userid] ? noEmotes : message)}`;
+	let buf = `|pm|${user.getIdentity()}|${pmTarget.getIdentity()}|${(Users.ignoreEmotes[user.userid] ? noEmotes : message)}`;
 	// TODO is onlyRecipient a user? If so we should check if they are ignoring emoticions.
 	if (onlyRecipient) return onlyRecipient.send(buf);
 	user.send(buf);

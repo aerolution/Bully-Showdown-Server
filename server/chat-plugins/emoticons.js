@@ -7,9 +7,9 @@ This plugin allows you to use emoticons in both chat rooms (as long as they are 
 const fs = require('fs');
 let emoticons = {'feelsbd': 'http://i.imgur.com/TZvJ1lI.png'};
 let emoteRegex = new RegExp('feelsbd', 'g');
-WL.ignoreEmotes = {};
+Users.ignoreEmotes = {};
 try {
-	WL.ignoreEmotes = JSON.parse(fs.readFileSync('config/ignoreemotes.json', 'utf8'));
+	Users.ignoreEmotes = JSON.parse(fs.readFileSync('config/ignoreemotes.json', 'utf8'));
 } catch (e) {}
 
 function loadEmoticons() {
@@ -33,16 +33,32 @@ function saveEmoticons() {
 	emoteRegex = new RegExp('(' + emoteRegex.join('|') + ')', 'g');
 }
 
+function parseMessage(message) {
+		if (message.substr(0, 5) === "/html") {
+			message = message.substr(5);
+			message = message.replace(/\_\_([^< ](?:[^<]*?[^< ])?)\_\_(?![^<]*?<\/a)/g, '<i>$1</i>'); // italics
+			message = message.replace(/\*\*([^< ](?:[^<]*?[^< ])?)\*\*/g, '<b>$1</b>'); // bold
+			message = message.replace(/\~\~([^< ](?:[^<]*?[^< ])?)\~\~/g, '<strike>$1</strike>'); // strikethrough
+			message = message.replace(/&lt;&lt;([a-z0-9-]+)&gt;&gt;/g, '&laquo;<a href="/$1" target="_blank">$1</a>&raquo;'); // <<roomid>>
+			return message;
+		}
+		message = Chat.escapeHTML(message).replace(/&#x2f;/g, '/');
+		message = message.replace(/\_\_([^< ](?:[^<]*?[^< ])?)\_\_(?![^<]*?<\/a)/g, '<i>$1</i>'); // italics
+		message = message.replace(/\*\*([^< ](?:[^<]*?[^< ])?)\*\*/g, '<b>$1</b>'); // bold
+		message = message.replace(/\~\~([^< ](?:[^<]*?[^< ])?)\~\~/g, '<strike>$1</strike>'); // strikethrough
+		message = message.replace(/&lt;&lt;([a-z0-9-]+)&gt;&gt;/g, '&laquo;<a href="/$1" target="_blank">$1</a>&raquo;'); // <<roomid>>
+		return message;
+	},
+	
 function parseEmoticons(message) {
 	if (emoteRegex.test(message)) {
-		message = WL.parseMessage(message).replace(emoteRegex, function (match) {
+		message = parseMessage(message).replace(emoteRegex, function (match) {
 			return `<img src="${emoticons[match]}" title="${match}" height="40" width="40">`;
 		});
 		return message;
 	}
 	return false;
 }
-WL.parseEmoticons = parseEmoticons;
 
 exports.commands = {
 	blockemote: 'ignoreemotes',
@@ -74,8 +90,6 @@ exports.commands = {
 			emoticons[parts[0]] = parts[1];
 			saveEmoticons();
 			this.sendReply(`|raw|The emoticon "${Chat.escapeHTML(parts[0])}" has been added: <img src="${parts[1]}" width="40" height="40">`);
-			Rooms('upperstaff').add(`|raw|${WL.nameColor(user.name, true)} has added the emote "${Chat.escapeHTML(parts[0])}": <img width="40" height="40" src="${parts[1]}">`).update();
-			WL.messageSeniorStaff(`/html ${WL.nameColor(user.name, true)} has added the emote "${Chat.escapeHTML(parts[0])}": <img width="40" height="40" src="${parts[1]}">`);
 		},
 
 		remove: 'delete',
@@ -115,16 +129,16 @@ exports.commands = {
 		},
 
 		ignore: function (target, room, user) {
-			if (WL.ignoreEmotes[user.userid]) return this.errorReply("You are already ignoring emoticons.");
-			WL.ignoreEmotes[user.userid] = true;
-			fs.writeFileSync('config/ignoreemotes.json', JSON.stringify(WL.ignoreEmotes));
+			if (Users.ignoreEmotes[user.userid]) return this.errorReply("You are already ignoring emoticons.");
+			Users.ignoreEmotes[user.userid] = true;
+			fs.writeFileSync('config/ignoreemotes.json', JSON.stringify(Users.ignoreEmotes));
 			this.sendReply(`You are now ignoring emoticons.`);
 		},
 
 		unignore: function (target, room, user) {
-			if (!WL.ignoreEmotes[user.userid]) return this.errorReply("You aren't ignoring emoticons.");
-			delete WL.ignoreEmotes[user.userid];
-			fs.writeFileSync('config/ignoreemotes.json', JSON.stringify(WL.ignoreEmotes));
+			if (!Users.ignoreEmotes[user.userid]) return this.errorReply("You aren't ignoring emoticons.");
+			delete Users.ignoreEmotes[user.userid];
+			fs.writeFileSync('config/ignoreemotes.json', JSON.stringify(Users.ignoreEmotes));
 			this.sendReply(`You are no longer ignoring emoticons.`);
 		},
 

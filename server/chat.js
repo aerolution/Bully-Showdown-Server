@@ -57,7 +57,6 @@ const TRANSLATION_DIRECTORY = 'translations/';
 
 /** @type {typeof import('../lib/fs').FS} */
 const FS = require(/** @type {any} */('../.lib-dist/fs')).FS;
-const parseEmoticons = require('./chat-plugins/emoticons').parseEmoticons;
 
 
 /** @type {(url: string) => Promise<{width: number, height: number}>} */
@@ -578,17 +577,27 @@ class CommandContext extends MessageContext {
 
 		if (message && message !== true && typeof message.then !== 'function') {
 			if (this.pmTarget) {
-				const parsedMsg = parseEmoticons(message, this.room, this.user, true);
-				if (parsedMsg) message = '/html ' + parsedMsg;
-				let buf = `|pm|${this.user.getIdentity()}|${this.pmTarget.getIdentity()}|${message}`;
-				this.user.send(buf);
-				if (this.pmTarget !== this.user) this.pmTarget.send(buf);
-
-				this.pmTarget.lastPM = this.user.userid;
-				this.user.lastPM = this.pmTarget.userid;
+				Chat.sendPM(message, this.user, this.pmTarget);
 			} else {
-				if (parseEmoticons(message, this.room, this.user)) return;
-				this.room.add(`|c|${this.user.getIdentity(this.room.id)}|${message}`);
+				let emoticons = WL.parseEmoticons(message);
+				if (emoticons && !this.room.disableEmoticons) {
+					for (let u in this.room.users) {
+						let curUser = Users(u);
+						if (!curUser || !curUser.connected) continue;
+						if (WL.ignoreEmotes[curUser.userid]) {
+							curUser.sendTo(this.room, (this.room.type === 'chat' ? '|c:|' + (~~(Date.now() / 1000)) + '|' : '|c|') + this.user.getIdentity(this.room.id) + '|' + message);
+							continue;
+						}
+						curUser.sendTo(this.room, (this.room.type === 'chat' ? '|c:|' + (~~(Date.now() / 1000)) + '|' : '|c|') + this.user.getIdentity(this.room.id) + '|/html ' + emoticons);
+					}
+					this.room.log.log.push((this.room.type === 'chat' ? (this.room.type === 'chat' ? '|c:|' + (~~(Date.now() / 1000)) + '|' : '|c|') : '|c|') + this.user.getIdentity(this.room.id) + '|' + message);
+					this.room.lastUpdate = this.room.log.length;
+					this.room.messageCount++;
+				} else {
+					this.room.add((this.room.type === 'chat' ? (this.room.type === 'chat' ? '|c:|' + (~~(Date.now() / 1000)) + '|' : '|c|') : '|c|') + this.user.getIdentity(this.room.id) + '|' + message);
+					this.room.messageCount++;
+				}
+				//this.room.add(`|c|${this.user.getIdentity(this.room.id)}|${message}`);
 			}
 		}
 
@@ -1434,10 +1443,16 @@ Chat.parse = function (message, room, user, connection) {
  * @param {?User} onlyRecipient
  */
 Chat.sendPM = function (message, user, pmTarget, onlyRecipient = null) {
-	let buf = `|pm|${user.getIdentity()}|${pmTarget.getIdentity()}|${message}`;
+	let noEmotes = message;
+	let emoticons = WL.parseEmoticons(message);
+	if (emoticons) message = "/html " + emoticons;
+	let buf = `|pm|${user.getIdentity()}|${pmTarget.getIdentity()}|${(WL.ignoreEmotes[user.userid] ? noEmotes : message)}`;
+	// TODO is onlyRecipient a user? If so we should check if they are ignoring emoticions.
 	if (onlyRecipient) return onlyRecipient.send(buf);
 	user.send(buf);
-	if (pmTarget !== user) pmTarget.send(buf);
+	if (pmTarget !== user) {
+		pmTarget.send(buf);
+	}
 	pmTarget.lastPM = user.userid;
 	user.lastPM = pmTarget.userid;
 };

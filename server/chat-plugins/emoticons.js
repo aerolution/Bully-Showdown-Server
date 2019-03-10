@@ -1,162 +1,151 @@
+/*
+Emoticon plugin
+This plugin allows you to use emoticons in both chat rooms (as long as they are enabled in the room) and private messages.
+*/
 'use strict';
 
-const color = require('../../config/color');
-let demFeels = function () {};
-demFeels.getEmotes = function () {
-	return {};
-};
+const fs = require('fs');
+let emoticons = {'feelsbd': 'http://i.imgur.com/TZvJ1lI.png'};
+let emoteRegex = new RegExp('feelsbd', 'g');
+WL.ignoreEmotes = {};
 try {
-	demFeels = require('dem-feels');
-} catch (e) {
-	console.error(e);
-}
+	WL.ignoreEmotes = JSON.parse(fs.readFileSync('config/ignoreemotes.json', 'utf8'));
+} catch (e) {}
 
-exports.parseEmoticons = parseEmoticons;
-
-// for travis build
-if (typeof demFeels.extendEmotes === 'function') {
-	// example extending emotes
-	demFeels.extendEmotes({
-		'(ditto)': 'https://cdn.betterttv.net/emote/554da1a289d53f2d12781907/2x',
-		'#freewolf': 'http://i.imgur.com/ybxWXiG.png',
-		'feelsbn': 'http://i.imgur.com/wp51rIg.png',
-	});
-}
-
-const emotes = demFeels.getEmotes();
-
-const emotesKeys = Object.keys(emotes).sort();
-
-/**
-* Parse emoticons in message.
-*
-* @param {String} message
-* @param {Object} room
-* @param {Object} user
-* @param {Boolean} pm - returns a string if it is in private messages
-* @returns {Boolean|String}
-*/
-function parseEmoticons(message, room, user, pm) {
-	if (typeof message !== 'string' || (!pm && room.disableEmoticons)) return false;
-
-	let match = false;
-	let len = emotesKeys.length;
-
-	while (len--) {
-		if (message && message.indexOf(emotesKeys[len]) >= 0) {
-			match = true;
-			break;
+function loadEmoticons() {
+	try {
+		emoticons = JSON.parse(fs.readFileSync('config/emoticons.json', 'utf8'));
+		emoteRegex = [];
+		for (let emote in emoticons) {
+			emoteRegex.push(escapeRegExp(emote));
 		}
+		emoteRegex = new RegExp('(' + emoteRegex.join('|') + ')', 'g');
+	} catch (e) {}
+}
+loadEmoticons();
+
+function saveEmoticons() {
+	fs.writeFileSync('config/emoticons.json', JSON.stringify(emoticons));
+	emoteRegex = [];
+	for (let emote in emoticons) {
+		emoteRegex.push(emote);
 	}
-
-	if (!match) return false;
-
-	// escape HTML
-	message = Chat.escapeHTML(message);
-
-	// add emotes
-	message = demFeels(message);
-
-	// __italics__
-	message = message.replace(/\_\_([^< ](?:[^<]*?[^< ])?)\_\_(?![^<]*?<\/a)/g, '<i>$1</i>');
-
-	// **bold**
-	message = message.replace(/\*\*([^< ](?:[^<]*?[^< ])?)\*\*/g, '<b>$1</b>');
-
-	let group = user.getIdentity().charAt(0);
-	if (room && room.auth) group = room.auth[user.userid] || group;
-	if (pm && !user.hiding) group = user.group;
-
-	if (pm) return "<div class='chat' style='display:inline'>" + "<em class='mine'>" + message + "</em></div>";
-
-	let style = "background:none;border:0;padding:0 5px 0 0;font-family:Verdana,Helvetica,Arial,sans-serif;font-size:9pt;cursor:pointer";
-	message = "<div class='chat'>" + "<small>" + group + "</small>" + "<button name='parseCommand' value='/user " + user.name + "' style='" + style + "'>" + "<b><font color='" + color(user.userid) + "'>" + user.name + ":</font></b>" + "</button><em class='mine'>" + message + "</em></div>";
-
-	room.addRaw(message);
-
-	room.update();
-
-	return true;
+	emoteRegex = new RegExp('(' + emoteRegex.join('|') + ')', 'g');
 }
 
-/**
-* Create a two column table listing emoticons.
-*
-* @return {String} emotes table
-*/
-function create_table() {
-	let emotes_name = Object.keys(emotes);
-	let emotes_list = [];
-	let emotes_group_list = [];
-	let len = emotes_name.length;
-
-	for (let i = 0; i < len; i++) {
-		emotes_list.push("<td style='padding: 5px; box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5) inset; border-radius: 5px;'>" + "<img src='" + emotes[emotes_name[i]] + "'' title='" + emotes_name[i] + "' height='50' width='50' style='vertical-align: middle;  padding-right: 5px;' />" + emotes_name[i] + "</td>");
+function parseEmoticons(message) {
+	if (emoteRegex.test(message)) {
+		message = WL.parseMessage(message).replace(emoteRegex, function (match) {
+			return `<img src="${emoticons[match]}" title="${match}" height="40" width="40">`;
+		});
+		return message;
 	}
-
-	for (let i = 0; i < len; i += 4) {
-		let emoteOutput = [emotes_list[i], emotes_list[i + 1], emotes_list[i + 2], emotes_list[i + 3]];
-		if (i < len) emotes_group_list.push("<tr>" + emoteOutput.join('') + "</tr>");
-	}
-
-	return (
-		"<div class='infobox'><center><font style='font-weight: bold; text-decoration: underline; color: #555;'>List of Emoticons</font></center>" +
-		"<div style='max-height: 300px; overflow-y: scroll; padding: 5px 0px;'><table style='background: rgba(245, 245, 245, 0.4); border: 1px solid #BBB;' width='100%'>" +
-		emotes_group_list.join("") +
-		"</table></div></div>"
-	);
+	return false;
 }
-
-let emotes_table = create_table();
+WL.parseEmoticons = parseEmoticons;
 
 exports.commands = {
-	blockemote: 'blockemoticons',
-	blockemotes: 'blockemoticons',
-	blockemoticon: 'blockemoticons',
-	blockemoticons: function (target, room, user) {
-		if (user.blockEmoticons === (target || true)) return this.sendReply("You are already blocking emoticons in private messages! To unblock, use /unblockemoticons");
-		user.blockEmoticons = true;
-		return this.sendReply("You are now blocking emoticons in private messages.");
+	blockemote: 'ignoreemotes',
+	blockemotes: 'ignoreemotes',
+	blockemoticon: 'ignoreemotes',
+	blockemoticons: 'ignoreemotes',
+	ignoreemotes: function (target, room, user) {
+		this.parse(`/emoticons ignore`);
 	},
-	blockemoticonshelp: ["/blockemoticons - Blocks emoticons in private messages. Unblock them with /unblockemoticons."],
 
-	unblockemote: 'unblockemoticons',
-	unblockemotes: 'unblockemoticons',
-	unblockemoticon: 'unblockemoticons',
-	unblockemoticons: function (target, room, user) {
-		if (!user.blockEmoticons) return this.sendReply("You are not blocking emoticons in private messages! To block, use /blockemoticons");
-		user.blockEmoticons = false;
-		return this.sendReply("You are no longer blocking emoticons in private messages.");
+	unblockemote: 'unignoreemotes',
+	unblockemotes: 'unignoreemotes',
+	unblockemoticon: 'unignoreemotes',
+	unblockemoticons: 'unignoreemotes',
+	unignoreemotes: function (target, room, user) {
+		this.parse(`/emoticons unignore`);
 	},
-	unblockemoticonshelp: ["/unblockemoticons - Unblocks emoticons in private messages. Block them with /blockemoticons."],
 
-	emotes: 'emoticons',
-	emoticons: function (target, room, user) {
-		if (!this.runBroadcast()) return;
-		this.sendReply("|raw|" + emotes_table);
-	},
-	emoticonshelp: ["/emoticons - Get a list of emoticons."],
+	emoticons: 'emoticon',
+	emote: 'emoticon',
+	emotes: 'emoticon',
+	emoticon: {
+		add: function (target, room, user) {
+			let parts = target.split(',');
+			for (let u in parts) parts[u] = parts[u].trim();
+			if (!this.can('emote')) return false;
+			if (!parts[1]) return this.sendReply(`Usage: /emoticon add [name], [url] - Remember to resize the image first! (recommended 30x30)`);
+			if (emoticons[parts[0]]) return this.sendReply(`"${parts[0]}" is already an emoticon.`);
+			emoticons[parts[0]] = parts[1];
+			saveEmoticons();
+			this.sendReply(`|raw|The emoticon "${Chat.escapeHTML(parts[0])}" has been added: <img src="${parts[1]}" width="40" height="40">`);
+			Rooms('upperstaff').add(`|raw|${WL.nameColor(user.name, true)} has added the emote "${Chat.escapeHTML(parts[0])}": <img width="40" height="40" src="${parts[1]}">`).update();
+			WL.messageSeniorStaff(`/html ${WL.nameColor(user.name, true)} has added the emote "${Chat.escapeHTML(parts[0])}": <img width="40" height="40" src="${parts[1]}">`);
+		},
 
-	toggleemote: 'toggleemoticons',
-	toggleemotes: 'toggleemoticons',
-	toggleemoticons: function (target, room, user) {
-		if (!this.can('declare', null, room)) return false;
-		room.disableEmoticons = !room.disableEmoticons;
-		this.sendReply("Disallowing emoticons is set to " + room.disableEmoticons + " in this room.");
-		if (room.disableEmoticons) {
-			this.add("|raw|<div class=\"broadcast-red\"><b>Emoticons are disabled!</b><br />Emoticons will not work.</div>");
-		} else {
-			this.add("|raw|<div class=\"broadcast-blue\"><b>Emoticons are enabled!</b><br />Emoticons will work now.</div>");
-		}
-	},
-	toggleemoticonshelp: ["/toggleemoticons - Toggle emoticons on or off."],
+		remove: 'delete',
+		rem: 'delete',
+		del: 'delete',
+		delete: function (target, room, user) {
+			if (!this.can('emote')) return false;
+			if (!target) return this.sendReply(`Usage: /emoticon del [name]`);
+			if (!emoticons[target]) return this.sendReply(`The emoticon "${target}" does not exist.`);
+			delete emoticons[target];
+			saveEmoticons();
+			this.sendReply(`The emoticon "${target}" has been removed.`);
+		},
 
-	rande: 'randemote',
-	randemote: function (target, room, user) {
-		if (!this.runBroadcast()) return;
-		let rng = Math.floor(Math.random() * emotesKeys.length);
-		let randomEmote = emotesKeys[rng];
-		this.sendReplyBox("<img src='" + emotes[randomEmote] + "' title='" + randomEmote + "' height='50' width='50' />");
+		toggle: function (target, room, user) {
+			if (!this.can('editroom', null, room)) return this.sendReply(`Access denied.`);
+			if (!room.disableEmoticons) {
+				room.disableEmoticons = true;
+				Rooms.global.writeChatRoomData();
+				this.modlog(`EMOTES`, null, `disabled emoticons`);
+				this.privateModAction(`(${user.name} disabled emoticons in this room.)`);
+			} else {
+				room.disableEmoticons = false;
+				Rooms.global.writeChatRoomData();
+				this.modlog(`EMOTES`, null, `enabled emoticons`);
+				this.privateModAction(`(${user.name} enabled emoticons in this room.)`);
+			}
+		},
+
+		'': 'view',
+		list: 'view',
+		view: function (target, room, user) {
+			if (!this.runBroadcast()) return;
+			let reply = `<b><u>Emoticons (${Object.keys(emoticons).length})</u></b><br />`;
+			for (let emote in emoticons) reply += `(${emote} <img src="${emoticons[emote]}" height="40" width="40">) `;
+			this.sendReply(`|raw|<div class="infobox infobox-limited">${reply}</div>`);
+		},
+
+		ignore: function (target, room, user) {
+			if (WL.ignoreEmotes[user.userid]) return this.errorReply("You are already ignoring emoticons.");
+			WL.ignoreEmotes[user.userid] = true;
+			fs.writeFileSync('config/ignoreemotes.json', JSON.stringify(WL.ignoreEmotes));
+			this.sendReply(`You are now ignoring emoticons.`);
+		},
+
+		unignore: function (target, room, user) {
+			if (!WL.ignoreEmotes[user.userid]) return this.errorReply("You aren't ignoring emoticons.");
+			delete WL.ignoreEmotes[user.userid];
+			fs.writeFileSync('config/ignoreemotes.json', JSON.stringify(WL.ignoreEmotes));
+			this.sendReply(`You are no longer ignoring emoticons.`);
+		},
+
+		help: function (target, room, user) {
+			this.parse(`/help emoticons`);
+		},
 	},
-	randemotehelp: ["/randemote - Get a random emote."],
+	emoticonshelp: [
+		`Emoticon Commands:
+		/emoticon may be substituted with /emoticons, /emotes, or /emote
+		/emoticon add [name], [url] - Adds an emoticon.
+		/emoticon del/delete/remove/rem [name] - Removes an emoticon.
+		/emoticon toggle - Enables or disables emoticons in the current room depending on if they are already active.
+		/emoticon view/list - Displays the list of emoticons.
+		/emoticon ignore - Ignores emoticons in chat messages.
+		/emoticon unignore - Unignores emoticons in chat messages.
+		/emoticon help - Displays this help command.
+		Emoticon Plugin by: jd`,
+	],
 };
+
+function escapeRegExp(str) {
+	return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"); // eslint-disable-line no-useless-escape
+}

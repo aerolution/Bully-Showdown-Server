@@ -1119,7 +1119,7 @@ let Formats = [
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		onModifyMovePriority: -1,
-		onModifyMove: function (move) {
+		onModifyMove(move) {
 			switch (move.target) {
 			case 'normal':
 			case 'randomNormal':
@@ -1245,27 +1245,40 @@ let Formats = [
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		level100: true,
-		onModifyTemplate: function (template, pokemon) {
-			let tsTemplate = Object.assign({}, template);
-			const boosts = {'UU': 10, 'RUBL': 10, 'RU': 20, 'NUBL': 20, 'NU': 30, 'PUBL': 30, 'PU': 40, 'NFE': 40, 'LC Uber': 40, 'LC': 40};
-			let tier = tsTemplate.tier;
-			if (pokemon && pokemon.set.item) {
-				let item = this.getItem(pokemon.set.item);
-				if (item.megaEvolves === tsTemplate.species) tier = this.getTemplate(item.megaStone).tier;
+		onModifyTemplate(template, target, source, effect) {
+			if (!effect) return;
+			if (!template.abilities) return false;
+			/** @type {{[tier: string]: number}} */
+			let boosts = {
+				'UU': 10,
+				'RUBL': 10,
+				'RU': 20,
+				'NUBL': 20,
+				'NU': 30,
+				'PUBL': 30,
+				'PU': 40,
+				'NFE': 40,
+				'LC Uber': 40,
+				'LC': 40,
+			};
+			if (target.set.ability === 'Drizzle') return;
+			let pokemon = this.deepClone(template);
+			if (target.set.item) {
+				let item = this.getItem(target.set.item);
+				if (item.name === 'Kommonium Z' || item.name === 'Mewnium Z') return;
+				if (item.megaEvolves === pokemon.species) pokemon.tier = this.getTemplate(item.megaStone).tier;
 			}
-			if (tier.charAt(0) === '(') tier = tier.slice(1, -1);
-			let boost = (tier in boosts) ? boosts[tier] : 0;
-			if (boost > 0 && pokemon && (pokemon.set.ability === 'Drizzle' || pokemon.set.item === 'Mewnium Z')) boost = 0;
-			if (boost > 10 && pokemon && pokemon.set.moves.includes('auroraveil')) boost = 10;
-			if (boost > 20 && pokemon && pokemon.set.ability === 'Drought') boost = 20;
-			tsTemplate.baseStats = Object.assign({}, tsTemplate.baseStats);
-			// `Dex` needs to be used in /data, `this` needs to be used in battles
-			const clampRange = this && this.clampIntRange ? this.clampIntRange : Dex.clampIntRange;
-			for (let statName in tsTemplate.baseStats) {
-				// @ts-ignore
-				tsTemplate.baseStats[statName] = clampRange(tsTemplate.baseStats[statName] + boost, 1, 255);
+			if (pokemon.tier[0] === '(') pokemon.tier = pokemon.tier.slice(1, -1);
+			if (!(pokemon.tier in boosts)) return;
+			if (target.set.moves.includes('auroraveil')) pokemon.tier = 'UU';
+			if (target.set.ability === 'Drought') pokemon.tier = 'RU';
+
+			let boost = boosts[pokemon.tier];
+			for (let statName in pokemon.baseStats) {
+				if (statName === 'hp') continue;
+				pokemon.baseStats[statName] = this.clampIntRange(pokemon.baseStats[statName] + boost, 1, 255);
 			}
-			return tsTemplate;
+			return pokemon;
 		},
 	},
 	{

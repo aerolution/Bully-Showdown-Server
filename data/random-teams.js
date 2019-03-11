@@ -614,7 +614,7 @@ class RandomTeams extends Dex.ModdedDex {
 			species = template.baseSpecies;
 		}
 		let battleForme = this.checkBattleForme(template);
-		if (battleForme && battleForme.randomBattleMoves && template.otherFormes && (battleForme.isMega ? (!this.format.noMegas && !teamDetails.megaStone) : this.random(2))) {
+		if (battleForme && battleForme.randomBattleMoves && template.otherFormes && (battleForme.isMega ? (!this.format.noMegas && !teamDetails.megaStone) : this.random(2)) && (!battleForme.isPrimal || !this.format.noMegas)) {
 			template = this.getTemplate(template.otherFormes.length >= 2 ? this.sample(template.otherFormes) : template.otherFormes[0]);
 		}
 

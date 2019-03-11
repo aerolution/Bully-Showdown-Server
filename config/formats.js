@@ -627,7 +627,7 @@ let Formats = [
 			'Belly Drum', 'Celebrate', 'Chatter', 'Conversion', 'Extreme Speed', "Forest's Curse", 'Geomancy', 'Happy Hour', 'Hold Hands',
 			'Lovely Kiss', 'Purify', 'Quiver Dance', 'Shell Smash', 'Shift Gear', 'Sketch', 'Spore', 'Sticky Web', 'Trick-or-Treat',
 		],
-		checkLearnset: function (move, template, lsetData, set) {
+		checkLearnset(move, template, lsetData, set) {
 			let problem = this.checkLearnset(move, template, lsetData, set);
 			if (!problem) return null;
 			const restrictedMoves = this.format.restrictedMoves || [];
@@ -638,7 +638,7 @@ let Formats = [
 			set.sketchMove = move.id;
 			return null;
 		},
-		onValidateTeam: function (team, format, teamHas) {
+		onValidateTeam(team, format, teamHas) {
 			let sketches = {};
 			for (const set of team) {
 				// @ts-ignore
@@ -928,7 +928,7 @@ let Formats = [
 			'Intimidate', 'Natural Cure', 'Immunity', 'Snow Cloak', 'Gluttony', 'Regenerator',],
 		unbanlist: ['Darkrai', 'Landorus', 'Blaziken', 'Arceus-Bug'],
 		
-		onValidateTeam: function (team) {
+		onValidateTeam(team) {
 			const stallmons = ['Sableye-Mega', 'Venusaur-Mega', 'Aggron-Mega', 'Slowbro-Mega', 'Chansey', 'Blissey', 'Tangrowth', 'Amoonguss', 'Skarmory', 'Quagsire', 'Clefable', 'Dugtrio', 'Gothitelle', 'Toxapex', 'Alomomola', 'Registeel', 'Mew', 'Slowbro', 'Slowking', 'Gliscor', 'Gligar', 'Cresselia', 'Mandibuzz', 'Shedinja', 'Pyukumuku', 'Sylveon', 'Umbreon', 'Vaporeon', 'Hippowdon', 'Ferrothorn', 'Tangela', 'Zapdos', 'Suicune', 'Tapu Fini', 'Bronzong', 'Forretress'];
 			let n = 0;
 			for (const set of team) {
@@ -938,7 +938,7 @@ let Formats = [
 			}
 		},
 		
-		onValidateSet: function (set) {
+		onValidateSet(set) {
 			let problems = [];
 			if (set.moves) {
 				for (const moveId of set.moves) {
@@ -1035,7 +1035,7 @@ let Formats = [
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod', 'Freeze Clause Mod'],
 		onModifyMovePriority: -100,
-		onModifyMove: function (move) {
+		onModifyMove(move) {
 			if (move.accuracy !== true && move.accuracy > 50) move.accuracy = 100;
 			move.willCrit = true;
 			if (move.secondaries) {
@@ -1053,7 +1053,7 @@ let Formats = [
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		onPrepareHitPriority: -1,
-		onPrepareHit: function (source, target, move) {
+		onPrepareHit(source, target, move) {
 			if (move.hasBounced) return;
 			let type = move.type;
 			if (!type) return;
@@ -1071,7 +1071,7 @@ let Formats = [
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		customBanlist: ['Ditto'],
-		onBeforeSwitchIn: function (pokemon) {
+		onBeforeSwitchIn(pokemon) {
 			pokemon.illusion = null;
 			let i;
 			for (i = pokemon.side.pokemon.length - 1; i > pokemon.position; i--) {
@@ -1082,12 +1082,12 @@ let Formats = [
 			if (pokemon === pokemon.side.pokemon[i]) return;
 			pokemon.illusion = pokemon.side.pokemon[i];
 		},
-		onAfterDamage: function (damage, target, source, effect) {
+		onAfterDamage(damage, target, source, effect) {
 			if (target.illusion && effect && effect.effectType === 'Move' && effect.id !== 'confused') {
 				this.singleEvent('End', this.getAbility('Illusion'), target.abilityData, target, source, effect);
 			}
 		},
-		onEnd: function (pokemon) {
+		onEnd(pokemon) {
 			if (pokemon.illusion) {
 				this.debug('illusion cleared');
 				pokemon.illusion = null;
@@ -1096,7 +1096,7 @@ let Formats = [
 				this.add('-end', pokemon, 'Illusion');
 			}
 		},
-		onFaint: function (pokemon) {
+		onFaint(pokemon) {
 			pokemon.illusion = null;
 		},
 	},
@@ -1107,7 +1107,7 @@ let Formats = [
 		mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		onDisableMove: function (pokemon) {
+		onDisableMove(pokemon) {
 			if (pokemon.lastMove !== 'struggle') pokemon.disableMove(pokemon.lastMove);
 		},
 	},
@@ -1141,7 +1141,7 @@ let Formats = [
 		customBanlist: ['Shedinja'],
 		allowUnevolved: true,
 		level100: true,
-		onModifyTemplate: function (template) {
+		onModifyTemplate(template) {
 			let dex = this && this.deepClone ? this : Dex;
 			let newTemplate = dex.deepClone(template);
 			newTemplate.baseStats = {hp: 100, atk: 100, def: 100, spa: 100, spd: 100, spe: 100};
@@ -1156,7 +1156,7 @@ let Formats = [
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		customBanlist: ['Shedinja', 'Zoroark'],
-        onModifyTemplate: function (template, target, source) {
+        onModifyTemplate(template, target, source) {
 			if (!source) return;
 			if (template.species === 'Shedinja' || template.species === 'Unown') return;
 			let types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => this.getMove(move.id).type))];
@@ -1222,7 +1222,7 @@ let Formats = [
 		customBanlist: ['Abra', 'Carvanha', 'Gastly', 'Bunnelby', 'Shedinja'],
 		allowUnevolved: true,
 		level100: true,
-		onModifyTemplate: function (template, target, source) {
+		onModifyTemplate(template, target, source) {
 			if (!source) return;
 			template = Object.assign({}, template);
 			template.baseStats = Object.assign({}, template.baseStats);

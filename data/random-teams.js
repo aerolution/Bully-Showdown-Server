@@ -1721,7 +1721,6 @@ class RandomTeams extends Dex.ModdedDex {
 			
 			// Custom Tier banlists
 			if (this.format.customBanlist && this.format.customBanlist.includes(template.baseSpecies)) continue;
-			if (this.format.noMegas && template.isMega) continue;
 
 			// Only certain NFE Pokemon are allowed
 			if (!this.format.allowUnevolved && template.evos.length && !allowedNFE.includes(template.species)) continue;
@@ -1778,6 +1777,8 @@ class RandomTeams extends Dex.ModdedDex {
 			}
 
 			let set = this.randomSet(template, pokemon.length, teamDetails, this.format.gameType !== 'singles');
+			
+			if (this.format.noMegas && set.isMega) continue;
 
 			// Illusion shouldn't be the last Pokemon of the team
 			if (set.ability === 'Illusion' && pokemon.length > 4) continue;

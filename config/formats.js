@@ -1156,11 +1156,17 @@ let Formats = [
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		customBanlist: ['Shedinja', 'Zoroark'],
-        onModifyTemplate(template, target, source) {
-			if (!source) return;
-			if (template.species === 'Shedinja' || template.species === 'Unown') return;
+        onModifyTemplate(template, target, source, effect) {
+			if (!target) return; // Chat command
+			if (effect && ['imposter', 'transform'].includes(effect.id)) return;
 			let types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => this.getMove(move.id).type))];
 			return Object.assign({}, template, {types: types});
+		},
+		onSwitchIn(pokemon) {
+			this.add('-start', pokemon, 'typechange', pokemon.types.join('/'), '[silent]');
+		},
+		onAfterMega(pokemon) {
+			this.add('-start', pokemon, 'typechange', pokemon.types.join('/'), '[silent]');
 		},
     },
 	{
@@ -1223,7 +1229,7 @@ let Formats = [
 		allowUnevolved: true,
 		level100: true,
 		onModifyTemplate(template, target, source) {
-			if (!source) return;
+			if (!target) return;
 			template = Object.assign({}, template);
 			template.baseStats = Object.assign({}, template.baseStats);
 			let stats = ['atk', 'def', 'spa', 'spd', 'spe'];

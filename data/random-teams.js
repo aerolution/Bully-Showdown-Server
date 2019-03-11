@@ -1371,6 +1371,7 @@ class RandomTeams extends Dex.ModdedDex {
 			item = 'Stick';
 		} else if (template.species === 'Genesect' && hasMove['technoblast']) {
 			item = 'Douse Drive';
+			species = 'Genesect-Douse';
 		} else if (template.species === 'Kommo-o' && !teamDetails.zMove) {
 			item = hasMove['clangingscales'] ? 'Kommonium Z' : 'Dragonium Z';
 		} else if (template.species === 'Lycanroc' && hasMove['stoneedge'] && counter.setupType && !teamDetails.zMove) {
@@ -1442,7 +1443,7 @@ class RandomTeams extends Dex.ModdedDex {
 			item = 'Flyinium Z';
 		} else if (hasMove['solarbeam'] && !hasAbility['Drought'] && !hasMove['sunnyday'] && !teamDetails['sun']) {
 			item = !teamDetails.zMove ? 'Grassium Z' : 'Power Herb';
-		} else if (this.format.id !== 'gen7randomscalemons' && this.format.id !== 'gen7randomaveragemons' && template.evos.length) {
+		} else if (!this.format.allowUnevolved && template.evos.length) {
 			item = (ability === 'Technician' && counter.Physical >= 4) ? 'Choice Band' : 'Eviolite';
 		} else if (template.species === 'Latias' || template.species === 'Latios') {
 			item = 'Soul Dew';
@@ -1618,7 +1619,7 @@ class RandomTeams extends Dex.ModdedDex {
 			level += 2;
 		}
 		
-		if (this.format.id === 'gen7randomchimera' || this.format.id === 'gen7randomtiershift' || this.format.id === 'gen7randomscalemons' || this.format.id === 'gen7randomaveragemons') {
+		if (this.format.level100) {
 			level = 100;
 		}
 
@@ -1692,7 +1693,7 @@ class RandomTeams extends Dex.ModdedDex {
 				if (template.battleOnly) types = this.getTemplate(template.baseSpecies).types;
 				if (types.indexOf(type) < 0) continue;
 			}
-			if (template.gen <= this.gen && (!excludedTiers.includes(template.tier) || this.format.id === 'gen7randomscalemons' || this.format.id !== 'gen7randomaveragemons') && !template.isMega && !template.isPrimal && !template.isNonstandard && template.randomBattleMoves) {
+			if (template.gen <= this.gen && (!excludedTiers.includes(template.tier) || this.format.allowUnevolved) && !template.isMega && !template.isPrimal && !template.isNonstandard && template.randomBattleMoves) {
 				pokemonPool.push(id);
 			}
 		}
@@ -1719,14 +1720,11 @@ class RandomTeams extends Dex.ModdedDex {
 			if (!template.exists) continue;
 			
 			// Custom Tier banlists
-			if (this.format.id === 'gen7shiftingillusions' && template.baseSpecies === 'Ditto') continue;
-			if (this.format.id === 'gen7randomcamomons' && template.baseSpecies === 'Zoroark') continue;
-			if (this.format.id === 'gen7randomscalemons' && (template.baseSpecies === 'Abra' || template.baseSpecies === 'Carvanha' || template.baseSpecies === 'Gastly' || template.baseSpecies === 'Shedinja')) continue;
-			if (this.format.id === 'gen7randomaveragemons' && (template.baseSpecies === 'Shedinja')) continue;
-			if (this.format.id === 'gen7randomchimera' && (template.baseSpecies === 'Shedinja' || template.baseSpecies === 'Medicham' || template.baseSpecies === 'Diggersby' || template.baseSpecies === 'Azumarill')) continue;
+			if (this.format.customBanlist.includes(template.baseSpecies)) continue;
+			if (this.format.noMegas && template.isMega) continue;
 
 			// Only certain NFE Pokemon are allowed
-			if (this.format.id !== 'gen7randomscalemons' && this.format.id !== 'gen7randomaveragemons' && template.evos.length && !allowedNFE.includes(template.species)) continue;
+			if (!this.format.allowUnevolved && template.evos.length && !allowedNFE.includes(template.species)) continue;
 
 			// Limit to one of each species (Species Clause)
 			if (baseFormes[template.baseSpecies]) continue;

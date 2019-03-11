@@ -1070,6 +1070,7 @@ let Formats = [
 		mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		customBanlist: ['Ditto'],
 		onBeforeSwitchIn: function (pokemon) {
 			pokemon.illusion = null;
 			let i;
@@ -1112,7 +1113,7 @@ let Formats = [
 	},
 	{
 		name: "[Gen 7] VoltTurn Mayhem",
-		desc: 'All Pok&eacute;mon automatically switch out upon using a move that affects the opponent.',
+		desc: `All Pok&eacute;mon automatically switch out upon using a move that affects the opponent.`,
 		
 		mod: 'gen7',
 		team: 'random',
@@ -1137,6 +1138,9 @@ let Formats = [
 		mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		customBanlist: ['Shedinja'],
+		allowUnevolved: true,
+		level100: true,
 		onModifyTemplate: function (template) {
 			let dex = this && this.deepClone ? this : Dex;
 			let newTemplate = dex.deepClone(template);
@@ -1151,6 +1155,7 @@ let Formats = [
         mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		customBanlist: ['Shedinja', 'Zoroark'],
         onModifyTemplate: function (template, target, source) {
 			if (!source) return;
 			if (template.species === 'Shedinja' || template.species === 'Unown') return;
@@ -1172,6 +1177,9 @@ let Formats = [
 			battle: 6,
 		},
 		ruleset: ['Pokemon', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
+		customBanlist: ['Shedinja', 'Azumarill', 'Diggersby', 'Medicham'],
+		noMegas: true,
+		level100: true,
 		onValidateSet(set) {
 			if (set && set.item) {
 				let item = this.getItem(set.item);
@@ -1211,6 +1219,9 @@ let Formats = [
 		mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		customBanlist: ['Abra', 'Carvanha', 'Gastly', 'Bunnelby', 'Shedinja'],
+		allowUnevolved: true,
+		level100: true,
 		onModifyTemplate: function (template, target, source) {
 			if (!source) return;
 			template = Object.assign({}, template);
@@ -1233,6 +1244,7 @@ let Formats = [
 		mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		level100: true,
 		onModifyTemplate: function (template, pokemon) {
 			let tsTemplate = Object.assign({}, template);
 			const boosts = {'UU': 10, 'RUBL': 10, 'RU': 20, 'NUBL': 20, 'NU': 30, 'PUBL': 30, 'PU': 40, 'NFE': 40, 'LC Uber': 40, 'LC': 40};

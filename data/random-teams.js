@@ -1720,7 +1720,7 @@ class RandomTeams extends Dex.ModdedDex {
 			if (!template.exists) continue;
 			
 			// Custom Tier banlists
-			if (this.format.customBanlist.includes(template.baseSpecies)) continue;
+			if (this.format.customBanlist && this.format.customBanlist.includes(template.baseSpecies)) continue;
 			if (this.format.noMegas && template.isMega) continue;
 
 			// Only certain NFE Pokemon are allowed

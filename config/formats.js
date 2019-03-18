@@ -12,6 +12,14 @@ let Formats = [
 		section: "Draft League Tiers",
 	},
 	{
+		name: "[Gen 7] Random FFA",
+
+		mod: 'gen7',
+		gameType: 'free-for-all',
+		team: 'random',
+		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+	},
+	{
 		name: "[Gen 7] Draft League",
 
 		mod: 'gen7',

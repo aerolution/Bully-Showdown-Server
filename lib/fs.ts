@@ -148,7 +148,7 @@ class FSPath {
 	 */
 	writeUpdate(dataFetcher: () => string | Buffer, options: object = {}) {
 		if (Config.nofswriting) return;
-		const pendingUpdate: PendingUpdate | undefined = pendingUpdates.get(this.path);
+		let pendingUpdate: PendingUpdate | undefined = pendingUpdates.get(this.path);
 
 		// @ts-ignore
 		const throttleTime = options.throttle ? Date.now() + options.throttle : 0;
@@ -181,7 +181,7 @@ class FSPath {
 		this.safeWrite(dataFetcher(), options).then(() => this.finishUpdate());
 	}
 	checkNextUpdate() {
-		const pendingUpdate = pendingUpdates.get(this.path);
+		let pendingUpdate = pendingUpdates.get(this.path);
 		if (!pendingUpdate) throw new Error(`FS: Pending update not found`);
 		if (pendingUpdate.isWriting) throw new Error(`FS: Conflicting update`);
 
@@ -195,7 +195,7 @@ class FSPath {
 		this.writeUpdateNow(dataFetcher, options);
 	}
 	finishUpdate() {
-		const pendingUpdate = pendingUpdates.get(this.path);
+		let pendingUpdate = pendingUpdates.get(this.path);
 		if (!pendingUpdate) throw new Error(`FS: Pending update not found`);
 		if (!pendingUpdate.isWriting) throw new Error(`FS: Conflicting update`);
 

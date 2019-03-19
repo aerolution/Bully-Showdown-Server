@@ -2559,7 +2559,7 @@ export class Battle extends Dex.ModdedDex {
 					});
 				}
 				if (action.mega) {
-					// TODO: Check that the Pokén is not affected by Sky Drop.
+					// TODO: Check that the Pokémon is not affected by Sky Drop.
 					// (This is currently being done in `runMegaEvo`).
 					this.addToQueue({
 						choice: 'megaEvo',
@@ -2732,13 +2732,13 @@ export class Battle extends Dex.ModdedDex {
 			// I GIVE UP, WILL WRESTLE WITH EVENT SYSTEM LATER
 			const format = this.getFormat();
 
-			// Remove Pokén duplicates remaining after `team` decisions.
+			// Remove Pokémon duplicates remaining after `team` decisions.
 			for (const side of this.sides) {
 				side.pokemon = side.pokemon.slice(0, side.pokemonLeft);
 			}
 
 			if (format.teamLength && format.teamLength.battle) {
-				// Trim the team: not all of the Pokén brought to Preview will battle.
+				// Trim the team: not all of the Pokémon brought to Preview will battle.
 				for (const side of this.sides) {
 					side.pokemon = side.pokemon.slice(0, format.teamLength.battle);
 					side.pokemonLeft = side.pokemon.length;
@@ -2838,7 +2838,7 @@ export class Battle extends Dex.ModdedDex {
 				break;
 			}
 			if (action.target.isActive) {
-				this.hint("A switch failed because the Pokén trying to switch in is already in.");
+				this.hint("A switch failed because the Pokémon trying to switch in is already in.");
 				break;
 			}
 			if (action.choice === 'switch' && action.pokemon.activeTurns === 1) {
@@ -2932,7 +2932,7 @@ export class Battle extends Dex.ModdedDex {
 			this.checkFainted();
 		} else if (action.choice === 'megaEvo' && this.gen >= 7) {
 			this.eachEvent('Update');
-			// In Gen 7, the action order is recalculated for a Pokén that mega evolves.
+			// In Gen 7, the action order is recalculated for a Pokémon that mega evolves.
 			const moveIndex = this.queue.findIndex(queuedAction =>
 				queuedAction.pokemon === action.pokemon && queuedAction.choice === 'move'
 			);

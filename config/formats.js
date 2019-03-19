@@ -1246,7 +1246,7 @@ let Formats = [
 	},
 	{
 		name: "[Gen 7] Random Tier Shift",
-		desc: `Pok&eacute;mon get a +10 boost to each stat per tier below OU they are in.`,
+		desc: `Pok&eacute;mon below OU get all their stats boosted. UU/RUBL get +10, RU/NUBL get +20, NU/PUBL get +30, and PU or lower get +40.`,
 		
 		mod: 'gen7',
 		team: 'random',

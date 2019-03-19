@@ -162,7 +162,7 @@ export class BattleStream extends Streams.ObjectReadWriteStream {
 }
 
 /**
- * Splits a BattleStream into omniscient, spectator, p1, and p2
+ * Splits a BattleStream into omniscient, spectator, p1, p2, p3 and p4
  * streams, for ease of consumption.
  */
 export function getPlayerStreams(stream: BattleStream) {
@@ -195,13 +195,20 @@ export function getPlayerStreams(stream: BattleStream) {
 			switch (type) {
 			case 'update':
 				const p1Update = data.replace(/\n\|split\n[^\n]*\n([^\n]*)\n[^\n]*\n[^\n]*/g, '\n$1').replace(/\n\n/g, '\n');
-				p1.push(p1Update);
+				streams.p1.push(p1Update);	
 				const p2Update = data.replace(/\n\|split\n[^\n]*\n[^\n]*\n([^\n]*)\n[^\n]*/g, '\n$1').replace(/\n\n/g, '\n');
-				p2.push(p2Update);
+
+
+
+
+
+
+
+
 				const specUpdate = data.replace(/\n\|split\n([^\n]*)\n[^\n]*\n[^\n]*\n[^\n]*/g, '\n$1').replace(/\n\n/g, '\n');
-				spectator.push(specUpdate);
+				streams.spectator.push(specUpdate);
 				const omniUpdate = data.replace(/\n\|split\n[^\n]*\n[^\n]*\n[^\n]*/g, '');
-				omniscient.push(omniUpdate);
+				streams.omniscient.push(omniUpdate);	
 				break;
 			case 'sideupdate':
 				const [side, sideData] = splitFirst(data, `\n`);

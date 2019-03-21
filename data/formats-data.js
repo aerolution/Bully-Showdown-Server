@@ -541,8 +541,9 @@ let BattleFormatsData = {
 			{"generation": 7, "level": 5, "perfectIVs": 6, "moves": ["thundershock", "tailwhip", "growl"], "pokeball": "pokeball"},
 		],
 		eventOnly: true,
-		isNonstandard: true,
-		tier: "Illegal",
+		isNonstandard: "LGPE",
+		isUnreleased: true,
+		tier: "Unreleased",
 	},
 	raichu: {
 		randomBattleMoves: ["nastyplot", "encore", "thunderbolt", "grassknot", "hiddenpowerice", "focusblast", "voltswitch"],
@@ -2113,8 +2114,9 @@ let BattleFormatsData = {
 			{"generation": 7, "level": 5, "perfectIVs": 6, "moves": ["tackle", "tailwhip", "growl"], "pokeball": "pokeball"},
 		],
 		eventOnly: true,
-		isNonstandard: true,
-		tier: "Illegal",
+		isNonstandard: "LGPE",
+		isUnreleased: true,
+		tier: "Unreleased",
 	},
 	vaporeon: {
 		randomBattleMoves: ["wish", "protect", "scald", "roar", "icebeam", "healbell"],
@@ -3148,7 +3150,7 @@ let BattleFormatsData = {
 		doublesTier: "(DUU)",
 	},
 	pokestarsmeargle: {
-		isNonstandard: true,
+		isNonstandard: "Pokestar",
 		eventPokemon: [
 			{"generation": 5, "level": 60, "gender": "M", "abilities": ["owntempo"], "moves": ["mindreader", "guillotine", "tailwhip", "gastroacid"]},
 			{"generation": 5, "level": 30, "gender": "M", "abilities": ["owntempo"], "moves": ["outrage", "magiccoat"]},
@@ -4143,7 +4145,7 @@ let BattleFormatsData = {
 		doublesTier: "(DUU)",
 	},
 	seviper: {
-		randomBattleMoves: ["flamethrower", "sludgewave", "gigadrain", "darkpulse", "switcheroo", "coil", "earthquake", "poisonjab", "suckerpunch"],
+		randomBattleMoves: ["flamethrower", "sludgewave", "gigadrain", "darkpulse", "switcheroo", "swordsdance", "earthquake", "poisonjab", "suckerpunch"],
 		randomDoubleBattleMoves: ["flamethrower", "gigadrain", "earthquake", "suckerpunch", "aquatail", "protect", "glare", "poisonjab", "sludgebomb"],
 		eventPokemon: [
 			{"generation": 3, "level": 18, "moves": ["wrap", "lick", "bite", "poisontail"], "pokeball": "pokeball"},
@@ -8281,77 +8283,79 @@ let BattleFormatsData = {
 		doublesTier: "(DUU)",
 	},
 	meltan: {
-		isNonstandard: true,
-		tier: "Illegal",
+		isNonstandard: "LGPE",
+		isUnreleased: true,
+		tier: "Unreleased",
 	},
 	melmetal: {
-		isNonstandard: true,
-		tier: "Illegal",
+		isNonstandard: "LGPE",
+		isUnreleased: true,
+		tier: "Unreleased",
 	},
 	missingno: {
 		randomBattleMoves: ["watergun", "skyattack", "doubleedge", "metronome"],
-		isNonstandard: true,
+		isNonstandard: "Glitch",
 		tier: "Illegal",
 	},
 	tomohawk: {
 		randomBattleMoves: ["aurasphere", "roost", "stealthrock", "rapidspin", "hurricane", "airslash", "taunt", "substitute", "toxic", "naturepower", "earthpower"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	necturna: {
 		randomBattleMoves: ["powerwhip", "hornleech", "willowisp", "shadowsneak", "stoneedge", "sacredfire", "boltstrike", "vcreate", "extremespeed", "closecombat", "shellsmash", "spore", "milkdrink", "stickyweb"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	mollux: {
 		randomBattleMoves: ["fireblast", "thunderbolt", "sludgebomb", "thunderwave", "willowisp", "recover", "rapidspin", "trick", "stealthrock", "toxicspikes", "lavaplume"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	aurumoth: {
 		randomBattleMoves: ["dragondance", "quiverdance", "closecombat", "bugbuzz", "hydropump", "megahorn", "psychic", "blizzard", "thunder", "focusblast", "zenheadbutt"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	malaconda: {
 		randomBattleMoves: ["powerwhip", "glare", "toxic", "suckerpunch", "rest", "substitute", "uturn", "synthesis", "rapidspin", "knockoff"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	cawmodore: {
 		randomBattleMoves: ["bellydrum", "bulletpunch", "drainpunch", "acrobatics", "drillpeck", "substitute", "ironhead", "quickattack"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	volkraken: {
 		randomBattleMoves: ["scald", "powergem", "hydropump", "memento", "hiddenpowerice", "fireblast", "willowisp", "uturn", "substitute", "flashcannon", "surf"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	plasmanta: {
 		randomBattleMoves: ["sludgebomb", "thunderbolt", "substitute", "hiddenpowerice", "psyshock", "dazzlinggleam", "flashcannon"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	naviathan: {
 		randomBattleMoves: ["dragondance", "waterfall", "ironhead", "iciclecrash"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	crucibelle: {
 		randomBattleMoves: ["headsmash", "gunkshot", "coil", "lowkick", "uturn", "stealthrock"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	crucibellemega: {
 		randomBattleMoves: ["headsmash", "gunkshot", "coil", "woodhammer", "lowkick", "uturn"],
 		requiredItem: "Crucibellite",
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	kerfluffle: {
 		randomBattleMoves: ["aurasphere", "moonblast", "taunt", "partingshot", "gigadrain", "yawn"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		eventPokemon: [
 			{"generation": 6, "level": 16, "isHidden": false, "abilities": ["naturalcure"], "moves": ["celebrate", "holdhands", "fly", "metronome"], "pokeball": "cherishball"},
 		],
@@ -8359,17 +8363,17 @@ let BattleFormatsData = {
 	},
 	pajantom: {
 		randomBattleMoves: ["spiritshackle", "dragonclaw", "toxicspikes", "psychicfangs", "earthquake", "substitute", "leechlife"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	jumbao: {
 		randomBattleMoves: ["moonblast", "flameburst", "focusblast", "synthesis", "solarbeam", "hiddenpowerground", "healingwish"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	caribolt: {
 		randomBattleMoves: ["swordsdance", "quickattack", "powerwhip", "return", "voltswitch"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		eventPokemon: [
 			{"generation": 7, "level": 50, "moves": ["celebrate", "hornleech", "wildcharge", "metronome"], "pokeball": "cherishball"},
 		],
@@ -8377,7 +8381,7 @@ let BattleFormatsData = {
 	},
 	smokomodo: {
 		randomBattleMoves: ["flareblitz", "earthquake", "hiddenpowerice", "toxic", "stealthrock"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		eventPokemon: [
 			{"generation": 7, "level": 50, "moves": ["celebrate", "eruption", "magnitude", "camouflage"], "pokeball": "cherishball"},
 		],
@@ -8385,7 +8389,7 @@ let BattleFormatsData = {
 	},
 	snaelstrom: {
 		randomBattleMoves: ["stealthrock", "icebeam", "toxic", "spikyshield", "scald", "rapidspin"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		eventPokemon: [
 			{"generation": 7, "level": 50, "moves": ["celebrate", "liquidation", "leechlife", "metronome"], "pokeball": "cherishball"},
 		],
@@ -8393,141 +8397,141 @@ let BattleFormatsData = {
 	},
 	syclant: {
 		randomBattleMoves: ["bugbuzz", "icebeam", "blizzard", "earthpower", "spikes", "superpower", "tailglow", "uturn", "focusblast"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	revenankh: {
 		randomBattleMoves: ["bulkup", "shadowsneak", "drainpunch", "rest", "moonlight", "icepunch", "glare"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	pyroak: {
 		randomBattleMoves: ["leechseed", "lavaplume", "substitute", "protect", "gigadrain"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	fidgit: {
 		randomBattleMoves: ["spikes", "stealthrock", "toxicspikes", "wish", "rapidspin", "encore", "uturn", "sludgebomb", "earthpower"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	stratagem: {
 		randomBattleMoves: ["paleowave", "earthpower", "fireblast", "gigadrain", "calmmind", "substitute"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	arghonaut: {
 		randomBattleMoves: ["recover", "bulkup", "waterfall", "drainpunch", "crosschop", "stoneedge", "thunderpunch", "aquajet", "machpunch"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	kitsunoh: {
 		randomBattleMoves: ["shadowstrike", "earthquake", "superpower", "meteormash", "uturn", "icepunch", "trick", "willowisp"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	cyclohm: {
 		randomBattleMoves: ["slackoff", "dracometeor", "dragonpulse", "fireblast", "thunderbolt", "hydropump", "discharge", "healbell"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	colossoil: {
 		randomBattleMoves: ["earthquake", "crunch", "suckerpunch", "uturn", "rapidspin", "encore", "pursuit", "knockoff"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	krilowatt: {
 		randomBattleMoves: ["surf", "thunderbolt", "icebeam", "earthpower"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	voodoom: {
 		randomBattleMoves: ["aurasphere", "darkpulse", "taunt", "painsplit", "substitute", "hiddenpowerice", "vacuumwave", "flashcannon"],
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	syclar: {
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP LC",
 	},
 	embirch: {
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP LC",
 	},
 	flarelm: {
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP NFE",
 	},
 	breezi: {
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP LC",
 	},
 	scratchet: {
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP LC",
 	},
 	necturine: {
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP LC",
 	},
 	cupra: {
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP LC",
 	},
 	argalis: {
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP NFE",
 	},
 	brattler: {
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP LC",
 	},
 	cawdet: {
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP LC",
 	},
 	volkritter: {
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP LC",
 	},
 	snugglow: {
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP LC",
 	},
 	floatoy: {
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP LC",
 	},
 	caimanoe: {
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP NFE",
 	},
 	pluffle: {
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP LC",
 	},
 	rebble: {
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP LC",
 	},
 	tactite: {
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP NFE",
 	},
 	privatyke: {
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP LC",
 	},
 	voodoll: {
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP LC",
 	},
 	mumbao: {
-		isNonstandard: true,
+		isNonstandard: "CAP",
 		tier: "CAP LC",
 	},
 	pokestarufo: {
-		isNonstandard: true,
+		isNonstandard: "Pokestar",
 		eventPokemon: [
 			{"generation": 5, "level": 38, "moves": ["bubblebeam", "counter", "recover", "signalbeam"]},
 		],
@@ -8535,7 +8539,7 @@ let BattleFormatsData = {
 		tier: "Illegal",
 	},
 	pokestarufo2: {
-		isNonstandard: true,
+		isNonstandard: "Pokestar",
 		eventPokemon: [
 			{"generation": 5, "level": 47, "moves": ["darkpulse", "flamethrower", "hyperbeam", "icebeam"]},
 		],
@@ -8543,7 +8547,7 @@ let BattleFormatsData = {
 		tier: "Illegal",
 	},
 	pokestarbrycenman: {
-		isNonstandard: true,
+		isNonstandard: "Pokestar",
 		eventPokemon: [
 			{"generation": 5, "level": 56, "moves": ["icebeam", "nightshade", "psychic", "uturn"]},
 		],
@@ -8551,7 +8555,7 @@ let BattleFormatsData = {
 		tier: "Illegal",
 	},
 	pokestarmt: {
-		isNonstandard: true,
+		isNonstandard: "Pokestar",
 		eventPokemon: [
 			{"generation": 5, "level": 63, "moves": ["earthquake", "ironhead", "spark", "surf"]},
 		],
@@ -8559,7 +8563,7 @@ let BattleFormatsData = {
 		tier: "Illegal",
 	},
 	pokestarmt2: {
-		isNonstandard: true,
+		isNonstandard: "Pokestar",
 		eventPokemon: [
 			{"generation": 5, "level": 72, "moves": ["dragonpulse", "flamethrower", "metalburst", "thunderbolt"]},
 		],
@@ -8567,7 +8571,7 @@ let BattleFormatsData = {
 		tier: "Illegal",
 	},
 	pokestartransport: {
-		isNonstandard: true,
+		isNonstandard: "Pokestar",
 		eventPokemon: [
 			{"generation": 5, "level": 20, "moves": ["clearsmog", "flameburst", "discharge"]},
 			{"generation": 5, "level": 50, "moves": ["iciclecrash", "overheat", "signalbeam"]},
@@ -8576,7 +8580,7 @@ let BattleFormatsData = {
 		tier: "Illegal",
 	},
 	pokestargiant: {
-		isNonstandard: true,
+		isNonstandard: "Pokestar",
 		eventPokemon: [
 			{"generation": 5, "level": 99, "moves": ["crushgrip", "focuspunch", "growl", "rage"]},
 		],
@@ -8584,7 +8588,7 @@ let BattleFormatsData = {
 		tier: "Illegal",
 	},
 	pokestargiant2: {
-		isNonstandard: true,
+		isNonstandard: "Pokestar",
 		eventPokemon: [
 			{"generation": 5, "level": 99, "moves": ["crushgrip", "doubleslap", "teeterdance", "stomp"]},
 		],
@@ -8592,7 +8596,7 @@ let BattleFormatsData = {
 		tier: "Illegal",
 	},
 	pokestarhumanoid: {
-		isNonstandard: true,
+		isNonstandard: "Pokestar",
 		eventPokemon: [
 			{"generation": 5, "level": 20, "gender": "M", "moves": ["scratch", "shadowclaw", "acid"]},
 			{"generation": 5, "level": 30, "gender": "M", "moves": ["darkpulse", "shadowclaw", "slash"]},
@@ -8611,7 +8615,7 @@ let BattleFormatsData = {
 		tier: "Illegal",
 	},
 	pokestarmonster: {
-		isNonstandard: true,
+		isNonstandard: "Pokestar",
 		eventPokemon: [
 			{"generation": 5, "level": 50, "moves": ["darkpulse", "confusion"]},
 		],
@@ -8619,7 +8623,7 @@ let BattleFormatsData = {
 		tier: "Illegal",
 	},
 	pokestarf00: {
-		isNonstandard: true,
+		isNonstandard: "Pokestar",
 		eventPokemon: [
 			{"generation": 5, "level": 10, "moves": ["teeterdance", "growl", "flail", "chatter"]},
 			{"generation": 5, "level": 58, "moves": ["needlearm", "headsmash", "headbutt", "defensecurl"]},
@@ -8629,7 +8633,7 @@ let BattleFormatsData = {
 		tier: "Illegal",
 	},
 	pokestarf002: {
-		isNonstandard: true,
+		isNonstandard: "Pokestar",
 		eventPokemon: [
 			{"generation": 5, "level": 52, "moves": ["flareblitz", "ironhead", "psychic", "wildcharge"]},
 		],
@@ -8637,7 +8641,7 @@ let BattleFormatsData = {
 		tier: "Illegal",
 	},
 	pokestarspirit: {
-		isNonstandard: true,
+		isNonstandard: "Pokestar",
 		eventPokemon: [
 			{"generation": 5, "level": 99, "moves": ["crunch", "dualchop", "slackoff", "swordsdance"]},
 		],
@@ -8645,7 +8649,7 @@ let BattleFormatsData = {
 		tier: "Illegal",
 	},
 	pokestarblackdoor: {
-		isNonstandard: true,
+		isNonstandard: "Pokestar",
 		eventPokemon: [
 			{"generation": 5, "level": 53, "moves": ["luckychant", "amnesia", "ingrain", "rest"]},
 			{"generation": 5, "level": 70, "moves": ["batonpass", "counter", "flamecharge", "toxic"]},
@@ -8654,7 +8658,7 @@ let BattleFormatsData = {
 		tier: "Illegal",
 	},
 	pokestarwhitedoor: {
-		isNonstandard: true,
+		isNonstandard: "Pokestar",
 		eventPokemon: [
 			{"generation": 5, "level": 7, "moves": ["batonpass", "inferno", "mirrorcoat", "toxic"]},
 		],
@@ -8662,7 +8666,7 @@ let BattleFormatsData = {
 		tier: "Illegal",
 	},
 	pokestarblackbelt: {
-		isNonstandard: true,
+		isNonstandard: "Pokestar",
 		eventPokemon: [
 			{"generation": 5, "level": 30, "moves": ["focuspunch", "machpunch", "taunt"]},
 			{"generation": 5, "level": 40, "moves": ["machpunch", "hammerarm", "jumpkick"]},
@@ -8671,7 +8675,7 @@ let BattleFormatsData = {
 		tier: "Illegal",
 	},
 	pokestargiantpropo2: {
-		isNonstandard: true,
+		isNonstandard: "Pokestar",
 		eventPokemon: [
 			{"generation": 5, "level": 99, "moves": ["crushgrip", "doubleslap", "teeterdance", "stomp"]},
 		],
@@ -8679,7 +8683,7 @@ let BattleFormatsData = {
 		tier: "Illegal",
 	},
 	pokestarufopropu2: {
-		isNonstandard: true,
+		isNonstandard: "Pokestar",
 		eventPokemon: [
 			{"generation": 5, "level": 47, "moves": ["darkpulse", "flamethrower", "hyperbeam", "icebeam"]},
 		],

@@ -1216,7 +1216,7 @@ export class Battle extends Dex.ModdedDex {
 			const side = this.sides[i];
 			const request = requests[i];
 			if (request) {
-				if (!this.supportCancel || allRequestsMade) request.noCancel = true;
+				if (!this.supportCancel || !allRequestsMade) request.noCancel = true;
 				side.emitRequest(request);
 			} else {
 				side.emitRequest({wait: true, side: side.getRequestData()});

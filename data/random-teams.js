@@ -54,10 +54,10 @@ class RandomTeams extends Dex.ModdedDex {
 	 * @param {PlayerOptions | null} [options]
 	 * @return {PokemonSet[]}
 	 */
-	getTeam(options) {
+	generateTeam() {
 		const generatorName = typeof this.format.team === 'string' && this.format.team.startsWith('random') ? this.format.team + 'Team' : '';
 		// @ts-ignore
-		return this[generatorName || 'randomTeam'](options);
+		return this[generatorName || 'randomTeam']();
 	}
 
 	/**
@@ -1958,12 +1958,11 @@ class RandomTeams extends Dex.ModdedDex {
 		};
 	}
 
-	/**
-	 * @param {PlayerOptions} [side]
+/**
 	 * @param {number} [depth]
 	 * @return {RandomTeamsTypes["RandomFactorySet"][]}
 	 */
-	randomFactoryTeam(side, depth = 0) {
+	randomFactoryTeam(depth = 0) {
 		let forceResult = (depth >= 4);
 
 		// The teams generated depend on the tier choice in such a way that
@@ -2123,15 +2122,15 @@ class RandomTeams extends Dex.ModdedDex {
 				}
 			}
 		}
-		if (pokemon.length < 6) return this.randomFactoryTeam(side, ++depth);
+		if (pokemon.length < 6) return this.randomFactoryTeam(++depth);
 
 		// Quality control
 		if (!teamData.forceResult) {
 			for (const requiredFamily of requiredMoveFamilies) {
-				if (!teamData.has[requiredFamily]) return this.randomFactoryTeam(side, ++depth);
+				if (!teamData.has[requiredFamily]) return this.randomFactoryTeam(++depth);
 			}
 			for (let type in teamData.weaknesses) {
-				if (teamData.weaknesses[type] >= 3) return this.randomFactoryTeam(side, ++depth);
+				if (teamData.weaknesses[type] >= 3) return this.randomFactoryTeam(++depth);
 			}
 		}
 
@@ -2228,11 +2227,10 @@ class RandomTeams extends Dex.ModdedDex {
 	}
 
 	/**
-	 * @param {PlayerOptions} [side]
 	 * @param {number} [depth]
 	 * @return {RandomTeamsTypes["RandomFactorySet"][]}
 	 */
-	randomBSSFactoryTeam(side, depth = 0) {
+	randomBSSFactoryTeam(depth = 0) {
 		let forceResult = (depth >= 4);
 
 		let pokemon = [];
@@ -2350,15 +2348,15 @@ class RandomTeams extends Dex.ModdedDex {
 				}
 			}
 		}
-		if (pokemon.length < 6) return this.randomBSSFactoryTeam(side, ++depth);
+		if (pokemon.length < 6) return this.randomBSSFactoryTeam(++depth);
 
 		// Quality control
 		if (!teamData.forceResult) {
 			for (const requiredFamily of requiredMoveFamilies) {
-				if (!teamData.has[requiredFamily]) return this.randomBSSFactoryTeam(side, ++depth);
+				if (!teamData.has[requiredFamily]) return this.randomBSSFactoryTeam(++depth);
 			}
 			for (let type in teamData.weaknesses) {
-				if (teamData.weaknesses[type] >= 3) return this.randomBSSFactoryTeam(side, ++depth);
+				if (teamData.weaknesses[type] >= 3) return this.randomBSSFactoryTeam(++depth);
 			}
 		}
 

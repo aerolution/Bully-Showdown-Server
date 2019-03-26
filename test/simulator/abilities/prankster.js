@@ -37,17 +37,16 @@ describe('Prankster', function () {
 
 	it('should not cause bounced Status moves to fail against Dark Pokémon if it is removed', function () {
 		battle = common.createBattle({gameType: 'doubles'});
-		battle.setPlayer('p1', {team: [
+		battle.join('p1', 'Guest 1', 1, [
 			{species: "Alakazam", ability: 'synchronize', moves: ['skillswap']},
 			{species: "Sableye", ability: 'prankster', moves: ['magiccoat']},
-		]});
-		battle.setPlayer('p2', {team: [
+		]);
+		const p2 = battle.join('p2', 'Guest 2', 1, [
 			{species: "Pyukumuku", ability: 'unaware', moves: ['curse']},
 			{species: "Houndoom", ability: 'flashfire', moves: ['confide']},
-		]});
-		const darkPokemon = battle.p2.active[1];
+		]);
 		battle.makeChoices('move skillswap -2, move magiccoat', 'move curse, move confide 2');
-		assert.statStage(darkPokemon, 'spa', -1);
+		assert.statStage(p2.active[1], 'spa', -1);
 	});
 
 	it('should not cause Status moves forced by Encore to fail against Dark Pokémon', function () {

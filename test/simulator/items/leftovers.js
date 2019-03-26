@@ -12,19 +12,18 @@ describe('Leftovers [Gen 2]', function () {
 
 	it('should heal after switch', function () {
 		battle = common.gen(2).createBattle();
-		battle.setPlayer('p1', {team: [
+		const p1 = battle.join('p1', 'Guest 1', 1, [
 			{species: 'Blissey', item: 'leftovers', moves: ['healbell']},
 			{species: 'Magikarp', level: 1, moves: ['splash']},
-		]});
-		battle.setPlayer('p2', {team: [
+		]);
+		battle.join('p2', 'Guest 2', 1, [
 			{species: "Miltank", moves: ['seismictoss']},
-		]});
-		const holder = battle.p1.active[0];
+		]);
 		battle.makeChoices('move healbell', 'move seismictoss');
-		assert.strictEqual(holder.hp, 590);
+		assert.strictEqual(p1.active[0].hp, 590);
 
 		battle.makeChoices('switch 2', 'move seismictoss');
-		battle.makeChoices('switch 2', '');
-		assert.strictEqual(holder.hp, 630);
+		battle.makeChoices('switch 2', 'move seismictoss');
+		assert.strictEqual(p1.active[0].hp, 630);
 	});
 });

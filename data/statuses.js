@@ -415,7 +415,7 @@ let BattleStatuses = {
 				}
 				const hitMove = new this.Data.Move(posData.moveData);
 
-				this.tryMoveHit(target, posData.source, /** @type {ActiveMove} */(hitMove));
+				this.tryMoveHit(target, posData.source, hitMove);
 
 				this.effectData.positions[i] = null;
 			}
@@ -650,7 +650,7 @@ let BattleStatuses = {
 		// So we give it increased priority.
 		onModifySpDPriority: 10,
 		onModifySpD(spd, pokemon) {
-			if (pokemon.hasType('Rock') && this.field.isWeather('sandstorm')) {
+			if (pokemon.hasType('Rock') && this.isWeather('sandstorm')) {
 				return this.modify(spd, 1.5);
 			}
 		},
@@ -665,7 +665,7 @@ let BattleStatuses = {
 		onResidualOrder: 1,
 		onResidual() {
 			this.add('-weather', 'Sandstorm', '[upkeep]');
-			if (this.field.isWeather('sandstorm')) this.eachEvent('Weather');
+			if (this.isWeather('sandstorm')) this.eachEvent('Weather');
 		},
 		onWeather(target) {
 			this.damage(target.maxhp / 16);
@@ -697,7 +697,7 @@ let BattleStatuses = {
 		onResidualOrder: 1,
 		onResidual() {
 			this.add('-weather', 'Hail', '[upkeep]');
-			if (this.field.isWeather('hail')) this.eachEvent('Weather');
+			if (this.isWeather('hail')) this.eachEvent('Weather');
 		},
 		onWeather(target) {
 			this.damage(target.maxhp / 16);
@@ -713,7 +713,7 @@ let BattleStatuses = {
 		effectType: 'Weather',
 		duration: 0,
 		onEffectiveness(typeMod, target, type, move) {
-			if (move && move.effectType === 'Move' && move.category !== 'Status' && type === 'Flying' && typeMod > 0) {
+			if (move && move.effectType === 'Move' && type === 'Flying' && typeMod > 0) {
 				this.add('-activate', '', 'deltastream');
 				return 0;
 			}

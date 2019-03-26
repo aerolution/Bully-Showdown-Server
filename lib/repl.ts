@@ -59,13 +59,13 @@ export const Repl = new class {
 
 		if (filename === 'app') {
 			// Clean up old REPL sockets.
-			const directory = path.dirname(path.resolve(__dirname, '..', Config.replsocketprefix || 'logs/repl', 'app'));
-			for (const file of fs.readdirSync(directory)) {
-				const pathname = path.resolve(directory, file);
-				const stat = fs.statSync(pathname);
+			let directory = path.dirname(path.resolve(__dirname, '..', Config.replsocketprefix || 'logs/repl', 'app'));
+			for (let file of fs.readdirSync(directory)) {
+				let pathname = path.resolve(directory, file);
+				let stat = fs.statSync(pathname);
 				if (!stat.isSocket()) continue;
 
-				const socket = net.connect(pathname, () => {
+				let socket = net.connect(pathname, () => {
 					socket.end();
 					socket.destroy();
 				}).on('error', () => {
@@ -74,7 +74,7 @@ export const Repl = new class {
 			}
 		}
 
-		const server = net.createServer(socket => {
+		let server = net.createServer(socket => {
 			repl.start({
 				input: socket,
 				output: socket,
@@ -90,7 +90,7 @@ export const Repl = new class {
 			socket.on('error', () => socket.destroy());
 		});
 
-		const pathname = path.resolve(__dirname, '..', Config.replsocketprefix || 'logs/repl', filename);
+		let pathname = path.resolve(__dirname, '..', Config.replsocketprefix || 'logs/repl', filename);
 		server.listen(pathname, () => {
 			fs.chmodSync(pathname, Config.replsocketmode || 0o600);
 			Repl.socketPathnames.add(pathname);

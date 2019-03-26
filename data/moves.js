@@ -836,7 +836,7 @@ let BattleMovedex = {
 		flags: {snatch: 1},
 		sideCondition: 'auroraveil',
 		onTryHitSide() {
-			if (!this.field.isWeather('hail')) return false;
+			if (!this.isWeather('hail')) return false;
 		},
 		effect: {
 			duration: 5,
@@ -984,7 +984,7 @@ let BattleMovedex = {
 		desc: "This move summons Reflect for 5 turns upon use.",
 		shortDesc: "Summons Reflect.",
 		id: "baddybad",
-		isNonstandard: "LGPE",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Baddy Bad",
@@ -1042,7 +1042,7 @@ let BattleMovedex = {
 				if (move.flags['contact']) {
 					source.trySetStatus('psn', target);
 				}
-				return this.NOT_FAIL;
+				return this.NOT_FAILURE;
 			},
 			onHit(target, source, move) {
 				if (move.isZPowered && move.flags['contact']) {
@@ -1448,7 +1448,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		onModifyMove(move) {
-			if (this.field.isWeather('hail')) move.accuracy = true;
+			if (this.isWeather('hail')) move.accuracy = true;
 		},
 		secondary: {
 			chance: 10,
@@ -1704,7 +1704,7 @@ let BattleMovedex = {
 		desc: "The user recovers 1/2 the HP lost by the target, rounded half up. If Big Root is held by the user, the HP recovered is 1.3x normal, rounded half down.",
 		shortDesc: "User recovers 50% of the damage dealt.",
 		id: "bouncybubble",
-		isNonstandard: "LGPE",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Bouncy Bubble",
@@ -2045,7 +2045,7 @@ let BattleMovedex = {
 		desc: "Has a 100% chance to paralyze the foe.",
 		shortDesc: "100% chance to paralyze the foe.",
 		id: "buzzybuzz",
-		isNonstandard: "LGPE",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Buzzy Buzz",
@@ -2097,13 +2097,13 @@ let BattleMovedex = {
 		flags: {snatch: 1},
 		onHit(target) {
 			let newType = 'Normal';
-			if (this.field.isTerrain('electricterrain')) {
+			if (this.isTerrain('electricterrain')) {
 				newType = 'Electric';
-			} else if (this.field.isTerrain('grassyterrain')) {
+			} else if (this.isTerrain('grassyterrain')) {
 				newType = 'Grass';
-			} else if (this.field.isTerrain('mistyterrain')) {
+			} else if (this.isTerrain('mistyterrain')) {
 				newType = 'Fairy';
-			} else if (this.field.isTerrain('psychicterrain')) {
+			} else if (this.isTerrain('psychicterrain')) {
 				newType = 'Psychic';
 			}
 
@@ -2914,7 +2914,7 @@ let BattleMovedex = {
 			onTryHit(target, source, move) {
 				if (move && (move.target === 'self' || move.category !== 'Status')) return;
 				this.add('-activate', target, 'move: Crafty Shield');
-				return this.NOT_FAIL;
+				return this.NOT_FAILURE;
 			},
 		},
 		secondary: null,
@@ -3719,7 +3719,7 @@ let BattleMovedex = {
 		desc: "Hits twice. If the first hit breaks the target's substitute, it will take damage for the second hit. Has a 30% chance to flinch the target.",
 		shortDesc: "Hits twice. 30% chance to flinch.",
 		id: "doubleironbash",
-		isNonstandard: "LGPE",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Double Iron Bash",
@@ -4189,8 +4189,8 @@ let BattleMovedex = {
 		accuracy: 100,
 		basePower: 40,
 		basePowerCallback() {
-			if (this.field.pseudoWeather.echoedvoice) {
-				return 40 * this.field.pseudoWeather.echoedvoice.multiplier;
+			if (this.pseudoWeather.echoedvoice) {
+				return 40 * this.pseudoWeather.echoedvoice.multiplier;
 			}
 			return 40;
 		},
@@ -4203,7 +4203,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1, sound: 1, authentic: 1},
 		onTry() {
-			this.field.addPseudoWeather('echoedvoice');
+			this.addPseudoWeather('echoedvoice');
 		},
 		effect: {
 			duration: 2,
@@ -5579,7 +5579,7 @@ let BattleMovedex = {
 		desc: "Has a 30% chance to flinch the target.",
 		shortDesc: "30% chance to flinch the target.",
 		id: "floatyfall",
-		isNonstandard: "LGPE",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Floaty Fall",
@@ -5607,7 +5607,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, heal: 1, mystery: 1},
 		onHit(target) {
-			if (this.field.isTerrain('grassyterrain')) {
+			if (this.isTerrain('grassyterrain')) {
 				return this.heal(this.modify(target.maxhp, 0.667)); // TODO: find out the real value
 			} else {
 				return this.heal(Math.ceil(target.maxhp * 0.5));
@@ -6024,7 +6024,7 @@ let BattleMovedex = {
 		desc: "Resets the stat stages of all active Pokemon to 0.",
 		shortDesc: "Eliminates all stat changes.",
 		id: "freezyfrost",
-		isNonstandard: "LGPE",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Freezy Frost",
@@ -6385,7 +6385,7 @@ let BattleMovedex = {
 			chance: 100,
 			self: {
 				onHit() {
-					this.field.setTerrain('psychicterrain');
+					this.setTerrain('psychicterrain');
 				},
 			},
 		},
@@ -6538,7 +6538,7 @@ let BattleMovedex = {
 		desc: "This move summons Light Screen for 5 turns upon use.",
 		shortDesc: "Summons Light Screen.",
 		id: "glitzyglow",
-		isNonstandard: "LGPE",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Glitzy Glow",
@@ -6860,7 +6860,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {snatch: 1},
 		onModifyMove(move) {
-			if (this.field.isWeather(['sunnyday', 'desolateland'])) move.boosts = {atk: 2, spa: 2};
+			if (this.isWeather(['sunnyday', 'desolateland'])) move.boosts = {atk: 2, spa: 2};
 		},
 		boosts: {
 			atk: 1,
@@ -8135,9 +8135,9 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1, distance: 1},
 		onModifyMove(move) {
-			if (this.field.isWeather(['raindance', 'primordialsea'])) {
+			if (this.isWeather(['raindance', 'primordialsea'])) {
 				move.accuracy = true;
-			} else if (this.field.isWeather(['sunnyday', 'desolateland'])) {
+			} else if (this.isWeather(['sunnyday', 'desolateland'])) {
 				move.accuracy = 50;
 			}
 		},
@@ -8785,7 +8785,7 @@ let BattleMovedex = {
 			// Instructed Fake Out etc. should fail
 			target.activeTurns++;
 			this.add('-singleturn', target, 'move: Instruct', '[of] ' + source);
-			this.runMove(target.lastMove.id, target, /** @type {number} */(target.lastMoveTargetLoc));
+			this.runMove(target.lastMove.id, target, target.lastMoveTargetLoc);
 		},
 		secondary: null,
 		target: "normal",
@@ -9022,7 +9022,7 @@ let BattleMovedex = {
 				if (move.flags['contact']) {
 					this.boost({atk: -2}, source, target, this.getActiveMove("King's Shield"));
 				}
-				return this.NOT_FAIL;
+				return this.NOT_FAILURE;
 			},
 			onHit(target, source, move) {
 				if (move.isZPowered && move.flags['contact']) {
@@ -9843,7 +9843,7 @@ let BattleMovedex = {
 				this.add('-fieldstart', 'move: Magic Room', '[of] ' + source);
 			},
 			onRestart(target, source) {
-				this.field.removePseudoWeather('magicroom');
+				this.removePseudoWeather('magicroom');
 			},
 			// Item suppression implemented in Pokemon.ignoringItem() within sim/pokemon.js
 			onResidualOrder: 25,
@@ -10078,7 +10078,7 @@ let BattleMovedex = {
 						delete source.volatiles['lockedmove'];
 					}
 				}
-				return this.NOT_FAIL;
+				return this.NOT_FAILURE;
 			},
 		},
 		secondary: null,
@@ -10901,9 +10901,9 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
 		onHit(pokemon) {
-			if (this.field.isWeather(['sunnyday', 'desolateland'])) {
+			if (this.isWeather(['sunnyday', 'desolateland'])) {
 				return this.heal(this.modify(pokemon.maxhp, 0.667));
-			} else if (this.field.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
+			} else if (this.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
 				return this.heal(this.modify(pokemon.maxhp, 0.25));
 			} else {
 				return this.heal(this.modify(pokemon.maxhp, 0.5));
@@ -10929,9 +10929,9 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
 		onHit(pokemon) {
-			if (this.field.isWeather(['sunnyday', 'desolateland'])) {
+			if (this.isWeather(['sunnyday', 'desolateland'])) {
 				return this.heal(this.modify(pokemon.maxhp, 0.667));
-			} else if (this.field.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
+			} else if (this.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
 				return this.heal(this.modify(pokemon.maxhp, 0.25));
 			} else {
 				return this.heal(this.modify(pokemon.maxhp, 0.5));
@@ -11182,13 +11182,13 @@ let BattleMovedex = {
 		flags: {},
 		onTryHit(target, pokemon) {
 			let move = 'triattack';
-			if (this.field.isTerrain('electricterrain')) {
+			if (this.isTerrain('electricterrain')) {
 				move = 'thunderbolt';
-			} else if (this.field.isTerrain('grassyterrain')) {
+			} else if (this.isTerrain('grassyterrain')) {
 				move = 'energyball';
-			} else if (this.field.isTerrain('mistyterrain')) {
+			} else if (this.isTerrain('mistyterrain')) {
 				move = 'moonblast';
-			} else if (this.field.isTerrain('psychicterrain')) {
+			} else if (this.isTerrain('psychicterrain')) {
 				move = 'psychic';
 			}
 			this.useMove(move, pokemon, target);
@@ -11887,7 +11887,7 @@ let BattleMovedex = {
 		desc: "Power is equal to the greater of (user's Happiness * 2/5), rounded down, or 1.",
 		shortDesc: "Max happiness: 102 power. Can't miss.",
 		id: "pikapapow",
-		isNonstandard: "LGPE",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Pika Papow",
@@ -12527,7 +12527,7 @@ let BattleMovedex = {
 						delete source.volatiles['lockedmove'];
 					}
 				}
-				return this.NOT_FAIL;
+				return this.NOT_FAILURE;
 			},
 		},
 		secondary: null,
@@ -13048,7 +13048,7 @@ let BattleMovedex = {
 						delete source.volatiles['lockedmove'];
 					}
 				}
-				return this.NOT_FAIL;
+				return this.NOT_FAILURE;
 			},
 		},
 		secondary: null,
@@ -14209,7 +14209,7 @@ let BattleMovedex = {
 		desc: "This move summons Leech Seed on the foe.",
 		shortDesc: "Summons Leech Seed.",
 		id: "sappyseed",
-		isNonstandard: "LGPE",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Sappy Seed",
@@ -14378,26 +14378,26 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		onModifyMove(move, pokemon) {
-			if (this.field.isTerrain('')) return;
+			if (this.isTerrain('')) return;
 			move.secondaries = [];
-			if (this.field.isTerrain('electricterrain')) {
+			if (this.isTerrain('electricterrain')) {
 				move.secondaries.push({
 					chance: 30,
 					status: 'par',
 				});
-			} else if (this.field.isTerrain('grassyterrain')) {
+			} else if (this.isTerrain('grassyterrain')) {
 				move.secondaries.push({
 					chance: 30,
 					status: 'slp',
 				});
-			} else if (this.field.isTerrain('mistyterrain')) {
+			} else if (this.isTerrain('mistyterrain')) {
 				move.secondaries.push({
 					chance: 30,
 					boosts: {
 						spa: -1,
 					},
 				});
-			} else if (this.field.isTerrain('psychicterrain')) {
+			} else if (this.isTerrain('psychicterrain')) {
 				move.secondaries.push({
 					chance: 30,
 					boosts: {
@@ -14843,7 +14843,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
 		onHit(pokemon) {
-			if (this.field.isWeather('sandstorm')) {
+			if (this.isWeather('sandstorm')) {
 				return this.heal(this.modify(pokemon.maxhp, 0.667));
 			} else {
 				return this.heal(this.modify(pokemon.maxhp, 0.5));
@@ -14981,7 +14981,7 @@ let BattleMovedex = {
 		desc: "Has a 100% chance to burn the foe.",
 		shortDesc: "100% chance to burn the foe.",
 		id: "sizzlyslide",
-		isNonstandard: "LGPE",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Sizzly Slide",
@@ -15474,7 +15474,7 @@ let BattleMovedex = {
 			onStart(pokemon) {
 				let applies = false;
 				if (pokemon.hasType('Flying') || pokemon.hasAbility('levitate')) applies = true;
-				if (pokemon.hasItem('ironball') || pokemon.volatiles['ingrain'] || this.field.getPseudoWeather('gravity')) applies = false;
+				if (pokemon.hasItem('ironball') || pokemon.volatiles['ingrain'] || this.getPseudoWeather('gravity')) applies = false;
 				if (pokemon.removeVolatile('fly') || pokemon.removeVolatile('bounce')) {
 					applies = true;
 					this.cancelMove(pokemon);
@@ -15761,7 +15761,7 @@ let BattleMovedex = {
 				if (move.flags['contact']) {
 					this.damage(source.maxhp / 8, source, target);
 				}
-				return this.NOT_FAIL;
+				return this.NOT_FAILURE;
 			},
 			onHit(target, source, move) {
 				if (move.isZPowered && move.flags['contact']) {
@@ -15861,7 +15861,7 @@ let BattleMovedex = {
 				return;
 			}
 			this.add('-prepare', attacker, move.name, defender);
-			if (this.field.isWeather(['sunnyday', 'desolateland'])) {
+			if (this.isWeather(['sunnyday', 'desolateland'])) {
 				this.attrLastMove('[still]');
 				this.addMove('-anim', attacker, move.name, defender);
 				return;
@@ -15874,7 +15874,7 @@ let BattleMovedex = {
 		},
 		onBasePowerPriority: 4,
 		onBasePower(basePower, pokemon, target) {
-			if (this.field.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
+			if (this.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
 				this.debug('weakened by weather');
 				return this.chainModify(0.5);
 			}
@@ -15902,7 +15902,7 @@ let BattleMovedex = {
 				return;
 			}
 			this.add('-prepare', attacker, move.name, defender);
-			if (this.field.isWeather(['sunnyday', 'desolateland'])) {
+			if (this.isWeather(['sunnyday', 'desolateland'])) {
 				this.attrLastMove('[still]');
 				this.addMove('-anim', attacker, move.name, defender);
 				return;
@@ -15915,7 +15915,7 @@ let BattleMovedex = {
 		},
 		onBasePowerPriority: 4,
 		onBasePower(basePower, pokemon, target) {
-			if (this.field.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
+			if (this.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
 				this.debug('weakened by weather');
 				return this.chainModify(0.5);
 			}
@@ -16035,7 +16035,7 @@ let BattleMovedex = {
 		desc: "Every Pokemon in the user's party is cured of its major status condition.",
 		shortDesc: "Cures the user's party of all status conditions.",
 		id: "sparklyswirl",
-		isNonstandard: "LGPE",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Sparkly Swirl",
@@ -16226,7 +16226,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {},
 		onHit() {
-			this.field.clearTerrain();
+			this.clearTerrain();
 		},
 		isZ: "lycaniumz",
 		secondary: null,
@@ -16242,7 +16242,7 @@ let BattleMovedex = {
 		desc: "Has a 30% chance to paralyze the target.",
 		shortDesc: "30% chance to paralyze the target.",
 		id: "splishysplash",
-		isNonstandard: "LGPE",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Splishy Splash",
@@ -16331,7 +16331,7 @@ let BattleMovedex = {
 				this.add('-sidestart', side, 'move: Stealth Rock');
 			},
 			onSwitchIn(pokemon) {
-				let typeMod = this.clampIntRange(pokemon.runEffectiveness(this.getActiveMove('stealthrock')), -6, 6);
+				let typeMod = this.clampIntRange(pokemon.runEffectiveness('Rock'), -6, 6);
 				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
 			},
 		},
@@ -16458,13 +16458,7 @@ let BattleMovedex = {
 				if (curSpD !== target.boosts.spd) this.effectData.spd--;
 			},
 			onEnd(target) {
-				if (this.effectData.def || this.effectData.spd) {
-					/** @type {SparseBoostsTable} */
-					let boosts = {};
-					if (this.effectData.def) boosts.def = this.effectData.def;
-					if (this.effectData.spd) boosts.spd = this.effectData.spd;
-					this.boost(boosts, target, target);
-				}
+				this.boost({def: this.effectData.def, spd: this.effectData.spd}, target, target);
 				this.add('-end', target, 'Stockpile');
 				if (this.effectData.def !== this.effectData.layers * -1 || this.effectData.spd !== this.effectData.layers * -1) {
 					this.hint("In Gen 7, Stockpile keeps track of how many times it successfully altered each stat individually.");
@@ -17254,9 +17248,9 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
 		onHit(pokemon) {
-			if (this.field.isWeather(['sunnyday', 'desolateland'])) {
+			if (this.isWeather(['sunnyday', 'desolateland'])) {
 				return this.heal(this.modify(pokemon.maxhp, 0.667));
-			} else if (this.field.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
+			} else if (this.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
 				return this.heal(this.modify(pokemon.maxhp, 0.25));
 			} else {
 				return this.heal(this.modify(pokemon.maxhp, 0.5));
@@ -17771,9 +17765,9 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		onModifyMove(move) {
-			if (this.field.isWeather(['raindance', 'primordialsea'])) {
+			if (this.isWeather(['raindance', 'primordialsea'])) {
 				move.accuracy = true;
-			} else if (this.field.isWeather(['sunnyday', 'desolateland'])) {
+			} else if (this.isWeather(['sunnyday', 'desolateland'])) {
 				move.accuracy = 50;
 			}
 		},
@@ -18232,7 +18226,7 @@ let BattleMovedex = {
 				this.add('-fieldstart', 'move: Trick Room', '[of] ' + source);
 			},
 			onRestart(target, source) {
-				this.field.removePseudoWeather('trickroom');
+				this.removePseudoWeather('trickroom');
 			},
 			// Speed modification is changed in Pokemon.getActionSpeed() in sim/pokemon.js
 			onResidualOrder: 23,
@@ -18519,7 +18513,7 @@ let BattleMovedex = {
 		desc: "Power is equal to the greater of (user's Happiness * 2/5), rounded down, or 1.",
 		shortDesc: "Max happiness: 102 power. Can't miss.",
 		id: "veeveevolley",
-		isNonstandard: "LGPE",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Veevee Volley",
@@ -18929,7 +18923,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {bullet: 1, protect: 1, mirror: 1},
 		onModifyMove(move) {
-			switch (this.field.effectiveWeather()) {
+			switch (this.effectiveWeather()) {
 			case 'sunnyday':
 			case 'desolateland':
 				move.type = 'Fire';
@@ -19037,7 +19031,7 @@ let BattleMovedex = {
 						delete source.volatiles['lockedmove'];
 					}
 				}
-				return this.NOT_FAIL;
+				return this.NOT_FAILURE;
 			},
 		},
 		secondary: null,
@@ -19209,7 +19203,7 @@ let BattleMovedex = {
 				this.add('-fieldstart', 'move: Wonder Room', '[of] ' + source);
 			},
 			onRestart(target, source) {
-				this.field.removePseudoWeather('wonderroom');
+				this.removePseudoWeather('wonderroom');
 			},
 			// Swapping defenses implemented in sim/pokemon.js:Pokemon#calculateStat and Pokemon#getStat
 			onResidualOrder: 24,
@@ -19466,7 +19460,7 @@ let BattleMovedex = {
 		desc: "Will always result in a critical hit.",
 		shortDesc: "Nearly always goes first. Always crits.",
 		id: "zippyzap",
-		isNonstandard: "LGPE",
+		isNonstandard: true,
 		isUnreleased: true,
 		isViable: true,
 		name: "Zippy Zap",
@@ -19487,7 +19481,7 @@ let BattleMovedex = {
 		desc: "Has a 20% chance to lower the target's Attack by 1 stage.",
 		shortDesc: "20% chance to lower the target's Attack by 1.",
 		id: "paleowave",
-		isNonstandard: "CAP",
+		isNonstandard: true,
 		isViable: true,
 		name: "Paleo Wave",
 		pp: 15,
@@ -19512,7 +19506,7 @@ let BattleMovedex = {
 		desc: "Has a 50% chance to lower the target's Defense by 1 stage.",
 		shortDesc: "50% chance to lower the target's Defense by 1.",
 		id: "shadowstrike",
-		isNonstandard: "CAP",
+		isNonstandard: true,
 		isViable: true,
 		name: "Shadow Strike",
 		pp: 10,
@@ -19537,7 +19531,7 @@ let BattleMovedex = {
 		desc: "Has a 100% chance to confuse the target and lower its Defense and Special Attack by 1 stage. The user recovers 1/2 the HP lost by the target, rounded half up. If Big Root is held by the user, the HP recovered is 1.3x normal, rounded half down. The user steals the foe's boosts. If this move is successful, the weather changes to rain unless it is already in effect, and the user gains the effects of Aqua Ring and Magic Coat.",
 		shortDesc: "Does many things turn 1. Can't move turn 2.",
 		id: "magikarpsrevenge",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		name: "Magikarp's Revenge",
 		pp: 10,
 		priority: 0,
@@ -19552,7 +19546,7 @@ let BattleMovedex = {
 		},
 		self: {
 			onHit(source) {
-				this.field.setWeather('raindance');
+				this.setWeather('raindance');
 				source.addVolatile('magiccoat');
 				source.addVolatile('aquaring');
 			},

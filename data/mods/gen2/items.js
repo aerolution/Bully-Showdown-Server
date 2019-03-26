@@ -103,55 +103,55 @@ let BattleItems = {
 	},
 	berserkgene: {
 		inherit: true,
-		isNonstandard: null,
+		isNonstandard: false,
 	},
 	berry: {
 		inherit: true,
-		isNonstandard: null,
+		isNonstandard: false,
 	},
 	bitterberry: {
 		inherit: true,
-		isNonstandard: null,
+		isNonstandard: false,
 	},
 	burntberry: {
 		inherit: true,
-		isNonstandard: null,
+		isNonstandard: false,
 	},
 	goldberry: {
 		inherit: true,
-		isNonstandard: null,
+		isNonstandard: false,
 	},
 	iceberry: {
 		inherit: true,
-		isNonstandard: null,
+		isNonstandard: false,
 	},
 	mintberry: {
 		inherit: true,
-		isNonstandard: null,
+		isNonstandard: false,
 	},
 	miracleberry: {
 		inherit: true,
-		isNonstandard: null,
+		isNonstandard: false,
 	},
 	mysteryberry: {
 		inherit: true,
-		isNonstandard: null,
+		isNonstandard: false,
 	},
 	pinkbow: {
 		inherit: true,
-		isNonstandard: null,
+		isNonstandard: false,
 	},
 	polkadotbow: {
 		inherit: true,
-		isNonstandard: null,
+		isNonstandard: false,
 	},
 	przcureberry: {
 		inherit: true,
-		isNonstandard: null,
+		isNonstandard: false,
 	},
 	psncureberry: {
 		inherit: true,
-		isNonstandard: null,
+		isNonstandard: false,
 	},
 };
 

@@ -148,7 +148,7 @@ class FSPath {
 	 */
 	writeUpdate(dataFetcher: () => string | Buffer, options: object = {}) {
 		if (Config.nofswriting) return;
-		const pendingUpdate: PendingUpdate | undefined = pendingUpdates.get(this.path);
+		let pendingUpdate: PendingUpdate | undefined = pendingUpdates.get(this.path);
 
 		// @ts-ignore
 		const throttleTime = options.throttle ? Date.now() + options.throttle : 0;
@@ -164,7 +164,6 @@ class FSPath {
 			return;
 		}
 
-		// tslint:disable-next-line:no-floating-promises
 		this.writeUpdateNow(dataFetcher, options);
 	}
 
@@ -179,11 +178,10 @@ class FSPath {
 			throttleTimer: null,
 		};
 		pendingUpdates.set(this.path, update);
-		// tslint:disable-next-line:no-floating-promises
 		this.safeWrite(dataFetcher(), options).then(() => this.finishUpdate());
 	}
 	checkNextUpdate() {
-		const pendingUpdate = pendingUpdates.get(this.path);
+		let pendingUpdate = pendingUpdates.get(this.path);
 		if (!pendingUpdate) throw new Error(`FS: Pending update not found`);
 		if (pendingUpdate.isWriting) throw new Error(`FS: Conflicting update`);
 
@@ -194,11 +192,10 @@ class FSPath {
 			return;
 		}
 
-		// tslint:disable-next-line:no-floating-promises
 		this.writeUpdateNow(dataFetcher, options);
 	}
 	finishUpdate() {
-		const pendingUpdate = pendingUpdates.get(this.path);
+		let pendingUpdate = pendingUpdates.get(this.path);
 		if (!pendingUpdate) throw new Error(`FS: Pending update not found`);
 		if (!pendingUpdate.isWriting) throw new Error(`FS: Conflicting update`);
 
@@ -399,7 +396,7 @@ class FileReadStream extends ReadStream {
 		return new Promise((resolve, reject) => {
 			if (this.atEOF) return resolve(false);
 			this.ensureCapacity(size);
-			return this.fd.then(fd => {
+			this.fd.then(fd => {
 				fs.read(fd, this.buf, this.bufEnd, size, null, (err, bytesRead, buf) => {
 					if (err) return reject(err);
 					if (!bytesRead) {
@@ -418,7 +415,7 @@ class FileReadStream extends ReadStream {
 
 	_destroy() {
 		return new Promise(resolve => {
-			return this.fd.then(fd => {
+			this.fd.then(fd => {
 				fs.close(fd, () => resolve());
 			});
 		});

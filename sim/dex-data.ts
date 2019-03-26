@@ -103,11 +103,11 @@ export class BasicEffect implements EffectData {
 	/** The full description for this effect. */
 	desc: string;
 	/**
-	 * Is this item/move/ability/pokemon nonstandard? Specified for effects
+	 * Is this item/move/ability/pokemon nonstandard? True for effects
 	 * that have no use in standard formats: made-up pokemon (CAP),
-	 * glitches (Missingno etc), Pokestar pokemon, etc.
+	 * glitches (Missingno etc), and Pokestar pokemon.
 	 */
-	isNonstandard: Nonstandard | null;
+	isNonstandard: boolean;
 	/** The duration of the effect.  */
 	duration?: number;
 	/** Whether or not the effect is ignored by Baton Pass. */
@@ -137,7 +137,7 @@ export class BasicEffect implements EffectData {
 		this.isUnreleased = data.isUnreleased || false;
 		this.shortDesc = data.shortDesc || '';
 		this.desc = data.desc || '';
-		this.isNonstandard = data.isNonstandard || null;
+		this.isNonstandard = data.isNonstandard || false;
 		this.duration = data.duration;
 		this.noCopy = !!data.noCopy;
 		this.affectsFainted = !!data.affectsFainted;
@@ -189,7 +189,7 @@ export class RuleTable extends Map {
 	}
 
 	getComplexBanIndex(complexBans: ComplexBan[], rule: string): number {
-		const ruleId = toId(rule);
+		let ruleId = toId(rule);
 		let complexBanIndex = -1;
 		for (let i = 0; i < complexBans.length; i++) {
 			if (toId(complexBans[i][0]) === ruleId) {
@@ -201,7 +201,7 @@ export class RuleTable extends Map {
 	}
 
 	addComplexBan(rule: string, source: string, limit: number, bans: string[]) {
-		const complexBanIndex = this.getComplexBanIndex(this.complexBans, rule);
+		let complexBanIndex = this.getComplexBanIndex(this.complexBans, rule);
 		if (complexBanIndex !== -1) {
 			if (this.complexBans[complexBanIndex][2] === Infinity) return;
 			this.complexBans[complexBanIndex] = [rule, source, limit, bans];
@@ -211,7 +211,7 @@ export class RuleTable extends Map {
 	}
 
 	addComplexTeamBan(rule: string, source: string, limit: number, bans: string[]) {
-		const complexBanTeamIndex = this.getComplexBanIndex(this.complexTeamBans, rule);
+		let complexBanTeamIndex = this.getComplexBanIndex(this.complexTeamBans, rule);
 		if (complexBanTeamIndex !== -1) {
 			if (this.complexTeamBans[complexBanTeamIndex][2] === Infinity) return;
 			this.complexTeamBans[complexBanTeamIndex] = [rule, source, limit, bans];
@@ -617,8 +617,7 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 		this.otherForms = data.otherForms || undefined;
 		this.otherFormes = data.otherFormes || undefined;
 		this.formeLetter = data.formeLetter || '';
-		this.spriteid = data.spriteid ||
-			(toId(this.baseSpecies) + (this.baseSpecies !== this.name ? `-${toId(this.forme)}` : ''));
+		this.spriteid = data.spriteid || (toId(this.baseSpecies) + (this.baseSpecies !== this.name ? `-${toId(this.forme)}` : ''));
 		this.abilities = data.abilities || {0: ""};
 		this.types = data.types!;
 		this.addedType = data.addedType || undefined;
@@ -688,7 +687,7 @@ interface MoveFlags {
 	mirror?: 1; // Can be copied by Mirror Move.
 	mystery?: 1; // Unknown effect.
 	nonsky?: 1; // Prevented from being executed or selected in a Sky Battle.
-	powder?: 1; // Has no effect on Pokemon which are Grass-type, have the Ability Overcoat, or hold Safety Goggles.
+	powder?: 1; // Has no effect on Grass-type Pokemon, Pokemon with the Ability Overcoat, and Pokemon holding Safety Goggles.
 	protect?: 1; // Blocked by Detect, Protect, Spiky Shield, and if not a Status move, King's Shield.
 	pulse?: 1; // Power is multiplied by 1.5 when used by a Pokemon with the Ability Mega Launcher.
 	punch?: 1; // Power is multiplied by 1.2 when used by a Pokemon with the Ability Iron Fist.
@@ -913,7 +912,7 @@ export class TypeInfo implements Readonly<TypeData> {
 }
 
 function combine(obj: AnyObject, ...data: (AnyObject | null)[]): AnyObject {
-	for (const d of data) {
+	for (let d of data) {
 		if (d) Object.assign(obj, d);
 	}
 	return obj;

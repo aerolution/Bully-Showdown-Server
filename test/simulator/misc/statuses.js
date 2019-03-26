@@ -46,8 +46,8 @@ describe('Paralysis', function () {
 
 	it('should reduce speed to 50% of its original value', function () {
 		battle = common.createBattle();
-		battle.setPlayer('p1', {team: [{species: 'Vaporeon', ability: 'waterabsorb', moves: ['aquaring']}]});
-		battle.setPlayer('p2', {team: [{species: 'Jolteon', ability: 'voltabsorb', moves: ['thunderwave']}]});
+		battle.join('p1', 'Guest 1', 1, [{species: 'Vaporeon', ability: 'waterabsorb', moves: ['aquaring']}]);
+		battle.join('p2', 'Guest 2', 1, [{species: 'Jolteon', ability: 'voltabsorb', moves: ['thunderwave']}]);
 		let speed = battle.p1.active[0].getStat('spe');
 		battle.makeChoices('move aquaring', 'move thunderwave');
 		assert.strictEqual(battle.p1.active[0].getStat('spe'), battle.modify(speed, 0.5));
@@ -55,8 +55,8 @@ describe('Paralysis', function () {
 
 	it('should reduce speed to 25% of its original value in Gen 6', function () {
 		battle = common.gen(6).createBattle();
-		battle.setPlayer('p1', {team: [{species: 'Vaporeon', ability: 'waterabsorb', moves: ['aquaring']}]});
-		battle.setPlayer('p2', {team: [{species: 'Jolteon', ability: 'voltabsorb', moves: ['thunderwave']}]});
+		battle.join('p1', 'Guest 1', 1, [{species: 'Vaporeon', ability: 'waterabsorb', moves: ['aquaring']}]);
+		battle.join('p2', 'Guest 2', 1, [{species: 'Jolteon', ability: 'voltabsorb', moves: ['thunderwave']}]);
 		let speed = battle.p1.active[0].getStat('spe');
 		battle.makeChoices('move aquaring', 'move thunderwave');
 		assert.strictEqual(battle.p1.active[0].getStat('spe'), battle.modify(speed, 0.25));
@@ -64,20 +64,10 @@ describe('Paralysis', function () {
 
 	it('should reduce speed to 25% of its original value in Gen 2', function () {
 		battle = common.gen(2).createBattle();
-		battle.setPlayer('p1', {team: [{species: 'Vaporeon', ability: 'waterabsorb', moves: ['aquaring']}]});
-		battle.setPlayer('p2', {team: [{species: 'Jolteon', ability: 'voltabsorb', moves: ['thunderwave']}]});
+		battle.join('p1', 'Guest 1', 1, [{species: 'Vaporeon', ability: 'waterabsorb', moves: ['aquaring']}]);
+		battle.join('p2', 'Guest 2', 1, [{species: 'Jolteon', ability: 'voltabsorb', moves: ['thunderwave']}]);
 		let speed = battle.p1.active[0].getStat('spe');
 		battle.makeChoices('move aquaring', 'move thunderwave');
-		assert.strictEqual(battle.p1.active[0].getStat('spe'), battle.modify(speed, 0.25));
-	});
-
-	it('should reduce speed to 25% of its original value in Stadium', function () {
-		battle = common.mod('stadium').createBattle([
-			[{species: 'Vaporeon', moves: ['growl']}],
-			[{species: 'Jolteon', moves: ['thunderwave']}],
-		]);
-		let speed = battle.p1.active[0].getStat('spe');
-		battle.makeChoices('move growl', 'move thunderwave');
 		assert.strictEqual(battle.p1.active[0].getStat('spe'), battle.modify(speed, 0.25));
 	});
 
@@ -130,7 +120,7 @@ describe('Toxic Poison', function () {
 			[{species: 'Crobat', ability: 'infiltrator', moves: ['toxic', 'whirlwind']}],
 		]);
 		for (let i = 0; i < 4; i++) {
-			battle.makeChoices('move counter', 'move toxic');
+			battle.makeChoices('move curse', 'move toxic');
 		}
 		let pokemon = battle.p1.active[0];
 		pokemon.hp = pokemon.maxhp;
@@ -251,7 +241,7 @@ describe('Toxic Poison [Gen 2]', function () {
 		battle.makeChoices('move splash', 'move splash');
 		battle.makeChoices('move splash', 'move splash');
 		battle.makeChoices('move splash', 'move batonpass');
-		battle.makeChoices('', 'switch 2');
+		battle.makeChoices('pass', 'switch 2');
 		let hp = pokemon.hp;
 		battle.makeChoices('move splash', 'move splash');
 		assert.strictEqual(hp - pokemon.hp, Math.floor(pokemon.maxhp / 16) * 4);

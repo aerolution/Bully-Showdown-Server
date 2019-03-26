@@ -678,7 +678,6 @@ let BattleMovedex = {
 					let moveData = /** @type {ActiveMove} */ ({
 						damage: this.effectData.totalDamage * 2,
 					});
-					// @ts-ignore FIXME
 					this.moveHit(target, pokemon, 'bide', moveData);
 					return false;
 				}
@@ -871,7 +870,7 @@ let BattleMovedex = {
 	silverwind: {
 		inherit: true,
 		basePowerCallback() {
-			if (this.field.isWeather('hail')) {
+			if (this.isWeather('hail')) {
 				return 90;
 			}
 			return 60;
@@ -905,7 +904,7 @@ let BattleMovedex = {
 	ominouswind: {
 		inherit: true,
 		basePowerCallback() {
-			if (this.field.isWeather('hail')) {
+			if (this.isWeather('hail')) {
 				return 90;
 			}
 			return 60;
@@ -978,10 +977,10 @@ let BattleMovedex = {
 			if (lastAttackedBy) {
 				if (lastAttackedBy.damage > 0 && lastAttackedBy.thisTurn) {
 					this.debug('Boosted for getting hit by ' + lastAttackedBy.move);
-					return this.field.isWeather('hail') ? 180 : 120;
+					return this.isWeather('hail') ? 180 : 120;
 				}
 			}
-			return this.field.isWeather('hail') ? 90 : 60;
+			return this.isWeather('hail') ? 90 : 60;
 		},
 		desc: "Power doubles if the user was hit by the target this turn. If the weather is set to hail, this move does 1.5x more damage.",
 		shortDesc: "Power doubles if user is damaged by the target.",
@@ -1233,7 +1232,7 @@ let BattleMovedex = {
 	scald: {
 		inherit: true,
 		onModifyMove(move) {
-			switch (this.field.effectiveWeather()) {
+			switch (this.effectiveWeather()) {
 			case 'sunnyday':
 				// @ts-ignore
 				move.secondary.chance = 60;
@@ -1246,7 +1245,7 @@ let BattleMovedex = {
 		inherit: true,
 		accuracy: 100,
 		onModifyMove(move) {
-			switch (this.field.effectiveWeather()) {
+			switch (this.effectiveWeather()) {
 			case 'sunnyday':
 				// @ts-ignore
 				move.secondary.chance = 60;

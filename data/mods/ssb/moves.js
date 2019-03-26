@@ -47,7 +47,7 @@ let BattleMovedex = {
 		shortDesc: "Raises Attack by 2, clears hazards/user status.",
 		id: "noblehowl",
 		name: "Noble Howl",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 3,
 		noPPBoosts: true,
 		priority: 0,
@@ -98,7 +98,7 @@ let BattleMovedex = {
 		shortDesc: "Power doubles if foe switches out.",
 		id: "toomuchsaws",
 		name: "Too Much Saws",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		onTryMovePriority: 100,
@@ -121,7 +121,7 @@ let BattleMovedex = {
 		shortDesc: "+1 atk, def, and spe.",
 		id: "sparcedance",
 		name: "Sparce Dance",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 15,
 		priority: 0,
 		flags: {snatch: 1, mirror: 1, dance: 1},
@@ -146,7 +146,7 @@ let BattleMovedex = {
 		shortDesc: "40% to paralyze. Lowers user's SpA, SpD, Spe.",
 		id: "energyfield",
 		name: "Energy Field",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -175,7 +175,7 @@ let BattleMovedex = {
 		shortDesc: "Heal 50%; cures party; If ally fained last turn: wish.",
 		id: "compost",
 		name: "Compost",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
@@ -214,11 +214,11 @@ let BattleMovedex = {
 		shortDesc: "User's Sp. Atk +1; sets Trick Room.",
 		id: "turismosplash",
 		name: "Turismo Splash",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: -6,
 		onModifyMove(move) {
-			if (!this.field.pseudoWeather.trickroom) {
+			if (!this.pseudoWeather.trickroom) {
 				move.pseudoWeather = 'trickroom';
 			}
 		},
@@ -247,7 +247,7 @@ let BattleMovedex = {
 		shortDesc: "Steals foe's move. Fails if target attacks. Priority.",
 		id: "pilfer",
 		name: "Pilfer",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 1,
 		flags: {protect: 1, mirror: 1, contact: 1, authentic: 1},
@@ -298,7 +298,7 @@ let BattleMovedex = {
 		shortDesc: "Changes the target's ability to Truant.",
 		id: "truant",
 		name: "TRU ANT",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		flags: {protect: 1, mirror: 1, contact: 1},
 		onTryMovePriority: 100,
@@ -329,7 +329,7 @@ let BattleMovedex = {
 		shortDesc: "User must be hit by a contact move before moving.",
 		id: "murkyambush",
 		name: "Murky Ambush",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 20,
 		priority: -3,
 		flags: {contact: 1, protect: 1},
@@ -397,7 +397,7 @@ let BattleMovedex = {
 		shortDesc: "+20 power for each item-less opponent.",
 		id: "trashalanche",
 		name: "Trashalanche",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		flags: {protect: 1, mirror: 1},
 		onTryMovePriority: 100,
@@ -420,7 +420,7 @@ let BattleMovedex = {
 		shortDesc: "Type = Plate. 1.5x power if foe has the move's type.",
 		id: "comeonyougunners",
 		name: "Come on you Gunners",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -458,7 +458,7 @@ let BattleMovedex = {
 		shortDesc: "20% chance to flinch.",
 		id: "buzzingoftheswarm",
 		name: "Buzzing of the Swarm",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, sound: 1},
@@ -485,7 +485,7 @@ let BattleMovedex = {
 		shortDesc: "User's Def +1. Summons Rain Dance.",
 		id: "finalimpact",
 		name: "Final Impact",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 0,
 		flags: {mirror: 1, protect: 1, contact: 1},
@@ -497,7 +497,7 @@ let BattleMovedex = {
 			this.add('-anim', source, 'Meteor Mash', target);
 		},
 		onAfterMoveSecondarySelf() {
-			this.field.setWeather('raindance');
+			this.setWeather('raindance');
 		},
 		secondary: {
 			chance: 100,
@@ -519,7 +519,7 @@ let BattleMovedex = {
 		shortDesc: "Forces the target to switch to a random ally.",
 		id: "foodrush",
 		name: "Food Rush",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: -6,
 		flags: {protect: 1, mirror: 1},
@@ -545,7 +545,7 @@ let BattleMovedex = {
 		shortDesc: "Bimp: 5 turns: slower Pokemon move first, user levitates.",
 		id: "triviaroom",
 		name: "Trivia Room",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: -7,
 		flags: {},
@@ -578,7 +578,7 @@ let BattleMovedex = {
 				this.add('-message', `${source.name} is levitating due to its big trivia brain!`);
 			},
 			onRestart(target, source) {
-				this.field.removePseudoWeather('triviaroom');
+				this.removePseudoWeather('triviaroom');
 			},
 			// Speed modification is changed in Pokemon.getActionSpeed() in mods/seasonal/scripts.js
 			// Levitation is handled in Pokemon.isGrounded in mods/seasonal/scripts.js
@@ -601,7 +601,7 @@ let BattleMovedex = {
 		shortDesc: "First hit neutral on Ground; removes its immunity.",
 		id: "thousandcircuitoverload",
 		name: "Thousand Circuit Overload",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -643,7 +643,7 @@ let BattleMovedex = {
 		shortDesc: "Removes all field conditions and hazards.",
 		id: "blusterywinds",
 		name: "Blustery Winds",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, authentic: 1},
@@ -665,8 +665,8 @@ let BattleMovedex = {
 					if (!(silentRemove.includes(sideCondition))) this.add('-sideend', source.side, this.getEffect(sideCondition).name, '[from] move: Blustery Winds', '[of] ' + source);
 				}
 			}
-			this.field.clearWeather();
-			this.field.clearTerrain();
+			this.clearWeather();
+			this.clearTerrain();
 		},
 		secondary: null,
 		target: "normal",
@@ -680,7 +680,7 @@ let BattleMovedex = {
 		shortDesc: "Replaces user's team with random StaffBros. sets.",
 		id: "wondertrade",
 		name: "Wonder Trade",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 2,
 		noPPBoosts: true,
 		priority: 0,
@@ -719,13 +719,13 @@ let BattleMovedex = {
 				}
 			}
 			// Generate a new team
-			let team = this.teamGenerator.getTeam({name: source.side.name});
+			let generator = new RandomStaffBrosTeams(this.format, this.prng);
+			let team = generator.generateTeam();
 			// Overwrite un-fainted pokemon other than the user
 			for (let i = 0; i < currentTeam.length; i++) {
 				if (currentTeam[i].fainted || !currentTeam[i].hp || currentTeam[i].position === source.position) continue;
 				let set = team.shift();
 				let oldSet = carryOver[i];
-				// @ts-ignore
 				if (set.name === 'bumbadadabum') {
 					// No way am I allowing 2 of this mon on one team
 					set = team.shift();
@@ -734,7 +734,6 @@ let BattleMovedex = {
 				// Bit of a hack so client doesn't crash when formeChange is called for the new pokemon
 				let effect = this.effect;
 				this.effect = /** @type {Effect} */ ({id: ''});
-				// @ts-ignore
 				let pokemon = new Pokemon(set, source.side);
 				this.effect = effect;
 
@@ -761,7 +760,7 @@ let BattleMovedex = {
 		shortDesc: "Summons Grassy Terrain. Aegislash transforms.",
 		id: "aesthetislash",
 		name: "a e s t h e t i s l a s h",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -774,8 +773,10 @@ let BattleMovedex = {
 			this.add('-anim', source, 'Swords Dance', source);
 			this.add('-anim', source, 'Bloom Doom', target);
 		},
+		onHit() {
+			this.setTerrain('grassyterrain');
+		},
 		onAfterMove(pokemon) {
-			this.field.setTerrain('grassyterrain');
 			if (pokemon.template.baseSpecies !== 'Aegislash' || pokemon.transformed) return;
 			if (pokemon.template.species !== 'Aegislash') pokemon.formeChange('Aegislash');
 		},
@@ -790,7 +791,7 @@ let BattleMovedex = {
 		shortDesc: "Raises the user's Sp. Atk by 2 and Speed by 1.",
 		id: "restartingrouter",
 		name: "Restarting Router",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {mirror: 1, snatch: 1},
@@ -814,7 +815,7 @@ let BattleMovedex = {
 		shortDesc: "50% chance to sleep. Sets 1 Spike. Boosts a stat.",
 		id: "bringerofdarkness",
 		name: "Bringer of Darkness",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 0,
 		flags: {reflectable: 1, mirror: 1, snatch: 1},
@@ -863,7 +864,7 @@ let BattleMovedex = {
 		shortDesc: "80 Acc vs grounded, grounds both sides, 1/2 recoil.",
 		id: "blimpcrash",
 		name: "Blimp Crash",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 0,
 		flags: {mirror: 1, protect: 1, contact: 1},
@@ -893,7 +894,7 @@ let BattleMovedex = {
 		shortDesc: "Ensures domination of the opponent.",
 		id: "forcewin",
 		name: "Forcewin",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1},
@@ -932,7 +933,7 @@ let BattleMovedex = {
 		shortDesc: "User faints; sets screens/Safeguard for 5 turns.",
 		id: "beskyttelsesnet",
 		name: "beskyttelsesnet",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {mirror: 1, snatch: 1},
@@ -963,7 +964,7 @@ let BattleMovedex = {
 		shortDesc: "This move has a 50% chance to infatuate the target.",
 		id: "lovingembrace",
 		name: "Loving Embrace",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 25,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, contact: 1},
@@ -991,7 +992,7 @@ let BattleMovedex = {
 		shortDesc: "Loses 1/2 HP. Foe: sleep, Nightmare, Leech Seed.",
 		id: "luciddreams",
 		name: "Lucid Dreams",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 0,
 		flags: {mirror: 1, snatch: 1, reflectable: 1},
@@ -1029,7 +1030,7 @@ let BattleMovedex = {
 		shortDesc: "Sets Gravity, raises Attack by 2, cures status.",
 		id: "earthsblessing",
 		name: "Earth's Blessing",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 0,
 		onTryMovePriority: 100,
@@ -1041,9 +1042,9 @@ let BattleMovedex = {
 			this.add('-anim', source, 'Wood Hammer', source);
 		},
 		onHit(pokemon, move) {
-			if (this.field.pseudoWeather.gravity) return false;
+			if (this.pseudoWeather.gravity) return false;
 			this.boost({atk: 2}, pokemon, pokemon, this.getActiveMove('EarthsBlessing'));
-			this.field.addPseudoWeather('gravity');
+			this.addPseudoWeather('gravity');
 			if (['', 'slp', 'frz'].includes(pokemon.status)) return;
 			pokemon.cureStatus();
 		},
@@ -1062,7 +1063,7 @@ let BattleMovedex = {
 		shortDesc: "Destroys screens, unless the target is immune.",
 		id: "holyduck",
 		name: "Holy Duck!",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 1,
 		flags: {mirror: 1, protect: 1, contact: 1},
@@ -1095,7 +1096,7 @@ let BattleMovedex = {
 		shortDesc: "Dmg=111HP; replace status w/burn; fail if foe=Fire.",
 		id: "fangofthefireking",
 		name: "Fang of the Fire King",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {mirror: 1, protect: 1, bite: 1},
@@ -1129,7 +1130,7 @@ let BattleMovedex = {
 		shortDesc: "Summons Sunny Day after doing damage.",
 		id: "doom",
 		name: "DOOM!",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 0,
 		flags: {mirror: 1, protect: 1},
@@ -1142,7 +1143,7 @@ let BattleMovedex = {
 			this.add('-anim', source, 'Sunny Day', source);
 		},
 		onAfterMoveSecondarySelf() {
-			this.field.setWeather('sunnyday');
+			this.setWeather('sunnyday');
 		},
 		secondary: null,
 		target: "normal",
@@ -1156,7 +1157,7 @@ let BattleMovedex = {
 		shortDesc: " For turn: transforms, boosts, uses linked move.",
 		id: "ancestralpower",
 		name: "Ancestral Power",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1},
@@ -1193,7 +1194,7 @@ let BattleMovedex = {
 		shortDesc: "Raises the user's Def, Sp. Def, and Spe by 1.",
 		id: "quack",
 		name: "Quack",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 0,
 		flags: {mirror: 1, snatch: 1},
@@ -1219,7 +1220,7 @@ let BattleMovedex = {
 		shortDesc: "Shares user's type. Physical if user's Atk > Sp. Atk.",
 		id: "evoblast",
 		name: "Evoblast",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {mirror: 1, protect: 1},
@@ -1280,7 +1281,7 @@ let BattleMovedex = {
 		shortDesc: "KOes foe. Always hits. User faints after on success.",
 		id: "frck",
 		name: "fr*ck",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 6,
 		noPPBoosts: true,
 		priority: 0,
@@ -1311,7 +1312,7 @@ let BattleMovedex = {
 		shortDesc: "Raises Speed by 2; 30% chance to confuse target.",
 		id: "rickrollout",
 		name: "Rickrollout",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 1,
 		priority: 0,
 		flags: {},
@@ -1345,16 +1346,753 @@ let BattleMovedex = {
 		target: "normal",
 		type: "Rock",
 	},
-	// Forrce
+	// grimAuxiliatrix
+	paintrain: {
+		accuracy: 100,
+		basePower: 0,
+		basePowerCallback(pokemon, target) {
+			let targetWeight = target.getWeight();
+			let pokemonWeight = pokemon.getWeight();
+			if (pokemonWeight > targetWeight * 5) {
+				return 120;
+			}
+			if (pokemonWeight > targetWeight * 4) {
+				return 100;
+			}
+			if (pokemonWeight > targetWeight * 3) {
+				return 80;
+			}
+			if (pokemonWeight > targetWeight * 2) {
+				return 60;
+			}
+			return 40;
+		},
+		category: "Physical",
+		desc: "The power of this move depends on (user's weight / target's weight), rounded down. Power is equal to 120 if the result is 5 or more, 100 if 4, 80 if 3, 60 if 2, and 40 if 1 or less. Damage doubles and no accuracy check is done if the target has used Minimize while active. The user recovers 1/2 the HP lost by the target, rounded half up. If Big Root is held by the user, the HP recovered is 1.3x normal, rounded half down.",
+		shortDesc: "Stronger if user is heavier; Heals 50% of damage.",
+		id: "paintrain",
+		name: "Pain Train",
+		isNonstandard: true,
+		pp: 10,
+		flags: {contact: 1, protect: 1, mirror: 1, heal: 1},
+		onTryMovePriority: 100,
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Meteor Mash', target);
+		},
+		drain: [1, 2],
+		secondary: null,
+		target: "normal",
+		type: "Steel",
+	},
+	// Hippopotas
+	hazardpass: {
+		accuracy: 100,
+		category: "Status",
+		pp: 20,
+		desc: "The user sets 2 of Stealth Rock, Spikes (1 layer), Toxic Spikes (1 layer), and Sticky Web on the foe's side of the field and then switches out.",
+		shortDesc: "Sets 2 random hazards, then switches out.",
+		id: "hazardpass",
+		name: "Hazard Pass",
+		isNonstandard: true,
+		flags: {reflectable: 1, mirror: 1, authentic: 1},
+		onTryMovePriority: 100,
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onHitSide(target, source) {
+			// All possible hazards, and their maximum possible layer count
+			/** @type {{[key: string]: number}} */
+			let hazards = {stealthrock: 1, spikes: 3, toxicspikes: 2, stickyweb: 1};
+			// Check how many layers of each hazard can still be added to the foe's side
+			if (target.getSideCondition('stealthrock')) delete hazards.stealthrock;
+			if (target.getSideCondition('spikes')) {
+				hazards.spikes -= target.sideConditions['spikes'].layers;
+				if (!hazards.spikes) delete hazards.spikes;
+			}
+			if (target.getSideCondition('toxicspikes')) {
+				hazards.toxicspikes -= target.sideConditions['toxicspikes'].layers;
+				if (!hazards.toxicspikes) delete hazards.toxicspikes;
+			}
+			if (target.getSideCondition('stickyweb')) delete hazards.stickyweb;
+			// Create a list of hazards not yet at their maximum layer count
+			let hazardTypes = Object.keys(hazards);
+			// If there are no possible hazards, don't do anything
+			if (!hazardTypes.length) return false;
+			// Pick a random hazard, and set it
+			let hazard1 = this.sample(hazardTypes);
+			// Theoretically, this should always work
+			this.add('-anim', source, this.getMove(hazard1).name, target);
+			target.addSideCondition(hazard1, source, this.effect);
+			// If that was the last possible layer of that hazard, remove it from our list of possible hazards
+			if (hazards[hazard1] === 1) {
+				hazardTypes.splice(hazardTypes.indexOf(hazard1), 1);
+				// If there are no more hazards we can set, end early on a success
+				if (!hazardTypes.length) return true;
+			}
+			// Set the last hazard and animate the switch
+			let hazard2 = this.sample(hazardTypes);
+			this.add('-anim', source, this.getMove(hazard2).name, target);
+			target.addSideCondition(hazard2, source, this.effect);
+			this.add('-anim', source, "Baton Pass", target);
+		},
+		selfSwitch: true,
+		secondary: null,
+		target: "foeSide",
+		type: "Normal",
+		zMoveBoost: {def: 1},
+	},
+	// Hipster Sigilyph
+	mainstreamshock: {
+		accuracy: 100,
+		basePower: 100,
+		category: "Special",
+		desc: "This move's type effectiveness against Dark is changed to be super effective no matter what this move's type is.",
+		shortDesc: "Super effective on Dark.",
+		id: "mainstreamshock",
+		name: "Mainstream Shock",
+		isNonstandard: true,
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onTryMovePriority: 100,
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, "Psystrike", target);
+		},
+		ignoreImmunity: {'Psychic': true},
+		onEffectiveness(typeMod, target, type) {
+			if (type === 'Dark') return 1;
+		},
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
+	},
+	// HoeenHero
+	scriptedterrain: {
+		accuracy: 100,
+		category: "Status",
+		desc: "Sets Scripted Terrain for 5 turns. The power of Bug type moves is boosted by 1.5, and there is a 5% chance for every move used to become Glitch Out instead. At the end of a turn, every Pokemon has a 5% chance to transform into a Missingno. with 3 random moves and Glitch Out. Switching out will restore the Pokemon to its normal state. This terrain affects floating Pokemon.",
+		shortDesc: "5 turns: +Bug power, glitchy effects.",
+		id: "scriptedterrain",
+		name: "Scripted Terrain",
+		isNonstandard: true,
+		pp: 5,
+		priority: 0,
+		flags: {nonsky: 1},
+		onTryMovePriority: 100,
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Calm Mind', source);
+			this.add('-anim', source, 'Geomancy', source);
+		},
+		terrain: 'scriptedterrain',
+		effect: {
+			duration: 5,
+			durationCallback(source, effect) {
+				if (source && source.hasItem('terrainextender')) {
+					return 8;
+				}
+				return 5;
+			},
+			onBasePower(basePower, attacker, defender, move) {
+				if (move.type === 'Bug') {
+					this.debug('scripted terrain boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onTryHitPriority: 4,
+			onTryHit(target, source, effect) {
+				if (!effect || effect.id === 'glitchout' || source.volatiles['glitchout']) return;
+				if (this.random(20) === 1) {
+					this.add('message', `${source.name}'s move was glitched by the Scripted Terrain!`);
+					this.useMove('Glitch Out', source, source.side.foe.active[0]);
+					return null;
+				}
+			},
+			onStart(battle, source, effect) {
+				if (effect && effect.effectType === 'Ability') {
+					this.add('-fieldstart', 'move: Scripted Terrain', '[from] ability: ' + effect, '[of] ' + source);
+				} else {
+					this.add('-fieldstart', 'move: Scripted Terrain');
+				}
+			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 2,
+			onResidual() {
+				this.eachEvent('Terrain');
+			},
+			onTerrain(pokemon) {
+				if (pokemon.template.id === 'missingno') return;
+				if (pokemon.fainted || !pokemon.hp) return;
+				if (this.random(20) === 1) {
+					this.debug('Scripted terrain corrupt');
+					this.add('message', `${pokemon.name} was corrupted by a bug in the scripted terrain!`);
+					// generate a movepool
+					let moves = [];
+					let pool = this.shuffle(Object.keys(this.data.Movedex));
+					let metronome = this.getMove('metronome');
+					for (let i of pool) {
+						let move = this.getMove(i);
+						if (i !== move.id) continue;
+						if (move.isZ || move.isNonstandard) continue;
+						if (metronome.noMetronome && metronome.noMetronome.includes(move.id)) continue;
+						if (this.getMove(i).gen > this.gen) continue;
+						moves.push(move);
+						if (moves.length >= 3) break;
+					}
+					moves.push('glitchout');
+					pokemon.formeChange('missingno');
+					pokemon.moveSlots = [];
+					for (let moveid of moves) {
+						let move = this.getMove(moveid);
+						if (!move.id) continue;
+						pokemon.moveSlots.push({
+							move: move.name,
+							id: move.id,
+							pp: 5,
+							maxpp: 5,
+							target: move.target,
+							disabled: false,
+							used: false,
+							virtual: true,
+						});
+						pokemon.moves.push(move.id);
+					}
+				}
+			},
+			onEnd() {
+				this.add('-fieldend', 'move: Scripted Terrain');
+			},
+		},
+		secondary: null,
+		target: "self",
+		type: "Psychic",
+	},
+	// Used by HoeenHero's terrain
+	glitchout: {
+		accuracy: true,
+		category: "Status",
+		desc: "A random move is selected for use, other than After You, Assist, Baneful Bunker, Beak Blast, Belch, Bestow, Celebrate, Chatter, Copycat, Counter, Covet, Crafty Shield, Destiny Bond, Detect, Diamond Storm, Endure, Feint, Fleur Cannon, Focus Punch, Follow Me, Freeze Shock, Helping Hand, Hold Hands, Hyperspace Hole, Ice Burn, Instruct, King's Shield, Light of Ruin, Mat Block, Me First, Metronome, Mimic, Mind Blown, Mirror Coat, Mirror Move, Nature Power, Photon Geyser, Plasma Fists, Protect, Quash, Quick Guard, Rage Powder, Relic Song, Secret Sword, Shell Trap, Sketch, Sleep Talk, Snarl, Snatch, Snore, Spectral Thief, Spiky Shield, Spotlight, Steam Eruption, Struggle, Switcheroo, Techno Blast, Thief, Thousand Arrows, Thousand Waves, Transform, Trick, Trump Card, V-create, or Wide Guard. The selected move's Base Power is increased by 20.",
+		shortDesc: "Uses a random move with Base Power +20.",
+		id: "glitchout",
+		name: "Glitch Out",
+		isNonstandard: true,
+		pp: 10,
+		priority: 0,
+		flags: {},
+		noMetronome: ['afteryou', 'assist', 'banefulbunker', 'beakblast', 'belch', 'bestow', 'celebrate', 'chatter', 'copycat', 'counter', 'covet', 'craftyshield', 'destinybond', 'detect', 'diamondstorm', 'dragonascent', 'endure', 'feint', 'fleurcannon', 'focuspunch', 'followme', 'freezeshock', 'helpinghand', 'holdhands', 'hyperspacefury', 'hyperspacehole', 'iceburn', 'instruct', 'kingsshield', 'lightofruin', 'matblock', 'mefirst', 'metronome', 'mimic', 'mindblown', 'mirrorcoat', 'mirrormove', 'naturepower', 'originpulse', 'photongeyser', 'plasmafists', 'precipiceblades', 'protect', 'quash', 'quickguard', 'ragepowder', 'relicsong', 'secretsword', 'shelltrap', 'sketch', 'sleeptalk', 'snarl', 'snatch', 'snore', 'spectralthief', 'spikyshield', 'spotlight', 'steameruption', 'struggle', 'switcheroo', 'technoblast', 'thief', 'thousandarrows', 'thousandwaves', 'transform', 'trick', 'trumpcard', 'vcreate', 'wideguard'],
+		onTryMovePriority: 100,
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Bug Buzz', source);
+			this.add('-anim', source, 'Metronome', source);
+			source.addVolatile('glitchout');
+		},
+		onHit(target, source, effect) {
+			let moves = [];
+			for (let i in this.data.Movedex) {
+				let move = this.data.Movedex[i];
+				if (i !== move.id) continue;
+				if (move.isZ || move.isNonstandard) continue;
+				if (effect.noMetronome && effect.noMetronome.includes(move.id)) continue;
+				if (this.getMove(i).gen > this.gen) continue;
+				moves.push(move);
+			}
+			let randomMove = '';
+			if (moves.length) {
+				moves.sort((a, b) => a.num - b.num);
+				randomMove = this.sample(moves).id;
+			}
+			if (!randomMove) {
+				return false;
+			}
+			this.useMove(randomMove, target);
+		},
+		secondary: null,
+		target: "self",
+		type: "Bug",
+	},
+	// Hubriz
+	flowertornado: {
+		accuracy: 90,
+		basePower: 95,
+		category: "Special",
+		desc: "Has a 20% chance to either poison the target or cause it to fall asleep.",
+		shortDesc: "20% chance to either poison or sleep target.",
+		id: "flowertornado",
+		name: "Flower Tornado",
+		isNonstandard: true,
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onTryMovePriority: 100,
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, "Petal Blizzard", target);
+			this.add('-anim', source, "Leaf Tornado", target);
+		},
+		secondary: {
+			chance: 20,
+			onHit(target, source) {
+				let result = this.random(2);
+				if (result === 0) {
+					target.trySetStatus('psn', source);
+				} else {
+					target.trySetStatus('slp', source);
+				}
+			},
+		},
+		target: "normal",
+		type: "Grass",
+	},
+	// Hurl
+	hurl: {
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		desc: "Sets a layer of Toxic Spikes.",
+		shortDesc: "Sets a layer of Toxic Spikes.",
+		id: "hurl",
+		name: "Hurl",
+		isNonstandard: true,
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onTryMovePriority: 100,
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Gunk Shot', target);
+		},
+		onHit(target) {
+			target.side.addSideCondition('toxicspikes');
+		},
+		secondary: null,
+		target: "normal",
+		type: "Poison",
+	},
+	// imagi
+	delayedpromise: {
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		desc: "This move bypasses Baneful Bunker, Crafty Shield, Detect, King's Shield, Mat Block, Protect, Quick Guard, Substitute, Spiky Shield, and Wide Guard. The target's stat stages are set to 0, and the target's Speed is lowered by 1 after stats are reset. 75% chance to put the target to sleep.",
+		shortDesc: "Foe: Resets stats; -1 Speed; 75% chance to sleep.",
+		id: "delayedpromise",
+		name: "Delayed Promise",
+		isNonstandard: true,
+		pp: 10,
+		priority: 0,
+		flags: {authentic: 1, snatch: 1, reflectable: 1},
+		onTryMovePriority: 100,
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Wish', source);
+			this.add('-anim', source, 'Spite', target);
+		},
+		onHit(target, source) {
+			target.clearBoosts();
+			this.add('-clearboost', target);
+			this.boost({spe: -1}, target, source);
+		},
+		secondary: {
+			status: 'slp',
+			chance: 75,
+		},
+		target: "normal",
+		type: "Psychic",
+	},
+	// imas
+	boi: {
+		accuracy: 100,
+		basePower: 120,
+		category: "Physical",
+		desc: "The user takes recoil damage equal to 33% the HP lost by the target, rounded half up, but not less than 1 HP.",
+		shortDesc: "Has 33% recoil.",
+		id: "boi",
+		name: "B O I",
+		isNonstandard: true,
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onTryMovePriority: 100,
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Supersonic Skystrike', target);
+		},
+		recoil: [33, 100],
+		secondary: null,
+		target: "normal",
+		type: "Flying",
+	},
+	// Iyarito
+	vbora: {
+		accuracy: true,
+		category: "Status",
+		desc: "Cures the user's party of all status conditions, then poisons the user.",
+		shortDesc: "Cures party's statuses, then poisons self.",
+		id: "vbora",
+		name: "Víbora",
+		isNonstandard: true,
+		pp: 5,
+		flags: {mirror: 1, snatch: 1},
+		onTryMovePriority: 100,
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Acid Armor', source);
+		},
+		onHit(pokemon, source, move) {
+			//this.add('-activate', source, 'move: Víbora');
+			let success = false;
+			for (const ally of pokemon.side.pokemon) {
+				if (ally.cureStatus()) success = true;
+			}
+			if (pokemon.setStatus('psn', pokemon)) success = true;
+			return success;
+		},
+		secondary: null,
+		target: "allyTeam",
+		type: "Poison",
+	},
+	// jdarden
+	wyvernswail: {
+		accuracy: 100,
+		basePower: 60,
+		category: "Special",
+		desc: "If both the user and the target have not fainted, the target is forced to switch out and be replaced with a random unfainted ally. This effect fails if the target used Ingrain previously, has the Suction Cups Ability, or this move hit a substitute.",
+		shortDesc: "Forces the target to switch to a random ally.",
+		id: "wyvernswail",
+		name: "Wyvern's Wail",
+		isNonstandard: true,
+		pp: 15,
+		priority: -6,
+		flags: {protect: 1, mirror: 1, sound: 1},
+		onTryMovePriority: 100,
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Whirlwind', target);
+		},
+		forceSwitch: true,
+		target: "normal",
+		type: "Flying",
+	},
+	// Kaiju Bunny
+	bestialstrike: {
+		accuracy: 100,
+		basePower: 150,
+		basePowerCallback(pokemon, target, move) {
+			return move.basePower * pokemon.hp / pokemon.maxhp;
+		},
+		category: "Physical",
+		desc: "Power is equal to (user's current HP * 150 / user's maximum HP), rounded down, but not less than 1.",
+		shortDesc: "Less power as user's HP decreases.",
+		id: "bestialstrike",
+		name: "Bestial Strike",
+		isNonstandard: true,
+		onTryMovePriority: 100,
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Outrage', target);
+		},
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, contact: 1},
+		secondary: null,
+		target: "normal",
+		type: "Flying",
+	},
+	// kalalokki
+	maelstrm: {
+		accuracy: 85,
+		basePower: 100,
+		category: "Special",
+		desc: "Prevents the target from switching for four or five turns (seven turns if the user is holding Grip Claw). Causes damage to the target equal to 1/8 of its maximum HP (1/6 if the user is holding Binding Band), rounded down, at the end of each turn during effect. Both of these effects persist for their normal duration even if the user switches out or faints. The target can still switch out if it is holding Shed Shell or uses Baton Pass, Parting Shot, U-turn, or Volt Switch. The effect ends if the target leaves the field or uses Rapid Spin or Substitute successfully. This effect is not stackable or reset by using this or another binding move.",
+		shortDesc: "Traps/damages for 4-5 turns, even if user returns.",
+		id: "maelstrm",
+		name: "Maelström",
+		isNonstandard: true,
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		volatileStatus: 'maelstrm',
+		onTryMovePriority: 100,
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Dark Void', target);
+			this.add('-anim', source, 'Surf', target);
+		},
+		effect: {
+			duration: 5,
+			durationCallback(target, source) {
+				if (source.hasItem('gripclaw')) {
+					this.debug('maelstrm grip claw duration boost');
+					return 8;
+				}
+				return this.random(5, 7);
+			},
+			onStart() {
+				this.add('-message', 'It became trapped in an enormous maelström!');
+			},
+			onResidualOrder: 11,
+			onResidual(pokemon) {
+				if (this.effectData.source.hasItem('bindingband')) {
+					this.debug('maelstrm binding band damage boost');
+					this.damage(pokemon.maxhp / 6);
+				} else {
+					this.damage(pokemon.maxhp / 8);
+				}
+			},
+			onEnd() {
+				this.add('-message', 'The maelström dissipated.');
+			},
+			onTrapPokemon(pokemon) {
+				pokemon.tryTrap();
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Water",
+	},
+	// Kay
+	inkzooka: {
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		desc: "Lowers the user's Defense, Special Defense, and Speed by 1 stage.",
+		shortDesc: "Lowers the user's Def, Sp. Def, and Spe by 1.",
+		id: "inkzooka",
+		name: "Inkzooka",
+		isNonstandard: true,
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onTryMovePriority: 100,
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Never Ending Nightmare', target);
+		},
+		self: {
+			boosts: {
+				def: -1,
+				spd: -1,
+				spe: -1,
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
+	},
+	// KingSwordYT
+	dragonwarriortouch: {
+		accuracy: 100,
+		basePower: 70,
+		category: "Physical",
+		desc: "The user recovers 1/2 the HP lost by the target, rounded half up. Raises the user's Attack by 1 stage.",
+		shortDesc: "User recovers 50% of the damage dealt; Atk +1.",
+		id: "dragonwarriortouch",
+		name: "Dragon Warrior Touch",
+		isNonstandard: true,
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, punch: 1, contact: 1},
+		onTryMovePriority: 100,
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Outrage', target);
+			this.add('-anim', source, 'Drain Punch', target);
+		},
+		self: {
+			boosts: {
+				atk: 1,
+			},
+		},
+		drain: [1, 2],
+		target: "normal",
+		type: "Fighting",
+	},
+	// Level 51
+	nextlevelstrats: {
+		accuracy: true,
+		category: "Status",
+		desc: "The user gains 5 levels when using this move, which persist upon switching out.",
+		shortDesc: "User gains 5 levels.",
+		id: "nextlevelstrats",
+		name: "Next Level Strats",
+		isNonstandard: true,
+		pp: 5,
+		priority: 0,
+		flags: {snatch: 1},
+		onTryMovePriority: 100,
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, "Nasty Plot", target);
+		},
+		onHit(pokemon) {
+			const template = pokemon.template;
+			// @ts-ignore
+			pokemon.level += 5;
+			pokemon.set.level = pokemon.level;
+			pokemon.formeChange(template);
+
+			pokemon.details = template.species + (pokemon.level === 100 ? '' : ', L' + pokemon.level) + (pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
+			this.add('detailschange', pokemon, pokemon.details);
+
+			const newHP = Math.floor(Math.floor(2 * template.baseStats['hp'] + pokemon.set.ivs['hp'] + Math.floor(pokemon.set.evs['hp'] / 4) + 100) * pokemon.level / 100 + 10);
+			pokemon.hp = newHP - (pokemon.maxhp - pokemon.hp);
+			pokemon.maxhp = newHP;
+			this.add('-heal', pokemon, pokemon.getHealth, '[silent]');
+
+			this.add('-message', `${pokemon.name} advanced 5 levels! It is now level ${pokemon.level}!`);
+		},
+		secondary: null,
+		target: "self",
+		type: "Normal",
+
+	},
+	// LifeisDANK
+	barfight: {
+		accuracy: 100,
+		basePower: 10,
+		category: "Physical",
+		desc: "Raises both the user's and the target's Attack by 3 stages, lowers the Defense of both by 3 stages, confuses both Pokemon, and has a 100% chance to cause the target to flinch.",
+		shortDesc: "+3 Atk, -3 Def, confusion to user & target. Priority.",
+		id: "barfight",
+		name: "Bar Fight",
+		isNonstandard: true,
+		pp: 10,
+		priority: 3,
+		flags: {protect: 1, mirror: 1, contact: 1},
+		onTryMovePriority: 100,
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, "Fake Out", target);
+			this.add('-anim', source, "Feather Dance", target);
+			return this.runEvent('StallMove', source);
+		},
+		onHit(target, source) {
+			source.addVolatile('stall');
+			this.boost({atk: 3, def: -3}, target);
+			this.boost({atk: 3, def: -3}, source);
+			target.addVolatile('confusion');
+			source.addVolatile('confusion');
+			target.addVolatile('flinch');
+		},
+		secondary: null,
+		target: "normal",
+		type: "Flying",
+	},
+	// Lionyx
+	letitgo: {
+		accuracy: 95,
+		basePower: 110,
+		category: "Special",
+		desc: "Summons hail. Has a 15% chance to lower the target's Special Defense, and a 5% chance to freeze it.",
+		shortDesc: "Summons hail; 15% to lower SpD, 5% to freeze.",
+		id: "letitgo",
+		name: "Let it Go",
+		isNonstandard: true,
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, sound: 1},
+		onTryMovePriority: 100,
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, "Ice Beam", target);
+			this.add('-anim', source, "Subzero Slammer", target);
+			this.add('-anim', source, "Hyper Voice", target);
+		},
+		secondaries: [
+			{
+				chance: 5,
+				status: 'frz',
+			}, {
+				chance: 15,
+				boosts: {
+					spd: -1,
+				},
+			},
+		],
+		onAfterMoveSecondarySelf() {
+			this.setWeather('hail');
+		},
+		target: "normal",
+		type: "Ice",
+	},
+	// Lost Seso
+	shuffleramendance: {
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		desc: "This move's type effectiveness is inverted, meaning that it's super effective on Water-types but not very effective on Grass-types, and so forth. 20% chance to paralyze the target.",
+		shortDesc: "Type effectiveness is inverted; 20% par.",
+		id: "shuffleramendance",
+		name: "Shuffle Ramen Dance",
+		isNonstandard: true,
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, dance: 1},
+		onTryMovePriority: 100,
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Outrage', target);
+		},
+		onEffectiveness(typeMod, target) {
+			return -typeMod;
+		},
+		secondary: {
+			status: 'par',
+			chance: 20,
+		},
+		target: "normal",
+		type: "Fire",
+		zMovePower: 160,
+	},
+	// Lycanium Z
 	purplepills: {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "The user gains a random typing and 3 moves based on that typing (2 special moves and 1 status move). The user's attacks deal damage based off the user's Special Defense. If used again, returns the user to its original moveset and typing. This move fails if the user is not Forrce.",
-		shortDesc: "Forrce: Gains 3 random moves and typing.",
+		desc: "The user gains a random typing and 3 moves based on that typing (2 special moves and 1 status move). The user's attacks deal damage based off the user's Special Defense. If used again, returns the user to its original moveset and typing. This move fails if the user is not Lycanium Z.",
+		shortDesc: "Lycanium Z: Gains 3 random moves and typing.",
 		id: "purplepills",
 		name: "Purple Pills",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 15,
 		priority: 0,
 		flags: {},
@@ -1366,9 +2104,9 @@ let BattleMovedex = {
 			this.add('-anim', source, "Swallow", source);
 		},
 		onTryHit(target, source) {
-			if (source.name !== 'Forrce') {
+			if (source.name !== 'Lycanium Z') {
 				this.add('-fail', source);
-				this.hint("Only Forrce can use Purple Pills.");
+				this.hint("Only Lycanium Z can use Purple Pills.");
 				return null;
 			}
 		},
@@ -1481,743 +2219,6 @@ let BattleMovedex = {
 		target: "self",
 		type: "Poison",
 	},
-	// grimAuxiliatrix
-	paintrain: {
-		accuracy: 100,
-		basePower: 0,
-		basePowerCallback(pokemon, target) {
-			let targetWeight = target.getWeight();
-			let pokemonWeight = pokemon.getWeight();
-			if (pokemonWeight > targetWeight * 5) {
-				return 120;
-			}
-			if (pokemonWeight > targetWeight * 4) {
-				return 100;
-			}
-			if (pokemonWeight > targetWeight * 3) {
-				return 80;
-			}
-			if (pokemonWeight > targetWeight * 2) {
-				return 60;
-			}
-			return 40;
-		},
-		category: "Physical",
-		desc: "The power of this move depends on (user's weight / target's weight), rounded down. Power is equal to 120 if the result is 5 or more, 100 if 4, 80 if 3, 60 if 2, and 40 if 1 or less. Damage doubles and no accuracy check is done if the target has used Minimize while active. The user recovers 1/2 the HP lost by the target, rounded half up. If Big Root is held by the user, the HP recovered is 1.3x normal, rounded half down.",
-		shortDesc: "Stronger if user is heavier; Heals 50% of damage.",
-		id: "paintrain",
-		name: "Pain Train",
-		isNonstandard: "Custom",
-		pp: 10,
-		flags: {contact: 1, protect: 1, mirror: 1, heal: 1},
-		onTryMovePriority: 100,
-		onTryMove() {
-			this.attrLastMove('[still]');
-		},
-		onPrepareHit(target, source) {
-			this.add('-anim', source, 'Meteor Mash', target);
-		},
-		drain: [1, 2],
-		secondary: null,
-		target: "normal",
-		type: "Steel",
-	},
-	// Hippopotas
-	hazardpass: {
-		accuracy: 100,
-		category: "Status",
-		pp: 20,
-		desc: "The user sets 2 of Stealth Rock, Spikes (1 layer), Toxic Spikes (1 layer), and Sticky Web on the foe's side of the field and then switches out.",
-		shortDesc: "Sets 2 random hazards, then switches out.",
-		id: "hazardpass",
-		name: "Hazard Pass",
-		isNonstandard: "Custom",
-		flags: {reflectable: 1, mirror: 1, authentic: 1},
-		onTryMovePriority: 100,
-		onTryMove() {
-			this.attrLastMove('[still]');
-		},
-		onHitSide(target, source) {
-			// All possible hazards, and their maximum possible layer count
-			/** @type {{[key: string]: number}} */
-			let hazards = {stealthrock: 1, spikes: 3, toxicspikes: 2, stickyweb: 1};
-			// Check how many layers of each hazard can still be added to the foe's side
-			if (target.getSideCondition('stealthrock')) delete hazards.stealthrock;
-			if (target.getSideCondition('spikes')) {
-				hazards.spikes -= target.sideConditions['spikes'].layers;
-				if (!hazards.spikes) delete hazards.spikes;
-			}
-			if (target.getSideCondition('toxicspikes')) {
-				hazards.toxicspikes -= target.sideConditions['toxicspikes'].layers;
-				if (!hazards.toxicspikes) delete hazards.toxicspikes;
-			}
-			if (target.getSideCondition('stickyweb')) delete hazards.stickyweb;
-			// Create a list of hazards not yet at their maximum layer count
-			let hazardTypes = Object.keys(hazards);
-			// If there are no possible hazards, don't do anything
-			if (!hazardTypes.length) return false;
-			// Pick a random hazard, and set it
-			let hazard1 = this.sample(hazardTypes);
-			// Theoretically, this should always work
-			this.add('-anim', source, this.getMove(hazard1).name, target);
-			target.addSideCondition(hazard1, source, this.effect);
-			// If that was the last possible layer of that hazard, remove it from our list of possible hazards
-			if (hazards[hazard1] === 1) {
-				hazardTypes.splice(hazardTypes.indexOf(hazard1), 1);
-				// If there are no more hazards we can set, end early on a success
-				if (!hazardTypes.length) return true;
-			}
-			// Set the last hazard and animate the switch
-			let hazard2 = this.sample(hazardTypes);
-			this.add('-anim', source, this.getMove(hazard2).name, target);
-			target.addSideCondition(hazard2, source, this.effect);
-			this.add('-anim', source, "Baton Pass", target);
-		},
-		selfSwitch: true,
-		secondary: null,
-		target: "foeSide",
-		type: "Normal",
-		zMoveBoost: {def: 1},
-	},
-	// Hipster Sigilyph
-	mainstreamshock: {
-		accuracy: 100,
-		basePower: 100,
-		category: "Special",
-		desc: "This move's type effectiveness against Dark is changed to be super effective no matter what this move's type is.",
-		shortDesc: "Super effective on Dark.",
-		id: "mainstreamshock",
-		name: "Mainstream Shock",
-		isNonstandard: "Custom",
-		pp: 5,
-		priority: 0,
-		flags: {protect: 1, mirror: 1},
-		onTryMovePriority: 100,
-		onTryMove() {
-			this.attrLastMove('[still]');
-		},
-		onPrepareHit(target, source) {
-			this.add('-anim', source, "Psystrike", target);
-		},
-		ignoreImmunity: {'Psychic': true},
-		onEffectiveness(typeMod, target, type) {
-			if (type === 'Dark') return 1;
-		},
-		secondary: null,
-		target: "normal",
-		type: "Psychic",
-	},
-	// HoeenHero
-	scriptedterrain: {
-		accuracy: 100,
-		category: "Status",
-		desc: "Sets Scripted Terrain for 5 turns. The power of Bug type moves is boosted by 1.5, and there is a 5% chance for every move used to become Glitch Out instead. At the end of a turn, every Pokemon has a 5% chance to transform into a Missingno. with 3 random moves and Glitch Out. Switching out will restore the Pokemon to its normal state. This terrain affects floating Pokemon.",
-		shortDesc: "5 turns: +Bug power, glitchy effects.",
-		id: "scriptedterrain",
-		name: "Scripted Terrain",
-		isNonstandard: "Custom",
-		pp: 5,
-		priority: 0,
-		flags: {nonsky: 1},
-		onTryMovePriority: 100,
-		onTryMove() {
-			this.attrLastMove('[still]');
-		},
-		onPrepareHit(target, source) {
-			this.add('-anim', source, 'Calm Mind', source);
-			this.add('-anim', source, 'Geomancy', source);
-		},
-		terrain: 'scriptedterrain',
-		effect: {
-			duration: 5,
-			durationCallback(source, effect) {
-				if (source && source.hasItem('terrainextender')) {
-					return 8;
-				}
-				return 5;
-			},
-			onBasePower(basePower, attacker, defender, move) {
-				if (move.type === 'Bug') {
-					this.debug('scripted terrain boost');
-					return this.chainModify(1.5);
-				}
-			},
-			onTryHitPriority: 4,
-			onTryHit(target, source, effect) {
-				if (!effect || effect.id === 'glitchout' || source.volatiles['glitchout']) return;
-				if (this.random(20) === 1) {
-					this.add('message', `${source.name}'s move was glitched by the Scripted Terrain!`);
-					this.useMove('Glitch Out', source, source.side.foe.active[0]);
-					return null;
-				}
-			},
-			onStart(battle, source, effect) {
-				if (effect && effect.effectType === 'Ability') {
-					this.add('-fieldstart', 'move: Scripted Terrain', '[from] ability: ' + effect, '[of] ' + source);
-				} else {
-					this.add('-fieldstart', 'move: Scripted Terrain');
-				}
-			},
-			onResidualOrder: 21,
-			onResidualSubOrder: 2,
-			onResidual() {
-				this.eachEvent('Terrain');
-			},
-			onTerrain(pokemon) {
-				if (pokemon.template.id === 'missingno') return;
-				if (pokemon.fainted || !pokemon.hp) return;
-				if (this.random(20) === 1) {
-					this.debug('Scripted terrain corrupt');
-					this.add('message', `${pokemon.name} was corrupted by a bug in the scripted terrain!`);
-					// generate a movepool
-					let moves = [];
-					let pool = this.shuffle(Object.keys(this.data.Movedex));
-					let metronome = this.getMove('metronome');
-					for (let i of pool) {
-						let move = this.getMove(i);
-						if (i !== move.id) continue;
-						if (move.isZ || move.isNonstandard) continue;
-						if (metronome.noMetronome && metronome.noMetronome.includes(move.id)) continue;
-						if (this.getMove(i).gen > this.gen) continue;
-						moves.push(move);
-						if (moves.length >= 3) break;
-					}
-					moves.push('glitchout');
-					pokemon.formeChange('missingno');
-					pokemon.moveSlots = [];
-					for (let moveid of moves) {
-						let move = this.getMove(moveid);
-						if (!move.id) continue;
-						pokemon.moveSlots.push({
-							move: move.name,
-							id: move.id,
-							pp: 5,
-							maxpp: 5,
-							target: move.target,
-							disabled: false,
-							used: false,
-							virtual: true,
-						});
-						pokemon.moves.push(move.id);
-					}
-				}
-			},
-			onEnd() {
-				this.add('-fieldend', 'move: Scripted Terrain');
-			},
-		},
-		secondary: null,
-		target: "self",
-		type: "Psychic",
-	},
-	// Used by HoeenHero's terrain
-	glitchout: {
-		accuracy: true,
-		category: "Status",
-		desc: "A random move is selected for use, other than After You, Assist, Baneful Bunker, Beak Blast, Belch, Bestow, Celebrate, Chatter, Copycat, Counter, Covet, Crafty Shield, Destiny Bond, Detect, Diamond Storm, Endure, Feint, Fleur Cannon, Focus Punch, Follow Me, Freeze Shock, Helping Hand, Hold Hands, Hyperspace Hole, Ice Burn, Instruct, King's Shield, Light of Ruin, Mat Block, Me First, Metronome, Mimic, Mind Blown, Mirror Coat, Mirror Move, Nature Power, Photon Geyser, Plasma Fists, Protect, Quash, Quick Guard, Rage Powder, Relic Song, Secret Sword, Shell Trap, Sketch, Sleep Talk, Snarl, Snatch, Snore, Spectral Thief, Spiky Shield, Spotlight, Steam Eruption, Struggle, Switcheroo, Techno Blast, Thief, Thousand Arrows, Thousand Waves, Transform, Trick, Trump Card, V-create, or Wide Guard. The selected move's Base Power is increased by 20.",
-		shortDesc: "Uses a random move with Base Power +20.",
-		id: "glitchout",
-		name: "Glitch Out",
-		isNonstandard: "Custom",
-		pp: 10,
-		priority: 0,
-		flags: {},
-		noMetronome: ['afteryou', 'assist', 'banefulbunker', 'beakblast', 'belch', 'bestow', 'celebrate', 'chatter', 'copycat', 'counter', 'covet', 'craftyshield', 'destinybond', 'detect', 'diamondstorm', 'dragonascent', 'endure', 'feint', 'fleurcannon', 'focuspunch', 'followme', 'freezeshock', 'helpinghand', 'holdhands', 'hyperspacefury', 'hyperspacehole', 'iceburn', 'instruct', 'kingsshield', 'lightofruin', 'matblock', 'mefirst', 'metronome', 'mimic', 'mindblown', 'mirrorcoat', 'mirrormove', 'naturepower', 'originpulse', 'photongeyser', 'plasmafists', 'precipiceblades', 'protect', 'quash', 'quickguard', 'ragepowder', 'relicsong', 'secretsword', 'shelltrap', 'sketch', 'sleeptalk', 'snarl', 'snatch', 'snore', 'spectralthief', 'spikyshield', 'spotlight', 'steameruption', 'struggle', 'switcheroo', 'technoblast', 'thief', 'thousandarrows', 'thousandwaves', 'transform', 'trick', 'trumpcard', 'vcreate', 'wideguard'],
-		onTryMovePriority: 100,
-		onTryMove() {
-			this.attrLastMove('[still]');
-		},
-		onPrepareHit(target, source) {
-			this.add('-anim', source, 'Bug Buzz', source);
-			this.add('-anim', source, 'Metronome', source);
-			source.addVolatile('glitchout');
-		},
-		onHit(target, source, effect) {
-			let moves = [];
-			for (let i in this.data.Movedex) {
-				let move = this.data.Movedex[i];
-				if (i !== move.id) continue;
-				if (move.isZ || move.isNonstandard) continue;
-				if (effect.noMetronome && effect.noMetronome.includes(move.id)) continue;
-				if (this.getMove(i).gen > this.gen) continue;
-				moves.push(move);
-			}
-			let randomMove = '';
-			if (moves.length) {
-				moves.sort((a, b) => a.num - b.num);
-				randomMove = this.sample(moves).id;
-			}
-			if (!randomMove) {
-				return false;
-			}
-			this.useMove(randomMove, target);
-		},
-		secondary: null,
-		target: "self",
-		type: "Bug",
-	},
-	// Hubriz
-	flowertornado: {
-		accuracy: 90,
-		basePower: 95,
-		category: "Special",
-		desc: "Has a 20% chance to either poison the target or cause it to fall asleep.",
-		shortDesc: "20% chance to either poison or sleep target.",
-		id: "flowertornado",
-		name: "Flower Tornado",
-		isNonstandard: "Custom",
-		pp: 10,
-		priority: 0,
-		flags: {protect: 1, mirror: 1},
-		onTryMovePriority: 100,
-		onTryMove() {
-			this.attrLastMove('[still]');
-		},
-		onPrepareHit(target, source) {
-			this.add('-anim', source, "Petal Blizzard", target);
-			this.add('-anim', source, "Leaf Tornado", target);
-		},
-		secondary: {
-			chance: 20,
-			onHit(target, source) {
-				let result = this.random(2);
-				if (result === 0) {
-					target.trySetStatus('psn', source);
-				} else {
-					target.trySetStatus('slp', source);
-				}
-			},
-		},
-		target: "normal",
-		type: "Grass",
-	},
-	// Hurl
-	hurl: {
-		accuracy: 100,
-		basePower: 90,
-		category: "Physical",
-		desc: "Sets a layer of Toxic Spikes.",
-		shortDesc: "Sets a layer of Toxic Spikes.",
-		id: "hurl",
-		name: "Hurl",
-		isNonstandard: "Custom",
-		pp: 10,
-		priority: 0,
-		flags: {protect: 1, mirror: 1},
-		onTryMovePriority: 100,
-		onTryMove() {
-			this.attrLastMove('[still]');
-		},
-		onPrepareHit(target, source) {
-			this.add('-anim', source, 'Gunk Shot', target);
-		},
-		onHit(target) {
-			target.side.addSideCondition('toxicspikes');
-		},
-		secondary: null,
-		target: "normal",
-		type: "Poison",
-	},
-	// imagi
-	delayedpromise: {
-		accuracy: 100,
-		basePower: 0,
-		category: "Status",
-		desc: "This move bypasses Baneful Bunker, Crafty Shield, Detect, King's Shield, Mat Block, Protect, Quick Guard, Substitute, Spiky Shield, and Wide Guard. The target's stat stages are set to 0, and the target's Speed is lowered by 1 after stats are reset. 75% chance to put the target to sleep.",
-		shortDesc: "Foe: Resets stats; -1 Speed; 75% chance to sleep.",
-		id: "delayedpromise",
-		name: "Delayed Promise",
-		isNonstandard: "Custom",
-		pp: 10,
-		priority: 0,
-		flags: {authentic: 1, snatch: 1, reflectable: 1},
-		onTryMovePriority: 100,
-		onTryMove() {
-			this.attrLastMove('[still]');
-		},
-		onPrepareHit(target, source) {
-			this.add('-anim', source, 'Wish', source);
-			this.add('-anim', source, 'Spite', target);
-		},
-		onHit(target, source) {
-			target.clearBoosts();
-			this.add('-clearboost', target);
-			this.boost({spe: -1}, target, source);
-		},
-		secondary: {
-			status: 'slp',
-			chance: 75,
-		},
-		target: "normal",
-		type: "Psychic",
-	},
-	// imas
-	boi: {
-		accuracy: 100,
-		basePower: 120,
-		category: "Physical",
-		desc: "The user takes recoil damage equal to 33% the HP lost by the target, rounded half up, but not less than 1 HP.",
-		shortDesc: "Has 33% recoil.",
-		id: "boi",
-		name: "B O I",
-		isNonstandard: "Custom",
-		pp: 15,
-		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
-		onTryMovePriority: 100,
-		onTryMove() {
-			this.attrLastMove('[still]');
-		},
-		onPrepareHit(target, source) {
-			this.add('-anim', source, 'Supersonic Skystrike', target);
-		},
-		recoil: [33, 100],
-		secondary: null,
-		target: "normal",
-		type: "Flying",
-	},
-	// Iyarito
-	vbora: {
-		accuracy: true,
-		category: "Status",
-		desc: "Cures the user's party of all status conditions, then poisons the user.",
-		shortDesc: "Cures party's statuses, then poisons self.",
-		id: "vbora",
-		name: "Víbora",
-		isNonstandard: "Custom",
-		pp: 5,
-		flags: {mirror: 1, snatch: 1},
-		onTryMovePriority: 100,
-		onTryMove() {
-			this.attrLastMove('[still]');
-		},
-		onPrepareHit(target, source) {
-			this.add('-anim', source, 'Acid Armor', source);
-		},
-		onHit(pokemon, source, move) {
-			//this.add('-activate', source, 'move: Víbora');
-			let success = false;
-			for (const ally of pokemon.side.pokemon) {
-				if (ally.cureStatus()) success = true;
-			}
-			if (pokemon.setStatus('psn', pokemon)) success = true;
-			return success;
-		},
-		secondary: null,
-		target: "allyTeam",
-		type: "Poison",
-	},
-	// jdarden
-	wyvernswail: {
-		accuracy: 100,
-		basePower: 60,
-		category: "Special",
-		desc: "If both the user and the target have not fainted, the target is forced to switch out and be replaced with a random unfainted ally. This effect fails if the target used Ingrain previously, has the Suction Cups Ability, or this move hit a substitute.",
-		shortDesc: "Forces the target to switch to a random ally.",
-		id: "wyvernswail",
-		name: "Wyvern's Wail",
-		isNonstandard: "Custom",
-		pp: 15,
-		priority: -6,
-		flags: {protect: 1, mirror: 1, sound: 1},
-		onTryMovePriority: 100,
-		onTryMove() {
-			this.attrLastMove('[still]');
-		},
-		onPrepareHit(target, source) {
-			this.add('-anim', source, 'Whirlwind', target);
-		},
-		forceSwitch: true,
-		target: "normal",
-		type: "Flying",
-	},
-	// Kaiju Bunny
-	bestialstrike: {
-		accuracy: 100,
-		basePower: 150,
-		basePowerCallback(pokemon, target, move) {
-			return move.basePower * pokemon.hp / pokemon.maxhp;
-		},
-		category: "Physical",
-		desc: "Power is equal to (user's current HP * 150 / user's maximum HP), rounded down, but not less than 1.",
-		shortDesc: "Less power as user's HP decreases.",
-		id: "bestialstrike",
-		name: "Bestial Strike",
-		isNonstandard: "Custom",
-		onTryMovePriority: 100,
-		onTryMove() {
-			this.attrLastMove('[still]');
-		},
-		onPrepareHit(target, source) {
-			this.add('-anim', source, 'Outrage', target);
-		},
-		pp: 5,
-		priority: 0,
-		flags: {protect: 1, mirror: 1, contact: 1},
-		secondary: null,
-		target: "normal",
-		type: "Flying",
-	},
-	// kalalokki
-	maelstrm: {
-		accuracy: 85,
-		basePower: 100,
-		category: "Special",
-		desc: "Prevents the target from switching for four or five turns (seven turns if the user is holding Grip Claw). Causes damage to the target equal to 1/8 of its maximum HP (1/6 if the user is holding Binding Band), rounded down, at the end of each turn during effect. Both of these effects persist for their normal duration even if the user switches out or faints. The target can still switch out if it is holding Shed Shell or uses Baton Pass, Parting Shot, U-turn, or Volt Switch. The effect ends if the target leaves the field or uses Rapid Spin or Substitute successfully. This effect is not stackable or reset by using this or another binding move.",
-		shortDesc: "Traps/damages for 4-5 turns, even if user returns.",
-		id: "maelstrm",
-		name: "Maelström",
-		isNonstandard: "Custom",
-		pp: 5,
-		priority: 0,
-		flags: {protect: 1, mirror: 1},
-		volatileStatus: 'maelstrm',
-		onTryMovePriority: 100,
-		onTryMove() {
-			this.attrLastMove('[still]');
-		},
-		onPrepareHit(target, source) {
-			this.add('-anim', source, 'Dark Void', target);
-			this.add('-anim', source, 'Surf', target);
-		},
-		effect: {
-			duration: 5,
-			durationCallback(target, source) {
-				if (source.hasItem('gripclaw')) {
-					this.debug('maelstrm grip claw duration boost');
-					return 8;
-				}
-				return this.random(5, 7);
-			},
-			onStart() {
-				this.add('-message', 'It became trapped in an enormous maelström!');
-			},
-			onResidualOrder: 11,
-			onResidual(pokemon) {
-				if (this.effectData.source.hasItem('bindingband')) {
-					this.debug('maelstrm binding band damage boost');
-					this.damage(pokemon.maxhp / 6);
-				} else {
-					this.damage(pokemon.maxhp / 8);
-				}
-			},
-			onEnd() {
-				this.add('-message', 'The maelström dissipated.');
-			},
-			onTrapPokemon(pokemon) {
-				pokemon.tryTrap();
-			},
-		},
-		secondary: null,
-		target: "normal",
-		type: "Water",
-	},
-	// Kay
-	inkzooka: {
-		accuracy: 100,
-		basePower: 80,
-		category: "Physical",
-		desc: "Lowers the user's Defense, Special Defense, and Speed by 1 stage.",
-		shortDesc: "Lowers the user's Def, Sp. Def, and Spe by 1.",
-		id: "inkzooka",
-		name: "Inkzooka",
-		isNonstandard: "Custom",
-		pp: 5,
-		priority: 0,
-		flags: {protect: 1, mirror: 1},
-		onTryMovePriority: 100,
-		onTryMove() {
-			this.attrLastMove('[still]');
-		},
-		onPrepareHit(target, source) {
-			this.add('-anim', source, 'Never Ending Nightmare', target);
-		},
-		self: {
-			boosts: {
-				def: -1,
-				spd: -1,
-				spe: -1,
-			},
-		},
-		secondary: null,
-		target: "normal",
-		type: "Psychic",
-	},
-	// KingSwordYT
-	dragonwarriortouch: {
-		accuracy: 100,
-		basePower: 70,
-		category: "Physical",
-		desc: "The user recovers 1/2 the HP lost by the target, rounded half up. Raises the user's Attack by 1 stage.",
-		shortDesc: "User recovers 50% of the damage dealt; Atk +1.",
-		id: "dragonwarriortouch",
-		name: "Dragon Warrior Touch",
-		isNonstandard: "Custom",
-		pp: 5,
-		priority: 0,
-		flags: {protect: 1, mirror: 1, punch: 1, contact: 1},
-		onTryMovePriority: 100,
-		onTryMove() {
-			this.attrLastMove('[still]');
-		},
-		onPrepareHit(target, source) {
-			this.add('-anim', source, 'Outrage', target);
-			this.add('-anim', source, 'Drain Punch', target);
-		},
-		self: {
-			boosts: {
-				atk: 1,
-			},
-		},
-		drain: [1, 2],
-		target: "normal",
-		type: "Fighting",
-	},
-	// Level 51
-	nextlevelstrats: {
-		accuracy: true,
-		category: "Status",
-		desc: "The user gains 5 levels when using this move, which persist upon switching out.",
-		shortDesc: "User gains 5 levels.",
-		id: "nextlevelstrats",
-		name: "Next Level Strats",
-		isNonstandard: "Custom",
-		pp: 5,
-		priority: 0,
-		flags: {snatch: 1},
-		onTryMovePriority: 100,
-		onTryMove() {
-			this.attrLastMove('[still]');
-		},
-		onPrepareHit(target, source) {
-			this.add('-anim', source, "Nasty Plot", target);
-		},
-		onHit(pokemon) {
-			const template = pokemon.template;
-			// @ts-ignore
-			pokemon.level += 5;
-			pokemon.set.level = pokemon.level;
-			pokemon.formeChange(template);
-
-			pokemon.details = template.species + (pokemon.level === 100 ? '' : ', L' + pokemon.level) + (pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
-			this.add('detailschange', pokemon, pokemon.details);
-
-			const newHP = Math.floor(Math.floor(2 * template.baseStats['hp'] + pokemon.set.ivs['hp'] + Math.floor(pokemon.set.evs['hp'] / 4) + 100) * pokemon.level / 100 + 10);
-			pokemon.hp = newHP - (pokemon.maxhp - pokemon.hp);
-			pokemon.maxhp = newHP;
-			this.add('-heal', pokemon, pokemon.getHealth, '[silent]');
-
-			this.add('-message', `${pokemon.name} advanced 5 levels! It is now level ${pokemon.level}!`);
-		},
-		secondary: null,
-		target: "self",
-		type: "Normal",
-
-	},
-	// LifeisDANK
-	barfight: {
-		accuracy: 100,
-		basePower: 10,
-		category: "Physical",
-		desc: "Raises both the user's and the target's Attack by 3 stages, lowers the Defense of both by 3 stages, confuses both Pokemon, and has a 100% chance to cause the target to flinch.",
-		shortDesc: "+3 Atk, -3 Def, confusion to user & target. Priority.",
-		id: "barfight",
-		name: "Bar Fight",
-		isNonstandard: "Custom",
-		pp: 10,
-		priority: 3,
-		flags: {protect: 1, mirror: 1, contact: 1},
-		onTryMovePriority: 100,
-		onTryMove() {
-			this.attrLastMove('[still]');
-		},
-		onPrepareHit(target, source) {
-			this.add('-anim', source, "Fake Out", target);
-			this.add('-anim', source, "Feather Dance", target);
-			return this.runEvent('StallMove', source);
-		},
-		onHit(target, source) {
-			source.addVolatile('stall');
-			this.boost({atk: 3, def: -3}, target);
-			this.boost({atk: 3, def: -3}, source);
-			target.addVolatile('confusion');
-			source.addVolatile('confusion');
-			target.addVolatile('flinch');
-		},
-		secondary: null,
-		target: "normal",
-		type: "Flying",
-	},
-	// Lionyx
-	letitgo: {
-		accuracy: 95,
-		basePower: 110,
-		category: "Special",
-		desc: "Summons hail. Has a 15% chance to lower the target's Special Defense, and a 5% chance to freeze it.",
-		shortDesc: "Summons hail; 15% to lower SpD, 5% to freeze.",
-		id: "letitgo",
-		name: "Let it Go",
-		isNonstandard: "Custom",
-		pp: 5,
-		priority: 0,
-		flags: {protect: 1, mirror: 1, sound: 1},
-		onTryMovePriority: 100,
-		onTryMove() {
-			this.attrLastMove('[still]');
-		},
-		onPrepareHit(target, source) {
-			this.add('-anim', source, "Ice Beam", target);
-			this.add('-anim', source, "Subzero Slammer", target);
-			this.add('-anim', source, "Hyper Voice", target);
-		},
-		secondaries: [
-			{
-				chance: 5,
-				status: 'frz',
-			}, {
-				chance: 15,
-				boosts: {
-					spd: -1,
-				},
-			},
-		],
-		onAfterMoveSecondarySelf() {
-			this.field.setWeather('hail');
-		},
-		target: "normal",
-		type: "Ice",
-	},
-	// Lost Seso
-	shuffleramendance: {
-		accuracy: 100,
-		basePower: 80,
-		category: "Special",
-		desc: "This move's type effectiveness is inverted, meaning that it's super effective on Water-types but not very effective on Grass-types, and so forth. 20% chance to paralyze the target.",
-		shortDesc: "Type effectiveness is inverted; 20% par.",
-		id: "shuffleramendance",
-		name: "Shuffle Ramen Dance",
-		isNonstandard: "Custom",
-		pp: 10,
-		priority: 0,
-		flags: {protect: 1, mirror: 1, dance: 1},
-		onTryMovePriority: 100,
-		onTryMove() {
-			this.attrLastMove('[still]');
-		},
-		onPrepareHit(target, source) {
-			this.add('-anim', source, 'Outrage', target);
-		},
-		onEffectiveness(typeMod, target) {
-			return -typeMod;
-		},
-		secondary: {
-			status: 'par',
-			chance: 20,
-		},
-		target: "normal",
-		type: "Fire",
-		zMovePower: 160,
-	},
 	// MacChaeger
 	naptime: {
 		accuracy: true,
@@ -2226,7 +2227,7 @@ let BattleMovedex = {
 		shortDesc: "Active Pokemon sleep 1 turn, restoring HP/status.",
 		id: "naptime",
 		name: "Nap Time",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 0,
 		flags: {snatch: 1, heal: 1},
@@ -2243,7 +2244,7 @@ let BattleMovedex = {
 			this.add('-anim', source, "Aromatic Mist", target);
 		},
 		onHit(target, source, move) {
-			let napWeather = this.field.pseudoWeather['naptime'];
+			let napWeather = this.pseudoWeather['naptime'];
 			// Trigger sleep clause if not the original user
 			// @ts-ignore
 			if (!target.setStatus('slp', napWeather.source, move)) return false;
@@ -2263,7 +2264,7 @@ let BattleMovedex = {
 					}
 				}
 			}
-			this.field.removePseudoWeather('naptime');
+			this.removePseudoWeather('naptime');
 		},
 		pseudoWeather: 'naptime',
 		effect: {
@@ -2291,7 +2292,7 @@ let BattleMovedex = {
 		shortDesc: "Does damage equal to user's max. HP. User faints.",
 		id: "blazeofglory",
 		name: "Blaze of Glory",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 1,
 		priority: 0,
 		flags: {},
@@ -2319,7 +2320,7 @@ let BattleMovedex = {
 		shortDesc: "50% chance to raise the user's Sp. Atk. by 1.",
 		id: "crystalboost",
 		name: "Crystal Boost",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -2349,7 +2350,7 @@ let BattleMovedex = {
 		shortDesc: "Changes user/move type to a weakness of target.",
 		id: "typeanalysis",
 		name: "Type Analysis",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {authentic: 1, protect: 1},
@@ -2401,7 +2402,7 @@ let BattleMovedex = {
 		shortDesc: "Harshly lowers own Atk/SpA; swaps stats with opp.",
 		id: "scavengesu",
 		name: "/scavenges u",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 0,
 		flags: {mirror: 1, protect: 1},
@@ -2448,7 +2449,7 @@ let BattleMovedex = {
 		shortDesc: "+20 power per boost. Removes non-Stockpile boosts.",
 		id: "tippingover",
 		name: "Tipping Over",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, contact: 1},
@@ -2481,7 +2482,7 @@ let BattleMovedex = {
 		shortDesc: "Frees user from hazards/partial trap/Leech Seed.",
 		id: "cyclonespin",
 		name: "Cyclone Spin",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {mirror: 1, protect: 1, contact: 1},
@@ -2521,7 +2522,7 @@ let BattleMovedex = {
 		shortDesc: "Lowers the user's Sp. Atk, Sp. Def. and Spe by 1.",
 		id: "pythonivy",
 		name: "Python Ivy",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -2552,7 +2553,7 @@ let BattleMovedex = {
 		shortDesc: "+1 Atk, Def, and Spe. User gains 100kg.",
 		id: "proteinshake",
 		name: "Protein Shake",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, mirror: 1},
@@ -2594,11 +2595,11 @@ let BattleMovedex = {
 		shortDesc: "User Attack +1; sets Trick Room.",
 		id: "e",
 		name: "E",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: -6,
 		onModifyMove(move) {
-			if (!this.field.pseudoWeather.trickroom) {
+			if (!this.pseudoWeather.trickroom) {
 				move.pseudoWeather = 'trickroom';
 			}
 		},
@@ -2626,7 +2627,7 @@ let BattleMovedex = {
 		shortDesc: "5 turns. No hazards,-Ice power even if floating.",
 		id: "prismaticterrain",
 		name: "Prismatic Terrain",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {},
@@ -2687,7 +2688,7 @@ let BattleMovedex = {
 		shortDesc: "Both Pokemon switch. Opp. replacement: Spe -1.",
 		id: "pyramidingsong",
 		name: "Pyramiding Song",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 20,
 		priority: -6,
 		flags: {mirror: 1, protect: 1, authentic: 1, sound: 1},
@@ -2728,7 +2729,7 @@ let BattleMovedex = {
 		shortDesc: "Has 50% chance to raise the user's Speed by 2.",
 		id: "omboom",
 		name: "OM Boom",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 15,
 		priority: 0,
 		flags: {mirror: 1, protect: 1},
@@ -2773,7 +2774,7 @@ let BattleMovedex = {
 		shortDesc: "+20 power for each fainted ally or foe.",
 		id: "nightmarch",
 		name: "Night March",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		flags: {protect: 1, mirror: 1},
 		onTryMovePriority: 100,
@@ -2798,7 +2799,7 @@ let BattleMovedex = {
 		shortDesc: "User recovers 50% of the damage dealt.",
 		id: "totalleech",
 		name: "Total Leech",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, heal: 1},
@@ -2823,7 +2824,7 @@ let BattleMovedex = {
 		shortDesc: "50% chance to paralyze. Traps and imprisons.",
 		id: "jailshell",
 		name: "Jail Shell",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -2853,7 +2854,7 @@ let BattleMovedex = {
 		shortDesc: "Badly poisons the target, regardless of type.",
 		id: "corrosivetoxic",
 		name: "Corrosive Toxic",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1},
@@ -2890,7 +2891,7 @@ let BattleMovedex = {
 		shortDesc: "100% chance to burn the target.",
 		id: "grammarhammer",
 		name: "Grammar Hammer",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1, punch: 1},
@@ -2920,7 +2921,7 @@ let BattleMovedex = {
 		shortDesc: "Protects from moves. Contact: restores 25% HP.",
 		id: "lilypadshield",
 		name: "Lilypad Shield",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 4,
 		flags: {heal: 1},
@@ -2983,7 +2984,7 @@ let BattleMovedex = {
 		shortDesc: "Raises user's Speed by 1; Focus Energy.",
 		id: "resolve",
 		name: "Resolve",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, mirror: 1},
@@ -3012,7 +3013,7 @@ let BattleMovedex = {
 		shortDesc: "7 turns: boosting stat: lose all PP from last move.",
 		id: "literallycheating",
 		name: "Literally Cheating",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 0,
 		flags: {},
@@ -3063,7 +3064,7 @@ let BattleMovedex = {
 		shortDesc: "Hits Ground. Inverts target's boosts, then switches.",
 		id: "switchoff",
 		name: "Switch Off",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {mirror: 1, protect: 1},
@@ -3102,7 +3103,7 @@ let BattleMovedex = {
 		shortDesc: "Atk, Spe +1; 10% chance to set one screen.",
 		id: "soulbend",
 		name: "Soulbend",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, mirror: 1},
@@ -3141,7 +3142,7 @@ let BattleMovedex = {
 		shortDesc: "Raises the user's Attack and accuracy by 1.",
 		id: "thicc",
 		name: "Thicc",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 15,
 		priority: 0,
 		flags: {snatch: 1},
@@ -3169,7 +3170,7 @@ let BattleMovedex = {
 		shortDesc: "User's atk and acc +1. Sets Hail and Aurora Veil.",
 		id: "extrathicc",
 		name: "Extra T h i c c",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 1,
 		priority: 0,
 		flags: {},
@@ -3183,8 +3184,8 @@ let BattleMovedex = {
 			this.add('-anim', source, "Blizzard", source);
 		},
 		onHit(target, source) {
-			this.field.setWeather('hail');
-			if (this.field.isWeather('hail')) source.side.addSideCondition('auroraveil', source);
+			this.setWeather('hail');
+			if (this.isWeather('hail')) source.side.addSideCondition('auroraveil', source);
 			this.add('-message', source.name + ' became extra thicc!');
 		},
 		boosts: {
@@ -3205,7 +3206,7 @@ let BattleMovedex = {
 		shortDesc: "No additional effect.",
 		id: "geomagneticstorm",
 		name: "Geomagnetic Storm",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -3229,7 +3230,7 @@ let BattleMovedex = {
 		shortDesc: "Raises the user's Attack by 2 and Speed by 1.",
 		id: "goinda",
 		name: "GO INDA",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 0,
 		flags: {snatch: 1},
@@ -3257,7 +3258,7 @@ let BattleMovedex = {
 		shortDesc: "Creates Trick Room; 5 turns: Psychic hits Dark.",
 		id: "alienwave",
 		name: "Alien Wave",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: -7,
 		flags: {},
@@ -3299,7 +3300,7 @@ let BattleMovedex = {
 		shortDesc: "Uses a Random Battle Pokemon as a Substitute.",
 		id: "fakeclaim",
 		name: "Fake Claim",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 1,
 		priority: 0,
 		flags: {},
@@ -3310,8 +3311,6 @@ let BattleMovedex = {
 			move.basePower = move.baseMove ? move.baseMove.basePower : move.basePower;
 			// @ts-ignore Hack for Snaquaza's Z move
 			move.category = move.baseMove ? move.baseMove.category : move.category;
-			// @ts-ignore Hack for Snaquaza's Z move
-			this.claimMove = move.baseMove;
 		},
 		onTryMovePriority: 100,
 		onTryMove() {
@@ -3333,7 +3332,7 @@ let BattleMovedex = {
 				icebeam: ['Abomasnow', 'Absol', 'Aggron', 'Alomomola', 'Altaria', 'Araquanid', 'Articuno', 'Audino', 'Aurorus', 'Avalugg', 'Azumarill', 'Barbaracle', 'Basculin', 'Bastiodon', 'Beartic', 'Bibarel', 'Blastoise', 'Blissey', 'Bruxish', 'Carracosta', 'Castform', 'Chansey', 'Clawitzer', 'Claydol', 'Clefable', 'Clefairy', 'Cloyster', 'Corsola', 'Crabominable', 'Crawdaunt', 'Cresselia', 'Cryogonal', 'Delcatty', 'Delibird', 'Dewgong', 'Dragonite', 'Drampa', 'Dunsparce', 'Dusknoir', 'Empoleon', 'Exploud', 'Feraligatr', 'Floatzel', 'Froslass', 'Furret', 'Gastrodon', 'Glaceon', 'Glalie', 'Golduck', 'Golisopod', 'Golurk', 'Goodra', 'Gorebyss', 'Greninja', 'Gyarados', 'Huntail', 'Jellicent', 'Jynx', 'Kabutops', 'Kangaskhan', 'Kecleon', 'Kingdra', 'Kingler', 'Kyurem', 'Lanturn', 'Lapras', 'Latias', 'Latios', 'Lickilicky', 'Linoone', 'Lopunny', 'Ludicolo', 'Lumineon', 'Lunatone', 'Luvdisc', 'Magearna', 'Mamoswine', 'Manaphy', 'Mantine', 'Marowak', 'Masquerain', 'Mawile', 'Mesprit', 'Mew', 'Milotic', 'Miltank', 'Nidoking', 'Nidoqueen', 'Ninetales-Alola', 'Octillery', 'Omastar', 'Pelipper', 'Phione', 'Piloswine', 'Politoed', 'Poliwrath', 'Porygon-Z', 'Porygon2', 'Primarina', 'Quagsire', 'Qwilfish', 'Rampardos', 'Raticate', 'Regice', 'Relicanth', 'Rhydon', 'Rhyperior', 'Samurott', 'Seaking', 'Sharpedo', 'Sigilyph', 'Silvally', 'Simipour', 'Slaking', 'Slowbro', 'Slowking', 'Smeargle', 'Sneasel', 'Snorlax', 'Starmie', 'Suicune', 'Swalot', 'Swampert', 'Swanna', 'Tapu Fini', 'Tauros', 'Tentacruel', 'Toxapex', 'Tyranitar', 'Vanilluxe', 'Vaporeon', 'Wailord', 'Walrein', 'Weavile', 'Whiscash', 'Wigglytuff', 'Wishiwashi', 'Zangoose'],
 			};
 			// @ts-ignore Hack for Snaquaza's Z move
-			const baseMove = this.claimMove ? this.claimMove.id : 'bravebird';
+			const baseMove = move.baseMove ? move.baseMove.id : 'bravebird';
 			const pool = claims[baseMove];
 			if (!pool) throw new Error(`SSB: Unable to find fake claim movepool for the move: "${baseMove}".`); // Should never happen
 			const claim = claims[baseMove][this.random(pool.length)];
@@ -3379,7 +3378,7 @@ let BattleMovedex = {
 		shortDesc: "+1 Def/SpD, Powder, Leech Seed, Sleep Powder.",
 		id: "armyofmushrooms",
 		name: "Army of Mushrooms",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: -1,
 		flags: {snatch: 1},
@@ -3409,7 +3408,7 @@ let BattleMovedex = {
 		shortDesc: "Burns the target. Ignores abilities.",
 		id: "scorchingglobalvortex",
 		name: "Scorching Global Vortex",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 1,
 		priority: 0,
 		flags: {},
@@ -3437,7 +3436,7 @@ let BattleMovedex = {
 		shortDesc: "Raises the user's Attack by 2 and Speed by 1.",
 		id: "zekken",
 		name: "Zekken",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, mirror: 1},
@@ -3465,7 +3464,7 @@ let BattleMovedex = {
 		shortDesc: "Super effective on Ground.",
 		id: "groundsurge",
 		name: "Ground Surge",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -3493,7 +3492,7 @@ let BattleMovedex = {
 		shortDesc: "User's replacement will switch after using its move.",
 		id: "rotate",
 		name: "Rotate",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, mirror: 1},
@@ -3531,7 +3530,7 @@ let BattleMovedex = {
 		shortDesc: "100% chance to raise the user's Speed by 1.",
 		id: "ultrasucc",
 		name: "Ultra Succ",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 1,
 		priority: 0,
 		flags: {},
@@ -3569,7 +3568,7 @@ let BattleMovedex = {
 		shortDesc: "More power if slower; sets Trick Room.",
 		id: "gyroballin",
 		name: "Gyro Ballin'",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 0,
 		flags: {bullet: 1, contact: 1, protect: 1, mirror: 1},
@@ -3581,8 +3580,8 @@ let BattleMovedex = {
 			this.add('-anim', source, "Gyro Ball", target);
 		},
 		onAfterMoveSecondarySelf(pokemon) {
-			if (!this.field.pseudoWeather.trickroom) {
-				this.field.addPseudoWeather('trickroom', pokemon);
+			if (!this.pseudoWeather.trickroom) {
+				this.addPseudoWeather('trickroom', pokemon);
 			}
 			this.add('-fieldactivate', 'move: Pay Day'); // Coins are scattered on the ground
 		},
@@ -3601,7 +3600,7 @@ let BattleMovedex = {
 		shortDesc: "Hits 5 times with various effects on each hit.",
 		id: "devolutionwave",
 		name: "Devolution Wave",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 1,
 		priority: 0,
 		flags: {},
@@ -3668,9 +3667,9 @@ let BattleMovedex = {
 				break;
 			case 4:
 				if (option) {
-					this.field.setTerrain('grassyterrain', source);
+					this.setTerrain('grassyterrain', source);
 				} else {
-					this.field.setTerrain('mistyterrain', source);
+					this.setTerrain('mistyterrain', source);
 				}
 				break;
 			case 5:
@@ -3697,7 +3696,7 @@ let BattleMovedex = {
 		shortDesc: "Hazards -> foe side. Set SR. User switches out.",
 		id: "smokebomb",
 		name: "Smoke Bomb",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, mirror: 1, reflectable: 1, authentic: 1},
@@ -3759,7 +3758,7 @@ let BattleMovedex = {
 		shortDesc: "BP:weight; increases foe weight; foe item=Iron Ball.",
 		id: "minisingularity",
 		name: "Mini Singularity",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -3804,7 +3803,7 @@ let BattleMovedex = {
 		shortDesc: "Fully restores user's HP if this move KOes the target.",
 		id: "continuous1v1",
 		name: "Continuous 1v1",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -3832,7 +3831,7 @@ let BattleMovedex = {
 		shortDesc: "Summons two of Attack, Defense, and Heal Order.",
 		id: "holyorders",
 		name: "Holy Orders",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, mirror: 1},
@@ -3862,7 +3861,7 @@ let BattleMovedex = {
 		shortDesc: "No additional effect.",
 		id: "revampedsuspectphilosophy",
 		name: "Revamped Suspect Philosophy",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 1,
 		priority: 0,
 		flags: {},
@@ -3888,7 +3887,7 @@ let BattleMovedex = {
 		shortDesc: "User recovers 50% of the damage dealt.",
 		id: "explosivedrain",
 		name: "Explosive Drain",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, heal: 1},
@@ -3914,7 +3913,7 @@ let BattleMovedex = {
 		shortDesc: "20% to flinch; 100% to paralyze; traps target.",
 		id: "stunningdance",
 		name: "Stunning Dance",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, dance: 1},
@@ -3953,7 +3952,7 @@ let BattleMovedex = {
 		shortDesc: "10% chance to raise all stats by 1 (not acc/eva).",
 		id: "blehflame",
 		name: "Bleh Flame",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
@@ -3988,7 +3987,7 @@ let BattleMovedex = {
 		shortDesc: "If hit; switches out + confuses, traps, infatuates.",
 		id: "cutieescape",
 		name: "Cutie Escape",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: -6,
 		flags: {mirror: 1},
@@ -4039,7 +4038,7 @@ let BattleMovedex = {
 		shortDesc: "One hit each from user's Aria and Pirouette formes.",
 		id: "relicsongdance",
 		name: "Relic Song Dance",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, sound: 1, authentic: 1},
@@ -4095,7 +4094,7 @@ let BattleMovedex = {
 		shortDesc: "Badly poisons all Pokemon on the field.",
 		id: "mylife",
 		name: "My Life",
-		isNonstandard: "Custom",
+		isNonstandard: true,
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},

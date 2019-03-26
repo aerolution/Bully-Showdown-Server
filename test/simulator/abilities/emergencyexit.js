@@ -57,7 +57,7 @@ describe(`Emergency Exit`, function () {
 		assert.false.holdsItem(eePokemon);
 		assert.strictEqual(battle.currentRequest, 'switch');
 
-		battle.makeChoices('default', '');
+		battle.makeChoices('move sleeptalk', 'move voltswitch');
 		assert.species(battle.p1.active[0], 'Clefable');
 		assert.species(battle.p2.active[0], 'Zekrom');
 	});
@@ -74,7 +74,7 @@ describe(`Emergency Exit`, function () {
 		assert.false.holdsItem(eePokemon);
 		assert.strictEqual(battle.currentRequest, 'switch');
 
-		battle.makeChoices('auto', '');
+		battle.makeChoices('move metronome', 'move metronome');
 		assert.species(battle.p1.active[0], 'Clefable');
 		assert.species(battle.p2.active[0], 'Clefable');
 	});
@@ -85,13 +85,13 @@ describe(`Emergency Exit`, function () {
 			[{species: "Raticate", ability: 'guts', moves: ['superfang']}, {species: "Clefable", ability: 'Unaware', moves: ['metronome']}],
 		]);
 		const eePokemon = battle.p1.active[0];
-		battle.makeChoices('auto', 'auto');
+		battle.makeChoices('move sleeptalk', 'move superfang');
 		assert.atMost(eePokemon.hp, eePokemon.maxhp / 2);
 
 		assert.false.holdsItem(eePokemon);
 		assert.strictEqual(battle.currentRequest, 'switch');
 
-		battle.makeChoices('auto', '');
+		battle.makeChoices('move metronome', 'move superfang');
 		assert.species(battle.p1.active[0], 'Clefable');
 	});
 

@@ -22,21 +22,20 @@ let transport: any;
  * Logs when a crash happens to console, then e-mails those who are configured
  * to receive them.
  */
-export = function crashlogger(
-	error: Error | string, description: string, data: AnyObject | null = null
-): string | null {
+export = function crashlogger(error: Error | string, description: string, data: object | null = null): string | null {
 	const datenow = Date.now();
 
 	let stack = typeof error === 'string' ? error : error.stack;
 	if (data) {
 		stack += `\n\nAdditional information:\n`;
-		for (const k in data) {
+		for (let k in data) {
+			// @ts-ignore
 			stack += `  ${k} = ${data[k]}\n`;
 		}
 	}
 
 	console.error(`\nCRASH: ${stack}\n`);
-	const out = fs.createWriteStream(logPath, {flags: 'a'});
+	let out = fs.createWriteStream(logPath, {flags: 'a'});
 	out.on('open', () => {
 		out.write(`\n${stack}\n`);
 		out.end();

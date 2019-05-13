@@ -86,12 +86,14 @@ if (!PM.isParentProcess) {
 			Monitor.crashlog(err, `A team validator process`);
 		});
 		process.on('unhandledRejection', err => {
-			Monitor.crashlog(err, 'A team validator process Promise');
+			if (err instanceof Error) {
+				Monitor.crashlog(err, 'A team validator process Promise');
+			}
 		});
 	}
 
 	global.Dex = require(/** @type {any} */ ('../.sim-dist/dex')).includeData();
-	global.toId = Dex.getId;
+	global.toID = Dex.getId;
 	global.Chat = require('./chat');
 
 	/** @type {typeof import('../lib/repl').Repl} */

@@ -41,7 +41,7 @@ To reload chat commands:
  */
 /** @typedef {(name: string, user: User) => (string)} NameFilter */
 
-const LINK_WHITELIST = ['*.pokemonshowdown.com', 'smogtours.psim.us', '*.smogon.com', '*.pastebin.com', '*.hastebin.com'];
+const LINK_WHITELIST = ['*.pokemonshowdown.com', 'sports.psim.us', 'smogtours.psim.us', '*.smogon.com', '*.pastebin.com', '*.hastebin.com'];
 
 const MAX_MESSAGE_LENGTH = 300;
 
@@ -106,13 +106,30 @@ class PatternTester {
 	/**
 	 * @param {string} text
 	 */
-	test(text) {
+	testCommand(text) {
 		const spaceIndex = text.indexOf(' ');
 		if (this.fastElements.has(spaceIndex >= 0 ? text.slice(0, spaceIndex) : text)) {
 			return true;
 		}
 		if (!this.regexp) return false;
 		return this.regexp.test(text);
+	}
+	/**
+	 * @param {string} text
+	 */
+	test(text) {
+		if (!text.includes('\n')) return null;
+		if (this.testCommand(text)) return text;
+		// The PM matching is a huge mess, and really needs to be replaced with
+		// the new multiline command system soon.
+		const pmMatches = /^(\/(?:pm|w|whisper|msg) [^,]*, ?)(.*)/i.exec(text);
+		if (pmMatches && this.testCommand(pmMatches[2])) {
+			if (text.split('\n').every(line => line.startsWith(pmMatches[1]))) {
+				return text.replace(/\n\/(?:pm|w|whisper|msg) [^,]*, ?/g, '\n');
+			}
+			return text;
+		}
+		return null;
 	}
 }
 
@@ -182,7 +199,7 @@ Chat.namefilter = function (name, user) {
 		// \u2E80-\u32FF              CJK symbols
 		// \u3400-\u9FFF              CJK
 		// \uF900-\uFAFF\uFE00-\uFE6F CJK extended
-		name = name.replace(/[^a-zA-Z0-9 /\\.~()<>^*%&=+$@#_'?!"\u00A1-\u00BF\u00D7\u00F7\u02B9-\u0362\u2012-\u2027\u2030-\u205E\u2050-\u205F\u2190-\u23FA\u2500-\u2BD1\u2E80-\u32FF\u3400-\u9FFF\uF900-\uFAFF\uFE00-\uFE6F-]+/g, '');
+		name = name.replace(/[^a-zA-Z0-9 /\\.~()<>^*%&=+$#_'?!"\u00A1-\u00BF\u00D7\u00F7\u02B9-\u0362\u2012-\u2027\u2030-\u205E\u2050-\u205F\u2190-\u23FA\u2500-\u2BD1\u2E80-\u32FF\u3400-\u9FFF\uF900-\uFAFF\uFE00-\uFE6F-]+/g, '');
 
 		// blacklist
 		// \u00a1 upside-down exclamation mark (i)
@@ -305,7 +322,7 @@ FS(TRANSLATION_DIRECTORY).readdir().then(files => {
  */
 Chat.tr = function (language, strings, ...keys) {
 	if (!language) language = 'english';
-	language = toId(language);
+	language = toID(language);
 	if (!Chat.translations.has(language)) throw new Error(`Trying to translate to a nonexistent language: ${language}`);
 	if (!strings.length) {
 		// @ts-ignore no this isn't any type
@@ -369,7 +386,7 @@ class MessageContext {
 		if (commaIndex < 0) {
 			return [target.trim(), ''];
 		}
-		return [target.substr(0, commaIndex).trim(), target.substr(commaIndex + 1).trim()];
+		return [target.slice(0, commaIndex).trim(), target.slice(commaIndex + 1).trim()];
 	}
 	/**
 	 * @param {string} text
@@ -964,7 +981,7 @@ class CommandContext extends MessageContext {
 		let buf = `(${this.room.id}) ${action}: `;
 		if (user) {
 			if (typeof user === 'string') {
-				buf += `[${toId(user)}]`;
+				buf += `[${toID(user)}]`;
 			} else {
 				let userid = user.getLastId();
 				buf += `[${userid}]`;
@@ -1145,7 +1162,7 @@ class CommandContext extends MessageContext {
 					let groupName = Config.groups[Config.pmmodchat] && Config.groups[Config.pmmodchat].name || Config.pmmodchat;
 					return this.errorReply(`On this server, you must be of rank ${groupName} or higher to PM users.`);
 				}
-				if (targetUser.ignorePMs && targetUser.ignorePMs !== user.group && !user.can('lock')) {
+				if (targetUser.blockPMs && targetUser.blockPMs !== user.group && !user.can('lock')) {
 					if (!targetUser.can('lock')) {
 						return this.errorReply(`This user is blocking private messages right now.`);
 					} else {
@@ -1153,7 +1170,7 @@ class CommandContext extends MessageContext {
 						return this.sendReply(`|html|If you need help, try opening a <a href="view-help-request" class="button">help ticket</a>`);
 					}
 				}
-				if (user.ignorePMs && user.ignorePMs !== targetUser.group && !targetUser.can('lock')) {
+				if (user.blockPMs && user.blockPMs !== targetUser.group && !targetUser.can('lock')) {
 					return this.errorReply(`You are blocking private messages right now.`);
 				}
 			}
@@ -1234,7 +1251,7 @@ class CommandContext extends MessageContext {
 			user.lastMessageTime = Date.now();
 		}
 
-		if (room && room.highTraffic && toId(message).replace(/[^a-z]+/, '').length < 2 && !user.can('broadcast', null, room)) {
+		if (room && room.highTraffic && toID(message).replace(/[^a-z]+/, '').length < 2 && !user.can('broadcast', null, room)) {
 			this.errorReply('Due to this room being a high traffic room, your message must contain at least two letters.');
 			return false;
 		}
@@ -1446,12 +1463,9 @@ Chat.sendPM = function (message, user, pmTarget, onlyRecipient = null) {
 	let emoticons = Chat.parseEmoticons(message);
 	if (emoticons) message = "/html " + emoticons;
 	let buf = `|pm|${user.getIdentity()}|${pmTarget.getIdentity()}|${(Users.ignoreEmotes[user.userid] ? noEmotes : message)}`;
-	// TODO is onlyRecipient a user? If so we should check if they are ignoring emoticions.
 	if (onlyRecipient) return onlyRecipient.send(buf);
 	user.send(buf);
-	if (pmTarget !== user) {
-		pmTarget.send(buf);
-	}
+	if (pmTarget !== user) pmTarget.send(buf);
 	pmTarget.lastPM = user.userid;
 	user.lastPM = pmTarget.userid;
 };
@@ -1738,6 +1752,14 @@ Chat.toListString = function (array) {
 	if (array.length === 1) return array[0];
 	return `${array.slice(0, -1).join(", ")} and ${array.slice(-1)}`;
 };
+
+/** @param {String} html */
+Chat.collapseLineBreaksHTML = function (html) {
+	html = html.replace(/<[^>]*>/g, tag => tag.replace(/\n/g, ' '));
+	html = html.replace(/\n/g, '&#10;');
+	return html;
+};
+
 /**
  * @param {Template} template
  * @param {number} gen
@@ -1895,8 +1917,10 @@ Chat.stringify = function (value, depth = 0) {
 	return `${constructor}{${buf}}`;
 };
 
-Chat.formatText = require('./chat-formatter').formatText;
-Chat.linkRegex = require('./chat-formatter').linkRegex;
+/** @type {typeof import('./chat-formatter').formatText} */
+Chat.formatText = require(/** @type {any} */('../.server-dist/chat-formatter')).formatText;
+/** @type {typeof import('./chat-formatter').linkRegex} */
+Chat.linkRegex = require(/** @type {any} */('../.server-dist/chat-formatter')).linkRegex;
 Chat.updateServerLock = false;
 
 /**

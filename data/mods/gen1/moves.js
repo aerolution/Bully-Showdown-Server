@@ -134,10 +134,7 @@ let BattleMovedex = {
 		self: {
 			volatileStatus: 'partialtrappinglock',
 		},
-		onBeforeMove(pokemon, target, move) {
-			// Removes must recharge volatile even if it misses
-			target.removeVolatile('mustrecharge');
-		},
+		// FIXME: onBeforeMove(pokemon, target) {target.removeVolatile('mustrecharge')}
 		onHit(target, source) {
 			/**
 			 * The duration of the partially trapped must be always renewed to 2
@@ -204,10 +201,7 @@ let BattleMovedex = {
 		self: {
 			volatileStatus: 'partialtrappinglock',
 		},
-		onBeforeMove(pokemon, target, move) {
-			// Removes must recharge volatile even if it misses
-			target.removeVolatile('mustrecharge');
-		},
+		// FIXME: onBeforeMove(pokemon, target) {target.removeVolatile('mustrecharge')}
 		onHit(target, source) {
 			/**
 			 * The duration of the partially trapped must be always renewed to 2
@@ -393,10 +387,7 @@ let BattleMovedex = {
 		self: {
 			volatileStatus: 'partialtrappinglock',
 		},
-		onBeforeMove(pokemon, target, move) {
-			// Removes must recharge volatile even if it misses
-			target.removeVolatile('mustrecharge');
-		},
+		// FIXME: onBeforeMove(pokemon, target) {target.removeVolatile('mustrecharge')}
 		onHit(target, source) {
 			/**
 			 * The duration of the partially trapped must be always renewed to 2
@@ -488,24 +479,22 @@ let BattleMovedex = {
 		shortDesc: "Resets all stat changes. Removes foe's status.",
 		onHit(target, source) {
 			this.add('-clearallboost');
-			for (const side of this.sides) {
-				for (const pokemon of side.active) {
-					pokemon.clearBoosts();
+			for (const pokemon of this.getAllActive()) {
+				pokemon.clearBoosts();
 
-					if (pokemon !== source) {
-						// Clears the status from the opponent
-						pokemon.setStatus('');
-					}
-					if (pokemon.status === 'tox') {
-						pokemon.setStatus('psn');
-					}
-					for (const id of Object.keys(pokemon.volatiles)) {
-						if (id === 'residualdmg') {
-							pokemon.volatiles[id].counter = 0;
-						} else {
-							pokemon.removeVolatile(id);
-							this.add('-end', pokemon, id);
-						}
+				if (pokemon !== source) {
+					// Clears the status from the opponent
+					pokemon.setStatus('');
+				}
+				if (pokemon.status === 'tox') {
+					pokemon.setStatus('psn');
+				}
+				for (const id of Object.keys(pokemon.volatiles)) {
+					if (id === 'residualdmg') {
+						pokemon.volatiles[id].counter = 0;
+					} else {
+						pokemon.removeVolatile(id);
+						this.add('-end', pokemon, id);
 					}
 				}
 			}
@@ -572,7 +561,10 @@ let BattleMovedex = {
 				let toLeech = this.clampIntRange(Math.floor(pokemon.maxhp / 16), 1) * toxicCounter;
 				let damage = this.damage(toLeech, pokemon, leecher);
 				if (residualdmg) this.hint("In Gen 1, Leech Seed's damage is affected by Toxic's counter.", true);
-				if (damage) this.heal(damage, leecher, pokemon);
+				if (!damage || toLeech > damage) {
+					this.hint("In Gen 1, Leech Seed recovery is not limited by the remaining HP of the seeded Pokemon.", true);
+				}
+				this.heal(toLeech, leecher, pokemon);
 			},
 		},
 	},
@@ -778,17 +770,16 @@ let BattleMovedex = {
 		inherit: true,
 		desc: "The user falls asleep for the next two turns and restores all of its HP, curing itself of any major status condition in the process. This does not remove the user's stat penalty for burn or paralysis. Fails if the user has full HP.",
 		onTryMove() {},
-		onHit(target) {
+		onHit(target, source, move) {
 			// Fails if the difference between
 			// max HP and current HP is 0, 255, or 511
 			if (target.hp >= target.maxhp ||
 			target.hp === (target.maxhp - 255) ||
 			target.hp === (target.maxhp - 511)) return false;
-			if (!target.setStatus('slp')) return false;
+			if (!target.setStatus('slp', source, move)) return false;
 			target.statusData.time = 2;
 			target.statusData.startTime = 2;
-			this.heal(target.maxhp); // Aeshetic only as the healing happens after you fall asleep in-game
-			this.add('-status', target, 'slp', '[from] move: Rest');
+			this.heal(target.maxhp); // Aesthetic only as the healing happens after you fall asleep in-game
 		},
 	},
 	roar: {
@@ -1071,10 +1062,7 @@ let BattleMovedex = {
 		self: {
 			volatileStatus: 'partialtrappinglock',
 		},
-		onBeforeMove(pokemon, target, move) {
-			// Removes must recharge volatile even if it misses
-			target.removeVolatile('mustrecharge');
-		},
+		// FIXME: onBeforeMove(pokemon, target) {target.removeVolatile('mustrecharge')}
 		onHit(target, source) {
 			/**
 			 * The duration of the partially trapped must be always renewed to 2

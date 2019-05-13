@@ -104,10 +104,10 @@ let BattleMovedex = {
 						}
 						target = possibleTarget;
 					}
-					/**@type {Move} */
+					/** @type {ActiveMove} */
 					// @ts-ignore
 					let moveData = {
-						id: 'bide',
+						id: /** @type {ID} */('bide'),
 						name: "Bide",
 						accuracy: 100,
 						damage: this.effectData.totalDamage * 2,
@@ -534,9 +534,9 @@ let BattleMovedex = {
 		inherit: true,
 		desc: "The user restores 1/2 of its maximum HP if no weather conditions are in effect, all of its HP if the weather is Sunny Day, and 1/4 of its maximum HP if the weather is Rain Dance or Sandstorm, all rounded down.",
 		onHit(pokemon) {
-			if (this.isWeather(['sunnyday', 'desolateland'])) {
+			if (this.field.isWeather(['sunnyday', 'desolateland'])) {
 				this.heal(pokemon.maxhp);
-			} else if (this.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
+			} else if (this.field.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
 				this.heal(pokemon.maxhp / 4);
 			} else {
 				this.heal(pokemon.maxhp / 2);
@@ -547,9 +547,9 @@ let BattleMovedex = {
 		inherit: true,
 		desc: "The user restores 1/2 of its maximum HP if no weather conditions are in effect, all of its HP if the weather is Sunny Day, and 1/4 of its maximum HP if the weather is Rain Dance or Sandstorm, all rounded down.",
 		onHit(pokemon) {
-			if (this.isWeather(['sunnyday', 'desolateland'])) {
+			if (this.field.isWeather(['sunnyday', 'desolateland'])) {
 				this.heal(pokemon.maxhp);
-			} else if (this.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
+			} else if (this.field.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
 				this.heal(pokemon.maxhp / 4);
 			} else {
 				this.heal(pokemon.maxhp / 2);
@@ -683,13 +683,12 @@ let BattleMovedex = {
 			this.add('-fail', pokemon);
 			return null;
 		},
-		onHit(target) {
-			if (!target.setStatus('slp') && target.status !== 'slp') return false;
+		onHit(target, source, move) {
+			if (!target.setStatus('slp', source, move) && target.status !== 'slp') return false;
 			target.statusData.time = 3;
 			target.statusData.startTime = 3;
 			target.statusData.source = target;
 			this.heal(target.maxhp);
-			this.add('-status', target, 'slp', '[from] move: Rest');
 		},
 		secondary: null,
 	},
@@ -926,9 +925,9 @@ let BattleMovedex = {
 		inherit: true,
 		desc: "The user restores 1/2 of its maximum HP if no weather conditions are in effect, all of its HP if the weather is Sunny Day, and 1/4 of its maximum HP if the weather is Rain Dance or Sandstorm, all rounded down.",
 		onHit(pokemon) {
-			if (this.isWeather(['sunnyday', 'desolateland'])) {
+			if (this.field.isWeather(['sunnyday', 'desolateland'])) {
 				this.heal(pokemon.maxhp);
-			} else if (this.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
+			} else if (this.field.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
 				this.heal(pokemon.maxhp / 4);
 			} else {
 				this.heal(pokemon.maxhp / 2);

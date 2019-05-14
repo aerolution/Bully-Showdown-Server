@@ -112,7 +112,7 @@ class RoomBattlePlayer extends RoomGames.RoomGamePlayer {
 	getUser() {
 		return (this.userid && Users(this.userid)) || null;
 	}
-	destroy() {
+	unlinkUser() {
 		const user = this.getUser();
 		if (user) {
 			for (const connection of user.connections) {
@@ -121,8 +121,9 @@ class RoomBattlePlayer extends RoomGames.RoomGamePlayer {
 			user.games.delete(this.game.id);
 			user.updateSearch();
 		}
-		// @ts-ignore
-		this.game[this.slot] = null;
+		this.userid = '';
+		this.connected = false;
+		this.active = false;
 	}
 	updateChannel(/** @type {User | Connection} */ user) {
 		if (user instanceof Users.Connection) {
@@ -961,6 +962,7 @@ class RoomBattle extends RoomGames.RoomGame {
 			this.stream.write(`>player ${slot} ` + JSON.stringify(options));
 		}
 
+		if (user) this.room.auth[user.userid] = Users.PLAYER_SYMBOL;
 		if (user && user.inRooms.has(this.id)) this.onConnect(user);
 		return player;
 	}
@@ -1022,6 +1024,12 @@ class RoomBattle extends RoomGames.RoomGame {
 
 	clearPlayers() {
 		for (const player of this.players) {
+			player.unlinkUser();
+		}
+	}
+
+	destroy() {
+		for (const player of this.players) {
 			player.destroy();
 		}
 		this.playerTable = {};
@@ -1034,9 +1042,7 @@ class RoomBattle extends RoomGames.RoomGame {
 		this.p3 = null;
 		// @ts-ignore
 		this.p4 = null;
-	}
 
-	destroy() {
 		this.ended = true;
 		this.stream.destroy();
 		if (this.active) {
@@ -1044,7 +1050,6 @@ class RoomBattle extends RoomGames.RoomGame {
 			this.active = false;
 		}
 
-		this.clearPlayers();
 		// @ts-ignore
 		this.room = null;
 	}

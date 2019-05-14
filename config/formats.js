@@ -1023,12 +1023,6 @@ let Formats = [
 		customBanlist: ['Shedinja', 'Azumarill', 'Diggersby', 'Medicham'],
 		noMegas: true,
 		level100: true,
-		onValidateSet(set) {
-			if (set && set.item) {
-				let item = this.getItem(set.item);
-				if (item.zMoveUser || item.megaStone || item.onPrimal) return [`${set.name || set.species}'s item ${set.item} is banned.`];
-			}
-		},
 		onBeforeSwitchIn(pokemon) {
 			let allies = pokemon.side.pokemon.splice(1);
 			pokemon.side.pokemonLeft = 1;
@@ -1203,6 +1197,7 @@ let Formats = [
 		mod: 'ultimatez',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		noMegas: true,
 	},
 	{
 		name: "[Gen 7] Haxmons",

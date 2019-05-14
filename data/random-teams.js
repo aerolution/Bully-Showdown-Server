@@ -126,7 +126,7 @@ class RandomTeams extends Dex.ModdedDex {
 		// Returns a Pokémon template for further details.
 		if (!template.otherFormes) return null;
 		let firstForme = this.getTemplate(template.otherFormes[0]);
-		if (firstForme.isMega || firstForme.isPrimal) return firstForme;
+		if (!this.format.noMegas && (firstForme.isMega || firstForme.isPrimal)) return firstForme;
 		return null;
 	}
 
@@ -625,7 +625,7 @@ class RandomTeams extends Dex.ModdedDex {
 			species = template.baseSpecies;
 		}
 		let battleForme = this.checkBattleForme(template);
-		if (battleForme && battleForme.randomBattleMoves && template.otherFormes && (battleForme.isMega ? (this.format.noMegas || !teamDetails.megaStone) : this.random(2))) {
+		if (battleForme && battleForme.randomBattleMoves && template.otherFormes && (battleForme.isMega ? !teamDetails.megaStone : this.random(2))) {
 			template = this.getTemplate(template.otherFormes.length >= 2 ? this.sample(template.otherFormes) : template.otherFormes[0]);
 		}
 

@@ -1040,9 +1040,10 @@ export class Battle extends Dex.ModdedDex {
 			side.activeRequest = null;
 		}
 
-		const maxTeamSize = this.getMaxTeamSize();
+		let maxTeamSize = this.getMaxTeamSize();
 		if (type === 'teampreview') {
-			this.add('teampreview' + (maxTeamSize !== 6 ? '|' + maxTeamSize : ''));
+			this.add('teampreview' + (maxTeamSize ? '|' + maxTeamSize : ''));
+			if (!maxTeamSize) maxTeamSize = 6;
 		}
 
 		const requests = this.getRequests(type, maxTeamSize);
@@ -1057,7 +1058,7 @@ export class Battle extends Dex.ModdedDex {
 
 	getMaxTeamSize() {
 		const teamLengthData = this.getFormat().teamLength;
-		return (teamLengthData && teamLengthData.battle) || 6;
+		return teamLengthData && teamLengthData.battle;
 	}
 
 	getRequests(type: RequestState, maxTeamSize: number) {

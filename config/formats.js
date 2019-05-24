@@ -124,7 +124,7 @@ let Formats = [
 		mod: 'gen7',
 		ruleset: ['[Gen 7] UU'],
 		banlist: ['UU', 'RUBL', 'Aurora Veil'],
-		unbanlist: ['Reuniclus', 'Drought'],
+		unbanlist: ['Slowbro-Mega', 'Drought'],
 	},
 	{
 		name: "[Gen 7] NU",
@@ -136,7 +136,7 @@ let Formats = [
 
 		mod: 'gen7',
 		ruleset: ['[Gen 7] RU'],
-		banlist: ['RU', 'NUBL', 'Reuniclus', 'Drought'],
+		banlist: ['RU', 'NUBL', 'Slowbro-Mega', 'Drought'],
 	},
 	{
 		name: "[Gen 7] PU",
@@ -148,7 +148,7 @@ let Formats = [
 
 		mod: 'gen7',
 		ruleset: ['[Gen 7] NU'],
-		banlist: ['NU', 'PUBL', 'Camerupt-Mega'],
+		banlist: ['NU', 'PUBL'],
 	},
 	{
 		name: "[Gen 7] LC",
@@ -166,6 +166,26 @@ let Formats = [
 			'Aipom', 'Cutiefly', 'Drifloon', 'Gligar', 'Gothita', 'Meditite', 'Misdreavus', 'Murkrow', 'Porygon',
 			'Scyther', 'Sneasel', 'Swirlix', 'Tangela', 'Trapinch', 'Vulpix-Base', 'Wingull', 'Yanma',
 			'Eevium Z', 'Baton Pass', 'Dragon Rage', 'Sonic Boom',
+		],
+	},
+	{
+		name: "[Gen 7] LC UU",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3628499/">LC UU</a>`,
+		],
+
+		mod: 'gen7',
+		searchShow: false,
+		maxLevel: 5,
+		ruleset: ['[Gen 7] LC'],
+		banlist: [
+			// LC
+			'Abra', 'Bunnelby', 'Carvanha', 'Chinchou', 'Corphish', 'Croagunk', 'Diglett-Base', 'Doduo', 'Dwebble',
+			'Ferroseed', 'Foongus', 'Gastly', 'Grimer-Alola', 'Magnemite', 'Mareanie', 'Meowth-Base', 'Mienfoo',
+			'Mudbray', 'Onix', 'Pawniard', 'Pikipek', 'Ponyta', 'Scraggy', 'Shellder', 'Snivy', 'Snubbull', 'Spritzee',
+			'Staryu', 'Surskit', 'Timburr', 'Tirtouga', 'Torchic', 'Trapinch', 'Vullaby', 'Vulpix-Alola', 'Zigzagoon',
+			// LCBL
+			'Magby', 'Rufflet', 'Wynaut', 'Deep Sea Tooth',
 		],
 	},
 	{
@@ -981,6 +1001,9 @@ let Formats = [
 		customBanlist: ['Shedinja'],
 		allowUnevolved: true,
 		level100: true,
+		onBegin() {
+			if (this.format === 'gen7randomaveragemons') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Every Pok&eacute;mon, including formes, has base 100 in every stat.</div>`);
+		},
 		onModifyTemplate(template) {
 			let dex = this && this.deepClone ? this : Dex;
 			let newTemplate = dex.deepClone(template);
@@ -990,12 +1013,15 @@ let Formats = [
 	},
 	{
         name: "[Gen 7] Random Camomons",
-        desc: "Pok&eacute;mon change type to match their first two moves.",
+        desc: `Pok&eacute;mon change type to match their first two moves.`,
 		
         mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		customBanlist: ['Shedinja', 'Zoroark'],
+		customBanlist: ['Arceus', 'Shedinja', 'Zoroark'],
+		onBegin() {
+			if (this.format === 'gen7randomcamomons') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Pok&eacute;mon change type to match their first two moves.</div>`);
+		},
         onModifyTemplate(template, target, source, effect) {
 			if (!target) return; // Chat command
 			if (effect && ['imposter', 'transform'].includes(effect.id)) return;
@@ -1026,6 +1052,9 @@ let Formats = [
 		customBanlist: ['Shedinja', 'Azumarill', 'Diggersby', 'Medicham'],
 		noMegas: true,
 		level100: true,
+		onBegin() {
+			if (this.format === 'gen7randomchimera') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Team order will determine the following characteristics of your lead Pok&eacute;mon:<br>* Slot 1: Species and typing<br>* Slot 2: Item<br>* Slot 3: Ability<br>* Slot 4: Stats<br>* Slot 5: Moves 1+2<br>* Slot 6: Moves 3+4</div>`);
+		},
 		onBeforeSwitchIn(pokemon) {
 			let allies = pokemon.side.pokemon.splice(1);
 			pokemon.side.pokemonLeft = 1;
@@ -1061,6 +1090,9 @@ let Formats = [
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		customBanlist: ['Shedinja', 'Azumarill', 'Diggersby', 'Medicham', 'Zoroark', 'Mawile'],
+		onBegin() {
+			if (this.format === 'gen7randompartnersincrime') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Both active ally Pok&eacute;mon share abilities and moves.</div>`);
+		},
 		onSwitchInPriority: 2,
 		onSwitchIn(pokemon) {
 			if (this.sides[0].active.every(ally => ally && !ally.fainted)) {
@@ -1131,6 +1163,9 @@ let Formats = [
 		customBanlist: ['Abra', 'Carvanha', 'Gastly', 'Bunnelby', 'Shedinja'],
 		allowUnevolved: true,
 		level100: true,
+		onBegin() {
+			if (this.format === 'gen7randomscalemons') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Every Pok&eacute;mon's stats, barring HP, are scaled to give them a BST as close to 600 as possible.</div>`);
+		},
 		onModifyTemplate(template, target, source) {
 			if (!target) return;
 			template = Object.assign({}, template);
@@ -1148,12 +1183,15 @@ let Formats = [
 	},
 	{
 		name: "[Gen 7] Random Tier Shift",
-		desc: "Pok&eacute;mon below OU get all their stats boosted. UU/RUBL get +10, RU/NUBL get +20, NU/PUBL get +30, and PU or lower get +40.",
+		desc: `Pok&eacute;mon below OU get all their base stats boosted. UU/RUBL get +10, RU/NUBL get +20, NU/PUBL get +30, and PU or lower get +40.`,
 		
 		mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		level100: true,
+		onBegin() {
+			if (this.format === 'gen7randomtiershift') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Pok&eacute;mon below OU get all their base stats boosted:<br>* UU/RUBL: +10<br>* RU/NUBL: +20<br>* NU/PUBL: +30<br>* PU or lower: +40</div>`);
+		},
 		onModifyTemplate(template, target, source, effect) {
 			if (!effect) return;
 			if (!template.abilities) return false;
@@ -1201,6 +1239,9 @@ let Formats = [
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		noMegas: true,
+		onBegin() {
+			if (this.format === 'gen7randomultimatez') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Use any type of Z-Crystal on any move and as many times per battle as desired.</div>`);
+		},
 	},
 	{
 		name: "[Gen 7] Haxmons",
@@ -1209,6 +1250,9 @@ let Formats = [
 		mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod', 'Freeze Clause Mod'],
+		onBegin() {
+			if (this.format === 'gen7haxmons') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Every RNG event that can happen will happen: moves always hit and crit, secondary effects always trigger.</div>`);
+		},
 		onModifyMovePriority: -100,
 		onModifyMove(move) {
 			if (move.accuracy !== true && move.accuracy > 50) move.accuracy = 100;
@@ -1227,6 +1271,10 @@ let Formats = [
 		mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		customBanlist: ['Arceus'],
+		onBegin() {
+			if (this.format === 'gen7proteanpalace') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">All Pok&eacute;mon have the Protean effect on top of their regular ability.</div>`);
+		},
 		onPrepareHitPriority: -1,
 		onPrepareHit(source, target, move) {
 			if (move.hasBounced) return;
@@ -1245,7 +1293,10 @@ let Formats = [
 		mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		customBanlist: ['Ditto'],
+		customBanlist: ['Ditto', 'Zoroark'],
+		onBegin() {
+			if (this.format === 'gen7shiftingillusions') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">All Pok&eacute;mon have the Illusion effect on top of their regular ability.</div>`);
+		},
 		onBeforeSwitchIn(pokemon) {
 			pokemon.illusion = null;
 			let i;
@@ -1282,6 +1333,9 @@ let Formats = [
 		mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		onBegin() {
+			if (this.format === 'gen7tormentingspirits') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Pok&eacute;mon can't select the same move twice in a row.</div>`);
+		},
 		onDisableMove(pokemon) {
 			if (pokemon.lastMove !== 'struggle') pokemon.disableMove(pokemon.lastMove);
 		},
@@ -1293,6 +1347,9 @@ let Formats = [
 		mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		onBegin() {
+			if (this.format === 'gen7voltturnmayhem') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">All Pok&eacute;mon automatically switch out upon using a move that affects the opponent.</div>`);
+		},
 		onModifyMovePriority: -1,
 		onModifyMove(move) {
 			switch (move.target) {

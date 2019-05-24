@@ -432,15 +432,44 @@ const commands = {
 		if (!target) return this.parse(`${this.cmdToken}avatars`);
 		let parts = target.split(',');
 		let avatar = parts[0].toLowerCase().replace(/[^a-z0-9-]+/g, '');
+		let avatarIsValid = true;
 		if (!avatarTable.has(avatar)) {
 			let avatarNum = parseInt(avatar);
 			if (!avatarNum || avatarNum > 294 || avatarNum < 1) {
-				if (!parts[1]) {
-					this.errorReply("Invalid avatar.");
-				}
-				return false;
+				avatarIsValid = false;
+			} else {
+				avatar = '' + avatarNum;
 			}
-			avatar = '' + avatarNum;
+		}
+
+		if (!avatarIsValid) {
+			const avatarsAuto = Config.customavatars || {};
+			if (avatarsAuto[user.userid] === avatar) {
+				avatarIsValid = true;
+			}
+			if (avatarsAuto[user.userid] === '#' + avatar) {
+				avatar = '#' + avatar;
+				avatarIsValid = true;
+			}
+			const avatarsManual = Config.allowedavatars || {};
+			if (avatarsManual.hasOwnProperty('#' + avatar)) {
+				avatar = '#' + avatar;
+			}
+			if (avatarsManual.hasOwnProperty(avatar)) {
+				if (avatarsManual[avatar].includes(user.userid)) {
+					avatarIsValid = true;
+				}
+			}
+		}
+
+		if (!avatarIsValid) {
+			if (parts[1]) return false;
+			if (avatar.startsWith('#')) {
+				this.errorReply("Access denied for custom avatar - make sure you're on the right account?");
+			} else {
+				this.errorReply("Invalid avatar.");
+			}
+			return false;
 		}
 
 		user.avatar = avatar;
@@ -2535,12 +2564,16 @@ const commands = {
 		this.privateModAction(`(${targetUser.name} was forced to choose a new name by ${user.name}${(reason ? `: ${reason}` : ``)})`);
 		this.globalModlog('FORCERENAME', targetUser, ` by ${user.name}${(reason ? `: ${reason}` : ``)}`);
 		this.modlog('FORCERENAME', targetUser, reason, {noip: 1, noalts: 1});
+		Chat.forceRenames.set(targetUser.userid, user.userid);
 		Ladders.cancelSearches(targetUser);
 		targetUser.resetName(true);
 		targetUser.send(`|nametaken||${user.name} considers your name inappropriate${(reason ? `: ${reason}` : ".")}`);
 		return true;
 	},
-	forcerenamehelp: [`/forcerename OR /fr [username], [reason] - Forcibly change a user's name and shows them the [reason]. Requires: % @ & ~`],
+	forcerenamehelp: [
+		`/forcerename OR /fr [username], [reason] - Forcibly change a user's name and shows them the [reason]. Requires: % @ & ~`,
+		`/allowname [username] - Unmarks a forcerenamed username, stopping staff from being notified when it is used. Requires % @ & ~`,
+	],
 
 	nl: 'namelock',
 	namelock(target, room, user) {
@@ -2566,6 +2599,7 @@ const commands = {
 
 		this.globalModlog("NAMELOCK", targetUser, ` by ${user.userid}${reasonText}`);
 		Ladders.cancelSearches(targetUser);
+		Chat.forceRenames.delete(targetUser.userid);
 		Punishments.namelock(targetUser, null, null, reason);
 		targetUser.popup(`|modal|${user.name} has locked your name and you can't change names anymore${reasonText}`);
 		return true;
@@ -3029,8 +3063,8 @@ const commands = {
 				this.sendReply("Formats have been hot-patched.");
 			} else if (target === 'loginserver') {
 				FS('config/custom.css').unwatch();
-				Chat.uncache('./server/loginserver');
-				global.LoginServer = require('./loginserver').LoginServer;
+				Chat.uncache('./.server-dist/loginserver');
+				global.LoginServer = require('../.server-dist/loginserver').LoginServer;
 				this.sendReply("The login server has been hot-patched. New login server requests will use the new code.");
 			} else if (target === 'learnsets' || target === 'validator') {
 				if (lock['validator']) return this.errorReply(`Hot-patching the validator has been disabled by ${lock['validator'].by} (${lock['validator'].reason})`);
@@ -3068,6 +3102,7 @@ const commands = {
 		`/hotpatch formats - reload the .sim-dist/dex.js tree, rebuild and rebroad the formats list, and spawn new simulator and team validator processes`,
 		`/hotpatch dnsbl - reloads IPTools datacenters`,
 		`/hotpatch punishments - reloads new punishments code`,
+		`/hotpatch loginserver - reloads new loginserver code`,
 		`/hotpatch tournaments - reloads new tournaments code`,
 		`/hotpatch all - hot-patches chat, tournaments, formats, login server, punishments, and dnsbl`,
 	],
@@ -3760,6 +3795,70 @@ const commands = {
 		}, 500);
 	},
 	importinputloghelp: [`/importinputlog [inputlog] - Starts a battle with a given inputlog. Requires: + % @ & ~`],
+
+	acceptdraw: 'offertie',
+	accepttie: 'offertie',
+	offerdraw: 'offertie',
+	offertie(target, room, user, connection, cmd) {
+		const battle = room.battle;
+		if (!battle) return this.errorReply("Must be in a battle room.");
+		if (!Config.allowrequestingties) {
+			return this.errorReply("This server does not allow offering ties.");
+		}
+		if (!this.can('roomvoice', null, room)) return;
+		if (cmd === 'accepttie' && !battle.players.some(player => player.wantsTie)) {
+			return this.errorReply("No other player is requesting a tie right now. It was probably canceled.");
+		}
+		const player = battle.playerTable[user.userid];
+		if (!battle.players.some(player => player.wantsTie)) {
+			this.add(`${user.name} is offering a tie.`);
+			room.update();
+			for (const otherPlayer of battle.players) {
+				if (otherPlayer !== player) {
+					otherPlayer.sendRoom(Chat.html`|uhtml|offertie|<button class="button" name="send" value="/accepttie"><strong>Accept tie</strong></button> <button class="button" name="send" value="/rejecttie">Reject</button>`);
+				} else {
+					player.wantsTie = true;
+				}
+			}
+		} else {
+			if (!player) {
+				return this.errorReply("Must be a player to accept ties.");
+			}
+			if (!player.wantsTie) {
+				player.wantsTie = true;
+			} else {
+				return this.errorReply("You have already agreed to a tie.");
+			}
+			player.sendRoom(Chat.html`|uhtmlchange|offertie|`);
+			this.add(`${user.name} accepted the tie.`);
+			if (battle.players.every(player => player.wantsTie)) {
+				if (battle.players.length > 2) {
+					this.add(`All players have accepted the tie.`);
+				}
+				room.battle.tie();
+			}
+		}
+	},
+	offertiehelp: [`/offertie - Offers a tie to all other players in a battle; if all accept, it ends in a tie. Requires: \u2606 @ # & ~`],
+
+	rejectdraw: 'rejecttie',
+	rejecttie(target, room, user) {
+		const battle = room.battle;
+		if (!battle) return this.errorReply("Must be in a battle room.");
+		const player = battle.playerTable[user.userid];
+		if (!player) {
+			return this.errorReply("Must be a player to reject ties.");
+		}
+		if (!battle.players.some(player => player.wantsTie)) {
+			return this.errorReply("No other player is requesting a tie right now. It was probably canceled.");
+		}
+		if (player.wantsTie) player.wantsTie = false;
+		for (const otherPlayer of battle.players) {
+			otherPlayer.sendRoom(Chat.html`|uhtmlchange|offertie|`);
+		}
+		return this.add(`${user.name} rejected the tie.`);
+	},
+	rejecttiehelp: [`/rejecttie - Rejects a tie offered by another player in a battle.`],
 
 	inputlog() {
 		this.parse(`/help exportinputlog`);

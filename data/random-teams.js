@@ -1573,32 +1573,28 @@ class RandomTeams extends Dex.ModdedDex {
 			item = 'Black Sludge';
 		}
 		
+		
 		// For Ultimate Z
 		if (this.format.id === 'gen7randomultimatez') {
-			const zCrystals = [
-				'Buginium Z',
-				'Darkinium Z',
-				'Dragonium Z',
-				'Electrium Z',
-				'Fairium Z',
-				'Fightinium Z',
-				'Firium Z',
-				'Flyinium Z',
-				'Ghostium Z',
-				'Grassium Z',
-				'Groundium Z',
-				'Icium Z',
-				'Normalium Z',
-				'Poisonium Z',
-				'Psychium Z',
-				'Rockium Z',
-				'Steelium Z',
-				'Waterium Z',
+			const allowedZCrystals = [
+				'Buginium Z', 'Darkinium Z', 'Dragonium Z', 'Electrium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Ghostium Z', 
+				'Grassium Z', 'Groundium Z', 'Icium Z', 'Normalium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z', 'Waterium Z',
 			];
-			if (item !== 'Eviolite') {
-				item = zCrystals[Math.floor(Math.random() * zCrystals.length)];
-			}
+			if (item !== 'Eviolite') item = this.sample(allowedZCrystals);
 		}
+		
+		// For Mix and Mega
+		if (this.format.id === 'gen7randommixandmega') {
+			const allowedMegaStones = [
+				'Abomasite', 'Absolite', 'Aerodactylite', 'Aggronite', 'Alakazite', 'Altarianite', 'Ampharosite', 'Audinite', 'Banettite', 'Blastoisinite', 
+				'Cameruptite', 'Charizardite X', 'Charizardite Y', 'Diancite', 'Galladite', 'Garchompite', 'Gardevoirite', 'Glalitite', 'Gyaradosite', 
+				'Heracronite', 'Houndoominite', 'Latiasite', 'Latiosite', 'Lopunnite', 'Lucarionite', 'Manectite', 'Metagrossite', 'Mewtwonite X', 'Mewtwonite Y', 
+				'Pinsirite', 'Sablenite', 'Salamencite', 'Sceptilite', 'Scizorite', 'Sharpedonite', 'Slowbronite', 'Steelixite', 'Swampertite', 'Tyranitarite', 
+				'Venusaurite', 'Blue Orb', 'Red Orb',
+			];
+			if (item !== 'Eviolite') item = this.sample(allowedMegaStones);
+		}
+
 
 		let level;
 
@@ -2007,7 +2003,8 @@ class RandomTeams extends Dex.ModdedDex {
 		// The teams generated depend on the tier choice in such a way that
 		// no exploitable information is leaked from rolling the tier in getTeam(p1).
 		let availableTiers = ['Uber', 'OU', 'UU', 'RU', 'NU', 'PU', 'LC', 'Mono'];
-		if (!this.FactoryTier) this.FactoryTier = this.sample(availableTiers);
+		if (this.format.restrictedTier) this.FactoryTier = this.format.restrictedTier;
+		else if (!this.FactoryTier) this.FactoryTier = this.sample(availableTiers);
 		const chosenTier = this.FactoryTier;
 
 		/**@type {{[k: string]: number}} */

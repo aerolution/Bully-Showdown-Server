@@ -2,8 +2,8 @@
 
 const RandomTeams = require('../../random-teams');
 
-class RandomUltimateZTeams extends RandomTeams {
+class RandomUZTeams extends RandomTeams {
 	
 }
 
-module.exports = RandomUltimateZTeams;
+module.exports = RandomUZTeams;

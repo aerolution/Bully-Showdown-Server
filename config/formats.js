@@ -618,7 +618,8 @@ let Formats = [
 		// no restrictions, for serious (other than team preview)
 		ruleset: ['Team Preview', 'Cancel Mod'],
 	},
-
+	
+	
 	// Other Metagames
 	///////////////////////////////////////////////////////////////////
 
@@ -1079,6 +1080,48 @@ let Formats = [
 		},
 	},
 	{
+		name: "[Gen 7] Random Mix and Mega",
+		desc: `Mega Stones and Primal Orbs can be used on almost any Pok&eacute;mon with no Mega Evolution limit.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3587740/">Mix and Mega</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3591580/">Mix and Mega Resources</a>`,
+		],
+
+		mod: 'mixandmega',
+		team: 'random',
+		ruleset: ['Pokemon', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
+		customBanlist: [
+			'Arceus', 'Deoxys', 'Deoxys-Attack', 'Deoxys-Speed', 'Dialga', 'Giratina', 'Groudon', 'Ho-Oh', 'Kyogre', 'Kyurem-Black',
+			'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane',
+			'Palkia', 'Pheromosa', 'Rayquaza', 'Regigigas', 'Reshiram', 'Slaking', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zekrom',
+		],
+		onBegin() {
+			if (this.format === 'gen7randommixandmega') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Mega Stones and Primal Orbs can be used on almost any Pok&eacute;mon with no Mega Evolution limit.</div>`);
+			for (const pokemon of this.getAllPokemon()) {
+				pokemon.m.originalSpecies = pokemon.baseTemplate.species;
+			}
+		},
+		onSwitchIn(pokemon) {
+			// @ts-ignore
+			let oMegaTemplate = this.getTemplate(pokemon.template.originalMega);
+			if (oMegaTemplate.exists && pokemon.m.originalSpecies !== oMegaTemplate.baseSpecies) {
+				// Place volatiles on the Pokémon to show its mega-evolved condition and details
+				this.add('-start', pokemon, oMegaTemplate.requiredItem || oMegaTemplate.requiredMove, '[silent]');
+				let oTemplate = this.getTemplate(pokemon.m.originalSpecies);
+				if (oTemplate.types.length !== pokemon.template.types.length || oTemplate.types[1] !== pokemon.template.types[1]) {
+					this.add('-start', pokemon, 'typechange', pokemon.template.types.join('/'), '[silent]');
+				}
+			}
+		},
+		onSwitchOut(pokemon) {
+			// @ts-ignore
+			let oMegaTemplate = this.getTemplate(pokemon.template.originalMega);
+			if (oMegaTemplate.exists && pokemon.m.originalSpecies !== oMegaTemplate.baseSpecies) {
+				this.add('-end', pokemon, oMegaTemplate.requiredItem || oMegaTemplate.requiredMove, '[silent]');
+			}
+		},
+	},
+	{
 		name: "[Gen 7] Random Partners in Crime",
 		desc: `Doubles-based metagame where both active ally Pok&eacute;mon share abilities and moves.`,
 		threads: [
@@ -1244,25 +1287,16 @@ let Formats = [
 		},
 	},
 	{
-		name: "[Gen 7] Haxmons",
-		desc: `Every RNG event that can happen will happen.`,
+		name: "[Gen 7] Inverse Random Battle",
+		desc: `The type effectiveness chart is inverted: weaknesses become resistances, while resistances and immunities become weaknesses.`,
 		
 		mod: 'gen7',
 		team: 'random',
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod', 'Freeze Clause Mod'],
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod', 'Inverse Mod'],
+		customBanlist: ['Kyurem-Black', 'Serperior', 'Hoopa-Unbound', 'Kartana', 'Tapu Bulu', 'Tapu Lele', 'Linoone'],
 		onBegin() {
-			if (this.format === 'gen7haxmons') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Every RNG event that can happen will happen: moves always hit and crit, secondary effects always trigger.</div>`);
+			if (this.format === 'gen7inverserandombattle') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">The type effectiveness chart is inverted: weaknesses become resistances, while resistances and immunities become weaknesses.</div>`);
 		},
-		onModifyMovePriority: -100,
-		onModifyMove(move) {
-			if (move.accuracy !== true && move.accuracy > 50) move.accuracy = 100;
-			move.willCrit = true;
-			if (move.secondaries) {
-				for (var i = 0; i < move.secondaries.length; i++) {
-					move.secondaries[i].chance = 100;
-				}
-			}
-		}
 	},
 	{
 		name: "[Gen 7] Protean Palace",
@@ -1327,20 +1361,6 @@ let Formats = [
 		},
 	},
 	{
-		name: "[Gen 7] Tormenting Spirits",
-		desc: `Pok&eacute;mon can't select the same move twice in a row.`,
-		
-		mod: 'gen7',
-		team: 'random',
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		onBegin() {
-			if (this.format === 'gen7tormentingspirits') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Pok&eacute;mon can't select the same move twice in a row.</div>`);
-		},
-		onDisableMove(pokemon) {
-			if (pokemon.lastMove !== 'struggle') pokemon.disableMove(pokemon.lastMove);
-		},
-	},
-	{
 		name: "[Gen 7] VoltTurn Mayhem",
 		desc: `All Pok&eacute;mon automatically switch out upon using a move that affects the opponent.`,
 		
@@ -1363,13 +1383,13 @@ let Formats = [
 			}
 		},
 	},
-
-
-	// Randomized Metas
+	
+	
+	// Tiered Randomized Metas
 	///////////////////////////////////////////////////////////////////
 
 	{
-		section: "Randomized Metas",
+		section: "Tiered Randomized Metas",
 		column: 2,
 	},
 	{
@@ -1396,43 +1416,84 @@ let Formats = [
 		ruleset: ['Pokemon', 'Standard GBU'],
 	},
 	{
+		name: "[Gen 7] OU Random Battle",
+		desc: `Randomized teams of Pok&eacute;mon for the OU tier with sets that are competitively viable.`,
+
+		mod: 'gen7',
+		team: 'randomFactory',
+		restrictedTier: 'OU',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
+	},
+	{
+		name: "[Gen 7] Ubers Random Battle",
+		desc: `Randomized teams of Pok&eacute;mon for the Ubers tier with sets that are competitively viable.`,
+
+		mod: 'gen7',
+		team: 'randomFactory',
+		restrictedTier: 'Uber',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
+	},
+	{
+		name: "[Gen 7] UU Random Battle",
+		desc: `Randomized teams of Pok&eacute;mon for the UU tier with sets that are competitively viable.`,
+
+		mod: 'gen7',
+		team: 'randomFactory',
+		restrictedTier: 'UU',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
+	},
+	{
+		name: "[Gen 7] RU Random Battle",
+		desc: `Randomized teams of Pok&eacute;mon for the RU tier with sets that are competitively viable.`,
+
+		mod: 'gen7',
+		team: 'randomFactory',
+		restrictedTier: 'RU',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
+	},
+	{
+		name: "[Gen 7] NU Random Battle",
+		desc: `Randomized teams of Pok&eacute;mon for the NU tier with sets that are competitively viable.`,
+
+		mod: 'gen7',
+		team: 'randomFactory',
+		restrictedTier: 'NU',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
+	},
+	{
+		name: "[Gen 7] PU Random Battle",
+		desc: `Randomized teams of Pok&eacute;mon for the PU tier with sets that are competitively viable.`,
+
+		mod: 'gen7',
+		team: 'randomFactory',
+		restrictedTier: 'PU',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
+	},
+	{
+		name: "[Gen 7] LC Random Battle",
+		desc: `Randomized teams of Pok&eacute;mon for the LC tier with sets that are competitively viable.`,
+
+		mod: 'gen7',
+		team: 'randomFactory',
+		restrictedTier: 'LC',
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
+	},
+	{
 		name: "[Gen 7] Monotype Random Battle",
+		desc: `Randomized teams of Pok&eacute;mon for the Monotype tier with sets that are competitively viable.`,
 
 		mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Same Type Clause', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 	},
-	{
-		name: "[Gen 7] Super Staff Bros Brawl",
-		desc: "Super Staff Bros returns for another round! Battle with a random team of pokemon created by the sim staff.",
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/articles/super-staff-bros-brawl">Introduction &amp; Roster</a>`,
-		],
 
-		mod: 'ssb',
-		team: 'randomStaffBros',
-		ruleset: ['HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
-		onBegin() {
-			this.add('raw|SUPER STAFF BROS <b>BRAWL</b>!!');
-			this.add('message', 'GET READY FOR THE NEXT BATTLE!');
-			this.add(`raw|<div class='broadcast-green'><b>Wondering what all these custom moves, abilities, and items do?<br />Check out the <a href="https://www.smogon.com/articles/super-staff-bros-brawl" target="_blank">Super Staff Bros Brawl Guide</a> and find out!</b></div>`);
-		},
-		onSwitchIn(pokemon) {
-			let name = toID(pokemon.illusion ? pokemon.illusion.name : pokemon.name);
-			if (this.getTemplate(name).exists) {
-				// Certain pokemon have volatiles named after their speciesid
-				// To prevent overwriting those, and to prevent accidentaly leaking
-				// that a pokemon is on a team through the onStart even triggering
-				// at the start of a match, users with pokemon names will need their
-				// statuse's to end in "user".
-				name = /** @type {ID} */(name + 'user');
-			}
-			// Add the mon's status effect to it as a volatile.
-			let status = this.getEffect(name);
-			if (status && status.exists) {
-				pokemon.addVolatile(name, pokemon);
-			}
-		},
+
+	// Other Randomized Metas
+	///////////////////////////////////////////////////////////////////
+
+	{
+		section: "Other Randomized Metas",
+		column: 2,
 	},
 	{
 		name: "[Gen 7] Challenge Cup 1v1",
@@ -1533,6 +1594,7 @@ let Formats = [
 		challengeShow: false,
 		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod'],
 	},
+	
 	
 	// Let's Go!
 	///////////////////////////////////////////////////////////////////

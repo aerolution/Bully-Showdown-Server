@@ -1293,7 +1293,7 @@ let Formats = [
 		mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod', 'Inverse Mod'],
-		customBanlist: ['Kyurem-Black', 'Serperior', 'Hoopa-Unbound', 'Kartana', 'Tapu Bulu', 'Tapu Lele', 'Linoone'],
+		customBanlist: ['Arceus', 'Kyurem-Black', 'Serperior', 'Hoopa-Unbound', 'Kartana', 'Tapu Bulu', 'Tapu Lele', 'Linoone'],
 		onBegin() {
 			if (this.format === 'gen7inverserandombattle') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">The type effectiveness chart is inverted: weaknesses become resistances, while resistances and immunities become weaknesses.</div>`);
 		},

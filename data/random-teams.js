@@ -1592,7 +1592,7 @@ class RandomTeams extends Dex.ModdedDex {
 				'Pinsirite', 'Sablenite', 'Salamencite', 'Sceptilite', 'Scizorite', 'Sharpedonite', 'Slowbronite', 'Steelixite', 'Swampertite', 'Tyranitarite', 
 				'Venusaurite', 'Blue Orb', 'Red Orb',
 			];
-			if (item !== 'Eviolite') item = this.sample(allowedMegaStones);
+			item = this.sample(allowedMegaStones);
 		}
 
 

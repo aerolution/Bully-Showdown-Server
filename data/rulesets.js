@@ -492,7 +492,7 @@ let BattleFormats = {
 		onValidateTeam(team, format) {
 			let itemTable = {};
 			for (const set of team) {
-				let item = toId(set.item);
+				let item = toID(set.item);
 				if (!item) continue;
 				if (item in itemTable) {
 					if (itemTable[item] >= 2) {

@@ -1532,7 +1532,6 @@ let Formats = [
 		teamLength: {
 			battle: 2,
 		},
-		searchShow: false,
 		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
 	},
 	{
@@ -1549,7 +1548,6 @@ let Formats = [
 		mod: 'gen7',
 		gameType: 'doubles',
 		team: 'randomHC',
-		searchShow: false,
 		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
@@ -1558,15 +1556,6 @@ let Formats = [
 		mod: 'gen6',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-	},
-	{
-		name: "[Gen 6] Battle Factory",
-		desc: `Randomized teams of Pok&eacute;mon for a generated Smogon tier with sets that are competitively viable.`,
-
-		mod: 'gen6',
-		team: 'randomFactory',
-		searchShow: false,
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
 	},
 	{
 		name: "[Gen 5] Random Battle",

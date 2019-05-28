@@ -834,6 +834,7 @@ class RandomTeams extends Dex.ModdedDex {
 				case 'switcheroo': case 'trick':
 					if (counter.Physical + counter.Special < 3 || counter.setupType || !!counter['speedsetup']) rejected = true;
 					if (hasMove['lightscreen'] || hasMove['reflect'] || hasMove['suckerpunch'] || hasMove['trickroom']) rejected = true;
+					if (this.format.forceItem) rejected = true;
 					break;
 				case 'toxicspikes':
 					if (counter.setupType || teamDetails.toxicSpikes) rejected = true;
@@ -1307,7 +1308,7 @@ class RandomTeams extends Dex.ModdedDex {
 				} else if (ability === 'Triage') {
 					rejectAbility = !counter['recovery'] && !counter['drain'];
 				} else if (ability === 'Unburden') {
-					rejectAbility = template.isMega || (!counter.setupType && !hasMove['acrobatics']);
+					rejectAbility = this.format.forceItem || template.isMega || (!counter.setupType && !hasMove['acrobatics']);
 				} else if (ability === 'Water Absorb') {
 					rejectAbility = abilities.includes('Volt Absorb') || (abilities.includes('Water Bubble') && !!counter['Water']);
 				}
@@ -1335,7 +1336,7 @@ class RandomTeams extends Dex.ModdedDex {
 				ability = 'Swift Swim';
 			} else if (abilities.includes('Triage') && !!counter['drain']) {
 				ability = 'Triage';
-			} else if (abilities.includes('Unburden') && hasMove['acrobatics']) {
+			} else if (abilities.includes('Unburden') && hasMove['acrobatics'] && !this.format.forceItem) {
 				ability = 'Unburden';
 			} else if (isDoubles && abilities.includes('Intimidate')) {
 				ability = 'Intimidate';
@@ -1384,7 +1385,7 @@ class RandomTeams extends Dex.ModdedDex {
 			item = (slot === 0 && hasMove['stealthrock']) ? 'Focus Sash' : 'Life Orb';
 		} else if (template.species === 'Farfetch\'d') {
 			item = 'Stick';
-		} else if (template.species === 'Genesect' && hasMove['technoblast']) {
+		} else if (template.species === 'Genesect' && hasMove['technoblast'] && !this.format.forceItem) {
 			item = 'Douse Drive';
 			species = 'Genesect-Douse';
 		} else if (template.species === 'Kommo-o' && !teamDetails.zMove) {
@@ -1395,7 +1396,7 @@ class RandomTeams extends Dex.ModdedDex {
 			item = 'Marshadium Z';
 		} else if (template.species === 'Mimikyu' && hasMove['playrough'] && counter.setupType && !teamDetails.zMove) {
 			item = 'Mimikium Z';
-		} else if ((template.species === 'Necrozma-Dusk-Mane' || template.species === 'Necrozma-Dawn-Wings') && !teamDetails.zMove) {
+		} else if ((template.species === 'Necrozma-Dusk-Mane' || template.species === 'Necrozma-Dawn-Wings') && !teamDetails.zMove && !this.format.forceItem) {
 			if (hasMove['autotomize'] && hasMove['sunsteelstrike']) {
 				item = 'Solganium Z';
 			} else if (hasMove['trickroom'] && hasMove['moongeistbeam']) {
@@ -1415,7 +1416,7 @@ class RandomTeams extends Dex.ModdedDex {
 			if (!isDoubles) species = 'Pikachu' + this.sample(['', '-Original', '-Hoenn', '-Sinnoh', '-Unova', '-Kalos', '-Alola', '-Partner']);
 			if (species !== 'Pikachu') ability = 'Static';
 			item = 'Light Ball';
-		} else if (template.species === 'Porygon-Z' && hasMove['nastyplot'] && !hasMove['trick'] && !['nastyplot', 'icebeam', 'triattack'].includes(moves[0]) && !teamDetails.zMove && !isDoubles) {
+		} else if (template.species === 'Porygon-Z' && hasMove['nastyplot'] && !hasMove['trick'] && !['nastyplot', 'icebeam', 'triattack'].includes(moves[0]) && !teamDetails.zMove && !isDoubles && !this.format.forceItem) {
 			moves[moves.indexOf('nastyplot')] = 'conversion';
 			moves[moves.indexOf('triattack')] = 'recover';
 			item = 'Normalium Z';
@@ -1722,7 +1723,7 @@ class RandomTeams extends Dex.ModdedDex {
 				if (template.battleOnly) types = this.getTemplate(template.baseSpecies).types;
 				if (types.indexOf(type) < 0) continue;
 			}
-			if (template.gen <= this.gen && ((!template.nfe || allowedNFE.includes(template.species)) || this.format.allowUnevolved) && !template.isMega && !template.isPrimal && !template.isNonstandard && template.randomBattleMoves) {
+			if (template.gen <= this.gen && ((!template.nfe || (!this.format.forceItem && allowedNFE.includes(template.species))) || this.format.allowUnevolved) && !template.isMega && !template.isPrimal && !template.isNonstandard && template.randomBattleMoves) {
 				pokemonPool.push(id);
 			}
 		}

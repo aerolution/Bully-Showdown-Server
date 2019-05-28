@@ -28,6 +28,14 @@ let Formats = [
 		banlist: ['Illegal'],
 	},
 	{
+		name: "[Gen 7] DS Timer Draft League",
+
+		mod: 'gen7',
+		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['Pokemon', 'Draft', 'Team Preview'],
+		banlist: ['Illegal'],
+	},
+	{
 		name: "[Gen 7] LC Draft League",
 
 		mod: 'gen7',
@@ -36,20 +44,19 @@ let Formats = [
 		banlist: ['Illegal', 'Eevium Z', 'Dragon Rage', 'Sonic Boom',],
 	},
 	{
+		name: "[Gen 7] Unrestricted Draft League",
+
+		mod: 'gen7',
+		ruleset: ['Pokemon', 'Draft', 'Team Preview', 'Allow CAP'],
+	},
+	{
 		name: "[Gen 7] No Team Preview",
 
 		mod: 'gen7',
 		ruleset: ['Pokemon', 'Draft'],
 		banlist: ['Illegal'],
 	},
-	{
-		name: "[Gen 7] DS Timer Draft League",
-
-		mod: 'gen7',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Pokemon', 'Draft', 'Team Preview'],
-		banlist: ['Illegal'],
-	},
+	
 
 	// US/UM Singles
 	///////////////////////////////////////////////////////////////////
@@ -1095,6 +1102,13 @@ let Formats = [
 			'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane',
 			'Palkia', 'Pheromosa', 'Rayquaza', 'Regigigas', 'Reshiram', 'Slaking', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zekrom',
 		],
+		forceItem: [
+			'Abomasite', 'Absolite', 'Aerodactylite', 'Aggronite', 'Alakazite', 'Altarianite', 'Ampharosite', 'Audinite', 'Banettite', 'Blastoisinite', 
+			'Cameruptite', 'Charizardite X', 'Charizardite Y', 'Diancite', 'Galladite', 'Garchompite', 'Gardevoirite', 'Glalitite', 'Gyaradosite', 
+			'Heracronite', 'Houndoominite', 'Latiasite', 'Latiosite', 'Lopunnite', 'Lucarionite', 'Manectite', 'Metagrossite', 'Mewtwonite X', 'Mewtwonite Y', 
+			'Pinsirite', 'Sablenite', 'Salamencite', 'Sceptilite', 'Scizorite', 'Sharpedonite', 'Slowbronite', 'Steelixite', 'Swampertite', 'Tyranitarite', 
+			'Venusaurite', 'Blue Orb', 'Red Orb',
+		],
 		onBegin() {
 			if (this.format === 'gen7randommixandmega') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Mega Stones and Primal Orbs can be used on almost any Pok&eacute;mon with no Mega Evolution limit.</div>`);
 			for (const pokemon of this.getAllPokemon()) {
@@ -1282,6 +1296,10 @@ let Formats = [
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		noMegas: true,
+		forceItem: [
+			'Buginium Z', 'Darkinium Z', 'Dragonium Z', 'Electrium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Ghostium Z', 
+			'Grassium Z', 'Groundium Z', 'Icium Z', 'Normalium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z', 'Waterium Z',
+		],
 		onBegin() {
 			if (this.format === 'gen7randomultimatez') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Use any type of Z-Crystal on any move and as many times per battle as desired.</div>`);
 		},
@@ -1422,7 +1440,7 @@ let Formats = [
 		mod: 'gen7',
 		team: 'randomFactory',
 		restrictedTier: 'OU',
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
 		name: "[Gen 7] Ubers Random Battle",
@@ -1431,7 +1449,7 @@ let Formats = [
 		mod: 'gen7',
 		team: 'randomFactory',
 		restrictedTier: 'Uber',
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
 	},
 	{
 		name: "[Gen 7] UU Random Battle",
@@ -1440,7 +1458,7 @@ let Formats = [
 		mod: 'gen7',
 		team: 'randomFactory',
 		restrictedTier: 'UU',
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
 		name: "[Gen 7] RU Random Battle",
@@ -1449,7 +1467,7 @@ let Formats = [
 		mod: 'gen7',
 		team: 'randomFactory',
 		restrictedTier: 'RU',
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
 		name: "[Gen 7] NU Random Battle",
@@ -1458,7 +1476,7 @@ let Formats = [
 		mod: 'gen7',
 		team: 'randomFactory',
 		restrictedTier: 'NU',
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
 		name: "[Gen 7] PU Random Battle",
@@ -1467,7 +1485,7 @@ let Formats = [
 		mod: 'gen7',
 		team: 'randomFactory',
 		restrictedTier: 'PU',
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
 		name: "[Gen 7] LC Random Battle",
@@ -1476,7 +1494,7 @@ let Formats = [
 		mod: 'gen7',
 		team: 'randomFactory',
 		restrictedTier: 'LC',
-		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
+		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
 		name: "[Gen 7] Monotype Random Battle",

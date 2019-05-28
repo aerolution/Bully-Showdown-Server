@@ -1573,27 +1573,8 @@ class RandomTeams extends Dex.ModdedDex {
 			item = 'Black Sludge';
 		}
 		
-		
-		// For Ultimate Z
-		if (this.format.id === 'gen7randomultimatez') {
-			const allowedZCrystals = [
-				'Buginium Z', 'Darkinium Z', 'Dragonium Z', 'Electrium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Ghostium Z', 
-				'Grassium Z', 'Groundium Z', 'Icium Z', 'Normalium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z', 'Waterium Z',
-			];
-			if (item !== 'Eviolite') item = this.sample(allowedZCrystals);
-		}
-		
-		// For Mix and Mega
-		if (this.format.id === 'gen7randommixandmega') {
-			const allowedMegaStones = [
-				'Abomasite', 'Absolite', 'Aerodactylite', 'Aggronite', 'Alakazite', 'Altarianite', 'Ampharosite', 'Audinite', 'Banettite', 'Blastoisinite', 
-				'Cameruptite', 'Charizardite X', 'Charizardite Y', 'Diancite', 'Galladite', 'Garchompite', 'Gardevoirite', 'Glalitite', 'Gyaradosite', 
-				'Heracronite', 'Houndoominite', 'Latiasite', 'Latiosite', 'Lopunnite', 'Lucarionite', 'Manectite', 'Metagrossite', 'Mewtwonite X', 'Mewtwonite Y', 
-				'Pinsirite', 'Sablenite', 'Salamencite', 'Sceptilite', 'Scizorite', 'Sharpedonite', 'Slowbronite', 'Steelixite', 'Swampertite', 'Tyranitarite', 
-				'Venusaurite', 'Blue Orb', 'Red Orb',
-			];
-			item = this.sample(allowedMegaStones);
-		}
+		// forceItem
+		if (this.format.forceItem) item = this.sample(this.format.forceItem);
 
 
 		let level;
@@ -1660,13 +1641,14 @@ class RandomTeams extends Dex.ModdedDex {
 			level = 70 + Math.floor(((600 - this.clampIntRange(bst, 300, 600)) / 10.34));
 		}
 
-		if (template.species === 'Stunfisk') {
+		if (template.species === 'Stunfisk' && !this.format.forceItem) {
 			// This is just to amuse Zarel
 			ability = 'Limber';
 			item = 'Cheri Berry';
 			level += 2;
 		}
 		
+		// level100
 		if (this.format.level100) {
 			level = 100;
 		}

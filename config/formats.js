@@ -1006,7 +1006,7 @@ let Formats = [
 		mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		customBanlist: ['Shedinja'],
+		customBanlist: ['Shedinja', 'Azurill', 'Marill', 'Azumarill', 'Bunnelby', 'Diggersby', 'Meditite', 'Medicham', 'Mawile'],
 		allowUnevolved: true,
 		level100: true,
 		onBegin() {
@@ -1026,7 +1026,7 @@ let Formats = [
         mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		customBanlist: ['Arceus', 'Shedinja', 'Zoroark'],
+		customBanlist: ['Arceus', 'Shedinja', 'Zoroark', 'Ditto'],
 		onBegin() {
 			if (this.format === 'gen7randomcamomons') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Pok&eacute;mon change type to match their first two moves.</div>`);
 		},
@@ -1088,7 +1088,7 @@ let Formats = [
 	},
 	{
 		name: "[Gen 7] Random Mix and Mega",
-		desc: `Mega Stones and Primal Orbs can be used on almost any Pok&eacute;mon with no Mega Evolution limit.`,
+		desc: `Mega Stones and Primal Orbs can be used on any Pok&eacute;mon with no Mega Evolution limit. Mega Evolving grants you the stats boosts, ability and type changes that the Stone regularly gives.`,
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3587740/">Mix and Mega</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3591580/">Mix and Mega Resources</a>`,
@@ -1098,7 +1098,7 @@ let Formats = [
 		team: 'random',
 		ruleset: ['Pokemon', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
 		customBanlist: [
-			'Arceus', 'Deoxys', 'Deoxys-Attack', 'Deoxys-Speed', 'Dialga', 'Giratina', 'Groudon', 'Ho-Oh', 'Kyogre', 'Kyurem-Black',
+			'Arceus', 'Deoxys', 'Deoxys-Attack', 'Deoxys-Speed', 'Dialga', 'Giratina', 'Groudon', 'Ho-Oh', 'Hoopa-Unbound', 'Kyogre', 'Kyurem-Black',
 			'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane',
 			'Palkia', 'Pheromosa', 'Rayquaza', 'Regigigas', 'Reshiram', 'Slaking', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zekrom',
 		],

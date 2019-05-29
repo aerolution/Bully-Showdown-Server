@@ -1217,7 +1217,7 @@ let Formats = [
 		mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		customBanlist: ['Abra', 'Carvanha', 'Gastly', 'Bunnelby', 'Shedinja'],
+		customBanlist: ['Abra', 'Carvanha', 'Gastly', 'Bunnelby', 'Diggersby', 'Shedinja', 'Azurill', 'Marill', 'Azumarill', 'Medicham', 'Mawile'],
 		allowUnevolved: true,
 		level100: true,
 		onBegin() {
@@ -1323,7 +1323,7 @@ let Formats = [
 		mod: 'gen7',
 		team: 'random',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		customBanlist: ['Arceus'],
+		customBanlist: ['Arceus', 'Greninja', 'Kecleon'],
 		onBegin() {
 			if (this.format === 'gen7proteanpalace') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">All Pok&eacute;mon have the Protean effect on top of their regular ability.</div>`);
 		},

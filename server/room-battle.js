@@ -511,6 +511,7 @@ class RoomBattle extends RoomGames.RoomGame {
 		}
 		this.timer = new RoomBattleTimer(this);
 		if (Config.forcetimer) this.timer.start();
+		if (format.forcedTimer) this.timer.start();
 		this.start();
 	}
 

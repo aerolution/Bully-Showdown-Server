@@ -1033,7 +1033,7 @@ let Formats = [
         onModifyTemplate(template, target, source, effect) {
 			if (!target) return; // Chat command
 			if (effect && ['imposter', 'transform'].includes(effect.id)) return;
-			let types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => this.getMove(move.id).type))];
+			let types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => (move.id === "hiddenpower" ? target.hpType : this.getMove(move.id).type)))];
 			return Object.assign({}, template, {types: types});
 		},
 		onSwitchIn(pokemon) {
@@ -1512,6 +1512,16 @@ let Formats = [
 	{
 		section: "Other Randomized Metas",
 		column: 2,
+	},
+	{
+		name: "[Gen 7] Random Battle Turbo",
+		desc: `Random Battle with 5-second forced timer.`,
+
+		mod: 'gen7',
+		team: 'random',
+		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		forcedTimer: true,
+		timer: {starting: 10, addPerTurn: 10, maxPerTurn: 5, maxFirstTurn: 10, timeoutAutoChoose: true},
 	},
 	{
 		name: "[Gen 7] Challenge Cup 1v1",

@@ -1163,6 +1163,7 @@ class CommandContext extends MessageContext {
 					return this.errorReply(`On this server, you must be of rank ${groupName} or higher to PM users.`);
 				}
 				if (targetUser.blockPMs && targetUser.blockPMs !== user.group && !user.can('lock')) {
+					Chat.maybeNotifyBlocked('pm', targetUser, user);
 					if (!targetUser.can('lock')) {
 						return this.errorReply(`This user is blocking private messages right now.`);
 					} else {

@@ -1751,6 +1751,7 @@ class RandomTeams extends Dex.ModdedDex {
 			
 			// Custom Tier banlists
 			if (this.format.customBanlist && this.format.customBanlist.includes(template.species)) continue;
+			if (this.format.customBanlist && this.format.customBanlist.includes(template.baseSpecies)) continue;
 
 			// Limit to one of each species (Species Clause)
 			if (baseFormes[template.baseSpecies]) continue;

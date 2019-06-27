@@ -595,7 +595,7 @@ class CommandContext extends MessageContext {
 			if (this.pmTarget) {
 				Chat.sendPM(message, this.user, this.pmTarget);
 			} else {
-				let emoticons = parseEmoticons(message);
+				let emoticons = Chat.parseEmoticons(message);
 				if (emoticons && !this.room.disableEmoticons) {
 					for (let u in this.room.users) {
 						let curUser = Users(u);
@@ -1461,7 +1461,7 @@ Chat.parse = function (message, room, user, connection) {
  */
 Chat.sendPM = function (message, user, pmTarget, onlyRecipient = null) {
 	let noEmotes = message;
-	let emoticons = parseEmoticons(message);
+	let emoticons = Chat.parseEmoticons(message);
 	if (emoticons) message = "/html " + emoticons;
 	let buf = `|pm|${user.getIdentity()}|${pmTarget.getIdentity()}|${(Users.ignoreEmotes[user.userid] ? noEmotes : message)}`;
 	if (onlyRecipient) return onlyRecipient.send(buf);

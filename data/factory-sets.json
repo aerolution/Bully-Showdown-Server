@@ -770,17 +770,6 @@
 				"moves": [["Spikes"], ["Toxic"], ["Whirlwind"], ["Roost"]]
 			}]
 		},
-		"gothitelle": {
-			"flags": {},
-			"sets": [{
-				"species": "Gothitelle",
-				"item": ["Leftovers"],
-				"ability": ["Shadow Tag"],
-				"evs": {"hp": 244, "def": 108, "spd": 156},
-				"nature": "Calm",
-				"moves": [["Charm"], ["Confide"], ["Rest"], ["Taunt"]]
-			}]
-		},
 		"buzzwole": {
 			"flags": {},
 			"sets": [{

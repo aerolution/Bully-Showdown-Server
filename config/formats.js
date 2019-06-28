@@ -76,6 +76,16 @@ let Formats = [
 		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
+		name: "[Gen 7] Random Battle Turbo",
+		desc: `Random Battle with 5-second forced timer.`,
+
+		mod: 'gen7',
+		team: 'random',
+		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		forcedTimer: true,
+		timer: {starting: 10, addPerTurn: 10, maxPerTurn: 5, maxFirstTurn: 10, timeoutAutoChoose: true},
+	},
+	{
 		name: "[Gen 7] Unrated Random Battle",
 
 		mod: 'gen7',
@@ -275,7 +285,10 @@ let Formats = [
 
 		mod: 'gen7',
 		ruleset: ['[Gen 7] OU', 'Allow CAP'],
-		banlist: ['Crucibelle + Head Smash', 'Crucibelle + Low Kick', 'Tomohawk + Earth Power', 'Tomohawk + Reflect'],
+		banlist: [
+			'Aurumoth + Quiver Dance', 'Crucibelle + Head Smash', 'Crucibelle + Low Kick',
+			'Tomohawk + Earth Power', 'Tomohawk + Reflect',
+		],
 	},
 	{
 		name: "[Gen 7] CAP LC",
@@ -305,26 +318,23 @@ let Formats = [
 		requirePentagon: true,
 	},
 	{
-		name: "[Gen 7] Battle Spot Special 15",
-		threads: [`&bullet; <a href="https://www.smogon.com/forums/threads/3648618/">Battle Spot Special 15</a>`],
+		name: "[Gen 7] Battle Spot Special 16",
+		threads: [`&bullet; <a href="https://www.smogon.com/forums/threads/3651251/">Battle Spot Special 16</a>`],
 
 		mod: 'gen7',
-		forcedLevel: 50,
+		maxForcedLevel: 50,
 		teamLength: {
-			validate: [1, 6],
-			battle: 1,
+			validate: [3, 6],
+			battle: 3,
 		},
-		ruleset: ['Pokemon', 'Species Clause', 'Nickname Clause', 'Item Clause', 'Team Preview', 'Cancel Mod'],
-		banlist: ['Unreleased', 'Illegal', 'Mewtwo', 'Dusclops', 'Dusknoir'],
-		onValidateSet(set, format) {
-			if (set.moves.length !== 1 || this.getMove(set.moves[0]).id !== 'metronome') {
-				return [`${set.name || set.species} has illegal moves.`, `(${format.name} only allows the move Metronome)`];
-			}
-			if (set.item) {
-				const item = this.getItem(set.item);
-				if (item.megaStone) return [`${set.name || set.species} has ${item.name}, which is banned in ${format.name}.`];
-			}
-		},
+		ruleset: ['Pokemon', 'Standard GBU'],
+		banlist: [
+			'Aegislash', 'Azumarill', 'Blaziken', 'Breloom', 'Celesteela', 'Charizard', 'Cloyster', 'Dragonite',
+			'Excadrill', 'Ferrothorn', 'Garchomp', 'Gengar', 'Gliscor', 'Greninja', 'Gyarados', 'Heatran', 'Hippowdon',
+			'Hydreigon', 'Kangaskhan', 'Kartana', 'Landorus', 'Lucario', 'Mamoswine', 'Mawile', 'Metagross', 'Mimikyu',
+			'Naganadel', 'Porygon2', 'Rotom', 'Salamence', 'Scizor', 'Serperior', 'Skarmory', 'Snorlax', 'Tapu Fini',
+			'Tapu Koko', 'Tapu Lele', 'Thundurus', 'Toxapex', 'Tyranitar', 'Venusaur', 'Volcarona', 'Zapdos',
+		],
 	},
 	{
 		name: "[Gen 7] Custom Game",
@@ -571,7 +581,7 @@ let Formats = [
 
 		mod: 'gen7',
 		gameType: 'doubles',
-		searchShow: false,
+		rated: false,
 		teamLength: {
 			validate: [2, 2],
 			battle: 2,
@@ -674,7 +684,7 @@ let Formats = [
 
 		mod: 'gen7',
 		ruleset: ['Pokemon', 'Ability Clause', 'OHKO Clause', 'Evasion Moves Clause', 'CFZ Clause', 'Sleep Clause Mod', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
-		banlist: ['Groudon-Primal', 'Arena Trap', 'Huge Power', 'Illusion', 'Innards Out', 'Magnet Pull', 'Moody', 'Parental Bond', 'Protean', 'Psychic Surge', 'Pure Power', 'Shadow Tag', 'Stakeout', 'Water Bubble', 'Wonder Guard', 'Gengarite', 'Chatter', 'Comatose + Sleep Talk'],
+		banlist: ['Groudon-Primal', 'Arena Trap', 'Contrary', 'Huge Power', 'Illusion', 'Innards Out', 'Magnet Pull', 'Moody', 'Parental Bond', 'Protean', 'Psychic Surge', 'Pure Power', 'Shadow Tag', 'Stakeout', 'Water Bubble', 'Wonder Guard', 'Gengarite', 'Chatter', 'Comatose + Sleep Talk'],
 	},
 	{
 		name: "[Gen 7] Camomons",
@@ -1514,16 +1524,6 @@ let Formats = [
 		column: 2,
 	},
 	{
-		name: "[Gen 7] Random Battle Turbo",
-		desc: `Random Battle with 5-second forced timer.`,
-
-		mod: 'gen7',
-		team: 'random',
-		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		forcedTimer: true,
-		timer: {starting: 10, addPerTurn: 10, maxPerTurn: 5, maxFirstTurn: 10, timeoutAutoChoose: true},
-	},
-	{
 		name: "[Gen 7] Challenge Cup 1v1",
 
 		mod: 'gen7',
@@ -1702,7 +1702,7 @@ let Formats = [
 
 		mod: 'gen5',
 		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Baton Pass Clause', 'Swagger Clause', 'Team Preview'],
-		banlist: ['Uber', 'Arena Trap', 'Drizzle ++ Swift Swim', 'Drought ++ Chlorophyll', 'Sand Rush', 'Soul Dew'],
+		banlist: ['Uber', 'Arena Trap', 'Drizzle ++ Swift Swim', 'Drought ++ Chlorophyll', 'Sand Rush', 'Shadow Tag', 'Soul Dew'],
 	},
 	{
 		name: "[Gen 4] OU",

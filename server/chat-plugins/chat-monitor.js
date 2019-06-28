@@ -259,7 +259,7 @@ let namefilter = function (name, user) {
 	}
 
 	if (user.trackRename) {
-		const automatic = !Chat.forceRenames.has(user.trackRename);
+		const automatic = !Chat.forceRenames.has(toID(user.trackRename));
 		Monitor.log(`[NameMonitor] Username used: ${name} (${automatic ? 'automatically ' : ''}forcerenamed from ${user.trackRename})`);
 		user.trackRename = '';
 	}
@@ -269,6 +269,7 @@ let namefilter = function (name, user) {
 let loginfilter = function (user) {
 	if (user.namelocked) return;
 	const forceRenamer = Chat.forceRenames.get(user.userid);
+	if (Chat.namefilterwhitelist.has(user.userid)) return;
 	if (forceRenamer) Monitor.log(`[NameMonitor] Forcerenamed name being reused: ${user.name}`);
 };
 /** @type {NameFilter} */

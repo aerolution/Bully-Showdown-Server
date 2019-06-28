@@ -779,7 +779,7 @@ let BattleFormatsData = {
 	vileplume: {
 		randomBattleMoves: ["gigadrain", "sludgebomb", "sleeppowder", "hiddenpowerfire", "aromatherapy", "strengthsap"],
 		randomDoubleBattleMoves: ["gigadrain", "sludgebomb", "sleeppowder", "stunspore", "protect", "hiddenpowerfire", "moonblast"],
-		tier: "NU",
+		tier: "NUBL",
 		doublesTier: "(DUU)",
 	},
 	bellossom: {
@@ -1388,7 +1388,7 @@ let BattleFormatsData = {
 		tier: "LC",
 	},
 	cloyster: {
-		randomBattleMoves: ["shellsmash", "hydropump", "rockblast", "iciclespear", "iceshard", "rapidspin", "spikes", "toxicspikes"],
+		randomBattleMoves: ["shellsmash", "iciclespear", "hydropump", "rockblast", "iceshard", "spikes", "rapidspin"],
 		randomDoubleBattleMoves: ["shellsmash", "hydropump", "liquidation", "rockblast", "iciclespear", "protect"],
 		eventPokemon: [
 			{"generation": 5, "level": 30, "gender": "M", "nature": "Naughty", "isHidden": false, "abilities": ["skilllink"], "moves": ["iciclespear", "rockblast", "hiddenpower", "razorshell"], "pokeball": "pokeball"},
@@ -7172,7 +7172,7 @@ let BattleFormatsData = {
 		tier: "LC",
 	},
 	heliolisk: {
-		randomBattleMoves: ["raindance", "thunder", "hypervoice", "surf", "darkpulse", "hiddenpowerice", "voltswitch", "thunderbolt"],
+		randomBattleMoves: ["raindance", "hypervoice", "surf", "darkpulse", "hiddenpowerice", "voltswitch", "thunderbolt"],
 		randomDoubleBattleMoves: ["surf", "voltswitch", "hiddenpowerice", "raindance", "thunder", "darkpulse", "thunderbolt", "protect"],
 		tier: "NU",
 		doublesTier: "(DUU)",
@@ -8386,6 +8386,11 @@ let BattleFormatsData = {
 		eventPokemon: [
 			{"generation": 7, "level": 50, "moves": ["celebrate", "liquidation", "leechlife", "metronome"], "pokeball": "cherishball"},
 		],
+		tier: "CAP",
+	},
+	equilibra: {
+		randomBattleMoves: ["doomdesire", "earthpower", "trickroom", "rapidspin", "flashcannon", "healingwish", "aurasphere"],
+		isNonstandard: "CAP",
 		tier: "CAP",
 	},
 	syclant: {

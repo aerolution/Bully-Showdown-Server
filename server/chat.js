@@ -233,7 +233,7 @@ Chat.namefilter = function (name, user, forStatus = false) {
 
 	name = Dex.getName(name);
 	for (const filter of Chat.namefilters) {
-		ame = filter(name, user, forStatus);
+		name = filter(name, user, forStatus);
 		if (!name) return '';
 	}
 	return name;

@@ -656,7 +656,7 @@ const commands = {
 
 	status(target, room, user, connection, cmd) {
 		if (!this.canTalk()) return;
-		if (!target) return this.parse('/help status');
+		if (!toID(target)) return this.parse('/help status');
 		target = Chat.namefilter(target, user, true);
 		if (!target) return user.popup("Your status contains a banned word.");
 
@@ -676,7 +676,7 @@ const commands = {
 		if (!this.canTalk()) return;
 
 		let message = Chat.namefilter(target, user, true);
-		if (!message && target) return user.popup("Your status contains a banned word.");
+		if (!message && toID(target)) return user.popup("Your status contains a banned word.");
 
 		user.setStatus(`(Busy)${message ? ` ${message}` : ''}`);
 		this.parse('/blockpms');
@@ -698,7 +698,7 @@ const commands = {
 		} else {
 			awayType = `${awayType[0].toUpperCase()}${awayType.slice(1)}`;
 		}
-		if (target) {
+		if (toID(target)) {
 			awayMessage = Chat.namefilter(target, user, true);
 			if (!awayMessage) return user.popup("Your status contains a banned word.");
 		}
@@ -725,7 +725,7 @@ const commands = {
 			let bracketIndex = targetUser.status.indexOf(')');
 			const status = targetUser.status.slice(bracketIndex + 2);
 			this.privateModAction(`(${targetUser.name}'s status "${status}" was cleared by ${user.name}${reason ? `: ${reason}` : ``})`);
-			this.globalModlog('CLEARSTATUS', targetUser, `from ${status} by ${user.name}${reason ? `: ${reason}` : ``}`);
+			this.globalModlog('CLEARSTATUS', targetUser, ` from ${status} by ${user.name}${reason ? `: ${reason}` : ``}`);
 			targetUser.clearStatus();
 			targetUser.popup(`${user.name} has cleared your status for being inappropriate${reason ? `: ${reason}` : '.'}`);
 			return;
@@ -1576,7 +1576,11 @@ const commands = {
 			(Config.groups[b] || {rank: 0}).rank - (Config.groups[a] || {rank: 0}).rank
 		).map(r => {
 			let roomRankList = rankLists[r].sort();
-			roomRankList = roomRankList.map(s => s in targetRoom.users ? `**${s}**` : s);
+			roomRankList = roomRankList.map(s => {
+				const u = Users(s);
+				const isAway = u && u.isAway();
+				return s in targetRoom.users && !isAway ? `**${s}**` : s;
+			});
 			return `${Config.groups[r] ? `${Config.groups[r].name}s (${r})` : r}:\n${roomRankList.join(", ")}`;
 		});
 

@@ -1010,6 +1010,32 @@ let Formats = [
 		column: 2,
 	},
 	{
+		name: "[Gen 7] Super Sports Bros",
+		desc: "Fight with crazy custom sets created by the community!",
+		mod: 'ssb',
+		team: 'randomStaffBros',
+		ruleset: ['HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
+		onBegin() {
+			this.add(`raw|<div class='broadcast-green'><b>Wondering what all these custom moves, abilities, and items do?<br />Check out our <a href="https://docs.google.com/spreadsheets/d/1H3fbfsdcZS5etbeN6x3zk_T63-JoKfi-skHJOCIuDss/edit?usp=sharing" target="_blank">Super Sports Bros Doc</a> and find out!</b></div>`);
+		},
+		onSwitchIn(pokemon) {
+			let name = toID(pokemon.illusion ? pokemon.illusion.name : pokemon.name);
+			if (this.getTemplate(name).exists) {
+				// Certain pokemon have volatiles named after their speciesid
+				// To prevent overwriting those, and to prevent accidentaly leaking
+				// that a pokemon is on a team through the onStart even triggering
+				// at the start of a match, users with pokemon names will need their
+				// statuse's to end in "user".
+				name = /** @type {ID} */(name + 'user');
+			}
+			// Add the mon's status effect to it as a volatile.
+			let status = this.getEffect(name);
+			if (status && status.exists) {
+				pokemon.addVolatile(name, pokemon);
+			}
+		},
+	},
+	{
 		name: "[Gen 7] Random Averagemons",
 		desc: `Every Pok&eacute;mon, including formes, has base 100 in every stat.`,
 

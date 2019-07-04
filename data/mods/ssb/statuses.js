@@ -45,6 +45,15 @@ let BattleStatuses = {
 			this.add(`c|Inaria|Hax`);
 		},
 	},
+	inversify: {
+		noCopy: true,
+		onStart() {
+			this.add(`c|inversify|GO BIRDS`);
+		},
+		onFaint() {
+			this.add(`c|inversify|wtf refs`);
+		},
+	},
 	jackinev: {
 		noCopy: true,
 		onStart() {
@@ -52,6 +61,15 @@ let BattleStatuses = {
 		},
 		onFaint() {
 			this.add(`c|~Jackinev|mammamia`);
+		},
+	},
+	jlmuserwolves: {
+		noCopy: true,
+		onStart() {
+			this.add(`c|JL_muserwolves|The show must go on!`);
+		},
+		onFaint() {
+			this.add(`c|JL_muserwolves|Exit, stage left...`);
 		},
 	},
 	kalt: {
@@ -153,7 +171,7 @@ let BattleStatuses = {
 			this.add(`c|X-Naut|Not cool man x_x`);
 		},
 	},
-	xnaut: {
+	xrn: {
 		noCopy: true,
 		onStart() {
 			this.add(`c|Xrn|Hi`);

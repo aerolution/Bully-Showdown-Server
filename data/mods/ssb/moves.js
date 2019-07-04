@@ -48,7 +48,7 @@ let BattleMovedex = {
 		isNonstandard: "Custom",
 		pp: 5,
 		priority: 0,
-		flags: {protect: 1, mirror: 1},
+		flags: {authentic: 1, protect: 1, mirror: 1, sound: 1},
 		ignoreImmunity: true,
 		volatileStatus: 'rant',
 		onTryMove() {
@@ -154,6 +154,40 @@ let BattleMovedex = {
 		target: "normal",
 		type: "Normal",
 	},
+	// Inaria
+	reverseunocard: {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "Raises all target's stats by 1, then inverts all its stat changes.",
+		id: "reverseunocard",
+		name: "Reverse Uno Card",
+		isNonstandard: "Custom",
+		pp: 5,
+		priority: 0,
+		flags: {authentic: 1, protect: 1, reflectable: 1, mirror: 1, mystery: 1},
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Nasty Plot', source);
+			this.add('-anim', source, 'Topsy-Turvy', target);
+		},
+		onHit(target, source, move) {
+			this.boost({atk: 1, def: 1, spa: 1, spd: 1, spe: 1, accuracy: 1, evasion: 1}, target, source, move);
+			let success = false;
+			for (let i in target.boosts) {
+				if (target.boosts[i] === 0) continue;
+				target.boosts[i] = -target.boosts[i];
+				success = true;
+			}
+			if (!success) return false;
+			this.add('-invertboost', target, '[from] move: Reverse Uno Card');
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fire",
+	},
 	// Jackinev
 	mejackmehack: {
 		accuracy: true,
@@ -214,10 +248,77 @@ let BattleMovedex = {
 		target: "all",
 		type: "???",
 	},
+	// JL
+	dazzlingrecital: {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "Protects from attacks. If this move blocks a physical or special attack, lowers the opponent's Attack or Special Attack respectively by 1. Meloetta changes between Aria and Pirouette forme.",
+		id: "dazzlingrecital",
+		name: "Dazzling Recital",
+		isNonstandard: "Custom",
+		pp: 10,
+		priority: 4,
+		flags: {},
+		volatileStatus: 'dazzlingrecital',
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source, move) {
+			this.add('-anim', source, 'Quiver Dance', source);
+			let targetSpecies = (source.template.species === 'Meloetta' ? 'Meloetta-Pirouette' : 'Meloetta');
+			if (source.template.species !== targetSpecies) source.formeChange(targetSpecies, move);
+		},
+		onTryHit(pokemon) {
+			return !!this.willAct() && this.runEvent('StallMove', pokemon);
+		},
+		onHit(pokemon) {
+			pokemon.addVolatile('stall');
+		},
+		effect: {
+			duration: 1,
+			onStart(target) {
+				this.add('-singleturn', target, 'Protect');
+			},
+			onTryHitPriority: 3,
+			onTryHit(target, source, move) {
+				if (!move.flags['protect'] || move.category === 'Status') {
+					if (move.isZ) target.getMoveHitData(move).zBrokeProtect = true;
+					return;
+				}
+				this.add('-activate', target, 'move: Protect');
+				let lockedmove = source.getVolatile('lockedmove');
+				if (lockedmove) {
+					// Outrage counter is reset
+					if (source.volatiles['lockedmove'].duration === 2) {
+						delete source.volatiles['lockedmove'];
+					}
+				}
+				if (move.category === "Physical") {
+					this.boost({atk: -1}, source, target, this.getActiveMove("Dazzling Recital"));
+				}
+				if (move.category === "Special") {
+					this.boost({spa: -1}, source, target, this.getActiveMove("Dazzling Recital"));
+				}
+				return this.NOT_FAIL;
+			},
+			onHit(target, source, move) {
+				if (move.isZPowered && move.category === "Physical") {
+					this.boost({atk: -1}, source, target, this.getActiveMove("Dazzling Recital"));
+				}
+				if (move.isZPowered && move.category === "Special") {
+					this.boost({spa: -1}, source, target, this.getActiveMove("Dazzling Recital"));
+				}
+			},
+		},
+		secondary: null,
+		target: "self",
+		type: "Normal",
+	},
 	// Kalt
 	sandswrath: {
 		accuracy: true,
-		basePower: 55,
+		basePower: 50,
 		category: "Physical",
 		shortDesc: "Hits 3 times. First hit hits Pokemon in the air and knocks them down, second hit changes user's typing to Normal/Ground, third hit sets Sandstorm.",
 		id: "sandswrath",
@@ -226,7 +327,7 @@ let BattleMovedex = {
 		pp: 1,
 		priority: 0,
 		flags: {},
-		multihit: [3, 3],
+		multihit: 3,
 		volatileStatus: 'smackdown',
 		onTryMove(pokemon) {
 			this.attrLastMove('[still]');
@@ -371,7 +472,7 @@ let BattleMovedex = {
 	// Mio
 	fuzzybounce: {
 		accuracy: 90,
-		basePower: 120,
+		basePower: 95,
 		category: "Physical",
 		shortDesc: "Charges on the first turn and executes on the second. Has a 60% chance to put the target to sleep. Has no charge turn if Tailwind is active.",
 		id: "fuzzybounce",
@@ -387,7 +488,6 @@ let BattleMovedex = {
 			}
 			if (attacker.side.getSideCondition('tailwind')) {
 				this.addMove('-anim', attacker, 'Cotton Guard', defender);
-				this.add('-message', `Mio gets caught by the wind!`);
 				return;
 			}
 			if (!this.runEvent('ChargeMove', attacker, defender, move)) {
@@ -395,6 +495,7 @@ let BattleMovedex = {
 			}
 			attacker.addVolatile('twoturnmove', defender);
 			this.add('-anim', attacker, 'Cotton Guard', defender);
+			this.add('-message', `Mio gets caught by the wind!`);
 			return null;
 		},
 		onPrepareHit(target, source) {
@@ -430,9 +531,8 @@ let BattleMovedex = {
 			target.addVolatile('attract', source);
 			target.addVolatile('torment', source);
 			target.addVolatile('confusion', source);
-			let bannedTargetAbilities = ['battlebond', 'comatose', 'disguise', 'flowergift', 'forecast', 'illusion', 'imposter', 'multitype', 'powerconstruct', 'powerofalchemy', 'receiver', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'trace', 'wonderguard', 'zenmode'];
-			let bannedSourceAbilities = ['battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange'];
-			if (bannedTargetAbilities.includes(target.ability) || bannedSourceAbilities.includes(source.ability)) {
+			let bannedTargetAbilities = ['battlebond', 'comatose', 'disguise', 'flowergift', 'forecast', 'illusion', 'imposter', 'multitype', 'powerconstruct', 'powerofalchemy', 'receiver', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'trace', 'wonderguard', 'zenmode', 'pigmad', 'brbfixingsports', 'digitizer'];
+			if (bannedTargetAbilities.includes(target.ability)) {
 				return false;
 			}
 			let oldAbility = source.setAbility(target.ability);
@@ -451,7 +551,7 @@ let BattleMovedex = {
 		accuracy: true,
 		basePower: 160,
 		category: "Special",
-		shortDesc: "Raises the user's Special Attack and Speed by 1. Sets up a Substitute without losing HP.",
+		shortDesc: "Raises the user's Evasion by 1. Sets up a Substitute without losing HP.",
 		id: "hireasamurai",
 		name: "Hire a Samurai",
 		isNonstandard: "Custom",
@@ -465,19 +565,14 @@ let BattleMovedex = {
 			this.add('-anim', source, "Swords Dance", source);
 			this.add('-anim', source, "Secret Sword", target);
 		},
-		onAfterHit(source, target, move) {
-			if (target.volatiles['substitute']) {
-				this.add('-fail', target, 'move: Substitute');
-				return null;
-			}
-			target.addVolatile('substitute', move);
+		onAfterHit(target, source, move) {
+			source.addVolatile('substitute', source);
 		},
 		secondary: {
 			chance: 100,
 			self: {
 				boosts: {
 					spa: 1,
-					spe: 1,
 				},
 			},
 		},
@@ -580,16 +675,17 @@ let BattleMovedex = {
 		onTryMove() {
 			this.attrLastMove('[still]');
 		},
-		onPrepareHit(target, source) {
-			this.add('-anim', source, 'Counter', target);
-		},
 		beforeTurnCallback(pokemon) {
 			if (pokemon.removeVolatile('careerender')) return false;
 			pokemon.addVolatile('careerender');
 		},
 		onTryHit(target, source, move) {
-			if (!source.volatiles['careerender']) return false;
+			if (!source.volatiles['careerender']) {
+				this.add('-message', `(Career Ender can't be used twice in a row.)`);
+				return false;
+			}
 			if (source.volatiles['careerender'].position === null) return false;
+			this.add('-anim', source, 'Counter', target);
 		},
 		effect: {
 			noCopy: true,
@@ -630,13 +726,13 @@ let BattleMovedex = {
 		accuracy: 90,
 		basePower: 25,
 		category: "Special",
-		shortDesc: "Hits 2-5 times, 15% flinch on each hit. Sets up Substitute.",
+		shortDesc: "Hits 2-5 times, 15% flinch on each hit. Torments target.",
 		id: "ddoswavecannon",
 		name: "DDoS Wave Cannon",
 		isNonstandard: "Custom",
 		pp: 5,
 		priority: 0,
-		flags: {protect: 1, mirror: 1, pulse: 1},
+		flags: {authentic: 1, protect: 1, mirror: 1, sound: 1},
 		multihit: [2, 5],
 		onTryMove() {
 			this.attrLastMove('[still]');
@@ -645,7 +741,7 @@ let BattleMovedex = {
 			this.add('-anim', source, 'Mirror Shot', target);
 		},
 		onAfterMove(source, target) {
-			this.useMove('substitute', source, target);
+			target.addVolatile('torment', source);
 		},
 		secondary: {
 			chance: 15,
@@ -718,7 +814,7 @@ let BattleMovedex = {
 		accuracy: 100,
 		basePower: 100,
 		category: "Physical",
-		shortDesc: "Super Effective on Grass types",
+		shortDesc: "Super Effective on Grass types.",
 		id: "eatlettuce",
 		name: "Eat Lettuce",
 		isNonstandard: "Custom",
@@ -742,7 +838,6 @@ let BattleMovedex = {
 	// modified Attract for Master Baiter
 	attract: {
 		inherit: true,
-		volatileStatus: 'attract',
 		effect: {
 			noCopy: true, // doesn't get copied by Baton Pass
 			onStart(pokemon, source, effect) {
@@ -779,6 +874,32 @@ let BattleMovedex = {
 			},
 			onEnd(pokemon) {
 				this.add('-end', pokemon, 'Attract', '[silent]');
+			},
+		},
+	},
+	// modified Tailwind for Omega Stream
+	"tailwind": {
+		inherit: true,
+		effect: {
+			duration: 4,
+			durationCallback(target, source, effect) {
+				if (source && source.hasAbility('omegastream')) {
+					this.add('-activate', source, 'ability: Omega Stream', effect);
+					this.add('-message', `(Tailwind lasts one extra turn.)`);
+					return 5;
+				}
+				return 4;
+			},
+			onStart(side) {
+				this.add('-sidestart', side, 'move: Tailwind');
+			},
+			onModifySpe(spe, pokemon) {
+				return this.chainModify(2);
+			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 4,
+			onEnd(side) {
+				this.add('-sideend', side, 'move: Tailwind');
 			},
 		},
 	},

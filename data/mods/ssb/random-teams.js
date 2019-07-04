@@ -41,7 +41,7 @@ class RandomStaffBrosTeams extends RandomTeams {
 			// Nature needs to be a valid nature with the first letter capitalized ex: Modest
 			*/
 			'Brettibus': {
-				species: 'Latios', ability: 'Toxicity', item: 'Toxic Plate', 
+				species: 'Latios', ability: 'Toxicity', item: 'Dragon Gem', 
 				moves: ['Draco Meteor', 'Psyshock', 'Earthquake'],
 				signatureMove: 'Rant',
 				evs: {hp: 80, spa: 252, spe: 176}, nature: 'Timid',
@@ -58,11 +58,23 @@ class RandomStaffBrosTeams extends RandomTeams {
 				signatureMove: 'Delta Eraser',
 				evs: {hp: 252, def: 100, spd: 156}, ivs: {atk: 0}, nature: 'Bold',
 			},
+			'inversify': {
+				species: 'Simisear', ability: 'Inversify', item: 'Charcoal', 
+				moves: ['Searing Shot', 'Leaf Storm', 'Swagger'],
+				signatureMove: 'Reverse Uno Card',
+				evs: {spa: 252, spd: 4, spe: 252}, ivs: {atk: 0}, nature: 'Timid',
+			},
 			'Jackinev': {
 				species: 'Charizard', ability: 'Victory Star', item: 'Charizardite X', 
 				moves: ['Flare Blitz', 'Meteor Mash', 'Roost'],
 				signatureMove: 'me jack me hack',
 				evs: {atk: 252, def: 4, spe: 252}, nature: 'Jolly',
+			},
+			'JL_muserwolves': {
+				species: 'Meloetta', ability: 'Versatility', item: 'Expert Belt', 
+				moves: ['Close Combat', 'Psychic', 'U-Turn'],
+				signatureMove: 'Dazzling Recital',
+				evs: {atk: 128, spa: 128, spe: 252}, nature: 'Hasty',
 			},
 			'Kalt': {
 				species: 'Buzzwole', ability: 'Sand Rush', item: 'Dogium Z', 
@@ -89,7 +101,7 @@ class RandomStaffBrosTeams extends RandomTeams {
 				evs: {hp: 252, atk: 252, def: 4}, nature: 'Adamant',
 			},
 			'Mio': {
-				species: 'Jumpluff', ability: 'Delta Stream', item: 'Sky Plate', 
+				species: 'Jumpluff', ability: 'Omega Stream', item: 'Sky Plate', 
 				moves: ['Tailwind', 'Swords Dance', 'Strength Sap'],
 				signatureMove: 'Fuzzy Bounce',
 				evs: {hp: 248, atk: 8, spe: 252}, nature: 'Jolly',
@@ -126,7 +138,7 @@ class RandomStaffBrosTeams extends RandomTeams {
 			},
 			'X-Naut': {
 				species: 'Magneton', ability: 'Yux Barrier', item: 'Electric Gem', 
-				moves: ['Thunder', 'Ice Beam', 'Lock-On'],
+				moves: ['Thunder', 'Ice Beam', 'Recycle'],
 				signatureMove: 'DDoS Wave Cannon',
 				evs: {hp: 64, spa: 248, spe: 196}, ivs: {atk: 0}, nature: 'Timid',
 			},
@@ -145,7 +157,7 @@ class RandomStaffBrosTeams extends RandomTeams {
 				evs: {atk: 252, def: 4, spe: 252}, nature: 'Jolly',
 			},
 			'pig lad': {
-				species: 'Swinub', ability: 'Pig Mad', item: 'Focus Sash', 
+				species: 'Swinub', ability: 'Pig Mad', item: 'Metronome', 
 				moves: ['Stealth Rock', 'Knock Off', 'Ice Shard'],
 				signatureMove: 'Eat Lettuce',
 				evs: {hp: 252, atk: 252, spe: 4}, nature: 'Adamant',

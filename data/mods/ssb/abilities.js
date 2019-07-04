@@ -77,11 +77,56 @@ let BattleAbilities = {
 			if (attacker.template.species === 'Porygon-Z') attacker.formeChange('Porygon2');
 		},
 	},
+	// inversify
+	inversify: {
+		shortDesc: "Inverts the opponent's stat changes on switch-in.",
+		id: "inversify",
+		name: "Inversify",
+		onStart(pokemon) {
+			let activated = false;
+			for (const target of pokemon.side.foe.active) {
+				if (!target || !this.isAdjacent(target, pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Inversify');
+					this.add('-invertboost', target, '[from] ability: Inversify');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target);
+				} else {
+					for (let i in target.boosts) {
+						if (target.boosts[i] === 0) continue;
+						target.boosts[i] = -target.boosts[i];
+					}
+				}
+			}
+		},
+	},
 	// Jackinev
 	rngmanipulation: {
 		shortDesc: "Reverses the effects of Hax Room for the user.",
 		id: "rngmanipulation",
 		name: "RNG Manipulation",
+	},
+	// JL
+	versatility: {
+		shortDesc: "Boosts this Pokemon's weaker offensive stat by 20%.",
+		id: "versatility",
+		name: "Versatility",
+		onModifyAtkPriority: 6,
+		onModifyAtk(atk, pokemon) {
+			if (pokemon.getStat('atk', false, true) < pokemon.getStat('spa', false, true)) {
+				this.debug('Versatility boost');
+				return this.chainModify(1.2);
+			}
+		},
+		onModifySpAPriority: 6,
+		onModifySpA(atk, pokemon) {
+			if (pokemon.getStat('spa', false, true) < pokemon.getStat('atk', false, true)) {
+				this.debug('Versatility boost');
+				return this.chainModify(1.2);
+			}
+		},
 	},
 	// Kesha
 	musclemilk: {
@@ -108,6 +153,29 @@ let BattleAbilities = {
 			if (pokemon.status === 'par') {
 				return this.chainModify(2);
 			}
+		},
+	},
+	// Mio
+	omegastream: {
+		shortDesc: "Sets strong winds while this Pokemon is active. Tailwinds set up by the user last one more turn.",
+		id: "omegastream",
+		name: "Omega Stream",
+		onStart(source) {
+			this.field.setWeather('deltastream');
+		},
+		onAnySetWeather(target, source, weather) {
+			if (this.field.getWeather().id === 'deltastream' && !['desolateland', 'primordialsea', 'deltastream'].includes(weather.id)) return false;
+		},
+		onEnd(pokemon) {
+			if (this.field.weatherData.source !== pokemon) return;
+			for (const target of this.getAllActive()) {
+				if (target === pokemon) continue;
+				if (target.hasAbility('omegastream')) {
+					this.field.weatherData.source = target;
+					return;
+				}
+			}
+			this.field.clearWeather();
 		},
 	},
 	// rhetco
@@ -207,7 +275,7 @@ let BattleAbilities = {
 	},
 	// X-Naut
 	yuxbarrier: {
-		shortDesc: "Sets up Reflect, Light Screen, and Safeguard on switch in. Removes screens on switch out.",
+		shortDesc: "Sets up Reflect, Light Screen, and Safeguard on switch-in. Removes screens when this Pokemon leaves the field.",
 		id: "yuxbarrier",
 		name: "Yux Barrier",
 		onStart(pokemon) {
@@ -292,7 +360,7 @@ let BattleAbilities = {
 		},
 		onDamagePriority: -1,
 		onDamage(damage, pokemon) {
-			if (pokemon.m.aCount < 2 && damage >= pokemon.hp) {
+			if (pokemon.name === "pig lad" && pokemon.m.aCount < 2 && damage >= pokemon.hp) {
 				pokemon.m.aTrigger = 1;
 				this.add('-ability', pokemon, 'Pig Mad');
 				return pokemon.hp - 1;
@@ -317,8 +385,6 @@ let BattleAbilities = {
 				let newHP = Math.floor(Math.floor(2 * pokemon.template.baseStats['hp'] + pokemon.set.ivs['hp'] + Math.floor(pokemon.set.evs['hp'] / 4) + 100) * pokemon.level / 100 + 10);
 				pokemon.maxhp = pokemon.hp = newHP;
 				this.add('-heal', pokemon, pokemon.getHealth, '[silent]');
-				if (template.speciesid === 'piloswine') pokemon.setItem('Eviolite');
-				if (template.speciesid === 'mamoswine') pokemon.setItem('Life Orb');
 			}
 		},
 	},

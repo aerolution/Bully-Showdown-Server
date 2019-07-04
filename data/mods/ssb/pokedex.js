@@ -14,6 +14,15 @@ let BattlePokedex = {
 		inherit: true,
 		abilities: {0: "RNG Manipulation"},
 	},
+	// JL
+	meloetta: {
+		inherit: true,
+		abilities: {0: "Versatility"},
+	},
+	meloettapirouette: {
+		inherit: true,
+		abilities: {0: "Versatility"},
+	},
 	// pig lad
 	piloswine: {
 		inherit: true,

@@ -76,6 +76,12 @@ class RandomStaffBrosTeams extends RandomTeams {
 				signatureMove: 'Dazzling Recital',
 				evs: {atk: 128, spa: 128, spe: 252}, nature: 'Hasty',
 			},
+			'Juicy': {
+				species: 'Buizel', ability: 'Huge Power', item: 'Eviolite', 
+				moves: ['Waterfall', 'Icicle Crash', 'Earthquake'],
+				signatureMove: 'Eat Ramen',
+				evs: {atk: 252, def: 4, spe: 252}, nature: 'Adamant',
+			},
 			'Kalt': {
 				species: 'Buzzwole', ability: 'Sand Rush', item: 'Dogium Z', 
 				moves: ['Frustration', 'Close Combat', 'Howl'],
@@ -105,6 +111,12 @@ class RandomStaffBrosTeams extends RandomTeams {
 				moves: ['Tailwind', 'Swords Dance', 'Strength Sap'],
 				signatureMove: 'Fuzzy Bounce',
 				evs: {hp: 248, atk: 8, spe: 252}, nature: 'Jolly',
+			},
+			'Princess Furfrou': {
+				species: 'Furfrou', ability: 'Afro Coat', item: 'Iapapa Berry', 
+				moves: ['Head Charge', 'Aromatherapy', 'U-Turn'],
+				signatureMove: 'rainbowgasm',
+				evs: {hp: 120, atk: 56, def: 56, spd: 24, spe: 252}, nature: 'Jolly',
 			},
 			'rhetco': {
 				species: 'Whiscash', ability: 'Master Baiter', item: 'Leftovers', 
@@ -152,7 +164,7 @@ class RandomStaffBrosTeams extends RandomTeams {
 			// Bonus:
 			'GoodMorningCrono': {
 				species: 'Slaking', ability: 'brb fixing sports', item: 'Choice Band', 
-				moves: ['Baton Pass', 'Focus Punch', 'Sucker Punch'],
+				moves: ['Baton Pass', 'Submission', 'Sucker Punch'],
 				signatureMove: 'Crono Luck',
 				evs: {atk: 252, def: 4, spe: 252}, nature: 'Jolly',
 			},

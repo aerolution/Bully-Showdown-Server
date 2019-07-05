@@ -315,6 +315,38 @@ let BattleMovedex = {
 		target: "self",
 		type: "Normal",
 	},
+	// Kesha
+	eatramen: {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "Raises the user's Defense, Special Defense and Speed by 1.",
+		id: "eatramen",
+		name: "Eat Ramen",
+		isNonstandard: "Custom",
+		pp: 10,
+		priority: 0,
+		flags: {snatch: 1},
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Bulk Up', target);
+			this.add('-anim', source, 'Refresh', target);
+		},
+		onHit(pokemon) {
+			pokemon.hp += pokemon.m.damageTaken;
+			this.add('-heal', pokemon, pokemon.getHealth, '[silent]');
+			pokemon.m.damageTaken = 0;
+		},
+		boosts: {
+			def: 1,
+			spd: 1,
+			spe: 1,
+		},
+		target: "self",
+		type: "Water",
+	},
 	// Kalt
 	sandswrath: {
 		accuracy: true,
@@ -339,7 +371,6 @@ let BattleMovedex = {
 		onEffectiveness(typeMod, target, type, move) {
 			if (move.type !== 'Ground') return;
 			if (!target) return; // avoid crashing when called from a chat plugin
-			// ignore effectiveness if the target is Flying type and immune to Ground
 			if (!target.runImmunity('Ground')) {
 				if (target.hasType('Flying')) return 0;
 			}
@@ -471,7 +502,7 @@ let BattleMovedex = {
 	},
 	// Mio
 	fuzzybounce: {
-		accuracy: 90,
+		accuracy: 100,
 		basePower: 95,
 		category: "Physical",
 		shortDesc: "Charges on the first turn and executes on the second. Has a 60% chance to put the target to sleep. Has no charge turn if Tailwind is active.",
@@ -480,7 +511,7 @@ let BattleMovedex = {
 		isNonstandard: "Custom",
 		pp: 10,
 		priority: 0,
-		flags: {charge: 1, gravity: 1, protect: 1, mirror: 1},
+		flags: {charge: 1, contact: 1, gravity: 1, protect: 1, mirror: 1},
 		onTryMove(attacker, defender, move) {
 			this.attrLastMove('[still]');
 			if (attacker.removeVolatile(move.id)) {
@@ -507,6 +538,125 @@ let BattleMovedex = {
 		},
 		target: "normal",
 		type: "Flying",
+	},
+	// Furfrou
+	rainbowgasm: {
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		shortDesc: "Type and effect change to match the user's current forme.",
+		id: "rainbowgasm",
+		name: "rainbowgasm",
+		isNonstandard: "Custom",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1},
+		onTryMove(pokemon) {
+			if (pokemon.name !== "Princess Furfrou") return false;
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			if (source.template.speciesid !== "furfrou") {
+				this.add('-anim', source, "Geomancy", source);
+				this.add('-anim', source, "Punishment", target);
+			}
+		},
+		onTryHit(target, source, move) {
+			if (source.template.speciesid === "furfrou") return !!this.willAct() && this.runEvent('StallMove', target);
+		},
+		onHit(pokemon) {
+			if (pokemon.template.speciesid === "furfrou") pokemon.addVolatile('stall');
+		},
+		onModifyMove(move, pokemon) {
+			let formes = {
+				furfrou: 'Normal',
+				furfroudandy: 'Dark',
+				furfroudebutante: 'Electric',
+				furfroudiamond: 'Rock',
+				furfrouheart: 'Fairy',
+				furfroukabuki: 'Fire',
+				furfroulareine: 'Water',
+				furfroumatron: 'Psychic',
+				furfroupharaoh: 'Ghost',
+				furfroustar: 'Ice',
+			}; 
+			move.type = formes[pokemon.template.speciesid];
+			move.secondaries = [];
+			if (pokemon.template.speciesid === "furfrou") {
+				move.accuracy = true;
+				move.basePower = 0;
+				move.category = "Status";
+				move.priority = 4;
+				move.stallingMove = true;
+				move.volatileStatus = 'spikyshield';
+				move.target = "self";
+			} else if (pokemon.template.speciesid === "furfroudandy") {
+				move.secondaries.push({
+					chance: 100,
+					volatileStatus: 'taunt',
+				});
+				move.secondaries.push({
+					chance: 100,
+					volatileStatus: 'torment',
+				});
+			} else if (pokemon.template.speciesid === "furfroudebutante") {
+				move.secondaries.push({
+					chance: 100,
+					self: {
+						boosts: {
+							spe: 2,
+						},
+					},
+				});
+			} else if (pokemon.template.speciesid === "furfroudiamond") {
+				move.secondaries.push({
+					chance: 100,
+					self: {
+						boosts: {
+							def: 2,
+						},
+					},
+				});
+			} else if (pokemon.template.speciesid === "furfrouheart") {
+				move.secondaries.push({
+					chance: 100,
+					volatileStatus: 'attract',
+				});
+			} else if (pokemon.template.speciesid === "furfroukabuki") {
+				move.secondaries.push({
+					chance: 100,
+					self: {
+						boosts: {
+							atk: 2,
+						},
+					},
+				});
+			} else if (pokemon.template.speciesid === "furfroulareine") {
+				move.secondaries.push({
+					chance: 100,
+					volatileStatus: 'partiallytrapped',
+				});
+			} else if (pokemon.template.speciesid === "furfroupharaoh") {
+				move.secondaries.push({
+					chance: 100,
+					volatileStatus: 'curse',
+				});
+			}
+		},
+		onHit(target, source, move) {
+			if (source.template.speciesid === "furfroustar") {
+				target.clearBoosts();
+				this.add('-clearboost', target);
+				source.side.addSideCondition('mist', source);
+			} else if (source.template.speciesid === "furfroumatron") {
+				source.side.addSlotCondition(source, 'wish', source);
+				this.add('-anim', source, "Wish", source);
+				this.add('-message', `${source.name} made a wish!`);
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Normal",
 	},
 	// rhetco
 	eroticroleplay: {
@@ -841,7 +991,7 @@ let BattleMovedex = {
 		effect: {
 			noCopy: true, // doesn't get copied by Baton Pass
 			onStart(pokemon, source, effect) {
-				if (!source.hasAbility('masterbaiter') && !(pokemon.gender === 'M' && source.gender === 'F') && !(pokemon.gender === 'F' && source.gender === 'M')) {
+				if (!source.hasAbility('masterbaiter') && !source.hasAbility('afrocoat') && !(pokemon.gender === 'M' && source.gender === 'F') && !(pokemon.gender === 'F' && source.gender === 'M')) {
 					this.debug('incompatible gender');
 					return false;
 				}
@@ -884,7 +1034,7 @@ let BattleMovedex = {
 			duration: 4,
 			durationCallback(target, source, effect) {
 				if (source && source.hasAbility('omegastream')) {
-					this.add('-activate', source, 'ability: Omega Stream', effect);
+					this.add('-activate', source, 'ability: Omega Stream');
 					this.add('-message', `(Tailwind lasts one extra turn.)`);
 					return 5;
 				}

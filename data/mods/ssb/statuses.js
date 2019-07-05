@@ -72,6 +72,23 @@ let BattleStatuses = {
 			this.add(`c|JL_muserwolves|Exit, stage left...`);
 		},
 	},
+	juicy: {
+		noCopy: true,
+		onStart(pokemon) {
+			this.add(`c|Juicy|Bro I'm hungry`);
+			pokemon.m.damageTaken = 0;
+		},
+		onFaint() {
+			this.add(`c|Juicy|I'm about to pass out`);
+		},
+		onDamage(damage, pokemon) {
+			pokemon.m.damageTaken += damage;
+		},
+		onResidualPriority: -1,
+		onResidual(pokemon) {
+			pokemon.m.damageTaken = 0;
+		},
+	},
 	kalt: {
 		noCopy: true,
 		onStart() {
@@ -115,6 +132,19 @@ let BattleStatuses = {
 		},
 		onFaint() {
 			this.add(`c|&Mio|i came out here to have a good time and i'm honestly feeling so attacked right now.`);
+		},
+	},
+	princessfurfrou: {
+		noCopy: true,
+		onStart() {
+			this.add(`c|&Princess Furfrou|hey princess (:`);
+		},
+		onFaint() {
+			this.add(`c|&Princess Furfrou|i don't even care you guys`);
+		},
+		onModifyPriorityPriority: 9,
+		onModifyPriority(priority, pokemon, target, move) {
+			if (pokemon.template.speciesid === "furfrou" && move.id === "rainbowgasm") return 4;
 		},
 	},
 	rhetco: {

@@ -178,6 +178,44 @@ let BattleAbilities = {
 			this.field.clearWeather();
 		},
 	},
+	// Princess Furfrou
+	afrocoat: {
+		shortDesc: "Doubles Defense. If a Pokemon makes contact with the user, lowers its Speed by 1. At the end of each turn, user changes to a random Furfrou forme and gains a new type to match it.",
+		id: "afrocoat",
+		name: "Afro Coat",
+		onModifyDefPriority: 6,
+		onModifyDef(def) {
+			return this.chainModify(2);
+		},
+		onAfterDamage(damage, target, source, effect) {
+			if (effect && effect.flags['contact']) {
+				this.boost({spe: -1}, source, target, null, false, true);
+			}
+		},
+		onResidualOrder: 5,
+		onResidualSubOrder: -1,
+		onResidual(pokemon) {
+			if (pokemon.name !== "Princess Furfrou") return;
+			let formes = {
+				furfroudandy: 'Dark',
+				furfroudebutante: 'Electric',
+				furfroudiamond: 'Rock',
+				furfrouheart: 'Fairy',
+				furfroukabuki: 'Fire',
+				furfroulareine: 'Water',
+				furfroumatron: 'Psychic',
+				furfroupharaoh: 'Ghost',
+				furfroustar: 'Ice',
+			}; 
+			let forme = Object.keys(formes)[this.random(9)];
+			while (forme === pokemon.template.speciesid) forme = Object.keys(formes)[this.random(9)];
+			pokemon.formeChange(forme, this.getAbility('afrocoat'), false, '', 0);
+			let type = ["Normal", formes[forme]];
+			if (!pokemon.setType(type)) return;
+			this.add('-start', pokemon, 'typechange', type.join('/'), '[silent]');
+			this.add('-message', `Furfrou changed his hair style!`);
+		},
+	},
 	// rhetco
 	masterbaiter: {
 		shortDesc: "Can Attract opponents regardless of gender. Ground type moves can hit Pokemon in the air.",
@@ -309,14 +347,14 @@ let BattleAbilities = {
 				pokemon.addVolatile('truant');
 			}
 		},
-		onModifyMovePriority: 9,
-		onModifyMove(move, pokemon) {
-			if (pokemon.volatiles['truant']) move.priority = 4;
+		onModifyPriorityPriority: 9,
+		onModifyPriority(priority, pokemon) {
+			if (pokemon.volatiles['truant']) return 5;
 		},
 		onBeforeMovePriority: 9,
-		onBeforeMove(source, target) {
+		onBeforeMove(source, target, move) {
 			if (source.removeVolatile('truant')) {
-				this.add('-ability', source, 'brb fixing sports');
+				this.add('-activate', source, 'ability: brb fixing sports');
 				this.useMove('substitute', source, target);
 				this.add('-message', `Crono is loafing around!`);
 				return false;

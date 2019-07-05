@@ -1382,7 +1382,7 @@ export class ModdedDex {
 			// Formats are inherited by mods
 			this.includeFormats();
 		} else {
-			for (const dataType of DATA_TYPES) {
+			for (const dataType of DATA_TYPES.concat('Aliases')) {
 				const parentTypedData = parentDex.data[dataType];
 				const childTypedData = dataCache[dataType] || (dataCache[dataType] = {});
 				for (const entryId in parentTypedData) {
@@ -1413,7 +1413,6 @@ export class ModdedDex {
 					}
 				}
 			}
-			dataCache['Aliases'] = parentDex.data['Aliases'];
 		}
 
 		// Flag the generation. Required for team validator.

@@ -189,7 +189,8 @@ let BattleAbilities = {
 		},
 		onAfterDamage(damage, target, source, effect) {
 			if (effect && effect.flags['contact']) {
-				this.boost({spe: -1}, source, target, null, false, true);
+				this.add('-activate', target, 'ability: Afro Coat');
+				this.boost({spe: -1}, source, target, target.ability);
 			}
 		},
 		onResidualOrder: 5,

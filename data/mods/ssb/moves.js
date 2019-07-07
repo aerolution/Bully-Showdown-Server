@@ -98,23 +98,26 @@ let BattleMovedex = {
 		accuracy: 100,
 		basePower: 0,
 		damage: 0,
-		category: "Special",
+		category: "Physical",
 		shortDesc: "Deals 40 HP of damage for each positive stat boost on this Pokemon.",
 		id: "bitch",
 		name: "bitch",
 		isNonstandard: "Custom",
-		pp: 15,
+		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		onTryMove(pokemon) {
+			if (!pokemon.positiveBoosts()) {
+				this.add('-message', `(bitch can't be used if you don't have any stat boosts.)`);
+				return false;
+			}
 			this.attrLastMove('[still]');
-			if (!pokemon.positiveBoosts()) return false;
 		},
 		onPrepareHit(target, source) {
 			this.add('-anim', source, 'Torment', source);
 			this.add('-anim', source, 'Beat Up', target);
 		},
-		onModifyMove (move, pokemon) {
+		onModifyMove(move, pokemon) {
 			move.damage = 40 * pokemon.positiveBoosts();
 		},
 		secondary: null,
@@ -670,11 +673,6 @@ let BattleMovedex = {
 					chance: 100,
 					volatileStatus: 'partiallytrapped',
 				});
-			} else if (pokemon.template.speciesid === "furfroupharaoh") {
-				move.secondaries.push({
-					chance: 100,
-					volatileStatus: 'curse',
-				});
 			}
 		},
 		onHit(target, source, move) {
@@ -695,6 +693,8 @@ let BattleMovedex = {
 				target.clearBoosts();
 				this.add('-clearboost', target);
 				source.side.addSideCondition('mist', source);
+			} else if (pokemon.template.speciesid === "furfroupharaoh") {
+				if (target.ability !== 'mummy') target.setAbility('mummy', source);
 			} else if (source.template.speciesid === "furfroumatron") {
 				source.side.addSlotCondition(source, 'wish', source);
 				this.add('-anim', source, "Wish", source);

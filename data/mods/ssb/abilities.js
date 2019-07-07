@@ -31,7 +31,6 @@ let BattleAbilities = {
 		name: "Garbage Heal",
 		onStart(pokemon) {
 			if (!pokemon.status && !pokemon.side.getSideCondition('safeguard')) {
-				this.add('-activate', pokemon, 'ability: Garbage Heal');
 				let status = this.getEffect('tox');
 				pokemon.status = status.id;
 				pokemon.statusData = {id: status.id, target: pokemon, source: pokemon, stage: 0};

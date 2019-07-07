@@ -178,7 +178,7 @@ class RandomStaffBrosTeams extends RandomTeams {
 				species: 'Guzzlord', ability: 'Next Gen Fighter', item: 'Iapapa Berry', 
 				moves: ['Dark Pulse', 'Sludge Wave', 'Fire Blast'],
 				signatureMove: 'Draco Meteor',
-				evs: {def: 4, spa: 252, spe: 252}, nature: 'Modest',
+				evs: {def: 116, spa: 252, spe: 140}, nature: 'Modest',
 			},
 			'GoodMorningCrono': {
 				species: 'Slaking', ability: 'brb fixing sports', item: 'Choice Band', 

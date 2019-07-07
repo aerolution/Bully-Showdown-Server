@@ -23,6 +23,11 @@ let BattlePokedex = {
 		inherit: true,
 		abilities: {0: "Versatility"},
 	},
+	// Nacho
+	aerodactylmega: {
+		inherit: true,
+		abilities: {0: "Doug's Ghosting"},
+	},
 	// Princess Furfrou
 	furfrou: {
 		inherit: true,

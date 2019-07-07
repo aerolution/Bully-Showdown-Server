@@ -27,6 +27,15 @@ let BattleStatuses = {
 			this.add(`c|Brettibus|FeelsBrettMan`);
 		},
 	},
+	cembep: {
+		noCopy: true,
+		onStart() {
+			this.add(`c|cembep|brb gotta do laundry`);
+		},
+		onFaint() {
+			this.add(`c|cembep|fuck i forgot to do the laundry`);
+		},
+	},
 	doesnt: {
 		noCopy: true,
 		onStart() {
@@ -134,6 +143,18 @@ let BattleStatuses = {
 			this.add(`c|&Mio|i came out here to have a good time and i'm honestly feeling so attacked right now.`);
 		},
 	},
+	nacho: {
+		noCopy: true,
+		onStart() {
+			this.add(`c|Nacho|Sup bitches`);
+		},
+		onFaint() {
+			this.add(`c|Nacho|Kids these days...`);
+		},
+		onDisableMove(pokemon) {
+			if (pokemon.template.speciesid === 'aerodactylmega') pokemon.disableMove('calldoug');
+		},
+	},
 	princessfurfrou: {
 		noCopy: true,
 		onStart() {
@@ -141,10 +162,6 @@ let BattleStatuses = {
 		},
 		onFaint() {
 			this.add(`c|&Princess Furfrou|i don't even care you guys`);
-		},
-		onModifyPriorityPriority: 9,
-		onModifyPriority(priority, pokemon, target, move) {
-			if (pokemon.template.speciesid === "furfrou" && move.id === "rainbowgasm") return 4;
 		},
 	},
 	rhetco: {
@@ -212,6 +229,15 @@ let BattleStatuses = {
 	},
 	
 	// Bonus:
+	cuba: {
+		noCopy: true,
+		onStart() {
+			this.add(`c|CUBA|CUBA!`);
+		},
+		onFaint() {
+			this.add(`c|CUBA|:depression:`);
+		},
+	},
 	goodmorningcrono: {
 		noCopy: true,
 		onStart() {
@@ -231,6 +257,33 @@ let BattleStatuses = {
 		},
 	},
 	
+	// Dynamax for CUBA
+	dynamax: {
+		name: 'dynamax',
+		id: 'dynamax',
+		num: 0,
+		duration: 3,
+		onStart(pokemon, source) {
+			this.add('-activate', pokemon, 'ability: Next Gen Fighter', '[of] ' + source);
+			this.add('-anim', pokemon, "Extreme Evoboost", pokemon);
+			this.add('-message', `CUBA has dynamaxed! It will be much stronger for the next 3 turns!`);
+		},
+		onModifyDefPriority: 20,
+		onModifyDef(stat, pokemon) {
+			return this.modify(stat, 1.6);
+		},
+		onModifySpDPriority: 20,
+		onModifySpD(stat, pokemon) {
+			return this.modify(stat, 1.6);
+		},
+		onModifySpePriority: 20,
+		onEnd(pokemon) {
+			this.add('-activate', pokemon, 'ability: Next Gen Fighter');
+			this.add('-anim', pokemon, "Minimize", pokemon);
+			this.add('-message', `CUBA reverted back to its regular form!`);
+		},
+	},
+	
 	// modified paralysis for Static Boost
 	par: {
 		inherit: true,
@@ -245,7 +298,6 @@ let BattleStatuses = {
 		inherit: true,
 		onEnd(target) {
 			const data = this.effectData;
-			// time's up; time to hit! :D
 			const move = this.getMove(data.move);
 			if (target.fainted || target === data.source) {
 				this.hint(`${move.name} did not hit because the target is ${(data.fainted ? 'fainted' : 'the user')}.`);

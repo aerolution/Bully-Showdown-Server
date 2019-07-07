@@ -93,6 +93,34 @@ let BattleMovedex = {
 		target: "normal",
 		type: "Poison",
 	},
+	// cembep
+	bitch: {
+		accuracy: 100,
+		basePower: 0,
+		damage: 0,
+		category: "Special",
+		shortDesc: "Deals 40 HP of damage for each positive stat boost on this Pokemon.",
+		id: "bitch",
+		name: "bitch",
+		isNonstandard: "Custom",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onTryMove(pokemon) {
+			this.attrLastMove('[still]');
+			if (!pokemon.positiveBoosts()) return false;
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Torment', source);
+			this.add('-anim', source, 'Beat Up', target);
+		},
+		onModifyMove (move, pokemon) {
+			move.damage = 40 * pokemon.positiveBoosts();
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dark",
+	},
 	// Doesnt
 	delay: {
 		accuracy: 100,
@@ -363,46 +391,40 @@ let BattleMovedex = {
 		volatileStatus: 'smackdown',
 		onTryMove(pokemon) {
 			this.attrLastMove('[still]');
-			if (!pokemon.m.SWcount) pokemon.m.SWcount = 0;
 		},
 		onPrepareHit(target, source) {
 			this.add('-anim', source, "Precipice Blades", target);
 		},
 		onEffectiveness(typeMod, target, type, move) {
 			if (move.type !== 'Ground') return;
-			if (!target) return; // avoid crashing when called from a chat plugin
+			if (!target) return;
 			if (!target.runImmunity('Ground')) {
 				if (target.hasType('Flying')) return 0;
 			}
 		},
 		onAfterHit(target, source, move) {
-			source.m.SWcount++;
-			if (source.m.SWcount == 2) {
+			if (move.hit == 2) {
 				let type = ["Normal", "Ground"];
 				if (source.getTypes() !== type) {
 					if (!source.setType(type)) return;
 					this.add('-start', source, 'typechange', type.join('/'), "[from] move: Sand's Wrath");
 				}
 			}
-			if (source.m.SWcount == 3) {
+			if (move.hit == 3) {
 				this.field.setWeather('sandstorm');
 			}
 		},
-		onAfterMove(pokemon) {
-			if (pokemon.m.SWcount == 1) {
+		onAfterMove(pokemon, target, move) {
+			if (move.hit == 1) {
 				let type = ["Normal", "Ground"];
 				if (pokemon.getTypes() !== type) {
 					if (!pokemon.setType(type)) return;
 					this.add('-start', pokemon, 'typechange', type.join('/'), "[from] move: Sand's Wrath");
 				}
-				pokemon.m.SWcount++;
-			}
-			if (pokemon.m.SWcount == 2) {
 				this.field.setWeather('sandstorm');
-				pokemon.m.SWcount++;
 			}
-			if (pokemon.m.SWcount == 3) {
-				pokemon.m.SWcount = 0;
+			if (move.hit == 2) {
+				this.field.setWeather('sandstorm');
 			}
 		},
 		ignoreImmunity: {'Ground': true},
@@ -539,6 +561,34 @@ let BattleMovedex = {
 		target: "normal",
 		type: "Flying",
 	},
+	// Nacho
+	calldoug: {
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		shortDesc: "Upon landing, the user transforms into Aerodactyl-Mega with the ability Doug's Ghosting.",
+		id: "calldoug",
+		name: "Call Doug",
+		isNonstandard: "Custom",
+		pp: 5,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onTryMove(pokemon) {
+			if (pokemon.template.speciesid !== 'aerodactyl') return false;
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Helping Hand', source);
+			this.add('-anim', source, 'Rock Slide', target);
+		},
+		onAfterHit(target, source, move) {
+			source.formeChange('aerodactylmega', move, false, '', 0);
+			this.add('-message', `Nacho called Doug for help!`);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Rock",
+	},
 	// Furfrou
 	rainbowgasm: {
 		accuracy: 100,
@@ -556,16 +606,8 @@ let BattleMovedex = {
 			this.attrLastMove('[still]');
 		},
 		onPrepareHit(target, source) {
-			if (source.template.speciesid !== "furfrou") {
-				this.add('-anim', source, "Geomancy", source);
-				this.add('-anim', source, "Punishment", target);
-			}
-		},
-		onTryHit(target, source, move) {
-			if (source.template.speciesid === "furfrou") return !!this.willAct() && this.runEvent('StallMove', target);
-		},
-		onHit(pokemon) {
-			if (pokemon.template.speciesid === "furfrou") pokemon.addVolatile('stall');
+			this.add('-anim', source, "Geomancy", source);
+			this.add('-anim', source, "Punishment", target);
 		},
 		onModifyMove(move, pokemon) {
 			let formes = {
@@ -582,15 +624,7 @@ let BattleMovedex = {
 			}; 
 			move.type = formes[pokemon.template.speciesid];
 			move.secondaries = [];
-			if (pokemon.template.speciesid === "furfrou") {
-				move.accuracy = true;
-				move.basePower = 0;
-				move.category = "Status";
-				move.priority = 4;
-				move.stallingMove = true;
-				move.volatileStatus = 'spikyshield';
-				move.target = "self";
-			} else if (pokemon.template.speciesid === "furfroudandy") {
+			if (pokemon.template.speciesid === "furfroudandy") {
 				move.secondaries.push({
 					chance: 100,
 					volatileStatus: 'taunt',
@@ -644,7 +678,20 @@ let BattleMovedex = {
 			}
 		},
 		onHit(target, source, move) {
-			if (source.template.speciesid === "furfroustar") {
+			if (source.template.speciesid === "furfrou") {
+				if (source.hp && source.removeVolatile('leechseed')) {
+					this.add('-end', source, 'Leech Seed', '[from] move: rainbowgasm', '[of] ' + source);
+				}
+				let sideConditions = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
+				for (const condition of sideConditions) {
+					if (source.hp && source.side.removeSideCondition(condition)) {
+						this.add('-sideend', source.side, this.getEffect(condition).name, '[from] move: rainbowgasm', '[of] ' + source);
+					}
+				}
+				if (source.hp && source.volatiles['partiallytrapped']) {
+					source.removeVolatile('partiallytrapped');
+				}
+			} else if (source.template.speciesid === "furfroustar") {
 				target.clearBoosts();
 				this.add('-clearboost', target);
 				source.side.addSideCondition('mist', source);
@@ -681,7 +728,7 @@ let BattleMovedex = {
 			target.addVolatile('attract', source);
 			target.addVolatile('torment', source);
 			target.addVolatile('confusion', source);
-			let bannedTargetAbilities = ['battlebond', 'comatose', 'disguise', 'flowergift', 'forecast', 'illusion', 'imposter', 'multitype', 'powerconstruct', 'powerofalchemy', 'receiver', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'trace', 'wonderguard', 'zenmode', 'pigmad', 'brbfixingsports', 'digitizer'];
+			let bannedTargetAbilities = ['battlebond', 'comatose', 'disguise', 'flowergift', 'forecast', 'illusion', 'imposter', 'multitype', 'powerconstruct', 'powerofalchemy', 'receiver', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'trace', 'wonderguard', 'zenmode', 'pigmad', 'brbfixingsports', 'digitizer', 'nextgenfighter'];
 			if (bannedTargetAbilities.includes(target.ability)) {
 				return false;
 			}
@@ -929,6 +976,111 @@ let BattleMovedex = {
 	},
 	
 	// Bonus:
+	// CUBA
+	maxdrake: {
+		accuracy: true,
+		basePower: 150,
+		category: "Special",
+		shortDesc: "Boosts the user's Special Defense by 1.",
+		id: "maxdrake",
+		name: "Max Drake",
+		isNonstandard: "Custom",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1},
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Devastating Drake', target);
+		},
+		secondary: {
+			chance: 100,
+			self: {
+				boosts: {
+					spa: 1,
+				},
+			},
+		},
+		target: "normal",
+		type: "Dragon",
+	},
+	maxdarkness: {
+		accuracy: true,
+		basePower: 130,
+		category: "Special",
+		shortDesc: "Lowers the target's Special Defense by 1.",
+		id: "maxdarkness",
+		name: "Max Darkness",
+		isNonstandard: "Custom",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1},
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Black Hole Eclipse', target);
+		},
+		secondary: {
+			chance: 100,
+			boosts: {
+				spd: -1,
+			},
+		},
+		target: "normal",
+		type: "Dark",
+	},
+	maxflare: {
+		accuracy: true,
+		basePower: 140,
+		category: "Special",
+		shortDesc: "Activates harsh sunlight.",
+		id: "maxflare",
+		name: "Max Flare",
+		isNonstandard: "Custom",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1},
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Inferno Overdrive', target);
+		},
+		onAfterMoveSecondarySelf() {
+			this.field.setWeather('sunnyday');
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fire",
+	},
+	maxtoxin: {
+		accuracy: true,
+		basePower: 130,
+		category: "Special",
+		shortDesc: "Lowers the target's Special Attack by 1.",
+		id: "maxtoxin",
+		name: "Max Toxin",
+		isNonstandard: "Custom",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1},
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Acid Downpour', target);
+		},
+		secondary: {
+			chance: 100,
+			boosts: {
+				spa: -1,
+			},
+		},
+		target: "normal",
+		type: "Poison",
+	},
 	// GoodMorningCrono
 	cronoluck: {
 		accuracy: 100,
@@ -1059,6 +1211,43 @@ let BattleMovedex = {
 		basePowerCallback(pokemon) {
 			return Math.floor(((256 - pokemon.happiness) * 10) / 25) || 1;
 		},
+	},
+	// modified moves for Dynamax
+	"dracometeor": {
+		inherit: true,
+		beforeMoveCallback(source, target, move) {
+			if (source.getVolatile('dynamax')) {
+				this.useMove('maxdrake', source, target);
+				return true;
+			}
+		}
+	},
+	"darkpulse": {
+		inherit: true,
+		beforeMoveCallback(source, target, move) {
+			if (source.getVolatile('dynamax')) {
+				this.useMove('maxdarkness', source, target);
+				return true;
+			}
+		}
+	},
+	"fireblast": {
+		inherit: true,
+		beforeMoveCallback(source, target, move) {
+			if (source.getVolatile('dynamax')) {
+				this.useMove('maxflare', source, target);
+				return true;
+			}
+		}
+	},
+	"sludgewave": {
+		inherit: true,
+		beforeMoveCallback(source, target, move) {
+			if (source.getVolatile('dynamax')) {
+				this.useMove('maxtoxin', source, target);
+				return true;
+			}
+		}
 	},
 };
 

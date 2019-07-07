@@ -46,6 +46,12 @@ class RandomStaffBrosTeams extends RandomTeams {
 				signatureMove: 'Rant',
 				evs: {hp: 80, spa: 252, spe: 176}, nature: 'Timid',
 			},
+			'cembep': {
+				species: 'Grimer', ability: 'Garbage Heal', item: 'Eviolite', 
+				moves: ['Poison Jab', 'Stockpile', 'Pain Split'],
+				signatureMove: 'bitch',
+				evs: {hp: 252, def: 4, spd: 252}, nature: 'Careful',
+			},
 			'Doesnt': {
 				species: 'Lilligant', ability: 'Midnight Fighter', item: 'Miracle Seed', 
 				moves: ['Taunt', 'Seed Flare', 'Moonlight'],
@@ -89,7 +95,7 @@ class RandomStaffBrosTeams extends RandomTeams {
 				evs: {atk: 252, spd: 4, spe: 252}, happiness: 1, nature: 'Adamant',
 			},
 			'Kesha': {
-				species: 'Machamp', ability: 'Muscle Milk', item: 'Assault Vest', 
+				species: 'Machamp', ability: 'Muscle Milk', item: 'Shell Bell', 
 				moves: ['Knock Off', 'Bullet Punch', 'Close Combat'],
 				signatureMove: 'Gains Goblin',
 				evs: {hp: 252, atk: 252, spd: 4}, nature: 'Adamant',
@@ -111,6 +117,12 @@ class RandomStaffBrosTeams extends RandomTeams {
 				moves: ['Tailwind', 'Swords Dance', 'Strength Sap'],
 				signatureMove: 'Fuzzy Bounce',
 				evs: {hp: 248, atk: 8, spe: 252}, nature: 'Jolly',
+			},
+			'Nacho': {
+				species: 'Aerodactyl', ability: 'Old AF', item: 'Protective Pads', 
+				moves: ['Stone Edge', 'Fly', 'Stomping Tantrum'],
+				signatureMove: 'Call Doug',
+				evs: {atk: 252, def: 4, spe: 252}, nature: 'Jolly',
 			},
 			'Princess Furfrou': {
 				species: 'Furfrou', ability: 'Afro Coat', item: 'Iapapa Berry', 
@@ -162,6 +174,12 @@ class RandomStaffBrosTeams extends RandomTeams {
 			},
 			
 			// Bonus:
+			'CUBA': {
+				species: 'Guzzlord', ability: 'Next Gen Fighter', item: 'Iapapa Berry', 
+				moves: ['Dark Pulse', 'Sludge Wave', 'Fire Blast'],
+				signatureMove: 'Draco Meteor',
+				evs: {def: 4, spa: 252, spe: 252}, nature: 'Modest',
+			},
 			'GoodMorningCrono': {
 				species: 'Slaking', ability: 'brb fixing sports', item: 'Choice Band', 
 				moves: ['Baton Pass', 'Submission', 'Sucker Punch'],

@@ -24,6 +24,38 @@ let BattleAbilities = {
 			}
 		},
 	},
+	// cembep
+	garbageheal: {
+		shortDesc: "Toxics the user on switch-in. At the end of each turn, if the user is poisoned, it heals by 1/8th of its HP and a random stat is raised.",
+		id: "garbageheal",
+		name: "Garbage Heal",
+		onStart(pokemon) {
+			if (!pokemon.status && !pokemon.side.getSideCondition('safeguard')) {
+				this.add('-activate', pokemon, 'ability: Garbage Heal');
+				let status = this.getEffect('tox');
+				pokemon.status = status.id;
+				pokemon.statusData = {id: status.id, target: pokemon, source: pokemon, stage: 0};
+				this.add('-status', pokemon, pokemon.status);
+			}
+		},
+		onDamagePriority: 1,
+		onDamage(damage, pokemon, source, effect) {
+			if (effect.id === 'psn' || effect.id === 'tox') {
+				this.heal(pokemon.maxhp / 8);
+				let stats = [];
+				let boost = {};
+				for (let statPlus in pokemon.boosts) {
+					if (pokemon.boosts[statPlus] < 6) {
+						stats.push(statPlus);
+					}
+				}
+				let randomStat = stats.length ? this.sample(stats) : "";
+				if (randomStat) boost[randomStat] = 1;
+				this.boost(boost, pokemon);
+				return false;
+			}
+		},
+	},
 	// Doesnt
 	midnightfighter: {
 		shortDesc: "Increases this Pokemon's Special Attack, Special Defense and Speed by 50% if it's the only non-fainted Pokemon on the team.",
@@ -160,7 +192,7 @@ let BattleAbilities = {
 		shortDesc: "Sets strong winds while this Pokemon is active. Tailwinds set up by the user last one more turn.",
 		id: "omegastream",
 		name: "Omega Stream",
-		onStart(source) {
+		onStart(pokemon) {
 			this.field.setWeather('deltastream');
 		},
 		onAnySetWeather(target, source, weather) {
@@ -176,6 +208,41 @@ let BattleAbilities = {
 				}
 			}
 			this.field.clearWeather();
+		},
+	},
+	// Nacho
+	oldaf: {
+		shortDesc: "This Pokemon's moves have their accuracy lowered by 0.6x.",
+		id: "oldaf",
+		name: "Old AF",
+		onStart(pokemon) {
+			this.add('-activate', pokemon, 'ability: Old AF');
+			this.add('-message', `Nacho is too old to get it going!`);
+		},
+		onSourceModifyAccuracy(accuracy) {
+			if (typeof accuracy !== 'number') return;
+			return accuracy * 0.6;
+		},
+	},
+	dougsghosting: {
+		shortDesc: "This Pokemon's damaging moves hit twice. The second hit has its damage halved.",
+		id: "dougsghosting",
+		name: "Doug's Ghosting",
+		onPrepareHit(source, target, move) {
+			if (['iceball', 'rollout'].includes(move.id)) return;
+			if (move.category !== 'Status' && !move.selfdestruct && !move.multihit && !move.flags['charge'] && !move.spreadHit && !move.isZ) {
+				move.multihit = 2;
+				move.multihitType = 'parentalbond';
+			}
+		},
+		onBasePowerPriority: 8,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.multihitType === 'parentalbond' && move.hit > 1) return this.chainModify(0.5);
+		},
+		onSourceModifySecondaries(secondaries, target, source, move) {
+			if (move.multihitType === 'parentalbond' && move.id === 'secretpower' && move.hit < 2) {
+				return secondaries.filter(effect => effect.volatileStatus === 'flinch');
+			}
 		},
 	},
 	// Princess Furfrou
@@ -289,7 +356,7 @@ let BattleAbilities = {
 	},
 	// woodlandapple
 	wasntlistening: {
-		shortDesc: "Ignores other Pokemon's stat changes and can only be damaged by direct attacks.",
+		shortDesc: "Ignores other Pokemon's stat changes. Can only be damaged by direct attacks. Unaffacted by secondary effects of the opponent's moves.",
 		id: "wasntlistening",
 		name: "Wasn't Listening",
 		onDamage(damage, target, source, effect) {
@@ -309,6 +376,14 @@ let BattleAbilities = {
 				boosts['atk'] = 0;
 				boosts['spa'] = 0;
 				boosts['accuracy'] = 0;
+			}
+		},
+		onFoeModifyMovePriority: -1,
+		onFoeModifyMove(move) {
+			if (move.secondaries) {
+				for (const secondary of move.secondaries) {
+					if (!secondary.self) secondary.chance = 0;
+				}
 			}
 		},
 	},
@@ -336,6 +411,18 @@ let BattleAbilities = {
 	},
 	
 	// Bonus:
+	// CUBA
+	nextgenfighter: {
+		shortDesc: "Dynamaxes the Pokemon the first time it uses an attack.",
+		id: "nextgenfighter",
+		name: "Next Gen Fighter",
+		onModifyPriority(prio, pokemon) {
+			if (!pokemon.m.aCount && pokemon.name === "CUBA") {
+				pokemon.m.aCount = 1;
+				pokemon.addVolatile('dynamax', pokemon);
+			}
+		},
+	},
 	// GoodMorningCrono
 	brbfixingsports: {
 		shortDesc: "Every other turn, sets up a Substitute instead of using a move. Substitute is consumed at the end of the turn.",

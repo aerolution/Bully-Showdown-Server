@@ -74,11 +74,11 @@ let BattleMovedex = {
 		effect: {
 			duration: 3,
 			onStart() {
-				this.add('-message', 'It became stuck in the rant!');
+				this.add('-message', `It became stuck in the rant!`);
 			},
 			onResidualOrder: 11,
 			onEnd(pokemon) {
-				this.add('-message', 'The rant ended.');
+				this.add('-message', `The rant ended.`);
 			},
 			onTrapPokemon(pokemon) {
 				if (this.effectData.source && this.effectData.source.isActive) pokemon.tryTrap();
@@ -97,7 +97,9 @@ let BattleMovedex = {
 	bitch: {
 		accuracy: 100,
 		basePower: 0,
-		damage: 0,
+		damageCallback(pokemon) {
+			return 40 * pokemon.positiveBoosts();
+		},
 		category: "Physical",
 		shortDesc: "Deals 40 HP of damage for each positive stat boost on this Pokemon.",
 		id: "bitch",
@@ -107,18 +109,17 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		onTryMove(pokemon) {
-			if (!pokemon.positiveBoosts()) {
-				this.add('-message', `(bitch can't be used if you don't have any stat boosts.)`);
-				return false;
-			}
 			this.attrLastMove('[still]');
 		},
 		onPrepareHit(target, source) {
 			this.add('-anim', source, 'Torment', source);
 			this.add('-anim', source, 'Beat Up', target);
 		},
-		onModifyMove(move, pokemon) {
-			move.damage = 40 * pokemon.positiveBoosts();
+		onTryHit(target, source) {
+			if (!source.positiveBoosts()) {
+				this.add('-message', `(bitch can't be used if you don't have any stat boosts.)`);
+				return false;
+			}
 		},
 		secondary: null,
 		target: "normal",
@@ -243,7 +244,7 @@ let BattleMovedex = {
 			duration: 5,
 			onStart(target, source) {
 				this.add('-fieldstart', 'move: Hax Room', '[of] ' + source);
-				this.add('-message', `Looks like Jackinev is ready to outskill his opponents!`);
+				this.add('-message', `${source.name} is ready to outskill his opponents!`);
 			},
 			onRestart(target, source) {
 				this.field.removePseudoWeather('mejackmehack');
@@ -346,12 +347,12 @@ let BattleMovedex = {
 		target: "self",
 		type: "Normal",
 	},
-	// Kesha
+	// Juicy
 	eatramen: {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		shortDesc: "Raises the user's Defense, Special Defense and Speed by 1.",
+		shortDesc: "Raises the user's Defense, Special Defense and Speed by 1. Heals all damage already taken this turn.",
 		id: "eatramen",
 		name: "Eat Ramen",
 		isNonstandard: "Custom",
@@ -375,6 +376,7 @@ let BattleMovedex = {
 			spd: 1,
 			spe: 1,
 		},
+		secondary: null,
 		target: "self",
 		type: "Water",
 	},
@@ -751,7 +753,7 @@ let BattleMovedex = {
 		accuracy: true,
 		basePower: 160,
 		category: "Special",
-		shortDesc: "Raises the user's Evasion by 1. Sets up a Substitute without losing HP.",
+		shortDesc: "Raises the user's Special Attack by 1. Sets up a Substitute without losing HP.",
 		id: "hireasamurai",
 		name: "Hire a Samurai",
 		isNonstandard: "Custom",
@@ -822,7 +824,7 @@ let BattleMovedex = {
 					type: 'Dark',
 				},
 			});
-			this.add('-message', `Spiderpig is coming up with a high IQ play!`);
+			this.add('-message', `${source.name} is coming up with a high IQ play!`);
 			return null;
 		},
 		secondary: null,
@@ -834,7 +836,7 @@ let BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		shortDesc: "Raises the user's Def, Sp. Atk and Sp. Def by 1.",
+		shortDesc: "Raises the user's Defense, Special Attack and Special Defense by 1.",
 		id: "blizzardfocus",
 		name: "Blizzard Focus",
 		isNonstandard: "Custom",
@@ -926,7 +928,7 @@ let BattleMovedex = {
 		accuracy: 90,
 		basePower: 25,
 		category: "Special",
-		shortDesc: "Hits 2-5 times, 15% flinch on each hit. Torments target.",
+		shortDesc: "Hits 2-5 times, 15% flinch on each hit. Torments the target.",
 		id: "ddoswavecannon",
 		name: "DDoS Wave Cannon",
 		isNonstandard: "Custom",
@@ -986,7 +988,7 @@ let BattleMovedex = {
 		accuracy: true,
 		basePower: 150,
 		category: "Special",
-		shortDesc: "Boosts the user's Special Defense by 1.",
+		shortDesc: "Raises the user's Special Attack by 1.",
 		id: "maxdrake",
 		name: "Max Drake",
 		isNonstandard: "Custom",
@@ -1091,7 +1093,7 @@ let BattleMovedex = {
 		accuracy: 100,
 		basePower: 120,
 		category: "Physical",
-		shortDesc: "High critical hit chance. Freezes the user if it crits.",
+		shortDesc: "High critical hit chance. Inherits Crono's luck.",
 		id: "cronoluck",
 		name: "Crono Luck",
 		isNonstandard: "Custom",

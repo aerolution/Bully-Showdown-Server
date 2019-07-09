@@ -693,8 +693,11 @@ let BattleMovedex = {
 				target.clearBoosts();
 				this.add('-clearboost', target);
 				source.side.addSideCondition('mist', source);
-			} else if (pokemon.template.speciesid === "furfroupharaoh") {
-				if (target.ability !== 'mummy') target.setAbility('mummy', source);
+			} else if (source.template.speciesid === "furfroupharaoh") {
+				if (target.ability !== 'mummy') {
+					target.setAbility('mummy', source);
+					this.add('-ability', target, this.getAbility(target.ability).name, '[from] move: rainbowgasm', '[of] ' + source);
+				}
 			} else if (source.template.speciesid === "furfroumatron") {
 				source.side.addSlotCondition(source, 'wish', source);
 				this.add('-anim', source, "Wish", source);
@@ -937,13 +940,15 @@ let BattleMovedex = {
 		onPrepareHit(target, source) {
 			this.add('-anim', source, 'Mirror Shot', target);
 		},
-		onAfterMove(source, target) {
-			target.addVolatile('torment', source);
-		},
-		secondary: {
-			chance: 15,
-			volatileStatus: 'flinch',
-		},
+		secondaries: [
+			{
+				chance: 15,
+				volatileStatus: 'flinch',
+			}, {
+				chance: 100,
+				volatileStatus: 'torment',
+			},
+		],
 		target: "normal",
 		type: "Steel",
 	},

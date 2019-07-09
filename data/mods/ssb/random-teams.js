@@ -175,7 +175,7 @@ class RandomStaffBrosTeams extends RandomTeams {
 			
 			// Bonus:
 			'CUBA': {
-				species: 'Guzzlord', ability: 'Next Gen Fighter', item: 'Iapapa Berry', 
+				species: 'Guzzlord', ability: 'Next Gen Fighter', item: 'Sitrus Berry', 
 				moves: ['Dark Pulse', 'Sludge Wave', 'Fire Blast'],
 				signatureMove: 'Draco Meteor',
 				evs: {def: 116, spa: 252, spe: 140}, nature: 'Modest',
@@ -187,7 +187,7 @@ class RandomStaffBrosTeams extends RandomTeams {
 				evs: {atk: 252, def: 4, spe: 252}, nature: 'Jolly',
 			},
 			'pig lad': {
-				species: 'Swinub', ability: 'Pig Mad', item: 'Metronome', 
+				species: 'Swinub', ability: 'Pig Mad', item: 'Fresh Water', 
 				moves: ['Stealth Rock', 'Knock Off', 'Ice Shard'],
 				signatureMove: 'Eat Lettuce',
 				evs: {hp: 252, atk: 252, spe: 4}, nature: 'Adamant',

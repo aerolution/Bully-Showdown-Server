@@ -124,6 +124,12 @@ class RandomStaffBrosTeams extends RandomTeams {
 				signatureMove: 'Call Doug',
 				evs: {atk: 252, def: 4, spe: 252}, nature: 'Jolly',
 			},
+			'nathan': {
+				species: 'Torterra', ability: 'Ground Control', item: 'Earth Plate', 
+				moves: ['Shore Up', 'Wood Hammer', 'Rock Slide'],
+				signatureMove: 'Groundshaker',
+				evs: {hp: 216, atk: 252, spe: 40}, nature: 'Adamant',
+			},
 			'Princess Furfrou': {
 				species: 'Furfrou', ability: 'Afro Coat', item: 'Iapapa Berry', 
 				moves: ['Head Charge', 'Aromatherapy', 'U-Turn'],
@@ -182,9 +188,15 @@ class RandomStaffBrosTeams extends RandomTeams {
 			},
 			'GoodMorningCrono': {
 				species: 'Slaking', ability: 'brb fixing sports', item: 'Choice Band', 
-				moves: ['Baton Pass', 'Submission', 'Sucker Punch'],
+				moves: ['Baton Pass', 'Hammer Arm', 'Sucker Punch'],
 				signatureMove: 'Crono Luck',
 				evs: {atk: 252, def: 4, spe: 252}, nature: 'Jolly',
+			},
+			'NBL': {
+				species: 'Mew', ability: 'Dragon Dance Manifesto', item: 'Defogium Z', 
+				moves: ['Defog', 'Vacuum Wave', 'Nasty Plot'],
+				signatureMove: 'Sweep',
+				evs: {hp: 252, spa: 252}, nature: 'Timid',
 			},
 			'pig lad': {
 				species: 'Swinub', ability: 'Pig Mad', item: 'Fresh Water', 

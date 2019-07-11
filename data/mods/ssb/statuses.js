@@ -155,6 +155,15 @@ let BattleStatuses = {
 			if (pokemon.template.speciesid === 'aerodactylmega') pokemon.disableMove('calldoug');
 		},
 	},
+	nathan: {
+		noCopy: true,
+		onStart() {
+			this.add(`c|nathan|Ground luck`);
+		},
+		onFaint() {
+			this.add(`c|nathan|Ground bye`);
+		},
+	},
 	princessfurfrou: {
 		noCopy: true,
 		onStart() {
@@ -247,6 +256,15 @@ let BattleStatuses = {
 			this.add(`c|~GoodMorningCrono|Screw this, I'm going to fuck my wife.`);
 		},
 	},
+	nbl: {
+		noCopy: true,
+		onStart() {
+			this.add(`c|NBL|come get your free win`);
+		},
+		onFaint() {
+			this.add(`c|NBL|if i didntg mess up speed tiers i couldve won`);
+		},
+	},
 	piglad: {
 		noCopy: true,
 		onStart() {
@@ -305,7 +323,7 @@ let BattleStatuses = {
 			}
 
 			if (move.name === "Galaxy Brain Play") this.add('-message', `Spiderpig's galaxy brain play is revealed!`);
-			else this.add('-end', target, 'move: ' + move.name);
+			else if (move.name !== "Sweep") this.add('-end', target, 'move: ' + move.name);
 			target.removeVolatile('Protect');
 			target.removeVolatile('Endure');
 

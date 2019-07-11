@@ -244,6 +244,24 @@ let BattleAbilities = {
 			}
 		},
 	},
+	// nathan
+	groundcontrol: {
+		shortDesc: "If this Pokemon uses a Ground or Rock type move, it then sets a layer of Spikes or Stealth Rock respectively.",
+		id: "groundcontrol",
+		name: "Ground Control",
+		onAfterMove(source, target, move) {
+			if (move.type === "Ground" && move.category !== "Status") {
+				this.add('-activate', source, 'ability: Ground Control');
+				this.add('-anim', source, 'Spikes', target);
+				target.side.addSideCondition('spikes', source, move);
+			}
+			if (move.type === "Rock" && move.category !== "Status") {
+				this.add('-activate', source, 'ability: Ground Control');
+				this.add('-anim', source, 'Stealth Rock', target);
+				target.side.addSideCondition('stealthrock', source, move);
+			}
+		},
+	},
 	// Princess Furfrou
 	afrocoat: {
 		shortDesc: "Doubles Defense. If a Pokemon makes contact with the user, lowers its Speed by 1. At the end of each turn, user changes to a random Furfrou forme and gains a new type to match it.",
@@ -415,7 +433,7 @@ let BattleAbilities = {
 		shortDesc: "Dynamaxes the Pokemon the first time it uses an attack.",
 		id: "nextgenfighter",
 		name: "Next Gen Fighter",
-		onModifyPriority(prio, pokemon) {
+		onModifyPriority(priority, pokemon) {
 			if (!pokemon.m.aCount && pokemon.name === "CUBA") {
 				pokemon.m.aCount = 1;
 				pokemon.addVolatile('dynamax', pokemon);
@@ -471,6 +489,20 @@ let BattleAbilities = {
 				this.add('-anim', pokemon, 'Aqua Ring');
 				pokemon.cureStatus(true);
 				this.add('-message', `Crono fixed the server! Everything's back to normal!`);
+			}
+		},
+	},
+	// NBL
+	dragondancemanifesto: {
+		shortDesc: "Raises Attack and Speed by 1 at the end of each full turn on the field.",
+		id: "dragondancemanifesto",
+		name: "Dragon Dance Manifesto",
+		onResidualOrder: 26,
+		onResidualSubOrder: 1,
+		onResidual(pokemon) {
+			if (pokemon.activeTurns) {
+				this.add('-anim', pokemon, "Dragon Dance", pokemon);
+				this.boost({atk: 1, spe: 1});
 			}
 		},
 	},

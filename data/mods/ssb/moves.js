@@ -594,6 +594,45 @@ let BattleMovedex = {
 		target: "normal",
 		type: "Rock",
 	},
+	// nathan
+	groundshaker: {
+		accuracy: 100,
+		basePower: 80,
+		basePowerCallback(source, target, move) {
+			let hazards = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
+			let layers = 0;
+			for (const curr of hazards) {
+				if (source.side.sideConditions[curr]) layers += (source.side.sideConditions[curr].layers || 1);
+				if (target.side.sideConditions[curr]) layers += (target.side.sideConditions[curr].layers || 1);
+			}
+			this.add('-message', `${layers} layers`);
+			return move.basePower + 10 * layers;
+		},
+		category: "Physical",
+		shortDesc: "+ 10 power for every hazard layer on the field. If Stealth Rocks are on the field, hits Pokemon in the air and grounds them.",
+		id: "groundshaker",
+		name: "Groundshaker",
+		isNonstandard: "Custom",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, nosky: 1},
+		onTryMove(pokemon) {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Synthesis', source);
+			this.add('-anim', source, 'Earthquake', target);
+		},
+		onModifyMove(move, source, target) {
+			if (source.side.getSideCondition('stealthrock') || target.side.getSideCondition('stealthrock')) {
+				move.ignoreImmunity = {'Ground': true};
+				move.volatileStatus = 'smackdown';
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ground",
+	},
 	// Furfrou
 	rainbowgasm: {
 		accuracy: 100,
@@ -1117,6 +1156,117 @@ let BattleMovedex = {
 		secondary: null,
 		target: "normal",
 		type: "Normal",
+	},
+	// NBL
+	sweep: {
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		shortDesc: "Forces the target to switch to a random ally, then hits.",
+		id: "sweep",
+		name: "Sweep",
+		isNonstandard: "Custom",
+		pp: 15,
+		priority: -6,
+		flags: {mirror: 1, authentic: 1},
+		ignoreImmunity: true,
+		isFutureMove: true,
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Whirlwind', target);
+		},
+		onTry(source, target) {
+			if (!target.side.addSlotCondition(target, 'futuremove')) return false;
+			Object.assign(target.side.slotConditions[target.position]['futuremove'], {
+				duration: 1,
+				move: 'sweep',
+				source: source,
+				moveData: {
+					id: 'sweep',
+					name: "Sweep",
+					accuracy: 100,
+					basePower: 90,
+					category: "Special",
+					priority: 0,
+					flags: {},
+					ignoreImmunity: false,
+					effectType: 'Move',
+					isFutureMove: true,
+					type: 'Psychic',
+					onPrepareHit(target, source) {
+						this.add('-anim', source, 'Psystrike', target);
+					},
+				},
+			});
+			target.forceSwitchFlag = true;
+			return null;
+		},
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
+	},
+	midseasondropout: {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "Uses Z-Defog. For the next 3 turns, Sweep has normal priority.",
+		id: "midseasondropout",
+		name: "Mid Season Dropout",
+		isNonstandard: "Custom",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		onTryMove(pokemon) {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source, move) {
+			this.boost({accuracy: 1}, source, source, move);
+			this.add('-anim', source, "Defog", source);
+		},
+		onHit(target, source, move) {
+			let success = false;
+			if (!target.volatiles['substitute'] || move.infiltrates) success = !!this.boost({evasion: -1});
+			let removeTarget = ['reflect', 'lightscreen', 'auroraveil', 'safeguard', 'mist', 'spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
+			let removeAll = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
+			for (const targetCondition of removeTarget) {
+				if (target.side.removeSideCondition(targetCondition)) {
+					if (!removeAll.includes(targetCondition)) continue;
+					this.add('-sideend', target.side, this.getEffect(targetCondition).name, '[from] move: Mid Season Dropout', '[of] ' + source);
+					success = true;
+				}
+			}
+			for (const sideCondition of removeAll) {
+				if (source.side.removeSideCondition(sideCondition)) {
+					this.add('-sideend', source.side, this.getEffect(sideCondition).name, '[from] move: Mid Season Dropout', '[of] ' + source);
+					success = true;
+				}
+			}
+			return success;
+		},
+		terrain: 'midseasondropout',
+		effect: {
+			duration: 4,
+			onModifyPriority(priority, source, target, move) {
+				if (move.id === "sweep") return 0;
+			},
+			onStart(side) {
+				this.add('-fieldstart', 'Mid Season Dropout');
+			},
+			onResidualOrder: 21,
+			onResidualSubOrder: 2,
+			onResidual() {
+				this.eachEvent('Terrain');
+			},
+			onEnd(side) {
+				this.add('-fieldend', 'Mid Season Dropout');
+			},
+		},
+		secondary: null,
+		isZ: "defogiumz",
+		target: "normal",
+		type: "Flying",
 	},
 	// pig lad
 	eatlettuce: {

@@ -26,6 +26,20 @@ let BattleItems = {
 		gen: 7,
 		desc: "If held by a Samurott with Secret Sword, it can use Hire a Samurai.",
 	},
+	
+	// Bonus:
+	// CUBA
+	defogiumz: {
+		id: "defogiumz",
+		name: "Defogium Z",
+		isNonstandard: "Custom",
+		onTakeItem: false,
+		zMove: "Mid Season Dropout",
+		zMoveFrom: "Defog",
+		zMoveUser: ["Mew"],
+		gen: 7,
+		desc: "If held by a Mew with Defog, it can use Mid Season Dropout.",
+	},
 };
 
 exports.BattleItems = BattleItems;

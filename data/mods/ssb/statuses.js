@@ -45,6 +45,15 @@ let BattleStatuses = {
 			this.add(`c|Doesnt|this space for rent`);
 		},
 	},
+	goodmorningcrono: {
+		noCopy: true,
+		onStart() {
+			this.add(`c|~GoodMorningCrono|Okay I'm in sports`);
+		},
+		onFaint() {
+			this.add(`c|~GoodMorningCrono|Screw this, I'm going to fuck my wife.`);
+		},
+	},
 	inaria: {
 		noCopy: true,
 		onStart() {
@@ -69,7 +78,7 @@ let BattleStatuses = {
 			this.add(`c|~Jackinev|me jack me no hack`);
 		},
 		onFaint() {
-			this.add(`c|~Jackinev|mammamia`);
+			this.add(`c|~Jackinev|mamma mia`);
 		},
 	},
 	jlmuserwolves: {
@@ -238,6 +247,15 @@ let BattleStatuses = {
 	},
 	
 	// Bonus:
+	biggoboy: {
+		noCopy: true,
+		onStart() {
+			this.add(`c|BIGGO BOY|i HATE birds!!!!`);
+		},
+		onFaint() {
+			this.add(`c|BIGGO BOY|DIE BIRD SCUM`);
+		},
+	},
 	cuba: {
 		noCopy: true,
 		onStart() {
@@ -245,15 +263,6 @@ let BattleStatuses = {
 		},
 		onFaint() {
 			this.add(`c|CUBA|:depression:`);
-		},
-	},
-	goodmorningcrono: {
-		noCopy: true,
-		onStart() {
-			this.add(`c|~GoodMorningCrono|Okay I'm in sports`);
-		},
-		onFaint() {
-			this.add(`c|~GoodMorningCrono|Screw this, I'm going to fuck my wife.`);
 		},
 	},
 	nbl: {
@@ -265,6 +274,15 @@ let BattleStatuses = {
 			this.add(`c|NBL|if i didntg mess up speed tiers i couldve won`);
 		},
 	},
+	optimusprime: {
+		noCopy: true,
+		onStart() {
+			this.add(`c|Optimus Prime|Transform and roll out!`);
+		},
+		onFaint() {
+			this.add(`c|Optimus Prime|I am one with the AllSpark...`);
+		},
+	},
 	piglad: {
 		noCopy: true,
 		onStart() {
@@ -272,6 +290,15 @@ let BattleStatuses = {
 		},
 		onFaint() {
 			this.add(`c|pig lad|HECC`);
+		},
+	},
+	praise: {
+		noCopy: true,
+		onStart() {
+			this.add(`c|PRAISE!|Praise the Sun!`);
+		},
+		onFaint() {
+			this.add(`c|PRAISE!|Not anymore, there's a blanket.`);
 		},
 	},
 	

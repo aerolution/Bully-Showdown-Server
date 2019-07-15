@@ -57,7 +57,7 @@ let BattleAbilities = {
 	},
 	// Doesnt
 	midnightfighter: {
-		shortDesc: "Increases this Pokemon's Special Attack, Special Defense and Speed by 50% if it's the only non-fainted Pokemon on the team.",
+		shortDesc: "Boosts this Pokemon's Special Attack, Special Defense and Speed by 50% if it's the only non-fainted Pokemon on the team.",
 		id: "midnightfighter",
 		name: "Midnight Fighter",
 		onStart(pokemon) {
@@ -224,7 +224,7 @@ let BattleAbilities = {
 		},
 	},
 	dougsghosting: {
-		shortDesc: "This Pokemon's damaging moves hit twice. The second hit has its damage halved.",
+		shortDesc: "This Pokemon's damaging moves always hit and hit twice. The second hit has its damage halved.",
 		id: "dougsghosting",
 		name: "Doug's Ghosting",
 		onPrepareHit(source, target, move) {
@@ -233,6 +233,9 @@ let BattleAbilities = {
 				move.multihit = 2;
 				move.multihitType = 'parentalbond';
 			}
+		},
+		onSourceModifyAccuracy(accuracy) {
+			return true;
 		},
 		onBasePowerPriority: 8,
 		onBasePower(basePower, pokemon, target, move) {
@@ -250,6 +253,7 @@ let BattleAbilities = {
 		id: "groundcontrol",
 		name: "Ground Control",
 		onAfterMove(source, target, move) {
+			if (!source || !target) return;
 			if (move.type === "Ground" && move.category !== "Status") {
 				this.add('-activate', source, 'ability: Ground Control');
 				this.add('-anim', source, 'Spikes', target);
@@ -428,6 +432,39 @@ let BattleAbilities = {
 	},
 	
 	// Bonus:
+	// BIGGO BOY
+	biggobomb: {
+		shortDesc: "Boosts this Pokemon's Special Defense by 50%. This Pokemon cannot be taunted and its Status moves have +2 priority. 40% chance to use BIGGO BOOM after every successful move.",
+		id: "biggobomb",
+		name: "BIGGO BOMB",
+		onUpdate(pokemon) {
+			if (pokemon.volatiles['taunt']) {
+				this.add('-activate', pokemon, 'ability: BIGGO BOMB');
+				pokemon.removeVolatile('taunt');
+			}
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'taunt') {
+				this.add('-immune', pokemon, '[from] ability: BIGGO BOMB');
+				return null;
+			}
+		},
+		onModifyPriority(priority, pokemon, target, move) {
+			if (move && move.category === 'Status') {
+				return priority + 2;
+			}
+		},
+		onModifySpDPriority: 5,
+		onModifySpD(def, pokemon) {
+			return this.chainModify(1.5);
+		},
+		onAfterMove(source, target, move) {
+			if (source && target && this.random(10) < 4) {
+				this.add('-activate', source, 'ability: BIGGO BOMB');
+				this.useMove('biggoboom', source, target);
+			}
+		},
+	},
 	// CUBA
 	nextgenfighter: {
 		shortDesc: "Dynamaxes the Pokemon the first time it uses an attack.",
@@ -503,6 +540,20 @@ let BattleAbilities = {
 			if (pokemon.activeTurns) {
 				this.add('-anim', pokemon, "Dragon Dance", pokemon);
 				this.boost({atk: 1, spe: 1});
+			}
+		},
+	},
+	// Optimus Prime
+	matrixofleadership: {
+		shortDesc: "This Pokemon's Phantom Force does not take a turn to charge up.",
+		id: "matrixofleadership",
+		name: "Matrix of Leadership",
+		onChargeMove(pokemon, target, move) {
+			if (move.id === "phantomforce") {
+				this.add('-activate', pokemon, 'ability: Matrix of Leadership');
+				this.attrLastMove('[still]');
+				this.addMove('-anim', pokemon, move.name, target);
+				return false; // skip charge turn
 			}
 		},
 	},

@@ -40,6 +40,18 @@ let BattleItems = {
 		gen: 7,
 		desc: "If held by a Mew with Defog, it can use Mid Season Dropout.",
 	},
+	// Optimus Prime
+	optimusiumz: {
+		id: "optimusiumz",
+		name: "Optimusium Z",
+		isNonstandard: "Custom",
+		onTakeItem: false,
+		zMove: "Till All Are One",
+		zMoveFrom: "Phantom Force",
+		zMoveUser: ["Golurk"],
+		gen: 7,
+		desc: "If held by a Golurk with Phantom Force, it can use Till All Are One.",
+	},
 };
 
 exports.BattleItems = BattleItems;

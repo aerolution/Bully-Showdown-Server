@@ -64,6 +64,12 @@ class RandomStaffBrosTeams extends RandomTeams {
 				signatureMove: 'Delta Eraser',
 				evs: {hp: 252, def: 100, spd: 156}, ivs: {atk: 0}, nature: 'Bold',
 			},
+			'GoodMorningCrono': {
+				species: 'Slaking', ability: 'brb fixing sports', item: 'Choice Band', 
+				moves: ['Baton Pass', 'Hammer Arm', 'Sucker Punch'],
+				signatureMove: 'Crono Luck',
+				evs: {atk: 252, def: 4, spe: 252}, nature: 'Jolly',
+			},
 			'inversify': {
 				species: 'Simisear', ability: 'Inversify', item: 'Charcoal', 
 				moves: ['Searing Shot', 'Leaf Storm', 'Swagger'],
@@ -180,17 +186,17 @@ class RandomStaffBrosTeams extends RandomTeams {
 			},
 			
 			// Bonus:
+			'BIGGO BOY': {
+				species: 'Golem-Alola', ability: 'BIGGO BOMB', item: 'Iapapa Berry', 
+				moves: ['Charge', 'Magnet Rise', 'Curse'],
+				signatureMove: 'BIRD DETECTED',
+				evs: {hp: 248, atk: 252, spd: 8}, nature: 'Adamant',
+			},
 			'CUBA': {
 				species: 'Guzzlord', ability: 'Next Gen Fighter', item: 'Sitrus Berry', 
 				moves: ['Dark Pulse', 'Sludge Wave', 'Fire Blast'],
 				signatureMove: 'Draco Meteor',
 				evs: {def: 116, spa: 252, spe: 140}, nature: 'Modest',
-			},
-			'GoodMorningCrono': {
-				species: 'Slaking', ability: 'brb fixing sports', item: 'Choice Band', 
-				moves: ['Baton Pass', 'Hammer Arm', 'Sucker Punch'],
-				signatureMove: 'Crono Luck',
-				evs: {atk: 252, def: 4, spe: 252}, nature: 'Jolly',
 			},
 			'NBL': {
 				species: 'Mew', ability: 'Dragon Dance Manifesto', item: 'Defogium Z', 
@@ -198,11 +204,23 @@ class RandomStaffBrosTeams extends RandomTeams {
 				signatureMove: 'Sweep',
 				evs: {hp: 252, spa: 252}, nature: 'Timid',
 			},
+			'Optimus Prime': {
+				species: 'Golurk', ability: 'Matrix of Leadership', item: 'Optimusium Z', 
+				moves: ['Bulk Up', 'Stealth Rock', 'Earthquake'],
+				signatureMove: 'Phantom Force',
+				evs: {hp: 4, atk: 252, spe: 252}, nature: 'Adamant',
+			},
 			'pig lad': {
 				species: 'Swinub', ability: 'Pig Mad', item: 'Fresh Water', 
 				moves: ['Stealth Rock', 'Knock Off', 'Ice Shard'],
 				signatureMove: 'Eat Lettuce',
 				evs: {hp: 252, atk: 252, spe: 4}, nature: 'Adamant',
+			},
+			'PRAISE!': {
+				species: 'Moltres', ability: 'Desolate Land', item: 'Flame Plate', 
+				moves: ['Burn Up', 'Solar Beam', 'Roost'],
+				signatureMove: 'The Sun is a Deadly Laser',
+				evs: {def: 4, spa: 252, spe: 252}, nature: 'Timid',
 			},
 		};
 		let pool = Object.keys(sets);

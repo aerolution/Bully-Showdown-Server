@@ -605,7 +605,6 @@ let BattleMovedex = {
 				if (source.side.sideConditions[curr]) layers += (source.side.sideConditions[curr].layers || 1);
 				if (target.side.sideConditions[curr]) layers += (target.side.sideConditions[curr].layers || 1);
 			}
-			this.add('-message', `${layers} layers`);
 			return move.basePower + 10 * layers;
 		},
 		category: "Physical",
@@ -620,7 +619,7 @@ let BattleMovedex = {
 			this.attrLastMove('[still]');
 		},
 		onPrepareHit(target, source) {
-			this.add('-anim', source, 'Synthesis', source);
+			this.add('-anim', source, 'Celebrate', target);
 			this.add('-anim', source, 'Earthquake', target);
 		},
 		onModifyMove(move, source, target) {
@@ -772,7 +771,7 @@ let BattleMovedex = {
 			target.addVolatile('attract', source);
 			target.addVolatile('torment', source);
 			target.addVolatile('confusion', source);
-			let bannedTargetAbilities = ['battlebond', 'comatose', 'disguise', 'flowergift', 'forecast', 'illusion', 'imposter', 'multitype', 'powerconstruct', 'powerofalchemy', 'receiver', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'trace', 'wonderguard', 'zenmode', 'pigmad', 'brbfixingsports', 'digitizer', 'nextgenfighter'];
+			let bannedTargetAbilities = ['battlebond', 'comatose', 'disguise', 'flowergift', 'forecast', 'illusion', 'imposter', 'multitype', 'powerconstruct', 'powerofalchemy', 'receiver', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'trace', 'wonderguard', 'zenmode', 'pigmad', 'brbfixingsports', 'digitizer', 'nextgenfighter', 'dougsghosting'];
 			if (bannedTargetAbilities.includes(target.ability)) {
 				return false;
 			}
@@ -1022,6 +1021,57 @@ let BattleMovedex = {
 	},
 	
 	// Bonus:
+	// BIGGO BOY
+	birddetected: {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "Changes the target's type to Flying.",
+		id: "birddetected",
+		name: "BIRD DETECTED",
+		isNonstandard: "Custom",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1},
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Lock-On', target);
+			this.add('-anim', source, 'Torment', source);
+		},
+		onHit(target, source) {
+			let type = "Flying";
+			if (!target.setType(type)) return false;
+			this.add('-start', target, 'typechange', type, "[from] move: BIRD DETECTED");
+		},
+		secondary: null,
+		target: "normal",
+		type: "Rock",
+	},
+	biggoboom: {
+		accuracy: 100,
+		basePower: 250,
+		category: "Physical",
+		shortDesc: "BIGGO BOOM",
+		id: "biggoboom",
+		name: "BIGGO BOOM",
+		isNonstandard: "Custom",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Gigavolt Havoc', source);
+			this.add('-anim', source, 'Explosion', source);
+		},
+		selfdestruct: "always",
+		secondary: null,
+		target: "allAdjacent",
+		type: "Electric",
+	},
 	// CUBA
 	maxdrake: {
 		accuracy: true,
@@ -1268,6 +1318,34 @@ let BattleMovedex = {
 		target: "normal",
 		type: "Flying",
 	},
+	// Optimus Prime
+	tillallareone: {
+		accuracy: true,
+		basePower: 300,
+		category: "Physical",
+		shortDesc: "Protect only prevents 50% of the damage from this attack. The user faints.",
+		id: "tillallareone",
+		name: "Till All Are One",
+		isNonstandard: "Custom",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		onTryMove(pokemon) {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source, move) {
+			this.add('-anim', source, "Never-Ending Nightmare", source);
+			this.add('-anim', source, "Explosion", source);
+		},
+		onModifyMove(move, source, target) {
+			if (target.getVolatile('stall')) move.basePower *= 2;
+		},
+		selfdestruct: "always",
+		secondary: null,
+		isZ: "optimusiumz",
+		target: "normal",
+		type: "Ghost",
+	},
 	// pig lad
 	eatlettuce: {
 		accuracy: 100,
@@ -1292,6 +1370,47 @@ let BattleMovedex = {
 		secondary: null,
 		target: "allAdjacent",
 		type: "Ground",
+	},
+	// PRAISE!
+	thesunisadeadlylaser: {
+		accuracy: 100,
+		basePower: 70,
+		category: "Special",
+		shortDesc: "Lowers target's Speed by 1. If the weather is extreme sunlight, the user gains the Fire type.",
+		id: "thesunisadeadlylaser",
+		name: "The Sun is a Deadly Laser",
+		isNonstandard: "Custom",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		onPrepareHit(target, source) {
+			this.add('-anim', source, 'Charge', target);
+			this.add('-anim', source, 'Oblivion Wing', target);
+		},
+		onHit(target, source, move) {
+			if (this.field.isWeather('desolateland')) {
+				if (source.hasType('Fire')) return;
+				if (source.hasType('???')) {
+					source.setType(source.getTypes(true).map(type => type === "???" ? "Fire" : type));
+					this.add('-start', source, 'typechange', source.types.join('/'), '[from] move: The Sun is a Deadly Laser');
+				}
+				else {
+					if (!source.addType('Fire')) return;
+					this.add('-start', source, 'typeadd', 'Fire', '[from] move: The Sun is a Deadly Laser');
+				}
+			}
+		},
+		secondary: {
+			chance: 100,
+			boosts: {
+				spe: -1,
+			},
+		},
+		target: "normal",
+		type: "Flying",
 	},
 	
 	// modified Attract for Master Baiter

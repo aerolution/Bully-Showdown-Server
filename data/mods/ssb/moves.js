@@ -37,6 +37,71 @@ let BattleMovedex = {
 		heal: [1, 2], // recover first num / second num % of the target's HP
 	},
 	*/
+	// angryairair
+	careerender: {
+		accuracy: 100,
+		basePower: 0,
+		damageCallback(pokemon) {
+			if (!pokemon.volatiles['careerender']) return 0;
+			return pokemon.volatiles['careerender'].damage || 1;
+		},
+		category: "Physical",
+		shortDesc: "If hit by an attack, returns 2x damage. Fails if used in succession.",
+		id: "careerender",
+		name: "Career Ender",
+		isNonstandard: "Custom",
+		pp: 20,
+		priority: -5,
+		flags: {contact: 1, protect: 1},
+		onTryMove() {
+			this.attrLastMove('[still]');
+		},
+		beforeTurnCallback(pokemon) {
+			if (pokemon.removeVolatile('careerender')) return false;
+			pokemon.addVolatile('careerender');
+		},
+		onTryHit(target, source, move) {
+			if (!source.volatiles['careerender']) {
+				this.add('-message', `(Career Ender can't be used twice in a row.)`);
+				return false;
+			}
+			if (source.volatiles['careerender'].position === null) return false;
+			this.add('-anim', source, 'Counter', target);
+		},
+		effect: {
+			noCopy: true,
+			onStart(target, source, move) {
+				this.effectData.position = null;
+				this.effectData.damage = 0;
+			},
+			onRedirectTargetPriority: -1,
+			onRedirectTarget(target, source, source2) {
+				if (source !== this.effectData.target) return;
+				return source.side.foe.active[this.effectData.position];
+			},
+			onAfterDamage(damage, target, source, effect) {
+				if (effect && effect.effectType === 'Move' && source.side !== target.side) {
+					this.effectData.position = source.position;
+					this.effectData.damage = 2 * damage;
+				}
+			},
+			onBeforeMovePriority: -1,
+			onBeforeMove(pokemon, target, move) {
+				if (move.id === 'careerender') return;
+				pokemon.removeVolatile('careerender');
+			},
+			onMoveAborted(pokemon, target, move) {
+				pokemon.removeVolatile('careerender');
+			},
+			onBeforeSwitchOutPriority: 1,
+			onBeforeSwitchOut(pokemon) {
+				pokemon.removeVolatile('careerender');
+			},
+		},
+		secondary: null,
+		target: "scripted",
+		type: "Water",
+	},
 	// Brettibus
 	rant: {
 		accuracy: 95,
@@ -895,71 +960,6 @@ let BattleMovedex = {
 		secondary: null,
 		target: "self",
 		type: "Ice",
-	},
-	// woodlandapple
-	careerender: {
-		accuracy: 100,
-		basePower: 0,
-		damageCallback(pokemon) {
-			if (!pokemon.volatiles['careerender']) return 0;
-			return pokemon.volatiles['careerender'].damage || 1;
-		},
-		category: "Physical",
-		shortDesc: "If hit by an attack, returns 2x damage. Fails if used in succession.",
-		id: "careerender",
-		name: "Career Ender",
-		isNonstandard: "Custom",
-		pp: 20,
-		priority: -5,
-		flags: {contact: 1, protect: 1},
-		onTryMove() {
-			this.attrLastMove('[still]');
-		},
-		beforeTurnCallback(pokemon) {
-			if (pokemon.removeVolatile('careerender')) return false;
-			pokemon.addVolatile('careerender');
-		},
-		onTryHit(target, source, move) {
-			if (!source.volatiles['careerender']) {
-				this.add('-message', `(Career Ender can't be used twice in a row.)`);
-				return false;
-			}
-			if (source.volatiles['careerender'].position === null) return false;
-			this.add('-anim', source, 'Counter', target);
-		},
-		effect: {
-			noCopy: true,
-			onStart(target, source, move) {
-				this.effectData.position = null;
-				this.effectData.damage = 0;
-			},
-			onRedirectTargetPriority: -1,
-			onRedirectTarget(target, source, source2) {
-				if (source !== this.effectData.target) return;
-				return source.side.foe.active[this.effectData.position];
-			},
-			onAfterDamage(damage, target, source, effect) {
-				if (effect && effect.effectType === 'Move' && source.side !== target.side) {
-					this.effectData.position = source.position;
-					this.effectData.damage = 2 * damage;
-				}
-			},
-			onBeforeMovePriority: -1,
-			onBeforeMove(pokemon, target, move) {
-				if (move.id === 'careerender') return;
-				pokemon.removeVolatile('careerender');
-			},
-			onMoveAborted(pokemon, target, move) {
-				pokemon.removeVolatile('careerender');
-			},
-			onBeforeSwitchOutPriority: 1,
-			onBeforeSwitchOut(pokemon) {
-				pokemon.removeVolatile('careerender');
-			},
-		},
-		secondary: null,
-		target: "scripted",
-		type: "Steel",
 	},
 	// X-Naut
 	ddoswavecannon: {

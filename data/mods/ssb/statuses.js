@@ -18,6 +18,15 @@ let BattleStatuses = {
 		// Innate effects go here
 	},
 	*/
+	angryairair: {
+		noCopy: true,
+		onStart() {
+			this.add(`c|@angryairair|who the fuck pinged me i was asleep `);
+		},
+		onFaint() {
+			this.add(`c|@angryairair|i blame jack`);
+		},
+	},
 	brettibus: {
 		noCopy: true,
 		onStart() {
@@ -221,10 +230,10 @@ let BattleStatuses = {
 	woodlandapple: {
 		noCopy: true,
 		onStart() {
-			this.add(`c|@woodlandapple|who the fuck pinged me i was asleep `);
+			this.add(`c|woodlandapple|VOLTURN MAYHEM WOOOO`);
 		},
 		onFaint() {
-			this.add(`c|@woodlandapple|i blame jack`);
+			this.add(`c|woodlandapple|funs over i guess`);
 		},
 	},
 	xnaut: {

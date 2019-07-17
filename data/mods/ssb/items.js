@@ -26,6 +26,18 @@ let BattleItems = {
 		gen: 7,
 		desc: "If held by a Samurott with Secret Sword, it can use Hire a Samurai.",
 	},
+	// woodlandapple
+	jankiumz: {
+		id: "jankiumz",
+		name: "Jankium Z",
+		isNonstandard: "Custom",
+		onTakeItem: false,
+		zMove: "JANK TIME",
+		zMoveFrom: "Apple Jank",
+		zMoveUser: ["Chimecho"],
+		gen: 7,
+		desc: "If held by a Chimecho with Apple Jank, it can use JANK TIME.",
+	},
 	
 	// Bonus:
 	// CUBA

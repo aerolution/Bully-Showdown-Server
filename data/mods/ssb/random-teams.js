@@ -40,6 +40,12 @@ class RandomStaffBrosTeams extends RandomTeams {
 			// You can also skip shiny, defaults to false. Level can be skipped (defaults to 100).
 			// Nature needs to be a valid nature with the first letter capitalized ex: Modest
 			*/
+			'angryairair': {
+				species: 'Quagsire', ability: "Wasn't Listening", item: 'Assault Vest', 
+				moves: ['Scald', 'Earthquake', 'Infestation'],
+				signatureMove: 'Career Ender',
+				evs: {hp: 248, def: 8, spd: 252}, nature: 'Sassy',
+			},
 			'Brettibus': {
 				species: 'Latios', ability: 'Toxicity', item: 'Dragon Gem', 
 				moves: ['Draco Meteor', 'Psyshock', 'Earthquake'],
@@ -56,7 +62,7 @@ class RandomStaffBrosTeams extends RandomTeams {
 				species: 'Lilligant', ability: 'Midnight Fighter', item: 'Miracle Seed', 
 				moves: ['Taunt', 'Seed Flare', 'Moonlight'],
 				signatureMove: 'Delay',
-				evs: {hp: 252, spa: 4, spe: 252}, nature: 'Timid',
+				evs: {hp: 252, spa: 4, spe: 252}, ivs: {atk: 0}, nature: 'Timid',
 			},
 			'Inaria': {
 				species: 'Porygon2', ability: 'Digitizer', item: 'Eviolite', 
@@ -152,7 +158,7 @@ class RandomStaffBrosTeams extends RandomTeams {
 				species: 'Samurott', ability: 'Swordworker', item: 'Samuraium Z', 
 				moves: ['Scald', 'Ice Beam', 'Air Slash'],
 				signatureMove: 'Secret Sword',
-				evs: {hp: 40, spa: 252, spe: 208}, nature: 'Timid',
+				evs: {hp: 40, spa: 252, spe: 208}, ivs: {atk: 0}, nature: 'Timid',
 			},
 			'Spiderpig': {
 				species: 'Araquanid', ability: 'Bulky Bubble', item: 'Assault Vest', 
@@ -167,10 +173,10 @@ class RandomStaffBrosTeams extends RandomTeams {
 				evs: {hp: 248, def: 8, spd: 252}, ivs: {atk: 0}, nature: 'Calm',
 			},
 			'woodlandapple': {
-				species: 'Quagsire', ability: "Wasn't Listening", item: 'Assault Vest', 
-				moves: ['Scald', 'Earthquake', 'Infestation'],
-				signatureMove: 'Career Ender',
-				evs: {hp: 248, def: 8, spd: 252}, nature: 'Sassy',
+				species: 'Chimecho', ability: "Volturn Mayhem", item: 'Jankium Z', 
+				moves: ['Knock Off', 'Recover', 'Defog'],
+				signatureMove: 'Apple Jank',
+				evs: {hp: 252, def: 252, spd: 4}, ivs: {atk: 0}, nature: 'Relaxed',
 			},
 			'X-Naut': {
 				species: 'Magneton', ability: 'Yux Barrier', item: 'Electric Gem', 
@@ -196,7 +202,7 @@ class RandomStaffBrosTeams extends RandomTeams {
 				species: 'Guzzlord', ability: 'Next Gen Fighter', item: 'Sitrus Berry', 
 				moves: ['Dark Pulse', 'Sludge Wave', 'Fire Blast'],
 				signatureMove: 'Draco Meteor',
-				evs: {def: 116, spa: 252, spe: 140}, nature: 'Modest',
+				evs: {def: 116, spa: 252, spe: 140}, ivs: {atk: 0}, nature: 'Modest',
 			},
 			'NBL': {
 				species: 'Mew', ability: 'Dragon Dance Manifesto', item: 'Defogium Z', 
@@ -220,7 +226,7 @@ class RandomStaffBrosTeams extends RandomTeams {
 				species: 'Moltres', ability: 'Desolate Land', item: 'Flame Plate', 
 				moves: ['Burn Up', 'Solar Beam', 'Roost'],
 				signatureMove: 'The Sun is a Deadly Laser',
-				evs: {def: 4, spa: 252, spe: 252}, nature: 'Timid',
+				evs: {def: 4, spa: 252, spe: 252}, ivs: {atk: 0}, nature: 'Timid',
 			},
 		};
 		let pool = Object.keys(sets);

@@ -13,6 +13,39 @@ let BattleAbilities = {
 		// For more examples, see https://github.com/Zarel/Pokemon-Showdown/blob/master/data/abilities.js
 	},
 	*/
+	// angryairair
+	wasntlistening: {
+		shortDesc: "Ignores other Pokemon's stat changes. Can only be damaged by direct attacks. Unaffacted by secondary effects of the opponent's moves.",
+		id: "wasntlistening",
+		name: "Wasn't Listening",
+		onDamage(damage, target, source, effect) {
+			if (effect.effectType !== 'Move') {
+				return false;
+			}
+		},
+		onAnyModifyBoost(boosts, target) {
+			let source = this.effectData.target;
+			if (source === target) return;
+			if (source === this.activePokemon && target === this.activeTarget) {
+				boosts['def'] = 0;
+				boosts['spd'] = 0;
+				boosts['evasion'] = 0;
+			}
+			if (target === this.activePokemon && source === this.activeTarget) {
+				boosts['atk'] = 0;
+				boosts['spa'] = 0;
+				boosts['accuracy'] = 0;
+			}
+		},
+		onFoeModifyMovePriority: -1,
+		onFoeModifyMove(move) {
+			if (move.secondaries) {
+				for (const secondary of move.secondaries) {
+					if (!secondary.self) secondary.chance = 0;
+				}
+			}
+		},
+	},
 	// Brettibus
 	toxicity: {
 		shortDesc: "Badly poison a Pokemon making contact with this Pokemon.",
@@ -373,39 +406,6 @@ let BattleAbilities = {
 				status: 'brn',
 				ability: this.getAbility('freezeburn'),
 			});
-		},
-	},
-	// woodlandapple
-	wasntlistening: {
-		shortDesc: "Ignores other Pokemon's stat changes. Can only be damaged by direct attacks. Unaffacted by secondary effects of the opponent's moves.",
-		id: "wasntlistening",
-		name: "Wasn't Listening",
-		onDamage(damage, target, source, effect) {
-			if (effect.effectType !== 'Move') {
-				return false;
-			}
-		},
-		onAnyModifyBoost(boosts, target) {
-			let source = this.effectData.target;
-			if (source === target) return;
-			if (source === this.activePokemon && target === this.activeTarget) {
-				boosts['def'] = 0;
-				boosts['spd'] = 0;
-				boosts['evasion'] = 0;
-			}
-			if (target === this.activePokemon && source === this.activeTarget) {
-				boosts['atk'] = 0;
-				boosts['spa'] = 0;
-				boosts['accuracy'] = 0;
-			}
-		},
-		onFoeModifyMovePriority: -1,
-		onFoeModifyMove(move) {
-			if (move.secondaries) {
-				for (const secondary of move.secondaries) {
-					if (!secondary.self) secondary.chance = 0;
-				}
-			}
 		},
 	},
 	// X-Naut

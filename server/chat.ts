@@ -371,7 +371,7 @@ export class CommandContext extends MessageContext {
 				let emoticons = Chat.parseEmoticons(message);
 				if (emoticons && !this.room.disableEmoticons) {
 					for (let u in this.room.users) {
-						let curUser = Users(u);
+						let curUser = Users.get(u);
 						if (!curUser || !curUser.connected) continue;
 						if (Users.ignoreEmotes[curUser.userid]) {
 							curUser.sendTo(this.room, (this.room.type === 'chat' ? '|c:|' + (~~(Date.now() / 1000)) + '|' : '|c|') + this.user.getIdentity(this.room.id) + '|' + message);

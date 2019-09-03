@@ -23,8 +23,7 @@ let Formats = [
 
 		mod: 'gen7',
 		maxForcedLevel: 50,
-		timer: {starting: 60*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, grace: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Pokemon', 'Draft', 'Team Preview'],
+		ruleset: ['Pokemon', 'Draft', 'Team Preview', 'VGC Timer'],
 		banlist: ['Illegal'],
 	},
 	{
@@ -32,8 +31,7 @@ let Formats = [
 
 		mod: 'gen7',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Pokemon', 'Draft', 'Team Preview'],
-		banlist: ['Illegal'],
+		ruleset: ['[Gen 7] Draft League'],
 	},
 	{
 		name: "[Gen 7] LC Draft League",
@@ -76,14 +74,14 @@ let Formats = [
 		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
-		name: "[Gen 7] Random Battle Turbo",
+		name: "[Gen 7] Random Battle (Blitz)",
 		desc: `Random Battle with 5-second forced timer.`,
 
 		mod: 'gen7',
 		team: 'random',
 		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		forcedTimer: true,
-		timer: {starting: 10, addPerTurn: 10, maxPerTurn: 5, maxFirstTurn: 10, timeoutAutoChoose: true},
+		timer: {starting: 15, addPerTurn: 10, maxPerTurn: 5, maxFirstTurn: 15, timeoutAutoChoose: true},
 	},
 	{
 		name: "[Gen 7] Unrated Random Battle",
@@ -105,6 +103,17 @@ let Formats = [
 		mod: 'gen7',
 		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
 		banlist: ['Uber', 'Arena Trap', 'Power Construct', 'Shadow Tag', 'Baton Pass'],
+	},
+	{
+		name: "[Gen 7] OU (Blitz)",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3646999/">OU Metagame Discussion</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3621329/">OU Viability Rankings</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3638845/">OU Sample Teams</a>`,
+		],
+
+		mod: 'gen7',
+		ruleset: ['[Gen 7] OU', 'Blitz'],
 	},
 	{
 		name: "[Gen 7] Ubers",
@@ -140,8 +149,8 @@ let Formats = [
 
 		mod: 'gen7',
 		ruleset: ['[Gen 7] UU'],
-		banlist: ['UU', 'RUBL', 'Aurora Veil'],
-		unbanlist: ['Slowbro-Mega', 'Drought'],
+		banlist: ['UU', 'RUBL', 'Mimikyu', 'Aurora Veil'],
+		unbanlist: ['Drought'],
 	},
 	{
 		name: "[Gen 7] NU",
@@ -153,7 +162,7 @@ let Formats = [
 
 		mod: 'gen7',
 		ruleset: ['[Gen 7] RU'],
-		banlist: ['RU', 'NUBL', 'Slowbro-Mega', 'Drought'],
+		banlist: ['RU', 'NUBL', 'Drought'],
 	},
 	{
 		name: "[Gen 7] PU",
@@ -197,9 +206,9 @@ let Formats = [
 		ruleset: ['[Gen 7] LC'],
 		banlist: [
 			// LC
-			'Abra', 'Bunnelby', 'Carvanha', 'Chinchou', 'Clamperl', 'Corphish', 'Croagunk', 'Dewpider', 'Diglett-Base',
-			'Doduo', 'Drilbur', 'Dwebble', 'Elekid', 'Ferroseed', 'Foongus', 'Frillish', 'Gastly', 'Grimer-Alola', 'Magnemite',
-			'Mareanie', 'Mienfoo', 'Mudbray', 'Munchlax', 'Omanyte', 'Onix', 'Pawniard', 'Ponyta', 'Scraggy', 'Shellder',
+			'Abra', 'Anorith', 'Bunnelby', 'Carvanha', 'Chinchou', 'Clamperl', 'Corphish', 'Croagunk', 'Dewpider', 'Diglett-Base', 'Doduo',
+			'Drilbur', 'Dwebble', 'Elekid', 'Ferroseed', 'Foongus', 'Gastly', 'Grimer-Alola', 'Magnemite', 'Mareanie', 'Meowth-Base',
+			'Mienfoo', 'Mudbray', 'Munchlax', 'Omanyte', 'Onix', 'Pawniard', 'Pikipek', 'Ponyta', 'Pumpkaboo-Super', 'Scraggy', 'Shellder',
 			'Snivy', 'Snubbull', 'Spritzee', 'Staryu', 'Surskit', 'Timburr', 'Tirtouga', 'Vullaby', 'Vulpix-Alola', 'Zigzagoon',
 			// LC UUBL
 			'Magby', 'Rufflet', 'Wynaut', 'Deep Sea Tooth',
@@ -271,9 +280,31 @@ let Formats = [
 		mod: 'gen7',
 		ruleset: ['[Gen 7] PU'],
 		banlist: [
-			'PU', 'Carracosta', 'Crabominable', 'Exeggutor-Base', 'Gorebyss', 'Jynx', 'Musharna', 'Raticate-Alola',
+			'PU', 'Carracosta', 'Crabominable', 'Gorebyss', 'Jynx', 'Musharna', 'Raticate-Alola',
 			'Raticate-Alola-Totem', 'Throh', 'Turtonator', 'Type: Null', 'Ursaring', 'Victreebel', 'Zangoose',
 		],
+	},
+	{
+		name: "[Gen 7] NFE",
+		desc: `Only Pok&eacute;mon that can evolve are allowed.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3648183/">NFE</a>`,
+		],
+
+		mod: 'gen7',
+		searchShow: false,
+		ruleset: ['[Gen 7] OU'],
+		banlist: [
+			'Chansey', 'Doublade', 'Gligar', 'Golbat', 'Gurdurr', 'Magneton', 'Piloswine',
+			'Porygon2', 'Rhydon', 'Scyther', 'Sneasel', 'Type: Null', 'Vigoroth',
+			'Drought', 'Aurora Veil',
+		],
+		onValidateSet(set) {
+			let template = this.getTemplate(set.species || set.name);
+			if (!template.nfe) {
+				return [set.species + " cannot evolve."];
+			}
+		},
 	},
 	{
 		name: "[Gen 7] CAP",
@@ -341,7 +372,6 @@ let Formats = [
 
 		mod: 'gen7',
 		searchShow: false,
-		canUseRandomTeam: true,
 		debug: true,
 		maxLevel: 9999,
 		trunc(n) { return Math.trunc(n); },
@@ -410,8 +440,7 @@ let Formats = [
 			validate: [4, 6],
 			battle: 4,
 		},
-		timer: {starting: 7 * 60, addPerTurn: 0, maxPerTurn: 55, maxFirstTurn: 90, grace: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Pokemon', 'Minimal GBU'],
+		ruleset: ['Pokemon', 'Minimal GBU', 'VGC Timer'],
 		banlist: ['Unown', 'Dragon Ascent', 'Custap Berry', 'Enigma Berry', 'Jaboca Berry', 'Micle Berry', 'Rowap Berry'],
 		requirePlus: true,
 		onValidateTeam(team) {
@@ -435,13 +464,13 @@ let Formats = [
 
 		mod: 'gen7',
 		gameType: 'doubles',
+		searchShow: false,
 		forcedLevel: 50,
 		teamLength: {
 			validate: [4, 6],
 			battle: 4,
 		},
-		timer: {starting: 7 * 60, addPerTurn: 0, maxPerTurn: 55, maxFirstTurn: 90, grace: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Pokemon', 'Minimal GBU'],
+		ruleset: ['Pokemon', 'Minimal GBU', 'VGC Timer'],
 		banlist: ['Unown', 'Dragon Ascent'],
 		requirePlus: true,
 		onValidateTeam(team) {
@@ -474,8 +503,7 @@ let Formats = [
 			validate: [4, 6],
 			battle: 4,
 		},
-		timer: {starting: 7 * 60, addPerTurn: 0, maxPerTurn: 55, maxFirstTurn: 90, grace: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Pokemon', 'Minimal GBU'],
+		ruleset: ['Pokemon', 'Minimal GBU', 'VGC Timer'],
 		banlist: ['Unown'],
 		requirePlus: true,
 		onValidateTeam(team) {
@@ -623,7 +651,6 @@ let Formats = [
 		mod: 'gen7',
 		gameType: 'doubles',
 		searchShow: false,
-		canUseRandomTeam: true,
 		maxLevel: 9999,
 		trunc(n) { return Math.trunc(n); },
 		defaultLevel: 100,
@@ -684,7 +711,7 @@ let Formats = [
 
 		mod: 'gen7',
 		ruleset: ['Pokemon', 'Ability Clause', 'OHKO Clause', 'Evasion Moves Clause', 'CFZ Clause', 'Sleep Clause Mod', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
-		banlist: ['Groudon-Primal', 'Arena Trap', 'Contrary', 'Huge Power', 'Illusion', 'Innards Out', 'Magnet Pull', 'Moody', 'Parental Bond', 'Protean', 'Psychic Surge', 'Pure Power', 'Shadow Tag', 'Stakeout', 'Water Bubble', 'Wonder Guard', 'Gengarite', 'Chatter', 'Comatose + Sleep Talk'],
+		banlist: ['Groudon-Primal', 'Rayquaza-Mega', 'Arena Trap', 'Contrary', 'Huge Power', 'Illusion', 'Innards Out', 'Magnet Pull', 'Moody', 'Parental Bond', 'Protean', 'Psychic Surge', 'Pure Power', 'Shadow Tag', 'Stakeout', 'Water Bubble', 'Wonder Guard', 'Gengarite', 'Chatter', 'Comatose + Sleep Talk'],
 	},
 	{
 		name: "[Gen 7] Camomons",
@@ -695,7 +722,7 @@ let Formats = [
 		mod: 'gen7',
 		// searchShow: false,
 		ruleset: ['[Gen 7] OU'],
-		banlist: ['Kartana', 'Kyurem-Black', 'Shedinja'],
+		banlist: ['Dragonite', 'Kartana', 'Kyurem-Black', 'Latias-Mega', 'Shedinja'],
 		onModifyTemplate(template, target, source, effect) {
 			if (!target) return; // Chat command
 			if (effect && ['imposter', 'transform'].includes(effect.id)) return;
@@ -788,8 +815,8 @@ let Formats = [
 		],
 		onSwitchInPriority: 2,
 		onSwitchIn(pokemon) {
-			if (this.p1.active.every(ally => ally && !ally.fainted)) {
-				let p1a = this.p1.active[0], p1b = this.p1.active[1];
+			if (this.sides[0].active.every(ally => ally && !ally.fainted)) {
+				let p1a = this.sides[0].active[0], p1b = this.sides[0].active[1];
 				if (p1a.ability !== p1b.ability) {
 					let p1aInnate = 'ability' + p1b.ability;
 					p1a.volatiles[p1aInnate] = {id: p1aInnate, target: p1a};
@@ -797,8 +824,8 @@ let Formats = [
 					p1b.volatiles[p1bInnate] = {id: p1bInnate, target: p1b};
 				}
 			}
-			if (this.p2.active.every(ally => ally && !ally.fainted)) {
-				let p2a = this.p2.active[0], p2b = this.p2.active[1];
+			if (this.sides[1].active.every(ally => ally && !ally.fainted)) {
+				let p2a = this.sides[1].active[0], p2b = this.sides[1].active[1];
 				if (p2a.ability !== p2b.ability) {
 					let p2a_innate = 'ability' + p2b.ability;
 					p2a.volatiles[p2a_innate] = {id: p2a_innate, target: p2a};
@@ -808,38 +835,38 @@ let Formats = [
 			}
 			let ally = pokemon.side.active.find(ally => ally && ally !== pokemon && !ally.fainted);
 			if (ally && ally.ability !== pokemon.ability) {
-				if (!pokemon.innate) {
-					pokemon.innate = 'ability' + ally.ability;
-					delete pokemon.volatiles[pokemon.innate];
-					pokemon.addVolatile(pokemon.innate);
+				if (!pokemon.m.innate) {
+					pokemon.m.innate = 'ability' + ally.ability;
+					delete pokemon.volatiles[pokemon.m.innate];
+					pokemon.addVolatile(pokemon.m.innate);
 				}
-				if (!ally.innate) {
-					ally.innate = 'ability' + pokemon.ability;
-					delete ally.volatiles[ally.innate];
-					ally.addVolatile(ally.innate);
+				if (!ally.m.innate) {
+					ally.m.innate = 'ability' + pokemon.ability;
+					delete ally.volatiles[ally.m.innate];
+					ally.addVolatile(ally.m.innate);
 				}
 			}
 		},
 		onSwitchOut(pokemon) {
-			if (pokemon.innate) {
-				pokemon.removeVolatile(pokemon.innate);
-				delete pokemon.innate;
+			if (pokemon.m.innate) {
+				pokemon.removeVolatile(pokemon.m.innate);
+				delete pokemon.m.innate;
 			}
 			let ally = pokemon.side.active.find(ally => ally && ally !== pokemon && !ally.fainted);
-			if (ally && ally.innate) {
-				ally.removeVolatile(ally.innate);
-				delete ally.innate;
+			if (ally && ally.m.innate) {
+				ally.removeVolatile(ally.m.innate);
+				delete ally.m.innate;
 			}
 		},
 		onFaint(pokemon) {
-			if (pokemon.innate) {
-				pokemon.removeVolatile(pokemon.innate);
-				delete pokemon.innate;
+			if (pokemon.m.innate) {
+				pokemon.removeVolatile(pokemon.m.innate);
+				delete pokemon.m.innate;
 			}
 			let ally = pokemon.side.active.find(ally => ally && ally !== pokemon && !ally.fainted);
-			if (ally && ally.innate) {
-				ally.removeVolatile(ally.innate);
-				delete ally.innate;
+			if (ally && ally.m.innate) {
+				ally.removeVolatile(ally.m.innate);
+				delete ally.m.innate;
 			}
 		},
 	},
@@ -896,7 +923,7 @@ let Formats = [
 		mod: 'gen7',
 		searchShow: false,
 		ruleset: ['[Gen 7] OU', 'STABmons Move Legality'],
-		banlist: ['Aerodactyl-Mega', 'Blacephalon', 'Kartana', 'Komala', 'Kyurem-Black', 'Porygon-Z', 'Silvally', 'Tapu Koko', 'Tapu Lele', 'Thundurus-Base', 'King\'s Rock', 'Razor Fang'],
+		banlist: ['Aerodactyl', 'Araquanid', 'Blacephalon', 'Kartana', 'Komala', 'Kyurem-Black', 'Porygon-Z', 'Silvally', 'Tapu Koko', 'Tapu Lele', 'Thundurus-Base', 'King\'s Rock', 'Razor Fang'],
 		restrictedMoves: ['Acupressure', 'Belly Drum', 'Chatter', 'Extreme Speed', 'Geomancy', 'Lovely Kiss', 'Shell Smash', 'Shift Gear', 'Spore', 'Thousand Arrows'],
 	},
 	{
@@ -911,7 +938,6 @@ let Formats = [
 		ruleset: ['[Gen 7] OU'],
 		banlist: ['Damp Rock', 'Deep Sea Tooth', 'Eviolite'],
 		onModifyTemplate(template, target, source, effect) {
-			if (!effect) return;
 			if (!template.abilities) return false;
 			/** @type {{[tier: string]: number}} */
 			let boosts = {
@@ -926,19 +952,20 @@ let Formats = [
 				'LC Uber': 40,
 				'LC': 40,
 			};
-			if (target.set.ability === 'Drizzle') return;
-			let pokemon = this.deepClone(template);
-			if (target.set.item) {
+			if (target && target.set.ability === 'Drizzle') return;
+			let tier = template.tier;
+			if (target && target.set.item) {
 				let item = this.getItem(target.set.item);
 				if (item.name === 'Kommonium Z' || item.name === 'Mewnium Z') return;
-				if (item.megaEvolves === pokemon.species) pokemon.tier = this.getTemplate(item.megaStone).tier;
+				if (item.megaEvolves === template.species) tier = this.getTemplate(item.megaStone).tier;
 			}
-			if (pokemon.tier[0] === '(') pokemon.tier = pokemon.tier.slice(1, -1);
-			if (!(pokemon.tier in boosts)) return;
-			if (target.set.moves.includes('auroraveil')) pokemon.tier = 'UU';
-			if (target.set.ability === 'Drought') pokemon.tier = 'RU';
+			if (target && target.set.moves.includes('auroraveil')) tier = 'UU';
+			if (target && target.set.ability === 'Drought') tier = 'RU';
 
-			let boost = boosts[pokemon.tier];
+			if (tier[0] === '(') tier = tier.slice(1, -1);
+			if (!(tier in boosts)) return;
+			let pokemon = this.deepClone(template);
+			let boost = boosts[tier];
 			for (let statName in pokemon.baseStats) {
 				if (statName === 'hp') continue;
 				pokemon.baseStats[statName] = this.clampIntRange(pokemon.baseStats[statName] + boost, 1, 255);
@@ -1146,7 +1173,6 @@ let Formats = [
 			'Venusaurite', 'Blue Orb', 'Red Orb',
 		],
 		onBegin() {
-			if (this.format === 'gen7randommixandmega') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Mega Stones and Primal Orbs can be used on almost any Pok&eacute;mon with no Mega Evolution limit.</div>`);
 			for (const pokemon of this.getAllPokemon()) {
 				pokemon.m.originalSpecies = pokemon.baseTemplate.species;
 			}
@@ -1286,7 +1312,6 @@ let Formats = [
 			if (this.format === 'gen7randomtiershift') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Pok&eacute;mon below OU get all their base stats boosted:<br>* UU/RUBL: +10<br>* RU/NUBL: +20<br>* NU/PUBL: +30<br>* PU or lower: +40</div>`);
 		},
 		onModifyTemplate(template, target, source, effect) {
-			if (!effect) return;
 			if (!template.abilities) return false;
 			/** @type {{[tier: string]: number}} */
 			let boosts = {
@@ -1301,19 +1326,20 @@ let Formats = [
 				'LC Uber': 40,
 				'LC': 40,
 			};
-			if (target.set.ability === 'Drizzle') return;
-			let pokemon = this.deepClone(template);
-			if (target.set.item) {
+			if (target && target.set.ability === 'Drizzle') return;
+			let tier = template.tier;
+			if (target && target.set.item) {
 				let item = this.getItem(target.set.item);
 				if (item.name === 'Kommonium Z' || item.name === 'Mewnium Z') return;
-				if (item.megaEvolves === pokemon.species) pokemon.tier = this.getTemplate(item.megaStone).tier;
+				if (item.megaEvolves === template.species) tier = this.getTemplate(item.megaStone).tier;
 			}
-			if (pokemon.tier[0] === '(') pokemon.tier = pokemon.tier.slice(1, -1);
-			if (!(pokemon.tier in boosts)) return;
-			if (target.set.moves.includes('auroraveil')) pokemon.tier = 'UU';
-			if (target.set.ability === 'Drought') pokemon.tier = 'RU';
+			if (target && target.set.moves.includes('auroraveil')) tier = 'UU';
+			if (target && target.set.ability === 'Drought') tier = 'RU';
 
-			let boost = boosts[pokemon.tier];
+			if (tier[0] === '(') tier = tier.slice(1, -1);
+			if (!(tier in boosts)) return;
+			let pokemon = this.deepClone(template);
+			let boost = boosts[tier];
 			for (let statName in pokemon.baseStats) {
 				if (statName === 'hp') continue;
 				pokemon.baseStats[statName] = this.clampIntRange(pokemon.baseStats[statName] + boost, 1, 255);
@@ -1749,8 +1775,8 @@ let Formats = [
 		],
 
 		mod: 'gen3',
-		ruleset: ['Pokemon', 'Standard'],
-		banlist: ['Uber', 'Smeargle + Ingrain'],
+		ruleset: ['Pokemon', 'Standard', '3 Baton Pass Clause'],
+		banlist: ['Uber', 'Smeargle + Baton Pass'],
 	},
 	{
 		name: "[Gen 2] OU",
@@ -1938,7 +1964,6 @@ let Formats = [
 
 		mod: 'gen6',
 		searchShow: false,
-		canUseRandomTeam: true,
 		debug: true,
 		maxLevel: 9999,
 		trunc(n) { return Math.trunc(n); },
@@ -2021,7 +2046,6 @@ let Formats = [
 		mod: 'gen6',
 		gameType: 'doubles',
 		searchShow: false,
-		canUseRandomTeam: true,
 		maxLevel: 9999,
 		trunc(n) { return Math.trunc(n); },
 		defaultLevel: 100,
@@ -2052,7 +2076,6 @@ let Formats = [
 		mod: 'gen6',
 		gameType: 'triples',
 		searchShow: false,
-		canUseRandomTeam: true,
 		maxLevel: 9999,
 		trunc(n) { return Math.trunc(n); },
 		defaultLevel: 100,
@@ -2156,7 +2179,6 @@ let Formats = [
 
 		mod: 'gen5',
 		searchShow: false,
-		canUseRandomTeam: true,
 		debug: true,
 		maxLevel: 9999,
 		trunc(n) { return Math.trunc(n); },
@@ -2205,7 +2227,6 @@ let Formats = [
 		mod: 'gen5',
 		gameType: 'doubles',
 		searchShow: false,
-		canUseRandomTeam: true,
 		debug: true,
 		maxLevel: 9999,
 		trunc(n) { return Math.trunc(n); },
@@ -2244,6 +2265,7 @@ let Formats = [
 		searchShow: false,
 		ruleset: ['[Gen 4] OU'],
 		banlist: ['OU', 'UUBL'],
+		unbanlist: ['Sand Veil'],
 	},
 	{
 		name: "[Gen 4] NU",
@@ -2256,7 +2278,6 @@ let Formats = [
 		searchShow: false,
 		ruleset: ['[Gen 4] UU'],
 		banlist: ['UU', 'NUBL'],
-		unbanlist: ['Sand Veil'],
 	},
 	{
 		name: "[Gen 4] LC",
@@ -2284,7 +2305,6 @@ let Formats = [
 
 		mod: 'gen4',
 		searchShow: false,
-		canUseRandomTeam: true,
 		debug: true,
 		maxLevel: 9999,
 		trunc(n) { return Math.trunc(n); },
@@ -2317,7 +2337,6 @@ let Formats = [
 		mod: 'gen4',
 		gameType: 'doubles',
 		searchShow: false,
-		canUseRandomTeam: true,
 		debug: true,
 		maxLevel: 9999,
 		trunc(n) { return Math.trunc(n); },
@@ -2354,8 +2373,8 @@ let Formats = [
 
 		mod: 'gen3',
 		searchShow: false,
-		ruleset: ['[Gen 3] OU'],
-		banlist: ['OU', 'UUBL'],
+		ruleset: ['Pokemon', 'Standard'],
+		banlist: ['Uber', 'OU', 'UUBL', 'Smeargle + Ingrain'],
 	},
 	{
 		name: "[Gen 3] NU",
@@ -2373,7 +2392,6 @@ let Formats = [
 
 		mod: 'gen3',
 		searchShow: false,
-		canUseRandomTeam: true,
 		debug: true,
 		maxLevel: 9999,
 		trunc(n) { return Math.trunc(n); },
@@ -2386,12 +2404,8 @@ let Formats = [
 		mod: 'gen3',
 		gameType: 'doubles',
 		searchShow: false,
-		canUseRandomTeam: true,
 		debug: true,
-		maxLevel: 9999,
-		trunc(n) { return Math.trunc(n); },
-		defaultLevel: 100,
-		ruleset: ['HP Percentage Mod', 'Cancel Mod'],
+		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
 		name: "[Gen 2] Ubers",
@@ -2428,8 +2442,6 @@ let Formats = [
 		mod: 'gen2',
 		searchShow: false,
 		debug: true,
-		canUseRandomTeam: true,
-		debug: true,
 		maxLevel: 9999,
 		trunc(n) { return Math.trunc(n); },
 		defaultLevel: 100,
@@ -2459,7 +2471,7 @@ let Formats = [
 		banlist: ['OU', 'UUBL'],
 	},
 	{
-		name: "[Gen 1] OU (tradeback)",
+		name: "[Gen 1] OU (Tradeback)",
 		desc: `RBY OU with movepool additions from the Time Capsule.`,
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/articles/rby-tradebacks-ou/">Information</a>`,
@@ -2489,7 +2501,6 @@ let Formats = [
 
 		mod: 'gen1',
 		searchShow: false,
-		canUseRandomTeam: true,
 		debug: true,
 		maxLevel: 9999,
 		trunc(n) { return Math.trunc(n); },

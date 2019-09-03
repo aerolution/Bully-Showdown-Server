@@ -9,146 +9,87 @@ let BattlePokedex = {
 		baseStats: {hp: 100, atk: 100, def: 100, spa: 100, spd: 100, spe: 100}, // the base stats for the pokemon
 	},
 	*/
-	// Jackinev
-	charizardmegax: {
+	// Andy
+	absolmega: {
 		inherit: true,
-		abilities: {0: "RNG Manipulation"},
+		abilities: {0: "Adaptability"},
 	},
-	// JL
-	meloetta: {
+	// Arrested
+	blastoisemega: {
 		inherit: true,
-		abilities: {0: "Versatility"},
+		abilities: {0: "Shell Shocker"},
 	},
-	meloettapirouette: {
+	// Bhris Brown
+	swampertmega: {
 		inherit: true,
-		abilities: {0: "Versatility"},
+		abilities: {0: "Stimulated Pride"},
 	},
-	// Nacho
-	aerodactylmega: {
+	// deg
+	gengarmega: {
 		inherit: true,
-		abilities: {0: "Doug's Ghosting"},
+		abilities: {0: "Bad Dreams"},
 	},
-	// Princess Furfrou
-	furfrou: {
+	// E4 Flint
+	steelixmega: {
 		inherit: true,
-		abilities: {0: "Afro Coat"},
+		abilities: {0: 'Stark Mountain'},
+		types: ['Steel', 'Ground', 'Fire'],
 	},
-	furfroudandy: {
+	// eternally
+	ducklett: {
 		inherit: true,
-		num: 676,
-		species: "Furfrou-Dandy",
-		types: ["Normal"],
-		baseStats: {hp: 75, atk: 80, def: 60, spa: 65, spd: 90, spe: 102},
-		abilities: {0: "Afro Coat"},
-		heightm: 1.2,
-		weightkg: 28,
-		color: "White",
-		eggGroups: ["Field"],
+		// Doubled spa and spe
+		baseStats: {hp: 62, atk: 44, def: 50, spa: 88, spd: 50, spe: 110},
 	},
-	furfroudebutante: {
+	// grimAuxiliatrix
+	aggronmega: {
 		inherit: true,
-		num: 676,
-		species: "Furfrou-Debutante",
-		types: ["Normal"],
-		baseStats: {hp: 75, atk: 80, def: 60, spa: 65, spd: 90, spe: 102},
-		abilities: {0: "Afro Coat"},
-		heightm: 1.2,
-		weightkg: 28,
-		color: "White",
-		eggGroups: ["Field"],
+		abilities: {0: 'Intimidate'},
 	},
-	furfroudiamond: {
+	// Kaiju Bunny
+	gliscor: {
 		inherit: true,
-		num: 676,
-		species: "Furfrou-Diamond",
-		types: ["Normal"],
-		baseStats: {hp: 75, atk: 80, def: 60, spa: 65, spd: 90, spe: 102},
-		abilities: {0: "Afro Coat"},
-		heightm: 1.2,
-		weightkg: 28,
-		color: "White",
-		eggGroups: ["Field"],
+		abilities: {0: 'Poison Heal'}, 	// Ability change is permanent
 	},
-	furfrouheart: {
+	// Level 51
+	porygon2: {
 		inherit: true,
-		num: 676,
-		species: "Furfrou-Heart",
-		types: ["Normal"],
-		baseStats: {hp: 75, atk: 80, def: 60, spa: 65, spd: 90, spe: 102},
-		abilities: {0: "Afro Coat"},
-		heightm: 1.2,
-		weightkg: 28,
-		color: "White",
-		eggGroups: ["Field"],
+		abilities: {0: 'Stamina'},
 	},
-	furfroukabuki: {
+	// Lionyx
+	gardevoirmega: {
 		inherit: true,
-		num: 676,
-		species: "Furfrou-Kabuki",
-		types: ["Normal"],
-		baseStats: {hp: 75, atk: 80, def: 60, spa: 65, spd: 90, spe: 102},
-		abilities: {0: "Afro Coat"},
-		heightm: 1.2,
-		weightkg: 28,
-		color: "White",
-		eggGroups: ["Field"],
+		abilities: {0: 'Frozen Skin'},
 	},
-	furfroulareine: {
+	// MacChaeger
+	mantyke: {
 		inherit: true,
-		num: 676,
-		species: "Furfrou-Lareine",
-		types: ["Normal"],
-		baseStats: {hp: 75, atk: 80, def: 60, spa: 65, spd: 90, spe: 102},
-		abilities: {0: "Afro Coat"},
-		heightm: 1.2,
-		weightkg: 28,
-		color: "White",
-		eggGroups: ["Field"],
+		baseStats: {hp: 90, atk: 40, def: 100, spa: 120, spd: 240, spe: 100},
 	},
-	furfroumatron: {
+	// martha
+	dianciemega: {
 		inherit: true,
-		num: 676,
-		species: "Furfrou-Matron",
-		types: ["Normal"],
-		baseStats: {hp: 75, atk: 80, def: 60, spa: 65, spd: 90, spe: 102},
-		abilities: {0: "Afro Coat"},
-		heightm: 1.2,
-		weightkg: 28,
-		color: "White",
-		eggGroups: ["Field"],
+		abilities: {0: 'Pixilate'},
 	},
-	furfroupharaoh: {
+	// Morfent
+	banettemega: {
 		inherit: true,
-		num: 676,
-		species: "Furfrou-Pharaoh",
-		types: ["Normal"],
-		baseStats: {hp: 75, atk: 80, def: 60, spa: 65, spd: 90, spe: 102},
-		abilities: {0: "Afro Coat"},
-		heightm: 1.2,
-		weightkg: 28,
-		color: "White",
-		eggGroups: ["Field"],
+		abilities: {0: 'Comatose'},
 	},
-	furfroustar: {
+	// Psynergy
+	blazikenmega: {
 		inherit: true,
-		num: 676,
-		species: "Furfrou-Star",
-		types: ["Normal"],
-		baseStats: {hp: 75, atk: 80, def: 60, spa: 65, spd: 90, spe: 102},
-		abilities: {0: "Afro Coat"},
-		heightm: 1.2,
-		weightkg: 28,
-		color: "White",
-		eggGroups: ["Field"],
+		abilities: {0: 'Wrath'},
 	},
-	// pig lad
-	piloswine: {
+	// Saburo
+	metagrossmega: {
 		inherit: true,
-		abilities: {0: "Pig Mad"},
+		abilities: {0: 'Levitate'},
 	},
-	mamoswine: {
+	// Teclis
+	gallademega: {
 		inherit: true,
-		abilities: {0: "Pig Mad"},
+		abilities: {0: 'Natural Cure'},
 	},
 };
 

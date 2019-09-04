@@ -286,14 +286,67 @@ let BattleScripts = {
 		this.runEvent('TerrainStart', source, source, status);
 		return true;
 	},
-	pokemon: {
-		getActionSpeed() {
-			let speed = this.getStat('spe', false, false);
-			if (this.battle.field.getPseudoWeather('trickroom') || this.battle.field.getPseudoWeather('alienwave')) {
-				speed = 0x2710 - speed;
+	hitStepAccuracy(targets, pokemon, move) {
+		const hitResults = [];
+		for (let [i, target] of targets.entries()) {
+			// calculate true accuracy
+			/** @type {number | true} */ // TypeScript bug: incorrectly infers {number | true} as {number | boolean}
+			let accuracy = move.accuracy;
+			if (move.ohko) { // bypasses accuracy modifiers
+				if (!target.isSemiInvulnerable()) {
+					accuracy = 30;
+					if (move.ohko === 'Ice' && this.gen >= 7 && !pokemon.hasType('Ice')) {
+						accuracy = 20;
+					}
+					if (pokemon.level >= target.level && (move.ohko === true || !target.hasType(move.ohko))) {
+						accuracy += (pokemon.level - target.level);
+					} else {
+						this.add('-immune', target, '[ohko]');
+						hitResults[i] = false;
+						continue;
+					}
+				}
+			} else {
+				const boostTable = [1, 4 / 3, 5 / 3, 2, 7 / 3, 8 / 3, 3];
+
+				let boosts, boost;
+				if (accuracy !== true) {
+					if (!move.ignoreAccuracy) {
+						boosts = this.runEvent('ModifyBoost', pokemon, null, null, Object.assign({}, pokemon.boosts));
+						boost = this.clampIntRange(boosts['accuracy'], -6, 6);
+						if (boost > 0) {
+							accuracy *= boostTable[boost];
+						} else {
+							accuracy /= boostTable[-boost];
+						}
+					}
+					if (!move.ignoreEvasion) {
+						boosts = this.runEvent('ModifyBoost', target, null, null, Object.assign({}, target.boosts));
+						boost = this.clampIntRange(boosts['evasion'], -6, 6);
+						if (boost > 0) {
+							accuracy /= boostTable[boost];
+						} else if (boost < 0) {
+							accuracy *= boostTable[-boost];
+						}
+					}
+				}
+				accuracy = this.runEvent('ModifyAccuracy', target, pokemon, move, accuracy);
 			}
-			return this.battle.trunc(speed, 13);
-		},
+			if (move.alwaysHit || (move.id === 'toxic' && this.gen >= 6 && pokemon.hasType('Poison'))) {
+				accuracy = true; // bypasses ohko accuracy modifiers
+			} else {
+				accuracy = this.runEvent('Accuracy', target, pokemon, move, accuracy);
+			}
+			if (this.field.getPseudoWeather('mejackmehack') && accuracy !== true && accuracy < 100) accuracy = 0;
+			if (accuracy !== true && !this.randomChance(accuracy, 100)) {
+				if (!move.spreadHit) this.attrLastMove('[miss]');
+				this.add('-miss', pokemon, target);
+				hitResults[i] = false;
+				continue;
+			}
+			hitResults[i] = true;
+		}
+		return hitResults;
 	},
 };
 

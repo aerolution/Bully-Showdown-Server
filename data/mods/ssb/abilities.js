@@ -64,7 +64,7 @@ let BattleAbilities = {
 		name: "Garbage Heal",
 		onStart(pokemon) {
 			if (!pokemon.status && !pokemon.side.getSideCondition('safeguard')) {
-				let status = this.getEffect('tox');
+				let status = this.dex.getEffect('tox');
 				pokemon.status = status.id;
 				pokemon.statusData = {id: status.id, target: pokemon, source: pokemon, stage: 0};
 				this.add('-status', pokemon, pokemon.status);
@@ -331,7 +331,7 @@ let BattleAbilities = {
 			}; 
 			let forme = Object.keys(formes)[this.random(9)];
 			while (forme === pokemon.template.speciesid) forme = Object.keys(formes)[this.random(9)];
-			pokemon.formeChange(forme, this.getAbility('afrocoat'), false, '', 0);
+			pokemon.formeChange(forme, this.dex.getAbility('afrocoat'), false, '', 0);
 			let type = ["Normal", formes[forme]];
 			if (!pokemon.setType(type)) return;
 			this.add('-start', pokemon, 'typechange', type.join('/'), '[silent]');
@@ -404,7 +404,7 @@ let BattleAbilities = {
 			move.secondaries.push({
 				chance: 30,
 				status: 'brn',
-				ability: this.getAbility('freezeburn'),
+				ability: this.dex.getAbility('freezeburn'),
 			});
 		},
 	},
@@ -579,8 +579,8 @@ let BattleAbilities = {
 				pokemon.m.aTrigger = 0;
 				pokemon.m.aCount++;
 				let template = null;
-				if (pokemon.m.aCount === 1) template = this.getTemplate('piloswine');
-				if (pokemon.m.aCount === 2) template = this.getTemplate('mamoswine');
+				if (pokemon.m.aCount === 1) template = this.dex.getTemplate('piloswine');
+				if (pokemon.m.aCount === 2) template = this.dex.getTemplate('mamoswine');
 				pokemon.hp = pokemon.maxhp;
 				if (Object.values(pokemon.boosts).find(boost => boost !== 0)) {
 					pokemon.clearBoosts();

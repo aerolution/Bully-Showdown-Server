@@ -30,7 +30,7 @@ exports.BattleMovedex = {
 				let noMeFirst = ['chatter', 'counter', 'covet', 'focuspunch', 'mefirst', 'metalburst', 'mirrorcoat', 'struggle', 'thief'];
 				// Mod-specific: Me First copies the first move in the link
 				// @ts-ignore
-				let move = this.getActiveMove(action.linked ? action.linked[0] : action.move);
+				let move = this.dex.getActiveMove(action.linked ? action.linked[0] : action.move);
 				if (move.category !== 'Status' && !noMeFirst.includes(move.id)) {
 					pokemon.addVolatile('mefirst');
 					this.useMove(move, pokemon, target);
@@ -97,7 +97,7 @@ exports.BattleMovedex = {
 			if (source.transformed || !lastMove || disallowedMoves.includes(lastMove.id) || source.moves.indexOf(lastMove.id) >= 0 || lastMove.isZ) return false;
 			let sketchIndex = source.moves.indexOf('sketch');
 			if (sketchIndex < 0) return false;
-			let move = this.getMove(lastMove);
+			let move = this.dex.getMove(lastMove);
 			let sketchedMove = {
 				move: move.name,
 				id: move.id,
@@ -120,7 +120,7 @@ exports.BattleMovedex = {
 			if (source.transformed || !lastMove || disallowedMoves.includes(lastMove.id) || source.moves.indexOf(lastMove.id) >= 0 || lastMove.isZ) return false;
 			let mimicIndex = source.moves.indexOf('mimic');
 			if (mimicIndex < 0) return false;
-			let move = this.getMove(lastMove);
+			let move = this.dex.getMove(lastMove);
 			source.moveSlots[mimicIndex] = {
 				move: move.name,
 				id: move.id,
@@ -371,7 +371,7 @@ exports.BattleMovedex = {
 					for (const moveSlot of source.moveSlots) {
 						if (moveSlot.id === lastMove.id) {
 							moveSlot.pp = 0;
-							this.add('-activate', source, 'move: Grudge', this.getMove(lastMove.id).name);
+							this.add('-activate', source, 'move: Grudge', this.dex.getMove(lastMove.id).name);
 						}
 					}
 				}
@@ -389,7 +389,7 @@ exports.BattleMovedex = {
 		onHit(target) {
 			let lastMove = target.m.lastMoveAbsolute;
 			if (lastMove && target.deductPP(lastMove.id, 4)) {
-				this.add("-activate", target, 'move: Spite', this.getMove(lastMove.id).name, 4);
+				this.add("-activate", target, 'move: Spite', this.dex.getMove(lastMove.id).name, 4);
 				return;
 			}
 			return false;

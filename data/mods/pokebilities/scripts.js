@@ -6,7 +6,7 @@ exports.BattleScripts = {
 			return name;
 		}
 		let id = toId(name);
-		if (id.startsWith('ability')) return Object.assign(Object.create(this.getAbility(id.slice(7))), {id});
+		if (id.startsWith('ability')) return Object.assign(Object.create(this.dex.getAbility(id.slice(7))), {id});
 		return Object.getPrototypeOf(this).getEffect.call(this, name);
 	},
 	suppressingWeather() {

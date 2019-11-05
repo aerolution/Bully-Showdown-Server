@@ -4,12 +4,12 @@
 exports.BattleScripts = {
 	runMove(moveOrMoveName, pokemon, targetLoc, sourceEffect, zMove, externalMove) {
 		let target = this.getTarget(pokemon, zMove || moveOrMoveName, targetLoc);
-		let baseMove = this.getActiveMove(moveOrMoveName);
+		let baseMove = this.dex.getActiveMove(moveOrMoveName);
 		const pranksterBoosted = baseMove.pranksterBoosted;
 		if (!sourceEffect && baseMove.id !== 'struggle' && !zMove) {
 			let changedMove = this.runEvent('OverrideAction', pokemon, target, baseMove);
 			if (changedMove && changedMove !== true) {
-				baseMove = this.getActiveMove(changedMove);
+				baseMove = this.dex.getActiveMove(changedMove);
 				if (pranksterBoosted) baseMove.pranksterBoosted = pranksterBoosted;
 				target = this.resolveTarget(pokemon, baseMove);
 			}
@@ -63,7 +63,7 @@ exports.BattleScripts = {
 					return;
 				}
 			} else {
-				sourceEffect = this.getEffect('lockedmove');
+				sourceEffect = this.dex.getEffect('lockedmove');
 			}
 			pokemon.moveUsed(move, targetLoc);
 		}
@@ -74,7 +74,7 @@ exports.BattleScripts = {
 
 		if (zMove) {
 			if (pokemon.illusion) {
-				this.singleEvent('End', this.getAbility('Illusion'), pokemon.abilityData, pokemon);
+				this.singleEvent('End', this.dex.getAbility('Illusion'), pokemon.abilityData, pokemon);
 			}
 			this.add('-zpower', pokemon);
 			pokemon.side.zMoveUsed = true;
@@ -102,7 +102,7 @@ exports.BattleScripts = {
 			for (const dancer of dancers) {
 				if (this.faintMessages()) break;
 				this.add('-activate', dancer, 'ability: Dancer');
-				this.runMove(move.id, dancer, 0, this.getAbility('dancer'), undefined, true);
+				this.runMove(move.id, dancer, 0, this.dex.getAbility('dancer'), undefined, true);
 				// Using a Dancer move is enough to spoil Fake Out etc.
 				dancer.activeTurns++;
 			}
@@ -113,7 +113,7 @@ exports.BattleScripts = {
 		if (!action) throw new Error(`Action not passed to resolveAction`);
 
 		if (!action.side && action.pokemon) action.side = action.pokemon.side;
-		if (!action.move && action.moveid) action.move = this.getActiveMove(action.moveid);
+		if (!action.move && action.moveid) action.move = this.dex.getActiveMove(action.moveid);
 		if (!action.choice && action.move) action.choice = 'move';
 		if (!action.priority && action.priority !== 0) {
 			/**@type {{[k: string]: number}} */
@@ -160,7 +160,7 @@ exports.BattleScripts = {
 					let decisionMove = toID(action.move);
 					if (linkedMoves.includes(decisionMove)) {
 						// flag the move as linked here
-						action.linked = linkedMoves.map((/**@type {string} */moveId) => this.getActiveMove(moveId));
+						action.linked = linkedMoves.map((/**@type {string} */moveId) => this.dex.getActiveMove(moveId));
 						let linkedOtherMove = action.linked[1 - linkedMoves.indexOf(decisionMove)];
 						if (linkedOtherMove.beforeTurnCallback) {
 							this.addToQueue({choice: 'beforeTurnMove', pokemon: action.pokemon, move: linkedOtherMove, targetLoc: action.targetLoc});
@@ -169,7 +169,7 @@ exports.BattleScripts = {
 				}
 			} else if (action.choice === 'switch' || action.choice === 'instaswitch') {
 				if (typeof action.pokemon.switchFlag === 'string') {
-					action.sourceEffect = this.getEffect(action.pokemon.switchFlag);
+					action.sourceEffect = this.dex.getEffect(action.pokemon.switchFlag);
 				}
 				action.pokemon.switchFlag = false;
 				if (!action.speed) action.speed = action.pokemon.getActionSpeed();
@@ -179,7 +179,7 @@ exports.BattleScripts = {
 		let deferPriority = this.gen >= 7 && action.mega && action.mega !== 'done';
 		if (action.move) {
 			let target = null;
-			action.move = this.getActiveMove(action.move);
+			action.move = this.dex.getActiveMove(action.move);
 
 			if (!action.targetLoc) {
 				target = this.resolveTarget(action.pokemon, action.move);
@@ -192,7 +192,7 @@ exports.BattleScripts = {
 					if (move.id === 'weatherball') this.singleEvent('ModifyMove', move, null, action.pokemon, target, move, move);
 					// @ts-ignore
 					let zMoveName = this.getZMove(action.move, action.pokemon, true);
-					let zMove = this.getMove(zMoveName);
+					let zMove = this.dex.getMove(zMoveName);
 					if (zMove.exists) {
 						move = zMove;
 					}
@@ -203,7 +203,7 @@ exports.BattleScripts = {
 				let linkIndex = -1;
 
 				if (linkedMoves.length && !move.isZ && (linkIndex = linkedMoves.indexOf(toID(action.move))) >= 0) {
-					let linkedActions = action.linked || linkedMoves.map((/**@type {string} */moveId) => this.getActiveMove(moveId));
+					let linkedActions = action.linked || linkedMoves.map((/**@type {string} */moveId) => this.dex.getActiveMove(moveId));
 					let altMove = linkedActions[1 - linkIndex];
 					let thisPriority = this.runEvent('ModifyPriority', action.pokemon, target, linkedActions[linkIndex], priority);
 					let otherPriority = this.runEvent('ModifyPriority', action.pokemon, target, altMove, altMove.priority);
@@ -245,7 +245,7 @@ exports.BattleScripts = {
 		switch (action.choice) {
 		case 'start': {
 			// I GIVE UP, WILL WRESTLE WITH EVENT SYSTEM LATER
-			let format = this.getFormat();
+			let format = this.dex.getFormat();
 
 			// Remove Pokémon duplicates remaining after `team` decisions.
 			this.p1.pokemon = this.p1.pokemon.slice(0, this.p1.pokemonLeft);
@@ -267,10 +267,10 @@ exports.BattleScripts = {
 				this.switchIn(this.p2.pokemon[pos], pos);
 			}
 			for (const pokemon of this.p1.pokemon) {
-				this.singleEvent('Start', this.getEffect(pokemon.species), pokemon.speciesData, pokemon);
+				this.singleEvent('Start', this.dex.getEffect(pokemon.species), pokemon.speciesData, pokemon);
 			}
 			for (const pokemon of this.p2.pokemon) {
-				this.singleEvent('Start', this.getEffect(pokemon.species), pokemon.speciesData, pokemon);
+				this.singleEvent('Start', this.dex.getEffect(pokemon.species), pokemon.speciesData, pokemon);
 			}
 			this.midTurn = true;
 			break;
@@ -339,7 +339,7 @@ exports.BattleScripts = {
 		case 'instaswitch':
 		case 'switch':
 			if (action.choice === 'switch' && action.pokemon.status && this.data.Abilities.naturalcure) {
-				this.singleEvent('CheckShow', this.getAbility('naturalcure'), null, action.pokemon);
+				this.singleEvent('CheckShow', this.dex.getAbility('naturalcure'), null, action.pokemon);
 			}
 			if (action.pokemon.hp) {
 				action.pokemon.beingCalledBack = true;
@@ -367,7 +367,7 @@ exports.BattleScripts = {
 				}
 			}
 			action.pokemon.illusion = null;
-			this.singleEvent('End', this.getAbility(action.pokemon.ability), action.pokemon.abilityData, action.pokemon);
+			this.singleEvent('End', this.dex.getAbility(action.pokemon.ability), action.pokemon.abilityData, action.pokemon);
 			if (!action.pokemon.hp && !action.pokemon.fainted) {
 				// a pokemon fainted from Pursuit before it could switch
 				if (this.gen <= 4) {

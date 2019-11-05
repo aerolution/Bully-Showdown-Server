@@ -126,7 +126,7 @@ let BattleMovedex = {
 		onHit(target, source, move) {
 			if (!target.trySetStatus('tox', source)) {
 				if (!target.volatiles['substitute'] && !target.status && !target.side.getSideCondition('safeguard') && (target.hasType('Steel') || target.hasType('Poison'))) {
-					let status = this.getEffect('tox');
+					let status = this.dex.getEffect('tox');
 					target.status = status.id;
 					target.statusData = {id: status.id, target: target, source: source, stage: 0};
 					this.add('-status', target, target.status);
@@ -392,19 +392,19 @@ let BattleMovedex = {
 					}
 				}
 				if (move.category === "Physical") {
-					this.boost({atk: -1}, source, target, this.getActiveMove("Dazzling Recital"));
+					this.boost({atk: -1}, source, target, this.dex.getActiveMove("Dazzling Recital"));
 				}
 				if (move.category === "Special") {
-					this.boost({spa: -1}, source, target, this.getActiveMove("Dazzling Recital"));
+					this.boost({spa: -1}, source, target, this.dex.getActiveMove("Dazzling Recital"));
 				}
 				return this.NOT_FAIL;
 			},
 			onHit(target, source, move) {
 				if (move.isZPowered && move.category === "Physical") {
-					this.boost({atk: -1}, source, target, this.getActiveMove("Dazzling Recital"));
+					this.boost({atk: -1}, source, target, this.dex.getActiveMove("Dazzling Recital"));
 				}
 				if (move.isZPowered && move.category === "Special") {
-					this.boost({spa: -1}, source, target, this.getActiveMove("Dazzling Recital"));
+					this.boost({spa: -1}, source, target, this.dex.getActiveMove("Dazzling Recital"));
 				}
 			},
 		},
@@ -788,7 +788,7 @@ let BattleMovedex = {
 				let sideConditions = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
 				for (const condition of sideConditions) {
 					if (source.hp && source.side.removeSideCondition(condition)) {
-						this.add('-sideend', source.side, this.getEffect(condition).name, '[from] move: rainbowgasm', '[of] ' + source);
+						this.add('-sideend', source.side, this.dex.getEffect(condition).name, '[from] move: rainbowgasm', '[of] ' + source);
 					}
 				}
 				if (source.hp && source.volatiles['partiallytrapped']) {
@@ -801,7 +801,7 @@ let BattleMovedex = {
 			} else if (source.template.speciesid === "furfroupharaoh") {
 				if (target.ability !== 'mummy') {
 					target.setAbility('mummy', source);
-					this.add('-ability', target, this.getAbility(target.ability).name, '[from] move: rainbowgasm', '[of] ' + source);
+					this.add('-ability', target, this.dex.getAbility(target.ability).name, '[from] move: rainbowgasm', '[of] ' + source);
 				}
 			} else if (source.template.speciesid === "furfroumatron") {
 				source.side.addSlotCondition(source, 'wish', source);
@@ -842,7 +842,7 @@ let BattleMovedex = {
 			}
 			let oldAbility = source.setAbility(target.ability);
 			if (oldAbility) {
-				this.add('-ability', source, this.getAbility(source.ability).name, '[from] move: Erotic Role Play', '[of] ' + target);
+				this.add('-ability', source, this.dex.getAbility(source.ability).name, '[from] move: Erotic Role Play', '[of] ' + target);
 				return;
 			}
 			return false;
@@ -1283,13 +1283,13 @@ let BattleMovedex = {
 			for (const targetCondition of removeTarget) {
 				if (target.side.removeSideCondition(targetCondition)) {
 					if (!removeAll.includes(targetCondition)) continue;
-					this.add('-sideend', target.side, this.getEffect(targetCondition).name, '[from] move: Mid Season Dropout', '[of] ' + source);
+					this.add('-sideend', target.side, this.dex.getEffect(targetCondition).name, '[from] move: Mid Season Dropout', '[of] ' + source);
 					success = true;
 				}
 			}
 			for (const sideCondition of removeAll) {
 				if (source.side.removeSideCondition(sideCondition)) {
-					this.add('-sideend', source.side, this.getEffect(sideCondition).name, '[from] move: Mid Season Dropout', '[of] ' + source);
+					this.add('-sideend', source.side, this.dex.getEffect(sideCondition).name, '[from] move: Mid Season Dropout', '[of] ' + source);
 					success = true;
 				}
 			}

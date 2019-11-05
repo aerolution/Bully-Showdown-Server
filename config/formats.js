@@ -936,7 +936,7 @@ let Formats = [
 				}
 			}
 			let overSketched = Object.keys(sketches).filter(move => sketches[move] > 1);
-			if (overSketched.length) return overSketched.map(move => `You are limited to 1 of ${this.getMove(move).name} by Sketch Clause. (You have sketched ${this.getMove(move).name} ${sketches[move]} times.)`);
+			if (overSketched.length) return overSketched.map(move => `You are limited to 1 of ${this.dex.getMove(move).name} by Sketch Clause. (You have sketched ${this.dex.getMove(move).name} ${sketches[move]} times.)`);
 		},
 	},
 	{
@@ -1025,7 +1025,7 @@ let Formats = [
 			const stallmons = ['Sableye-Mega', 'Venusaur-Mega', 'Aggron-Mega', 'Slowbro-Mega', 'Chansey', 'Blissey', 'Tangrowth', 'Amoonguss', 'Skarmory', 'Quagsire', 'Clefable', 'Dugtrio', 'Gothitelle', 'Toxapex', 'Alomomola', 'Registeel', 'Mew', 'Slowbro', 'Slowking', 'Gliscor', 'Gligar', 'Cresselia', 'Mandibuzz', 'Shedinja', 'Pyukumuku', 'Sylveon', 'Umbreon', 'Vaporeon', 'Hippowdon', 'Ferrothorn', 'Tangela', 'Zapdos', 'Suicune', 'Tapu Fini', 'Bronzong', 'Forretress'];
 			let n = 0;
 			for (const set of team) {
-				let baseSpecies = this.getTemplate(set.species).baseSpecies;
+				let baseSpecies = this.dex.getTemplate(set.species).baseSpecies;
 				if (stallmons.includes(baseSpecies)) n++;
 				if (n > 1) return ["You can only use one restricted stall Pok\u00E9mon."];
 			}
@@ -1035,13 +1035,13 @@ let Formats = [
 			let problems = [];
 			if (set.moves) {
 				for (const moveId of set.moves) {
-					let move = this.getMove(moveId);
+					let move = this.dex.getMove(moveId);
 					if (move.accuracy < 90 && move.accuracy !== true) problems.push(move.name + ' is banned as it has less than 90 accuracy.');
 				}
 			}
 			if (set.item) {
-				let item = this.getItem(set.item);
-				let template = this.getTemplate(set.species)
+				let item = this.dex.getItem(set.item);
+				let template = this.dex.getTemplate(set.species)
 				if (item.zMove == true) {
 					let typeTable = template.types;
 					typeTable = typeTable.filter(type => type==item.zMoveType)
@@ -1071,7 +1071,7 @@ let Formats = [
 		},
 		onSwitchIn(pokemon) {
 			let name = toID(pokemon.illusion ? pokemon.illusion.name : pokemon.name);
-			if (this.getTemplate(name).exists) {
+			if (this.dex.getTemplate(name).exists) {
 				// Certain pokemon have volatiles named after their speciesid
 				// To prevent overwriting those, and to prevent accidentaly leaking
 				// that a pokemon is on a team through the onStart even triggering
@@ -1080,7 +1080,7 @@ let Formats = [
 				name = /** @type {ID} */(name + 'user');
 			}
 			// Add the mon's status effect to it as a volatile.
-			let status = this.getEffect(name);
+			let status = this.dex.getEffect(name);
 			if (status && status.exists) {
 				pokemon.addVolatile(name, pokemon);
 			}
@@ -1120,7 +1120,7 @@ let Formats = [
         onModifyTemplate(template, target, source, effect) {
 			if (!target) return; // Chat command
 			if (effect && ['imposter', 'transform'].includes(effect.id)) return;
-			let types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => (move.id === "hiddenpower" ? target.hpType : this.getMove(move.id).type)))];
+			let types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => (move.id === "hiddenpower" ? target.hpType : this.dex.getMove(move.id).type)))];
 			return Object.assign({}, template, {types: types});
 		},
 		onSwitchIn(pokemon) {
@@ -1203,11 +1203,11 @@ let Formats = [
 		},
 		onSwitchIn(pokemon) {
 			// @ts-ignore
-			let oMegaTemplate = this.getTemplate(pokemon.template.originalMega);
+			let oMegaTemplate = this.dex.getTemplate(pokemon.template.originalMega);
 			if (oMegaTemplate.exists && pokemon.m.originalSpecies !== oMegaTemplate.baseSpecies) {
 				// Place volatiles on the Pokémon to show its mega-evolved condition and details
 				this.add('-start', pokemon, oMegaTemplate.requiredItem || oMegaTemplate.requiredMove, '[silent]');
-				let oTemplate = this.getTemplate(pokemon.m.originalSpecies);
+				let oTemplate = this.dex.getTemplate(pokemon.m.originalSpecies);
 				if (oTemplate.types.length !== pokemon.template.types.length || oTemplate.types[1] !== pokemon.template.types[1]) {
 					this.add('-start', pokemon, 'typechange', pokemon.template.types.join('/'), '[silent]');
 				}
@@ -1215,7 +1215,7 @@ let Formats = [
 		},
 		onSwitchOut(pokemon) {
 			// @ts-ignore
-			let oMegaTemplate = this.getTemplate(pokemon.template.originalMega);
+			let oMegaTemplate = this.dex.getTemplate(pokemon.template.originalMega);
 			if (oMegaTemplate.exists && pokemon.m.originalSpecies !== oMegaTemplate.baseSpecies) {
 				this.add('-end', pokemon, oMegaTemplate.requiredItem || oMegaTemplate.requiredMove, '[silent]');
 			}
@@ -1448,7 +1448,7 @@ let Formats = [
 		},
 		onAfterDamage(damage, target, source, effect) {
 			if (target.illusion && effect && effect.effectType === 'Move' && effect.id !== 'confused') {
-				this.singleEvent('End', this.getAbility('Illusion'), target.abilityData, target, source, effect);
+				this.singleEvent('End', this.dex.getAbility('Illusion'), target.abilityData, target, source, effect);
 			}
 		},
 		onEnd(pokemon) {
@@ -2052,7 +2052,7 @@ let Formats = [
 			const legends = ['Mewtwo', 'Lugia', 'Ho-Oh', 'Kyogre', 'Groudon', 'Rayquaza', 'Dialga', 'Palkia', 'Giratina', 'Reshiram', 'Zekrom', 'Kyurem', 'Xerneas', 'Yveltal', 'Zygarde'];
 			let n = 0;
 			for (const set of team) {
-				let baseSpecies = this.getTemplate(set.species).baseSpecies;
+				let baseSpecies = this.dex.getTemplate(set.species).baseSpecies;
 				if (legends.includes(baseSpecies)) n++;
 				if (n > 2) return ["You can only use up to two legendary Pok\u00E9mon."];
 			}
@@ -2469,6 +2469,7 @@ let Formats = [
 		],
 		
         mod: 'gen3',
+		searchShow: false,
 		teamLength: {
 			validate: [1, 3],
 			battle: 1,

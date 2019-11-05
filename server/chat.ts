@@ -66,7 +66,7 @@ export type LoginFilter = (user: User, oldUser: User | null, userType: string) =
 export type HostFilter = (host: string, user: User, connection: Connection, hostType: string) => void;
 
 const LINK_WHITELIST = [
-	'*.pokemonshowdown.com', 'psim.us', 'smogtours.psim.us',
+	'*.pokemonshowdown.com', 'sports.psim.us', 'smogtours.psim.us',
 	'*.smogon.com', '*.pastebin.com', '*.hastebin.com',
 ];
 
@@ -367,9 +367,23 @@ export class CommandContext extends MessageContext {
 			if (this.pmTarget) {
 				Chat.sendPM(message, this.user, this.pmTarget);
 			} else {
-				this.room.add(`|c|${this.user.getIdentity(this.room.roomid)}|${message}`);
-				if (this.room && this.room.game && this.room.game.onLogMessage) {
-					this.room.game.onLogMessage(message, this.user);
+				let emoticons = Chat.parseEmoticons(message);
+				if (emoticons && !this.room.disableEmoticons) {
+					for (let u in this.room.users) {
+						let curUser = Users.get(u);
+						if (!curUser || !curUser.connected) continue;
+						if (Users.ignoreEmotes[curUser.id]) {
+							curUser.sendTo(this.room, (this.room.type === 'chat' ? '|c:|' + (~~(Date.now() / 1000)) + '|' : '|c|') + this.user.getIdentity(this.room.roomid) + '|' + message);
+							continue;
+						}
+						curUser.sendTo(this.room, (this.room.type === 'chat' ? '|c:|' + (~~(Date.now() / 1000)) + '|' : '|c|') + this.user.getIdentity(this.room.roomid) + '|/html ' + emoticons);
+					}
+					this.room.log.log.push((this.room.type === 'chat' ? (this.room.type === 'chat' ? '|c:|' + (~~(Date.now() / 1000)) + '|' : '|c|') : '|c|') + this.user.getIdentity(this.room.roomid) + '|' + message);
+					this.room.lastUpdate = this.room.log.length;
+					this.room.messageCount++;
+				} else {
+					this.room.add((this.room.type === 'chat' ? (this.room.type === 'chat' ? '|c:|' + (~~(Date.now() / 1000)) + '|' : '|c|') : '|c|') + this.user.getIdentity(this.room.roomid) + '|' + message);
+					this.room.messageCount++;
 				}
 			}
 		}
@@ -1349,7 +1363,10 @@ export const Chat = new class {
 		return context.parse();
 	}
 	sendPM(message: string, user: User, pmTarget: User, onlyRecipient: User | null = null) {
-		const buf = `|pm|${user.getIdentity()}|${pmTarget.getIdentity()}|${message}`;
+		let noEmotes = message;
+		let emoticons = Chat.parseEmoticons(message);
+		if (emoticons) message = "/html " + emoticons;
+		let buf = `|pm|${user.getIdentity()}|${pmTarget.getIdentity()}|${(Users.ignoreEmotes[user.userid] ? noEmotes : message)}`;
 		if (onlyRecipient) return onlyRecipient.send(buf);
 		user.send(buf);
 		if (pmTarget !== user) pmTarget.send(buf);

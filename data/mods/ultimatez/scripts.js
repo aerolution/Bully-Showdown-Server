@@ -19,9 +19,9 @@ exports.BattleScripts = {
 		}
 	},
 	getActiveZMove(move, pokemon) {
-		move = this.getMove(move);
+		move = this.dex.getMove(move);
 		if (move.category === 'Status') {
-			let zMove = this.getActiveMove(move);
+			let zMove = this.dex.getActiveMove(move);
 			zMove.isZ = true;
 			zMove.isZPowered = true;
 			return zMove;
@@ -29,12 +29,12 @@ exports.BattleScripts = {
 		let item = pokemon.getItem();
 		if (item.zMoveFrom) {
 			// @ts-ignore
-			let zMove = this.getActiveMove(item.zMove);
+			let zMove = this.dex.getActiveMove(item.zMove);
 			zMove.isZPowered = true;
 			return zMove;
 		}
 		// @ts-ignore
-		let zMove = this.getActiveMove(this.zMoveTable[item.zMoveType]);
+		let zMove = this.dex.getActiveMove(this.zMoveTable[item.zMoveType]);
 		// @ts-ignore
 		zMove.basePower = move.zMovePower;
 		zMove.category = move.category;
@@ -59,10 +59,10 @@ exports.BattleScripts = {
 			if (!moveSlot.disabled) {
 				mustStruggle = false;
 			}
-			let move = this.getMove(moveSlot.move);
+			let move = this.dex.getMove(moveSlot.move);
 			let zMoveName = this.getZMove(move, pokemon, true) || '';
 			if (zMoveName) {
-				let zMove = this.getMove(zMoveName);
+				let zMove = this.dex.getMove(zMoveName);
 				if (!zMove.isZ && zMove.category === 'Status') zMoveName = "Z-" + zMoveName;
 				zMoves.push({move: zMoveName, target: zMove.target});
 			} else {

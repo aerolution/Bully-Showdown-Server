@@ -236,7 +236,7 @@ class RandomStaffBrosTeams extends RandomTeams {
 			let name = this.sampleNoReplace(pool);
 			let ssbSet = sets[name];
 			// Enforce typing limits
-			let types = this.getTemplate(ssbSet.species).types;
+			let types = this.dex.getTemplate(ssbSet.species).types;
 			let rejected = false;
 			for (let type of types) {
 				if (typePool[type] === undefined) typePool[type] = 0;

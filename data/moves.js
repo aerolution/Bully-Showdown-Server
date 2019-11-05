@@ -966,7 +966,7 @@ let BattleMovedex = {
 		desc: "This move summons Reflect for 5 turns upon use.",
 		shortDesc: "Summons Reflect.",
 		id: "baddybad",
-		
+		isNonstandard: "LGPE",
 		isUnreleased: true,
 		isViable: true,
 		name: "Baddy Bad",
@@ -1678,7 +1678,7 @@ let BattleMovedex = {
 		desc: "The user recovers 1/2 the HP lost by the target, rounded half up. If Big Root is held by the user, the HP recovered is 1.3x normal, rounded half down.",
 		shortDesc: "User recovers 50% of the damage dealt.",
 		id: "bouncybubble",
-		
+		isNonstandard: "LGPE",
 		isUnreleased: true,
 		isViable: true,
 		name: "Bouncy Bubble",
@@ -2019,7 +2019,7 @@ let BattleMovedex = {
 		desc: "Has a 100% chance to paralyze the foe.",
 		shortDesc: "100% chance to paralyze the foe.",
 		id: "buzzybuzz",
-		
+		isNonstandard: "LGPE",
 		isUnreleased: true,
 		isViable: true,
 		name: "Buzzy Buzz",
@@ -3680,7 +3680,7 @@ let BattleMovedex = {
 		desc: "Hits twice. If the first hit breaks the target's substitute, it will take damage for the second hit. Has a 30% chance to flinch the target.",
 		shortDesc: "Hits twice. 30% chance to flinch.",
 		id: "doubleironbash",
-		
+		isNonstandard: "LGPE",
 		isUnreleased: true,
 		isViable: true,
 		name: "Double Iron Bash",
@@ -5534,7 +5534,7 @@ let BattleMovedex = {
 		desc: "Has a 30% chance to flinch the target.",
 		shortDesc: "30% chance to flinch the target.",
 		id: "floatyfall",
-		
+		isNonstandard: "LGPE",
 		isUnreleased: true,
 		isViable: true,
 		name: "Floaty Fall",
@@ -5976,7 +5976,7 @@ let BattleMovedex = {
 		desc: "Resets the stat stages of all active Pokemon to 0.",
 		shortDesc: "Eliminates all stat changes.",
 		id: "freezyfrost",
-		
+		isNonstandard: "LGPE",
 		isUnreleased: true,
 		isViable: true,
 		name: "Freezy Frost",
@@ -6477,7 +6477,7 @@ let BattleMovedex = {
 		desc: "This move summons Light Screen for 5 turns upon use.",
 		shortDesc: "Summons Light Screen.",
 		id: "glitzyglow",
-		
+		isNonstandard: "LGPE",
 		isUnreleased: true,
 		isViable: true,
 		name: "Glitzy Glow",
@@ -11880,7 +11880,7 @@ let BattleMovedex = {
 		desc: "Power is equal to the greater of (user's Happiness * 2/5), rounded down, or 1.",
 		shortDesc: "Max happiness: 102 power. Can't miss.",
 		id: "pikapapow",
-		
+		isNonstandard: "LGPE",
 		isUnreleased: true,
 		isViable: true,
 		name: "Pika Papow",
@@ -14215,7 +14215,7 @@ let BattleMovedex = {
 		desc: "This move summons Leech Seed on the foe.",
 		shortDesc: "Summons Leech Seed.",
 		id: "sappyseed",
-		
+		isNonstandard: "LGPE",
 		isUnreleased: true,
 		isViable: true,
 		name: "Sappy Seed",
@@ -15009,7 +15009,7 @@ let BattleMovedex = {
 		desc: "Has a 100% chance to burn the foe.",
 		shortDesc: "100% chance to burn the foe.",
 		id: "sizzlyslide",
-		
+		isNonstandard: "LGPE",
 		isUnreleased: true,
 		isViable: true,
 		name: "Sizzly Slide",
@@ -15931,7 +15931,7 @@ let BattleMovedex = {
 		desc: "Every Pokemon in the user's party is cured of its major status condition.",
 		shortDesc: "Cures the user's party of all status conditions.",
 		id: "sparklyswirl",
-		
+		isNonstandard: "LGPE",
 		isUnreleased: true,
 		isViable: true,
 		name: "Sparkly Swirl",
@@ -16264,7 +16264,7 @@ let BattleMovedex = {
 		desc: "Has a 30% chance to paralyze the target.",
 		shortDesc: "30% chance to paralyze the target.",
 		id: "splishysplash",
-		
+		isNonstandard: "LGPE",
 		isUnreleased: true,
 		isViable: true,
 		name: "Splishy Splash",
@@ -18534,7 +18534,7 @@ let BattleMovedex = {
 		desc: "Power is equal to the greater of (user's Happiness * 2/5), rounded down, or 1.",
 		shortDesc: "Max happiness: 102 power. Can't miss.",
 		id: "veeveevolley",
-		
+		isNonstandard: "LGPE",
 		isUnreleased: true,
 		isViable: true,
 		name: "Veevee Volley",
@@ -19455,7 +19455,7 @@ let BattleMovedex = {
 		desc: "Will always result in a critical hit.",
 		shortDesc: "Nearly always goes first. Always crits.",
 		id: "zippyzap",
-		
+		isNonstandard: "LGPE",
 		isUnreleased: true,
 		isViable: true,
 		name: "Zippy Zap",

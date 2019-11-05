@@ -15,14 +15,14 @@ let Formats = [
 		name: "[Gen 7] Draft League",
 
 		mod: 'gen7',
-		ruleset: ['Obtainable', 'Draft', 'Team Preview'],
+		ruleset: ['Obtainable', '+Unreleased', 'Draft', 'Team Preview'],
 	},
 	{
 		name: "[Gen 7] WiFi Draft League",
 
 		mod: 'gen7',
 		maxForcedLevel: 50,
-		ruleset: ['Obtainable', 'Draft', 'Team Preview', 'VGC Timer'],
+		ruleset: ['Obtainable', '+Unreleased', 'Draft', 'Team Preview', 'VGC Timer'],
 	},
 	{
 		name: "[Gen 7] DS Timer Draft League",
@@ -36,7 +36,7 @@ let Formats = [
 
 		mod: 'gen7',
 		maxLevel: 5,
-		ruleset: ['Obtainable', 'Draft', 'Team Preview', 'Double Item Clause', 'Little Cup'],
+		ruleset: ['Obtainable', '+Unreleased', 'Draft', 'Team Preview', 'Double Item Clause', 'Little Cup'],
 		banlist: ['Eevium Z', 'Dragon Rage', 'Sonic Boom',],
 	},
 	{
@@ -49,7 +49,7 @@ let Formats = [
 		name: "[Gen 7] No Team Preview",
 
 		mod: 'gen7',
-		ruleset: ['Obtainable', 'Draft'],
+		ruleset: ['Obtainable', '+Unreleased', 'Draft'],
 	},
 	
 	

@@ -172,12 +172,6 @@ class RandomStaffBrosTeams extends RandomTeams {
 				signatureMove: 'Blizzard Focus',
 				evs: {hp: 248, def: 8, spd: 252}, ivs: {atk: 0}, nature: 'Calm',
 			},
-			'woodlandapple': {
-				species: 'Chimecho', ability: "Volturn Mayhem", item: 'Jankium Z', 
-				moves: ['Knock Off', 'Recover', 'Defog'],
-				signatureMove: 'Apple Jank',
-				evs: {hp: 252, def: 252, spd: 4}, ivs: {atk: 0}, nature: 'Relaxed',
-			},
 			'X-Naut': {
 				species: 'Magneton', ability: 'Yux Barrier', item: 'Electric Gem', 
 				moves: ['Thunder', 'Ice Beam', 'Recycle'],

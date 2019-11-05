@@ -331,7 +331,7 @@ let BattleAbilities = {
 			}; 
 			let forme = Object.keys(formes)[this.random(9)];
 			while (forme === pokemon.template.speciesid) forme = Object.keys(formes)[this.random(9)];
-			pokemon.formeChange(forme, this.dex.getAbility('afrocoat'), false, '', 0);
+			pokemon.formeChange(forme, this.dex.getAbility('afrocoat'), false);
 			let type = ["Normal", formes[forme]];
 			if (!pokemon.setType(type)) return;
 			this.add('-start', pokemon, 'typechange', type.join('/'), '[silent]');
@@ -586,7 +586,7 @@ let BattleAbilities = {
 					pokemon.clearBoosts();
 					this.add('-clearboost', pokemon);
 				}
-				pokemon.formeChange(template, pokemon.ability, true, '', 0);
+				pokemon.formeChange(template, this.dex.getAbility('pigmad'), true);
 				this.add('-message', `pig lad evolved!`);
 				pokemon.setAbility('pigmad');
 				pokemon.cureStatus(true);

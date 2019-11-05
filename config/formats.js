@@ -15,16 +15,14 @@ let Formats = [
 		name: "[Gen 7] Draft League",
 
 		mod: 'gen7',
-		ruleset: ['-Nonexistent', 'Draft', 'Team Preview'],
-		banlist: ['Illegal'],
+		ruleset: ['Obtainable', 'Draft', 'Team Preview'],
 	},
 	{
 		name: "[Gen 7] WiFi Draft League",
 
 		mod: 'gen7',
 		maxForcedLevel: 50,
-		ruleset: ['-Nonexistent', 'Draft', 'Team Preview', 'VGC Timer'],
-		banlist: ['Illegal'],
+		ruleset: ['Obtainable', 'Draft', 'Team Preview', 'VGC Timer'],
 	},
 	{
 		name: "[Gen 7] DS Timer Draft League",
@@ -38,8 +36,8 @@ let Formats = [
 
 		mod: 'gen7',
 		maxLevel: 5,
-		ruleset: ['-Nonexistent', 'Draft', 'Team Preview', 'Double Item Clause', 'Little Cup'],
-		banlist: ['Illegal', 'Eevium Z', 'Dragon Rage', 'Sonic Boom',],
+		ruleset: ['Obtainable', 'Draft', 'Team Preview', 'Double Item Clause', 'Little Cup'],
+		banlist: ['Eevium Z', 'Dragon Rage', 'Sonic Boom',],
 	},
 	{
 		name: "[Gen 7] Unrestricted Draft League",
@@ -51,8 +49,7 @@ let Formats = [
 		name: "[Gen 7] No Team Preview",
 
 		mod: 'gen7',
-		ruleset: ['-Nonexistent', 'Draft'],
-		banlist: ['Illegal'],
+		ruleset: ['Obtainable', 'Draft'],
 	},
 	
 	
@@ -1319,7 +1316,7 @@ let Formats = [
 			let scale = 600 - template.baseStats['hp'];
 			for (const stat of stats) {
 				// @ts-ignore
-				template.baseStats[stat] = this.clampIntRange(template.baseStats[stat] * scale / pst, 1, 255);
+				template.baseStats[stat] = this.dex.clampIntRange(template.baseStats[stat] * scale / pst, 1, 255);
 			}
 			return template;
 		},

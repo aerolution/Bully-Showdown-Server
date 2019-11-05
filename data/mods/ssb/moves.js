@@ -66,6 +66,7 @@ let BattleMovedex = {
 				return false;
 			}
 			if (source.volatiles['careerender'].position === null) return false;
+			this.add('-anim', source, 'Detect', target);
 			this.add('-anim', source, 'Counter', target);
 		},
 		effect: {
@@ -364,7 +365,7 @@ let BattleMovedex = {
 		onPrepareHit(target, source, move) {
 			this.add('-anim', source, 'Quiver Dance', source);
 			let targetSpecies = (source.template.species === 'Meloetta' ? 'Meloetta-Pirouette' : 'Meloetta');
-			if (source.template.species !== targetSpecies) source.formeChange(targetSpecies, move);
+			if (source.template.species !== targetSpecies) source.formeChange(targetSpecies);
 		},
 		onTryHit(pokemon) {
 			return !!this.willAct() && this.runEvent('StallMove', pokemon);
@@ -652,7 +653,7 @@ let BattleMovedex = {
 			this.add('-anim', source, 'Rock Slide', target);
 		},
 		onAfterHit(target, source, move) {
-			source.formeChange('aerodactylmega', move, false, '', 0);
+			source.formeChange('aerodactylmega', this.dex.getAbility('dougsghosting'), false);
 			this.add('-message', `Nacho called Doug for help!`);
 		},
 		secondary: null,
@@ -664,9 +665,9 @@ let BattleMovedex = {
 		accuracy: 100,
 		basePower: 80,
 		basePowerCallback(source, target, move) {
-			let hazards = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb'];
+			const hazards = {'spikes': 1, 'toxicspikes': 1, 'stealthrock': 1, 'stickyweb': 1};
 			let layers = 0;
-			for (const curr of hazards) {
+			for (let curr in hazards) {
 				if (source.side.sideConditions[curr]) layers += (source.side.sideConditions[curr].layers || 1);
 				if (target.side.sideConditions[curr]) layers += (target.side.sideConditions[curr].layers || 1);
 			}

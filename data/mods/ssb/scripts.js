@@ -313,7 +313,7 @@ let BattleScripts = {
 				if (accuracy !== true) {
 					if (!move.ignoreAccuracy) {
 						boosts = this.runEvent('ModifyBoost', pokemon, null, null, Object.assign({}, pokemon.boosts));
-						boost = this.clampIntRange(boosts['accuracy'], -6, 6);
+						boost = this.dex.clampIntRange(boosts['accuracy'], -6, 6);
 						if (boost > 0) {
 							accuracy *= boostTable[boost];
 						} else {
@@ -322,7 +322,7 @@ let BattleScripts = {
 					}
 					if (!move.ignoreEvasion) {
 						boosts = this.runEvent('ModifyBoost', target, null, null, Object.assign({}, target.boosts));
-						boost = this.clampIntRange(boosts['evasion'], -6, 6);
+						boost = this.dex.clampIntRange(boosts['evasion'], -6, 6);
 						if (boost > 0) {
 							accuracy /= boostTable[boost];
 						} else if (boost < 0) {

@@ -280,7 +280,7 @@ let Formats = [
 		ruleset: ['[Gen 7] PU'],
 		banlist: [
 			'PU', 'Carracosta', 'Crabominable', 'Gorebyss', 'Jynx', 'Raticate-Alola',
-			'Raticate-Alola-Totem', 'Throh', 'Turtonator', 'Type: Null', 'Ursaring', 'Victreebel',
+			'Shiftry', 'Throh', 'Turtonator', 'Type: Null', 'Ursaring', 'Victreebel',
 		],
 	},
 	{
@@ -959,7 +959,6 @@ let Formats = [
 		],
 
 		mod: 'gen7',
-		// searchShow: false,
 		ruleset: ['[Gen 7] OU'],
 		banlist: ['Drought', 'Damp Rock', 'Deep Sea Tooth', 'Eviolite', 'Heat Rock'],
 		onModifyTemplate(template, target, source, effect) {
@@ -1354,20 +1353,20 @@ let Formats = [
 			if (target && target.set.ability === 'Drizzle') return;
 			let tier = template.tier;
 			if (target && target.set.item) {
-				let item = this.getItem(target.set.item);
+				let item = this.dex.getItem(target.set.item);
 				if (item.name === 'Kommonium Z' || item.name === 'Mewnium Z') return;
-				if (item.megaEvolves === template.species) tier = this.getTemplate(item.megaStone).tier;
+				if (item.megaEvolves === template.species) tier = this.dex.getTemplate(item.megaStone).tier;
 			}
 			if (target && target.set.moves.includes('auroraveil')) tier = 'UU';
 			if (target && target.set.ability === 'Drought') tier = 'RU';
 
 			if (tier[0] === '(') tier = tier.slice(1, -1);
 			if (!(tier in boosts)) return;
-			let pokemon = this.deepClone(template);
+			let pokemon = this.dex.deepClone(template);
 			let boost = boosts[tier];
 			for (let statName in pokemon.baseStats) {
 				if (statName === 'hp') continue;
-				pokemon.baseStats[statName] = this.clampIntRange(pokemon.baseStats[statName] + boost, 1, 255);
+				pokemon.baseStats[statName] = this.dex.clampIntRange(pokemon.baseStats[statName] + boost, 1, 255);
 			}
 			return pokemon;
 		},
@@ -2368,7 +2367,7 @@ let Formats = [
 			validate: [1, 3],
 			battle: 1,
 		},
-		ruleset: ['[Gen 4] OU', 'Accuracy Moves Clause'],
+		ruleset: ['[Gen 4] OU', 'Accuracy Moves Clause', 'Team Preview'],
 		banlist: [
 			'Latias', 'Porygon-Z', 'Focus Sash', 'Soul Dew', 'Destiny Bond', 'Explosion', 'Perish Song', 'Self-Destruct',
 			'Dark Void', 'Grass Whistle', 'Hypnosis', 'Lovely Kiss', 'Sing', 'Sleep Powder', 'Spore', 'Yawn',
@@ -2464,17 +2463,19 @@ let Formats = [
 	},
 	{
         name: "[Gen 3] 1v1",
-        desc: `Bring three Pok&eacute;mon to Team Preview and choose one to battle.`,
-        mod: 'gen3',
-        teamLength: {
-            validate: [1, 3],
-            battle: 1,
-        },
-        ruleset: ['Obtainable', 'Standard', 'Swagger Clause', 'Team Preview'],
-		banlist: [
-			'Deoxys-A', 'Deoxys', 'Groudon', 'Ho-Oh', 'Lugia', 'Mewtwo', 'Rayquaza', 'Perish Song', 'Chansey + Charm + Seismic Toss', 'Suicune', 'Snorlax', 'Kyogre', 'Latios', 'Latias', 'Wobbuffet', 'Wynaut', 'Flash', 'Mud-Slap', 'Kinesis', 'Smokescreen', 'Octazooka', 'Slaking', 'Explosion', 'Self Destruct', 'Destiny Bond'
+		desc: `Bring three Pok&eacute;mon to Team Preview and choose one to battle.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/posts/8031458/">ADV 1v1</a>`,
 		],
-    },
+		
+        mod: 'gen3',
+		teamLength: {
+			validate: [1, 3],
+			battle: 1,
+		},
+		ruleset: ['[Gen 3] OU', 'Accuracy Moves Clause', 'Team Preview'],
+		banlist: ['Slaking', 'Snorlax', 'Suicune', 'Destiny Bond', 'Explosion', 'Ingrain', 'Perish Song', 'Self-Destruct'],
+	},
 	{
 		name: "[Gen 3] Custom Game",
 

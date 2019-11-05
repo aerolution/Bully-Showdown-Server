@@ -1011,7 +1011,7 @@ let Formats = [
 		],
 		mod: 'gen7',
 		searchShow: false,
-		ruleset: ['-Nonexistent', 'Draft', 'Team Preview'],
+		ruleset: ['Obtainable', '+Unreleased', 'Draft', 'Team Preview'],
 		banlist: ['Assault Vest', 'Black Sludge', 'Choice Scarf', 'Damp Rock', 'Life Orb', 'Razor Fang', 'Weakness Policy', 'Manectite',
 			'Amnesia', 'Baton Pass', 'Haze', 'Iron Defense', 'Lucky Chant', 'Pain Split', 'Protect', 'Rest', 'Roar', 'Dark Void', 'Hidden Power > 3',
 			'Uber', 'Kyurem-Black', 'Hoopa', 'Charizard-Mega-X', 'Beedrill-Mega', 'Necrozma', 'Smeargle', 'Goodra', 'Sucker Punch + Bisharp',
@@ -1089,7 +1089,7 @@ let Formats = [
 
 		mod: 'gen7',
 		team: 'random',
-		ruleset: ['-Nonexistent', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		customBanlist: ['Shedinja', 'Azurill', 'Marill', 'Azumarill', 'Bunnelby', 'Diggersby', 'Meditite', 'Medicham', 'Mawile'],
 		allowUnevolved: true,
 		level100: true,
@@ -1109,7 +1109,7 @@ let Formats = [
 		
         mod: 'gen7',
 		team: 'random',
-		ruleset: ['-Nonexistent', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		customBanlist: ['Arceus', 'Shedinja', 'Zoroark', 'Ditto'],
 		onBegin() {
 			if (this.format === 'gen7randomcamomons') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Pok&eacute;mon change type to match their first two moves.</div>`);
@@ -1140,7 +1140,7 @@ let Formats = [
 			validate: [6, 6],
 			battle: 6,
 		},
-		ruleset: ['-Nonexistent', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
+		ruleset: ['Obtainable', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
 		customBanlist: ['Shedinja', 'Azumarill', 'Diggersby', 'Medicham'],
 		noMegas: true,
 		level100: true,
@@ -1180,7 +1180,7 @@ let Formats = [
 
 		mod: 'mixandmega',
 		team: 'random',
-		ruleset: ['-Nonexistent', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
+		ruleset: ['Obtainable', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
 		customBanlist: [
 			'Arceus', 'Deoxys', 'Deoxys-Attack', 'Deoxys-Speed', 'Dialga', 'Giratina', 'Groudon', 'Ho-Oh', 'Hoopa-Unbound', 'Kyogre', 'Kyurem-Black',
 			'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane',
@@ -1228,7 +1228,7 @@ let Formats = [
 		mod: 'pic',
 		gameType: 'doubles',
 		team: 'random',
-		ruleset: ['-Nonexistent', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		customBanlist: ['Shedinja', 'Azumarill', 'Diggersby', 'Medicham', 'Zoroark', 'Mawile'],
 		onBegin() {
 			if (this.format === 'gen7randompartnersincrime') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Both active ally Pok&eacute;mon share abilities and moves.</div>`);
@@ -1299,7 +1299,7 @@ let Formats = [
 
 		mod: 'gen7',
 		team: 'random',
-		ruleset: ['-Nonexistent', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		customBanlist: ['Abra', 'Carvanha', 'Gastly', 'Bunnelby', 'Diggersby', 'Shedinja', 'Azurill', 'Marill', 'Azumarill', 'Medicham', 'Mawile'],
 		allowUnevolved: true,
 		level100: true,
@@ -1327,7 +1327,7 @@ let Formats = [
 		
 		mod: 'gen7',
 		team: 'random',
-		ruleset: ['-Nonexistent', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		level100: true,
 		onBegin() {
 			if (this.format === 'gen7randomtiershift') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Pok&eacute;mon below OU get all their base stats boosted:<br>* UU/RUBL: +10<br>* RU/NUBL: +20<br>* NU/PUBL: +30<br>* PU or lower: +40</div>`);
@@ -1377,7 +1377,7 @@ let Formats = [
 
 		mod: 'ultimatez',
 		team: 'random',
-		ruleset: ['-Nonexistent', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		noMegas: true,
 		forceItem: [
 			'Buginium Z', 'Darkinium Z', 'Dragonium Z', 'Electrium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Ghostium Z', 
@@ -1393,7 +1393,7 @@ let Formats = [
 		
 		mod: 'gen7',
 		team: 'random',
-		ruleset: ['-Nonexistent', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod', 'Inverse Mod'],
+		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod', 'Inverse Mod'],
 		customBanlist: ['Arceus', 'Kyurem-Black', 'Serperior', 'Hoopa-Unbound', 'Kartana', 'Tapu Bulu', 'Tapu Lele', 'Linoone'],
 		onBegin() {
 			if (this.format === 'gen7inverserandombattle') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">The type effectiveness chart is inverted: weaknesses become resistances, while resistances and immunities become weaknesses.</div>`);
@@ -1405,7 +1405,7 @@ let Formats = [
 		
 		mod: 'gen7',
 		team: 'random',
-		ruleset: ['-Nonexistent', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		customBanlist: ['Arceus', 'Greninja', 'Kecleon'],
 		onBegin() {
 			if (this.format === 'gen7proteanpalace') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">All Pok&eacute;mon have the Protean effect on top of their regular ability.</div>`);
@@ -1427,7 +1427,7 @@ let Formats = [
 		
 		mod: 'gen7',
 		team: 'random',
-		ruleset: ['-Nonexistent', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		customBanlist: ['Ditto', 'Zoroark'],
 		onBegin() {
 			if (this.format === 'gen7shiftingillusions') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">All Pok&eacute;mon have the Illusion effect on top of their regular ability.</div>`);
@@ -1467,7 +1467,7 @@ let Formats = [
 		
 		mod: 'gen7',
 		team: 'random',
-		ruleset: ['-Nonexistent', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		onBegin() {
 			if (this.format === 'gen7voltturnmayhem') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">All Pok&eacute;mon automatically switch out upon using a move that affects the opponent.</div>`);
 		},

@@ -821,7 +821,7 @@ let Formats = [
 			}
 		},
 	},
-	{
+	/*{
 		name: "[Gen 7] Partners in Crime",
 		desc: `Doubles-based metagame where both active ally Pok&eacute;mon share abilities and moves.`,
 		threads: [
@@ -830,7 +830,6 @@ let Formats = [
 
 		mod: 'pic',
 		gameType: 'doubles',
-		// searchShow: false,
 		ruleset: ['[Gen 7] Doubles OU', 'Sleep Clause Mod'],
 		banlist: [
 			'Kangaskhanite', 'Mawilite', 'Medichamite',
@@ -892,7 +891,7 @@ let Formats = [
 				delete ally.m.innate;
 			}
 		},
-	},
+	},*/
 	{
 		name: "[Gen 7] Sketchmons",
 		desc: `Pok&eacute;mon can learn one of any move they don't normally learn, barring the few that are banned.`,
@@ -1094,10 +1093,10 @@ let Formats = [
 		allowUnevolved: true,
 		level100: true,
 		onBegin() {
-			if (this.format === 'gen7randomaveragemons') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Every Pok&eacute;mon, including formes, has base 100 in every stat.</div>`);
+			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Every Pok&eacute;mon, including formes, has base 100 in every stat.</div>`);
 		},
 		onModifyTemplate(template) {
-			let dex = this && this.deepClone ? this : Dex;
+			let dex = this && this.dex.deepClone ? this : this.dex;
 			let newTemplate = dex.deepClone(template);
 			newTemplate.baseStats = {hp: 100, atk: 100, def: 100, spa: 100, spd: 100, spe: 100};
 			return newTemplate;
@@ -1112,7 +1111,7 @@ let Formats = [
 		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		customBanlist: ['Arceus', 'Shedinja', 'Zoroark', 'Ditto'],
 		onBegin() {
-			if (this.format === 'gen7randomcamomons') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Pok&eacute;mon change type to match their first two moves.</div>`);
+			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Pok&eacute;mon change type to match their first two moves.</div>`);
 		},
         onModifyTemplate(template, target, source, effect) {
 			if (!target) return; // Chat command
@@ -1145,12 +1144,12 @@ let Formats = [
 		noMegas: true,
 		level100: true,
 		onBegin() {
-			if (this.format === 'gen7randomchimera') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Team order will determine the following characteristics of your lead Pok&eacute;mon:<br>* Slot 1: Species and typing<br>* Slot 2: Item<br>* Slot 3: Ability<br>* Slot 4: Stats<br>* Slot 5: Moves 1+2<br>* Slot 6: Moves 3+4</div>`);
+			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Team order will determine the following characteristics of your lead Pok&eacute;mon:<br>* Slot 1: Species and typing<br>* Slot 2: Item<br>* Slot 3: Ability<br>* Slot 4: Stats<br>* Slot 5: Moves 1+2<br>* Slot 6: Moves 3+4</div>`);
 		},
 		onBeforeSwitchIn(pokemon) {
 			let allies = pokemon.side.pokemon.splice(1);
 			pokemon.side.pokemonLeft = 1;
-			let template = this.deepClone(pokemon.baseTemplate);
+			let template = this.dex.deepClone(pokemon.baseTemplate);
 			pokemon.item = allies[0].item;
 			template.abilities = allies[1].baseTemplate.abilities;
 			pokemon.ability = pokemon.baseAbility = allies[1].ability;
@@ -1194,6 +1193,7 @@ let Formats = [
 			'Venusaurite', 'Blue Orb', 'Red Orb',
 		],
 		onBegin() {
+			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Mega Stones and Primal Orbs can be used on any Pok&eacute;mon with no Mega Evolution limit.<br>Mega Evolving grants you the stats boosts, ability and type changes that the Stone regularly gives.</div>`);
 			for (const pokemon of this.getAllPokemon()) {
 				pokemon.m.originalSpecies = pokemon.baseTemplate.species;
 			}
@@ -1218,7 +1218,7 @@ let Formats = [
 			}
 		},
 	},
-	{
+	/*{
 		name: "[Gen 7] Random Partners in Crime",
 		desc: `Doubles-based metagame where both active ally Pok&eacute;mon share abilities and moves.`,
 		threads: [
@@ -1231,7 +1231,7 @@ let Formats = [
 		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		customBanlist: ['Shedinja', 'Azumarill', 'Diggersby', 'Medicham', 'Zoroark', 'Mawile'],
 		onBegin() {
-			if (this.format === 'gen7randompartnersincrime') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Both active ally Pok&eacute;mon share abilities and moves.</div>`);
+			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Both active ally Pok&eacute;mon share abilities and moves.</div>`);
 		},
 		onSwitchInPriority: 2,
 		onSwitchIn(pokemon) {
@@ -1289,7 +1289,7 @@ let Formats = [
 				delete ally.m.innate;
 			}
 		},
-	},
+	},*/
 	{
 		name: "[Gen 7] Random Scalemons",
 		desc: `Every Pok&eacute;mon's stats, barring HP, are scaled to give them a BST as close to 600 as possible.`,
@@ -1304,7 +1304,7 @@ let Formats = [
 		allowUnevolved: true,
 		level100: true,
 		onBegin() {
-			if (this.format === 'gen7randomscalemons') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Every Pok&eacute;mon's stats, barring HP, are scaled to give them a BST as close to 600 as possible.</div>`);
+			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Every Pok&eacute;mon's stats, barring HP, are scaled to give them a BST as close to 600 as possible.</div>`);
 		},
 		onModifyTemplate(template, target, source) {
 			if (!target) return;
@@ -1330,7 +1330,7 @@ let Formats = [
 		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		level100: true,
 		onBegin() {
-			if (this.format === 'gen7randomtiershift') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Pok&eacute;mon below OU get all their base stats boosted:<br>* UU/RUBL: +10<br>* RU/NUBL: +20<br>* NU/PUBL: +30<br>* PU or lower: +40</div>`);
+			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Pok&eacute;mon below OU get all their base stats boosted:<br>* UU/RUBL: +10<br>* RU/NUBL: +20<br>* NU/PUBL: +30<br>* PU or lower: +40</div>`);
 		},
 		onModifyTemplate(template, target, source, effect) {
 			if (!template.abilities) return false;
@@ -1384,7 +1384,7 @@ let Formats = [
 			'Grassium Z', 'Groundium Z', 'Icium Z', 'Normalium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z', 'Waterium Z',
 		],
 		onBegin() {
-			if (this.format === 'gen7randomultimatez') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Use any type of Z-Crystal on any move and as many times per battle as desired.</div>`);
+			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Use any type of Z-Crystal on any move and as many times per battle as desired.</div>`);
 		},
 	},
 	{
@@ -1396,7 +1396,7 @@ let Formats = [
 		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod', 'Inverse Mod'],
 		customBanlist: ['Arceus', 'Kyurem-Black', 'Serperior', 'Hoopa-Unbound', 'Kartana', 'Tapu Bulu', 'Tapu Lele', 'Linoone'],
 		onBegin() {
-			if (this.format === 'gen7inverserandombattle') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">The type effectiveness chart is inverted: weaknesses become resistances, while resistances and immunities become weaknesses.</div>`);
+			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">The type effectiveness chart is inverted: weaknesses become resistances, while resistances and immunities become weaknesses.</div>`);
 		},
 	},
 	{
@@ -1408,7 +1408,7 @@ let Formats = [
 		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		customBanlist: ['Arceus', 'Greninja', 'Kecleon'],
 		onBegin() {
-			if (this.format === 'gen7proteanpalace') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">All Pok&eacute;mon have the Protean effect on top of their regular ability.</div>`);
+			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">All Pok&eacute;mon have the Protean effect on top of their regular ability.</div>`);
 		},
 		onPrepareHitPriority: -1,
 		onPrepareHit(source, target, move) {
@@ -1430,7 +1430,7 @@ let Formats = [
 		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		customBanlist: ['Ditto', 'Zoroark'],
 		onBegin() {
-			if (this.format === 'gen7shiftingillusions') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">All Pok&eacute;mon have the Illusion effect on top of their regular ability.</div>`);
+			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">All Pok&eacute;mon have the Illusion effect on top of their regular ability.</div>`);
 		},
 		onBeforeSwitchIn(pokemon) {
 			pokemon.illusion = null;
@@ -1469,7 +1469,7 @@ let Formats = [
 		team: 'random',
 		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
 		onBegin() {
-			if (this.format === 'gen7voltturnmayhem') this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">All Pok&eacute;mon automatically switch out upon using a move that affects the opponent.</div>`);
+			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">All Pok&eacute;mon automatically switch out upon using a move that affects the opponent.</div>`);
 		},
 		onModifyMovePriority: -1,
 		onModifyMove(move) {

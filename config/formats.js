@@ -1308,6 +1308,7 @@ let Formats = [
 		},
 		onModifyTemplate(template, target, source) {
 			if (!target) return;
+			let pokemon = this.dex.deepClone(template);
 			template = Object.assign({}, template);
 			template.baseStats = Object.assign({}, template.baseStats);
 			let stats = ['atk', 'def', 'spa', 'spd', 'spe'];
@@ -1316,9 +1317,9 @@ let Formats = [
 			let scale = 600 - template.baseStats['hp'];
 			for (const stat of stats) {
 				// @ts-ignore
-				template.baseStats[stat] = this.dex.clampIntRange(template.baseStats[stat] * scale / pst, 1, 255);
+				pokemon.baseStats[stat] = this.dex.clampIntRange(pokemon.baseStats[stat] * scale / pst, 1, 255);
 			}
-			return template;
+			return pokemon;
 		},
 	},
 	{

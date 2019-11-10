@@ -37,13 +37,13 @@ let Formats = [
 		mod: 'gen7',
 		maxLevel: 5,
 		ruleset: ['Obtainable', '+Unreleased', 'Draft', 'Team Preview', 'Double Item Clause', 'Little Cup'],
-		banlist: ['Eevium Z', 'Dragon Rage', 'Sonic Boom',],
+		banlist: ['Eevium Z', 'Dragon Rage', 'Sonic Boom'],
 	},
 	{
 		name: "[Gen 7] Unrestricted Draft League",
 
 		mod: 'gen7',
-		ruleset: ['-Nonexistent', '+Obtainable Formes', '+Obtainable Misc', '+CAP', 'Draft', 'Team Preview'],
+		ruleset: ['-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', 'Draft', 'Team Preview'],
 	},
 	{
 		name: "[Gen 7] No Team Preview",

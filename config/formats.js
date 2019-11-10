@@ -43,7 +43,7 @@ let Formats = [
 		name: "[Gen 7] Unrestricted Draft League",
 
 		mod: 'gen7',
-		ruleset: ['-Nonexistent', 'Draft', 'Team Preview', '+CAP'],
+		ruleset: ['-Nonexistent', '+Obtainable Formes', '+Obtainable Misc', '+CAP', 'Draft', 'Team Preview'],
 	},
 	{
 		name: "[Gen 7] No Team Preview",
@@ -1693,7 +1693,7 @@ let Formats = [
 
 	{
 		section: "Let's Go!",
-		column: 2,
+		column: 3,
 	},
 	{
 		name: "[Gen 7 Let's Go] Random Battle",

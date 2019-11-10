@@ -737,11 +737,15 @@ export class CommandContext extends MessageContext {
 		return true;
 	}
 	canBroadcast(ignoreCooldown?: boolean, suppressMessage?: string | null) {
-		if (this.room instanceof Rooms.GlobalRoom) return false;
 		if (!this.broadcasting && this.cmdToken === BROADCAST_TOKEN) {
+			if (this.room instanceof Rooms.GlobalRoom) {
+				this.errorReply(`You have no one to broadcast this to.`);
+				this.errorReply(`To see it for yourself, use: /${this.message.substr(1)}`);
+				return false;
+			}
 			if (!this.pmTarget && !this.user.can('broadcast', null, this.room)) {
-				this.errorReply("You need to be voiced to broadcast this command's information.");
-				this.errorReply("To see it for yourself, use: /" + this.message.substr(1));
+				this.errorReply(`You need to be voiced to broadcast this command's information.`);
+				this.errorReply(`To see it for yourself, use: /${this.message.substr(1)}`);
 				return false;
 			}
 
@@ -1185,7 +1189,7 @@ export const Chat = new class {
 
 			// url
 			// tslint:disable-next-line: max-line-length
-			if (/[a-z0-9]\.(com|net|org|us|uk|co|gg|tk|ml|gq|ga|xxx|download|stream|)\b/.test(name)) name = name.replace(/\./g, '');
+			if (/[a-z0-9]\.(com|net|org|us|uk|co|gg|tk|ml|gq|ga|xxx|download|stream)\b/i.test(name)) name = name.replace(/\./g, '');
 
 			// Limit the amount of symbols allowed in usernames to 4 maximum, and disallow (R) and (C) from being used in the middle of names.
 			// tslint:disable-next-line: max-line-length

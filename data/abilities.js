@@ -1290,8 +1290,8 @@ let BattleAbilities = {
 			pokemon.abilityData.choiceLock = "";
 		},
 		onBeforeMove(pokemon, target, move) {
+			if (move.isZPowered || move.maxPowered || move.id === 'struggle') return;
 			if (pokemon.abilityData.choiceLock && pokemon.abilityData.choiceLock !== move.id) {
-				if (move.isZPowered || move.maxPowered || move.id === 'struggle') return;
 				// Fails unless ability is being ignored (these events will not run), no PP lost.
 				this.addMove('move', pokemon, move.name);
 				this.attrLastMove('[still]');
@@ -1301,6 +1301,7 @@ let BattleAbilities = {
 			}
 		},
 		onModifyMove(move, pokemon) {
+			if (move.isZPowered || move.maxPowered || move.id === 'struggle') return;
 			pokemon.abilityData.choiceLock = move.id;
 		},
 		onModifyAtkPriority: 1,
@@ -1547,7 +1548,7 @@ let BattleAbilities = {
 		onDamage(damage, target, source, effect) {
 			if (effect && effect.effectType === 'Move' && effect.category === 'Physical' && target.template.speciesid === 'eiscue' && !target.transformed) {
 				this.add('-activate', target, 'ability: Ice Face');
-				this.effectData.melted = true;
+				target.addVolatile('iceface');
 				return 0;
 			}
 		},
@@ -1557,36 +1558,20 @@ let BattleAbilities = {
 			if (!target.runImmunity(move.type)) return;
 			return 0;
 		},
-		onUpdate(pokemon) {
-			if (pokemon.template.speciesid === 'eiscue' && this.effectData.melted) {
-				pokemon.formeChange('Eiscue-Noice', this.effect, true);
-			}
+		effect: {
+			onUpdate(pokemon) {
+				if (pokemon.template.speciesid === 'eiscue') {
+					pokemon.removeVolatile('iceface');
+					pokemon.formeChange('Eiscue-Noice', this.effect, true);
+				}
+			},
 		},
-		// TODO Incomplete. Use one of these depending on how mechanics research determines this works exactly.
-		/*
-		// End of turn restore if hailing
-		onResidualOrder: 27,
-		onResidual(pokemon) {
-			if (this.field.isWeather('hail') && pokemon.template.speciesid === 'eiscuemelted' && !pokemon.transformed) {
-				this.effectData.melted = false;
-				pokemon.formeChange('Eiscue', this.effect, true);
-			}
-		},
-		// On switch-in if hailing
-		onStart(pokemon) {
-			if (this.field.isWeather('hail') && pokemon.template.speciesid === 'eiscuemelted' && !pokemon.transformed) {
-				this.effectData.melted = false;
-				pokemon.formeChange('Eiscue', this.effect, true);
-			}
-		},
-		// On start of hail
 		onAnyWeatherStart() {
-			if (this.field.isWeather('hail') && this.effectData.target.template.speciesid === 'eiscuenoice' && !this.effectData.target.transformed) {
-				this.effectData.melted = false;
-				this.effectData.target.formeChange('Eiscue', this.effect, true);
+			const pokemon = this.effectData.target;
+			if (this.field.isWeather('hail') && pokemon.template.speciesid === 'eiscuenoice' && !pokemon.transformed) {
+				pokemon.formeChange('Eiscue', this.effect, true);
 			}
 		},
-		*/
 		id: "iceface",
 		name: "Ice Face",
 		rating: 3.5,
@@ -1869,7 +1854,8 @@ let BattleAbilities = {
 		num: 26,
 	},
 	"libero": {
-		shortDesc: "Changes the Pokémon's type to the type of the move it's about to use.",
+		desc: "This Pokemon's type changes to match the type of the move it is about to use. This effect comes after all effects that change a move's type.",
+		shortDesc: "This Pokemon's type changes to match the type of the move it is about to use.",
 		onPrepareHit(source, target, move) {
 			if (move.hasBounced) return;
 			let type = move.type;

@@ -15,14 +15,14 @@ let Formats = [
 		name: "[Gen 7] Draft League",
 
 		mod: 'gen7',
-		ruleset: ['Obtainable', '+Unreleased', 'Draft', 'Team Preview'],
+		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview'],
 	},
 	{
 		name: "[Gen 7] WiFi Draft League",
 
 		mod: 'gen7',
 		maxForcedLevel: 50,
-		ruleset: ['Obtainable', '+Unreleased', 'Draft', 'Team Preview', 'VGC Timer'],
+		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview', 'VGC Timer'],
 	},
 	{
 		name: "[Gen 7] DS Timer Draft League",
@@ -36,7 +36,7 @@ let Formats = [
 
 		mod: 'gen7',
 		maxLevel: 5,
-		ruleset: ['Obtainable', '+Unreleased', 'Draft', 'Team Preview', 'Double Item Clause', 'Little Cup'],
+		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview', 'Double Item Clause', 'Little Cup'],
 		banlist: ['Eevium Z', 'Dragon Rage', 'Sonic Boom'],
 	},
 	{
@@ -49,7 +49,7 @@ let Formats = [
 		name: "[Gen 7] No Team Preview",
 
 		mod: 'gen7',
-		ruleset: ['Obtainable', '+Unreleased', 'Draft'],
+		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft'],
 	},
 	
 	
@@ -289,18 +289,12 @@ let Formats = [
 
 		mod: 'gen7',
 		searchShow: false,
-		ruleset: ['[Gen 7] OU'],
+		ruleset: ['[Gen 7] OU', 'NFE Clause'],
 		banlist: [
 			'Chansey', 'Doublade', 'Gligar', 'Golbat', 'Gurdurr', 'Magneton', 'Piloswine',
 			'Porygon2', 'Rhydon', 'Scyther', 'Sneasel', 'Type: Null', 'Vigoroth',
 			'Drought', 'Aurora Veil',
 		],
-		onValidateSet(set) {
-			let template = this.dex.getTemplate(set.species || set.name);
-			if (!template.nfe) {
-				return [set.species + " cannot evolve."];
-			}
-		},
 	},
 	{
 		name: "[Gen 7] CAP",
@@ -687,12 +681,115 @@ let Formats = [
 	},
 	
 	
+	// Sword/Shield
+	///////////////////////////////////////////////////////////////////
+	
+	{
+		section: "Sword/Shield",
+		column: 2,
+	},
+	{
+		name: "[Gen 8] Galar Draft League",
+
+		mod: 'gen8',
+		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['Obtainable', '+Unreleased', 'Draft', 'Team Preview'],
+	},
+	{
+		name: "[Gen 8] National Draft League",
+
+		mod: 'gen8',
+		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview'],
+	},
+	{
+		name: "[Gen 8] Legacy Draft League",
+
+		mod: 'gen8',
+		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['Obtainable', '+Unreleased', '+Past', '+PastMove', 'Draft', 'Team Preview'],
+	},
+	{
+		name: "[Gen 8] Random Battle",
+		desc: `Randomized teams of level-balanced Pok&eacute;mon with sets that are generated to be competitively viable.`,
+
+		mod: 'gen8',
+		team: 'random',
+		ruleset: ['PotD', 'Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+	},
+	{
+		name: "[Gen 8] OU (beta)",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3656245/">OU Metagame Discussion</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'Moody Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
+		banlist: ['Uber', 'Baton Pass'],
+	},
+	{
+		name: "[Gen 8] Doubles OU (beta)",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/np-swsh-dou-stage-0-begin-again.3656244/">Doubles OU Metagame Discussion</a>`,
+		],
+
+		mod: 'gen8',
+		gameType: 'doubles',
+		ruleset: ['Obtainable', 'Standard Doubles', 'Team Preview'],
+		banlist: ['DUber', 'Gravity ++ Hypnosis', 'Gravity ++ Lovely Kiss', 'Gravity ++ Sing', 'Gravity ++ Sleep Powder'],
+	},
+	{
+		name: "[Gen 8] Custom Game",
+
+		mod: 'gen8',
+		searchShow: false,
+		debug: true,
+		maxLevel: 9999,
+		trunc(n) { return Math.trunc(n); },
+		defaultLevel: 100,
+		teamLength: {
+			validate: [1, 24],
+			battle: 24,
+		},
+		// no restrictions, for serious (other than team preview)
+		ruleset: ['Team Preview', 'Cancel Mod'],
+	},
+	{
+		name: "[Gen 8] Doubles Custom Game",
+
+		mod: 'gen8',
+		gameType: 'doubles',
+		searchShow: false,
+		maxLevel: 9999,
+		trunc(n) { return Math.trunc(n); },
+		defaultLevel: 100,
+		debug: true,
+		teamLength: {
+			validate: [2, 24],
+			battle: 24,
+		},
+		// no restrictions, for serious (other than team preview)
+		ruleset: ['Team Preview', 'Cancel Mod'],
+	},
+	
+	
 	// Other Metagames
 	///////////////////////////////////////////////////////////////////
 
 	{
 		section: "Other Metagames",
 		column: 2,
+	},
+	{
+		name: "[Gen 8] Balanced Hackmons (beta)",
+		desc: `Anything that can be hacked in-game and is usable in local battles is allowed.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3587475/">Balanced Hackmons</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['-Nonexistent', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
+		banlist: ['Arena Trap', 'Contrary', 'Huge Power', 'Illusion', 'Innards Out', 'Libero', 'Magnet Pull', 'Moody', 'Parental Bond', 'Protean', 'Pure Power', 'Shadow Tag', 'Stakeout', 'Water Bubble', 'Wonder Guard', 'Gengarite', 'Comatose + Sleep Talk'],
 	},
 	{
 		name: "[Gen 7] Almost Any Ability",
@@ -1048,450 +1145,12 @@ let Formats = [
 		},
 	},
 	
-	
-	// Sports Randomized Metas
+
+	// Randomized Metas
 	///////////////////////////////////////////////////////////////////
 
 	{
-		section: "Sports Randomized Metas",
-		column: 2,
-	},
-	{
-		name: "[Gen 7] Super Sports Bros",
-		desc: "Fight with crazy custom sets created by the community!",
-		mod: 'ssb',
-		team: 'randomStaffBros',
-		ruleset: ['HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
-		onBegin() {
-			this.add(`raw|<div class='broadcast-green'><b>Wondering what all these custom moves, abilities, and items do?<br />Check out our <a href="https://docs.google.com/spreadsheets/d/1H3fbfsdcZS5etbeN6x3zk_T63-JoKfi-skHJOCIuDss/edit?usp=sharing" target="_blank">Super Sports Bros Doc</a> and find out!</b></div>`);
-		},
-		onSwitchIn(pokemon) {
-			let name = toID(pokemon.illusion ? pokemon.illusion.name : pokemon.name);
-			if (this.dex.getTemplate(name).exists) {
-				// Certain pokemon have volatiles named after their speciesid
-				// To prevent overwriting those, and to prevent accidentaly leaking
-				// that a pokemon is on a team through the onStart even triggering
-				// at the start of a match, users with pokemon names will need their
-				// statuse's to end in "user".
-				name = /** @type {ID} */(name + 'user');
-			}
-			// Add the mon's status effect to it as a volatile.
-			let status = this.dex.getEffect(name);
-			if (status && status.exists) {
-				pokemon.addVolatile(name, pokemon);
-			}
-		},
-	},
-	{
-		name: "[Gen 7] Random Averagemons",
-		desc: `Every Pok&eacute;mon, including formes, has base 100 in every stat.`,
-
-		mod: 'gen7',
-		team: 'random',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		customBanlist: ['Shedinja', 'Azurill', 'Marill', 'Azumarill', 'Bunnelby', 'Diggersby', 'Meditite', 'Medicham', 'Mawile'],
-		allowUnevolved: true,
-		level100: true,
-		onBegin() {
-			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Every Pok&eacute;mon, including formes, has base 100 in every stat.</div>`);
-		},
-		onModifyTemplate(template) {
-			let dex = this && this.dex.deepClone ? this : this.dex;
-			let newTemplate = dex.deepClone(template);
-			newTemplate.baseStats = {hp: 100, atk: 100, def: 100, spa: 100, spd: 100, spe: 100};
-			return newTemplate;
-		},
-	},
-	{
-        name: "[Gen 7] Random Camomons",
-        desc: `Pok&eacute;mon change type to match their first two moves.`,
-		
-        mod: 'gen7',
-		team: 'random',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		customBanlist: ['Arceus', 'Shedinja', 'Zoroark', 'Ditto'],
-		onBegin() {
-			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Pok&eacute;mon change type to match their first two moves.</div>`);
-		},
-        onModifyTemplate(template, target, source, effect) {
-			if (!target) return; // Chat command
-			if (effect && ['imposter', 'transform'].includes(effect.id)) return;
-			let types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => (move.id === "hiddenpower" ? target.hpType : this.dex.getMove(move.id).type)))];
-			return Object.assign({}, template, {types: types});
-		},
-		onSwitchIn(pokemon) {
-			this.add('-start', pokemon, 'typechange', pokemon.types.join('/'), '[silent]');
-		},
-		onAfterMega(pokemon) {
-			this.add('-start', pokemon, 'typechange', pokemon.types.join('/'), '[silent]');
-		},
-    },
-	{
-		name: "[Gen 7] Random Chimera",
-		desc: `Bring 6 Pok&eacute;mon and choose their order at Team Preview. The lead Pok&eacute;mon then receives the item, ability, stats, and moves of the other five Pok&eacute;mon, who play no further part in the battle.`,
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3607451/">Chimera</a>`,
-		],
-
-		mod: 'gen7',
-		team: 'random',
-		teamLength: {
-			validate: [6, 6],
-			battle: 6,
-		},
-		ruleset: ['Obtainable', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
-		customBanlist: ['Shedinja', 'Azumarill', 'Diggersby', 'Medicham'],
-		noMegas: true,
-		level100: true,
-		onBegin() {
-			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Team order will determine the following characteristics of your lead Pok&eacute;mon:<br>* Slot 1: Species and typing<br>* Slot 2: Item<br>* Slot 3: Ability<br>* Slot 4: Stats<br>* Slot 5: Moves 1+2<br>* Slot 6: Moves 3+4</div>`);
-		},
-		onBeforeSwitchIn(pokemon) {
-			let allies = pokemon.side.pokemon.splice(1);
-			pokemon.side.pokemonLeft = 1;
-			let template = this.dex.deepClone(pokemon.baseTemplate);
-			pokemon.item = allies[0].item;
-			template.abilities = allies[1].baseTemplate.abilities;
-			pokemon.ability = pokemon.baseAbility = allies[1].ability;
-
-			// Stats
-			template.baseStats = allies[2].baseTemplate.baseStats;
-			pokemon.hp = pokemon.maxhp = template.maxHP = allies[2].maxhp;
-			pokemon.set.evs = allies[2].set.evs;
-			pokemon.set.nature = allies[2].getNature().name;
-			// @ts-ignore
-			pokemon.set.ivs = pokemon.baseIvs = allies[2].set.ivs;
-			// @ts-ignore
-			pokemon.hpType = pokemon.baseHpType = allies[2].baseHpType;
-
-			// @ts-ignore
-			pokemon.moveSlots = pokemon.baseMoveSlots = allies[3].baseMoveSlots.slice(0, 2).concat(allies[4].baseMoveSlots.slice(2)).filter((move, index, moveSlots) => moveSlots.find(othermove => othermove.id === move.id) === move);
-			pokemon.setTemplate(template);
-		},
-	},
-	{
-		name: "[Gen 7] Random Mix and Mega",
-		desc: `Mega Stones and Primal Orbs can be used on any Pok&eacute;mon with no Mega Evolution limit. Mega Evolving grants you the stats boosts, ability and type changes that the Stone regularly gives.`,
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3587740/">Mix and Mega</a>`,
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3591580/">Mix and Mega Resources</a>`,
-		],
-
-		mod: 'mixandmega',
-		team: 'random',
-		ruleset: ['Obtainable', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
-		customBanlist: [
-			'Arceus', 'Deoxys', 'Deoxys-Attack', 'Deoxys-Speed', 'Dialga', 'Giratina', 'Groudon', 'Ho-Oh', 'Hoopa-Unbound', 'Kyogre', 'Kyurem-Black',
-			'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane',
-			'Palkia', 'Pheromosa', 'Rayquaza', 'Regigigas', 'Reshiram', 'Slaking', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zekrom',
-		],
-		forceItem: [
-			'Abomasite', 'Absolite', 'Aerodactylite', 'Aggronite', 'Alakazite', 'Altarianite', 'Ampharosite', 'Audinite', 'Banettite', 'Blastoisinite', 
-			'Cameruptite', 'Charizardite X', 'Charizardite Y', 'Diancite', 'Galladite', 'Garchompite', 'Gardevoirite', 'Glalitite', 'Gyaradosite', 
-			'Heracronite', 'Houndoominite', 'Latiasite', 'Latiosite', 'Lopunnite', 'Lucarionite', 'Manectite', 'Metagrossite', 'Mewtwonite X', 'Mewtwonite Y', 
-			'Pinsirite', 'Sablenite', 'Salamencite', 'Sceptilite', 'Scizorite', 'Sharpedonite', 'Slowbronite', 'Steelixite', 'Swampertite', 'Tyranitarite', 
-			'Venusaurite', 'Blue Orb', 'Red Orb',
-		],
-		onBegin() {
-			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Mega Stones and Primal Orbs can be used on any Pok&eacute;mon with no Mega Evolution limit.<br>Mega Evolving grants you the stats boosts, ability and type changes that the Stone regularly gives.</div>`);
-			for (const pokemon of this.getAllPokemon()) {
-				pokemon.m.originalSpecies = pokemon.baseTemplate.species;
-			}
-		},
-		onSwitchIn(pokemon) {
-			// @ts-ignore
-			let oMegaTemplate = this.dex.getTemplate(pokemon.template.originalMega);
-			if (oMegaTemplate.exists && pokemon.m.originalSpecies !== oMegaTemplate.baseSpecies) {
-				// Place volatiles on the Pokémon to show its mega-evolved condition and details
-				this.add('-start', pokemon, oMegaTemplate.requiredItem || oMegaTemplate.requiredMove, '[silent]');
-				let oTemplate = this.dex.getTemplate(pokemon.m.originalSpecies);
-				if (oTemplate.types.length !== pokemon.template.types.length || oTemplate.types[1] !== pokemon.template.types[1]) {
-					this.add('-start', pokemon, 'typechange', pokemon.template.types.join('/'), '[silent]');
-				}
-			}
-		},
-		onSwitchOut(pokemon) {
-			// @ts-ignore
-			let oMegaTemplate = this.dex.getTemplate(pokemon.template.originalMega);
-			if (oMegaTemplate.exists && pokemon.m.originalSpecies !== oMegaTemplate.baseSpecies) {
-				this.add('-end', pokemon, oMegaTemplate.requiredItem || oMegaTemplate.requiredMove, '[silent]');
-			}
-		},
-	},
-	/*{
-		name: "[Gen 7] Random Partners in Crime",
-		desc: `Doubles-based metagame where both active ally Pok&eacute;mon share abilities and moves.`,
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3618488/">Partners in Crime</a>`,
-		],
-
-		mod: 'pic',
-		gameType: 'doubles',
-		team: 'random',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		customBanlist: ['Shedinja', 'Azumarill', 'Diggersby', 'Medicham', 'Zoroark', 'Mawile'],
-		onBegin() {
-			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Both active ally Pok&eacute;mon share abilities and moves.</div>`);
-		},
-		onSwitchInPriority: 2,
-		onSwitchIn(pokemon) {
-			if (this.sides[0].active.every(ally => ally && !ally.fainted)) {
-				let p1a = this.sides[0].active[0], p1b = this.sides[0].active[1];
-				if (p1a.ability !== p1b.ability) {
-					let p1aInnate = 'ability' + p1b.ability;
-					p1a.volatiles[p1aInnate] = {id: p1aInnate, target: p1a};
-					let p1bInnate = 'ability' + p1a.ability;
-					p1b.volatiles[p1bInnate] = {id: p1bInnate, target: p1b};
-				}
-			}
-			if (this.sides[1].active.every(ally => ally && !ally.fainted)) {
-				let p2a = this.sides[1].active[0], p2b = this.sides[1].active[1];
-				if (p2a.ability !== p2b.ability) {
-					let p2a_innate = 'ability' + p2b.ability;
-					p2a.volatiles[p2a_innate] = {id: p2a_innate, target: p2a};
-					let p2b_innate = 'ability' + p2a.ability;
-					p2b.volatiles[p2b_innate] = {id: p2b_innate, target: p2b};
-				}
-			}
-			let ally = pokemon.side.active.find(ally => ally && ally !== pokemon && !ally.fainted);
-			if (ally && ally.ability !== pokemon.ability) {
-				if (!pokemon.m.innate) {
-					pokemon.m.innate = 'ability' + ally.ability;
-					delete pokemon.volatiles[pokemon.m.innate];
-					pokemon.addVolatile(pokemon.m.innate);
-				}
-				if (!ally.m.innate) {
-					ally.m.innate = 'ability' + pokemon.ability;
-					delete ally.volatiles[ally.m.innate];
-					ally.addVolatile(ally.m.innate);
-				}
-			}
-		},
-		onSwitchOut(pokemon) {
-			if (pokemon.m.innate) {
-				pokemon.removeVolatile(pokemon.m.innate);
-				delete pokemon.m.innate;
-			}
-			let ally = pokemon.side.active.find(ally => ally && ally !== pokemon && !ally.fainted);
-			if (ally && ally.m.innate) {
-				ally.removeVolatile(ally.m.innate);
-				delete ally.m.innate;
-			}
-		},
-		onFaint(pokemon) {
-			if (pokemon.m.innate) {
-				pokemon.removeVolatile(pokemon.m.innate);
-				delete pokemon.m.innate;
-			}
-			let ally = pokemon.side.active.find(ally => ally && ally !== pokemon && !ally.fainted);
-			if (ally && ally.m.innate) {
-				ally.removeVolatile(ally.m.innate);
-				delete ally.m.innate;
-			}
-		},
-	},*/
-	{
-		name: "[Gen 7] Random Scalemons",
-		desc: `Every Pok&eacute;mon's stats, barring HP, are scaled to give them a BST as close to 600 as possible.`,
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3607934/">Scalemons</a>`,
-		],
-
-		mod: 'gen7',
-		team: 'random',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		customBanlist: ['Abra', 'Carvanha', 'Gastly', 'Bunnelby', 'Diggersby', 'Shedinja', 'Azurill', 'Marill', 'Azumarill', 'Medicham', 'Mawile'],
-		allowUnevolved: true,
-		level100: true,
-		onBegin() {
-			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Every Pok&eacute;mon's stats, barring HP, are scaled to give them a BST as close to 600 as possible.</div>`);
-		},
-		onModifyTemplate(template, target, source) {
-			if (!target) return;
-			let pokemon = this.dex.deepClone(template);
-			template = Object.assign({}, template);
-			template.baseStats = Object.assign({}, template.baseStats);
-			let stats = ['atk', 'def', 'spa', 'spd', 'spe'];
-			// @ts-ignore
-			let pst = stats.map(stat => template.baseStats[stat]).reduce((x, y) => x + y);
-			let scale = 600 - template.baseStats['hp'];
-			for (const stat of stats) {
-				// @ts-ignore
-				pokemon.baseStats[stat] = this.dex.clampIntRange(pokemon.baseStats[stat] * scale / pst, 1, 255);
-			}
-			return pokemon;
-		},
-	},
-	{
-		name: "[Gen 7] Random Tier Shift",
-		desc: `Pok&eacute;mon below OU get all their base stats boosted. UU/RUBL get +10, RU/NUBL get +20, NU/PUBL get +30, and PU or lower get +40.`,
-		
-		mod: 'gen7',
-		team: 'random',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		level100: true,
-		onBegin() {
-			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Pok&eacute;mon below OU get all their base stats boosted:<br>* UU/RUBL: +10<br>* RU/NUBL: +20<br>* NU/PUBL: +30<br>* PU or lower: +40</div>`);
-		},
-		onModifyTemplate(template, target, source, effect) {
-			if (!template.abilities) return false;
-			/** @type {{[tier: string]: number}} */
-			let boosts = {
-				'UU': 10,
-				'RUBL': 10,
-				'RU': 20,
-				'NUBL': 20,
-				'NU': 30,
-				'PUBL': 30,
-				'PU': 40,
-				'NFE': 40,
-				'LC Uber': 40,
-				'LC': 40,
-			};
-			if (target && target.set.ability === 'Drizzle') return;
-			let tier = template.tier;
-			if (target && target.set.item) {
-				let item = this.dex.getItem(target.set.item);
-				if (item.name === 'Kommonium Z' || item.name === 'Mewnium Z') return;
-				if (item.megaEvolves === template.species) tier = this.dex.getTemplate(item.megaStone).tier;
-			}
-			if (target && target.set.moves.includes('auroraveil')) tier = 'UU';
-			if (target && target.set.ability === 'Drought') tier = 'RU';
-
-			if (tier[0] === '(') tier = tier.slice(1, -1);
-			if (!(tier in boosts)) return;
-			let pokemon = this.dex.deepClone(template);
-			let boost = boosts[tier];
-			for (let statName in pokemon.baseStats) {
-				if (statName === 'hp') continue;
-				pokemon.baseStats[statName] = this.dex.clampIntRange(pokemon.baseStats[statName] + boost, 1, 255);
-			}
-			return pokemon;
-		},
-	},
-	{
-		name: "[Gen 7] Random Ultimate Z",
-		desc: `Use any type of Z-Crystal on any move and as many times per battle as desired.`,
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3609393/">Ultimate Z</a>`,
-		],
-
-		mod: 'ultimatez',
-		team: 'random',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		noMegas: true,
-		forceItem: [
-			'Buginium Z', 'Darkinium Z', 'Dragonium Z', 'Electrium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Ghostium Z', 
-			'Grassium Z', 'Groundium Z', 'Icium Z', 'Normalium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z', 'Waterium Z',
-		],
-		onBegin() {
-			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Use any type of Z-Crystal on any move and as many times per battle as desired.</div>`);
-		},
-	},
-	{
-		name: "[Gen 7] Inverse Random Battle",
-		desc: `The type effectiveness chart is inverted: weaknesses become resistances, while resistances and immunities become weaknesses.`,
-		
-		mod: 'gen7',
-		team: 'random',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod', 'Inverse Mod'],
-		customBanlist: ['Arceus', 'Kyurem-Black', 'Serperior', 'Hoopa-Unbound', 'Kartana', 'Tapu Bulu', 'Tapu Lele', 'Linoone'],
-		onBegin() {
-			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">The type effectiveness chart is inverted: weaknesses become resistances, while resistances and immunities become weaknesses.</div>`);
-		},
-	},
-	{
-		name: "[Gen 7] Protean Palace",
-		desc: `All Pok&eacute;mon have the Protean effect on top of their regular ability.`,
-		
-		mod: 'gen7',
-		team: 'random',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		customBanlist: ['Arceus', 'Greninja', 'Kecleon'],
-		onBegin() {
-			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">All Pok&eacute;mon have the Protean effect on top of their regular ability.</div>`);
-		},
-		onPrepareHitPriority: -1,
-		onPrepareHit(source, target, move) {
-			if (move.hasBounced) return;
-			let type = move.type;
-			if (!type) return;
-			if (type === '???') return;
-			if (source.getTypes().join() === type) return;
-			if (!source.setType(type)) return;
-			this.add('-start', source, 'typechange', type);
-		},
-	},
-	{
-		name: "[Gen 7] Shifting Illusions",
-		desc: `All Pok&eacute;mon have the Illusion effect on top of their regular ability.`,
-		
-		mod: 'gen7',
-		team: 'random',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		customBanlist: ['Ditto', 'Zoroark'],
-		onBegin() {
-			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">All Pok&eacute;mon have the Illusion effect on top of their regular ability.</div>`);
-		},
-		onBeforeSwitchIn(pokemon) {
-			pokemon.illusion = null;
-			let i;
-			for (i = pokemon.side.pokemon.length - 1; i > pokemon.position; i--) {
-				if (!pokemon.side.pokemon[i]) continue;
-				if (!pokemon.side.pokemon[i].fainted) break;
-			}
-			if (!pokemon.side.pokemon[i]) return;
-			if (pokemon === pokemon.side.pokemon[i]) return;
-			pokemon.illusion = pokemon.side.pokemon[i];
-		},
-		onAfterDamage(damage, target, source, effect) {
-			if (target.illusion && effect && effect.effectType === 'Move' && effect.id !== 'confused') {
-				this.singleEvent('End', this.dex.getAbility('Illusion'), target.abilityData, target, source, effect);
-			}
-		},
-		onEnd(pokemon) {
-			if (pokemon.illusion) {
-				this.debug('illusion cleared');
-				pokemon.illusion = null;
-				let details = pokemon.template.species + (pokemon.level === 100 ? '' : ', L' + pokemon.level) + (pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
-				this.add('replace', pokemon, details);
-				this.add('-end', pokemon, 'Illusion');
-			}
-		},
-		onFaint(pokemon) {
-			pokemon.illusion = null;
-		},
-	},
-	{
-		name: "[Gen 7] VoltTurn Mayhem",
-		desc: `All Pok&eacute;mon automatically switch out upon using a move that affects the opponent.`,
-		
-		mod: 'gen7',
-		team: 'random',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-		onBegin() {
-			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">All Pok&eacute;mon automatically switch out upon using a move that affects the opponent.</div>`);
-		},
-		onModifyMovePriority: -1,
-		onModifyMove(move) {
-			switch (move.target) {
-			case 'normal':
-			case 'randomNormal':
-			case 'allAdjacent':
-			case 'allAdjacentFoes':
-			case 'any':
-			case 'scripted':
-				move.selfSwitch = true;
-			}
-		},
-	},
-	
-	
-	// Tiered Randomized Metas
-	///////////////////////////////////////////////////////////////////
-
-	{
-		section: "Tiered Randomized Metas",
+		section: "Randomized Metas",
 		column: 2,
 	},
 	{
@@ -1518,84 +1177,11 @@ let Formats = [
 		ruleset: ['Obtainable', 'Standard GBU'],
 	},
 	{
-		name: "[Gen 7] OU Random Battle",
-		desc: `Randomized teams of Pok&eacute;mon for the OU tier with sets that are competitively viable.`,
-
-		mod: 'gen7',
-		team: 'randomFactory',
-		restrictedTier: 'OU',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-	},
-	{
-		name: "[Gen 7] Ubers Random Battle",
-		desc: `Randomized teams of Pok&eacute;mon for the Ubers tier with sets that are competitively viable.`,
-
-		mod: 'gen7',
-		team: 'randomFactory',
-		restrictedTier: 'Uber',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-	},
-	{
-		name: "[Gen 7] UU Random Battle",
-		desc: `Randomized teams of Pok&eacute;mon for the UU tier with sets that are competitively viable.`,
-
-		mod: 'gen7',
-		team: 'randomFactory',
-		restrictedTier: 'UU',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-	},
-	{
-		name: "[Gen 7] RU Random Battle",
-		desc: `Randomized teams of Pok&eacute;mon for the RU tier with sets that are competitively viable.`,
-
-		mod: 'gen7',
-		team: 'randomFactory',
-		restrictedTier: 'RU',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-	},
-	{
-		name: "[Gen 7] NU Random Battle",
-		desc: `Randomized teams of Pok&eacute;mon for the NU tier with sets that are competitively viable.`,
-
-		mod: 'gen7',
-		team: 'randomFactory',
-		restrictedTier: 'NU',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-	},
-	{
-		name: "[Gen 7] PU Random Battle",
-		desc: `Randomized teams of Pok&eacute;mon for the PU tier with sets that are competitively viable.`,
-
-		mod: 'gen7',
-		team: 'randomFactory',
-		restrictedTier: 'PU',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-	},
-	{
-		name: "[Gen 7] LC Random Battle",
-		desc: `Randomized teams of Pok&eacute;mon for the LC tier with sets that are competitively viable.`,
-
-		mod: 'gen7',
-		team: 'randomFactory',
-		restrictedTier: 'LC',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-	},
-	{
 		name: "[Gen 7] Monotype Random Battle",
-		desc: `Randomized teams of Pok&eacute;mon for the Monotype tier with sets that are competitively viable.`,
 
 		mod: 'gen7',
 		team: 'random',
 		ruleset: ['Obtainable', 'Same Type Clause', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-	},
-
-
-	// Other Randomized Metas
-	///////////////////////////////////////////////////////////////////
-
-	{
-		section: "Other Randomized Metas",
-		column: 2,
 	},
 	{
 		name: "[Gen 7] Challenge Cup 1v1",
@@ -1616,16 +1202,17 @@ let Formats = [
 		teamLength: {
 			battle: 2,
 		},
+		searchShow: false,
 		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview'],
 	},
-	{
+	/*{
 		name: "[Gen 7] Hackmons Cup",
 		desc: `Randomized teams of level-balanced Pok&eacute;mon with absolutely any ability, moves, and item.`,
 
 		mod: 'gen7',
 		team: 'randomHC',
 		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod'],
-	},
+	},*/
 	{
 		name: "[Gen 7] Doubles Hackmons Cup",
 
@@ -1641,6 +1228,15 @@ let Formats = [
 		mod: 'gen6',
 		team: 'random',
 		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+	},
+	{
+		name: "[Gen 6] Battle Factory",
+		desc: `Randomized teams of Pok&eacute;mon for a generated Smogon tier with sets that are competitively viable.`,
+
+		mod: 'gen6',
+		team: 'randomFactory',
+		searchShow: false,
+		ruleset: ['Obtainable', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
 	},
 	{
 		name: "[Gen 5] Random Battle",

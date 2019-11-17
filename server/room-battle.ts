@@ -1135,7 +1135,6 @@ export class RoomBattleStream extends BattleStream {
 	_writeLine(type: string, message: string) {
 		switch (type) {
 		case 'eval':
-			/* eslint-disable no-eval, no-unused-vars */
 			const battle = this.battle;
 			const p1 = battle && battle.sides[0];
 			const p2 = battle && battle.sides[1];
@@ -1168,7 +1167,6 @@ export class RoomBattleStream extends BattleStream {
 			} catch (e) {
 				battle.add('', '<<< error: ' + e.message);
 			}
-			/* eslint-enable no-eval, no-unused-vars */
 			break;
 		default: super._writeLine(type, message);
 		}

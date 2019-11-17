@@ -475,7 +475,9 @@ export class Ability extends BasicEffect implements Readonly<BasicEffect & Abili
 		this.rating = data.rating!;
 
 		if (!this.gen) {
-			if (this.num >= 192) {
+			if (this.num >= 234) {
+				this.gen = 8;
+			} else if (this.num >= 192) {
 				this.gen = 7;
 			} else if (this.num >= 165) {
 				this.gen = 6;
@@ -546,7 +548,7 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 	readonly prevo: ID;
 	/** Evolutions. Array because many Pokemon have multiple evolutions. */
 	readonly evos: ID[];
-	readonly evoType?: 'trade' | 'stone' | 'levelMove' | 'levelExtra' | 'levelFriendship' | 'levelHold';
+	readonly evoType?: 'trade' | 'useItem' | 'levelMove' | 'levelExtra' | 'levelFriendship' | 'levelHold';
 	readonly evoMove?: string;
 	/** Evolution level. falsy if doesn't evolve. */
 	readonly evoLevel?: number;
@@ -584,6 +586,8 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 	readonly isMega?: boolean;
 	/** True if a pokemon is primal. */
 	readonly isPrimal?: boolean;
+	/** Name of its Gigantamax move, if a pokemon is gigantamax. */
+	readonly isGigantamax?: string;
 	/** True if a pokemon is a forme that is only accessible in battle. */
 	readonly battleOnly?: boolean;
 	/** Required item. Do not use this directly; see requiredItems. */
@@ -672,10 +676,13 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 		this.eventOnly = !!data.eventOnly;
 		this.eventPokemon = data.eventPokemon || undefined;
 		this.isMega = !!(this.forme && ['Mega', 'Mega-X', 'Mega-Y'].includes(this.forme)) || undefined;
-		this.battleOnly = !!data.battleOnly || !!this.isMega || undefined;
+		this.isGigantamax = data.isGigantamax || undefined;
+		this.battleOnly = !!data.battleOnly || !!this.isMega || !!this.isGigantamax || undefined;
 
 		if (!this.gen && this.num >= 1) {
-			if (this.num >= 722 || this.forme.startsWith('Alola') || this.forme === 'Starter') {
+			if (this.num >= 810 || this.forme === 'Galar' || this.forme === 'Gmax') {
+				this.gen = 8;
+			} else if (this.num >= 722 || this.forme.startsWith('Alola') || this.forme === 'Starter') {
 				this.gen = 7;
 			} else if (this.forme === 'Primal') {
 				this.gen = 6;
@@ -792,6 +799,8 @@ export class Move extends BasicEffect implements Readonly<BasicEffect & MoveData
 	readonly noPPBoosts: boolean;
 	/** Is this move a Z-Move? */
 	readonly isZ: boolean | string;
+	/** Max/G-Max move power */
+	readonly gmaxPower?: number;
 	readonly flags: MoveFlags;
 	/** Whether or not the user must switch after using this move. */
 	readonly selfSwitch?: ID | boolean;
@@ -862,8 +871,46 @@ export class Move extends BasicEffect implements Readonly<BasicEffect & MoveData
 		this.stab = data.stab || undefined;
 		this.volatileStatus = typeof data.volatileStatus === 'string' ? (data.volatileStatus as ID) : undefined;
 
+		if (this.category !== 'Status' && !this.gmaxPower) {
+			if (!this.basePower) {
+				this.gmaxPower = 100;
+			} else if (['Fighting', 'Poison'].includes(this.type)) {
+				if (this.basePower >= 150) {
+					this.gmaxPower = 100;
+				} else if (this.basePower >= 110) {
+					this.gmaxPower = 95;
+				} else if (this.basePower >= 75) {
+					this.gmaxPower = 95;
+				} else if (this.basePower >= 65) {
+					this.gmaxPower = 85;
+				} else if (this.basePower >= 45) {
+					this.gmaxPower = 75;
+				} else  {
+					this.gmaxPower = 10;
+				}
+			} else {
+				if (this.basePower >= 150) {
+					this.gmaxPower = 150;
+				} else if (this.basePower >= 110) {
+					this.gmaxPower = 140;
+				} else if (this.basePower >= 75) {
+					this.gmaxPower = 130;
+				} else if (this.basePower >= 65) {
+					this.gmaxPower = 120;
+				} else if (this.basePower >= 55) {
+					this.gmaxPower = 110;
+				} else if (this.basePower >= 45) {
+					this.gmaxPower = 100;
+				} else  {
+					this.gmaxPower = 90;
+				}
+			}
+		}
+
 		if (!this.gen) {
-			if (this.num >= 622) {
+			if (this.num >= 742) {
+				this.gen = 8;
+			} else if (this.num >= 622) {
 				this.gen = 7;
 			} else if (this.num >= 560) {
 				this.gen = 6;

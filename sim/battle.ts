@@ -21,8 +21,10 @@ interface FaintedPokemon {
 }
 
 interface BattleOptions {
-	formatid: ID; // Format ID
-	send?: (type: string, data: string | string[]) => void; // Output callback
+	format?: Format;
+	formatid: ID;
+	/** Output callback */
+	send?: (type: string, data: string | string[]) => void;
 	prng?: PRNG; // PRNG override (you usually don't need this, just pass a seed)
 	seed?: PRNGSeed; // PRNG seed
 	rated?: boolean | string; // Rated string
@@ -105,6 +107,7 @@ export class Battle {
 	readonly hints: Set<string>;
 
 	readonly zMoveTable: {[k: string]: string};
+	readonly maxMoveTable: {[k: string]: string};
 
 	readonly NOT_FAIL: '';
 	readonly FAIL: false;
@@ -115,13 +118,14 @@ export class Battle {
 	trunc: (num: number, bits?: number) => number;
 
 	constructor(options: BattleOptions) {
-		const format = Dex.getFormat(options.formatid, true);
+		const format = options.format || Dex.getFormat(options.formatid, true);
 		this.format = format;
 		this.dex = Dex.forFormat(format);
 		this.gen = this.dex.gen;
 		this.ruleTable = this.dex.getRuleTable(format);
 
 		this.zMoveTable = {};
+		this.maxMoveTable = {};
 		Object.assign(this, this.dex.data.Scripts);
 		if (format.battle) Object.assign(this, format.battle);
 
@@ -1047,10 +1051,9 @@ export class Battle {
 			side.activeRequest = null;
 		}
 
-		let maxTeamSize = this.getMaxTeamSize();
+		const maxTeamSize = this.getMaxTeamSize();
 		if (type === 'teampreview') {
-			this.add('teampreview' + (maxTeamSize ? '|' + maxTeamSize : ''));
-			if (!maxTeamSize) maxTeamSize = 6;
+			this.add('teampreview' + (maxTeamSize !== 6 ? '|' + maxTeamSize : ''));
 		}
 
 		const requests = this.getRequests(type, maxTeamSize);
@@ -1065,7 +1068,7 @@ export class Battle {
 
 	getMaxTeamSize() {
 		const teamLengthData = this.format.teamLength;
-		return teamLengthData && teamLengthData.battle;
+		return (teamLengthData && teamLengthData.battle) || 6;
 	}
 
 	getRequests(type: RequestState, maxTeamSize: number) {
@@ -2101,7 +2104,7 @@ export class Battle {
 		// Final modifier. Modifiers that modify damage after min damage check, such as Life Orb.
 		baseDamage = this.runEvent('ModifyDamage', pokemon, target, move, baseDamage);
 
-		if (move.isZPowered && target.getMoveHitData(move).zBrokeProtect) {
+		if ((move.isZPowered || move.maxPowered) && target.getMoveHitData(move).zBrokeProtect) {
 			baseDamage = this.modify(baseDamage, 0.25);
 			this.add('-zbroken', target);
 		}
@@ -2328,6 +2331,7 @@ export class Battle {
 				runPrimal: 7.1,
 				instaswitch: 101,
 				megaEvo: 6.9,
+				runDynamax: 6.8,
 				residual: -100,
 				team: 102,
 				start: 101,
@@ -2349,6 +2353,13 @@ export class Battle {
 					// (This is currently being done in `runMegaEvo`).
 					this.addToQueue({
 						choice: 'megaEvo',
+						pokemon: action.pokemon,
+					});
+				}
+				if (action.maxMove && !action.pokemon.volatiles['dynamax']) {
+					this.debug(`Adding runDynamax to queue`);
+					this.addToQueue({
+						choice: 'runDynamax',
 						pokemon: action.pokemon,
 					});
 				}
@@ -2380,6 +2391,15 @@ export class Battle {
 						const zMove = this.dex.getActiveMove(zMoveName);
 						if (zMove.exists && zMove.isZ) {
 							move = zMove;
+						}
+					}
+				}
+				if (action.maxMove) {
+					const maxMoveName = this.getMaxMove(action.maxMove, action.pokemon);
+					if (maxMoveName) {
+						const maxMove = this.getActiveMaxMove(action.move, action.pokemon);
+						if (maxMove.exists && maxMove.isMax) {
+							move = maxMove;
 						}
 					}
 				}
@@ -2540,10 +2560,17 @@ export class Battle {
 		case 'move':
 			if (!action.pokemon.isActive) return false;
 			if (action.pokemon.fainted) return false;
-			this.runMove(action.move, action.pokemon, action.targetLoc, action.sourceEffect, action.zmove);
+			this.runMove(action.move, action.pokemon, action.targetLoc, action.sourceEffect,
+				action.zmove, undefined, action.maxMove);
 			break;
 		case 'megaEvo':
 			this.runMegaEvo(action.pokemon);
+			break;
+		case 'runDynamax':
+			action.pokemon.addVolatile('dynamax');
+			for (const pokemon of action.pokemon.side.pokemon) {
+				pokemon.canDynamax = null;
+			}
 			break;
 		case 'beforeTurnMove': {
 			if (!action.pokemon.isActive) return false;
@@ -3100,6 +3127,10 @@ export class Battle {
 		throw new UnimplementedError('canZMove');
 	}
 
+	canDynamax(pokemon: Pokemon, skipChecks?: boolean): DynamaxOptions | undefined {
+		throw new UnimplementedError('canDynamax');
+	}
+
 	forceSwitch(
 		damage: SpreadMoveDamage, targets: SpreadMoveTargets, source: Pokemon, move: ActiveMove,
 		moveData: ActiveMove, isSecondary?: boolean, isSelf?: boolean
@@ -3107,8 +3138,16 @@ export class Battle {
 		throw new UnimplementedError('forceSwitch');
 	}
 
+	getActiveMaxMove(move: Move, pokemon: Pokemon): ActiveMove {
+		throw new UnimplementedError('getActiveMaxMove');
+	}
+
 	getActiveZMove(move: Move, pokemon: Pokemon): ActiveMove {
 		throw new UnimplementedError('getActiveZMove');
+	}
+
+	getMaxMove(move: Move, pokemon: Pokemon): Move | undefined {
+		throw new UnimplementedError('getMaxMove');
 	}
 
 	getSpreadDamage(
@@ -3177,7 +3216,8 @@ export class Battle {
 
 	runMove(
 		moveOrMoveName: Move | string, pokemon: Pokemon, targetLoc: number,
-		sourceEffect?: Effect | null, zMove?: string, externalMove?: boolean
+		sourceEffect?: Effect | null, zMove?: string, externalMove?: boolean,
+		maxMove?: string
 	) {
 		throw new UnimplementedError('runMove');
 	}
@@ -3235,7 +3275,7 @@ export class Battle {
 
 	useMove(
 		move: string | Move, pokemon: Pokemon, target?: Pokemon | null,
-		sourceEffect?: Effect | null, zMove?: string
+		sourceEffect?: Effect | null, zMove?: string, maxMove?: string
 	): boolean {
 		throw new UnimplementedError('useMove');
 	}
@@ -3246,7 +3286,7 @@ export class Battle {
 	 */
 	useMoveInner(
 		move: string | Move, pokemon: Pokemon, target?: Pokemon | null,
-		sourceEffect?: Effect | null, zMove?: string
+		sourceEffect?: Effect | null, zMove?: string, maxMove?: string
 	): boolean {
 		throw new UnimplementedError('useMoveInner');
 	}

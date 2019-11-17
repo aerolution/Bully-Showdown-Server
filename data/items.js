@@ -14,6 +14,7 @@ let BattleItems = {
 		},
 		num: 674,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by an Abomasnow, this item allows it to Mega Evolve in battle.",
 	},
 	"absolite": {
@@ -28,6 +29,7 @@ let BattleItems = {
 		},
 		num: 677,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by an Absol, this item allows it to Mega Evolve in battle.",
 	},
 	"absorbbulb": {
@@ -91,6 +93,7 @@ let BattleItems = {
 		},
 		num: 672,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by an Aerodactyl, this item allows it to Mega Evolve in battle.",
 	},
 	"aggronite": {
@@ -105,6 +108,7 @@ let BattleItems = {
 		},
 		num: 667,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by an Aggron, this item allows it to Mega Evolve in battle.",
 	},
 	"aguavberry": {
@@ -125,14 +129,14 @@ let BattleItems = {
 			if (!this.runEvent('TryHeal', pokemon)) return false;
 		},
 		onEat(pokemon) {
-			this.heal(pokemon.maxhp / 2);
+			this.heal(pokemon.maxhp * 0.33);
 			if (pokemon.getNature().minus === 'spd') {
 				pokemon.addVolatile('confusion');
 			}
 		},
 		num: 162,
 		gen: 3,
-		desc: "Restores 1/2 max HP at 1/4 max HP or less; confuses if -SpD Nature. Single use.",
+		desc: "Restores 33% max HP at 1/4 max HP or less; confuses if -SpD Nature. Single use.",
 	},
 	"airballoon": {
 		id: "airballoon",
@@ -181,6 +185,7 @@ let BattleItems = {
 		},
 		num: 679,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by an Alakazam, this item allows it to Mega Evolve in battle.",
 	},
 	"aloraichiumz": {
@@ -193,6 +198,7 @@ let BattleItems = {
 		zMoveUser: ["Raichu-Alola"],
 		num: 803,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If held by an Alolan Raichu with Thunderbolt, it can use Stoked Sparksurfer.",
 	},
 	"altarianite": {
@@ -207,6 +213,7 @@ let BattleItems = {
 		},
 		num: 755,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by an Altaria, this item allows it to Mega Evolve in battle.",
 	},
 	"ampharosite": {
@@ -221,6 +228,7 @@ let BattleItems = {
 		},
 		num: 658,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by an Ampharos, this item allows it to Mega Evolve in battle.",
 	},
 	"apicotberry": {
@@ -312,6 +320,7 @@ let BattleItems = {
 		},
 		num: 757,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by an Audino, this item allows it to Mega Evolve in battle.",
 	},
 	"babiriberry": {
@@ -349,6 +358,7 @@ let BattleItems = {
 		},
 		num: 668,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Banette, this item allows it to Mega Evolve in battle.",
 	},
 	"beastball": {
@@ -372,6 +382,7 @@ let BattleItems = {
 		},
 		num: 770,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Beedrill, this item allows it to Mega Evolve in battle.",
 	},
 	"belueberry": {
@@ -406,6 +417,17 @@ let BattleItems = {
 		num: 43,
 		gen: 2,
 		desc: "Restores 20 HP when at 1/2 max HP or less. Single use.",
+	},
+	"berrysweet": {
+		id: "berrysweet",
+		name: "Berry Sweet",
+		spritenum: 0,
+		fling: {
+			basePower: 10,
+		},
+		num: 1111,
+		gen: 8,
+		desc: "Evolves Milcery into Alcremie when held and spun around.",
 	},
 	"bigroot": {
 		id: "bigroot",
@@ -513,6 +535,7 @@ let BattleItems = {
 		},
 		num: 661,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Blastoise, this item allows it to Mega Evolve in battle.",
 	},
 	"blazikenite": {
@@ -527,6 +550,7 @@ let BattleItems = {
 		},
 		num: 664,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Blaziken, this item allows it to Mega Evolve in battle.",
 	},
 	"blueorb": {
@@ -562,6 +586,18 @@ let BattleItems = {
 		num: 165,
 		gen: 3,
 		desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck.",
+	},
+	"blunderpolicy": {
+		id: "blunderpolicy",
+		name: "Blunder Policy",
+		spritenum: 0,
+		fling: {
+			basePower: 80,
+		},
+		// Item activation located in scripts.js
+		num: 1121,
+		gen: 8,
+		desc: "If the holder misses because of accuracy, it raises Speed by 2 stages. Single use.",
 	},
 	"bottlecap": {
 		id: "bottlecap",
@@ -636,6 +672,7 @@ let BattleItems = {
 		forcedForme: "Arceus-Bug",
 		num: 787,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If holder has a Bug move, this item allows it to use a Bug Z-Move.",
 	},
 	"burndrive": {
@@ -666,6 +703,7 @@ let BattleItems = {
 		},
 		num: 767,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Camerupt, this item allows it to Mega Evolve in battle.",
 	},
 	"cellbattery": {
@@ -713,6 +751,7 @@ let BattleItems = {
 		},
 		num: 660,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Charizard, this item allows it to Mega Evolve in battle.",
 	},
 	"charizarditey": {
@@ -727,6 +766,7 @@ let BattleItems = {
 		},
 		num: 678,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Charizard, this item allows it to Mega Evolve in battle.",
 	},
 	"chartiberry": {
@@ -846,6 +886,17 @@ let BattleItems = {
 		gen: 5,
 		desc: "Holder's Techno Blast is Ice type.",
 	},
+	"chippedpot": {
+		id: "chippedpot",
+		name: "Chipped Pot",
+		spritenum: 0,
+		fling: {
+			basePower: 80,
+		},
+		num: 1254,
+		gen: 8,
+		desc: "Evolves Sinistea into Polteageist when used.",
+	},
 	"choiceband": {
 		id: "choiceband",
 		name: "Choice Band",
@@ -863,7 +914,8 @@ let BattleItems = {
 			pokemon.addVolatile('choicelock');
 		},
 		onModifyAtkPriority: 1,
-		onModifyAtk(atk) {
+		onModifyAtk(atk, pokemon) {
+			if (pokemon.volatiles['dynamax']) return;
 			return this.chainModify(1.5);
 		},
 		isChoice: true,
@@ -887,7 +939,8 @@ let BattleItems = {
 		onModifyMove(move, pokemon) {
 			pokemon.addVolatile('choicelock');
 		},
-		onModifySpe(spe) {
+		onModifySpe(spe, pokemon) {
+			if (pokemon.volatiles['dynamax']) return;
 			return this.chainModify(1.5);
 		},
 		isChoice: true,
@@ -912,7 +965,8 @@ let BattleItems = {
 			pokemon.addVolatile('choicelock');
 		},
 		onModifySpAPriority: 1,
-		onModifySpA(spa) {
+		onModifySpA(spa, pokemon) {
+			if (pokemon.volatiles['dynamax']) return;
 			return this.chainModify(1.5);
 		},
 		isChoice: true,
@@ -953,6 +1007,17 @@ let BattleItems = {
 		num: 100,
 		gen: 3,
 		desc: "Can be revived into Anorith.",
+	},
+	"cloversweet": {
+		id: "cloversweet",
+		name: "Clover Sweet",
+		spritenum: 0,
+		fling: {
+			basePower: 10,
+		},
+		num: 1112,
+		gen: 8,
+		desc: "Evolves Milcery into Alcremie when held and spun around.",
 	},
 	"cobaberry": {
 		id: "cobaberry",
@@ -1025,6 +1090,17 @@ let BattleItems = {
 		num: 572,
 		gen: 5,
 		desc: "Can be revived into Tirtouga.",
+	},
+	"crackedpot": {
+		id: "crackedpot",
+		name: "Cracked Pot",
+		spritenum: 0,
+		fling: {
+			basePower: 80,
+		},
+		num: 1253,
+		gen: 8,
+		desc: "Evolves Sinistea into Polteageist when used.",
 	},
 	"custapberry": {
 		id: "custapberry",
@@ -1107,6 +1183,7 @@ let BattleItems = {
 		forcedForme: "Arceus-Dark",
 		num: 791,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If holder has a Dark move, this item allows it to use a Dark Z-Move.",
 	},
 	"dawnstone": {
@@ -1131,6 +1208,7 @@ let BattleItems = {
 		zMoveUser: ["Decidueye"],
 		num: 798,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If held by a Decidueye with Spirit Shackle, it can use Sinister Arrow Raid.",
 	},
 	"deepseascale": {
@@ -1198,6 +1276,7 @@ let BattleItems = {
 		},
 		num: 764,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Diancie, this item allows it to Mega Evolve in battle.",
 	},
 	"diveball": {
@@ -1332,6 +1411,7 @@ let BattleItems = {
 		forcedForme: "Arceus-Dragon",
 		num: 790,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If holder has a Dragon move, this item allows it to use a Dragon Z-Move.",
 	},
 	"dreadplate": {
@@ -1444,6 +1524,7 @@ let BattleItems = {
 		zMoveUser: ["Eevee"],
 		num: 805,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If held by an Eevee with Last Resort, it can use Extreme Evoboost.",
 	},
 	"ejectbutton": {
@@ -1469,6 +1550,35 @@ let BattleItems = {
 		num: 547,
 		gen: 5,
 		desc: "If holder survives a hit, it immediately switches out to a chosen ally. Single use.",
+	},
+	"ejectpack": {
+		id: "ejectpack",
+		name: "Eject Pack",
+		spritenum: 0,
+		fling: {
+			basePower: 50,
+		},
+		onAfterBoost(boost, target, source, effect) {
+			let eject = false;
+			for (let i in boost) {
+				// @ts-ignore
+				if (boost[i] < 0) {
+					eject = true;
+				}
+			}
+			if (eject) {
+				if (source && target.hp) {
+					if (!this.canSwitch(target.side)) return;
+					for (const pokemon of this.getAllActive()) {
+						if (pokemon.switchFlag === true) return;
+					}
+					if (target.useItem()) target.switchFlag = true;
+				}
+			}
+		},
+		num: 1119,
+		gen: 8,
+		desc: "When the holder's stats are lowered, it will be switched out of battle.",
 	},
 	"electirizer": {
 		id: "electirizer",
@@ -1548,6 +1658,7 @@ let BattleItems = {
 		forcedForme: "Arceus-Electric",
 		num: 779,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If holder has an Electric move, this item allows it to use an Electric Z-Move.",
 	},
 	"energypowder": {
@@ -1635,6 +1746,7 @@ let BattleItems = {
 		forcedForme: "Arceus-Fairy",
 		num: 793,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If holder has a Fairy move, this item allows it to use a Fairy Z-Move.",
 	},
 	"fairygem": {
@@ -1727,6 +1839,7 @@ let BattleItems = {
 		forcedForme: "Arceus-Fighting",
 		num: 782,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If holder has a Fighting move, this item allows it to use a Fighting Z-Move.",
 	},
 	"figyberry": {
@@ -1747,14 +1860,14 @@ let BattleItems = {
 			if (!this.runEvent('TryHeal', pokemon)) return false;
 		},
 		onEat(pokemon) {
-			this.heal(pokemon.maxhp / 2);
+			this.heal(pokemon.maxhp * 0.33);
 			if (pokemon.getNature().minus === 'atk') {
 				pokemon.addVolatile('confusion');
 			}
 		},
 		num: 159,
 		gen: 3,
-		desc: "Restores 1/2 max HP at 1/4 max HP or less; confuses if -Atk Nature. Single use.",
+		desc: "Restores 33% max HP at 1/4 max HP or less; confuses if -Atk Nature. Single use.",
 	},
 	"firegem": {
 		id: "firegem",
@@ -1814,6 +1927,7 @@ let BattleItems = {
 		forcedForme: "Arceus-Fire",
 		num: 777,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If holder has a Fire move, this item allows it to use a Fire Z-Move.",
 	},
 	"fistplate": {
@@ -1891,6 +2005,17 @@ let BattleItems = {
 		gen: 5,
 		desc: "Holder's weight is halved.",
 	},
+	"flowersweet": {
+		id: "flowersweet",
+		name: "Flower Sweet",
+		spritenum: 10,
+		fling: {
+			basePower: 0,
+		},
+		num: 1113,
+		gen: 8,
+		desc: "Evolves Milcery into Alcremie when held and spun around.",
+	},
 	"flyinggem": {
 		id: "flyinggem",
 		name: "Flying Gem",
@@ -1937,6 +2062,7 @@ let BattleItems = {
 		forcedForme: "Arceus-Flying",
 		num: 785,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If holder has a Flying move, this item allows it to use a Flying Z-Move.",
 	},
 	"focusband": {
@@ -1974,6 +2100,54 @@ let BattleItems = {
 		gen: 4,
 		desc: "If holder's HP is full, will survive an attack that would KO it with 1 HP. Single use.",
 	},
+	"fossilizedbird": {
+		id: "fossilizedbird",
+		name: "Fossilized Bird",
+		spritenum: 0,
+		fling: {
+			basePower: 100,
+		},
+		num: 1105,
+		gen: 8,
+		desc: "Can be revived into Arctovish with Fossilized Fish or Arctozolt with Fossilized Dino.",
+		shortDesc: "Can be combined with certain fossils.",
+	},
+	"fossilizeddino": {
+		id: "fossilizeddino",
+		name: "Fossilized Dino",
+		spritenum: 0,
+		fling: {
+			basePower: 100,
+		},
+		num: 1108,
+		gen: 8,
+		desc: "Can be revived into Dracozolt with Fossilized Drake or Arctozolt with Fossilized Bird.",
+		shortDesc: "Can be combined with certain fossils.",
+	},
+	"fossilizeddrake": {
+		id: "fossilizeddrake",
+		name: "Fossilized Drake",
+		spritenum: 0,
+		fling: {
+			basePower: 100,
+		},
+		num: 1107,
+		gen: 8,
+		desc: "Can be revived into Dracozolt with Fossilized Dino or Dracovish with Fossilized Fish.",
+		shortDesc: "Can be combined with certain fossils.",
+	},
+	"fossilizedfish": {
+		id: "fossilizedfish",
+		name: "Fossilized Fish",
+		spritenum: 0,
+		fling: {
+			basePower: 100,
+		},
+		num: 1106,
+		gen: 8,
+		desc: "Can be revived into Dracovish with Fossilized Drake or Arctovish with Fossilized Bird.",
+		shortDesc: "Can be combined with certain fossils.",
+	},
 	"friendball": {
 		id: "friendball",
 		name: "Friend Ball",
@@ -2009,6 +2183,7 @@ let BattleItems = {
 		},
 		num: 756,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Gallade, this item allows it to Mega Evolve in battle.",
 	},
 	"ganlonberry": {
@@ -2044,6 +2219,7 @@ let BattleItems = {
 		},
 		num: 683,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Garchomp, this item allows it to Mega Evolve in battle.",
 	},
 	"gardevoirite": {
@@ -2058,6 +2234,7 @@ let BattleItems = {
 		},
 		num: 657,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Gardevoir, this item allows it to Mega Evolve in battle.",
 	},
 	"gengarite": {
@@ -2072,6 +2249,7 @@ let BattleItems = {
 		},
 		num: 656,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Gengar, this item allows it to Mega Evolve in battle.",
 	},
 	"ghostgem": {
@@ -2120,6 +2298,7 @@ let BattleItems = {
 		forcedForme: "Arceus-Ghost",
 		num: 789,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If holder has a Ghost move, this item allows it to use a Ghost Z-Move.",
 	},
 	"glalitite": {
@@ -2134,6 +2313,7 @@ let BattleItems = {
 		},
 		num: 763,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Glalie, this item allows it to Mega Evolve in battle.",
 	},
 	"goldbottlecap": {
@@ -2193,6 +2373,7 @@ let BattleItems = {
 		forcedForme: "Arceus-Grass",
 		num: 780,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If holder has a Grass move, this item allows it to use a Grass Z-Move.",
 	},
 	"grassyseed": {
@@ -2321,6 +2502,7 @@ let BattleItems = {
 		forcedForme: "Arceus-Ground",
 		num: 784,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If holder has a Ground move, this item allows it to use a Ground Z-Move.",
 	},
 	"gyaradosite": {
@@ -2335,6 +2517,7 @@ let BattleItems = {
 		},
 		num: 676,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Gyarados, this item allows it to Mega Evolve in battle.",
 	},
 	"habanberry": {
@@ -2406,6 +2589,18 @@ let BattleItems = {
 		isPokeball: true,
 		desc: "A Poke Ball for catching very heavy Pokemon.",
 	},
+	"heavydutyboots": {
+		id: "heavydutyboots",
+		name: "Heavy-Duty Boots",
+		spritenum: 0,
+		fling: {
+			basePower: 80,
+		},
+		num: 1120,
+		gen: 8,
+		desc: "Prevents the effects of traps set on the battlefield.",
+		// Hazard Immunity implemented in moves.js
+	},
 	"helixfossil": {
 		id: "helixfossil",
 		name: "Helix Fossil",
@@ -2429,6 +2624,7 @@ let BattleItems = {
 		},
 		num: 680,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Heracross, this item allows it to Mega Evolve in battle.",
 	},
 	"hondewberry": {
@@ -2457,6 +2653,7 @@ let BattleItems = {
 		},
 		num: 666,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Houndoom, this item allows it to Mega Evolve in battle.",
 	},
 	"iapapaberry": {
@@ -2477,14 +2674,14 @@ let BattleItems = {
 			if (!this.runEvent('TryHeal', pokemon)) return false;
 		},
 		onEat(pokemon) {
-			this.heal(pokemon.maxhp / 2);
+			this.heal(pokemon.maxhp * 0.33);
 			if (pokemon.getNature().minus === 'def') {
 				pokemon.addVolatile('confusion');
 			}
 		},
 		num: 163,
 		gen: 3,
-		desc: "Restores 1/2 max HP at 1/4 max HP or less; confuses if -Def Nature. Single use.",
+		desc: "Restores 33% max HP at 1/4 max HP or less; confuses if -Def Nature. Single use.",
 	},
 	"icegem": {
 		id: "icegem",
@@ -2530,7 +2727,7 @@ let BattleItems = {
 		},
 		num: 849,
 		gen: 7,
-		desc: "Evolves Alolan Sandshrew into Alolan Sandslash and Alolan Vulpix into Alolan Ninetales when used.",
+		desc: "Evolves Alolan Sandshrew into Alolan Sandslash, Alolan Vulpix into Alolan Ninetales, and Eevee into Glaceon when used.",
 		shortDesc: "Evolves certain species of Pokemon when used.",
 	},
 	"icicleplate": {
@@ -2566,6 +2763,7 @@ let BattleItems = {
 		forcedForme: "Arceus-Ice",
 		num: 781,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If holder has an Ice move, this item allows it to use an Ice Z-Move.",
 	},
 	"icyrock": {
@@ -2589,6 +2787,7 @@ let BattleItems = {
 		zMoveUser: ["Incineroar"],
 		num: 799,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If held by an Incineroar with Darkest Lariat, it can use Malicious Moonsault.",
 	},
 	"insectplate": {
@@ -2780,6 +2979,7 @@ let BattleItems = {
 		},
 		num: 675,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Kangaskhan, this item allows it to Mega Evolve in battle.",
 	},
 	"kingsrock": {
@@ -2818,6 +3018,7 @@ let BattleItems = {
 		zMoveUser: ["Kommo-o", "Kommo-o-Totem"],
 		num: 926,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If held by a Kommo-o with Clanging Scales, it can use Clangorous Soulblaze.",
 	},
 	"laggingtail": {
@@ -2867,6 +3068,7 @@ let BattleItems = {
 		},
 		num: 684,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Latias, this item allows it to Mega Evolve in battle.",
 	},
 	"latiosite": {
@@ -2881,6 +3083,7 @@ let BattleItems = {
 		},
 		num: 685,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Latios, this item allows it to Mega Evolve in battle.",
 	},
 	"laxincense": {
@@ -2908,7 +3111,7 @@ let BattleItems = {
 		},
 		num: 85,
 		gen: 1,
-		desc: "Evolves Gloom into Vileplume, Weepinbell into Victreebel, Exeggcute into Exeggutor or Alolan Exeggutor, Nuzleaf into Shiftry, and Pansage into Simisage when used.",
+		desc: "Evolves Gloom into Vileplume, Weepinbell into Victreebel, Exeggcute into Exeggutor or Alolan Exeggutor, Eevee into Leafeon, Nuzleaf into Shiftry, and Pansage into Simisage when used.",
 		shortDesc: "Evolves certain species of Pokemon when used.",
 	},
 	"leftovers": {
@@ -3056,6 +3259,7 @@ let BattleItems = {
 		},
 		num: 768,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Lopunny, this item allows it to Mega Evolve in battle.",
 	},
 	"loveball": {
@@ -3066,6 +3270,17 @@ let BattleItems = {
 		gen: 2,
 		isPokeball: true,
 		desc: "Poke Ball for catching Pokemon that are the opposite gender of your Pokemon.",
+	},
+	"lovesweet": {
+		id: "lovesweet",
+		name: "Love Sweet",
+		spritenum: 0,
+		fling: {
+			basePower: 10,
+		},
+		num: 1110,
+		gen: 8,
+		desc: "Evolves Milcery into Alcremie when held and spun around.",
 	},
 	"lucarionite": {
 		id: "lucarionite",
@@ -3079,6 +3294,7 @@ let BattleItems = {
 		},
 		num: 673,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Lucario, this item allows it to Mega Evolve in battle.",
 	},
 	"luckypunch": {
@@ -3145,6 +3361,7 @@ let BattleItems = {
 		zMoveUser: ["Lunala", "Necrozma-Dawn-Wings"],
 		num: 922,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "Lunala or Dawn Wings Necrozma with Moongeist Beam can use a special Z-Move.",
 	},
 	"lureball": {
@@ -3192,6 +3409,7 @@ let BattleItems = {
 		zMoveUser: ["Lycanroc", "Lycanroc-Midnight", "Lycanroc-Dusk"],
 		num: 925,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If held by a Lycanroc forme with Stone Edge, it can use Splintered Stormshards.",
 	},
 	"machobrace": {
@@ -3256,14 +3474,14 @@ let BattleItems = {
 			if (!this.runEvent('TryHeal', pokemon)) return false;
 		},
 		onEat(pokemon) {
-			this.heal(pokemon.maxhp / 2);
+			this.heal(pokemon.maxhp * 0.33);
 			if (pokemon.getNature().minus === 'spe') {
 				pokemon.addVolatile('confusion');
 			}
 		},
 		num: 161,
 		gen: 3,
-		desc: "Restores 1/2 max HP at 1/4 max HP or less; confuses if -Spe Nature. Single use.",
+		desc: "Restores 33% max HP at 1/4 max HP or less; confuses if -Spe Nature. Single use.",
 	},
 	"magostberry": {
 		id: "magostberry",
@@ -3305,6 +3523,7 @@ let BattleItems = {
 		},
 		num: 682,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Manectric, this item allows it to Mega Evolve in battle.",
 	},
 	"marangaberry": {
@@ -3338,6 +3557,7 @@ let BattleItems = {
 		zMoveUser: ["Marshadow"],
 		num: 802,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If held by Marshadow with Spectral Thief, it can use Soul-Stealing 7-Star Strike.",
 	},
 	"masterball": {
@@ -3361,6 +3581,7 @@ let BattleItems = {
 		},
 		num: 681,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Mawile, this item allows it to Mega Evolve in battle.",
 	},
 	"meadowplate": {
@@ -3397,6 +3618,7 @@ let BattleItems = {
 		},
 		num: 665,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Medicham, this item allows it to Mega Evolve in battle.",
 	},
 	"mentalherb": {
@@ -3451,6 +3673,7 @@ let BattleItems = {
 		},
 		num: 758,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Metagross, this item allows it to Mega Evolve in battle.",
 	},
 	"metalcoat": {
@@ -3536,6 +3759,7 @@ let BattleItems = {
 		zMoveUser: ["Mew"],
 		num: 806,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If held by a Mew with Psychic, it can use Genesis Supernova.",
 	},
 	"mewtwonitex": {
@@ -3550,6 +3774,7 @@ let BattleItems = {
 		},
 		num: 662,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Mewtwo, this item allows it to Mega Evolve in battle.",
 	},
 	"mewtwonitey": {
@@ -3564,6 +3789,7 @@ let BattleItems = {
 		},
 		num: 663,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Mewtwo, this item allows it to Mega Evolve in battle.",
 	},
 	"micleberry": {
@@ -3606,6 +3832,7 @@ let BattleItems = {
 		zMoveFrom: "Play Rough",
 		zMoveUser: ["Mimikyu", "Mimikyu-Busted", "Mimikyu-Totem", "Mimikyu-Busted-Totem"],
 		num: 924,
+		isNonstandard: "PastMove",
 		gen: 7,
 		desc: "If held by a Mimikyu with Play Rough, it can use Let's Snuggle Forever.",
 	},
@@ -3816,6 +4043,7 @@ let BattleItems = {
 		zMoveType: "Normal",
 		num: 776,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If holder has a Normal move, this item allows it to use a Normal Z-Move.",
 	},
 	"occaberry": {
@@ -4051,6 +4279,7 @@ let BattleItems = {
 		},
 		num: 762,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Pidgeot, this item allows it to Mega Evolve in battle.",
 	},
 	"pikaniumz": {
@@ -4063,6 +4292,7 @@ let BattleItems = {
 		zMoveUser: ["Pikachu"],
 		num: 794,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If held by a Pikachu with Volt Tackle, it can use Catastropika.",
 	},
 	"pikashuniumz": {
@@ -4074,6 +4304,7 @@ let BattleItems = {
 		zMoveFrom: "Thunderbolt",
 		zMoveUser: ["Pikachu-Original", "Pikachu-Hoenn", "Pikachu-Sinnoh", "Pikachu-Unova", "Pikachu-Kalos", "Pikachu-Alola", "Pikachu-Partner"],
 		num: 836,
+		isNonstandard: "PastMove",
 		gen: 7,
 		desc: "If held by cap Pikachu with Thunderbolt, it can use 10,000,000 Volt Thunderbolt.",
 	},
@@ -4103,6 +4334,7 @@ let BattleItems = {
 		},
 		num: 671,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Pinsir, this item allows it to Mega Evolve in battle.",
 	},
 	"pixieplate": {
@@ -4202,6 +4434,7 @@ let BattleItems = {
 		forcedForme: "Arceus-Poison",
 		num: 783,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If holder has a Poison move, this item allows it to use a Poison Z-Move.",
 	},
 	"pokeball": {
@@ -4355,6 +4588,7 @@ let BattleItems = {
 		zMoveUser: ["Primarina"],
 		num: 800,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If held by a Primarina with Sparkling Aria, it can use Oceanic Operetta.",
 	},
 	"prismscale": {
@@ -4493,6 +4727,7 @@ let BattleItems = {
 		forcedForme: "Arceus-Psychic",
 		num: 786,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If holder has a Psychic move, this item allows it to use a Psychic Z-Move.",
 	},
 	"qualotberry": {
@@ -4718,6 +4953,17 @@ let BattleItems = {
 		isPokeball: true,
 		desc: "A Poke Ball that works well on Pokemon species that were previously caught.",
 	},
+	"ribbonsweet": {
+		id: "ribbonsweet",
+		name: "Ribbon Sweet",
+		spritenum: 0,
+		fling: {
+			basePower: 10,
+		},
+		num: 1115,
+		gen: 8,
+		desc: "Evolves Milcery into Alcremie when held and spun around.",
+	},
 	"rindoberry": {
 		id: "rindoberry",
 		name: "Rindo Berry",
@@ -4816,6 +5062,7 @@ let BattleItems = {
 		forcedForme: "Arceus-Rock",
 		num: 788,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If holder has a Rock move, this item allows it to use a Rock Z-Move.",
 	},
 	"rockyhelmet": {
@@ -4834,6 +5081,22 @@ let BattleItems = {
 		num: 540,
 		gen: 5,
 		desc: "If holder is hit by a contact move, the attacker loses 1/6 of its max HP.",
+	},
+	"roomservice": {
+		id: "roomservice",
+		name: "Room Service",
+		spritenum: 0,
+		fling: {
+			basePower: 100,
+		},
+		onUpdate(pokemon) {
+			if (this.field.getPseudoWeather('trickroom') && pokemon.useItem()) {
+				this.boost({spe: -1});
+			}
+		},
+		num: 1122,
+		gen: 8,
+		desc: "If Trick Room is active, lowers holder's Speed by 1 stage. Single use.",
 	},
 	"rootfossil": {
 		id: "rootfossil",
@@ -4907,6 +5170,36 @@ let BattleItems = {
 		gen: 4,
 		desc: "If holder is hit by a special move, attacker loses 1/8 of its max HP. Single use.",
 	},
+	"rustedshield": {
+		id: "rustedshield",
+		name: "Rusted Shield",
+		spritenum: 0,
+		onTakeItem(item, pokemon, source) {
+			if ((source && source.baseTemplate.num === 889) || pokemon.baseTemplate.num === 889) {
+				return false;
+			}
+			return true;
+		},
+		forcedForme: "Zamazenta-Crowned",
+		num: 1104,
+		gen: 8,
+		desc: "If held by a Zamazenta, this item changes it to Crowned Forme.",
+	},
+	"rustedsword": {
+		id: "rustedsword",
+		name: "Rusted Sword",
+		spritenum: 0,
+		onTakeItem(item, pokemon, source) {
+			if ((source && source.baseTemplate.num === 888) || pokemon.baseTemplate.num === 888) {
+				return false;
+			}
+			return true;
+		},
+		forcedForme: "Zacian-Crowned",
+		num: 1103,
+		gen: 8,
+		desc: "If held by a Zacian, this item changes it to Crowned Forme.",
+	},
 	"sablenite": {
 		id: "sablenite",
 		name: "Sablenite",
@@ -4919,6 +5212,7 @@ let BattleItems = {
 		},
 		num: 754,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Sableye, this item allows it to Mega Evolve in battle.",
 	},
 	"sachet": {
@@ -5005,6 +5299,7 @@ let BattleItems = {
 		},
 		num: 769,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Salamence, this item allows it to Mega Evolve in battle.",
 	},
 	"sceptilite": {
@@ -5019,6 +5314,7 @@ let BattleItems = {
 		},
 		num: 753,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Sceptile, this item allows it to Mega Evolve in battle.",
 	},
 	"scizorite": {
@@ -5033,6 +5329,7 @@ let BattleItems = {
 		},
 		num: 670,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Scizor, this item allows it to Mega Evolve in battle.",
 	},
 	"scopelens": {
@@ -5095,6 +5392,7 @@ let BattleItems = {
 		},
 		num: 759,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Sharpedo, this item allows it to Mega Evolve in battle.",
 	},
 	"shedshell": {
@@ -5283,6 +5581,7 @@ let BattleItems = {
 		},
 		num: 760,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Slowbro, this item allows it to Mega Evolve in battle.",
 	},
 	"smoothrock": {
@@ -5306,6 +5605,7 @@ let BattleItems = {
 		zMoveUser: ["Snorlax"],
 		num: 804,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If held by a Snorlax with Giga Impact, it can use Pulverizing Pancake.",
 	},
 	"snowball": {
@@ -5351,6 +5651,7 @@ let BattleItems = {
 		zMoveUser: ["Solgaleo", "Necrozma-Dusk-Mane"],
 		num: 921,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "Solgaleo or Dusk Mane Necrozma with Sunsteel Strike can use a special Z-Move.",
 	},
 	"souldew": {
@@ -5489,6 +5790,17 @@ let BattleItems = {
 		gen: 3,
 		desc: "Raises a random stat by 2 when at 1/4 max HP or less (not acc/eva). Single use.",
 	},
+	"starsweet": {
+		id: "starsweet",
+		name: "Star Sweet",
+		spritenum: 0,
+		fling: {
+			basePower: 10,
+		},
+		num: 1114,
+		gen: 8,
+		desc: "Evolves Milcery into Alcremie when held and spun around.",
+	},
 	"steelixite": {
 		id: "steelixite",
 		name: "Steelixite",
@@ -5501,6 +5813,7 @@ let BattleItems = {
 		},
 		num: 761,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Steelix, this item allows it to Mega Evolve in battle.",
 	},
 	"steelgem": {
@@ -5549,6 +5862,7 @@ let BattleItems = {
 		forcedForme: "Arceus-Steel",
 		num: 792,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If holder has a Steel move, this item allows it to use a Steel Z-Move.",
 	},
 	"stick": {
@@ -5613,6 +5927,17 @@ let BattleItems = {
 		gen: 4,
 		desc: "Holder's Rock-type attacks have 1.2x power. Judgment is Rock type.",
 	},
+	"strawberrysweet": {
+		id: "strawberrysweet",
+		name: "Strawberry Sweet",
+		spritenum: 0,
+		fling: {
+			basePower: 10,
+		},
+		num: 1109,
+		gen: 8,
+		desc: "Evolves Milcery into Alcremie when held and spun around.",
+	},
 	"sunstone": {
 		id: "sunstone",
 		name: "Sun Stone",
@@ -5637,7 +5962,19 @@ let BattleItems = {
 		},
 		num: 752,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Swampert, this item allows it to Mega Evolve in battle.",
+	},
+	"sweetapple": {
+		id: "sweetapple",
+		name: "Sweet Apple",
+		spritenum: 0,
+		fling: {
+			basePower: 30,
+		},
+		num: 1116,
+		gen: 8,
+		desc: "Evolves Applin into Appletun when used.",
 	},
 	"tamatoberry": {
 		id: "tamatoberry",
@@ -5686,7 +6023,19 @@ let BattleItems = {
 		zMoveUser: ["Tapu Koko", "Tapu Lele", "Tapu Bulu", "Tapu Fini"],
 		num: 801,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If held by a Tapu with Nature's Madness, it can use Guardian of Alola.",
+	},
+	"tartapple": {
+		id: "tartapple",
+		name: "Tart Apple",
+		spritenum: 0,
+		fling: {
+			basePower: 30,
+		},
+		num: 1117,
+		gen: 8,
+		desc: "Evolves Applin into Flapple when used.",
 	},
 	"terrainextender": {
 		id: "terrainextender",
@@ -5716,6 +6065,22 @@ let BattleItems = {
 		gen: 2,
 		desc: "If held by a Cubone or a Marowak, its Attack is doubled.",
 	},
+	"throatspray": {
+		id: "throatspray",
+		name: "Throat Spray",
+		spritenum: 0,
+		fling: {
+			basePower: 30,
+		},
+		onAfterMoveSecondarySelf(target, source, move) {
+			if (move.flags['sound'] && target.useItem()) {
+				this.boost({spa: 1}); // TODO: Find exact value, and whether this activates before or after use
+			}
+		},
+		num: 1118,
+		gen: 8,
+		desc: "Raises holder's Special Attack by 1 stage after using a sound move. Single use.",
+	},
 	"thunderstone": {
 		id: "thunderstone",
 		name: "Thunder Stone",
@@ -5725,7 +6090,7 @@ let BattleItems = {
 		},
 		num: 83,
 		gen: 1,
-		desc: "Evolves Pikachu into Raichu or Alolan Raichu, Eevee into Jolteon, and Eelektrik into Eelektross when used.",
+		desc: "Evolves Pikachu into Raichu or Alolan Raichu, Eevee into Jolteon, Eelektrik into Eelektross, and Charjabug into Vikavolt when used.",
 		shortDesc: "Evolves certain species of Pokemon when used.",
 	},
 	"timerball": {
@@ -5805,6 +6170,7 @@ let BattleItems = {
 		},
 		num: 669,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Tyranitar, this item allows it to Mega Evolve in battle.",
 	},
 	"ultraball": {
@@ -5826,6 +6192,7 @@ let BattleItems = {
 		zMoveUser: ["Necrozma-Ultra"],
 		num: 923,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "Dusk Mane/Dawn Wings Necrozma: Ultra Burst, then Z-Move w/ Photon Geyser.",
 	},
 	"upgrade": {
@@ -5851,6 +6218,7 @@ let BattleItems = {
 		},
 		num: 659,
 		gen: 6,
+		isNonstandard: "Past",
 		desc: "If held by a Venusaur, this item allows it to Mega Evolve in battle.",
 	},
 	"wacanberry": {
@@ -5934,6 +6302,7 @@ let BattleItems = {
 		forcedForme: "Arceus-Water",
 		num: 778,
 		gen: 7,
+		isNonstandard: "PastMove",
 		desc: "If holder has a Water move, this item allows it to use a Water Z-Move.",
 	},
 	"watmelberry": {
@@ -6088,14 +6457,14 @@ let BattleItems = {
 			if (!this.runEvent('TryHeal', pokemon)) return false;
 		},
 		onEat(pokemon) {
-			this.heal(pokemon.maxhp / 2);
+			this.heal(pokemon.maxhp * 0.33);
 			if (pokemon.getNature().minus === 'spa') {
 				pokemon.addVolatile('confusion');
 			}
 		},
 		num: 160,
 		gen: 3,
-		desc: "Restores 1/2 max HP at 1/4 max HP or less; confuses if -SpA Nature. Single use.",
+		desc: "Restores 33% max HP at 1/4 max HP or less; confuses if -SpA Nature. Single use.",
 	},
 	"wiseglasses": {
 		id: "wiseglasses",

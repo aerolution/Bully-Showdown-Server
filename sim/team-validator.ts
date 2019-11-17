@@ -1197,7 +1197,7 @@ export class TeamValidator {
 		} else if (tierTemplate.isNonstandard) {
 			banReason = ruleTable.check('nonexistent', setHas);
 			if (banReason) {
-				if (['Past', 'Future'].includes(tierTemplate.isNonstandard)) {
+				if (['Past', 'PastMove', 'Future'].includes(tierTemplate.isNonstandard)) {
 					return `${tierTemplate.species} does not exist in Gen ${dex.gen}.`;
 				}
 				return `${tierTemplate.species} does not exist in this game.`;
@@ -1308,7 +1308,7 @@ export class TeamValidator {
 
 			banReason = ruleTable.check('nonexistent', setHas);
 			if (banReason) {
-				if (['Past', 'Future'].includes(ability.isNonstandard)) {
+				if (['Past', 'PastMove', 'Future'].includes(ability.isNonstandard)) {
 					return `${set.name}'s ability ${ability.name} does not exist in Gen ${dex.gen}.`;
 				}
 				return `${set.name}'s ability ${ability.name} does not exist in this game.`;

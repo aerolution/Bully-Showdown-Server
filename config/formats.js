@@ -708,6 +708,7 @@ let Formats = [
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', '+Unreleased', '+Past', '+PastMove', 'Draft', 'Team Preview'],
+		noDynamax: true,
 	},
 	{
 		name: "[Gen 8] Random Battle",

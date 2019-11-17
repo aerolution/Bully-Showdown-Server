@@ -711,6 +711,15 @@ let Formats = [
 		noDynamax: true,
 	},
 	{
+		name: "[Gen 8] LC Draft League",
+
+		mod: 'gen8',
+		maxLevel: 5,
+		ruleset: ['Obtainable', '+Unreleased', '+Past', '+PastMove', 'Draft', 'Team Preview', 'Double Item Clause', 'Little Cup'],
+		banlist: ['Dragon Rage', 'Sonic Boom'],
+		noDynamax: true,
+	},
+	{
 		name: "[Gen 8] Random Battle",
 		desc: `Randomized teams of level-balanced Pok&eacute;mon with sets that are generated to be competitively viable.`,
 

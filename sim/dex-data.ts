@@ -545,7 +545,7 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 	readonly prevo: ID;
 	/** Evolutions. Array because many Pokemon have multiple evolutions. */
 	readonly evos: ID[];
-	readonly evoType?: 'trade' | 'useItem' | 'levelMove' | 'levelExtra' | 'levelFriendship' | 'levelHold';
+	readonly evoType?: 'trade' | 'useItem' | 'levelMove' | 'levelExtra' | 'levelFriendship' | 'levelHold' | 'other';
 	readonly evoMove?: string;
 	/** Evolution level. falsy if doesn't evolve. */
 	readonly evoLevel?: number;
@@ -677,7 +677,7 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 		this.battleOnly = !!data.battleOnly || !!this.isMega || !!this.isGigantamax || undefined;
 
 		if (!this.gen && this.num >= 1) {
-			if (this.num >= 810 || this.forme === 'Galar' || this.forme === 'Gmax') {
+			if (this.num >= 810 || this.forme.endsWith('Galar') || this.forme === 'Gmax') {
 				this.gen = 8;
 			} else if (this.num >= 722 || this.forme.startsWith('Alola') || this.forme === 'Starter') {
 				this.gen = 7;

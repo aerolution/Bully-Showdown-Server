@@ -583,6 +583,9 @@ const commands = {
 							case 'levelMove':
 								evos.push(`${evo.name} (level-up with ${evo.evoMove}${condition})`);
 								break;
+							case 'other':
+								evos.push(`${evo.name} (${condition})`);
+								break;
 							case 'trade':
 								evos.push(`${evo.name} (trade)`);
 								break;
@@ -636,7 +639,7 @@ const commands = {
 						"Gen": move.gen || 'CAP',
 					};
 
-					if ((move.isNonstandard === "Past" || move.isNonstandard === "PastMove") && dex.gen >= 8) details["&#10007; Past Gens Only"] = "";
+					if (move.isNonstandard === "Past" && dex.gen >= 8) details["&#10007; Past Gens Only"] = "";
 					if (move.secondary || move.secondaries) details["&#10003; Secondary effect"] = "";
 					if (move.flags['contact']) details["&#10003; Contact"] = "";
 					if (move.flags['sound']) details["&#10003; Sound"] = "";

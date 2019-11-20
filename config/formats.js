@@ -12,21 +12,21 @@ let Formats = [
 		section: "Draft League Tiers",
 	},
 	{
-		name: "[Gen 8] Galar Draft League",
+		name: "[Gen 8] Galar Dex Draft League",
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', '+Unreleased', 'Draft', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Draft League",
+		name: "[Gen 8] National Dex Draft League",
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] Legacy Draft League",
+		name: "[Gen 8] International Dex Draft League",
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
@@ -132,7 +132,7 @@ let Formats = [
 		name: "[Gen 8] National Dex (beta)",
 
 		mod: 'gen8',
-		ruleset: ['Obtainable', 'Standard', 'Team Preview', '+Past', '+Unreleased'],
+		ruleset: ['Obtainable', 'Standard', 'Team Preview', '+Past', '+PastMove', '+Unreleased'],
 		banlist: ['Uber', 'Shadow Tag', 'Baton Pass',
 			"Gengar-Mega", "Kangaskhan-Mega", "Mewtwo", "Lugia", "Ho-Oh", "Blaziken", "Blaziken-Mega", "Salamence-Mega", "Metagross-Mega", "Kyogre", "Groudon", "Rayquaza", "Deoxys", "Lucario-Mega", "Dialga", "Palkia", "Giratina", "Darkrai", "Shaymin-Sky", "Arceus", "Reshiram", "Zekrom", "Landorus-Base", "Kyurem-White", "Genesect", "Xerneas", "Yveltal", "Zygarde", "Solgaleo", "Lunala", "Pheromosa", "Necrozma-Dusk-Mane", "Necrozma-Dawn-Wings", "Necrozma-Ultra", "Marshadow", "Naganadel",
 		],

@@ -639,7 +639,7 @@ const commands = {
 						"Gen": move.gen || 'CAP',
 					};
 
-					if (move.isNonstandard === "Past" && dex.gen >= 8) details["&#10007; Past Gens Only"] = "";
+					if ((move.isNonstandard === "Past" || move.isNonstandard === "PastMove") && dex.gen >= 8) details["&#10007; Past Gens Only"] = "";
 					if (move.secondary || move.secondaries) details["&#10003; Secondary effect"] = "";
 					if (move.flags['contact']) details["&#10003; Contact"] = "";
 					if (move.flags['sound']) details["&#10003; Sound"] = "";
@@ -686,6 +686,11 @@ const commands = {
 						} else {
 							details["Z-Effect"] = "None";
 						}
+					}
+
+					if (dex.gen >= 8 && move.isMax) {
+						details["&#10003; Max Move"] = "";
+						if (typeof move.isMax === "string") details["User"] = move.isMax + "-Gmax";
 					}
 
 					details["Target"] = {

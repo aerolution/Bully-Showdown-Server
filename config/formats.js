@@ -129,7 +129,7 @@ let Formats = [
 		minSourceGen: 8,
 	},
 	{
-		name: "[Gen 8] National Dex OU (beta)",
+		name: "[Gen 8] OU National Dex (beta)",
 
 		mod: 'gen8',
 		ruleset: ['Obtainable', 'Standard', 'Team Preview', '+Past', '+PastMove', '+Unreleased'],
@@ -191,7 +191,7 @@ let Formats = [
 
 		mod: 'gen8',
 		ruleset: ['Obtainable', 'Same Type Clause', 'Standard', 'Team Preview'],
-		banlist: ['Eternatus', 'Zacian', 'Zamazenta', 'Shadow Tag', 'Baton Pass'],
+		banlist: ['Eternatus', 'Zacian', 'Zamazenta', 'Damp Rock', 'Smooth Rock', 'Shadow Tag', 'Baton Pass'],
 		minSourceGen: 8,
 	},
 	{

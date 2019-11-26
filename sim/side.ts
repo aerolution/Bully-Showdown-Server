@@ -55,6 +55,7 @@ export class Side {
 	faintedLastTurn: boolean;
 	faintedThisTurn: boolean;
 	zMoveUsed: boolean;
+	canDynamax: boolean;
 
 	sideConditions: AnyObject;
 	slotConditions: AnyObject[];
@@ -102,6 +103,7 @@ export class Side {
 		this.faintedLastTurn = false;
 		this.faintedThisTurn = false;
 		this.zMoveUsed = false;
+		this.canDynamax = (this.battle.gen >= 8);
 
 		this.sideConditions = {};
 		this.slotConditions = [];
@@ -433,7 +435,7 @@ export class Side {
 		if (megaDynaOrZ === 'dynamax' && !maxMove) {
 			return this.emitChoiceError(`Can't move: ${pokemon.name} can't use ${move.name} as a Max Move`);
 		}
-		
+
 		if (maxMove) targetType = this.battle.dex.getMove(maxMove).target;
 
 		// Validate targetting

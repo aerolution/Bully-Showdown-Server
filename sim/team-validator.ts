@@ -1197,7 +1197,7 @@ export class TeamValidator {
 		} else if (tierTemplate.isNonstandard) {
 			banReason = ruleTable.check('nonexistent', setHas);
 			if (banReason) {
-				if (['Past', 'PastMove', 'Future'].includes(tierTemplate.isNonstandard)) {
+				if (['Past', 'Future'].includes(tierTemplate.isNonstandard)) {
 					return `${tierTemplate.species} does not exist in Gen ${dex.gen}.`;
 				}
 				return `${tierTemplate.species} does not exist in this game.`;
@@ -1236,7 +1236,7 @@ export class TeamValidator {
 
 			banReason = ruleTable.check('nonexistent', setHas);
 			if (banReason) {
-				if (['Past', 'PastMove', 'Future'].includes(item.isNonstandard)) {
+				if (['Past', 'Future'].includes(item.isNonstandard)) {
 					return `${set.name}'s item ${item.name} does not exist in Gen ${dex.gen}.`;
 				}
 				return `${set.name}'s item ${item.name} does not exist in this game.`;
@@ -1275,7 +1275,7 @@ export class TeamValidator {
 
 			banReason = ruleTable.check('nonexistent', setHas);
 			if (banReason) {
-				if (['Past', 'PastMove', 'Future'].includes(move.isNonstandard)) {
+				if (['Past', 'Future'].includes(move.isNonstandard)) {
 					return `${set.name}'s move ${move.name} does not exist in Gen ${dex.gen}.`;
 				}
 				return `${set.name}'s move ${move.name} does not exist in this game.`;
@@ -1308,7 +1308,7 @@ export class TeamValidator {
 
 			banReason = ruleTable.check('nonexistent', setHas);
 			if (banReason) {
-				if (['Past', 'PastMove', 'Future'].includes(ability.isNonstandard)) {
+				if (['Past', 'Future'].includes(ability.isNonstandard)) {
 					return `${set.name}'s ability ${ability.name} does not exist in Gen ${dex.gen}.`;
 				}
 				return `${set.name}'s ability ${ability.name} does not exist in this game.`;
@@ -1367,7 +1367,7 @@ export class TeamValidator {
 				problems.push(`${name}'s gender must be ${eventData.gender}${etc}.`);
 			}
 		}
-		let canMint = dex.gen > 7;
+		const canMint = dex.gen > 7;
 		if (eventData.nature && eventData.nature !== set.nature && !canMint) {
 			if (fastReturn) return true;
 			problems.push(`${name} must have a ${eventData.nature} nature${etc} - Mints are only available starting gen 8.`);
@@ -1830,7 +1830,9 @@ export class TeamValidator {
 			template = this.dex.getTemplate(template.prevo);
 			if (template.gen > Math.max(2, this.dex.gen)) return null;
 			return template;
-		} else if (template.baseSpecies !== template.species && (['Rotom', 'Necrozma'].includes(template.baseSpecies) || template.forme === 'Gmax')) {
+		} else if (template.baseSpecies !== template.species && (
+			['Rotom', 'Necrozma'].includes(template.baseSpecies) || template.forme === 'Gmax'
+		)) {
 			// only Rotom and Necrozma inherit learnsets from base
 			return this.dex.getTemplate(template.baseSpecies);
 		}

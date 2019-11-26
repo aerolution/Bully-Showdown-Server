@@ -2556,11 +2556,14 @@ let BattleMovedex = {
 		pp: 5,
 		priority: 0,
 		flags: {snatch: 1, sound: 1, dance: 1},
-		onHit(target) {
-			if (target.hp <= target.maxhp / 3 || target.boosts.atk >= 6 || target.boosts.def >= 6 || target.boosts.spa >= 6 || target.boosts.spd >= 6 || target.boosts.spe >= 6 || target.maxhp === 1) { // Shedinja clause
+		onTryHit(pokemon, target, move) {
+			if (pokemon.hp <= pokemon.maxhp / 3 || pokemon.boosts.atk >= 6 || pokemon.boosts.def >= 6 || pokemon.boosts.spa >= 6 || pokemon.boosts.spd >= 6 || pokemon.boosts.spe >= 6 || pokemon.maxhp === 1) {
+				delete move.boosts;
 				return false;
 			}
-			this.directDamage(target.maxhp / 3);
+		},
+		onHit(pokemon) {
+			this.directDamage(pokemon.maxhp / 3);
 		},
 		boosts: {
 			atk: 1,
@@ -7101,7 +7104,7 @@ let BattleMovedex = {
 		self: {
 			onAfterHit(target, source) {
 				for (let pokemon of source.side.active) {
-					this.heal(pokemon.maxhp, pokemon, pokemon);
+					this.heal(pokemon.maxhp / 2, pokemon, pokemon);
 				}
 			},
 		},
@@ -13375,7 +13378,7 @@ let BattleMovedex = {
 					this.add('-end', pokemon, 'Octolock', '[partiallytrapped]', '[silent]');
 					return;
 				}
-				this.boost({def: -1, spd: -1}, pokemon, pokemon, this.dex.getActiveMove("Octolock"));
+				this.boost({def: -1, spd: -1}, pokemon, source, this.dex.getActiveMove("Octolock"));
 			},
 			onTrapPokemon(pokemon) {
 				if (this.effectData.source && this.effectData.source.isActive) pokemon.tryTrap();
@@ -18493,7 +18496,7 @@ let BattleMovedex = {
 		basePower: 140,
 		category: "Special",
 		desc: "If this move is successful, the user loses 1/2 of its maximum HP, rounded up, unless the user has the Magic Guard Ability.",
-		shortDesc: "User loses 50% max HP. Hits adjacent Pokemon.",
+		shortDesc: "User loses 50% max HP.",
 		id: "steelbeam",
 		isViable: true,
 		name: "Steel Beam",
@@ -18507,7 +18510,7 @@ let BattleMovedex = {
 			}
 		},
 		secondary: null,
-		target: "allAdjacent",
+		target: "normal",
 		type: "Steel",
 	},
 	"steelwing": {

@@ -13,14 +13,14 @@ let BattleFormats = {
 		effectType: 'ValidatorRule',
 		name: 'Standard',
 		desc: "The standard ruleset for all offical Smogon singles tiers (Ubers, OU, etc.)",
-		ruleset: ['Sleep Clause Mod', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
+		ruleset: ['Sleep Clause Mod', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	draft: {
 		effectType: 'ValidatorRule',
 		name: 'Draft',
 		desc: "The custom Draft League ruleset",
-		ruleset: ['+Unreleased', 'Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
-	},
+		ruleset: ['+Unreleased', 'Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
+	}
 	standardnext: {
 		effectType: 'ValidatorRule',
 		name: 'Standard NEXT',
@@ -576,7 +576,7 @@ let BattleFormats = {
 			}
 		},
 		onBegin() {
-			this.add('rule', 'NFE Clause: Fully Evolved Pok&eacute;mon are banned');
+			this.add('rule', 'NFE Clause: Fully Evolved Pokémon are banned');
 		},
 	},
 	hppercentagemod: {
@@ -708,8 +708,8 @@ let BattleFormats = {
 		name: 'Dynamax Clause',
 		desc: "Prevents Pok&eacute;mon from dynamaxing",
 		onBegin() {
-			for (let side of this.sides) {
-				side.canDynamax = false;
+			for (let pokemon of this.getAllPokemon()) {
+				pokemon.canDynamax = false;
 			}
 			this.add('rule', 'Dynamax Clause: You cannot dynamax');
 		},
@@ -743,10 +743,17 @@ let BattleFormats = {
 			return -typeMod;
 		},
 	},
-	natdex: {
+	natdexrule: {
 		effectType: 'Rule',
-		name: 'NatDex',
+		name: 'NatDex Rule',
 		onValidateSet(set) {
+			// These Pokemon are still unobtainable
+			const unobtainables = [
+				'Eevee-Starter', 'Floette-Eternal', 'Magearna-Original', 'Pichu-Spiky-eared', 'Pikachu-Belle', 'Pikachu-Cosplay', 'Pikachu-Libre', 'Pikachu-PhD', 'Pikachu-Pop-Star', 'Pikachu-Rock-Star', 'Pikachu-Starter',
+			];
+			if (unobtainables.includes(set.species)) {
+				return [`${set.name || set.species} does not exist in the National Dex.`];
+			}
 			// Items other than Z-Crystals and Pokémon-specific items should be illegal
 			if (!set.item) return;
 			let item = this.dex.getItem(set.item);
@@ -756,16 +763,12 @@ let BattleFormats = {
 		},
 		onBegin() {
 			// if you have a mega/primal or z, you can't dynamax
-			for (const side of this.sides) {
-				let canMegaOrZ = false;
-				for (const pokemon of side.pokemon) {
-					const item = this.dex.getItem(pokemon.item);
-					if (item.megaStone || item.onPrimal || item.zMove) {
-						canMegaOrZ = true;
-						break;
-					}
+			for (const pokemon of this.getAllPokemon()) {
+				const item = pokemon.getItem();
+				// this.canMegaEvo check is for Rayquaza.
+				if (item.megaStone || this.canMegaEvo(pokemon) || item.onPrimal || item.zMove) {
+					pokemon.canDynamax = false;
 				}
-				if (canMegaOrZ) side.canDynamax = false;
 			}
 		},
 	},

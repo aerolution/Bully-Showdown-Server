@@ -479,6 +479,7 @@ let BattleStatuses = {
 		},
 		onWeatherModifyDamage(damage, attacker, defender, move) {
 			if (move.type === 'Water') {
+				if (defender.item === "utilityumbrella") return;
 				this.debug('rain water boost');
 				return this.chainModify(1.5);
 			}
@@ -521,6 +522,7 @@ let BattleStatuses = {
 		},
 		onWeatherModifyDamage(damage, attacker, defender, move) {
 			if (move.type === 'Water') {
+				if (defender.item === "utilityumbrella") return;
 				this.debug('Rain water boost');
 				return this.chainModify(1.5);
 			}
@@ -551,10 +553,12 @@ let BattleStatuses = {
 		},
 		onWeatherModifyDamage(damage, attacker, defender, move) {
 			if (move.type === 'Fire') {
+				if (defender.item === "utilityumbrella") return;
 				this.debug('Sunny Day fire boost');
 				return this.chainModify(1.5);
 			}
 			if (move.type === 'Water') {
+				if (defender.item === "utilityumbrella") return;
 				this.debug('Sunny Day water suppress');
 				return this.chainModify(0.5);
 			}
@@ -567,7 +571,8 @@ let BattleStatuses = {
 				this.add('-weather', 'SunnyDay');
 			}
 		},
-		onImmunity(type) {
+		onImmunity(type, pokemon) {
+			if (pokemon.item === "utilityumbrella") return;
 			if (type === 'frz') return false;
 		},
 		onResidualOrder: 1,
@@ -596,6 +601,7 @@ let BattleStatuses = {
 		},
 		onWeatherModifyDamage(damage, attacker, defender, move) {
 			if (move.type === 'Fire') {
+				if (defender.item === "utilityumbrella") return;
 				this.debug('Sunny Day fire boost');
 				return this.chainModify(1.5);
 			}
@@ -603,7 +609,8 @@ let BattleStatuses = {
 		onStart(battle, source, effect) {
 			this.add('-weather', 'DesolateLand', '[from] ability: ' + effect, '[of] ' + source);
 		},
-		onImmunity(type) {
+		onImmunity(type, pokemon) {
+			if (pokemon.item === "utilityumbrella") return;
 			if (type === 'frz') return false;
 		},
 		onResidualOrder: 1,
@@ -694,6 +701,7 @@ let BattleStatuses = {
 		effectType: 'Weather',
 		duration: 0,
 		onEffectiveness(typeMod, target, type, move) {
+			if (target && target.item === "utilityumbrella") return;
 			if (move && move.effectType === 'Move' && move.category !== 'Status' && type === 'Flying' && typeMod > 0) {
 				this.add('-activate', '', 'deltastream');
 				return 0;
@@ -716,8 +724,11 @@ let BattleStatuses = {
 		name: 'Dynamax',
 		id: 'dynamax',
 		num: 0,
+		noCopy: true,
 		duration: 3,
 		onStart(pokemon) {
+			if (pokemon.species === 'Eternatus-Eternamax') return;
+			pokemon.removeVolatile('substitute');
 			this.add('-start', pokemon, 'Dynamax');
 			if (pokemon.canGigantamax) pokemon.formeChange(pokemon.canGigantamax);
 			if (pokemon.species === 'Shedinja') return;
@@ -725,6 +736,15 @@ let BattleStatuses = {
 			pokemon.maxhp = Math.floor(pokemon.maxhp / ratio);
 			pokemon.hp = Math.floor(pokemon.hp / ratio);
 			// TODO work on display for HP
+			this.add('-heal', pokemon, pokemon.getHealth, '[silent]');
+		},
+		onSwitchIn(pokemon) { // Putting Eternamax in onSwitchIn so it shows up everytime Eternatus switches in.
+			if (pokemon.species !== 'Eternatus-Eternamax') return; // Special for Eternatus' Eternamax forme
+			pokemon.removeVolatile('substitute');
+			this.add('-start', pokemon, 'Eternamax');
+			this.effectData.duration = 0;
+			pokemon.maxhp = Math.floor(pokemon.maxhp * 2);
+			pokemon.hp = Math.floor(pokemon.hp * 2);
 			this.add('-heal', pokemon, pokemon.getHealth, '[silent]');
 		},
 		onFlinch: false,
@@ -735,7 +755,7 @@ let BattleStatuses = {
 			pokemon.maxhp = Math.floor(pokemon.maxhp * ratio); // TODO prevent maxhp loss
 			pokemon.hp = Math.floor(pokemon.hp * ratio);
 			if (pokemon.hp <= 0) pokemon.hp = 1;
-			this.hint("Dynamax ended.");
+			if (pokemon.species !== 'Eternatus-Eternamax') this.hint("Dynamax ended.");
 		},
 		onDragOutPriority: 2,
 		onDragOut(pokemon) {
@@ -743,7 +763,7 @@ let BattleStatuses = {
 			return null;
 		},
 		onEnd(pokemon) {
-			this.add('-end', pokemon, 'Dynamax');
+			if (pokemon.species !== 'Eternatus-Eternamax') this.add('-end', pokemon, 'Dynamax');
 			if (pokemon.canGigantamax) pokemon.formeChange(pokemon.baseTemplate.species);
 			if (pokemon.species === 'Shedinja') return;
 			let ratio = (1 / 2); // Changes based on dynamax level, static (LVL 10) until we know the levels
@@ -761,6 +781,15 @@ let BattleStatuses = {
 	// but their formes are specified to be their corresponding type
 	// in the Pokedex, so that needs to be overridden.
 	// This is mainly relevant for Hackmons Cup and Balanced Hackmons.
+	eternatuseternamax: {
+		name: 'Eternatus-Eternamax',
+		id: 'eternatuseternamax',
+		num: 890,
+		onStart(pokemon) {
+			if (pokemon.transformed) return;
+			pokemon.addVolatile('dynamax');
+		},
+	},
 	arceus: {
 		name: 'Arceus',
 		id: 'arceus',

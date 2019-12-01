@@ -5,9 +5,10 @@ let BattleAbilities = {
 	"disguise": {
 		inherit: true,
 		desc: "If this Pokemon is a Mimikyu, the first hit it takes in battle deals 0 neutral damage. Its disguise is then broken and it changes to Busted Form. Confusion damage also breaks the disguise.",
+		shortDesc: "(Mimikyu only) First hit deals 0 damage, breaks disguise.",
 		onUpdate(pokemon) {
 			if (['mimikyu', 'mimikyutotem'].includes(pokemon.template.speciesid) && this.effectData.busted) {
-				let templateid = pokemon.template.speciesid === 'mimikyutotem' ? 'Mimikyu-Busted-Totem' : 'Mimikyu-Busted';
+				let templateid = pokemon.template.speciesid + 'busted';
 				pokemon.formeChange(templateid, this.effect, true);
 			}
 		},

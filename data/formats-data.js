@@ -322,11 +322,11 @@ let BattleFormatsData = {
 		],
 		eventOnly: true,
 		gen: 4,
-		isNonstandard: 'Past',
+		isNonstandard: "Past",
 		tier: "Illegal",
 	},
 	pikachu: {
-		randomBattleMoves: ["grassknot", "surf", "thunderbolt", "voltswitch", "volttackle"],
+		randomBattleMoves: ["grassknot", "substitute", "surf", "voltswitch", "volttackle"],
 		eventPokemon: [
 			{"generation": 3, "level": 50, "moves": ["thunderbolt", "agility", "thunder", "lightscreen"], "pokeball": "pokeball"},
 			{"generation": 3, "level": 10, "moves": ["thundershock", "growl", "tailwhip", "thunderwave"], "pokeball": "pokeball"},
@@ -518,6 +518,8 @@ let BattleFormatsData = {
 		eventOnly: true,
 		unreleasedHidden: true,
 		isGigantamax: "G-Max Volt Crash",
+		tier: "UU",
+		doublesTier: "New",
 	},
 	raichu: {
 		randomBattleMoves: ["encore", "focusblast", "grassknot", "nastyplot", "thunderbolt", "voltswitch"],
@@ -830,6 +832,8 @@ let BattleFormatsData = {
 		eventOnly: true,
 		unreleasedHidden: true,
 		isGigantamax: "G-Max Gold Rush",
+		tier: "UU",
+		doublesTier: "New",
 	},
 	persian: {
 		randomBattleMoves: ["hypervoice", "icywind", "nastyplot", "taunt", "thunderbolt"],
@@ -1297,7 +1301,7 @@ let BattleFormatsData = {
 		encounters: [
 			{"generation": 1, "level": 18, "shiny": false},
 		],
-		tier: "LC",
+		tier: "LC Uber",
 	},
 	haunter: {
 		eventPokemon: [
@@ -1938,6 +1942,8 @@ let BattleFormatsData = {
 		eventOnly: true,
 		unreleasedHidden: true,
 		isGigantamax: "G-Max Cuddle",
+		tier: "UU",
+		doublesTier: "New",
 	},
 	vaporeon: {
 		randomBattleMoves: ["haze", "icebeam", "protect", "scald", "wish", "yawn"],
@@ -5392,7 +5398,7 @@ let BattleFormatsData = {
 		tier: "OU",
 		doublesTier: "New",
 	},
-	darmanitangalarzen: {
+	darmanitanzengalar: {
 		requiredAbility: "Zen Mode",
 		battleOnly: true,
 	},
@@ -5517,7 +5523,7 @@ let BattleFormatsData = {
 		doublesTier: "New",
 	},
 	gothita: {
-		tier: "LC",
+		tier: "LC Uber",
 	},
 	gothorita: {
 		eventPokemon: [
@@ -7124,7 +7130,7 @@ let BattleFormatsData = {
 		isNonstandard: "Past",
 		tier: "Illegal",
 	},
-	mimikyutotembusted: {
+	mimikyubustedtotem: {
 		requiredAbility: 'Disguise',
 		battleOnly: true,
 		isNonstandard: "Past",

@@ -20,7 +20,7 @@ let BattleFormats = {
 		name: 'Draft',
 		desc: "The custom Draft League ruleset",
 		ruleset: ['+Unreleased', 'Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
-	}
+	},
 	standardnext: {
 		effectType: 'ValidatorRule',
 		name: 'Standard NEXT',
@@ -246,7 +246,7 @@ let BattleFormats = {
 			this.add('clearpoke');
 			for (const pokemon of this.getAllPokemon()) {
 				let details = pokemon.details.replace(/(Arceus|Gourgeist|Genesect|Pumpkaboo|Silvally)(-[a-zA-Z?]+)?/g, '$1-*').replace(', shiny', '');
-				this.add('poke', pokemon.side.id, details, pokemon.item ? 'item' : '');
+				this.add('poke', pokemon.side.id, details, this.gen < 8 && pokemon.item ? 'item' : '');
 			}
 		},
 		onTeamPreview() {
@@ -784,7 +784,7 @@ let BattleFormats = {
 		desc: "Allows Pok&eacute;mon to use any move that they or a previous evolution/out-of-battle forme share a type with",
 		checkLearnset(move, template, setSources, set) {
 			const restrictedMoves = this.format.restrictedMoves || [];
-			if (!move.isNonstandard && !restrictedMoves.includes(move.name)) {
+			if (!restrictedMoves.includes(move.name) && !move.isNonstandard && !move.id.startsWith('max')) {
 				let dex = this.dex;
 				let types = template.types;
 				let baseTemplate = dex.getTemplate(template.baseSpecies);

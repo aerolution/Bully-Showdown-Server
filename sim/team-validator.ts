@@ -1200,14 +1200,14 @@ export class TeamValidator {
 		} else if (tierTemplate.isNonstandard) {
 			banReason = ruleTable.check('nonexistent', setHas);
 			if (banReason) {
-				if (['Past', 'Future'].includes(tierTemplate.isNonstandard)) {
+				if (['Past', 'PastMove', 'Future'].includes(tierTemplate.isNonstandard)) {
 					return `${tierTemplate.species} does not exist in Gen ${dex.gen}.`;
 				}
 				return `${tierTemplate.species} does not exist in this game.`;
 			}
 			if (banReason === '') return null;
 		} else if (tierTemplate.isUnreleased) {
-			let isUnreleased: boolean | 'Past' = tierTemplate.isUnreleased;
+			let isUnreleased: boolean | 'Past' | 'PastMove' = tierTemplate.isUnreleased;
 			if ((isUnreleased === 'Past' || isUnreleased === 'PastMove') && (this.format.minSourceGen || 0) < dex.gen) isUnreleased = false;
 
 			if (isUnreleased) {
@@ -1244,7 +1244,7 @@ export class TeamValidator {
 
 			banReason = ruleTable.check('nonexistent', setHas);
 			if (banReason) {
-				if (['Past', 'Future'].includes(item.isNonstandard)) {
+				if (['Past', 'PastMove', 'Future'].includes(item.isNonstandard)) {
 					return `${set.name}'s item ${item.name} does not exist in Gen ${dex.gen}.`;
 				}
 				return `${set.name}'s item ${item.name} does not exist in this game.`;
@@ -1283,7 +1283,7 @@ export class TeamValidator {
 
 			banReason = ruleTable.check('nonexistent', setHas);
 			if (banReason) {
-				if (['Past', 'Future'].includes(move.isNonstandard)) {
+				if (['Past', 'PastMove', 'Future'].includes(move.isNonstandard)) {
 					return `${set.name}'s move ${move.name} does not exist in Gen ${dex.gen}.`;
 				}
 				return `${set.name}'s move ${move.name} does not exist in this game.`;
@@ -1316,7 +1316,7 @@ export class TeamValidator {
 
 			banReason = ruleTable.check('nonexistent', setHas);
 			if (banReason) {
-				if (['Past', 'Future'].includes(ability.isNonstandard)) {
+				if (['Past', 'PastMove', 'Future'].includes(ability.isNonstandard)) {
 					return `${set.name}'s ability ${ability.name} does not exist in Gen ${dex.gen}.`;
 				}
 				return `${set.name}'s ability ${ability.name} does not exist in this game.`;
@@ -1838,11 +1838,9 @@ export class TeamValidator {
 			template = this.dex.getTemplate(template.prevo);
 			if (template.gen > Math.max(2, this.dex.gen)) return null;
 			return template;
-		} else if (template.baseSpecies !== template.species && (
-			['Rotom', 'Necrozma'].includes(template.baseSpecies) || template.forme === 'Gmax'
-		)) {
-			// only Rotom and Necrozma inherit learnsets from base
-			return this.dex.getTemplate(template.baseSpecies);
+		} else if (template.inheritsLearnsetFrom) {
+			// For Pokemon like Rotom, Necrozma, and Gmax formes whose movesets are extensions are their base formes
+			return this.dex.getTemplate(template.inheritsLearnsetFrom);
 		}
 		return null;
 	}

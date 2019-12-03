@@ -956,7 +956,7 @@ interface TemplateFormatsData {
 	requiredItems?: string[]
 	requiredMove?: string
 	tier?: string
-	unreleasedHidden?: boolean | 'Past' | 'PastMove'
+	unreleasedHidden?: boolean | 'Past'
 }
 
 interface ModdedTemplateFormatsData extends Partial<TemplateFormatsData> {

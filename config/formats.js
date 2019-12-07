@@ -149,7 +149,7 @@ let Formats = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Obtainable', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', '+Past', 'NatDex Rule'],
+		ruleset: ['Obtainable', 'Team Preview', 'Nickname Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', '+Past', 'NatDex Rule'],
 	},
 	{
 		name: "[Gen 8] Ubers",
@@ -312,6 +312,23 @@ let Formats = [
 		minSourceGen: 8,
 	},
 	{
+		name: "[Gen 8] VGC 2020",
+		threads: [
+			`&bullet; <a href="https://www.pokemon.com/us/pokemon-news/2020-pokemon-video-game-championships-vgc-format-rules/">VGC 2020 Rules</a>`,
+		],
+
+		mod: 'gen8',
+		gameType: 'doubles',
+		maxForcedLevel: 50,
+		teamLength: {
+			validate: [4, 6],
+			battle: 4,
+		},
+		ruleset: ['Obtainable', 'Standard GBU', 'VGC Timer'],
+		banlist: ['Alcremie-Gmax', 'Appletun-Gmax', 'Charizard-Gmax ++ Solar Power', 'Coalossal-Gmax', 'Copperajah-Gmax', 'Duraludon-Gmax', 'Flapple-Gmax', 'Garbodor-Gmax', 'Gengar-Gmax', 'Grimmsnarl-Gmax', 'Hatterene-Gmax', 'Kingler-Gmax', 'Lapras-Gmax', 'Machamp-Gmax', 'Melmetal-Gmax', 'Orbeetle-Gmax', 'Toxtricity-Gmax'],
+		minSourceGen: 8,
+	},
+	{
 		name: "[Gen 8] Battle Stadium Doubles",
 
 		mod: 'gen8',
@@ -440,7 +457,7 @@ let Formats = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['-Nonexistent', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Endless Battle Clause'],
+		ruleset: ['-Nonexistent', 'Obtainable Formes', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Endless Battle Clause'],
 		banlist: [
 			'Arena Trap', 'Contrary', 'Gorilla Tactics', 'Huge Power', 'Illusion', 'Innards Out', 'Libero', 'Magnet Pull', 'Moody',
 			'Neutralizing Gas', 'Parental Bond', 'Protean', 'Pure Power', 'Shadow Tag', 'Stakeout', 'Water Bubble', 'Wonder Guard',
@@ -486,7 +503,7 @@ let Formats = [
 		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Dynamax Clause', 'Sleep Clause Mod', 'Endless Battle Clause'],
 		banlist: [
 			'Beedrillite', 'Blazikenite', 'Gengarite', 'Kangaskhanite', 'Mawilite', 'Medichamite', 'Pidgeotite',
-			'AG', 'Gothitelle', 'Gothorita', 'Zacian-Crowned', 'Baton Pass', 'Electrify',
+			'AG', 'Gothitelle', 'Gothorita', 'Zacian', 'Baton Pass', 'Electrify',
 		],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}} */
@@ -495,7 +512,7 @@ let Formats = [
 				let item = this.dex.getItem(set.item);
 				if (!item || !item.megaStone) continue;
 				let template = this.dex.getTemplate(set.name || set.species);
-				if (format.banlist.includes('AG') && ['Eternatus', 'Zacian', 'Zamazenta'].includes(template.baseSpecies)) {
+				if (format.banlist.includes('AG') && ['Eternatus', 'Zamazenta'].includes(template.baseSpecies)) {
 					return [`${template.species} is not allowed to hold ${item.name}.`];
 				}
 				if (itemTable[item.id]) return ["You are limited to one of each mega stone.", "(You have more than one " + item.name + ")"];

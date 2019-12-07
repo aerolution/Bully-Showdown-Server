@@ -621,7 +621,7 @@ function runDexsearch(target, cmd, canAll, message) {
 		let template = mod.getTemplate(pokemon);
 		let megaSearchResult = (megaSearch === null || (megaSearch === true && template.isMega) || (megaSearch === false && !template.isMega));
 		let gmaxSearchResult = (gmaxSearch === null || (gmaxSearch === true && template.isGigantamax) || (gmaxSearch === false && !template.isGigantamax));
-		if (template.gen <= maxGen && (nationalSearch || (template.tier !== 'Unreleased' && template.tier !== 'Illegal')) && (!template.tier.startsWith("CAP") || capSearch) && megaSearchResult && gmaxSearchResult) {
+		if (template.gen <= maxGen && ((nationalSearch && !["Custom", "Glitch", "Pokestar"].includes(template.isNonstandard)) || (template.tier !== 'Unreleased' && template.tier !== 'Illegal')) && (!template.tier.startsWith("CAP") || capSearch) && megaSearchResult && gmaxSearchResult) {
 			dex[pokemon] = template;
 		}
 	}
@@ -767,7 +767,7 @@ function runDexsearch(target, cmd, canAll, message) {
 			}
 			if (matched) continue;
 
-			let validator = TeamValidator.get(`gen${maxGen}ou`);
+			let validator = TeamValidator.get(nationalSearch ? `gen8nationaldexag` : `gen${maxGen}ou`);
 			let pokemonSource = validator.allSources();
 			for (let move in alts.moves) {
 				if (!validator.checkLearnset(move, mon, pokemonSource) === alts.moves[move]) {

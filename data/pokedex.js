@@ -9268,7 +9268,7 @@ let BattlePokedex = {
 		prevo: "darumaka",
 		evoLevel: 35,
 		eggGroups: ["Field"],
-		otherFormes: ["darmanitanzen", "darmanitangalar", "darmanitanzengalar"],
+		otherFormes: ["darmanitanzen", "darmanitangalar", "darmanitangalarzen"],
 	},
 	darmanitanzen: {
 		num: 555,
@@ -9302,11 +9302,11 @@ let BattlePokedex = {
 		evoItem: "Ice Stone",
 		eggGroups: ["Field"],
 	},
-	darmanitanzengalar: {
+	darmanitangalarzen: {
 		num: 555,
-		species: "Darmanitan-Zen-Galar",
+		species: "Darmanitan-Galar-Zen",
 		baseSpecies: "Darmanitan",
-		forme: "Zen-Galar",
+		forme: "Galar-Zen",
 		types: ["Ice", "Fire"],
 		baseStats: {hp: 105, atk: 160, def: 55, spa: 30, spd: 55, spe: 135},
 		abilities: {0: "Zen Mode"},
@@ -14372,8 +14372,7 @@ let BattlePokedex = {
 		color: "Blue",
 		prevo: "clobbopus",
 		evoType: "levelMove",
-		// TODO: Figure out evolution move
-		evoMove: "",
+		evoMove: "Taunt",
 		eggGroups: ["Water 1", "Human-Like"],
 	},
 	sinistea: {
@@ -14628,9 +14627,8 @@ let BattlePokedex = {
 		weightkg: 0.5,
 		color: "White",
 		prevo: "milcery",
-		evoType: "levelHold",
-		// TODO
-		evoItem: "cloversweet",
+		evoType: "other",
+		evoCondition: "spin while holding a Sweet",
 		eggGroups: ["Fairy", "Amorphous"],
 		otherFormes: ["alcremiegmax"],
 		otherForms: ["alcremierubycream", "alcremiematcha", "alcremiemint", "alcremielemon", "alcremiesalted", "alcremierubyswirl", "alcremiecaramel", "alcremierainbow"],

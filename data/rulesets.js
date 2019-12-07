@@ -87,6 +87,38 @@ let BattleFormats = {
 		desc: "Makes sure the team is possible to obtain in-game.",
 		ruleset: ['Obtainable Moves', 'Obtainable Abilities', 'Obtainable Formes', 'Obtainable Misc'],
 		banlist: ['Unreleased', 'Nonexistent'],
+		// Mostly hardcoded in team-validator.ts
+		onValidateTeam(team, format) {
+			let kyuremCount = 0;
+			let necrozmaDMCount = 0;
+			let necrozmaDWCount = 0;
+			for (const set of team) {
+				if (set.species === 'Kyurem-White' || set.species === 'Kyurem-Black') {
+					if (kyuremCount > 0) {
+						return ['You cannot have more than one Kyurem-Black/Kyurem-White.'];
+					}
+					kyuremCount++;
+				}
+				if (set.species === 'Keldeo-Resolute') {
+					if (!set.moves.includes('secretsword')) {
+						return ['Keldeo-Resolute needs to have the move Secret Sword.'];
+					}
+				}
+				if (set.species === 'Necrozma-Dusk-Mane') {
+					if (necrozmaDMCount > 0) {
+						return ['You cannot have more than one Necrozma-Dusk-Mane.'];
+					}
+					necrozmaDMCount++;
+				}
+				if (set.species === 'Necrozma-Dawn-Wings') {
+					if (necrozmaDWCount > 0) {
+						return ['You cannot have more than one Necrozma-Dawn-Wings.'];
+					}
+					necrozmaDWCount++;
+				}
+			}
+			return [];
+		},
 	},
 	obtainablemoves: {
 		effectType: 'ValidatorRule',
@@ -109,33 +141,7 @@ let BattleFormats = {
 		effectType: 'ValidatorRule',
 		name: 'Obtainable Formes',
 		desc: "Makes sure in-battle formes only appear in-battle.",
-		// Mostly hardcoded in team-validator.ts
-		onValidateTeam(team) {
-			let kyuremCount = 0;
-			let necrozmaDMCount = 0;
-			let necrozmaDWCount = 0;
-			for (const set of team) {
-				if (set.species === 'Kyurem-White' || set.species === 'Kyurem-Black') {
-					if (kyuremCount > 0) {
-						return ['You cannot have more than one Kyurem-Black/Kyurem-White.'];
-					}
-					kyuremCount++;
-				}
-				if (set.species === 'Necrozma-Dusk-Mane') {
-					if (necrozmaDMCount > 0) {
-						return ['You cannot have more than one Necrozma-Dusk-Mane.'];
-					}
-					necrozmaDMCount++;
-				}
-				if (set.species === 'Necrozma-Dawn-Wings') {
-					if (necrozmaDWCount > 0) {
-						return ['You cannot have more than one Necrozma-Dawn-Wings.'];
-					}
-					necrozmaDWCount++;
-				}
-			}
-			return [];
-		},
+		// Hardcoded in team-validator.ts
 	},
 	obtainablemisc: {
 		effectType: 'ValidatorRule',
@@ -784,7 +790,7 @@ let BattleFormats = {
 		desc: "Allows Pok&eacute;mon to use any move that they or a previous evolution/out-of-battle forme share a type with",
 		checkLearnset(move, template, setSources, set) {
 			const restrictedMoves = this.format.restrictedMoves || [];
-			if (!restrictedMoves.includes(move.name) && !move.isNonstandard && !move.id.startsWith('max')) {
+			if (!restrictedMoves.includes(move.name) && !move.isNonstandard && !move.isMax) {
 				let dex = this.dex;
 				let types = template.types;
 				let baseTemplate = dex.getTemplate(template.baseSpecies);

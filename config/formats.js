@@ -1945,6 +1945,7 @@ let Formats = [
 		],
 
 		mod: 'gen2',
+		searchShow: false,
 		teamLength: {
 			validate: [1, 3],
 			battle: 1,

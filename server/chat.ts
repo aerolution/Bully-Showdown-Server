@@ -1152,6 +1152,7 @@ export const Chat = new class {
 	commands: ChatCommands = undefined!;
 	basePages: PageTable = undefined!;
 	pages: PageTable = undefined!;
+	readonly destroyHandlers: (() => void)[] = [];
 	roomSettings: SettingsHandler[] = [];
 
 	/*********************************************************

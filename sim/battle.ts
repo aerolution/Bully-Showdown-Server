@@ -2036,7 +2036,8 @@ export class Battle {
 		} else {
 			attack = attacker.calculateStat(attackStat, atkBoosts);
 		}
-
+		
+		attackStat = (category === 'Physical' ? 'atk' : 'spa');
 		defense = defender.calculateStat(defenseStat, defBoosts);
 
 		// Apply Stat Modifiers

@@ -574,6 +574,7 @@ let Formats = [
 		onSwitchIn(pokemon) {
 			pokemon.canDynamax = true;
 			pokemon.addVolatile('dynamax');
+			pokemon.volatiles['dynamax'].duration = 0;
 			pokemon.canDynamax = false;
 		},
 	},

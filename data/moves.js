@@ -836,7 +836,7 @@ let BattleMovedex = {
 			this.hint("Only a Pokemon whose form is Morpeko or Morpeko-Hangry can use this move.");
 			return null;
 		},
-		onModifyMove(move, pokemon) {
+		onModifyType(move, pokemon) {
 			if (pokemon.template.species === 'Morpeko-Hangry') {
 				move.type = 'Dark';
 			} else {
@@ -1216,7 +1216,6 @@ let BattleMovedex = {
 			return move.basePower;
 		},
 		category: "Physical",
-		// TODO: Check to see if power doubles against Gigantamax
 		desc: "Deals double damage against Dynamax and Gigantamax Pokemon.",
 		shortDesc: "Double damage against Dynamax/Gigantamax.",
 		id: "behemothbash",
@@ -4109,6 +4108,12 @@ let BattleMovedex = {
 				move.multihit = 1;
 				move.spreadModifier = 1;
 				move.target = "allAdjacentFoes";
+				for (const currentTarget of target.side.active) {
+					if (currentTarget.volatiles['protect'] || !currentTarget.runImmunity('Dragon') || currentTarget.fainted) {
+						move.multihit = 2;
+						break;
+					}
+				}
 			}
 		},
 		target: "normal",
@@ -4350,7 +4355,6 @@ let BattleMovedex = {
 			return move.basePower;
 		},
 		category: "Special",
-		// TODO: Check to see if power doubles against Gigantamax
 		desc: "Deals double damage against Dynamax and Gigantamax Pokemon.",
 		shortDesc: "Double damage against Dynamax/Gigantamax.",
 		id: "dynamaxcannon",
@@ -4583,8 +4587,8 @@ let BattleMovedex = {
 			onStart(target) {
 				this.add('-singleturn', target, 'move: Electrify');
 			},
-			onModifyMovePriority: -2,
-			onModifyMove(move) {
+			onModifyTypePriority: -2,
+			onModifyType(move) {
 				if (move.id !== 'struggle') {
 					this.debug('Electrify making move type electric');
 					move.type = 'Electric';
@@ -6344,7 +6348,7 @@ let BattleMovedex = {
 		accuracy: 100,
 		basePower: 0,
 		basePowerCallback(pokemon) {
-			return Math.floor(((255 - pokemon.happiness) * 10) / 25) || 1;
+			return Math.floor(((160 - pokemon.happiness) * 100) / 156) || 1;
 		},
 		category: "Physical",
 		desc: "Power is equal to the greater of ((255 - user's Happiness) * 2/5), rounded down, or 1.",
@@ -7093,6 +7097,7 @@ let BattleMovedex = {
 		isMax: "Snorlax",
 		self: {
 			onHit(source) {
+				if (this.random(2) === 0) return;
 				for (let pokemon of source.side.active) {
 					if (!pokemon.item && pokemon.lastItem && this.dex.getItem(pokemon.lastItem).isBerry) {
 						let item = pokemon.lastItem;
@@ -7193,14 +7198,15 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {},
 		isMax: "Grimmsnarl",
-		self: {
-			onHit(source) {
-				for (let pokemon of source.side.foe.active) {
-					if (!pokemon.status && pokemon.runStatusImmunity('slp')) {
-						pokemon.addVolatile('yawn');
-					}
-				}
-			},
+		onHit(target) {
+			if (target.status || !target.runStatusImmunity('slp')) return;
+			if (this.random(2) === 0) return;
+			target.addVolatile('yawn');
+		},
+		onAfterSubDamage(damage, target) {
+			if (target.status || !target.runStatusImmunity('slp')) return;
+			if (this.random(2) === 0) return;
+			target.addVolatile('yawn');
 		},
 		secondary: null,
 		target: "adjacentFoe",
@@ -8642,7 +8648,7 @@ let BattleMovedex = {
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		onModifyMove(move, pokemon) {
+		onModifyType(move, pokemon) {
 			move.type = pokemon.hpType || 'Dark';
 		},
 		secondary: null,
@@ -9796,8 +9802,8 @@ let BattleMovedex = {
 			onStart(target) {
 				this.add('-fieldactivate', 'move: Ion Deluge');
 			},
-			onModifyMovePriority: -2,
-			onModifyMove(move) {
+			onModifyTypePriority: -2,
+			onModifyType(move) {
 				if (move.type === 'Normal') {
 					move.type = 'Electric';
 					this.debug(move.name + "'s type changed to Electric");
@@ -9907,7 +9913,7 @@ let BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		onModifyMove(move, pokemon) {
+		onModifyType(move, pokemon) {
 			if (pokemon.ignoringItem()) return;
 			const item = pokemon.getItem();
 			if (item.id && item.onPlate && !item.zMove) {
@@ -12685,7 +12691,7 @@ let BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
-		onModifyMove(move, pokemon) {
+		onModifyType(move, pokemon) {
 			if (pokemon.ignoringItem()) return;
 			move.type = this.runEvent('Memory', pokemon, null, move, 'Normal');
 		},
@@ -12751,12 +12757,17 @@ let BattleMovedex = {
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
+		onModifyType(move, pokemon) {
+			if (pokemon.ignoringItem()) return;
+			let item = pokemon.getItem();
+			if (!item.naturalGift) return;
+			move.type = item.naturalGift.type;
+		},
 		onPrepareHit(target, pokemon, move) {
 			if (pokemon.ignoringItem()) return false;
 			let item = pokemon.getItem();
 			if (!item.naturalGift) return false;
 			move.basePower = item.naturalGift.basePower;
-			move.type = item.naturalGift.type;
 			pokemon.setItem('');
 			pokemon.lastItem = item.id;
 			pokemon.usedItemThisTurn = true;
@@ -15274,7 +15285,7 @@ let BattleMovedex = {
 		accuracy: 100,
 		basePower: 0,
 		basePowerCallback(pokemon) {
-			return Math.floor((pokemon.happiness * 10) / 25) || 1;
+			return Math.floor((pokemon.happiness * 100) / 156) || 1;
 		},
 		category: "Physical",
 		desc: "Power is equal to the greater of (user's Happiness * 2/5), rounded down, or 1.",
@@ -15305,7 +15316,7 @@ let BattleMovedex = {
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, dance: 1},
-		onModifyMove(move, pokemon) {
+		onModifyType(move, pokemon) {
 			let type = pokemon.types[0];
 			if (type === "Bird") type = "???";
 			move.type = type;
@@ -16800,7 +16811,7 @@ let BattleMovedex = {
 		flags: {protect: 1, mirror: 1, authentic: 1, mystery: 1},
 		onTryHit(target, source) {
 			let bannedAbilities = ['battlebond', 'comatose', 'disguise', 'illusion', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'wonderguard', 'zenmode'];
-			if (bannedAbilities.includes(target.ability) || bannedAbilities.includes(source.ability)) {
+			if (target.volatiles['dynamax'] || bannedAbilities.includes(target.ability) || bannedAbilities.includes(source.ability)) {
 				return false;
 			}
 		},
@@ -19401,7 +19412,7 @@ let BattleMovedex = {
 		pp: 5,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		onModifyMove(move, pokemon) {
+		onModifyType(move, pokemon) {
 			if (pokemon.ignoringItem()) return;
 			move.type = this.runEvent('Drive', pokemon, null, move, 'Normal');
 		},
@@ -20815,26 +20826,42 @@ let BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {bullet: 1, protect: 1, mirror: 1},
-		onModifyMove(move, pokemon) {
+		onModifyType(move, pokemon) {
 			switch (this.field.effectiveWeather()) {
 			case 'sunnyday':
 			case 'desolateland':
 				if (pokemon.item === "utilityumbrella") break;
 				move.type = 'Fire';
-				move.basePower *= 2;
 				break;
 			case 'raindance':
 			case 'primordialsea':
 				if (pokemon.item === "utilityumbrella") break;
 				move.type = 'Water';
-				move.basePower *= 2;
 				break;
 			case 'sandstorm':
 				move.type = 'Rock';
-				move.basePower *= 2;
 				break;
 			case 'hail':
 				move.type = 'Ice';
+				break;
+			}
+		},
+		onModifyMove(move, pokemon) {
+			switch (this.field.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				if (pokemon.item === "utilityumbrella") break;
+				move.basePower *= 2;
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				if (pokemon.item === "utilityumbrella") break;
+				move.basePower *= 2;
+				break;
+			case 'sandstorm':
+				move.basePower *= 2;
+				break;
+			case 'hail':
 				move.basePower *= 2;
 				break;
 			}

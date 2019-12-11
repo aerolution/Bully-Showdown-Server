@@ -96,7 +96,7 @@ export class BasicEffect implements EffectData {
 	 * Is this item/move/ability/pokemon unreleased? True if there's
 	 * no known way to get access to it without cheating.
 	 */
-	isUnreleased: boolean | 'Past' | 'PastMove';
+	isUnreleased: boolean | 'Past';
 	/**
 	 * A shortened form of the description of this effect.
 	 * Not all effects have this.
@@ -567,7 +567,7 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 	/** Color. */
 	readonly color: string;
 	/** Does this Pokemon have an unreleased hidden ability? */
-	readonly unreleasedHidden: boolean | 'Past' | 'PastMove';
+	readonly unreleasedHidden: boolean | 'Past';
 	/**
 	 * Is it only possible to get the hidden ability on a male pokemon?
 	 * This is mainly relevant to Gen 5.
@@ -600,11 +600,11 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 	 */
 	readonly learnset?: {[moveid: string]: MoveSource[]};
 	/** Source of learnsets for Pokemon that lack their own */
-	readonly inheritsLearnsetFrom: ID;
+	readonly inheritsFrom: string | string[];
 	/** True if the only way to get this pokemon is from events. */
 	readonly eventOnly: boolean;
 	/** List of event data for each event. */
-	readonly eventPokemon?: EventInfo[] ;
+	readonly eventPokemon?: EventInfo[];
 
 	/**
 	 * Singles Tier. The Pokemon's location in the Smogon tier system.
@@ -670,10 +670,7 @@ export class Template extends BasicEffect implements Readonly<BasicEffect & Temp
 		this.isMega = !!(this.forme && ['Mega', 'Mega-X', 'Mega-Y'].includes(this.forme)) || undefined;
 		this.isGigantamax = data.isGigantamax || undefined;
 		this.battleOnly = !!data.battleOnly || !!this.isMega || !!this.isGigantamax || undefined;
-		this.inheritsLearnsetFrom = data.inheritsLearnsetFrom || undefined;
-		if (this.forme === 'Gmax') {
-			this.inheritsLearnsetFrom = toID(data.baseSpecies);
-		}
+		this.inheritsFrom = data.inheritsFrom || undefined;
 
 		if (!this.gen && this.num >= 1) {
 			if (this.num >= 810 || this.forme.endsWith('Galar') || this.forme === 'Gmax') {

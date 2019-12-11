@@ -47,7 +47,7 @@ Please contact an Admin, Leader or Moderator here or on Discord.`);
 	
 	sportsavatar(target, room, user, connection) {
 		return connection.popup(`**Custom Avatars**:
-You can request a custom avatar by simply providing us an 80x80 image.
+You can request a custom avatar by simply providing us with an 80x80 image.
 Please contact an Admin, Leader or Moderator here or on Discord.`);
 	},
 	

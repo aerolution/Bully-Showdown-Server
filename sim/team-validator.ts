@@ -1078,27 +1078,22 @@ export class TeamValidator {
 				// Impossible!
 				throw new Error(`Species ${template.name} has a required ability despite not being a battle-only forme; it should just be in its abilities table.`);
 			}
-			if (template.requiredItems) {
-				if (!template.requiredItems.includes(item.name)) {
-					// Memory/Drive/Griseous Orb/Plate/Z-Crystal - Forme mismatch
-					if (dex.gen <= 7 || !['Download', 'Multitype', 'RKS System'].includes(template.abilities[0]) || set.ability === template.abilities[0]) {
+			if (template.requiredItems && !template.requiredItems.includes(item.name)) {
+				if (dex.gen >= 8 && (template.baseSpecies === 'Arceus' || template.baseSpecies === 'Silvally')) {
+					// Arceus/Silvally formes in gen 8 only require the item with Multitype/RKS System
+					if (set.ability === template.abilities[0]) {
 						problems.push(`${name} needs to hold ${Chat.toOrList(template.requiredItems)}.`);
 					}
-				}
-				// In gen 8, non-aesthetic formes always require the real ability
-				if (dex.gen > 7 && !['Download', 'Multitype', 'RKS System'].includes(template.abilities[0]) && set.ability !== template.abilities[0]) {
-					problems.push(`${name} needs to have ${template.abilities[0]}.`);
+				} else {
+					// Memory/Drive/Griseous Orb/Plate/Z-Crystal - Forme mismatch
+					problems.push(`${name} needs to hold ${Chat.toOrList(template.requiredItems)}.`);
 				}
 			}
 
 			// Mismatches between the set forme (if not base) and the item signature forme will have been rejected already.
-			// It only remains to assign the right forme to a set with the base species (Arceus/Genesect/Giratina/Silvally/Zacian/Zamazenta).
+			// It only remains to assign the right forme to a set with the base species (Arceus/Genesect/Giratina/Silvally).
 			if (item.forcedForme && template.species === dex.getTemplate(item.forcedForme).baseSpecies) {
 				set.species = item.forcedForme;
-				// Assign the correct ability
-				if (dex.gen > 7 && !['Download', 'Multitype', 'RKS System'].includes(template.abilities[0])) {
-					set.ability = template.abilities[0];
-				}
 			}
 		}
 
@@ -1112,6 +1107,16 @@ export class TeamValidator {
 					set.species = cosplay[moveid];
 					break;
 				}
+			}
+		}
+
+		const crowned: {[k: string]: string} = {
+			'Zacian-Crowned': 'behemothblade', 'Zamazenta-Crowned': 'behemothbash',
+		};
+		if (set.species in crowned) {
+			const ironHead = set.moves.indexOf('ironhead');
+			if (ironHead >= 0) {
+				set.moves[ironHead] = crowned[set.species];
 			}
 		}
 		return problems;

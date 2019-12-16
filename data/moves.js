@@ -1006,8 +1006,8 @@ let BattleMovedex = {
 	},
 	"baddybad": {
 		num: 737,
-		accuracy: 100,
-		basePower: 90,
+		accuracy: 95,
+		basePower: 80,
 		category: "Special",
 		desc: "This move summons Reflect for 5 turns upon use.",
 		shortDesc: "Summons Reflect.",
@@ -1794,7 +1794,7 @@ let BattleMovedex = {
 	"bouncybubble": {
 		num: 733,
 		accuracy: 100,
-		basePower: 90,
+		basePower: 60,
 		category: "Special",
 		desc: "The user recovers 1/2 the HP lost by the target, rounded half up. If Big Root is held by the user, the HP recovered is 1.3x normal, rounded half down.",
 		shortDesc: "User recovers 50% of the damage dealt.",
@@ -1802,7 +1802,7 @@ let BattleMovedex = {
 		isNonstandard: "LGPE",
 		isViable: true,
 		name: "Bouncy Bubble",
-		pp: 15,
+		pp: 20,
 		priority: 0,
 		flags: {protect: 1, heal: 1},
 		drain: [1, 2],
@@ -2162,7 +2162,7 @@ let BattleMovedex = {
 	"buzzybuzz": {
 		num: 734,
 		accuracy: 100,
-		basePower: 90,
+		basePower: 60,
 		category: "Special",
 		desc: "Has a 100% chance to paralyze the foe.",
 		shortDesc: "100% chance to paralyze the foe.",
@@ -2170,7 +2170,7 @@ let BattleMovedex = {
 		isNonstandard: "LGPE",
 		isViable: true,
 		name: "Buzzy Buzz",
-		pp: 15,
+		pp: 20,
 		priority: 0,
 		flags: {protect: 1},
 		secondary: {
@@ -3503,8 +3503,12 @@ let BattleMovedex = {
 				this.add('-singlemove', pokemon, 'Destiny Bond');
 			},
 			onFaint(target, source, effect) {
-				if (!source || !effect || target.side === source.side || source.volatiles['dynamax']) return;
+				if (!source || !effect || target.side === source.side) return;
 				if (effect.effectType === 'Move' && !effect.isFutureMove) {
+					if (source.volatiles['dynamax']) {
+						this.add('-hint', "Dynamaxed Pokémon are immune to Destiny Bond.");
+						return;
+					}
 					this.add('-activate', target, 'move: Destiny Bond');
 					source.faint();
 				}
@@ -4874,7 +4878,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, reflectable: 1, mirror: 1, mystery: 1},
 		onTryHit(target, source) {
-			if (target === source) return false;
+			if (target === source || target.volatiles['dynamax']) return false;
 			let bannedTargetAbilities = ['battlebond', 'comatose', 'disguise', 'multitype', 'powerconstruct', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'truant'];
 			let bannedSourceAbilities = ['battlebond', 'comatose', 'disguise', 'flowergift', 'forecast', 'illusion', 'imposter', 'multitype', 'powerconstruct', 'powerofalchemy', 'receiver', 'rkssystem', 'schooling', 'shieldsdown', 'stancechange', 'trace', 'zenmode'];
 			if (bannedTargetAbilities.includes(target.ability) || bannedSourceAbilities.includes(source.ability) || target.ability === source.ability) {
@@ -6282,8 +6286,8 @@ let BattleMovedex = {
 	},
 	"freezyfrost": {
 		num: 739,
-		accuracy: 100,
-		basePower: 90,
+		accuracy: 90,
+		basePower: 100,
 		category: "Special",
 		desc: "Resets the stat stages of all active Pokemon to 0.",
 		shortDesc: "Eliminates all stat changes.",
@@ -6291,7 +6295,7 @@ let BattleMovedex = {
 		isNonstandard: "LGPE",
 		isViable: true,
 		name: "Freezy Frost",
-		pp: 15,
+		pp: 10,
 		priority: 0,
 		flags: {protect: 1},
 		onHit() {
@@ -6775,8 +6779,8 @@ let BattleMovedex = {
 	},
 	"glitzyglow": {
 		num: 736,
-		accuracy: 100,
-		basePower: 90,
+		accuracy: 95,
+		basePower: 80,
 		category: "Special",
 		desc: "This move summons Light Screen for 5 turns upon use.",
 		shortDesc: "Summons Light Screen.",
@@ -7845,15 +7849,15 @@ let BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "Raises the user's Attack and Special Attack by 1 stage. If the weather is Sunny Day, raises the user's Attack and Special Attack by 2 stages.",
+		desc: "Raises the user's Attack and Special Attack by 1 stage. If the weather is Sunny Day or Desolate Land, this move raises the user's Attack and Special Attack by 2 stages. If the user is holding Utility Umbrella, this move will only raise the user's Attack and Special Attack by 1 stage, even if the weather is Sunny Day or Desolate Land.",
 		shortDesc: "Raises user's Attack and Sp. Atk by 1; 2 in Sun.",
 		id: "growth",
 		name: "Growth",
 		pp: 20,
 		priority: 0,
 		flags: {snatch: 1},
-		onModifyMove(move) {
-			if (this.field.isWeather(['sunnyday', 'desolateland'])) move.boosts = {atk: 2, spa: 2};
+		onModifyMove(move, pokemon) {
+			if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) move.boosts = {atk: 2, spa: 2};
 		},
 		boosts: {
 			atk: 1,
@@ -9126,7 +9130,7 @@ let BattleMovedex = {
 		accuracy: 70,
 		basePower: 110,
 		category: "Special",
-		desc: "Has a 30% chance to confuse the target. This move can hit a target using Bounce, Fly, or Sky Drop, or is under the effect of Sky Drop. If the weather is Primordial Sea or Rain Dance, this move does not check accuracy. If the weather is Desolate Land or Sunny Day, this move's accuracy is 50%.",
+		desc: "Has a 30% chance to confuse the target. This move can hit a target using Bounce, Fly, or Sky Drop, or is under the effect of Sky Drop. If the weather is Primordial Sea or Rain Dance, this move does not check accuracy. If the weather is Desolate Land or Sunny Day, this move's accuracy is 50%. If this move is used against a Pokemon holding Utility Umbrella, this move's accuracy remains at 70%.",
 		shortDesc: "30% chance to confuse target. Can't miss in rain.",
 		id: "hurricane",
 		isViable: true,
@@ -9134,11 +9138,16 @@ let BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, distance: 1},
-		onModifyMove(move) {
-			if (this.field.isWeather(['raindance', 'primordialsea'])) {
+		onModifyMove(move, pokemon, target) {
+			switch (pokemon.effectiveWeather()) {
+			case 'raindance':
+			case 'primordialsea':
 				move.accuracy = true;
-			} else if (this.field.isWeather(['sunnyday', 'desolateland'])) {
+				break;
+			case 'sunnyday':
+			case 'desolateland':
 				move.accuracy = 50;
+				break;
 			}
 		},
 		secondary: {
@@ -12501,7 +12510,7 @@ let BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "The user restores 1/2 of its maximum HP if Delta Stream or no weather conditions are in effect, 2/3 of its maximum HP if the weather is Desolate Land or Sunny Day, and 1/4 of its maximum HP if the weather is Hail, Primordial Sea, Rain Dance, or Sandstorm, all rounded half down.",
+		desc: "The user restores 1/2 of its maximum HP if Delta Stream or no weather conditions are in effect or if the user is holding Utility Umbrella, 2/3 of its maximum HP if the weather is Desolate Land or Sunny Day, and 1/4 of its maximum HP if the weather is Hail, Primordial Sea, Rain Dance, or Sandstorm, all rounded half down.",
 		shortDesc: "Heals the user by a weather-dependent amount.",
 		id: "moonlight",
 		isViable: true,
@@ -12511,10 +12520,17 @@ let BattleMovedex = {
 		flags: {snatch: 1, heal: 1},
 		onHit(pokemon) {
 			let factor = 0.5;
-			if (this.field.isWeather(['sunnyday', 'desolateland'])) {
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
 				factor = 0.667;
-			} else if (this.field.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
+				break;
+			case 'raindance':
+			case 'primordialsea':
+			case 'sandstorm':
+			case 'hail':
 				factor = 0.25;
+				break;
 			}
 			return !!this.heal(this.modify(pokemon.maxhp, factor));
 		},
@@ -12529,7 +12545,7 @@ let BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "The user restores 1/2 of its maximum HP if Delta Stream or no weather conditions are in effect, 2/3 of its maximum HP if the weather is Desolate Land or Sunny Day, and 1/4 of its maximum HP if the weather is Hail, Primordial Sea, Rain Dance, or Sandstorm, all rounded half down.",
+		desc: "The user restores 1/2 of its maximum HP if Delta Stream or no weather conditions are in effect or if the user is holding Utility Umbrella, 2/3 of its maximum HP if the weather is Desolate Land or Sunny Day, and 1/4 of its maximum HP if the weather is Hail, Primordial Sea, Rain Dance, or Sandstorm, all rounded half down.",
 		shortDesc: "Heals the user by a weather-dependent amount.",
 		id: "morningsun",
 		isViable: true,
@@ -12539,10 +12555,17 @@ let BattleMovedex = {
 		flags: {snatch: 1, heal: 1},
 		onHit(pokemon) {
 			let factor = 0.5;
-			if (this.field.isWeather(['sunnyday', 'desolateland'])) {
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
 				factor = 0.667;
-			} else if (this.field.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
+				break;
+			case 'raindance':
+			case 'primordialsea':
+			case 'sandstorm':
+			case 'hail':
 				factor = 0.25;
+				break;
 			}
 			return !!this.heal(this.modify(pokemon.maxhp, factor));
 		},
@@ -15961,8 +15984,8 @@ let BattleMovedex = {
 	},
 	"sappyseed": {
 		num: 738,
-		accuracy: 100,
-		basePower: 90,
+		accuracy: 90,
+		basePower: 100,
 		category: "Physical",
 		desc: "This move summons Leech Seed on the foe.",
 		shortDesc: "Summons Leech Seed.",
@@ -15970,7 +15993,7 @@ let BattleMovedex = {
 		isNonstandard: "LGPE",
 		isViable: true,
 		name: "Sappy Seed",
-		pp: 15,
+		pp: 10,
 		priority: 0,
 		flags: {protect: 1, reflectable: 1},
 		onHit(target, source) {
@@ -16738,7 +16761,7 @@ let BattleMovedex = {
 	"sizzlyslide": {
 		num: 735,
 		accuracy: 100,
-		basePower: 90,
+		basePower: 60,
 		category: "Physical",
 		desc: "Has a 100% chance to burn the foe.",
 		shortDesc: "100% chance to burn the foe.",
@@ -16746,7 +16769,7 @@ let BattleMovedex = {
 		isNonstandard: "LGPE",
 		isViable: true,
 		name: "Sizzly Slide",
-		pp: 15,
+		pp: 20,
 		priority: 0,
 		flags: {contact: 1, protect: 1, defrost: 1},
 		secondary: {
@@ -17520,7 +17543,7 @@ let BattleMovedex = {
 				return;
 			}
 			this.add('-prepare', attacker, move.name, defender);
-			if (this.field.isWeather(['sunnyday', 'desolateland']) && attacker.item !== "utilityumbrella") {
+			if (['sunnyday', 'desolateland'].includes(attacker.effectiveWeather())) {
 				this.attrLastMove('[still]');
 				this.addMove('-anim', attacker, move.name, defender);
 				return;
@@ -17532,8 +17555,7 @@ let BattleMovedex = {
 			return null;
 		},
 		onBasePower(basePower, pokemon, target) {
-			if (pokemon.item === "utilityumbrella") return;
-			if (this.field.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
+			if (['raindance', 'primordialsea', 'sandstorm', 'hail'].includes(pokemon.effectiveWeather())) {
 				this.debug('weakened by weather');
 				return this.chainModify(0.5);
 			}
@@ -17560,7 +17582,7 @@ let BattleMovedex = {
 				return;
 			}
 			this.add('-prepare', attacker, move.name, defender);
-			if (this.field.isWeather(['sunnyday', 'desolateland']) && attacker.item !== "utilityumbrella") {
+			if (['sunnyday', 'desolateland'].includes(attacker.effectiveWeather())) {
 				this.attrLastMove('[still]');
 				this.addMove('-anim', attacker, move.name, defender);
 				return;
@@ -17572,8 +17594,7 @@ let BattleMovedex = {
 			return null;
 		},
 		onBasePower(basePower, pokemon, target) {
-			if (pokemon.item === "utilityumbrella") return;
-			if (this.field.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
+			if (['raindance', 'primordialsea', 'sandstorm', 'hail'].includes(pokemon.effectiveWeather())) {
 				this.debug('weakened by weather');
 				return this.chainModify(0.5);
 			}
@@ -17684,8 +17705,8 @@ let BattleMovedex = {
 	},
 	"sparklyswirl": {
 		num: 740,
-		accuracy: 100,
-		basePower: 90,
+		accuracy: 120,
+		basePower: 85,
 		category: "Special",
 		desc: "Every Pokemon in the user's party is cured of its major status condition.",
 		shortDesc: "Cures the user's party of all status conditions.",
@@ -17693,7 +17714,7 @@ let BattleMovedex = {
 		isNonstandard: "LGPE",
 		isViable: true,
 		name: "Sparkly Swirl",
-		pp: 15,
+		pp: 5,
 		priority: 0,
 		flags: {protect: 1},
 		self: {
@@ -19096,7 +19117,7 @@ let BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "The user restores 1/2 of its maximum HP if Delta Stream or no weather conditions are in effect, 2/3 of its maximum HP if the weather is Desolate Land or Sunny Day, and 1/4 of its maximum HP if the weather is Hail, Primordial Sea, Rain Dance, or Sandstorm, all rounded half down.",
+		desc: "The user restores 1/2 of its maximum HP if Delta Stream or no weather conditions are in effect or if the user is holding Utility Umbrella, 2/3 of its maximum HP if the weather is Desolate Land or Sunny Day, and 1/4 of its maximum HP if the weather is Hail, Primordial Sea, Rain Dance, or Sandstorm, all rounded half down.",
 		shortDesc: "Heals the user by a weather-dependent amount.",
 		id: "synthesis",
 		isViable: true,
@@ -19106,10 +19127,17 @@ let BattleMovedex = {
 		flags: {snatch: 1, heal: 1},
 		onHit(pokemon) {
 			let factor = 0.5;
-			if (this.field.isWeather(['sunnyday', 'desolateland'])) {
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
 				factor = 0.667;
-			} else if (this.field.isWeather(['raindance', 'primordialsea', 'sandstorm', 'hail'])) {
+				break;
+			case 'raindance':
+			case 'primordialsea':
+			case 'sandstorm':
+			case 'hail':
 				factor = 0.25;
+				break;
 			}
 			return !!this.heal(this.modify(pokemon.maxhp, factor));
 		},
@@ -19684,7 +19712,7 @@ let BattleMovedex = {
 		accuracy: 70,
 		basePower: 110,
 		category: "Special",
-		desc: "Has a 30% chance to paralyze the target. This move can hit a target using Bounce, Fly, or Sky Drop, or is under the effect of Sky Drop. If the weather is Primordial Sea or Rain Dance, this move does not check accuracy. If the weather is Desolate Land or Sunny Day, this move's accuracy is 50%.",
+		desc: "Has a 30% chance to paralyze the target. This move can hit a target using Bounce, Fly, or Sky Drop, or is under the effect of Sky Drop. If the weather is Primordial Sea or Rain Dance, this move does not check accuracy. If the weather is Desolate Land or Sunny Day, this move's accuracy is 50%. If this move is used against a Pokemon holding Utility Umbrella, this move's accuracy remains at 70%.",
 		shortDesc: "30% chance to paralyze. Can't miss in rain.",
 		id: "thunder",
 		isViable: true,
@@ -19692,11 +19720,16 @@ let BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
-		onModifyMove(move) {
-			if (this.field.isWeather(['raindance', 'primordialsea'])) {
+		onModifyMove(move, pokemon, target) {
+			switch (pokemon.effectiveWeather()) {
+			case 'raindance':
+			case 'primordialsea':
 				move.accuracy = true;
-			} else if (this.field.isWeather(['sunnyday', 'desolateland'])) {
+				break;
+			case 'sunnyday':
+			case 'desolateland':
 				move.accuracy = 50;
+				break;
 			}
 		},
 		secondary: {
@@ -20827,15 +20860,13 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {bullet: 1, protect: 1, mirror: 1},
 		onModifyType(move, pokemon) {
-			switch (this.field.effectiveWeather()) {
+			switch (pokemon.effectiveWeather()) {
 			case 'sunnyday':
 			case 'desolateland':
-				if (pokemon.item === "utilityumbrella") break;
 				move.type = 'Fire';
 				break;
 			case 'raindance':
 			case 'primordialsea':
-				if (pokemon.item === "utilityumbrella") break;
 				move.type = 'Water';
 				break;
 			case 'sandstorm':
@@ -20847,15 +20878,13 @@ let BattleMovedex = {
 			}
 		},
 		onModifyMove(move, pokemon) {
-			switch (this.field.effectiveWeather()) {
+			switch (pokemon.effectiveWeather()) {
 			case 'sunnyday':
 			case 'desolateland':
-				if (pokemon.item === "utilityumbrella") break;
 				move.basePower *= 2;
 				break;
 			case 'raindance':
 			case 'primordialsea':
-				if (pokemon.item === "utilityumbrella") break;
 				move.basePower *= 2;
 				break;
 			case 'sandstorm':
@@ -21344,19 +21373,26 @@ let BattleMovedex = {
 	"zippyzap": {
 		num: 729,
 		accuracy: 100,
-		basePower: 50,
+		basePower: 80,
 		category: "Physical",
-		desc: "Will always result in a critical hit.",
-		shortDesc: "Nearly always goes first. Always crits.",
+		desc: "Will always result in a critical hit. Has a 100% chance to raise the user's evasion by 1 stage.",
+		shortDesc: "Goes first. Always crits. 100% +1 evasion.",
 		id: "zippyzap",
 		isNonstandard: "LGPE",
 		isViable: true,
 		name: "Zippy Zap",
-		pp: 15,
+		pp: 10,
 		priority: 2,
 		flags: {contact: 1, protect: 1},
 		willCrit: true,
-		secondary: null,
+		secondary: {
+			chance: 100,
+			self: {
+				boosts: {
+					evasion: 1,
+				},
+			},
+		},
 		target: "normal",
 		type: "Electric",
 		contestType: "Cool",

@@ -24,6 +24,13 @@ let Formats = [
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview', 'Dynamax Clause'],
+	},
+	{
+		name: "[Gen 8] Dynamax National Dex",
+
+		mod: 'gen8',
+		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview'],
 	},
 	{

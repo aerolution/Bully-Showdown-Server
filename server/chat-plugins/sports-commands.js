@@ -15,6 +15,14 @@ exports.commands = {
 + all Pokemon are allowed
 + unreleased Pokemon and abilities are allowed
 + Megas are allowed
+- Dynamax and Gigantamax are not allowed
+- cut moves are not allowed
+- Z-Moves are not allowed
+
+**Dynamax National Dex**:
++ all Pokemon are allowed
++ unreleased Pokemon and abilities are allowed
++ Megas are allowed
 + Dynamax and Gigantamax are allowed
 (Note: Megas can't Dynamax)
 - cut moves are not allowed

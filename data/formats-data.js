@@ -2352,7 +2352,7 @@ let BattleFormatsData = {
 		tier: "LC",
 	},
 	noctowl: {
-		randomBattleMoves: ["defog", "heatwave", "hurricane", "nastyplot", "roost", "whirlwind"],
+		randomBattleMoves: ["airslash", "defog", "heatwave", "nastyplot", "roost", "whirlwind"],
 		encounters: [
 			{"generation": 2, "level": 7},
 			{"generation": 4, "level": 5},
@@ -3964,7 +3964,7 @@ let BattleFormatsData = {
 		tier: "LC",
 	},
 	glalie: {
-		randomBattleMoves: ["earthquake", "freezedry", "protect", "substitute", "taunt"],
+		randomBattleMoves: ["disable", "earthquake", "freezedry", "protect", "substitute"],
 		tier: "UU",
 		doublesTier: "New",
 	},
@@ -4860,7 +4860,6 @@ let BattleFormatsData = {
 	giratinaorigin: {
 		eventOnly: true,
 		requiredItem: "Griseous Orb",
-		requiredAbility: "Levitate",
 		isNonstandard: "Past",
 		tier: "Illegal",
 	},
@@ -6192,7 +6191,7 @@ let BattleFormatsData = {
 		tier: "LC",
 	},
 	diggersby: {
-		randomBattleMoves: ["earthquake", "firepunch", "quickattack", "swordsdance", "uturn", "wildcharge"],
+		randomBattleMoves: ["bodyslam", "earthquake", "firepunch", "quickattack", "swordsdance", "uturn"],
 		tier: "UU",
 		doublesTier: "New",
 	},
@@ -7804,7 +7803,6 @@ let BattleFormatsData = {
 		tier: "Uber",
 		doublesTier: "DUber",
 		requiredItem: "Rusted Sword",
-		requiredAbility: "Intrepid Sword",
 	},
 	zamazenta: {
 		randomBattleMoves: ["closecombat", "crunch", "psychicfangs", "wildcharge"],
@@ -7816,7 +7814,6 @@ let BattleFormatsData = {
 		tier: "Uber",
 		doublesTier: "DUber",
 		requiredItem: "Rusted Shield",
-		requiredAbility: "Dauntless Shield",
 	},
 	eternatus: {
 		randomBattleMoves: ["dynamaxcannon", "flamethrower", "recover", "sludgewave", "toxic"],

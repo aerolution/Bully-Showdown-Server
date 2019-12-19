@@ -1753,12 +1753,14 @@ export class TeamValidator {
 							// can tradeback
 							moveSources.add('1ET' + learned.slice(2));
 						}
-						moveSources.add(learned, limitedEggMove);
+						//   new Gen 8 egg move passing mechanics remove all possible conflicts
+						if (learnedGen >= 8) moveSources.addGen(learnedGen);
+						else moveSources.add(learned, limitedEggMove);
 					} else if (learned.charAt(1) === 'S') {
 						// event moves:
 						//   only if that was the source
-						// Event Pokémon:
-						// 	Available as long as the past gen can get the Pokémon and then trade it back.
+						// event Pokémon:
+						// 	 available as long as the past gen can get the Pokémon and then trade it back
 						if (tradebackEligible && learnedGen === 2 && move.gen <= 1) {
 							// can tradeback
 							moveSources.add('1ST' + learned.slice(2) + ' ' + template.id);

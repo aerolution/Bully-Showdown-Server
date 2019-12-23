@@ -13,35 +13,35 @@ let Formats = [
 		section: "Draft League Tiers",
 	},
 	{
-		name: "[Gen 8] Galar Dex",
+		name: "[Gen 8] Galar Dex Draft",
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', '+Unreleased', 'Draft', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Dex",
+		name: "[Gen 8] National Dex Draft",
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
-		name: "[Gen 8] Dynamax National Dex",
+		name: "[Gen 8] National Dex Dynamax",
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] Legacy National Dex",
+		name: "[Gen 8] National Dex Legacy",
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', '+Unreleased', '+Past', '+PastMove', 'Draft', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
-		name: "[Gen 8] LC National Dex",
+		name: "[Gen 8] National Dex LC",
 
 		mod: 'gen8',
 		maxLevel: 5,
@@ -50,7 +50,7 @@ let Formats = [
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	{
-		name: "[Gen 8] Unrestricted National Dex",
+		name: "[Gen 8] National Dex Unrestricted",
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
@@ -118,7 +118,8 @@ let Formats = [
 	{
 		name: "[Gen 8] OU",
 		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3656245/">OU Metagame Discussion</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3657920/">OU Metagame Discussion</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3657382/">OU Sample Teams</a>`,
 		],
 
 		mod: 'gen8',
@@ -128,19 +129,19 @@ let Formats = [
 	},
 	{
 		name: "[Gen 8] OU (Blitz)",
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3656245/">OU Metagame Discussion</a>`,
-		],
 
 		mod: 'gen8',
 		ruleset: ['[Gen 8] OU', 'Blitz'],
 		minSourceGen: 8,
 	},
 	{
-		name: "[Gen 8] OU National Dex (beta)",
+		name: "[Gen 8] National Dex OU",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3656899/">National Dex Metagame Discussion</a>`,
+		],
 
 		mod: 'gen8',
-		ruleset: ['Obtainable', 'Standard', 'Team Preview', '+Past', 'NatDex Rule'],
+		ruleset: ['Obtainable', 'Standard ND', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Team Preview', 'Sleep Clause Mod'],
 		banlist: [
 			'Arceus', 'Blaziken', 'Darkrai', 'Deoxys-Attack', 'Deoxys-Base', 'Deoxys-Speed', 'Dialga', 'Eternatus', 'Gengar-Mega',
 			'Giratina', 'Groudon', 'Ho-Oh', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Landorus-Base', 'Lucario-Mega',
@@ -148,7 +149,6 @@ let Formats = [
 			'Rayquaza', 'Reshiram', 'Salamence-Mega', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zacian', 'Zamazenta', 'Zekrom',
 			'Moody', 'Power Construct', 'Shadow Tag', 'Baton Pass',
 		],
-		unbanlist: ['Melmetal', 'Meltan'],
 	},
 	{
 		name: "[Gen 8] Ubers",
@@ -210,14 +210,13 @@ let Formats = [
 		minSourceGen: 8,
 	},
 	{
-		name: "[Gen 8] AG National Dex",
+		name: "[Gen 8] National Dex AG",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3656779/">National Dex AG</a>`,
 		],
 
 		mod: 'gen8',
-		ruleset: ['Obtainable', 'Team Preview', 'Nickname Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', '+Past', 'NatDex Rule'],
-		unbanlist: ['Melmetal', 'Meltan'],
+		ruleset: ['Obtainable', 'Standard ND', 'Team Preview'],
 	},
 	{
 		name: "[Gen 8] NFE",
@@ -455,8 +454,9 @@ let Formats = [
 		mod: 'gen8',
 		ruleset: ['Obtainable', '!Obtainable Abilities', 'Species Clause', 'Nickname Clause', '2 Ability Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Dynamax Clause', 'Sleep Clause Mod', 'Endless Battle Clause'],
 		banlist: [
-			'Eternatus', 'Shedinja', 'Zacian', 'Zamazenta', 'Baton Pass',
-			'Arena Trap', 'Comatose', 'Contrary', 'Fluffy', 'Fur Coat', 'Huge Power', 'Ice Scales', 'Illusion', 'Imposter', 'Innards Out', 'Libero', 'Moody', 'Parental Bond', 'Protean', 'Pure Power', 'Shadow Tag', 'Simple', 'Stakeout', 'Speed Boost', 'Water Bubble', 'Wonder Guard',
+			'Dracovish', 'Eternatus', 'Shedinja', 'Zacian', 'Zamazenta', 'Baton Pass',
+			'Arena Trap', 'Comatose', 'Contrary', 'Fluffy', 'Fur Coat', 'Gorilla Tactics', 'Huge Power', 'Ice Scales', 'Illusion', 'Imposter', 'Innards Out', 'Intrepid Sword',
+			'Libero', 'Moody', 'Neutralizing Gas', 'Parental Bond', 'Protean', 'Pure Power', 'Shadow Tag', 'Simple', 'Stakeout', 'Speed Boost', 'Water Bubble', 'Wonder Guard',
 		],
 	},
 	{
@@ -1762,8 +1762,7 @@ let Formats = [
 
 		mod: 'gen4',
 		searchShow: false,
-		ruleset: ['Obtainable', 'Standard'],
-		banlist: ['Arceus'],
+		ruleset: ['Obtainable', 'Standard', 'Arceus EV Clause'],
 	},
 	{
 		name: "[Gen 4] UU",

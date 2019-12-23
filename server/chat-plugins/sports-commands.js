@@ -3,7 +3,7 @@
 exports.commands = {
 	
 	sportstiers(target, room, user, connection) {
-		return connection.popup(`**Galar Dex**:
+		return connection.popup(`**Galar Dex Draft**:
 + Galar Dex Pokemon only are allowed
 + unreleased Pokemon and abilities found in Sword/Shield are allowed
 + Dynamax and Gigantamax are allowed
@@ -11,7 +11,7 @@ exports.commands = {
 - Megas are not allowed
 - Z-Moves are not allowed
 
-**National Dex**:
+**National Dex Draft**:
 + all Pokemon are allowed
 + unreleased Pokemon and abilities are allowed
 + Megas are allowed
@@ -19,7 +19,7 @@ exports.commands = {
 - cut moves are not allowed
 - Z-Moves are not allowed
 
-**Dynamax National Dex**:
+**National Dex Dynamax**:
 + all Pokemon are allowed
 + unreleased Pokemon and abilities are allowed
 + Megas are allowed
@@ -28,7 +28,7 @@ exports.commands = {
 - cut moves are not allowed
 - Z-Moves are not allowed
 
-**Legacy National Dex**:
+**National Dex Legacy**:
 + all Pokemon are allowed
 + unreleased Pokemon and abilities are allowed
 + cut moves are allowed
@@ -36,15 +36,15 @@ exports.commands = {
 + Z-Moves are allowed
 - Dynamax and Gigantamax are not allowed
 
-**LC National Dex**:
+**National Dex LC**:
 + Legacy National Dex rules
 + LC format
 + Double Item Clause
 
-**Unrestricted National Dex**:
+**National Dex Unrestricted**:
 + everything is allowed, including illegal Pokemon and CAP
 
-Note: all Draft formats use a DS style timer (90s per turn, auto pick on timeout)`);
+Note: all Draft formats use a DS style timer (100s per turn, auto pick on timeout)`);
 	},
 	
 	sportsmod(target, room, user, connection) {

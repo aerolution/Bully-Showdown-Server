@@ -36,6 +36,11 @@ exports.commands = {
 + Z-Moves are allowed
 - Dynamax and Gigantamax are not allowed
 
+**National Dex Wifi**:
++ National Dex Dynamax rules
++ Pokemon are set to level 50
++ VGC timer
+
 **National Dex LC**:
 + National Dex Legacy rules
 + LC format

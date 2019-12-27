@@ -6,7 +6,7 @@
 /**@type {(FormatsData | {section: string, column?: number})[]} */
 let Formats = [
 
-	// Custom Tiers
+	// Draft League Tiers
 	///////////////////////////////////////////////////////////////////
 	{
 		section: "Draft League Tiers",
@@ -40,10 +40,18 @@ let Formats = [
 		ruleset: ['Obtainable', '+Unreleased', '+Past', '+PastMove', 'Draft', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
+		name: "[Gen 8] National Dex Wifi",
+
+		mod: 'gen8',
+		maxForcedLevel: 50,
+		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview'],
+	},
+	{
 		name: "[Gen 8] National Dex LC",
 
 		mod: 'gen8',
-		maxLevel: 5,
+		maxForcedLevel: 5,
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', '+Unreleased', '+Past', '+PastMove', 'Draft', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
@@ -104,6 +112,13 @@ let Formats = [
 		mod: 'gen8',
 		team: 'random',
 		ruleset: ['PotD', 'Obtainable', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
+	},
+	{
+		name: "[Gen 8] Random Battle (Blitz)",
+
+		mod: 'gen8',
+		team: 'random',
+		ruleset: ['[Gen 8] Random Battle', 'Blitz'],
 	},
 	{
 		name: "[Gen 8] Unrated Random Battle",
@@ -253,7 +268,12 @@ let Formats = [
 
 		mod: 'gen8',
 		ruleset: ['[Gen 8] OU', '+CAP'],
-		banlist: ['Crucibelle-Mega', 'Aurumoth + Quiver Dance', 'Crucibelle + Head Smash', 'Crucibelle + Low Kick', 'Tomohawk + Earth Power', 'Tomohawk + Reflect'],
+		banlist: ['Crucibelle-Mega'],
+		onValidateSet(set) {
+			if (Dex.getTemplate(set.species).isUnreleased === 'Past') {
+				return [`${set.species} is unreleased.`];
+			}
+		},
 	},
 	{
 		name: "[Gen 8] Battle Stadium Singles",
@@ -316,7 +336,7 @@ let Formats = [
 		mod: 'gen8',
 		gameType: 'doubles',
 		ruleset: ['Obtainable', 'Standard Doubles', 'Team Preview'],
-		banlist: ['DUber', 'Gravity ++ Hypnosis', 'Gravity ++ Lovely Kiss', 'Gravity ++ Sing', 'Gravity ++ Sleep Powder'],
+		banlist: ['DUber'],
 		minSourceGen: 8,
 	},
 	{
@@ -396,13 +416,17 @@ let Formats = [
 		],
 		onValidateSet(set) {
 			let template = this.dex.getTemplate(set.species);
-			if (template.types.includes('Steel')) return [`${template.species} is a Steel-type, which is banned from Metronome Battle.`];
+			if (template.types.includes('Steel')) {
+				return [`${template.species} is a Steel-type, which is banned from Metronome Battle.`];
+			}
 			let bst = 0;
 			for (let stat in template.baseStats) {
 				// @ts-ignore
 				bst += template.baseStats[stat];
 			}
-			if (bst > 625) return [`${template.species} is banned.`, `(Pok\u00e9mon with a BST higher than 625 are banned)`];
+			if (bst > 625) {
+				return [`${template.species} is banned.`, `(Pok\u00e9mon with a BST higher than 625 are banned)`];
+			}
 			let item = this.dex.getItem(set.item);
 			if (set.item && item.megaStone) {
 				let bstMega = 0;
@@ -411,9 +435,13 @@ let Formats = [
 					// @ts-ignore
 					bstMega += megaTemplate.baseStats[stat];
 				}
-				if (template.baseSpecies === item.megaEvolves && bstMega > 625) return [`${set.name || set.species}'s item ${item.name} is banned.`, `(Pok\u00e9mon with a BST higher than 625 are banned)`];
+				if (template.baseSpecies === item.megaEvolves && bstMega > 625) {
+					return [`${set.name || set.species}'s item ${item.name} is banned.`, `(Pok\u00e9mon with a BST higher than 625 are banned)`];
+				}
 			}
-			if (set.moves.length !== 1 || this.dex.getMove(set.moves[0]).id !== 'metronome') return [`${set.name || set.species} has illegal moves.`, `(Pok\u00e9mon can only have one Metronome in their moveset)`];
+			if (set.moves.length !== 1 || this.dex.getMove(set.moves[0]).id !== 'metronome') {
+				return [`${set.name || set.species} has illegal moves.`, `(Pok\u00e9mon can only have one Metronome in their moveset)`];
+			}
 		},
 	},
 	{
@@ -434,6 +462,32 @@ let Formats = [
 		ruleset: ['Team Preview', 'Cancel Mod'],
 	},
 	
+
+	// League Specific Tiers
+	///////////////////////////////////////////////////////////////////
+
+	{
+		section: "League Specific Tiers",
+		column: 2,
+	},
+	{
+		name: "[Gen 8] (National Dex) CUBA",
+
+		mod: 'gen8',
+		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview'],
+		
+		onBegin() {
+			const sTiers = [
+				'Aegislash', 'Blaziken', 'Celesteela', 'Cinderace', 'Darkrai', 'Deoxys-Speed', 'Genesect', 'Greninja', 'Greninja-Ash',
+				'Landorus', 'Landorus-Therian', 'Magearna', 'Metagross-Mega', 'Mew', 'Naganadel', 'Pheromosa', 'Tapu Lele',
+			];
+			for (let pokemon of this.getAllPokemon()) {
+				if (sTiers.includes(pokemon.species)) pokemon.canDynamax = false;
+			}
+		},
+	},
+
 
 	// Other Metagames
 	///////////////////////////////////////////////////////////////////
@@ -588,8 +642,8 @@ let Formats = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Obtainable', 'Standard', 'STABmons Move Legality', 'Team Preview'],
-		banlist: ['Eternatus', 'Silvally', 'Zacian', 'Zamazenta', 'King\'s Rock', 'Razor Fang', 'Moody', 'Shadow Tag', 'Baton Pass'],
+		ruleset: ['Obtainable', 'Standard', 'STABmons Move Legality', 'Team Preview', 'Dynamax Clause'],
+		banlist: ['Darmanitan-Galar', 'Eternatus', 'Silvally', 'Zacian', 'Zamazenta', 'King\'s Rock', 'Razor Fang', 'Moody', 'Shadow Tag', 'Baton Pass'],
 		restrictedMoves: ['Acupressure', 'Belly Drum', 'Fishious Rend', 'Shell Smash', 'Shift Gear', 'Spore'],
 	},
 	{
@@ -998,7 +1052,7 @@ let Formats = [
 		],
 
 		mod: 'gen5',
-		ruleset: ['Obtainable', 'Standard', 'Evasion Abilities Clause', 'Baton Pass Clause', 'Swagger Clause', 'Team Preview'],
+		ruleset: ['Obtainable', 'Standard', 'Evasion Abilities Clause', 'Baton Pass Clause', 'Sleep Moves Clause', 'Swagger Clause', 'Team Preview'],
 		banlist: ['Uber', 'Arena Trap', 'Drizzle ++ Swift Swim', 'Drought ++ Chlorophyll', 'Sand Rush', 'Shadow Tag', 'Soul Dew'],
 	},
 	{
@@ -1219,10 +1273,6 @@ let Formats = [
 		mod: 'gen7',
 		searchShow: false,
 		ruleset: ['[Gen 7] OU', '+CAP'],
-		banlist: [
-			'Aurumoth + Quiver Dance', 'Crucibelle + Head Smash', 'Crucibelle + Low Kick',
-			'Tomohawk + Earth Power', 'Tomohawk + Reflect',
-		],
 	},
 	{
 		name: "[Gen 7] Battle Spot Singles",
@@ -1700,7 +1750,7 @@ let Formats = [
 
 		mod: 'gen5',
 		searchShow: false,
-		ruleset: ['Obtainable', 'Standard', 'Evasion Abilities Clause', 'Baton Pass Clause', 'Swagger Clause', 'Team Preview'],
+		ruleset: ['Obtainable', 'Standard', 'Evasion Abilities Clause', 'Baton Pass Clause', 'Swagger Clause', 'Team Preview', 'Sleep Clause Mod'],
 		banlist: ['Uber', 'OU', 'UUBL', 'Arena Trap', 'Drought', 'Sand Stream', 'Snow Warning'],
 	},
 	{
@@ -1755,7 +1805,7 @@ let Formats = [
 		mod: 'gen5',
 		searchShow: false,
 		maxLevel: 5,
-		ruleset: ['Obtainable', 'Standard', 'Team Preview', 'Little Cup'],
+		ruleset: ['Obtainable', 'Little Cup', 'Standard', 'Team Preview', 'Sleep Clause Mod'],
 		banlist: ['Berry Juice', 'Soul Dew', 'Dragon Rage', 'Sonic Boom', 'LC Uber', 'Sand Rush', 'Gligar', 'Murkrow', 'Scyther', 'Sneasel', 'Tangela'],
 	},
 	{
@@ -1782,7 +1832,7 @@ let Formats = [
 			validate: [1, 3],
 			battle: 1,
 		},
-		ruleset: ['Obtainable', 'Standard', 'Baton Pass Clause', 'Swagger Clause', 'Team Preview'],
+		ruleset: ['Obtainable', 'Standard', 'Baton Pass Clause', 'Swagger Clause', 'Team Preview', 'Sleep Clause Mod'],
 		banlist: ['Uber', 'Whimsicott', 'Focus Sash', 'Soul Dew', 'Perish Song'],
 		unbanlist: ['Genesect', 'Landorus', 'Manaphy', 'Thundurus', 'Tornadus-Therian'],
 	},
@@ -1829,7 +1879,7 @@ let Formats = [
 		mod: 'gen5',
 		gameType: 'doubles',
 		searchShow: false,
-		ruleset: ['Obtainable', 'Standard', 'Evasion Abilities Clause', 'Swagger Clause', 'Team Preview'],
+		ruleset: ['Obtainable', 'Standard', 'Evasion Abilities Clause', 'Swagger Clause', 'Team Preview', 'Sleep Clause Mod'],
 		banlist: ['DUber', 'Soul Dew', 'Dark Void', 'Sky Drop'],
 	},
 	{
@@ -1888,7 +1938,7 @@ let Formats = [
 
 		mod: 'gen4',
 		searchShow: false,
-		ruleset: ['Obtainable', 'Standard', 'Arceus EV Clause'],
+		ruleset: ['Obtainable', 'Standard', 'Arceus EV Limit'],
 	},
 	{
 		name: "[Gen 4] UU",
@@ -1968,11 +2018,8 @@ let Formats = [
 			validate: [1, 3],
 			battle: 1,
 		},
-		ruleset: ['[Gen 4] OU', 'Accuracy Moves Clause', 'Team Preview'],
-		banlist: [
-			'Latias', 'Porygon-Z', 'Focus Sash', 'Soul Dew', 'Destiny Bond', 'Explosion', 'Perish Song', 'Self-Destruct',
-			'Dark Void', 'Grass Whistle', 'Hypnosis', 'Lovely Kiss', 'Sing', 'Sleep Powder', 'Spore', 'Yawn',
-		],
+		ruleset: ['[Gen 4] OU', 'Accuracy Moves Clause', 'Sleep Moves Clause', 'Team Preview'],
+		banlist: ['Latias', 'Porygon-Z', 'Focus Sash', 'Soul Dew', 'Destiny Bond', 'Explosion', 'Perish Song', 'Self-Destruct'],
 		unbanlist: ['Wobbuffet', 'Wynaut', 'Sand Veil'],
 	},
 	{
@@ -2138,8 +2185,8 @@ let Formats = [
 			validate: [1, 3],
 			battle: 1,
 		},
-		ruleset: ['[Gen 2] OU', 'Accuracy Moves Clause', 'Team Preview'],
-		banlist: ['Snorlax', 'Hypnosis', 'Lovely Kiss', 'Sing', 'Sleep Powder', 'Spore', 'Swagger'],
+		ruleset: ['[Gen 2] OU', 'Accuracy Moves Clause', 'Sleep Moves Clause', 'Team Preview'],
+		banlist: ['Snorlax', 'Swagger'],
 	},
 	{
 		name: "[Gen 2] Custom Game",

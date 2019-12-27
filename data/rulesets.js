@@ -108,7 +108,7 @@ let BattleFormats = {
 		name: 'Obtainable',
 		desc: "Makes sure the team is possible to obtain in-game.",
 		ruleset: ['Obtainable Moves', 'Obtainable Abilities', 'Obtainable Formes', 'Obtainable Misc'],
-		banlist: ['Unreleased', 'Nonexistent'],
+		banlist: ['Unreleased', 'Unobtainable', 'Nonexistent'],
 		// Mostly hardcoded in team-validator.ts
 		onValidateTeam(team, format) {
 			let kyuremCount = 0;
@@ -268,7 +268,7 @@ let BattleFormats = {
 		onBegin() {
 			this.add('clearpoke');
 			for (const pokemon of this.getAllPokemon()) {
-				let details = pokemon.details.replace(/(Arceus|Gourgeist|Genesect|Pumpkaboo|Silvally)(-[a-zA-Z?]+)?/g, '$1-*').replace(', shiny', '');
+				let details = pokemon.details.replace(/(Arceus|Gourgeist|Genesect|Pumpkaboo|Silvally|Zacian|Zamazenta)(-[a-zA-Z?]+)?/g, '$1-*').replace(', shiny', '');
 				this.add('poke', pokemon.side.id, details, this.gen < 8 && pokemon.item ? 'item' : '');
 			}
 		},
@@ -475,6 +475,25 @@ let BattleFormats = {
 		banlist: ['Flash', 'Kinesis', 'Leaf Tornado', 'Mirror Shot', 'Mud Bomb', 'Mud-Slap', 'Muddy Water', 'Night Daze', 'Octazooka', 'Sand Attack', 'Smokescreen'],
 		onBegin() {
 			this.add('rule', 'Accuracy Moves Clause: Accuracy-lowering moves are banned');
+		},
+	},
+	sleepmovesclause: {
+		effectType: 'ValidatorRule',
+		name: 'Sleep Moves Clause',
+		desc: "Bans all moves that induce sleep, such as Hypnosis",
+		banlist: ['Yawn'],
+		onBegin() {
+			this.add('rule', 'Sleep Clause: Sleep-inducing moves are banned');
+		},
+		onValidateSet(set) {
+			let problems = [];
+			if (set.moves) {
+				for (const id of set.moves) {
+					let move = this.dex.getMove(id);
+					if (move.status && move.status === 'slp') problems.push(move.name + ' is banned by Sleep Clause.');
+				}
+			}
+			return problems;
 		},
 	},
 	endlessbattleclause: {
@@ -737,16 +756,31 @@ let BattleFormats = {
 			this.add('rule', 'Dynamax Clause: You cannot dynamax');
 		},
 	},
-	arceusevclause: {
+	arceusevlimit: {
 		effectType: 'ValidatorRule',
-		name: 'Arceus EV Clause',
-		desc: "Restricts Arceus to a maximum of 100 EVs in any one stat",
-		onValidateSet(set, format) {
+		name: 'Arceus EV Limit',
+		desc: "Restricts Arceus to a maximum of 100 EVs in any one stat, and only multiples of 10",
+		onValidateSet(set) {
 			let template = this.dex.getTemplate(set.species);
 			if (template.num === 493 && set.evs) {
 				for (let stat in set.evs) {
 					// @ts-ignore
-					if (set.evs[stat] > 100) return ["Arceus may not have more than 100 of any EVs."];
+					const ev = set.evs[stat];
+					if (ev > 100) {
+						return [
+							"Arceus can't have more than 100 EVs in any stat, because Arceus is only obtainable from level 100 events.",
+							"Level 100 Pokemon can only gain EVs from vitamins (Carbos etc), which are capped at 100 EVs.",
+						];
+					}
+					if (!(
+						ev % 10 === 0 ||
+						(ev % 10 === 8 && ev % 4 === 0)
+					)) {
+						return [
+							"Arceus can only have EVs that are multiples of 10, because Arceus is only obtainable from level 100 events.",
+							"Level 100 Pokemon can only gain EVs from vitamins (Carbos etc), which boost in multiples of 10.",
+						];
+					}
 				}
 			}
 		},
@@ -765,12 +799,6 @@ let BattleFormats = {
 			if (move && !this.dex.getImmunity(move, type)) return 1;
 			return -typeMod;
 		},
-	},
-	ignoreillegalabilities: {
-		effectType: 'ValidatorRule',
-		name: 'Ignore Illegal Abilities',
-		desc: "Allows Pok&eacute;mon to use any ability",
-		// Implemented in the 'pokemon' ruleset and in team-validator.js
 	},
 	stabmonsmovelegality: {
 		effectType: 'ValidatorRule',

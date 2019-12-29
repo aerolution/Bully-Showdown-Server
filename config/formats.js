@@ -241,7 +241,7 @@ let Formats = [
 
 		mod: 'gen8',
 		searchShow: false,
-		ruleset: ['Obtainable', 'NFE Clause', 'Standard', 'Team Preview'],
+		ruleset: ['Obtainable', 'NFE Clause', 'Standard', 'Team Preview', 'Dynamax Clause'],
 		banlist: ['Doublade', 'Rhydon', 'Type: Null', 'Shadow Tag', 'Baton Pass'],
 		minSourceGen: 8,
 	},
@@ -644,6 +644,47 @@ let Formats = [
 		ruleset: ['Obtainable', 'Standard', 'STABmons Move Legality', 'Team Preview', 'Dynamax Clause'],
 		banlist: ['Darmanitan-Galar', 'Eternatus', 'Silvally', 'Zacian', 'Zamazenta', 'King\'s Rock', 'Razor Fang', 'Moody', 'Shadow Tag', 'Baton Pass'],
 		restrictedMoves: ['Acupressure', 'Belly Drum', 'Fishious Rend', 'Shell Smash', 'Shift Gear', 'Spore'],
+	},
+	{
+		name: '[Gen 8] Metronome Singles 6v6',
+
+		mod: 'gen8',
+		searchShow: false,
+		ruleset: ['Obtainable Abilities', 'Obtainable Formes', 'Obtainable Misc', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Dynamax Clause'],
+		banlist: [
+			'Pokestar Spirit', 'Battle Bond', 'Cheek Pouch', 'Cursed Body', 'Desolate Land', 'Dry Skin', 'Fluffy', 'Fur Coat', 'Grassy Surge',
+			'Huge Power', 'Ice Body', 'Iron Barbs', 'Libero', 'Moody', 'Parental Bond', 'Perish Body', 'Poison Heal', 'Power Construct', 'Pressure',
+			'Primordial Sea', 'Protean', 'Pure Power', 'Rain Dish', 'Rough Skin', 'Sand Spit', 'Sand Stream', 'Snow Warning', 'Stamina', 'Volt Absorb',
+			'Water Absorb', 'Wonder Guard', 'Abomasite', 'Aguav Berry', 'Assault Vest', 'Berry', 'Berry Juice', 'Berserk Gene', 'Black Sludge',
+			'Enigma Berry', 'Figy Berry', 'Gold Berry', 'Iapapa Berry', 'Kangaskhanite', 'Leftovers', 'Mago Berry', 'Medichamite', 'Oran Berry',
+			'Rocky Helmet', 'Shell Bell', 'Sitrus Berry', 'Wiki Berry', 'Shedinja + Sturdy', 'Harvest + Jaboca Berry', 'Harvest + Rowap Berry',
+		],
+		onValidateSet(set) {
+			if (set.moves.length !== 1 || this.dex.getMove(set.moves[0]).id !== 'metronome') {
+				return [`${set.name || set.species} has illegal moves.`, `(Pok\u00e9mon can only have one Metronome in their moveset)`];
+			}
+		},
+	},
+	{
+		name: '[Gen 8] Metronome Doubles 6v6',
+
+		mod: 'gen8',
+		gameType: 'doubles',
+		searchShow: false,
+		ruleset: ['Obtainable Abilities', 'Obtainable Formes', 'Obtainable Misc', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Dynamax Clause'],
+		banlist: [
+			'Pokestar Spirit', 'Battle Bond', 'Cheek Pouch', 'Cursed Body', 'Desolate Land', 'Dry Skin', 'Fluffy', 'Fur Coat', 'Grassy Surge',
+			'Huge Power', 'Ice Body', 'Iron Barbs', 'Libero', 'Moody', 'Parental Bond', 'Perish Body', 'Poison Heal', 'Power Construct', 'Pressure',
+			'Primordial Sea', 'Protean', 'Pure Power', 'Rain Dish', 'Rough Skin', 'Sand Spit', 'Sand Stream', 'Snow Warning', 'Stamina', 'Volt Absorb',
+			'Water Absorb', 'Wonder Guard', 'Abomasite', 'Aguav Berry', 'Assault Vest', 'Berry', 'Berry Juice', 'Berserk Gene', 'Black Sludge',
+			'Enigma Berry', 'Figy Berry', 'Gold Berry', 'Iapapa Berry', 'Kangaskhanite', 'Leftovers', 'Mago Berry', 'Medichamite', 'Oran Berry',
+			'Rocky Helmet', 'Shell Bell', 'Sitrus Berry', 'Wiki Berry', 'Shedinja + Sturdy', 'Harvest + Jaboca Berry', 'Harvest + Rowap Berry',
+		],
+		onValidateSet(set) {
+			if (set.moves.length !== 1 || this.dex.getMove(set.moves[0]).id !== 'metronome') {
+				return [`${set.name || set.species} has illegal moves.`, `(Pok\u00e9mon can only have one Metronome in their moveset)`];
+			}
+		},
 	},
 
 
@@ -2177,7 +2218,7 @@ let Formats = [
 			// Ability bans
 			'Intimidate', 'Natural Cure', 'Immunity', 'Pastel Veil', 'Sand Veil', 'Ripen', 'Regenerator', 'Serene Grace', 'Ice Scales', 'Gulp Missile',
 			// Hidden Power Clause
-			'Hidden Power > 1'
+			'Hidden Power > 1',
 		],
 
 		onValidateTeam(team) {
@@ -2192,6 +2233,7 @@ let Formats = [
 			];
 			let hasMega = false;
 			let hasGmax = false;
+			let GmaxCount = 0;
 			for (const set of team) {
 				let species = set.species;
 				let item = this.dex.getItem(set.item);
@@ -2200,32 +2242,43 @@ let Formats = [
 					hasMega = true;
 				}
 				if (stallList.includes(species)) stallMons.push(species);
-				if (species.includes("-Gmax")) hasGmax = true;
+				if (species.includes("-Gmax")) {
+					hasGmax = true;
+					GmaxCount++;
+				}
 			}
-			if (stallMons.length > 1) problems.push(`You can only have one of the following stall Pok\u00E9mon on your team: ${stallMons.join(', ')}.`);
-			if (hasMega && hasGmax) problems.push(`You cannot have both a Mega and a Gigantamax Pok\u00E9mon.`);
+			if (stallMons.length > 1) {
+				problems.push(`You can only have one of the following stall Pok\u00E9mon on your team: ${stallMons.join(', ')}.`);
+			}
+			if (hasMega && hasGmax) {
+				problems.push(`You cannot have both a Mega and a Gigantamax Pok\u00E9mon.`);
+			}
+			if (GmaxCount > 1) {
+				problems.push(`You can only have one Gigantamax Pok\u00E9mon.`);
+			}
 			return problems;
 		},
 		onValidateSet(set) {
+			let problems = [];
 			const template = this.dex.getTemplate(set.species);
-			if (!template.abilities) return;
-			for (const abilitySlot in template.abilities) {
+			if (template.abilities) for (const abilitySlot in template.abilities) {
 				const abilityName = template.abilities[abilitySlot];
 				if (abilityName === set.ability && abilitySlot === 'H') {
-					return [`${set.species} cannot have ${abilityName} as Hidden Abilities are banned.`];
+					problems.push(`${set.name || set.species} cannot have ${abilityName} as Hidden Abilities are banned.`);
 				}
 			}
 			if (set.moves) for (const move of set.moves) {
 				if (move === "hiddenpowerice") {
-					return [`${set.species}\'s move Hidden Power Ice is banned.`];
+					problems.push(`${set.name || set.species}\'s move Hidden Power Ice is banned.`);
 				}
 				if (move === "hiddenpowerfire") {
-					return [`${set.species}\'s move Hidden Power Fire is banned.`];
+					problems.push(`${set.name || set.species}\'s move Hidden Power Fire is banned.`);
 				}
 				if (move === "hiddenpowerground") {
-					return [`${set.species}\'s move Hidden Power Ground is banned.`];
+					problems.push(`${set.name || set.species}\'s move Hidden Power Ground is banned.`);
 				}
 			}
+			return problems;
 		},
 
 		onBegin() {
@@ -2239,7 +2292,7 @@ let Formats = [
 		onSwitchIn(pokemon) {
 			pokemon.m.justSwitched = true;
 			if (this.dex.getItem(pokemon.item).zMove) {
-				this.add('-message', `${pokemon.name} is holding a Z-Crystal!`);
+				this.add('-message', `${pokemon.name || pokemon.species} is holding a Z-Crystal!`);
 				this.add('-message', `(Please announce if you're going to use a Z-Move.)`);
 			}
 			if (pokemon.canGigantamax && !pokemon.m.mustGmax) {
@@ -2248,7 +2301,7 @@ let Formats = [
 		},
 		onBeforeMove(pokemon, target, move) {
 			if (pokemon.m.mustGmax && !pokemon.volatiles['dynamax']) {
-				this.add(`raw|<div class="broadcast-red"><b>WARNING</b>: ${pokemon.name} didn't Gigantamax on the first turn it was out.<br>Please <b>forfeit this battle immediately</b>.`);
+				this.add(`raw|<div class="broadcast-red"><b>WARNING</b>: ${pokemon.name || pokemon.species} didn't Gigantamax on the first turn it was out.<br>Please <b>forfeit this battle immediately</b>.`);
 			}
 			else if (move.isZ) {
 				if (target.m.justSwitched) {

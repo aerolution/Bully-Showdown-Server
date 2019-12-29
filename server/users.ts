@@ -664,7 +664,7 @@ export class User extends Chat.MessageContext {
 		groupData = Config.groups[group];
 
 		const roomIsTemporary = room && (room.isPersonal || room.battle);
-		if (roomIsTemporary && group === this.group && groupData.globalGroupInPersonalRoom) {
+		if (roomIsTemporary && group === this.group && groupData && groupData.globalGroupInPersonalRoom) {
 			const newGroup = groupData.globalGroupInPersonalRoom;
 			if (Config.groups[newGroup].rank > groupData.rank) {
 				groupData = Config.groups[newGroup];

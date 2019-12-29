@@ -382,7 +382,7 @@ let BattleFormats = {
 				if (!item) continue;
 				if (item in itemTable) {
 					if (itemTable[item] >= 2) {
-						return ["You are limited to two of each item by Double Item Clause.", "(You have more than two " + this.getItem(item).name + ")"];
+						return ["You are limited to two of each item by Double Item Clause.", "(You have more than two " + this.dex.getItem(item).name + ")"];
 					}
 					itemTable[item]++;
 				} else {

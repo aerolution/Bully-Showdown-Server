@@ -354,7 +354,7 @@ export class CommandContext extends MessageContext {
 			}
 			if (this.cmdToken) {
 				// To guard against command typos, show an error message
-				if (this.cmdToken === BROADCAST_TOKEN) {
+				if (this.shouldBroadcast()) {
 					if (/[a-z0-9]/.test(this.cmd.charAt(0))) {
 						return this.errorReply(`The command "${this.cmdToken}${this.fullCmd}" does not exist.`);
 					}
@@ -747,8 +747,11 @@ export class CommandContext extends MessageContext {
 		}
 		return true;
 	}
+	shouldBroadcast() {
+		return this.cmdToken === BROADCAST_TOKEN;
+	}
 	canBroadcast(ignoreCooldown?: boolean, suppressMessage?: string | null) {
-		if (!this.broadcasting && this.cmdToken === BROADCAST_TOKEN) {
+		if (!this.broadcasting && this.shouldBroadcast()) {
 			if (this.room instanceof Rooms.GlobalRoom) {
 				this.errorReply(`You have no one to broadcast this to.`);
 				this.errorReply(`To see it for yourself, use: /${this.message.substr(1)}`);
@@ -781,7 +784,7 @@ export class CommandContext extends MessageContext {
 		return true;
 	}
 	runBroadcast(ignoreCooldown = false, suppressMessage: string | null = null) {
-		if (this.broadcasting || this.cmdToken !== BROADCAST_TOKEN) {
+		if (this.broadcasting || !this.shouldBroadcast()) {
 			// Already being broadcast, or the user doesn't intend to broadcast.
 			return true;
 		}

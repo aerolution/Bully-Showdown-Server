@@ -62,40 +62,6 @@ let Formats = [
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+PastMove', 'Draft', 'Team Preview'],
 	},
-	{
-		name: "[Gen 7] Draft League",
-
-		mod: 'gen7',
-		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview'],
-	},
-	{
-		name: "[Gen 7] WiFi Draft League",
-
-		mod: 'gen7',
-		maxForcedLevel: 50,
-		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview', 'VGC Timer'],
-	},
-	{
-		name: "[Gen 7] DS Timer Draft League",
-
-		mod: 'gen7',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['[Gen 7] Draft League'],
-	},
-	{
-		name: "[Gen 7] LC Draft League",
-
-		mod: 'gen7',
-		maxLevel: 5,
-		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview', 'Double Item Clause', 'Little Cup'],
-		banlist: ['Eevium Z', 'Dragon Rage', 'Sonic Boom'],
-	},
-	{
-		name: "[Gen 7] Unrestricted Draft League",
-
-		mod: 'gen7',
-		ruleset: ['-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', 'Draft', 'Team Preview'],
-	},
 	
 	
 	// Sw/Sh Singles
@@ -154,7 +120,7 @@ let Formats = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Obtainable', 'Standard ND', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Team Preview', 'Sleep Clause Mod'],
+		ruleset: ['Obtainable', 'Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Team Preview', 'Sleep Clause Mod'],
 		banlist: [
 			'Arceus', 'Blaziken', 'Darkrai', 'Deoxys-Attack', 'Deoxys-Base', 'Deoxys-Speed', 'Dialga', 'Eternatus', 'Gengar-Mega',
 			'Giratina', 'Groudon', 'Ho-Oh', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Landorus-Base', 'Lucario-Mega',
@@ -182,6 +148,14 @@ let Formats = [
 		mod: 'gen8',
 		ruleset: ['[Gen 8] OU'],
 		banlist: ['OU', 'UUBL'],
+		minSourceGen: 8,
+	},
+	{
+		name: "[Gen 8] RU",
+
+		mod: 'gen8',
+		ruleset: ['[Gen 8] UU'],
+		banlist: ['UU', 'RUBL'],
 		minSourceGen: 8,
 	},
 	{
@@ -229,7 +203,8 @@ let Formats = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['Obtainable', 'Standard ND', 'Team Preview'],
+		searchShow: false,
+		ruleset: ['Obtainable', 'Standard NatDex', 'Team Preview'],
 	},
 	{
 		name: "[Gen 8] NFE",
@@ -336,6 +311,18 @@ let Formats = [
 		gameType: 'doubles',
 		ruleset: ['Obtainable', 'Standard Doubles', 'Team Preview'],
 		banlist: ['DUber'],
+		minSourceGen: 8,
+	},
+	{
+		name: "[Gen 8] Doubles UU",
+		threads: [
+			// `&bullet; <a href="https://www.smogon.com/forums/threads/3656244/">Doubles UU Metagame Discussion</a>`,
+		],
+
+		mod: 'gen8',
+		gameType: 'doubles',
+		ruleset: ['[Gen 8] Doubles OU'],
+		banlist: ['DOU', 'DBL'],
 		minSourceGen: 8,
 	},
 	{
@@ -562,11 +549,13 @@ let Formats = [
 		],
 
 		mod: 'gen8',
+		searchShow: false,
 		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Dynamax Clause', 'Sleep Clause Mod', 'Endless Battle Clause'],
 		banlist: [
 			'Darmanitan-Galar', 'Eternatus', 'Shedinja', 'Zacian', 'Zamazenta',
 			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
 		],
+		minSourceGen: 8,
 		onModifyTemplate(template, target, source, effect) {
 			if (!target) return; // Chat command
 			if (effect && ['imposter', 'transform'].includes(effect.id)) return;
@@ -592,7 +581,7 @@ let Formats = [
 		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Dynamax Clause', 'Sleep Clause Mod', 'Endless Battle Clause'],
 		banlist: [
 			'Beedrillite', 'Blazikenite', 'Gengarite', 'Kangaskhanite', 'Mawilite', 'Medichamite', 'Pidgeotite',
-			'AG', 'Gothitelle', 'Gothorita', 'Zacian', 'Baton Pass', 'Electrify',
+			'AG', 'Gothitelle', 'Gothorita', 'Zacian', 'Moody', 'Baton Pass', 'Electrify',
 		],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}} */
@@ -802,6 +791,14 @@ let Formats = [
 		ruleset: ['Obtainable', 'Standard GBU'],
 	},
 	{
+		name: "[Gen 7 Let's Go] Random Battle",
+
+		mod: 'letsgo',
+		team: 'random',
+		searchShow: false,
+		ruleset: ['Obtainable', 'Allow AVs', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
+	},
+	{
 		name: "[Gen 6] Random Battle",
 
 		mod: 'gen6',
@@ -863,66 +860,45 @@ let Formats = [
 	},
 	
 	
-	// Let's Go!
+	// Past Gens Draft League
 	///////////////////////////////////////////////////////////////////
-
 	{
-		section: "Let's Go!",
+		section: "Past Gens Draft League",
 		column: 3,
 	},
 	{
-		name: "[Gen 7 Let's Go] Random Battle",
+		name: "[Gen 7] Draft League",
 
-		mod: 'letsgo',
-		team: 'random',
-		searchShow: false,
-		ruleset: ['Obtainable', 'Allow AVs', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
+		mod: 'gen7',
+		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview'],
 	},
 	{
-		name: "[Gen 7 Let's Go] OU",
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3644015/">LGPE OverUsed</a>`,
-		],
+		name: "[Gen 7] WiFi Draft League",
 
-		mod: 'letsgo',
-		forcedLevel: 50,
-		searchShow: false,
-		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
-		banlist: ['Uber'],
+		mod: 'gen7',
+		maxForcedLevel: 50,
+		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview', 'VGC Timer'],
 	},
 	{
-		name: "[Gen 7 Let's Go] Singles No Restrictions",
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3643931/">Let's Go! Discussion</a>`,
-		],
+		name: "[Gen 7] DS Timer Draft League",
 
-		mod: 'letsgo',
-		searchShow: false,
-		ruleset: ['Obtainable', 'Allow AVs', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod'],
+		mod: 'gen7',
+		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['[Gen 7] Draft League'],
 	},
 	{
-		name: "[Gen 7 Let's Go] Doubles OU",
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3645303/">LGPE DOU</a>`,
-		],
+		name: "[Gen 7] LC Draft League",
 
-		mod: 'letsgo',
-		gameType: 'doubles',
-		searchShow: false,
-		forcedLevel: 50,
-		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
-		banlist: ['Mewtwo'],
+		mod: 'gen7',
+		maxLevel: 5,
+		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview', 'Double Item Clause', 'Little Cup'],
+		banlist: ['Eevium Z', 'Dragon Rage', 'Sonic Boom'],
 	},
 	{
-		name: "[Gen 7 Let's Go] Doubles No Restrictions",
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3643931/">Let's Go! Discussion</a>`,
-		],
+		name: "[Gen 7] Unrestricted Draft League",
 
-		mod: 'letsgo',
-		gameType: 'doubles',
-		searchShow: false,
-		ruleset: ['Obtainable', 'Allow AVs', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod'],
+		mod: 'gen7',
+		ruleset: ['-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', 'Draft', 'Team Preview'],
 	},
 	
 
@@ -1222,6 +1198,18 @@ let Formats = [
 		// no restrictions, for serious (other than team preview)
 		ruleset: ['Team Preview', 'Cancel Mod'],
 	},
+	{
+		name: "[Gen 7 Let's Go] OU",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3644015/">LGPE OverUsed</a>`,
+		],
+
+		mod: 'letsgo',
+		forcedLevel: 50,
+		searchShow: false,
+		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
+		banlist: ['Uber'],
+	},
 
 	// US/UM Doubles
 	///////////////////////////////////////////////////////////////////
@@ -1352,6 +1340,19 @@ let Formats = [
 		},
 		// no restrictions, for serious (other than team preview)
 		ruleset: ['Team Preview', 'Cancel Mod'],
+	},
+	{
+		name: "[Gen 7 Let's Go] Doubles OU",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3645303/">LGPE DOU</a>`,
+		],
+
+		mod: 'letsgo',
+		gameType: 'doubles',
+		searchShow: false,
+		forcedLevel: 50,
+		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
+		banlist: ['Mewtwo'],
 	},
 
 	// OR/AS Singles
@@ -1652,7 +1653,7 @@ let Formats = [
 
 		mod: 'gen5',
 		searchShow: false,
-		ruleset: ['Obtainable', 'Team Preview', 'Standard Ubers'],
+		ruleset: ['Obtainable', 'Team Preview', 'Standard', '!Evasion Moves Clause'],
 	},
 	{
 		name: "[Gen 5] UU",
@@ -1663,7 +1664,7 @@ let Formats = [
 
 		mod: 'gen5',
 		searchShow: false,
-		ruleset: ['Obtainable', 'Standard', 'Evasion Abilities Clause', 'Baton Pass Clause', 'Swagger Clause', 'Team Preview', 'Sleep Clause Mod'],
+		ruleset: ['Obtainable', 'Standard', 'Evasion Abilities Clause', 'Baton Pass Clause', 'Swagger Clause', 'Team Preview'],
 		banlist: ['Uber', 'OU', 'UUBL', 'Arena Trap', 'Drought', 'Sand Stream', 'Snow Warning'],
 	},
 	{
@@ -1889,8 +1890,8 @@ let Formats = [
 		ruleset: ['[Gen 4] NU'],
 		banlist: [
 			'Articuno', 'Cacturne', 'Charizard', 'Cradily', 'Dodrio', 'Drifblim', 'Dusclops', 'Electrode',
-			'Gardevoir', 'Gligar', 'Golem', 'Grumpig', 'Haunter', 'Hitmonchan', 'Hypno', 'Jumpluff', 'Jynx',
-			'Lickilicky', 'Linoone', 'Magmortar', 'Magneton', 'Manectric', 'Medicham', 'Meganium', 'Nidoqueen',
+			'Floatzel', 'Gardevoir', 'Gligar', 'Golem', 'Grumpig', 'Haunter', 'Hitmonchan', 'Hypno', 'Jumpluff',
+			'Jynx', 'Lickilicky', 'Linoone', 'Magmortar', 'Magneton', 'Manectric', 'Medicham', 'Meganium', 'Nidoqueen',
 			'Ninetales', 'Piloswine', 'Poliwrath', 'Porygon2', 'Regice', 'Regirock', 'Roselia', 'Sandslash',
 			'Sharpedo', 'Shiftry', 'Skuntank', 'Slowking', 'Tauros', 'Typhlosion', 'Venomoth', 'Vileplume',
 		],
@@ -2179,6 +2180,18 @@ let Formats = [
 	{
 		section: "Other Other Metagames",
 		column: 5,
+	},
+	{
+		name: "[Gen 8] Rock Paper Scissors",
+
+		mod: 'rockpaperscissors',
+		team: 'random',
+		teamLength: {
+			validate: [1, 3],
+			battle: 1,
+		},
+		searchShow: false,
+		ruleset: ['Obtainable', '+Unreleased', '+Past', '+PastMove', 'Dynamax Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
 		name: "[Gen 8] Rhet Clause 2.0",

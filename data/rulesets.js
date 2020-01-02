@@ -28,12 +28,6 @@ let BattleFormats = {
 		ruleset: ['+Unreleased', 'Sleep Clause Mod', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'HP Percentage Mod', 'Cancel Mod'],
 		banlist: ['Soul Dew'],
 	},
-	standardubers: {
-		effectType: 'ValidatorRule',
-		name: 'Standard Ubers',
-		desc: "The standard ruleset for [Gen 5] Ubers",
-		ruleset: ['Sleep Clause Mod', 'Species Clause', 'Nickname Clause', 'Moody Clause', 'OHKO Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
-	},
 	standardgbu: {
 		effectType: 'ValidatorRule',
 		name: 'Standard GBU',
@@ -81,9 +75,9 @@ let BattleFormats = {
 		desc: "The standard ruleset for all official Smogon doubles tiers",
 		ruleset: ['Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Abilities Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
 	},
-	standardnd: {
+	standardnatdex: {
 		effectType: 'ValidatorRule',
-		name: 'Standard ND',
+		name: 'Standard NatDex',
 		desc: "The standard ruleset for all National Dex tiers",
 		ruleset: ['+Past', 'Nickname Clause', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
 		unbanlist: ['Melmetal', 'Meltan'],
@@ -837,6 +831,12 @@ let BattleFormats = {
 		name: 'Allow AVs',
 		desc: "Tells formats with the 'letsgo' mod to take Awakening Values into consideration when calculating stats",
 		// Implemented in mods/letsgo/rulesets.js
+	},
+	standardpetmod: {
+		effectType: 'ValidatorRule',
+		name: 'Standard Pet Mod',
+		desc: "Holds all custom Pet Mod ruleset validation",
+		// Implemented in mods/petmod/rulesets.js
 	},
 };
 

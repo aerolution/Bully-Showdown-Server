@@ -424,7 +424,6 @@ describe('Team Validator', function () {
 			{species: 'necrozmaultra', ability: 'neuroforce', moves: ['confusion']},
 		];
 		let illegal = TeamValidator.get('gen7ubers').validateTeam(team);
-		console.log(illegal);
 		assert(illegal);
 	});
 
@@ -518,7 +517,7 @@ describe('Team Validator', function () {
 			{species: 'absol', ability: 'pressure', moves: ['batonpass'], evs: {hp: 1}},
 		];
 		let illegal = TeamValidator.get('gen7ou@@@+Baton Pass').validateTeam(team);
-		assert(!illegal);
+		assert.strictEqual(illegal, null);
 	});
 
 	it('should allow items to be banned', function () {
@@ -534,7 +533,7 @@ describe('Team Validator', function () {
 			{species: 'eevee', ability: 'runaway', moves: ['tackle'], item: 'eeviumz', evs: {hp: 1}},
 		];
 		let illegal = TeamValidator.get('gen7lc@@@+Eevium Z').validateTeam(team);
-		assert(!illegal);
+		assert.strictEqual(illegal, null);
 	});
 
 	it('should allow abilities to be banned', function () {
@@ -550,7 +549,7 @@ describe('Team Validator', function () {
 			{species: 'wobbuffet', ability: 'shadowtag', moves: ['counter'], evs: {hp: 1}},
 		];
 		let illegal = TeamValidator.get('gen7ou@@@+Shadow Tag').validateTeam(team);
-		assert(!illegal);
+		assert.strictEqual(illegal, null);
 	});
 
 	it('should allow complex bans to be added', function () {
@@ -574,7 +573,7 @@ describe('Team Validator', function () {
 			{species: 'abomasnow', ability: 'snowwarning', moves: ['grasswhistle'], evs: {hp: 1}},
 		];
 		let illegal = TeamValidator.get('gen7doublesou@@@-Gravity ++ Grass Whistle > 2').validateTeam(team);
-		assert(!illegal);
+		assert.strictEqual(illegal, null);
 
 		team = [
 			{species: 'smeargle', ability: 'owntempo', moves: ['gravity'], evs: {hp: 1}},
@@ -591,6 +590,15 @@ describe('Team Validator', function () {
 			{species: 'abomasnow', ability: 'snowwarning', moves: ['grasswhistle'], evs: {hp: 1}},
 		];
 		let illegal = TeamValidator.get('gen7doublesou@@@+Gravity ++ Grass Whistle').validateTeam(team);
-		assert(!illegal);
+		assert.strictEqual(illegal, null);
+	});
+
+	it('should allow rule bundles to be removed', function () {
+		let team = [
+			{species: 'azumarill', ability: 'hugepower', moves: ['waterfall'], evs: {hp: 1}},
+			{species: 'azumarill', ability: 'hugepower', moves: ['waterfall'], evs: {hp: 1}},
+		];
+		let illegal = TeamValidator.get('gen7ou@@@!Standard').validateTeam(team);
+		assert.strictEqual(illegal, null);
 	});
 });

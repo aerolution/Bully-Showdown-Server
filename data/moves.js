@@ -1843,7 +1843,7 @@ let BattleMovedex = {
 		accuracy: 100,
 		basePower: 60,
 		category: "Physical",
-		desc: "100% chance to lower the foe's Attack by 1 stage. Hits all adjecent foes.",
+		desc: "100% chance to lower the foe's Attack by 1 stage. Hits all adjacent foes.",
 		shortDesc: "100% chance to lower adjacent foes' Atk by 1.",
 		id: "breakingswipe",
 		name: "Breaking Swipe",
@@ -3001,7 +3001,7 @@ let BattleMovedex = {
 			const sourceSide = source.side;
 			const targetSide = source.side.foe;
 			const sideConditions = [
-				'spikes', 'toxicspikes', 'stealthrock', 'stickyweb', 'lightscreen', 'reflect', 'auroraveil', 'tailwind',
+				'spikes', 'toxicspikes', 'stealthrock', 'gmaxsteelsurge', 'stickyweb', 'lightscreen', 'reflect', 'auroraveil', 'tailwind',
 			];
 			let success = false;
 			for (let id of sideConditions) {
@@ -9143,7 +9143,7 @@ let BattleMovedex = {
 			atk: 1,
 		},
 		secondary: null,
-		target: "allyTeam",
+		target: "allies",
 		type: "Normal",
 		zMoveBoost: {atk: 1},
 		contestType: "Cool",
@@ -15317,7 +15317,7 @@ let BattleMovedex = {
 		accuracy: 100,
 		basePower: 0,
 		basePowerCallback(pokemon) {
-			return Math.floor((pokemon.happiness * 100) / 156) || 1;
+			return Math.floor(((255 - pokemon.happiness) * 10) / 25) || 1;
 		},
 		category: "Physical",
 		desc: "Power is equal to the greater of (user's Happiness * 2/5), rounded down, or 1.",
@@ -16559,12 +16559,11 @@ let BattleMovedex = {
 		beforeTurnCallback(pokemon) {
 			pokemon.addVolatile('shelltrap');
 		},
-		// TODO: In order to correct PP usage, after spread move order has been reworked,
-		// switch this to `onTry` + add `this.attrLastMove('[still]');`.
-		beforeMoveCallback(pokemon) {
+		onTryMove(pokemon) {
 			if (!pokemon.volatiles['shelltrap'] || !pokemon.volatiles['shelltrap'].gotHit) {
+				this.attrLastMove('[still]');
 				this.add('cant', pokemon, 'Shell Trap', 'Shell Trap');
-				return true;
+				return null;
 			}
 		},
 		effect: {
@@ -16575,6 +16574,10 @@ let BattleMovedex = {
 			onHit(pokemon, source, move) {
 				if (pokemon.side !== source.side && move.category === 'Physical') {
 					pokemon.volatiles['shelltrap'].gotHit = true;
+					let action = this.willMove(pokemon);
+					if (action) {
+						this.prioritizeAction(action);
+					}
 				}
 			},
 		},

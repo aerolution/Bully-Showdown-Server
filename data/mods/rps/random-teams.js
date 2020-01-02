@@ -1,7 +1,7 @@
 'use strict';
 
 const RandomTeams = require('../../random-teams');
-class RockPaperScissorsTeam extends RandomTeams {
+class RPSTeam extends RandomTeams {
 	/**
 	 * @param {Format | string} format
 	 * @param {?PRNG | [number, number, number, number]} [prng]
@@ -14,7 +14,7 @@ class RockPaperScissorsTeam extends RandomTeams {
 	/**
 	 * @param {{inBattle?: boolean}} options
 	 */
-	rockPaperScissorsTeam(options = {}) {
+	randomRPSTeam(options = {}) {
 		/** @type {PokemonSet[]} */
 		let team = [
 			{
@@ -48,12 +48,12 @@ class RockPaperScissorsTeam extends RandomTeams {
 			{
 				name: 'Scissor',
 				species: 'Scizor',
-				item: 'Flame Plate',
+				item: 'Assault Vest',
 				ability: 'Technician',
 				moves: ['Hidden Power Fire',],
 				nature: 'Modest',
 				gender: 'F',
-				evs: {hp: 0, atk: 0, def: 0, spa: 252, spd: 4, spe: 252},
+				evs: {hp: 0, atk: 0, def: 0, spa: 252, spd: 252, spe: 4},
 				ivs: {hp: 31, atk: 31, def: 31, spa: 31, spd: 31, spe: 31},
 				level: 100,
 				happiness: 255,
@@ -64,4 +64,4 @@ class RockPaperScissorsTeam extends RandomTeams {
 	}
 }
 
-module.exports = RockPaperScissorsTeam;
+module.exports = RPSTeam;

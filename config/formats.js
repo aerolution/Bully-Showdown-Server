@@ -2184,14 +2184,14 @@ let Formats = [
 	{
 		name: "[Gen 8] Rock Paper Scissors",
 
-		mod: 'rockpaperscissors',
-		team: 'random',
+		mod: 'rps',
+		team: 'randomRPS',
 		teamLength: {
 			validate: [1, 3],
 			battle: 1,
 		},
 		searchShow: false,
-		ruleset: ['Obtainable', '+Unreleased', '+Past', '+PastMove', 'Dynamax Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod'],
+		ruleset: ['Dynamax Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
 		name: "[Gen 8] Rhet Clause 2.0",

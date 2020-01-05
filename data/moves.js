@@ -5897,9 +5897,9 @@ let BattleMovedex = {
 		onHit(target, source) {
 			let success = false;
 			if (this.field.isTerrain('grassyterrain')) {
-				success = !!this.heal(this.modify(target.maxhp, 0.667)); // TODO: find out the real value
+				success = !!this.heal(this.modify(target.baseMaxhp, 0.667)); // TODO: find out the real value
 			} else {
-				success = !!this.heal(Math.ceil(target.maxhp * 0.5));
+				success = !!this.heal(Math.ceil(target.baseMaxhp * 0.5));
 			}
 			if (success && target.side.id !== source.side.id) {
 				target.staleness = 'external';
@@ -6361,7 +6361,7 @@ let BattleMovedex = {
 		accuracy: 100,
 		basePower: 0,
 		basePowerCallback(pokemon) {
-			return Math.floor(((160 - pokemon.happiness) * 100) / 156) || 1;
+			return Math.floor(((255 - pokemon.happiness) * 10) / 25) || 1;
 		},
 		category: "Physical",
 		desc: "Power is equal to the greater of ((255 - user's Happiness) * 2/5), rounded down, or 1.",
@@ -6967,9 +6967,9 @@ let BattleMovedex = {
 		flags: {},
 		isMax: "Alcremie",
 		self: {
-			onAfterHit(source) {
+			onAfterHit(target, source, move) {
 				for (let pokemon of source.side.active) {
-					this.heal(pokemon.maxhp / 6, pokemon, source);
+					this.heal(pokemon.maxhp / 6, pokemon, source, move);
 				}
 			},
 		},
@@ -8429,9 +8429,9 @@ let BattleMovedex = {
 		onHit(target, source) {
 			let success = false;
 			if (source.hasAbility('megalauncher')) {
-				success = !!this.heal(this.modify(target.maxhp, 0.75));
+				success = !!this.heal(this.modify(target.baseMaxhp, 0.75));
 			} else {
-				success = !!this.heal(Math.ceil(target.maxhp * 0.5));
+				success = !!this.heal(Math.ceil(target.baseMaxhp * 0.5));
 			}
 			if (success && target.side.id !== source.side.id) {
 				target.staleness = 'external';
@@ -9790,7 +9790,7 @@ let BattleMovedex = {
 		priority: 0,
 		flags: {protect: 1, authentic: 1, mystery: 1},
 		onHit(target, source) {
-			if (!target.lastMove) return false;
+			if (!target.lastMove || target.volatiles['dynamax']) return false;
 			const lastMove = target.lastMove;
 			const moveIndex = target.moves.indexOf(lastMove.id);
 			const noInstruct = [
@@ -15317,7 +15317,7 @@ let BattleMovedex = {
 		accuracy: 100,
 		basePower: 0,
 		basePowerCallback(pokemon) {
-			return Math.floor(((255 - pokemon.happiness) * 10) / 25) || 1;
+			return Math.floor((pokemon.happiness * 10) / 25) || 1;
 		},
 		category: "Physical",
 		desc: "Power is equal to the greater of (user's Happiness * 2/5), rounded down, or 1.",

@@ -581,7 +581,7 @@ let Formats = [
 		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Dynamax Clause', 'Sleep Clause Mod', 'Endless Battle Clause'],
 		banlist: [
 			'Beedrillite', 'Blazikenite', 'Gengarite', 'Kangaskhanite', 'Mawilite', 'Medichamite', 'Pidgeotite',
-			'AG', 'Gothitelle', 'Gothorita', 'Zacian', 'Moody', 'Baton Pass', 'Electrify',
+			'AG', 'Eternatus', 'Gothitelle', 'Gothorita', 'Zacian', 'Moody', 'Baton Pass', 'Electrify',
 		],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}} */
@@ -590,7 +590,7 @@ let Formats = [
 				let item = this.dex.getItem(set.item);
 				if (!item || !item.megaStone) continue;
 				let template = this.dex.getTemplate(set.name || set.species);
-				if (format.banlist.includes('AG') && ['Venusaur', 'Blastoise', 'Eternatus', 'Zamazenta'].includes(template.baseSpecies)) {
+				if (format.banlist.includes('AG') && ['Venusaur', 'Blastoise', 'Zamazenta'].includes(template.baseSpecies)) {
 					return [`${template.species} is not allowed to hold ${item.name}.`];
 				}
 				if (itemTable[item.id]) return ["You are limited to one of each mega stone.", "(You have more than one " + item.name + ")"];
@@ -1701,12 +1701,13 @@ let Formats = [
 		searchShow: false,
 		ruleset: ['[Gen 5] NU'],
 		banlist: [
-			'Alomomola', 'Ampharos', 'Armaldo', 'Basculin', 'Braviary', 'Cacturne', 'Camerupt', 'Carracosta', 'Charizard',
-			'Combusken', 'Eelektross', 'Electabuzz', 'Exeggutor', 'Garbodor', 'Gardevoir', 'Gigalith', 'Golem', 'Golurk',
-			'Gorebyss', 'Gurdurr', 'Haunter', 'Jynx', 'Kadabra', 'Kangaskhan', 'Lapras', 'Lickilicky', 'Liepard', 'Linoone',
-			'Ludicolo', 'Mandibuzz', 'Metang', 'Miltank', 'Misdreavus', 'Musharna', 'Piloswine', 'Pinsir', 'Primeape',
-			'Probopass', 'Regirock', 'Roselia', 'Rotom-Fan', 'Rotom-Frost', 'Samurott', 'Sawk', 'Sawsbuck', 'Scolipede',
-			'Seismitoad', 'Serperior', 'Skuntank', 'Swellow', 'Tangela', 'Tauros', 'Torkoal', 'Wartortle', 'Weezing', 'Zangoose',
+			'Alomomola', 'Altaria', 'Ampharos', 'Armaldo', 'Basculin', 'Bastiodon', 'Braviary', 'Cacturne', 'Camerupt',
+			'Carracosta', 'Charizard', 'Combusken', 'Cradily', 'Ditto', 'Drifblim', 'Eelektross', 'Electabuzz', 'Electrode',
+			'Exeggutor', 'Floatzel', 'Garbodor', 'Gardevoir', 'Gigalith', 'Golbat', 'Golem', 'Golurk', 'Gorebyss', 'Gurdurr',
+			'Haunter', 'Jynx', 'Kadabra', 'Kangaskhan', 'Lapras', 'Lickilicky', 'Liepard', 'Linoone', 'Ludicolo', 'Mandibuzz',
+			'Metang', 'Miltank', 'Misdreavus', 'Musharna', 'Ninjask', 'Piloswine', 'Pinsir', 'Primeape', 'Probopass', 'Regice',
+			'Regirock', 'Roselia', 'Rotom-Fan', 'Rotom-Frost', 'Samurott', 'Sawk', 'Sawsbuck', 'Scolipede', 'Seismitoad',
+			'Serperior', 'Skuntank', 'Swellow', 'Tangela', 'Tauros', 'Torkoal', 'Wartortle', 'Weezing', 'Zangoose',
 		],
 	},
 	{
@@ -1719,7 +1720,7 @@ let Formats = [
 		mod: 'gen5',
 		searchShow: false,
 		maxLevel: 5,
-		ruleset: ['Obtainable', 'Little Cup', 'Standard', 'Team Preview', 'Sleep Clause Mod'],
+		ruleset: ['Obtainable', 'Standard', 'Little Cup', 'Team Preview'],
 		banlist: ['Berry Juice', 'Soul Dew', 'Dragon Rage', 'Sonic Boom', 'LC Uber', 'Sand Rush', 'Gligar', 'Murkrow', 'Scyther', 'Sneasel', 'Tangela'],
 	},
 	{
@@ -1746,7 +1747,7 @@ let Formats = [
 			validate: [1, 3],
 			battle: 1,
 		},
-		ruleset: ['Obtainable', 'Standard', 'Baton Pass Clause', 'Swagger Clause', 'Team Preview', 'Sleep Clause Mod'],
+		ruleset: ['Obtainable', 'Standard', 'Baton Pass Clause', 'Swagger Clause', 'Team Preview'],
 		banlist: ['Uber', 'Whimsicott', 'Focus Sash', 'Soul Dew', 'Perish Song'],
 		unbanlist: ['Genesect', 'Landorus', 'Manaphy', 'Thundurus', 'Tornadus-Therian'],
 	},
@@ -1933,7 +1934,7 @@ let Formats = [
 			battle: 1,
 		},
 		ruleset: ['[Gen 4] OU', 'Accuracy Moves Clause', 'Sleep Moves Clause', 'Team Preview'],
-		banlist: ['Latias', 'Porygon-Z', 'Focus Sash', 'Soul Dew', 'Destiny Bond', 'Explosion', 'Perish Song', 'Self-Destruct'],
+		banlist: ['Latias', 'Porygon-Z', 'Focus Sash', 'Destiny Bond', 'Explosion', 'Perish Song', 'Self-Destruct'],
 		unbanlist: ['Wobbuffet', 'Wynaut', 'Sand Veil'],
 	},
 	{

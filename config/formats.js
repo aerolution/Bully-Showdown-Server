@@ -531,7 +531,7 @@ let Formats = [
 		name: "[Gen 8] (National Dex) PICA",
 
 		mod: 'gen8',
-		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview', 'Dynamax Clause', 'Baton Pass Clause'],
+		ruleset: ['Obtainable', '+Unreleased', '+Past', '+PastMove', 'Draft', 'Team Preview', 'Dynamax Clause', 'Baton Pass Clause'],
 		banlist: [
 			'Bright Powder', "King's Rock", 'Razor Fang', 'Focus Band', 'Quick Claw', 'Moody', 'Stench', 'Starf Berry',
 			'Confuse Ray', 'Flatter', 'Supersonic', 'Swagger', 'Sweet Kiss', 'Teeter Dance', 'Attract', 'Cute Charm',

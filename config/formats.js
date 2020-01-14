@@ -457,11 +457,11 @@ let Formats = [
 	},
 	
 
-	// League Specific Tiers
+	// Custom League Tiers
 	///////////////////////////////////////////////////////////////////
 
 	{
-		section: "League Specific Tiers",
+		section: "Custom League Tiers",
 		column: 2,
 	},
 	{
@@ -525,6 +525,22 @@ let Formats = [
 			// Complex bans
 			'Landorus + Sheer Force', 'Greninja + Protean', 'Greninja + Battle Bond', 'Blaziken + Speed Boost', 'Kangaskhan-Mega + Seismic Toss',
 			'Blastoise-Mega + Shell Smash',
+		],
+	},
+	{
+		name: "[Gen 8] (National Dex) PICA",
+
+		mod: 'gen8',
+		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview', 'Dynamax Clause', 'Baton Pass Clause'],
+		banlist: [
+			'Bright Powder', "King's Rock", 'Razor Fang', 'Focus Band', 'Quick Claw', 'Moody', 'Stench', 'Starf Berry',
+			'Confuse Ray', 'Flatter', 'Supersonic', 'Swagger', 'Sweet Kiss', 'Teeter Dance', 'Attract', 'Cute Charm',
+			'Clangorous Soul', 'No Retreat',
+			// Unreleased HAs
+			'Grookey + Grassy Surge', 'Thwackey + Grassy Surge', 'Rillaboom + Grassy Surge', 'Scorbunny + Libero', 'Raboot + Libero', 
+			'Cinderace + Libero', 'Sobble + Sniper', 'Drizzile + Sniper', 'Inteleon + Sniper', 'Skwovet + Gluttony', 'Greedent + Gluttony',
+			'Nickit + Stakeout', 'Thievul + Stakeout', 'Wooloo + Bulletproof', 'Dubwool + Bulletproof', 'Yamper + Rattled', 
+			'Boltund + Competitive', 'Dracozolt + Sand Rush', 'Arctozolt + Slush Rush', 'Dracovish + Sand Rush', 'Arctovish + Slush Rush',
 		],
 	},
 

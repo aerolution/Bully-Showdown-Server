@@ -11,6 +11,11 @@ exports.commands = {
 - Megas are not allowed
 - Z-Moves are not allowed
 
+**Galar Dex Wifi**:
++ Galar Dex Draft rules
++ Pokemon are set to level 50
++ VGC timer
+
 **National Dex Draft**:
 + all Pokemon are allowed
 + unreleased Pokemon and abilities are allowed

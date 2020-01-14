@@ -491,6 +491,7 @@ let Formats = [
 		unbanlist: [
 			'Buginium Z', 'Darkinium Z', 'Dragonium Z', 'Electrium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Ghostium Z', 
 			'Grassium Z', 'Groundium Z', 'Icium Z', 'Normalium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z', 'Waterium Z',
+			'Pikanium Z', 'Pikashunium Z',
 		],
 		
 		onValidateSet(set) {
@@ -503,7 +504,7 @@ let Formats = [
 			if (bst > 435) {
 				return [`${template.species} is banned.`, `(Pok\u00e9mon with a BST higher than 435 are banned)`];
 			}
-			if (set.item == "eviolite" && bst > 350) {
+			if (set.item === "Eviolite" && bst > 350) {
 				return [`${template.species} cannot hold Eviolite.`, `(Eviolite is banned on Pok\u00e9mon with a BST higher than 350)`];
 			}				
 		},

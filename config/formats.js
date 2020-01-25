@@ -131,7 +131,7 @@ let Formats = [
 			'Giratina', 'Groudon', 'Ho-Oh', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Landorus-Base', 'Lucario-Mega',
 			'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Pheromosa',
 			'Rayquaza', 'Reshiram', 'Salamence-Mega', 'Shaymin-Sky', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zacian', 'Zamazenta', 'Zekrom',
-			'Moody', 'Power Construct', 'Shadow Tag', 'Baton Pass',
+			'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'Baton Pass',
 		],
 	},
 	{
@@ -267,7 +267,7 @@ let Formats = [
 				"Corviknight-Gmax", "Dreadnaw-Gmax", "Sandaconda-Gmax", "Centiskorch-Gmax",
 			];
 			for (const pokemon of this.getAllPokemon()) {
-				if (!allowedGigantamaxes.includes(pokemon.species)) pokemon.canGigantamax = null;
+				if (pokemon.canGigantamax && !allowedGigantamaxes.includes(pokemon.canGigantamax)) pokemon.canGigantamax = null;
 			}
 		},
 	},
@@ -365,7 +365,7 @@ let Formats = [
 				"Corviknight-Gmax", "Dreadnaw-Gmax", "Sandaconda-Gmax", "Centiskorch-Gmax",
 			];
 			for (const pokemon of this.getAllPokemon()) {
-				if (!allowedGigantamaxes.includes(pokemon.species)) pokemon.canGigantamax = null;
+				if (pokemon.canGigantamax && !allowedGigantamaxes.includes(pokemon.canGigantamax)) pokemon.canGigantamax = null;
 			}
 		},
 	},
@@ -401,12 +401,12 @@ let Formats = [
 		},
 		ruleset: ['HP Percentage Mod', 'Cancel Mod'],
 		banlist: [
-			'Pokestar Spirit', 'Battle Bond', 'Cheek Pouch', 'Cursed Body', 'Desolate Land', 'Dry Skin', 'Fluffy', 'Fur Coat', 'Grassy Surge',
-			'Huge Power', 'Ice Body', 'Iron Barbs', 'Libero', 'Moody', 'Parental Bond', 'Perish Body', 'Poison Heal', 'Power Construct', 'Pressure',
-			'Primordial Sea', 'Protean', 'Pure Power', 'Rain Dish', 'Rough Skin', 'Sand Spit', 'Sand Stream', 'Snow Warning', 'Stamina', 'Volt Absorb',
-			'Water Absorb', 'Wonder Guard', 'Abomasite', 'Aguav Berry', 'Assault Vest', 'Berry', 'Berry Juice', 'Berserk Gene', 'Black Sludge',
-			'Enigma Berry', 'Figy Berry', 'Gold Berry', 'Iapapa Berry', 'Kangaskhanite', 'Leftovers', 'Mago Berry', 'Medichamite', 'Oran Berry',
-			'Rocky Helmet', 'Shell Bell', 'Sitrus Berry', 'Wiki Berry', 'Shedinja + Sturdy', 'Harvest + Jaboca Berry', 'Harvest + Rowap Berry',
+			'Pokestar Spirit', 'Battle Bond', 'Cheek Pouch', 'Cursed Body', 'Desolate Land', 'Dry Skin', 'Fluffy', 'Fur Coat', 'Gorilla Tactics',
+			'Grassy Surge', 'Huge Power', 'Ice Body', 'Iron Barbs', 'Libero', 'Moody', 'Parental Bond', 'Perish Body', 'Poison Heal', 'Power Construct',
+			'Pressure', 'Primordial Sea', 'Protean', 'Pure Power', 'Rain Dish', 'Rough Skin', 'Sand Spit', 'Sand Stream', 'Snow Warning', 'Stamina',
+			'Volt Absorb', 'Water Absorb', 'Wonder Guard', 'Abomasite', 'Aguav Berry', 'Assault Vest', 'Berry', 'Berry Juice', 'Berserk Gene',
+			'Black Sludge', 'Enigma Berry', 'Figy Berry', 'Gold Berry', 'Iapapa Berry', 'Kangaskhanite', 'Leftovers', 'Mago Berry', 'Medichamite',
+			'Oran Berry', 'Rocky Helmet', 'Shell Bell', 'Sitrus Berry', 'Wiki Berry', 'Shedinja + Sturdy', 'Harvest + Jaboca Berry', 'Harvest + Rowap Berry',
 		],
 		onValidateSet(set) {
 			let template = this.dex.getTemplate(set.species);
@@ -514,9 +514,9 @@ let Formats = [
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview', 'Dynamax Clause', 'Baton Pass Clause'],
+		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview', 'Dynamax Clause'],
 		banlist: [
-			'Bright Powder', "King's Rock", 'Razor Fang', 'Focus Band', 'Quick Claw', 'Moody', 'Stench',
+			'Bright Powder', "King's Rock", 'Razor Fang', 'Focus Band', 'Quick Claw', 'Moody', 'Stench', 'Baton Pass > 1',
 			// Unreleased HAs
 			'Grookey + Grassy Surge', 'Thwackey + Grassy Surge', 'Rillaboom + Grassy Surge', 'Scorbunny + Libero', 'Raboot + Libero', 
 			'Cinderace + Libero', 'Sobble + Sniper', 'Drizzile + Sniper', 'Inteleon + Sniper', 'Skwovet + Gluttony', 'Greedent + Gluttony',
@@ -531,11 +531,19 @@ let Formats = [
 		name: "[Gen 8] (National Dex) PICA",
 
 		mod: 'gen8',
-		ruleset: ['Obtainable', '+Unreleased', '+Past', '+PastMove', 'Draft', 'Team Preview', 'Dynamax Clause', 'Baton Pass Clause'],
+		ruleset: ['Obtainable', '+Unreleased', '+Past', '+PastMove', 'Draft', 'Team Preview', 'Dynamax Clause'],
 		banlist: [
-			'Bright Powder', "King's Rock", 'Razor Fang', 'Focus Band', 'Quick Claw', 'Moody', 'Stench', 'Starf Berry',
-			'Confuse Ray', 'Flatter', 'Supersonic', 'Swagger', 'Sweet Kiss', 'Teeter Dance', 'Attract', 'Cute Charm',
+			// Items
+			'Bright Powder', 'Lax Incense', "King's Rock", 'Razor Fang', 'Focus Band', 'Quick Claw', 'Starf Berry',
+			// Abilities
+			'Moody', 'Stench', 'Sand Veil', 'Snow Cloak',
+			// Moves
+			'Confuse Ray', 'Flatter', 'Supersonic', 'Swagger', 'Sweet Kiss', 'Teeter Dance', 'Attract', 'Cute Charm', 'Acupressure', 'Flash', 
+			'Leaf Tornado', 'Mirror Shot', 'Mud Bomb', 'Mud Slap', 'Muddy Water', 'Night Daze', 'Octazooka', 'Sand Attack', 'Smokescreen',
 			'Clangorous Soul', 'No Retreat',
+			// Illegal Forms
+			'Pikachu-Cosplay', 'Pikachu-Rock-Star', 'Pikachu-Belle', 'Pikachu-Pop-Star', 'Pikachu-PhD', 'Pikachu-Libre', 
+			'Pikachu-Starter', 'Eevee-Starter', 'Pichu-Spiky-eared', 'Floette-Eternal', 'Magearna-Original',
 			// Unreleased HAs
 			'Grookey + Grassy Surge', 'Thwackey + Grassy Surge', 'Rillaboom + Grassy Surge', 'Scorbunny + Libero', 'Raboot + Libero', 
 			'Cinderace + Libero', 'Sobble + Sniper', 'Drizzile + Sniper', 'Inteleon + Sniper', 'Skwovet + Gluttony', 'Greedent + Gluttony',
@@ -580,36 +588,8 @@ let Formats = [
 		banlist: [
 			'Eternatus-Eternamax', 'Comatose + Sleep Talk',
 			'Arena Trap', 'Contrary', 'Gorilla Tactics', 'Huge Power', 'Illusion', 'Innards Out', 'Libero', 'Magnet Pull', 'Moody',
-			'Neutralizing Gas', 'Parental Bond', 'Protean', 'Pure Power', 'Shadow Tag', 'Stakeout', 'Water Bubble', 'Wonder Guard',
+			'Neutralizing Gas', 'Parental Bond', 'Protean', 'Psychic Surge', 'Pure Power', 'Shadow Tag', 'Stakeout', 'Water Bubble', 'Wonder Guard',
 		],
-		onChangeSet(set) {
-			const item = toID(set.item);
-			if (set.species === 'Zacian' || set.species === 'Zacian-Crowned') {
-				if (item === 'rustedsword') {
-					set.species = 'Zacian-Crowned';
-					set.ability = 'Intrepid Sword';
-					let ironHead = set.moves.indexOf('ironhead');
-					if (ironHead >= 0) {
-						set.moves[ironHead] = 'behemothblade';
-					}
-				} else {
-					set.species = 'Zacian';
-				}
-			}
-			if (set.species === 'Zamazenta' || set.species === 'Zamazenta-Crowned') {
-				if (item === 'rustedshield') {
-					set.species = 'Zamazenta-Crowned';
-					set.ability = 'Dauntless Shield';
-					let ironHead = set.moves.indexOf('ironhead');
-					if (ironHead >= 0) {
-						set.moves[ironHead] = 'behemothbash';
-					}
-				} else {
-					set.species = 'Zamazenta';
-				}
-			}
-		},
-	},
 	{
 		name: "[Gen 8] Camomons",
 		desc: `Pok&eacute;mon change type to match their first two moves.`,
@@ -1282,7 +1262,7 @@ let Formats = [
 		gameType: 'doubles',
 		searchShow: false,
 		ruleset: ['Standard Doubles', 'Swagger Clause'],
-		banlist: ['DUber', 'Power Construct', 'Eevium Z', 'Dark Void', 'Gravity ++ Grass Whistle', 'Gravity ++ Hypnosis', 'Gravity ++ Lovely Kiss', 'Gravity ++ Sing', 'Gravity ++ Sleep Powder'],
+		banlist: ['DUber', 'Power Construct', 'Eevium Z', 'Dark Void'],
 	},
 	{
 		name: "[Gen 7] VGC 2019 Ultra Series",
@@ -1595,7 +1575,7 @@ let Formats = [
 		gameType: 'doubles',
 		searchShow: false,
 		ruleset: ['Standard Doubles', 'Swagger Clause'],
-		banlist: ['DUber', 'Soul Dew', 'Dark Void', 'Gravity ++ Grass Whistle', 'Gravity ++ Hypnosis', 'Gravity ++ Lovely Kiss', 'Gravity ++ Sing', 'Gravity ++ Sleep Powder'],
+		banlist: ['DUber', 'Soul Dew', 'Dark Void'],
 	},
 	{
 		name: "[Gen 6] VGC 2016",
@@ -2088,7 +2068,7 @@ let Formats = [
 			validate: [1, 3],
 			battle: 1,
 		},
-		ruleset: ['[Gen 3] OU', 'Accuracy Moves Clause', 'Team Preview'],
+		ruleset: ['[Gen 3] OU', 'Accuracy Moves Clause', 'Sleep Moves Clause', 'Team Preview'],
 		banlist: ['Slaking', 'Snorlax', 'Suicune', 'Destiny Bond', 'Explosion', 'Ingrain', 'Perish Song', 'Self-Destruct'],
 	},
 	{

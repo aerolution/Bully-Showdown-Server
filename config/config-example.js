@@ -566,7 +566,7 @@ exports.grouplist = [
     {
         symbol: '%',
         id: "driver",
-        name: "Driver",
+        name: "Big Fan",
         inherit: '+',
         jurisdiction: 'u',
         timer: true,

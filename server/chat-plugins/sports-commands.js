@@ -55,6 +55,10 @@ exports.commands = {
 **National Dex Unrestricted**:
 + everything is allowed, including illegal Pokemon and CAP
 
+**National Dex Doubles**:
++ National Dex Dynamax rules
++ Doubles format
+
 All Draft formats use a DS style timer (100s per turn, auto pick on timeout)`);
 	},
 	

@@ -79,155 +79,11 @@ let Formats = [
 	},
 	
 	
-	// Custom League Tiers
-	///////////////////////////////////////////////////////////////////
-
-	{
-		section: "Custom League Tiers",
-	},
-	{
-		name: "[Gen 8] Galar Dex Pre-Home",
-
-		mod: 'gen8',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', '+Unreleased', 'Draft', 'Team Preview'],
-		minSourceGen: 8,
-	},
-	{
-		name: "[Gen 8] (National Dex) CUBA",
-
-		mod: 'gen8',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview'],
-		banlist: ['Kangaskhan-Mega + Seismic Toss'],
-		
-		onBegin() {
-			const sTiers = [
-				'Aegislash', 'Blaziken', 'Celesteela', 'Cinderace', 'Darkrai', 'Deoxys-Speed', 'Genesect', 'Greninja', 'Greninja-Ash',
-				'Landorus', 'Landorus-Therian', 'Magearna', 'Metagross-Mega', 'Mew', 'Naganadel', 'Pheromosa', 'Tapu Lele',
-			];
-			for (let pokemon of this.getAllPokemon()) {
-				if (sTiers.includes(pokemon.species)) pokemon.canDynamax = false;
-			}
-		},
-	},
-	{
-		name: "[Gen 8] (National Dex) EBL",
-
-		mod: 'gen8',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview', 'Dynamax Clause'],
-		unbanlist: [
-			'Buginium Z', 'Darkinium Z', 'Dragonium Z', 'Electrium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Ghostium Z', 
-			'Grassium Z', 'Groundium Z', 'Icium Z', 'Normalium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z', 'Waterium Z',
-			'Pikanium Z', 'Pikashunium Z',
-		],
-		
-		onValidateSet(set) {
-			let template = this.dex.getTemplate(set.species);
-			let bst = 0;
-			for (let stat in template.baseStats) {
-				// @ts-ignore
-				bst += template.baseStats[stat];
-			}
-			if (bst > 435) {
-				return [`${template.species} is banned.`, `(Pok\u00e9mon with a BST higher than 435 are banned)`];
-			}
-			if (set.item === "Eviolite" && bst > 350) {
-				return [`${template.species} cannot hold Eviolite.`, `(Eviolite is banned on Pok\u00e9mon with a BST higher than 350)`];
-			}				
-		},
-	},
-	{
-		name: "[Gen 8] (National Dex) Hive",
-
-		mod: 'gen8',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview', 'Dynamax Clause'],
-		banlist: [
-			'Bright Powder', "King's Rock", 'Razor Fang', 'Focus Band', 'Quick Claw', 'Moody', 'Stench', 'Baton Pass > 1',
-			// Unreleased HAs
-			'Grookey + Grassy Surge', 'Thwackey + Grassy Surge', 'Rillaboom + Grassy Surge', 'Scorbunny + Libero', 'Raboot + Libero', 
-			'Cinderace + Libero', 'Sobble + Sniper', 'Drizzile + Sniper', 'Inteleon + Sniper', 'Skwovet + Gluttony', 'Greedent + Gluttony',
-			'Nickit + Stakeout', 'Thievul + Stakeout', 'Wooloo + Bulletproof', 'Dubwool + Bulletproof', 'Yamper + Rattled', 
-			'Boltund + Competitive', 'Dracozolt + Sand Rush', 'Arctozolt + Slush Rush', 'Dracovish + Sand Rush', 'Arctovish + Slush Rush',
-			// Complex bans
-			'Landorus + Sheer Force', 'Greninja + Protean', 'Greninja + Battle Bond', 'Blaziken + Speed Boost', 'Kangaskhan-Mega + Seismic Toss',
-			'Blastoise-Mega + Shell Smash',
-		],
-	},
-	{
-		name: "[Gen 8] (National Dex) PICA",
-
-		mod: 'gen8',
-		ruleset: ['Obtainable', '+Unreleased', '+Past', '+PastMove', 'Draft', 'Team Preview', 'Dynamax Clause'],
-		banlist: [
-			// Items
-			'Bright Powder', 'Lax Incense', "King's Rock", 'Razor Fang', 'Focus Band', 'Quick Claw', 'Starf Berry',
-			// Abilities
-			'Moody', 'Stench', 'Sand Veil', 'Snow Cloak',
-			// Moves
-			'Confuse Ray', 'Flatter', 'Supersonic', 'Swagger', 'Sweet Kiss', 'Teeter Dance', 'Attract', 'Cute Charm', 'Acupressure', 'Flash', 
-			'Leaf Tornado', 'Mirror Shot', 'Mud Bomb', 'Mud Slap', 'Muddy Water', 'Night Daze', 'Octazooka', 'Sand Attack', 'Smokescreen',
-			'Clangorous Soul', 'No Retreat',
-			// Illegal Forms
-			'Pikachu-Cosplay', 'Pikachu-Rock-Star', 'Pikachu-Belle', 'Pikachu-Pop-Star', 'Pikachu-PhD', 'Pikachu-Libre', 
-			'Pikachu-Starter', 'Eevee-Starter', 'Pichu-Spiky-eared', 'Floette-Eternal', 'Magearna-Original',
-			// Unreleased HAs
-			'Grookey + Grassy Surge', 'Thwackey + Grassy Surge', 'Rillaboom + Grassy Surge', 'Scorbunny + Libero', 'Raboot + Libero', 
-			'Cinderace + Libero', 'Sobble + Sniper', 'Drizzile + Sniper', 'Inteleon + Sniper', 'Skwovet + Gluttony', 'Greedent + Gluttony',
-			'Nickit + Stakeout', 'Thievul + Stakeout', 'Wooloo + Bulletproof', 'Dubwool + Bulletproof', 'Yamper + Rattled', 
-			'Boltund + Competitive', 'Dracozolt + Sand Rush', 'Arctozolt + Slush Rush', 'Dracovish + Sand Rush', 'Arctovish + Slush Rush',
-		],
-	},
-	
-	// Past Gens Draft League
-	///////////////////////////////////////////////////////////////////
-	{
-		section: "Past Gens Draft League",
-	},
-	{
-		name: "[Gen 7] Draft League",
-
-		mod: 'gen7',
-		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview'],
-	},
-	{
-		name: "[Gen 7] Wifi Draft League",
-
-		mod: 'gen7',
-		maxForcedLevel: 50,
-		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview', 'VGC Timer'],
-	},
-	{
-		name: "[Gen 7] DS Timer Draft League",
-
-		mod: 'gen7',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['[Gen 7] Draft League'],
-	},
-	{
-		name: "[Gen 7] LC Draft League",
-
-		mod: 'gen7',
-		maxLevel: 5,
-		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview', 'Double Item Clause', 'Little Cup'],
-		banlist: ['Eevium Z', 'Dragon Rage', 'Sonic Boom'],
-	},
-	{
-		name: "[Gen 7] Unrestricted Draft League",
-
-		mod: 'gen7',
-		ruleset: ['-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', 'Draft', 'Team Preview'],
-	},
-	
-	
 	// Sw/Sh Singles
 	///////////////////////////////////////////////////////////////////
 
 	{
 		section: "Sw/Sh Singles",
-		column: 2,
 	},
 	{
 		name: "[Gen 8] Random Battle",
@@ -447,13 +303,11 @@ let Formats = [
 		ruleset: ['Team Preview', 'Cancel Mod'],
 	},
 
-
 	// Sw/Sh Doubles
 	///////////////////////////////////////////////////////////////////
 
 	{
 		section: "Sw/Sh Doubles",
-		column: 2,
 	},
 	{
 		name: "[Gen 8] Random Doubles Battle",
@@ -616,6 +470,110 @@ let Formats = [
 		// no restrictions, for serious (other than team preview)
 		ruleset: ['Team Preview', 'Cancel Mod'],
 	},
+	
+
+	// Custom League Tiers
+	///////////////////////////////////////////////////////////////////
+
+	{
+		section: "Custom League Tiers",
+		column: 2,
+	},
+	{
+		name: "[Gen 8] Galar Dex Pre-Home",
+
+		mod: 'gen8',
+		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['Obtainable', '+Unreleased', 'Draft', 'Team Preview'],
+		minSourceGen: 8,
+	},
+	{
+		name: "[Gen 8] (National Dex) CUBA",
+
+		mod: 'gen8',
+		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview'],
+		banlist: ['Kangaskhan-Mega + Seismic Toss'],
+		
+		onBegin() {
+			const sTiers = [
+				'Aegislash', 'Blaziken', 'Celesteela', 'Cinderace', 'Darkrai', 'Deoxys-Speed', 'Genesect', 'Greninja', 'Greninja-Ash',
+				'Landorus', 'Landorus-Therian', 'Magearna', 'Metagross-Mega', 'Mew', 'Naganadel', 'Pheromosa', 'Tapu Lele',
+			];
+			for (let pokemon of this.getAllPokemon()) {
+				if (sTiers.includes(pokemon.species)) pokemon.canDynamax = false;
+			}
+		},
+	},
+	{
+		name: "[Gen 8] (National Dex) EBL",
+
+		mod: 'gen8',
+		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview', 'Dynamax Clause'],
+		unbanlist: [
+			'Buginium Z', 'Darkinium Z', 'Dragonium Z', 'Electrium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Ghostium Z', 
+			'Grassium Z', 'Groundium Z', 'Icium Z', 'Normalium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z', 'Waterium Z',
+			'Pikanium Z', 'Pikashunium Z',
+		],
+		
+		onValidateSet(set) {
+			let template = this.dex.getTemplate(set.species);
+			let bst = 0;
+			for (let stat in template.baseStats) {
+				// @ts-ignore
+				bst += template.baseStats[stat];
+			}
+			if (bst > 435) {
+				return [`${template.species} is banned.`, `(Pok\u00e9mon with a BST higher than 435 are banned)`];
+			}
+			if (set.item === "Eviolite" && bst > 350) {
+				return [`${template.species} cannot hold Eviolite.`, `(Eviolite is banned on Pok\u00e9mon with a BST higher than 350)`];
+			}				
+		},
+	},
+	{
+		name: "[Gen 8] (National Dex) Hive",
+
+		mod: 'gen8',
+		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview', 'Dynamax Clause'],
+		banlist: [
+			'Bright Powder', "King's Rock", 'Razor Fang', 'Focus Band', 'Quick Claw', 'Moody', 'Stench', 'Baton Pass > 1',
+			// Unreleased HAs
+			'Grookey + Grassy Surge', 'Thwackey + Grassy Surge', 'Rillaboom + Grassy Surge', 'Scorbunny + Libero', 'Raboot + Libero', 
+			'Cinderace + Libero', 'Sobble + Sniper', 'Drizzile + Sniper', 'Inteleon + Sniper', 'Skwovet + Gluttony', 'Greedent + Gluttony',
+			'Nickit + Stakeout', 'Thievul + Stakeout', 'Wooloo + Bulletproof', 'Dubwool + Bulletproof', 'Yamper + Rattled', 
+			'Boltund + Competitive', 'Dracozolt + Sand Rush', 'Arctozolt + Slush Rush', 'Dracovish + Sand Rush', 'Arctovish + Slush Rush',
+			// Complex bans
+			'Landorus + Sheer Force', 'Greninja + Protean', 'Greninja + Battle Bond', 'Blaziken + Speed Boost', 'Kangaskhan-Mega + Seismic Toss',
+			'Blastoise-Mega + Shell Smash',
+		],
+	},
+	{
+		name: "[Gen 8] (National Dex) PICA",
+
+		mod: 'gen8',
+		ruleset: ['Obtainable', '+Unreleased', '+Past', '+PastMove', 'Draft', 'Team Preview', 'Dynamax Clause'],
+		banlist: [
+			// Items
+			'Bright Powder', 'Lax Incense', "King's Rock", 'Razor Fang', 'Focus Band', 'Quick Claw', 'Starf Berry',
+			// Abilities
+			'Moody', 'Stench', 'Sand Veil', 'Snow Cloak',
+			// Moves
+			'Confuse Ray', 'Flatter', 'Supersonic', 'Swagger', 'Sweet Kiss', 'Teeter Dance', 'Attract', 'Cute Charm', 'Acupressure', 'Flash', 
+			'Leaf Tornado', 'Mirror Shot', 'Mud Bomb', 'Mud Slap', 'Muddy Water', 'Night Daze', 'Octazooka', 'Sand Attack', 'Smokescreen',
+			'Clangorous Soul', 'No Retreat',
+			// Illegal Forms
+			'Pikachu-Cosplay', 'Pikachu-Rock-Star', 'Pikachu-Belle', 'Pikachu-Pop-Star', 'Pikachu-PhD', 'Pikachu-Libre', 
+			'Pikachu-Starter', 'Eevee-Starter', 'Pichu-Spiky-eared', 'Floette-Eternal', 'Magearna-Original',
+			// Unreleased HAs
+			'Grookey + Grassy Surge', 'Thwackey + Grassy Surge', 'Rillaboom + Grassy Surge', 'Scorbunny + Libero', 'Raboot + Libero', 
+			'Cinderace + Libero', 'Sobble + Sniper', 'Drizzile + Sniper', 'Inteleon + Sniper', 'Skwovet + Gluttony', 'Greedent + Gluttony',
+			'Nickit + Stakeout', 'Thievul + Stakeout', 'Wooloo + Bulletproof', 'Dubwool + Bulletproof', 'Yamper + Rattled', 
+			'Boltund + Competitive', 'Dracozolt + Sand Rush', 'Arctozolt + Slush Rush', 'Dracovish + Sand Rush', 'Arctovish + Slush Rush',
+		],
+	},
 
 
 	// Other Metagames
@@ -623,7 +581,7 @@ let Formats = [
 
 	{
 		section: "Other Metagames",
-		column: 3,
+		column: 2,
 	},
 	{
 		name: "[Gen 8] Almost Any Ability",
@@ -679,6 +637,7 @@ let Formats = [
 				}
 			}
 		},
+	},
 	{
 		name: "[Gen 8] Camomons",
 		desc: `Pok&eacute;mon change type to match their first two moves.`,
@@ -869,7 +828,7 @@ let Formats = [
 
 	{
 		section: "Randomized Metas",
-		column: 3,
+		column: 2,
 	},
 	{
 		name: "[Gen 8] Dynamax Frenzy",
@@ -1046,13 +1005,55 @@ let Formats = [
 		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	
+	
+	// Past Gens Draft League
+	///////////////////////////////////////////////////////////////////
+	{
+		section: "Past Gens Draft League",
+		column: 3,
+	},
+	{
+		name: "[Gen 7] Draft League",
+
+		mod: 'gen7',
+		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview'],
+	},
+	{
+		name: "[Gen 7] WiFi Draft League",
+
+		mod: 'gen7',
+		maxForcedLevel: 50,
+		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview', 'VGC Timer'],
+	},
+	{
+		name: "[Gen 7] DS Timer Draft League",
+
+		mod: 'gen7',
+		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['[Gen 7] Draft League'],
+	},
+	{
+		name: "[Gen 7] LC Draft League",
+
+		mod: 'gen7',
+		maxLevel: 5,
+		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview', 'Double Item Clause', 'Little Cup'],
+		banlist: ['Eevium Z', 'Dragon Rage', 'Sonic Boom'],
+	},
+	{
+		name: "[Gen 7] Unrestricted Draft League",
+
+		mod: 'gen7',
+		ruleset: ['-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', 'Draft', 'Team Preview'],
+	},
+	
 
 	// Past Gens OU
 	///////////////////////////////////////////////////////////////////
 
 	{
 		section: "Past Gens OU",
-		column: 4,
+		column: 3,
 	},
 	{
 		name: "[Gen 7] OU",
@@ -1063,7 +1064,6 @@ let Formats = [
 		],
 
 		mod: 'gen7',
-		searchShow: false,
 		ruleset: ['Standard'],
 		banlist: ['Uber', 'Arena Trap', 'Power Construct', 'Shadow Tag', 'Baton Pass'],
 	},
@@ -1076,7 +1076,6 @@ let Formats = [
 		],
 
 		mod: 'gen6',
-		searchShow: false,
 		ruleset: ['Standard', 'Swagger Clause'],
 		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'Soul Dew', 'Baton Pass'],
 	},
@@ -1088,7 +1087,6 @@ let Formats = [
 		],
 
 		mod: 'gen5',
-		searchShow: false,
 		ruleset: ['Standard', 'Evasion Abilities Clause', 'Baton Pass Clause', 'Sleep Moves Clause', 'Swagger Clause'],
 		banlist: ['Uber', 'Arena Trap', 'Drizzle ++ Swift Swim', 'Drought ++ Chlorophyll', 'Sand Rush', 'Shadow Tag', 'Soul Dew'],
 	},
@@ -1101,7 +1099,6 @@ let Formats = [
 		],
 
 		mod: 'gen4',
-		searchShow: false,
 		ruleset: ['Standard', 'Baton Pass Clause'],
 		banlist: ['Uber', 'Sand Veil', 'Soul Dew'],
 	},
@@ -1113,7 +1110,6 @@ let Formats = [
 		],
 
 		mod: 'gen3',
-		searchShow: false,
 		ruleset: ['Standard', '3 Baton Pass Clause'],
 		banlist: ['Uber', 'Smeargle + Baton Pass'],
 	},
@@ -1125,7 +1121,6 @@ let Formats = [
 		],
 
 		mod: 'gen2',
-		searchShow: false,
 		ruleset: ['Standard'],
 		banlist: ['Uber'],
 	},
@@ -1137,7 +1132,6 @@ let Formats = [
 		],
 
 		mod: 'gen1',
-		searchShow: false,
 		ruleset: ['Standard'],
 		banlist: ['Uber'],
 	},
@@ -1146,7 +1140,7 @@ let Formats = [
 	///////////////////////////////////////////////////////////////////
 	{
 		section: "US/UM Singles",
-		column: 4,
+		column: 3,
 	},
 	{
 		name: "[Gen 7] Ubers",
@@ -1368,7 +1362,7 @@ let Formats = [
 
 	{
 		section: "US/UM Doubles",
-		column: 4,
+		column: 3,
 	},
 	{
 		name: "[Gen 7] Doubles OU",
@@ -1512,7 +1506,7 @@ let Formats = [
 
 	{
 		section: "OR/AS Singles",
-		column: 5,
+		column: 4,
 	},
 	{
 		name: "[Gen 6] Ubers",
@@ -1682,7 +1676,7 @@ let Formats = [
 
 	{
 		section: "OR/AS Doubles/Triples",
-		column: 5,
+		column: 4,
 	},
 	{
 		name: "[Gen 6] Doubles OU",
@@ -1796,7 +1790,7 @@ let Formats = [
 
 	{
 		section: "B2/W2 Singles",
-		column: 5,
+		column: 4,
 	},
 	{
 		name: "[Gen 5] Ubers",
@@ -1935,7 +1929,7 @@ let Formats = [
 
 	{
 		section: 'B2/W2 Doubles',
-		column: 5,
+		column: 4,
 	},
 	{
 		name: "[Gen 5] Doubles OU",
@@ -1996,7 +1990,7 @@ let Formats = [
 
 	{
 		section: "DPP Singles",
-		column: 6,
+		column: 5,
 	},
 	{
 		name: "[Gen 4] Ubers",
@@ -2108,7 +2102,7 @@ let Formats = [
 
 	{
 		section: "DPP Doubles",
-		column: 6,
+		column: 5,
 	},
 	{
 		name: "[Gen 4] Doubles OU",
@@ -2140,7 +2134,7 @@ let Formats = [
 
 	{
 		section: "Past Generations",
-		column: 6,
+		column: 5,
 	},
 	{
 		name: "[Gen 3] Ubers",
@@ -2333,7 +2327,7 @@ let Formats = [
 
 	{
 		section: "Other Other Metagames",
-		column: 6,
+		column: 5,
 	},
 	{
 		name: "[Gen 8] Rock Paper Scissors",

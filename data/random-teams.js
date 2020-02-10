@@ -297,9 +297,9 @@ class RandomTeams {
 		/**@type {number[]} */
 		let pool = [];
 		for (let id in this.dex.data.FormatsData) {
-			if (!this.dex.data.Pokedex[id] || this.dex.data.FormatsData[id].isNonstandard && this.dex.data.FormatsData[id].isNonstandard !== 'Unobtainable') continue;
+			if (!this.dex.data.Pokedex[id] || this.dex.data.FormatsData[id].isNonstandard && this.dex.data.FormatsData[id].isNonstandard === 'Past') continue;
 			let num = this.dex.data.Pokedex[id].num;
-			if (pool.includes(num)) continue;
+			if (num <= 0 || pool.includes(num)) continue;
 			if (num > last) break;
 			pool.push(num);
 		}
@@ -316,7 +316,7 @@ class RandomTeams {
 		for (let id in this.dex.data.Pokedex) {
 			if (!(this.dex.data.Pokedex[id].num in hasDexNumber)) continue;
 			let template = this.dex.getTemplate(id);
-			if (template.gen <= this.gen && template.isNonstandard !== 'Past') {
+			if (template.gen <= this.gen && template.isNonstandard !== 'Past' && template.isNonstandard !== 'LGPE') {
 				formes[hasDexNumber[template.num]].push(template.species);
 			}
 		}
@@ -344,11 +344,6 @@ class RandomTeams {
 		for (let i = 0; i < 6; i++) {
 			// Choose forme
 			let template = this.dex.getTemplate(random6[i]);
-
-			// Zacian-Crowned/Zamazenta-Crowned are special cases
-			if (this.gen >= 8 && template.requiredItems && template.learnset) {
-				template = this.dex.getTemplate(template.baseSpecies);
-			}
 
 			// Random unique item
 			let item = '';
@@ -717,6 +712,9 @@ class RandomTeams {
 				case 'hex':
 					if (!hasMove['willowisp']) rejected = true;
 					break;
+				case 'payback': case 'psychocut':
+					if (!counter.Status || hasMove['rest'] && hasMove['sleeptalk']) rejected = true;
+					break;
 				case 'raindance':
 					if (!counter['Water']) rejected = true;
 					break;
@@ -739,9 +737,6 @@ class RandomTeams {
 					break;
 				case 'storedpower':
 					if (!counter.setupType) rejected = true;
-					break;
-				case 'strengthsap':
-					if (movePool.includes('quiverdance')) rejected = true;
 					break;
 				case 'superpower':
 					if (hasAbility['Contrary']) isSetup = true;
@@ -777,7 +772,7 @@ class RandomTeams {
 					isSetup = true;
 					break;
 				case 'agility': case 'autotomize': case 'rockpolish': case 'shiftgear':
-					if (counter.damagingMoves.length < 2 || hasMove['rest'] && hasMove['sleeptalk']) rejected = true;
+					if (counter.damagingMoves.length < 2 || hasMove['stickyweb'] || hasMove['rest'] && hasMove['sleeptalk']) rejected = true;
 					if (!counter.setupType) isSetup = true;
 					break;
 				case 'flamecharge':
@@ -807,9 +802,6 @@ class RandomTeams {
 					break;
 				case 'partingshot':
 					if (counter.setupType || hasMove['fakeout'] || hasMove['uturn']) rejected = true;
-					break;
-				case 'payback': case 'psychocut':
-					if (hasMove['rest'] && hasMove['sleeptalk']) rejected = true;
 					break;
 				case 'rapidspin':
 					if (hasMove['curse'] || hasMove['nastyplot'] || hasMove['shellsmash'] || teamDetails.rapidSpin) rejected = true;
@@ -891,6 +883,9 @@ class RandomTeams {
 				case 'stormthrow':
 					if (hasMove['circlethrow'] && hasMove['rest'] && hasMove['sleeptalk']) rejected = true;
 					break;
+				case 'poisonjab':
+					if (!hasType['Poison'] && counter.Status >= 2) rejected = true;
+					break;
 				case 'bugbuzz':
 					if (hasMove['uturn'] && !counter.setupType) rejected = true;
 					break;
@@ -934,6 +929,9 @@ class RandomTeams {
 				case 'painsplit': case 'recover': case 'roost': case 'synthesis':
 					if (hasMove['rest'] || hasMove['selfdestruct'] || hasMove['wish']) rejected = true;
 					if (move.id === 'roost' && (hasMove['stoneedge'] || hasMove['throatchop'])) rejected = true;
+					break;
+				case 'sleeppowder':
+					if (movePool.includes('quiverdance')) rejected = true;
 					break;
 				case 'substitute':
 					if (hasMove['uturn'] || hasMove['voltswitch'] || hasMove['rest'] && hasMove['sleeptalk']) rejected = true;
@@ -1055,8 +1053,8 @@ class RandomTeams {
 					// Adaptability, Contrary, Iron Fist, Skill Link, Strong Jaw
 					// @ts-ignore
 					rejectAbility = !counter[toID(ability)];
-				} else if (ability === 'Bulletproof') {
-					rejectAbility = counter.setupType;
+				} else if (ability === 'Bulletproof' || ability === 'Overcoat') {
+					rejectAbility = (counter.setupType && abilities.includes('Soundproof'));
 				} else if (ability === 'Chlorophyll') {
 					rejectAbility = (template.baseStats.spe > 100 || !counter.setupType && !teamDetails['sun']);
 				} else if (ability === 'Competitive') {
@@ -1101,6 +1099,8 @@ class RandomTeams {
 					rejectAbility = (!counter['sheerforce'] || abilities.includes('Guts'));
 				} else if (ability === 'Slush Rush') {
 					rejectAbility = hasMove['raindance'];
+				} else if (ability === 'Sniper') {
+					rejectAbility = counter['Water'] > 1;
 				} else if (ability === 'Sturdy') {
 					rejectAbility = !!counter['recoil'];
 				} else if (ability === 'Swarm') {
@@ -1113,6 +1113,8 @@ class RandomTeams {
 					rejectAbility = (!counter['technician'] || hasMove['tailslap']);
 				} else if (ability === 'Tinted Lens') {
 					rejectAbility = (hasMove['hurricane'] || counter.Status > 2 && !counter.setupType);
+				} else if (ability === 'Torrent') {
+					rejectAbility = hasMove['snipeshot'];
 				} else if (ability === 'Unaware') {
 					rejectAbility = (counter.setupType || hasMove['stealthrock']);
 				} else if (ability === 'Unburden') {
@@ -1213,11 +1215,13 @@ class RandomTeams {
 			item = 'Life Orb';
 		} else if (isDoubles && this.dex.getEffectiveness('Ice', template) >= 2) {
 			item = 'Yache Berry';
+		} else if (isDoubles && this.dex.getEffectiveness('Rock', template) >= 2) {
+			item = 'Charti Berry';
 		} else if (isDoubles && this.dex.getEffectiveness('Fire', template) >= 2) {
 			item = 'Occa Berry';
 		} else if (isDoubles && this.dex.getImmunity('Fighting', template) && this.dex.getEffectiveness('Fighting', template) >= 2) {
 			item = 'Chople Berry';
-		} else if (this.dex.getEffectiveness('Rock', template) >= 2 || ability === 'Drizzle' || hasMove['courtchange'] || (this.dex.getEffectiveness('Rock', template) > 0 && (hasMove['defog'] || hasMove['rapidspin']))) {
+		} else if (this.dex.getEffectiveness('Rock', template) >= 2 || hasMove['courtchange'] || ['Drizzle', 'Overcoat', 'Screen Cleaner', 'Sturdy'].includes(ability) && (hasMove['defog'] || hasMove['rapidspin'])) {
 			item = 'Heavy-Duty Boots';
 		} else if (hasMove['clearsmog'] || hasMove['coil'] || hasMove['curse'] || hasMove['protect'] || hasMove['sleeptalk']) {
 			item = 'Leftovers';

@@ -109,7 +109,6 @@ interface SelfEffect {
 	terrain?: string
 	volatileStatus?: string
 	weather?: string
-	onAfterHit?: MoveEventMethods['onAfterHit']
 	onHit?: MoveEventMethods['onHit']
 }
 
@@ -122,7 +121,6 @@ interface SecondaryEffect {
 	self?: SelfEffect
 	status?: string
 	volatileStatus?: string
-	onAfterHit?: MoveEventMethods['onAfterHit']
 	onHit?: MoveEventMethods['onHit']
 }
 
@@ -196,7 +194,8 @@ interface PureEffectEventMethods {
 }
 
 interface EventMethods {
-	onAfterDamage?: (this: Battle, damage: number, target: Pokemon, source: Pokemon, move: ActiveMove) => void
+	onDamagingHit?: (this: Battle, damage: number, target: Pokemon, source: Pokemon, move: ActiveMove) => void
+	onEmergencyExit?: (this: Battle, pokemon: Pokemon) => void
 	onAfterEachBoost?: (this: Battle, boost: SparseBoostsTable, target: Pokemon, source: Pokemon) => void
 	onAfterHit?: MoveEventMethods['onAfterHit']
 	onAfterSetStatus?: (this: Battle, status: PureEffect, target: Pokemon, source: Pokemon, effect: Effect) => void
@@ -258,6 +257,7 @@ interface EventMethods {
 	onStallMove?: (this: Battle, pokemon: Pokemon) => boolean | void
 	onSwitchIn?: (this: Battle, pokemon: Pokemon) => void
 	onSwitchOut?: (this: Battle, pokemon: Pokemon) => void
+	onSwap?: (this: Battle, target: Pokemon, source: Pokemon) => void
 	onTakeItem?: ((this: Battle, item: Item, pokemon: Pokemon, source: Pokemon, move?: ActiveMove) => boolean | void) | boolean
 	onTerrain?: (this: Battle, pokemon: Pokemon) => void
 	onTerrainStart?: (this: Battle, target: Pokemon, source: Pokemon, terrain: PureEffect) => void
@@ -282,7 +282,7 @@ interface EventMethods {
 	onWeatherModifyDamage?: CommonHandlers['ModifierSourceMove']
 	onModifyDamagePhase1?: CommonHandlers['ModifierSourceMove']
 	onModifyDamagePhase2?: CommonHandlers['ModifierSourceMove']
-	onAllyAfterDamage?: (this: Battle, damage: number, target: Pokemon, source: Pokemon, move: ActiveMove) => void
+	onAllyDamagingHit?: (this: Battle, damage: number, target: Pokemon, source: Pokemon, move: ActiveMove) => void
 	onAllyAfterEachBoost?: (this: Battle, boost: SparseBoostsTable, target: Pokemon, source: Pokemon) => void
 	onAllyAfterHit?: MoveEventMethods['onAfterHit']
 	onAllyAfterSetStatus?: (this: Battle, status: PureEffect, target: Pokemon, source: Pokemon, effect: Effect) => void
@@ -367,7 +367,7 @@ interface EventMethods {
 	onAllyWeatherModifyDamage?: CommonHandlers['ModifierSourceMove']
 	onAllyModifyDamagePhase1?: CommonHandlers['ModifierSourceMove']
 	onAllyModifyDamagePhase2?: CommonHandlers['ModifierSourceMove']
-	onFoeAfterDamage?: (this: Battle, damage: number, target: Pokemon, source: Pokemon, move: ActiveMove) => void
+	onFoeDamagingHit?: (this: Battle, damage: number, target: Pokemon, source: Pokemon, move: ActiveMove) => void
 	onFoeAfterEachBoost?: (this: Battle, boost: SparseBoostsTable, target: Pokemon, source: Pokemon) => void
 	onFoeAfterHit?: MoveEventMethods['onAfterHit']
 	onFoeAfterSetStatus?: (this: Battle, status: PureEffect, target: Pokemon, source: Pokemon, effect: Effect) => void
@@ -452,7 +452,7 @@ interface EventMethods {
 	onFoeWeatherModifyDamage?: CommonHandlers['ModifierSourceMove']
 	onFoeModifyDamagePhase1?: CommonHandlers['ModifierSourceMove']
 	onFoeModifyDamagePhase2?: CommonHandlers['ModifierSourceMove']
-	onSourceAfterDamage?: (this: Battle, damage: number, target: Pokemon, source: Pokemon, move: ActiveMove) => void
+	onSourceDamagingHit?: (this: Battle, damage: number, target: Pokemon, source: Pokemon, move: ActiveMove) => void
 	onSourceAfterEachBoost?: (this: Battle, boost: SparseBoostsTable, target: Pokemon, source: Pokemon) => void
 	onSourceAfterHit?: MoveEventMethods['onAfterHit']
 	onSourceAfterSetStatus?: (this: Battle, status: PureEffect, target: Pokemon, source: Pokemon, effect: Effect) => void
@@ -537,7 +537,7 @@ interface EventMethods {
 	onSourceWeatherModifyDamage?: CommonHandlers['ModifierSourceMove']
 	onSourceModifyDamagePhase1?: CommonHandlers['ModifierSourceMove']
 	onSourceModifyDamagePhase2?: CommonHandlers['ModifierSourceMove']
-	onAnyAfterDamage?: (this: Battle, damage: number, target: Pokemon, source: Pokemon, move: ActiveMove) => void
+	onAnyDamagingHit?: (this: Battle, damage: number, target: Pokemon, source: Pokemon, move: ActiveMove) => void
 	onAnyAfterEachBoost?: (this: Battle, boost: SparseBoostsTable, target: Pokemon, source: Pokemon) => void
 	onAnyAfterHit?: MoveEventMethods['onAfterHit']
 	onAnyAfterSetStatus?: (this: Battle, status: PureEffect, target: Pokemon, source: Pokemon, effect: Effect) => void
@@ -625,7 +625,7 @@ interface EventMethods {
 
 	// Priorities (incomplete list)
 	onAccuracyPriority?: number
-	onAfterDamageOrder?: number
+	onDamagingHitOrder?: number
 	onAfterMoveSecondaryPriority?: number
 	onAfterMoveSecondarySelfPriority?: number
 	onAfterMoveSelfPriority?: number
@@ -699,7 +699,7 @@ interface EffectData {
 	isZ?: boolean | string
 	/**
 	 * `true` for Max moves like Max Airstream. If its a G-Max moves, this is
-	 * the species ID of the giganimax pokemon that can use this G-Max move.
+	 * the species ID of the Gigantamax Pokemon that can use this G-Max move.
 	 */
 	isMax?: boolean | string
 	noCopy?: boolean
@@ -782,6 +782,7 @@ interface ItemData extends EffectData, ItemEventMethods, EventMethods {
 	zMoveFrom?: string
 	zMoveType?: string
 	itemUser?: string[]
+	boosts?: SparseBoostsTable | false
 }
 
 interface ModdedItemData extends Partial<ItemData>, ModdedEffectData {
@@ -868,6 +869,18 @@ interface MoveData extends EffectData, MoveEventMethods {
 	zMoveBoost?: SparseBoostsTable
 	gmaxPower?: number
 	basePowerCallback?: (this: Battle, pokemon: Pokemon, target: Pokemon, move: ActiveMove) => number | false | null
+	baseMove?: string
+	/**
+	 * Has this move been boosted by a Z-crystal? Usually the same as
+	 * `isZ`, but hacked moves will have this be `false` and `isZ` be
+	 * truthy.
+	 */
+	isZPowered?: boolean
+	/**
+	 * Same idea has `isZPowered`. Hacked Max moves will have this be
+	 * `false` and `isMax` be truthy.
+	 */
+	maxPowered?: boolean
 }
 
 interface ModdedMoveData extends Partial<MoveData>, ModdedEffectData {}
@@ -922,17 +935,7 @@ interface ActiveMove extends BasicEffect, MoveData {
 	totalDamage?: number | false
 	willChangeForme?: boolean
 	infiltrates?: boolean
-	/**
-	 * Has this move been boosted by a Z-crystal? Usually the same as
-	 * `isZ`, but hacked moves will have this be `false` and `isZ` be
-	 * truthy.
-	 */
-	isZPowered?: boolean
-	/**
-	 * Same idea has isZPowered. (Is only blocked by protect if its)
-	 * maxPowered. Update/remove this when this is confirmed.
-	 */
-	maxPowered?: boolean
+	baseMove?: string
 }
 
 type TemplateAbility = {0: string, 1?: string, H?: string, S?: string}
@@ -1024,6 +1027,7 @@ interface FormatsData extends EventMethods {
 	name: string
 	banlist?: string[]
 	battle?: ModdedBattleScriptsData
+	pokemon?: ModdedBattlePokemon
 	cannotMega?: string[]
 	challengeShow?: boolean
 	debug?: boolean
@@ -1142,6 +1146,7 @@ interface ModdedBattlePokemon {
 	inherit?: boolean
 	boostBy?: (this: Pokemon, boost: SparseBoostsTable) => boolean | number
 	calculateStat?: (this: Pokemon, statName: StatNameExceptHP, boost: number, modifier?: number) => number
+	getAbility?: (this: Pokemon) => Ability
 	getActionSpeed?: (this: Pokemon) => number
 	getRequestData?: (this: Pokemon) => {moves: {move: string, id: ID, target?: string, disabled?: boolean}[], maybeDisabled?: boolean, trapped?: boolean, maybeTrapped?: boolean, canMegaEvo?: boolean, canUltraBurst?: boolean, canZMove?: ZMoveOptions}
 	getStat?: (this: Pokemon, statName: StatNameExceptHP, unboosted?: boolean, unmodified?: boolean, fastReturn?: boolean) => number

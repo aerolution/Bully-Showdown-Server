@@ -16,8 +16,8 @@ let BattleScripts = {
 	 * externalMove skips LockMove and PP deduction, mostly for use by
 	 * Dancer.
 	 */
-	runMove(moveOrMoveName, pokemon, targetLoc, sourceEffect, zMove, externalMove, maxMove) {
-		let target = this.getTarget(pokemon, maxMove || zMove || moveOrMoveName, targetLoc);
+	runMove(moveOrMoveName, pokemon, targetLoc, sourceEffect, zMove, externalMove, maxMove, originalTarget) {
+		let target = this.getTarget(pokemon, maxMove || zMove || moveOrMoveName, targetLoc, originalTarget);
 		let baseMove = this.dex.getActiveMove(moveOrMoveName);
 		const pranksterBoosted = baseMove.pranksterBoosted;
 		if (baseMove.id !== 'struggle' && !zMove && !maxMove && !externalMove) {
@@ -25,7 +25,7 @@ let BattleScripts = {
 			if (changedMove && changedMove !== true) {
 				baseMove = this.dex.getActiveMove(changedMove);
 				if (pranksterBoosted) baseMove.pranksterBoosted = pranksterBoosted;
-				target = this.resolveTarget(pokemon, baseMove);
+				target = this.getRandomTarget(pokemon, baseMove);
 			}
 		}
 		let move = baseMove;
@@ -177,7 +177,7 @@ let BattleScripts = {
 			if (!move.hasBounced) move.pranksterBoosted = this.activeMove.pranksterBoosted;
 		}
 		let baseTarget = move.target;
-		if (target === undefined) target = this.resolveTarget(pokemon, move);
+		if (target === undefined) target = this.getRandomTarget(pokemon, move);
 		if (move.target === 'self' || move.target === 'allies') {
 			target = pokemon;
 		}
@@ -195,13 +195,13 @@ let BattleScripts = {
 			// Target changed in ModifyMove, so we must adjust it here
 			// Adjust before the next event so the correct target is passed to the
 			// event
-			target = this.resolveTarget(pokemon, move);
+			target = this.getRandomTarget(pokemon, move);
 		}
 		move = this.runEvent('ModifyType', pokemon, target, move, move);
 		move = this.runEvent('ModifyMove', pokemon, target, move, move);
 		if (baseTarget !== move.target) {
 			// Adjust again
-			target = this.resolveTarget(pokemon, move);
+			target = this.getRandomTarget(pokemon, move);
 		}
 		if (!move || pokemon.fainted) {
 			return false;
@@ -291,6 +291,7 @@ let BattleScripts = {
 
 		return true;
 	},
+	/** NOTE: includes single-target moves */
 	trySpreadMoveHit(targets, pokemon, move) {
 		if (targets.length > 1) move.spreadHit = true;
 
@@ -549,6 +550,7 @@ let BattleScripts = {
 		}
 		return undefined;
 	},
+	/** NOTE: used only for moves that target sides/fields rather than pokemon */
 	tryMoveHit(target, pokemon, move) {
 		this.setActiveMove(move, pokemon, target);
 
@@ -706,6 +708,15 @@ let BattleScripts = {
 		// @ts-ignore
 		this.afterMoveSecondaryEvent(targetsCopy.filter(val => !!val), pokemon, move);
 
+		if (!move.negateSecondary && !(move.hasSheerForce && pokemon.hasAbility('sheerforce'))) {
+			for (let i = 0; i < damage.length; i++) {
+				const curDamage = damage[i];
+				if (typeof curDamage === 'number' && targets[i].hp <= targets[i].maxhp / 2 && targets[i].hp + curDamage > targets[i].maxhp / 2) {
+					this.runEvent('EmergencyExit', targets[i], pokemon);
+				}
+			}
+		}
+
 		return damage;
 	},
 	spreadMoveHit(targets, pokemon, moveOrMoveName, moveData, isSecondary, isSelf) {
@@ -790,6 +801,28 @@ let BattleScripts = {
 			if (!damage[j] && damage[j] !== 0) targets[j] = false;
 		}
 
+		/** @type {Pokemon[]} */
+		let damagedTargets = [];
+		let damagedDamage = [];
+		for (let i = 0; i < targets.length; i++) {
+			if (typeof damage[i] === 'number') {
+				damagedTargets.push(/** @type {Pokemon} */ (targets[i]));
+				damagedDamage.push(damage[i]);
+			}
+		}
+		const pokemonOriginalHP = pokemon.hp;
+		if (damagedDamage.length) {
+			this.runEvent('DamagingHit', damagedTargets, pokemon, move, damagedDamage);
+			if (moveData.onAfterHit) {
+				for (const target of damagedTargets) {
+					this.singleEvent('AfterHit', moveData, {}, target, pokemon, move);
+				}
+			}
+			if (pokemon.hp <= pokemon.maxhp / 2 && pokemonOriginalHP > pokemon.maxhp / 2) {
+				this.runEvent('EmergencyExit', pokemon);
+			}
+		}
+
 		return [damage, targets];
 	},
 	tryPrimaryHitEvent(damage, targets, pokemon, move, moveData, isSecondary) {
@@ -866,7 +899,7 @@ let BattleScripts = {
 						didAnything = this.combineResults(didAnything, null);
 						continue;
 					}
-					let amount = target.maxhp * moveData.heal[0] / moveData.heal[1];
+					let amount = target.baseMaxhp * moveData.heal[0] / moveData.heal[1];
 					let d = target.heal((this.gen < 5 ? Math.floor : Math.round)(amount));
 					if (!d && d !== 0) {
 						this.add('-fail', pokemon);
@@ -940,10 +973,6 @@ let BattleScripts = {
 					}
 					if (!isSelf && !isSecondary) {
 						this.runEvent('Hit', target, pokemon, move);
-					}
-					if (moveData.onAfterHit) {
-						hitResult = this.singleEvent('AfterHit', moveData, {}, target, pokemon, move);
-						didSomething = this.combineResults(didSomething, hitResult);
 					}
 				}
 			}
@@ -1223,6 +1252,7 @@ let BattleScripts = {
 			maxMove.basePower = move.gmaxPower;
 			maxMove.category = move.category;
 		}
+		maxMove.baseMove = move.id;
 		maxMove.maxPowered = true;
 		return maxMove;
 	},

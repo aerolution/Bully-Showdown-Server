@@ -82,6 +82,7 @@ exports.commands = {
 	emote: 'emoticon',
 	emotes: 'emoticon',
 	emoticon: {
+		/*
 		add: function (target, room, user) {
 			let parts = target.split(',');
 			for (let u in parts) parts[u] = parts[u].trim();
@@ -104,6 +105,7 @@ exports.commands = {
 			saveEmoticons();
 			this.sendReply(`The emoticon "${target}" has been removed.`);
 		},
+		*/
 
 		toggle: function (target, room, user) {
 			if (!this.can('editroom', null, room)) return this.sendReply(`Access denied.`);
@@ -125,7 +127,7 @@ exports.commands = {
 		view: function (target, room, user) {
 			if (!this.runBroadcast()) return;
 			let reply = `<b><u>Emoticons (${Object.keys(emoticons).length})</u></b><br />`;
-			for (let emote in emoticons) reply += `(${emote} <img src="${emoticons[emote]}" height="40" width="40">) `;
+			for (let emote in emoticons) reply += `<img src="${emoticons[emote]}" height="40" width="40" title="${emote}"> `;
 			this.sendReply(`|raw|<div class="infobox infobox-limited">${reply}</div>`);
 		},
 

@@ -152,8 +152,6 @@ exports.commands = {
 	emoticonshelp: [
 		`Emoticon Commands:
 		/emoticon may be substituted with /emoticons, /emotes, or /emote
-		/emoticon add [name], [url] - Adds an emoticon.
-		/emoticon del/delete/remove/rem [name] - Removes an emoticon.
 		/emoticon toggle - Enables or disables emoticons in the current room depending on if they are already active.
 		/emoticon view/list - Displays the list of emoticons.
 		/emoticon ignore - Ignores emoticons in chat messages.

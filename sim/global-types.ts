@@ -1045,9 +1045,7 @@ interface FormatsData extends EventMethods {
 	onSwitchInPriority?: number
 	rated?: boolean
 	minSourceGen?: number
-	restrictedAbilities?: string[]
-	restrictedMoves?: string[]
-	restrictedStones?: string[]
+	restricted?: string[]
 	ruleset?: string[]
 	searchShow?: boolean
 	allowMultisearch?: boolean

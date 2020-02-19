@@ -576,7 +576,7 @@ let BattleItems = {
 		spritenum: 41,
 		onSwitchIn(pokemon) {
 			if (pokemon.isActive && pokemon.baseTemplate.species === 'Kyogre') {
-				this.insertQueue({pokemon: pokemon, choice: 'runPrimal'});
+				this.queue.insertChoice({choice: 'runPrimal', pokemon: pokemon});
 			}
 		},
 		onPrimal(pokemon) {
@@ -3569,9 +3569,9 @@ let BattleItems = {
 			if (!this.activeMove) return false;
 			if (this.activeMove.id !== 'knockoff' && this.activeMove.id !== 'thief' && this.activeMove.id !== 'covet') return false;
 		},
-		isUnreleased: true,
 		num: 0,
 		gen: 2,
+		isNonstandard: "PastMove",
 		desc: "Cannot be given to or taken from a Pokemon, except by Covet/Knock Off/Thief.",
 	},
 	"manectite": {
@@ -5007,7 +5007,7 @@ let BattleItems = {
 		spritenum: 390,
 		onSwitchIn(pokemon) {
 			if (pokemon.isActive && pokemon.baseTemplate.species === 'Groudon') {
-				this.insertQueue({pokemon: pokemon, choice: 'runPrimal'});
+				this.queue.insertChoice({choice: 'runPrimal', pokemon: pokemon});
 			}
 		},
 		onPrimal(pokemon) {
@@ -7759,7 +7759,7 @@ let BattleItems = {
 			basePower: 10,
 		},
 		onSourceModifyAccuracy(accuracy, target) {
-			if (typeof accuracy === 'number' && !this.willMove(target)) {
+			if (typeof accuracy === 'number' && !this.queue.willMove(target)) {
 				this.debug('Zoom Lens boosting accuracy');
 				return accuracy * 1.2;
 			}

@@ -185,7 +185,7 @@ let Formats = [
 		mod: 'gen8',
 		maxLevel: 5,
 		ruleset: ['Little Cup', 'Standard', 'Dynamax Clause'],
-		banlist: ['Cherubi', 'Corsola-Galar', 'Gastly', 'Gothita', 'Sneasel', 'Swirlix', 'Moody', 'Baton Pass'],
+		banlist: ['Corsola-Galar', 'Drifloon', 'Gastly', 'Gothita', 'Sneasel', 'Swirlix', 'Vulpix-Base', 'Moody', 'Baton Pass'],
 	},
 	{
 		name: "[Gen 8] Monotype",
@@ -236,7 +236,7 @@ let Formats = [
 		mod: 'gen8',
 		searchShow: false,
 		ruleset: ['NFE Clause', 'Standard', 'Dynamax Clause'],
-		banlist: ['Doublade', 'Mr. Mime-Galar', 'Rhydon', 'Type: Null', 'Shadow Tag', 'Baton Pass'],
+		banlist: ['Doublade', 'Ivysaur', 'Mr. Mime-Galar', 'Rhydon', 'Type: Null', 'Shadow Tag', 'Baton Pass'],
 	},
 	{
 		name: "[Gen 8] 1v1",
@@ -253,8 +253,8 @@ let Formats = [
 		},
 		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Accuracy Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Dynamax Clause', 'Endless Battle Clause'],
 		banlist: [
-			'Eternatus', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow', 'Mew', 'Mewtwo', 'Necrozma-Dawn-Wings',
-			'Necrozma-Dusk-Mane', 'Reshiram', 'Sableye', 'Solgaleo', 'Zacian', 'Zamazenta', 'Zekrom',
+			'Eternatus', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow', 'Melmetal', 'Mew', 'Mewtwo',
+			'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Sableye', 'Solgaleo', 'Zacian', 'Zamazenta', 'Zekrom',
 			'Focus Sash', 'Moody', 'Perish Song',
 		],
 	},
@@ -363,9 +363,11 @@ let Formats = [
 		ruleset: ['Standard GBU', 'Galar Pokedex', 'VGC Timer'],
 		banlist: [
 			'Alcremie-Gmax', 'Appletun-Gmax', 'Charizard-Gmax + Solar Power', 'Coalossal-Gmax', 'Copperajah-Gmax',
-			'Duraludon-Gmax', 'Flapple-Gmax', 'Garbodor-Gmax', 'Gengar-Gmax', 'Grimmsnarl-Gmax', 'Hatterene-Gmax',
-			'Kingler-Gmax', 'Lapras-Gmax', 'Machamp-Gmax', 'Melmetal-Gmax', 'Orbeetle-Gmax', 'Slowpoke-Galar',
-			'Toxtricity-Gmax',
+			'Corsola-Base', 'Darmanitan-Base', 'Darumaka-Base', 'Diglett-Alola', 'Dugtrio-Alola', 'Duraludon-Gmax',
+			'Farfetch\'d-Base', 'Flapple-Gmax', 'Garbodor-Gmax', 'Gengar-Gmax', 'Grimmsnarl-Gmax', 'Hatterene-Gmax',
+			'Kingler-Gmax', 'Lapras-Gmax', 'Linoone-Base', 'Machamp-Gmax', 'Meowth-Alola', 'Ninetales-Alola',
+			'Orbeetle-Gmax', 'Persian-Alola', 'Ponyta-Base', 'Rapidash-Base', 'Slowpoke-Galar', 'Stunfisk-Base',
+			'Toxtricity-Gmax', 'Toxtricity-Low-Key-Gmax', 'Vulpix-Alola', 'Zigzagoon-Base',
 		],
 		minSourceGen: 8,
 	},
@@ -409,7 +411,7 @@ let Formats = [
 			battle: 2,
 		},
 		ruleset: ['Standard Doubles', 'Accuracy Moves Clause', 'Dynamax Clause', 'Sleep Clause Mod'],
-		banlist: ['DUber', 'Focus Sash', 'Perish Song', 'Swagger'],
+		banlist: ['DUber', 'Dracovish', 'Focus Sash', 'Perish Song', 'Swagger'],
 	},
 	{
 		name: '[Gen 8] Metronome Battle',
@@ -604,7 +606,7 @@ let Formats = [
 		mod: 'gen8',
 		ruleset: ['Obtainable', '!Obtainable Abilities', 'Species Clause', 'Nickname Clause', '2 Ability Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Dynamax Clause', 'Sleep Clause Mod', 'Endless Battle Clause'],
 		banlist: [
-			'Dracovish', 'Eternatus', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow', 'Mewtwo', 'Necrozma-Dawn-Wings',
+			'Dracovish', 'Eternatus', 'Keldeo', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow', 'Mewtwo', 'Necrozma-Dawn-Wings',
 			'Necrozma-Dusk-Mane', 'Reshiram', 'Shedinja', 'Solgaleo', 'Zacian', 'Zamazenta', 'Zekrom', 'Baton Pass',
 			'Arena Trap', 'Comatose', 'Contrary', 'Fluffy', 'Fur Coat', 'Gorilla Tactics', 'Huge Power', 'Ice Scales', 'Illusion', 'Imposter', 'Innards Out', 'Intrepid Sword',
 			'Libero', 'Moody', 'Neutralizing Gas', 'Parental Bond', 'Protean', 'Pure Power', 'Shadow Tag', 'Simple', 'Stakeout', 'Speed Boost', 'Water Bubble', 'Wonder Guard',
@@ -690,7 +692,7 @@ let Formats = [
 			'Eternatus', 'Gothitelle', 'Gothorita', 'Zacian', 'Moody', 'Baton Pass', 'Electrify',
 			'Beedrillite', 'Blazikenite', 'Gengarite', 'Kangaskhanite', 'Mawilite', 'Medichamite', 'Pidgeotite',
 		],
-		restricted: ['Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Solgaleo', 'Zamazenta', 'Zekrom'],
+		restricted: ['Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow', 'Melmetal', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Solgaleo', 'Zamazenta', 'Zekrom'],
 		onValidateTeam(team, format) {
 			const restrictedPokemon = format.restricted || [];
 			/**@type {{[k: string]: true}} */
@@ -699,6 +701,7 @@ let Formats = [
 				let item = this.dex.getItem(set.item);
 				if (!item || !item.megaStone) continue;
 				let template = this.dex.getTemplate(set.name || set.species);
+				if (template.isNonstandard) return [`${template.baseSpecies} does not exist in gen 8.`];
 				if (restrictedPokemon.includes(template.species)) {
 					return [`${template.species} is not allowed to hold ${item.name}.`];
 				}
@@ -755,7 +758,7 @@ let Formats = [
 			'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Silvally', 'Solgaleo', 'Zacian', 'Zamazenta', 'Zekrom',
 			'King\'s Rock', 'Razor Fang', 'Moody', 'Shadow Tag', 'Baton Pass',
 		],
-		restricted: ['Acupressure', 'Belly Drum', 'Extreme Speed', 'Fishious Rend', 'Shell Smash', 'Shift Gear', 'Spore'],
+		restricted: ['Acupressure', 'Belly Drum', 'Bolt Beak', 'Double Iron Bash', 'Extreme Speed', 'Fishious Rend', 'Shell Smash', 'Shift Gear', 'Spore'],
 	},
 	{
 		name: "[Gen 8] Trademarked",

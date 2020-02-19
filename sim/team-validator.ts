@@ -14,14 +14,14 @@ import {Dex} from './dex';
  * sourcesBefore covers all sources that do not have exclusive
  * moves (like catching wild pokemon).
  *
- * First character is a generation number, 1-7.
+ * First character is a generation number, 1-8.
  * Second character is a source ID, one of:
  *
  * - E = egg, 3rd char+ is the father in gen 2-5, empty in gen 6-7
  *   because egg moves aren't restricted to fathers anymore
  * - S = event, 3rd char+ is the index in .eventPokemon
  * - D = Dream World, only 5D is valid
- * - V = Virtual Console transfer, only 7V is valid
+ * - V = Virtual Console or Let's Go transfer, only 7V/8V is valid
  *
  * Designed to match MoveSource where possible.
  */
@@ -195,7 +195,7 @@ export class TeamValidator {
 		this.dex = Dex.forFormat(this.format);
 		this.gen = this.dex.gen;
 		this.ruleTable = this.dex.getRuleTable(this.format);
-		
+
 		this.minSourceGen = this.ruleTable.minSourceGen ?
 			this.ruleTable.minSourceGen[0] : 1;
 	}
@@ -469,7 +469,7 @@ export class TeamValidator {
 					setSources.isHidden = true;
 
 					let unreleasedHidden = template.unreleasedHidden;
-					if ((unreleasedHidden === 'Past' || unreleasedHidden === 'PastMove') && this.minSourceGen < dex.gen) unreleasedHidden = false;
+					if (unreleasedHidden === 'Past' && this.minSourceGen < dex.gen) unreleasedHidden = false;
 
 					if (unreleasedHidden && ruleTable.has('-unreleased')) {
 						problems.push(`${name}'s Hidden Ability is unreleased.`);
@@ -902,7 +902,7 @@ export class TeamValidator {
 			if (!eventData) {
 				throw new Error(`${eventTemplate.species} from ${template.species} doesn't have data for event ${source}`);
 			}
-		} else if (source.charAt(1) === 'V') {
+		} else if (source === '7V') {
 			const isMew = template.speciesid === 'mew';
 			const isCelebi = template.speciesid === 'celebi';
 			eventData = {
@@ -913,6 +913,14 @@ export class TeamValidator {
 				shiny: isMew ? undefined : 1,
 				pokeball: 'pokeball',
 				from: 'Gen 1-2 Virtual Console transfer',
+			};
+		} else if (source === '8V') {
+			const isMew = template.speciesid === 'mew';
+			eventData = {
+				generation: 8,
+				perfectIVs: isMew ? 3 : undefined,
+				shiny: isMew ? undefined : 1,
+				from: 'Gen 7 Let\'s Go! HOME transfer',
 			};
 		} else if (source.charAt(1) === 'D') {
 			eventData = {
@@ -1076,7 +1084,10 @@ export class TeamValidator {
 				// Meloetta-Pirouette, Rayquaza-Mega
 				problems.push(`${template.species} transforms in-battle with ${template.requiredMove}.`);
 			}
-			if (!template.isGigantamax) set.species = template.baseSpecies; // Fix battle-only forme
+			if (!template.isGigantamax) {
+				// Set to out-of-battle forme
+				set.species = template.forme === 'Galar-Zen' ? 'Darmanitan-Galar' : template.baseSpecies;
+			}
 		} else {
 			if (template.requiredAbility) {
 				// Impossible!
@@ -1229,7 +1240,7 @@ export class TeamValidator {
 				if (banReason === '') return null;
 			}
 		}
-		
+
 		banReason = ruleTable.check('pokemontag:allpokemon');
 		if (banReason) {
 			return `${template.species} is not in the list of allowed pokemon.`;
@@ -1273,7 +1284,7 @@ export class TeamValidator {
 			}
 			if (banReason === '') return null;
 		}
-		
+
 		banReason = ruleTable.check('pokemontag:allitems');
 		if (banReason) {
 			return `${set.name}'s item ${item.name} is not in the list of allowed items.`;
@@ -1311,7 +1322,7 @@ export class TeamValidator {
 			}
 			if (banReason === '') return null;
 		}
-		
+
 		banReason = ruleTable.check('pokemontag:allmoves');
 		if (banReason) {
 			return `${set.name}'s move ${move.name} is not in the list of allowed moves.`;
@@ -1349,7 +1360,7 @@ export class TeamValidator {
 			}
 			if (banReason === '') return null;
 		}
-		
+
 		banReason = ruleTable.check('pokemontag:allabilities');
 		if (banReason) {
 			return `${set.name}'s ability ${ability.name} is not in the list of allowed abilities.`;
@@ -1740,6 +1751,9 @@ export class TeamValidator {
 						}
 					}
 
+					// Gen 8 egg moves can be taught to any pokemon from any source
+					if (learned === '8E') learned = '8T';
+
 					if ('LMTR'.includes(learned.charAt(1))) {
 						if (learnedGen === dex.gen && learned.charAt(1) !== 'R') {
 							// current-gen level-up, TM or tutor moves:
@@ -1766,14 +1780,12 @@ export class TeamValidator {
 							// can tradeback
 							moveSources.add('1ET' + learned.slice(2));
 						}
-						//   new Gen 8 egg move passing mechanics remove all possible conflicts
-						if (learnedGen >= 8) moveSources.addGen(learnedGen);
-						else moveSources.add(learned, limitedEggMove);
+						moveSources.add(learned, limitedEggMove);
 					} else if (learned.charAt(1) === 'S') {
 						// event moves:
 						//   only if that was the source
-						// event Pokémon:
-						// 	 available as long as the past gen can get the Pokémon and then trade it back
+						// Event Pokémon:
+						// 	Available as long as the past gen can get the Pokémon and then trade it back.
 						if (tradebackEligible && learnedGen === 2 && move.gen <= 1) {
 							// can tradeback
 							moveSources.add('1ST' + learned.slice(2) + ' ' + template.id);
@@ -1783,8 +1795,8 @@ export class TeamValidator {
 						// DW moves:
 						//   only if that was the source
 						moveSources.add(learned + template.id);
-					} else if (learned.charAt(1) === 'V') {
-						// Virtual Console moves:
+					} else if (learned.charAt(1) === 'V' && this.minSourceGen < learnedGen) {
+						// Virtual Console or Let's Go transfer moves:
 						//   only if that was the source
 						moveSources.add(learned);
 					}

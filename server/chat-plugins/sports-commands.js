@@ -16,6 +16,12 @@ exports.commands = {
 + Pokemon are set to level 50
 + VGC timer
 
+**Galar Dex Pre-Home**:
++ Galar Dex Draft rules
++ only Pokemon, moves, abilities and items native to the pre-Home games are allowed
+
+
+
 **National Dex Draft**:
 + all Pokemon are allowed
 + unreleased Pokemon and abilities are allowed
@@ -29,7 +35,6 @@ exports.commands = {
 + unreleased Pokemon and abilities are allowed
 + Megas are allowed
 + Dynamax and Gigantamax are allowed
-(Note: Megas and Pokemon able to Mega Evolve can't Dynamax)
 - cut moves are not allowed
 - Z-Moves are not allowed
 
@@ -50,7 +55,8 @@ exports.commands = {
 + National Dex Legacy rules
 + LC format
 + Double Item Clause
-(Note: the client won't set your Pokemon to lv5 in the teambuilder, but they'll be at lv5 in battle. Make sure to set it manually to get your EVs right)
+
+(Note: the client won't automatically set your Pokemon to level 5 in the Teambuilder, but they'll be at level 5 in battle. Make sure to manually set the level if you want to get your EVs right)
 
 **National Dex Unrestricted**:
 + everything is allowed, including illegal Pokemon and CAP
@@ -58,6 +64,24 @@ exports.commands = {
 **National Dex Doubles**:
 + National Dex Dynamax rules
 + Doubles format
+
+
+
+**National Dex DLC Draft**:
++ National Dex Draft rules
++ moveset additions from the Pokemon Home leaks are allowed
+
+**National Dex DLC Dynamax**:
++ National Dex Dynamax rules
++ moveset additions from the Pokemon Home leaks are allowed
+
+**National Dex DLC Legacy**:
++ National Dex Legacy rules
++ moveset additions from the Pokemon Home leaks are allowed
+
+(Note: all leaked moves will show up as Illegal in the Teambuilder, as the client won't recognize custom moveset additions. This is just a visual issue, all moves will validate as intended)
+
+
 
 All Draft formats use a DS style timer (100s per turn, auto pick on timeout)`);
 	},

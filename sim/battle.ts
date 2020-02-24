@@ -1132,7 +1132,7 @@ export class Battle {
 		default: {
 			for (let i = 0; i < this.sides.length; i++) {
 				const side = this.sides[i];
-				const activeData = side.active.map(pokemon => pokemon && pokemon.getRequestData());
+				const activeData = side.active.map(pokemon => pokemon?.getMoveRequestData());
 				requests[i] = {active: activeData, side: side.getRequestData()};
 			}
 			break;
@@ -2234,6 +2234,10 @@ export class Battle {
 			// smart-tracking move's original target is on the field: target it
 			return originalTarget;
 		}
+
+		// banning Dragon Darts from directly targeting itself is done in side.ts, but
+		// Dragon Darts can target itself if Ally Switch is used afterwards
+		if (move.smartTarget) return this.getAtLoc(pokemon, targetLoc);
 
 		// Fails if the target is the user and the move can't target its own position
 		if (['adjacentAlly', 'any', 'normal'].includes(move.target) && targetLoc === -(pokemon.position + 1) &&

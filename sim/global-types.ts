@@ -859,6 +859,10 @@ interface MoveData extends EffectData, MoveEventMethods {
 	 * situations, rather than just targeting a slot. (Stalwart, Snipe Shot)
 	 */
 	tracksTarget?: boolean
+	/**
+	 * Will change target if current target is unavailable. (Dragon Darts)
+	 */
+	smartTarget?: boolean
 	useTargetOffensive?: boolean
 	useSourceDefensiveAsOffensive?: boolean
 	volatileStatus?: string
@@ -1092,7 +1096,7 @@ interface Format extends Readonly<BasicEffect & FormatsData> {
 type SpreadMoveTargets = (Pokemon | false | null)[]
 type SpreadMoveDamage = (number | boolean | undefined)[]
 type ZMoveOptions = ({move: string, target: MoveTarget} | null)[]
-type DynamaxOptions = {maxMoves: ({move: string, target: MoveTarget})[], gigantamax?: string}
+type DynamaxOptions = {maxMoves: ({move: string, target: MoveTarget, disabled?: boolean})[], gigantamax?: string}
 
 interface BattleScriptsData {
 	gen: number
@@ -1146,7 +1150,7 @@ interface ModdedBattlePokemon {
 	calculateStat?: (this: Pokemon, statName: StatNameExceptHP, boost: number, modifier?: number) => number
 	getAbility?: (this: Pokemon) => Ability
 	getActionSpeed?: (this: Pokemon) => number
-	getRequestData?: (this: Pokemon) => {moves: {move: string, id: ID, target?: string, disabled?: boolean}[], maybeDisabled?: boolean, trapped?: boolean, maybeTrapped?: boolean, canMegaEvo?: boolean, canUltraBurst?: boolean, canZMove?: ZMoveOptions}
+	getMoveRequestData?: (this: Pokemon) => {moves: {move: string, id: ID, target?: string, disabled?: boolean}[], maybeDisabled?: boolean, trapped?: boolean, maybeTrapped?: boolean, canMegaEvo?: boolean, canUltraBurst?: boolean, canZMove?: ZMoveOptions}
 	getStat?: (this: Pokemon, statName: StatNameExceptHP, unboosted?: boolean, unmodified?: boolean, fastReturn?: boolean) => number
 	getWeight?: (this: Pokemon) => number
 	hasAbility?: (this: Pokemon, ability: string | string[]) => boolean

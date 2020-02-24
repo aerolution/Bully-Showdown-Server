@@ -497,7 +497,21 @@ let Formats = [
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', 'Draft', 'Team Preview'],
+		ruleset: ['Obtainable', 'Draft', '-Unreleased', 'Team Preview'],
+		banlist: [
+			// Unreleased Hidden Abilities
+			'Grookey + Grassy Surge', 'Thwackey + Grassy Surge', 'Rillaboom + Grassy Surge', 'Scorbunny + Libero', 'Raboot + Libero', 'Cinderace + Libero', 'Sobble + Sniper', 
+			'Drizzile + Sniper', 'Inteleon + Sniper', 'Hoothoot + Tinted Lens', 'Noctowl + Tinted Lens', 'Skwovet + Gluttony', 'Greedent + Gluttony', 'Pidove + Rivalry', 
+			'Tranquill + Rivalry', 'Unfezant + Rivalry', 'Nickit + Stakeout', 'Thievul + Stakeout', 'Wooloo + Bulletproof', 'Dubwool + Bulletproof', 'Yamper + Rattled', 
+			'Boltund + Competitive', 'Wingull + Rain Dish', 'Pelipper + Rain Dish', 'Electrike + Minus', 'Manectric + Minus', 'Delibird + Insomnia', 'Munna + Telepathy', 
+			'Musharna + Telepathy', 'Snorunt + Soundproof', 'Abomasnow + Soundproof', 'Bronzor + Heavy Metal', 'Bronzong + Heavy Metal', 'Goldeen + Lightning Rod', 
+			'Seaking + Lightning Rod', 'Basculin + Mold Breaker', 'Woobat + Simple', 'Swoobat + Simple', 'Noibat + Telepathy', 'Noivern + Telepathy', 'Persian + Unnerve', 
+			'Espurr + Own Tempo', 'Meowstic + Prankster', 'Chinchou + Water Absorb', 'Lanturn + Water Absorb', 'Croagunk + Poison Touch', 'Toxicroak + Poison Touch', 
+			'Barboach + Hydration', 'Whiscash + Hydration', 'Binacle + Pickpocket', 'Barbaracle + Pickpocket', 'Throh + Mold Breaker', 'Sawk + Mold Breaker', 'Bonsly + Rattled', 
+			'Sudowoodo + Rattled', 'Cleffa + Friend Guard', 'Clefairy + Friend Guard', 'Clefable + Unaware', 'Elgyem + Analytic', 'Beheeyem + Analytic', 'Cubchoo + Rattled', 
+			'Beartic + Swift Swim', 'Skorupi + Keen Eye', 'Drapion + Keen Eye', 'Maractus + Storm Drain', 'Bergmite + Sturdy', 'Avalugg + Sturdy', 'Dracozolt + Sand Rush', 
+			'Arctozolt + Slush Rush', 'Dracovish + Sand Rush', 'Arctovish + Slush Rush'
+		],
 		minSourceGen: 8,
 	},
 	{

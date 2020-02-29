@@ -265,7 +265,7 @@ let Formats = [
 		mod: 'gen8',
 		ruleset: ['-Nonexistent', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Endless Battle Clause'],
 		banlist: [
-			'Eternatus-Eternamax', 'Shedinja', 'Comatose + Sleep Talk', 'Double Iron Bash',
+			'Eternatus-Eternamax', 'Shedinja', 'Comatose + Sleep Talk', 'Double Iron Bash', 'Octolock',
 			'Arena Trap', 'Contrary', 'Gorilla Tactics', 'Huge Power', 'Illusion', 'Innards Out', 'Libero', 'Magnet Pull', 'Moody',
 			'Neutralizing Gas', 'Parental Bond', 'Protean', 'Psychic Surge', 'Pure Power', 'Shadow Tag', 'Stakeout', 'Water Bubble', 'Wonder Guard',
 		],
@@ -319,6 +319,162 @@ let Formats = [
 		},
 		onAfterMega(pokemon) {
 			this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
+		},
+	},
+	{
+		name: "[Gen 8] Inheritance",
+		desc: `Pok&eacute;mon may use the ability and moves of another, as long as they forfeit their own learnset.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3656811/">Inheritance</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['[Gen 8] OU', '!Obtainable Abilities', '!Obtainable Moves'],
+		banlist: ['Shedinja', 'Assist', 'Shell Smash', 'Arena Trap', 'Huge Power', 'Imposter', 'Innards Out', 'Pure Power', 'Water Bubble'],
+		validateSet(set, teamHas) {
+			const dex = this.dex;
+			const getEvoFamily = (/** @type {string | Template} */ species) => {
+				let template = dex.getTemplate(species);
+				while (template.prevo) {
+					template = dex.getTemplate(template.prevo);
+				}
+				return template.speciesid;
+			};
+
+			/** @type {{[k: string]: string[]}} */
+			const abilityMap = Object.create(null);
+
+			for (const speciesid of Object.keys(dex.data.Pokedex)) {
+				const pokemon = dex.getTemplate(speciesid);
+				if (pokemon.isNonstandard) continue;
+				if (pokemon.isUnreleased) continue;
+				if (pokemon.requiredItem || pokemon.requiredMove) continue;
+				for (const key of Object.values(pokemon.abilities)) {
+					const abilityId = toID(key);
+					if (abilityMap[abilityId]) {
+						abilityMap[abilityId][pokemon.evos ? 'push' : 'unshift'](speciesid);
+					} else {
+						abilityMap[abilityId] = [speciesid];
+					}
+				}
+			}
+
+			/** @type {string[]} */
+			let problems = [];
+
+			const template = dex.getTemplate(set.species);
+			if (!template.exists || template.isNonstandard) return [`${set.species} is illegal.`];
+
+			const ability = dex.getAbility(set.ability);
+			const pokemonWithAbility = abilityMap[ability.id];
+			if (!pokemonWithAbility) return [`"${set.ability}" is not available on a legal Pok\u00e9mon.`];
+
+			let canonicalSource = ''; // Specific for the basic implementation of Donor Clause (see onValidateTeam).
+			if (!teamHas.abilitySources) teamHas.abilitySources = Object.create(null);
+			/** @type {string[]} */
+			let validSources = teamHas.abilitySources[toID(set.species)] = []; // Evolution families
+			for (const donor of pokemonWithAbility) {
+				let donorTemplate = dex.getTemplate(donor);
+				if (donorTemplate.isNonstandard) continue;
+				let evoFamily = getEvoFamily(donorTemplate);
+
+				if (validSources.includes(evoFamily)) continue;
+
+				if (set.name === set.species) delete set.name;
+				set.species = donorTemplate.species;
+				// This is used to bypass the 0 Total EV check; otherwise,
+				// the error returned would just be "x's set is illegal."
+				let totalEVs = 0;
+				if (!set.evs) {
+					return [
+						`${template.species} has exactly 0 EVs - did you forget to EV it? (If this was intentional, add exactly 1 to one of your EVs, which won't change its stats but will tell us that it wasn't a mistake).`,
+					];
+				}
+				for (const ev of Object.values(set.evs)) {
+					totalEVs += ev;
+				}
+				if (totalEVs === 0) {
+					return [
+						`${template.species} has exactly 0 EVs - did you forget to EV it? (If this was intentional, add exactly 1 to one of your EVs, which won't change its stats but will tell us that it wasn't a mistake).`,
+					];
+				}
+				problems = this.validateSet(set, teamHas) || [];
+
+				if (!problems.length) {
+					canonicalSource = donorTemplate.species;
+					validSources.push(evoFamily);
+				} else {
+					break;
+				}
+				if (validSources.length > 1) {
+					// Specific for the basic implementation of Donor Clause (see onValidateTeam).
+					break;
+				}
+			}
+
+			set.species = template.species;
+			if (!validSources.length) {
+				if (pokemonWithAbility.length > 1) return [`${template.species}'s set is illegal.`];
+				problems.unshift(`${template.species} has an illegal set with an ability from ${dex.getTemplate(pokemonWithAbility[0]).name}.`);
+				return problems.length ? problems : null;
+			}
+
+			// Protocol: Include the data of the donor species in the `ability` data slot.
+			// Afterwards, we are going to reset the name to what the user intended. :]
+			set.ability = `${set.ability}0${canonicalSource}`;
+			return problems.length ? problems : null;
+		},
+		onValidateTeam(team, format, teamHas) {
+			const dex = this.dex;
+			const getEvoFamily = (/** @type {string | Template} */ species) => {
+				let template = dex.getTemplate(species);
+				while (template.prevo) {
+					template = dex.getTemplate(template.prevo);
+				}
+				return template.speciesid;
+			};
+			// Donor Clause
+			/** @type {string[][]} */
+			const evoFamilyLists = [];
+			for (const set of team) {
+				/** @type {string[]} */
+				const abilitySources = teamHas.abilitySources && teamHas.abilitySources[toID(set.species)];
+				if (!abilitySources || !abilitySources.length) continue;
+				evoFamilyLists.push(abilitySources.map(getEvoFamily));
+			}
+
+			// Checking actual full incompatibility would require expensive algebra.
+			// Instead, we only check the trivial case of multiple Pokémon only legal for exactly one family. FIXME?
+			const requiredFamilies = Object.create(null);
+			for (const evoFamilies of evoFamilyLists) {
+				if (evoFamilies.length !== 1) continue;
+				const [familyId] = evoFamilies;
+				if (!(familyId in requiredFamilies)) requiredFamilies[familyId] = 1;
+				requiredFamilies[familyId]++;
+				if (requiredFamilies[familyId] > 2) {
+					return [
+						`You are limited to up to two inheritances from each evolution family by the Donor Clause.`,
+						`(You inherit more than twice from ${this.dex.getTemplate(familyId).species}).`,
+					];
+				}
+			}
+		},
+		onBegin() {
+			for (const pokemon of this.getAllPokemon()) {
+				if (pokemon.baseAbility.includes('0') && !pokemon.m.donor) {
+					let donor = pokemon.baseAbility.split('0')[1];
+					pokemon.m.donor = toID(donor);
+					pokemon.baseAbility = toID(pokemon.baseAbility.split('0')[0]);
+					pokemon.ability = pokemon.baseAbility;
+				}
+			}
+		},
+		onSwitchIn(pokemon) {
+			if (!pokemon.m.donor) return;
+			let donorTemplate = this.dex.getTemplate(pokemon.m.donor);
+			if (!donorTemplate.exists) return;
+			// Place volatiles on the Pokémon to show the donor details.
+			this.add('-start', pokemon, donorTemplate.species, '[silent]');
 		},
 	},
 	{
@@ -386,6 +542,29 @@ let Formats = [
 
 		mod: 'gen8',
 		ruleset: ['-Nonexistent', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
+	},
+	{
+		name: "[Gen 8] Scalemons",
+		desc: `Every Pok&eacute;mon's stats, barring HP, are scaled to give them a BST as close to 600 as possible.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3658482/">Scalemons</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['[Gen 8] Ubers', 'Dynamax Clause'],
+		banlist: ['Darmanitan-Galar', 'Baton Pass', 'Eviolite', 'Light Ball', 'Shadow Tag'],
+		onModifyTemplate(template, target, source) {
+			const newTemplate = this.dex.deepClone(template);
+			newTemplate.baseStats = this.dex.deepClone(newTemplate.baseStats);
+			/** @type {StatName[]} */
+			let stats = ['atk', 'def', 'spa', 'spd', 'spe'];
+			let pst = stats.map(stat => newTemplate.baseStats[stat]).reduce((x, y) => x + y);
+			let scale = 600 - newTemplate.baseStats['hp'];
+			for (const stat of stats) {
+				newTemplate.baseStats[stat] = this.dex.clampIntRange(newTemplate.baseStats[stat] * scale / pst, 1, 255);
+			}
+			return newTemplate;
+		},
 	},
 	{
 		name: "[Gen 8] STABmons",
@@ -893,7 +1072,7 @@ let Formats = [
 		},
 		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Accuracy Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Dynamax Clause', 'Endless Battle Clause'],
 		banlist: [
-			'Eternatus', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow', 'Melmetal', 'Mew', 'Mewtwo',
+			'Eternatus', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow', 'Melmetal', 'Mew', 'Mewtwo', 'Necrozma',
 			'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Sableye', 'Solgaleo', 'Zacian', 'Zamazenta', 'Zekrom',
 			'Focus Sash', 'Moody', 'Perish Song',
 		],
@@ -923,16 +1102,8 @@ let Formats = [
 			battle: 3,
 		},
 		ruleset: ['Standard GBU'],
+		banlist: ['Copperajah-Gmax', 'Duraludon-Gmax', 'Garbodor-Gmax', 'Gengar-Gmax', 'Machamp-Gmax'],
 		minSourceGen: 8,
-		onValidateSet(set) {
-			const allowedGigantamaxes = [
-				"Charizard-Gmax", "Butterfree-Gmax", "Pikachu-Gmax", "Meowth-Gmax", "Eevee-Gmax", "Snorlax-Gmax",
-				"Corviknight-Gmax", "Dreadnaw-Gmax", "Sandaconda-Gmax", "Centiskorch-Gmax",
-			];
-			if (set.species.endsWith('-Gmax') && !allowedGigantamaxes.includes(set.species)) {
-				return [`${set.species} is not an allowed Gigantamax in this format.`];
-			}
-		},
 	},
 	{
 		name: "[Gen 8] Custom Game",
@@ -1002,14 +1173,12 @@ let Formats = [
 			validate: [4, 6],
 			battle: 4,
 		},
-		ruleset: ['Standard GBU', 'Galar Pokedex', 'VGC Timer'],
+		ruleset: ['Standard GBU', 'VGC Timer'],
 		banlist: [
-			'Alcremie-Gmax', 'Appletun-Gmax', 'Charizard-Gmax + Solar Power', 'Coalossal-Gmax', 'Copperajah-Gmax',
-			'Corsola-Base', 'Darmanitan-Base', 'Darumaka-Base', 'Diglett-Alola', 'Dugtrio-Alola', 'Duraludon-Gmax',
-			'Farfetch\'d-Base', 'Flapple-Gmax', 'Garbodor-Gmax', 'Gengar-Gmax', 'Grimmsnarl-Gmax', 'Hatterene-Gmax',
-			'Kingler-Gmax', 'Lapras-Gmax', 'Linoone-Base', 'Machamp-Gmax', 'Meowth-Alola', 'Ninetales-Alola',
-			'Orbeetle-Gmax', 'Persian-Alola', 'Ponyta-Base', 'Rapidash-Base', 'Slowpoke-Galar', 'Stunfisk-Base',
-			'Toxtricity-Gmax', 'Toxtricity-Low-Key-Gmax', 'Vulpix-Alola', 'Zigzagoon-Base',
+			// Gigantamax Pokemon
+			'Copperajah-Gmax', 'Duraludon-Gmax', 'Garbodor-Gmax', 'Gengar-Gmax', 'Machamp-Gmax',
+			// Can't obtain in Galar without transferring
+			'Cobalion', 'Raichu-Alola', 'Terrakion', 'Virizion', 'Weezing-Base',
 		],
 		minSourceGen: 8,
 	},
@@ -1027,16 +1196,8 @@ let Formats = [
 			battle: 4,
 		},
 		ruleset: ['Standard GBU'],
+		banlist: ['Copperajah-Gmax', 'Duraludon-Gmax', 'Garbodor-Gmax', 'Gengar-Gmax', 'Machamp-Gmax'],
 		minSourceGen: 8,
-		onValidateSet(set) {
-			const allowedGigantamaxes = [
-				"Charizard-Gmax", "Butterfree-Gmax", "Pikachu-Gmax", "Meowth-Gmax", "Eevee-Gmax", "Snorlax-Gmax",
-				"Corviknight-Gmax", "Dreadnaw-Gmax", "Sandaconda-Gmax", "Centiskorch-Gmax",
-			];
-			if (set.species.endsWith('-Gmax') && !allowedGigantamaxes.includes(set.species)) {
-				return [`${set.species} is not an allowed Gigantamax in this format.`];
-			}
-		},
 	},
 	{
 		name: "[Gen 8] 2v2 Doubles",

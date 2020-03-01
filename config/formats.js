@@ -76,22 +76,6 @@ let Formats = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
-		name: "[Gen 8] National Dex Wifi",
-
-		mod: 'gen8',
-		maxForcedLevel: 50,
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'VGC Timer'],
-	},
-	{
-		name: "[Gen 8] National Dex LC",
-
-		mod: 'gen8',
-		maxForcedLevel: 5,
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
-		banlist: ['Dragon Rage', 'Sonic Boom'],
-	},
-	{
 		name: "[Gen 8] National Dex Unrestricted",
 
 		mod: 'gen8',
@@ -99,7 +83,23 @@ let Formats = [
 		ruleset: ['Draft', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+PastMove', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Dex Doubles",
+		name: "[Gen 8] Wifi National Dex",
+
+		mod: 'gen8',
+		maxForcedLevel: 50,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'VGC Timer'],
+	},
+	{
+		name: "[Gen 8] LC National Dex",
+
+		mod: 'gen8',
+		maxLevel: 5,
+		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
+		banlist: ['Dragon Rage', 'Sonic Boom'],
+	},
+	{
+		name: "[Gen 8] Doubles National Dex",
 
 		mod: 'gen8',
 		gameType: 'doubles',
@@ -143,25 +143,7 @@ let Formats = [
 		section: "Custom League Tiers",
 	},
 	{
-		name: "[Gen 8] (National Dex) CUBA",
-
-		mod: 'gen8',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview'],
-		banlist: ['Kangaskhan-Mega + Seismic Toss'],
-		
-		onBegin() {
-			const sTiers = [
-				'Aegislash', 'Blaziken', 'Celesteela', 'Cinderace', 'Darkrai', 'Deoxys-Speed', 'Genesect', 'Greninja', 'Greninja-Ash',
-				'Landorus', 'Landorus-Therian', 'Magearna', 'Metagross-Mega', 'Mew', 'Naganadel', 'Pheromosa', 'Tapu Lele',
-			];
-			for (let pokemon of this.getAllPokemon()) {
-				if (sTiers.includes(pokemon.species)) pokemon.canDynamax = false;
-			}
-		},
-	},
-	{
-		name: "[Gen 8] (National Dex) EBL",
+		name: "[Gen 8] EBL",
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
@@ -188,7 +170,7 @@ let Formats = [
 		},
 	},
 	{
-		name: "[Gen 8] (National Dex) Hive",
+		name: "[Gen 8] The Hive",
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
@@ -206,7 +188,7 @@ let Formats = [
 		],
 	},
 	{
-		name: "[Gen 8] (National Dex) PICA",
+		name: "[Gen 8] PICA",
 
 		mod: 'gen8',
 		ruleset: ['Obtainable', '+Unreleased', '+Past', '+PastMove', 'Draft', 'Team Preview', 'Dynamax Clause'],

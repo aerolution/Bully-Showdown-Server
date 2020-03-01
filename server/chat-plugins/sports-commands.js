@@ -46,22 +46,20 @@ exports.commands = {
 + Z-Moves are allowed
 - Dynamax and Gigantamax are not allowed
 
-**National Dex Wifi**:
+**National Dex Unrestricted**:
++ everything is allowed, including illegal Pokemon and CAP
+
+**Wifi National Dex**:
 + National Dex Dynamax rules
 + Pokemon are set to level 50
 + VGC timer
 
-**National Dex LC**:
+**LC National Dex**:
 + National Dex Legacy rules
 + LC format
 + Double Item Clause
 
-(Note: the client won't automatically set your Pokemon to level 5 in the Teambuilder, but they'll be at level 5 in battle. Make sure to manually set the level if you want to get your EVs right)
-
-**National Dex Unrestricted**:
-+ everything is allowed, including illegal Pokemon and CAP
-
-**National Dex Doubles**:
+**Doubles National Dex**:
 + National Dex Dynamax rules
 + Doubles format
 

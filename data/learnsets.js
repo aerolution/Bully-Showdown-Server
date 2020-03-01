@@ -16573,7 +16573,7 @@ let BattleLearnsets = {
 			attract: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			bide: ["7V"],
 			bind: ["8V", "7T", "7L4", "7V", "6T", "6L4", "5T", "5L4", "4L4", "3L7"],
-			bodyslam: ["7V", "3T"],
+			bodyslam: ["7V", "3T", "9T"],
 			brickbreak: ["8V", "7M", "7L26", "6M", "6L18", "5M", "5L21", "4M", "4L21", "3M", "3L31"],
 			brutalswing: ["7M"],
 			bugbite: ["7T", "7E", "6T", "6E", "5T", "5E"],

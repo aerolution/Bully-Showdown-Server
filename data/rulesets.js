@@ -19,7 +19,7 @@ let BattleFormats = {
 		effectType: 'ValidatorRule',
 		name: 'Draft',
 		desc: "The custom Draft League ruleset",
-		ruleset: ['+Unreleased', 'Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
+		ruleset: ['+Unreleased', 'Sleep Clause Mod', 'OHKO Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	standardnext: {
 		effectType: 'ValidatorRule',
@@ -313,7 +313,7 @@ let BattleFormats = {
 		onBegin() {
 			this.add('rule', 'Blitz: Super-fast timer');
 		},
-		timer: {starting: 15, addPerTurn: 5, maxPerTurn: 15, maxFirstTurn: 30, grace: 30},
+		timer: {starting: 15, addPerTurn: 5, maxPerTurn: 15, maxFirstTurn: 40, grace: 30},
 	},
 	vgctimer: {
 		effectType: 'Rule',
@@ -789,8 +789,9 @@ let BattleFormats = {
 		onValidateSet(set) {
 			let template = this.dex.getTemplate(set.species);
 			if (template.num === 493 && set.evs) {
-				for (let stat in set.evs) {
-					// @ts-ignore
+				/** @type {StatName} */
+				let stat;
+				for (stat in set.evs) {
 					const ev = set.evs[stat];
 					if (ev > 100) {
 						return [
@@ -880,6 +881,37 @@ let BattleFormats = {
 			if (template.nfe && !feInCurrentGen) {
 				if (template.species === 'Scyther' && this.gen === 3) return;
 				return [`${set.species} is banned due to UU NFE Clause.`];
+			}
+		},
+	},
+	mimicglitch: {
+		effectType: 'ValidatorRule',
+		name: 'Mimic Glitch',
+		desc: "Allows any Pokemon with access to Assist, Copycat, Metronome, Mimic, or Transform to gain access to almost any other move.",
+		// Implemented in sim/team-validator.ts
+	},
+	formeclause: {
+		effectType: 'ValidatorRule',
+		name: 'Forme Clause',
+		desc: "Prevents teams from having more than one Pok&eacute;mon of the same forme",
+		onBegin() {
+			this.add('rule', 'Forme Clause: Limit one of each forme of a Pokémon');
+		},
+		onValidateTeam(team) {
+			/** @type {Set<string>} */
+			const formeTable = new Set();
+			for (const set of team) {
+				let template = this.dex.getTemplate(set.species);
+				if (template.species !== template.baseSpecies) {
+					let baseSpecies = this.dex.getTemplate(template.baseSpecies);
+					if (template.types.join('/') === baseSpecies.types.join('/') && Object.values(template.baseStats).join('/') === Object.values(baseSpecies.baseStats).join('/')) {
+						template = baseSpecies;
+					}
+				}
+				if (formeTable.has(template.species)) {
+					return [`You are limited to one of each forme of a Pokémon by Forme Clause.`, `(You have more than one of ${template.species})`];
+				}
+				formeTable.add(template.species);
 			}
 		},
 	},

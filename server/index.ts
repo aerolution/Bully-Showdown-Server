@@ -181,5 +181,13 @@ TeamValidatorAsync.PM.spawn();
  *********************************************************/
 
 import {Repl} from '../lib/repl';
-// tslint:disable-next-line: no-eval
+// eslint-disable-next-line no-eval
 Repl.start('app', cmd => eval(cmd));
+
+/*********************************************************
+ * Fully initialized, run startup hook
+ *********************************************************/
+
+if (Config.startuphook) {
+	process.nextTick(Config.startuphook);
+}

@@ -83,11 +83,19 @@ let Formats = [
 		ruleset: ['Draft', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+PastMove', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] Wifi National Dex",
+		name: "[Gen 8] National Dex Wifi",
 
 		mod: 'gen8',
 		maxForcedLevel: 50,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'VGC Timer'],
+	},
+	{
+		name: "[Gen 8] National Dex Doubles",
+
+		mod: 'gen8',
+		gameType: 'doubles',
+		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
 	{
 		name: "[Gen 8] LC National Dex",
@@ -97,14 +105,6 @@ let Formats = [
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
-	},
-	{
-		name: "[Gen 8] Doubles National Dex",
-
-		mod: 'gen8',
-		gameType: 'doubles',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
 	
 	
@@ -143,7 +143,14 @@ let Formats = [
 		section: "Custom League Tiers",
 	},
 	{
-		name: "[Gen 8] EBL",
+		name: "[Gen 8] (National Dex) CAPtyLtd",
+
+		mod: 'gen8',
+		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['Obtainable', 'Draft', 'Allow Tradeback', '+Unreleased', '+CAP', '+Past', 'Team Preview', 'Dynamax Clause'],
+	},
+	{
+		name: "[Gen 8] (National Dex) EBL",
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
@@ -170,7 +177,7 @@ let Formats = [
 		},
 	},
 	{
-		name: "[Gen 8] The Hive",
+		name: "[Gen 8] (National Dex) The Hive",
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
@@ -188,7 +195,7 @@ let Formats = [
 		],
 	},
 	{
-		name: "[Gen 8] PICA",
+		name: "[Gen 8] (National Dex) PICA",
 
 		mod: 'gen8',
 		ruleset: ['Obtainable', '+Unreleased', '+Past', '+PastMove', 'Draft', 'Team Preview', 'Dynamax Clause'],
@@ -245,7 +252,7 @@ let Formats = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['-Nonexistent', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Endless Battle Clause'],
+		ruleset: ['-Nonexistent', 'OHKO Clause', 'Evasion Moves Clause', 'Forme Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Endless Battle Clause'],
 		banlist: [
 			'Eternatus-Eternamax', 'Shedinja', 'Comatose + Sleep Talk', 'Double Iron Bash', 'Octolock',
 			'Arena Trap', 'Contrary', 'Gorilla Tactics', 'Huge Power', 'Illusion', 'Innards Out', 'Libero', 'Magnet Pull', 'Moody',
@@ -286,7 +293,7 @@ let Formats = [
 		mod: 'gen8',
 		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Dynamax Clause', 'Sleep Clause Mod', 'Endless Battle Clause'],
 		banlist: [
-			'Darmanitan-Galar', 'Eternatus', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow', 'Mewtwo',
+			'Darmanitan', 'Darmanitan-Galar', 'Eternatus', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow', 'Mewtwo',
 			'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Shedinja', 'Solgaleo', 'Zacian', 'Zamazenta', 'Zekrom',
 			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
 		],
@@ -311,126 +318,110 @@ let Formats = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['[Gen 8] OU', '!Obtainable Abilities', '!Obtainable Moves'],
+		ruleset: ['[Gen 8] OU'],
 		banlist: ['Shedinja', 'Assist', 'Shell Smash', 'Arena Trap', 'Huge Power', 'Imposter', 'Innards Out', 'Pure Power', 'Water Bubble'],
+		restricted: ['Dracovish', 'Dracozolt'],
+		// @ts-ignore
+		getEvoFamily(species) {
+			let template = Dex.getTemplate(species);
+			while (template.prevo) {
+				template = Dex.getTemplate(template.prevo);
+			}
+			return template.speciesid;
+		},
 		validateSet(set, teamHas) {
-			const dex = this.dex;
-			const getEvoFamily = (/** @type {string | Template} */ species) => {
-				let template = dex.getTemplate(species);
-				while (template.prevo) {
-					template = dex.getTemplate(template.prevo);
-				}
-				return template.speciesid;
-			};
+			const bannedDonors = this.format.restricted || [];
+			if (!teamHas.abilityMap) {
+				teamHas.abilityMap = Object.create(null);
+				for (const speciesid in Dex.data.Pokedex) {
+					let pokemon = Dex.getTemplate(speciesid);
+					if (pokemon.isNonstandard || pokemon.isUnreleased) continue;
+					if (pokemon.requiredAbility || pokemon.requiredItem || pokemon.requiredMove) continue;
+					if (pokemon.isGigantamax || bannedDonors.includes(pokemon.species)) continue;
 
-			/** @type {{[k: string]: string[]}} */
-			const abilityMap = Object.create(null);
-
-			for (const speciesid of Object.keys(dex.data.Pokedex)) {
-				const pokemon = dex.getTemplate(speciesid);
-				if (pokemon.isNonstandard) continue;
-				if (pokemon.isUnreleased) continue;
-				if (pokemon.requiredItem || pokemon.requiredMove) continue;
-				for (const key of Object.values(pokemon.abilities)) {
-					const abilityId = toID(key);
-					if (abilityMap[abilityId]) {
-						abilityMap[abilityId][pokemon.evos ? 'push' : 'unshift'](speciesid);
-					} else {
-						abilityMap[abilityId] = [speciesid];
+					for (const key of Object.values(pokemon.abilities)) {
+						let abilityId = toID(key);
+						if (abilityId in teamHas.abilityMap) {
+							teamHas.abilityMap[abilityId][pokemon.evos ? 'push' : 'unshift'](speciesid);
+						} else {
+							teamHas.abilityMap[abilityId] = [speciesid];
+						}
 					}
 				}
 			}
 
-			/** @type {string[]} */
-			let problems = [];
+			const problem = this.validateForme(set);
+			if (problem.length) return problem;
 
-			const template = dex.getTemplate(set.species);
-			if (!template.exists || template.isNonstandard) return [`${set.species} is illegal.`];
+			let template = Dex.getTemplate(set.species);
+			if (!template.exists || template.num < 1) return [`The Pok\u00e9mon "${set.species}" does not exist.`];
+			if (template.isNonstandard || template.isUnreleased) return [`${template.species} is not obtainable in gen 8.`];
+			if (toID(template.tier) === 'uber' || this.format.banlist.includes(template.species)) {
+				return [`${template.species} is banned.`];
+			}
 
-			const ability = dex.getAbility(set.ability);
-			const pokemonWithAbility = abilityMap[ability.id];
+			const name = set.name;
+
+			let ability = Dex.getAbility(set.ability);
+			if (!ability.exists || ability.isNonstandard) return [`${name} needs to have a valid ability.`];
+			let pokemonWithAbility = teamHas.abilityMap[ability.id];
 			if (!pokemonWithAbility) return [`"${set.ability}" is not available on a legal Pok\u00e9mon.`];
 
-			let canonicalSource = ''; // Specific for the basic implementation of Donor Clause (see onValidateTeam).
+			// @ts-ignore
+			this.format.debug = true;
+
 			if (!teamHas.abilitySources) teamHas.abilitySources = Object.create(null);
 			/** @type {string[]} */
 			let validSources = teamHas.abilitySources[toID(set.species)] = []; // Evolution families
-			for (const donor of pokemonWithAbility) {
-				let donorTemplate = dex.getTemplate(donor);
-				if (donorTemplate.isNonstandard) continue;
-				let evoFamily = getEvoFamily(donorTemplate);
 
+			let canonicalSource = ''; // Specific for the basic implementation of Donor Clause (see onValidateTeam).
+
+			for (const donor of pokemonWithAbility) {
+				let donorTemplate = Dex.getTemplate(donor);
+				// @ts-ignore
+				let evoFamily = this.format.getEvoFamily(donorTemplate);
 				if (validSources.includes(evoFamily)) continue;
 
-				if (set.name === set.species) delete set.name;
 				set.species = donorTemplate.species;
-				// This is used to bypass the 0 Total EV check; otherwise,
-				// the error returned would just be "x's set is illegal."
-				let totalEVs = 0;
-				if (!set.evs) {
-					return [
-						`${template.species} has exactly 0 EVs - did you forget to EV it? (If this was intentional, add exactly 1 to one of your EVs, which won't change its stats but will tell us that it wasn't a mistake).`,
-					];
-				}
-				for (const ev of Object.values(set.evs)) {
-					totalEVs += ev;
-				}
-				if (totalEVs === 0) {
-					return [
-						`${template.species} has exactly 0 EVs - did you forget to EV it? (If this was intentional, add exactly 1 to one of your EVs, which won't change its stats but will tell us that it wasn't a mistake).`,
-					];
-				}
-				problems = this.validateSet(set, teamHas) || [];
-
+				const problems = this.validateSet(set, teamHas) || [];
 				if (!problems.length) {
-					canonicalSource = donorTemplate.species;
 					validSources.push(evoFamily);
-				} else {
-					break;
+					canonicalSource = donorTemplate.species;
 				}
-				if (validSources.length > 1) {
-					// Specific for the basic implementation of Donor Clause (see onValidateTeam).
-					break;
-				}
+				// Specific for the basic implementation of Donor Clause (see onValidateTeam).
+				if (validSources.length > 1) break;
 			}
+			// @ts-ignore
+			this.format.debug = false;
 
+			set.name = name;
 			set.species = template.species;
 			if (!validSources.length) {
-				if (pokemonWithAbility.length > 1) return [`${template.species}'s set is illegal.`];
-				problems.unshift(`${template.species} has an illegal set with an ability from ${dex.getTemplate(pokemonWithAbility[0]).name}.`);
-				return problems.length ? problems : null;
+				if (pokemonWithAbility.length > 1) return [`${name}'s set is illegal.`];
+				return [`${name} has an illegal set with an ability from ${Dex.getTemplate(pokemonWithAbility[0]).name}.`];
 			}
 
 			// Protocol: Include the data of the donor species in the `ability` data slot.
-			// Afterwards, we are going to reset the name to what the user intended. :]
+			// Afterwards, we are going to reset the name to what the user intended.
 			set.ability = `${set.ability}0${canonicalSource}`;
-			return problems.length ? problems : null;
+			return null;
 		},
 		onValidateTeam(team, format, teamHas) {
-			const dex = this.dex;
-			const getEvoFamily = (/** @type {string | Template} */ species) => {
-				let template = dex.getTemplate(species);
-				while (template.prevo) {
-					template = dex.getTemplate(template.prevo);
-				}
-				return template.speciesid;
-			};
 			// Donor Clause
-			/** @type {string[][]} */
-			const evoFamilyLists = [];
+			let evoFamilyLists = [];
 			for (const set of team) {
-				/** @type {string[]} */
-				const abilitySources = teamHas.abilitySources && teamHas.abilitySources[toID(set.species)];
-				if (!abilitySources || !abilitySources.length) continue;
-				evoFamilyLists.push(abilitySources.map(getEvoFamily));
+				let abilitySources = (teamHas.abilitySources && teamHas.abilitySources[toID(set.species)]);
+				if (!abilitySources) continue;
+				// @ts-ignore
+				evoFamilyLists.push(abilitySources.map(this.format.getEvoFamily));
 			}
 
 			// Checking actual full incompatibility would require expensive algebra.
 			// Instead, we only check the trivial case of multiple Pokémon only legal for exactly one family. FIXME?
-			const requiredFamilies = Object.create(null);
+			let requiredFamilies = Object.create(null);
 			for (const evoFamilies of evoFamilyLists) {
 				if (evoFamilies.length !== 1) continue;
-				const [familyId] = evoFamilies;
+				let [familyId] = evoFamilies;
 				if (!(familyId in requiredFamilies)) requiredFamilies[familyId] = 1;
 				requiredFamilies[familyId]++;
 				if (requiredFamilies[familyId] > 2) {
@@ -443,7 +434,7 @@ let Formats = [
 		},
 		onBegin() {
 			for (const pokemon of this.getAllPokemon()) {
-				if (pokemon.baseAbility.includes('0') && !pokemon.m.donor) {
+				if (pokemon.baseAbility.includes('0')) {
 					let donor = pokemon.baseAbility.split('0')[1];
 					pokemon.m.donor = toID(donor);
 					pokemon.baseAbility = toID(pokemon.baseAbility.split('0')[0]);
@@ -534,7 +525,7 @@ let Formats = [
 
 		mod: 'gen8',
 		ruleset: ['[Gen 8] Ubers', 'Dynamax Clause'],
-		banlist: ['Darmanitan-Galar', 'Baton Pass', 'Eviolite', 'Light Ball', 'Shadow Tag'],
+		banlist: ['Darmanitan-Galar', 'Gastly', 'Arena Trap', 'Drizzle', 'Drought', 'Huge Power', 'Moody', 'Shadow Tag', 'Baton Pass', 'Rain Dance', 'Sunny Day', 'Eviolite', 'Light Ball'],
 		onModifyTemplate(template, target, source) {
 			const newTemplate = this.dex.deepClone(template);
 			newTemplate.baseStats = this.dex.deepClone(newTemplate.baseStats);
@@ -558,7 +549,7 @@ let Formats = [
 		mod: 'gen8',
 		ruleset: ['Standard', 'STABmons Move Legality', 'Dynamax Clause'],
 		banlist: [
-			'Darmanitan-Galar', 'Eternatus', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow', 'Mewtwo',
+			'Darmanitan-Galar', 'Eternatus', 'Hydreigon', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow', 'Mewtwo',
 			'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Silvally', 'Solgaleo', 'Zacian', 'Zamazenta', 'Zekrom',
 			'King\'s Rock', 'Razor Fang', 'Moody', 'Shadow Tag', 'Baton Pass',
 		],
@@ -977,6 +968,13 @@ let Formats = [
 		banlist: ['RU', 'NUBL'],
 	},
 	{
+		name: "[Gen 8] PU",
+
+		mod: 'gen8',
+		ruleset: ['[Gen 8] NU'],
+		banlist: ['NU', 'PUBL'],
+	},
+	{
 		name: "[Gen 8] LC",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3656348/">LC Metagame Discussion</a>`,
@@ -986,7 +984,7 @@ let Formats = [
 		mod: 'gen8',
 		maxLevel: 5,
 		ruleset: ['Little Cup', 'Standard', 'Dynamax Clause'],
-		banlist: ['Corsola-Galar', 'Drifloon', 'Gastly', 'Gothita', 'Sneasel', 'Swirlix', 'Vulpix-Base', 'Moody', 'Baton Pass'],
+		banlist: ['Corsola-Galar', 'Drifloon', 'Gastly', 'Gothita', 'Sneasel', 'Swirlix', 'Vulpix', 'Vulpix-Alola', 'Moody', 'Baton Pass'],
 	},
 	{
 		name: "[Gen 8] Monotype",
@@ -1037,7 +1035,10 @@ let Formats = [
 		mod: 'gen8',
 		searchShow: false,
 		ruleset: ['NFE Clause', 'Standard', 'Dynamax Clause'],
-		banlist: ['Doublade', 'Ivysaur', 'Mr. Mime-Galar', 'Rhydon', 'Type: Null', 'Shadow Tag', 'Baton Pass'],
+		banlist: [
+			'Doublade', 'Gurdurr', 'Ivysaur', 'Mr. Mime-Galar', 'Rhydon', 'Rufflet', 'Sneasel',
+			'Type: Null', 'Shadow Tag', 'Baton Pass',
+		],
 	},
 	{
 		name: "[Gen 8] 1v1",
@@ -1088,6 +1089,24 @@ let Formats = [
 		minSourceGen: 8,
 	},
 	{
+		name: "[Gen 8] Extreme Speed Single Battles",
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3661123/">Extreme Speed Single Battles Discussion</a>`,
+		],
+
+		mod: 'gen8',
+		forcedLevel: 50,
+		teamLength: {
+			validate: [1, 6],
+			battle: 1,
+		},
+		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'Item Clause', 'Cancel Mod', 'Dynamax Clause'],
+		banlist: [
+			'Mewtwo', 'Mew', 'Celebi', 'Jirachi', 'Reshiram', 'Zekrom', 'Kyurem', 'Keldeo', 'Cosmog', 'Cosmoem', 'Solgaleo',
+			'Lunala', 'Necrozma', 'Marshadow', 'Zeraora', 'Meltan', 'Melmetal', 'Zacian', 'Zamazenta', 'Eternatus',
+		],
+	},
+	{
 		name: "[Gen 8] Custom Game",
 
 		mod: 'gen8',
@@ -1129,7 +1148,15 @@ let Formats = [
 		mod: 'gen8',
 		gameType: 'doubles',
 		ruleset: ['Standard Doubles'],
-		banlist: ['DUber'],
+		banlist: ['DUber', 'Beat Up'],
+	},
+	{
+		name: "[Gen 8] Doubles Ubers",
+
+		mod: 'gen8',
+		gameType: 'doubles',
+		ruleset: ['Standard Doubles', '!Gravity Sleep Clause'],
+		banlist: [],
 	},
 	{
 		name: "[Gen 8] Doubles UU",
@@ -1196,7 +1223,7 @@ let Formats = [
 			battle: 2,
 		},
 		ruleset: ['Standard Doubles', 'Accuracy Moves Clause', 'Dynamax Clause', 'Sleep Clause Mod'],
-		banlist: ['DUber', 'Dracovish', 'Focus Sash', 'Perish Song', 'Swagger'],
+		banlist: ['DUber', 'Dracovish', 'Melmetal', 'Focus Sash', 'Perish Song', 'Swagger'],
 	},
 	{
 		name: '[Gen 8] Metronome Battle',
@@ -1798,7 +1825,10 @@ let Formats = [
 		searchShow: false,
 		maxLevel: 5,
 		ruleset: ['Standard', 'Little Cup'],
-		banlist: ['LC Uber', 'Gligar', 'Misdreavus', 'Scyther', 'Sneasel', 'Tangela', 'Baton Pass', 'Dragon Rage', 'Sonic Boom', 'Swagger'],
+		banlist: [
+			'Drifloon', 'Gligar', 'Meditite', 'Misdreavus', 'Murkrow', 'Scyther', 'Sneasel', 'Swirlix', 'Tangela', 'Yanma',
+			'Baton Pass', 'Dragon Rage', 'Sonic Boom', 'Swagger',
+		],
 	},
 	{
 		name: "[Gen 6] Monotype",
@@ -2089,7 +2119,10 @@ let Formats = [
 		searchShow: false,
 		maxLevel: 5,
 		ruleset: ['Standard', 'Little Cup'],
-		banlist: ['Berry Juice', 'Soul Dew', 'Dragon Rage', 'Sonic Boom', 'LC Uber', 'Sand Rush', 'Gligar', 'Murkrow', 'Scyther', 'Sneasel', 'Tangela'],
+		banlist: [
+			'Gligar', 'Meditite', 'Murkrow', 'Scraggy', 'Scyther', 'Sneasel', 'Tangela', 'Vulpix', 'Yanma',
+			'Sand Rush', 'Berry Juice', 'Soul Dew', 'Dragon Rage', 'Sonic Boom',
+		],
 	},
 	{
 		name: "[Gen 5] Monotype",
@@ -2277,7 +2310,7 @@ let Formats = [
 		maxLevel: 5,
 		ruleset: ['Standard', 'Little Cup'],
 		banlist: [
-			'LC Uber', 'Misdreavus', 'Murkrow', 'Scyther', 'Sneasel', 'Tangela', 'Yanma',
+			'Meditite', 'Misdreavus', 'Murkrow', 'Scyther', 'Sneasel', 'Tangela', 'Yanma',
 			'Berry Juice', 'Deep Sea Tooth', 'Dragon Rage', 'Hypnosis', 'Sonic Boom',
 		],
 	},

@@ -28,6 +28,7 @@
  * @license MIT license
  */
 
+// eslint-disable-next-line no-extend-native
 Object.defineProperty(Array.prototype, 'flatMap', {
 	value<T, U, W>(this: T[], callback: (this: W, item: T, index: number, array: T[]) => U[], thisArg: W): U[] {
 		const newArray = [];
@@ -46,6 +47,8 @@ import * as path from 'path';
 import * as Data from './dex-data';
 import {PRNG, PRNGSeed} from './prng';
 
+const BASE_MOD = 'gen8' as ID;
+const DEFAULT_MOD = BASE_MOD;
 const DATA_DIR = path.resolve(__dirname, '../data');
 const MODS_DIR = path.resolve(__dirname, '../data/mods');
 const FORMATS = path.resolve(__dirname, '../config/formats');
@@ -154,7 +157,7 @@ export class ModdedDex {
 	dataCache: DexTableData | null;
 	formatsCache: DexTable<Format> | null;
 
-	constructor(mod: string = 'base', isOriginal: boolean = false) {
+	constructor(mod = 'base', isOriginal = false) {
 		this.ModdedDex = ModdedDex;
 		this.Data = Data;
 
@@ -222,7 +225,7 @@ export class ModdedDex {
 	forFormat(format: Format | string): ModdedDex {
 		if (!this.modsLoaded) this.includeMods();
 		const mod = this.getFormat(format).mod;
-		return dexes[mod || 'gen8'].includeData();
+		return dexes[mod || BASE_MOD].includeData();
 	}
 
 	modData(dataType: DataType, id: string) {
@@ -263,6 +266,7 @@ export class ModdedDex {
 
 		// remove zalgo
 		name = name.replace(
+			// eslint-disable-next-line max-len
 			/[\u0300-\u036f\u0483-\u0489\u0610-\u0615\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06ED\u0E31\u0E34-\u0E3A\u0E47-\u0E4E]{3,}/g,
 			''
 		);
@@ -325,7 +329,7 @@ export class ModdedDex {
 	getSpecies(species: string | Template): string {
 		const id = toID(species || '');
 		const template = this.getTemplate(id);
-		if (template.otherForms && template.otherForms.indexOf(id) >= 0) {
+		if (template.otherForms && template.otherForms.includes(id)) {
 			const form = id.slice(template.species.length);
 			if (form) return template.species + '-' + form[0].toUpperCase() + form.slice(1);
 		}
@@ -410,7 +414,7 @@ export class ModdedDex {
 				} else if (template.speciesid.endsWith('totem')) {
 					template.tier = this.data.FormatsData[template.speciesid.slice(0, -5)].tier || 'Illegal';
 					template.doublesTier = this.data.FormatsData[template.speciesid.slice(0, -5)].doublesTier || 'Illegal';
-				}  else if (template.inheritsFrom) {
+				} else if (template.inheritsFrom) {
 					template.tier = this.data.FormatsData[template.inheritsFrom].tier || 'Illegal';
 					template.doublesTier = this.data.FormatsData[template.inheritsFrom].doublesTier || 'Illegal';
 				} else {
@@ -443,6 +447,10 @@ export class ModdedDex {
 		}
 		if (template.exists) this.templateCache.set(id, template);
 		return template;
+	}
+
+	getOutOfBattleSpecies(template: Template) {
+		return template.inheritsFrom ? this.getTemplate(template.inheritsFrom).species : template.baseSpecies;
 	}
 
 	getLearnset(template: string | AnyObject): AnyObject | null {
@@ -581,8 +589,8 @@ export class ModdedDex {
 			name = this.data.Aliases[id];
 			id = toID(name);
 		}
-		if (this.data.Formats.hasOwnProperty('gen8' + id)) {
-			id = ('gen8' + id) as ID;
+		if (this.data.Formats.hasOwnProperty(DEFAULT_MOD + id)) {
+			id = (DEFAULT_MOD + id) as ID;
 		}
 		let supplementaryAttributes: AnyObject | null = null;
 		if (name.includes('@@@')) {
@@ -775,7 +783,8 @@ export class ModdedDex {
 			return {
 				type: hpTypes[4 * (atkDV % 4) + (defDV % 4)],
 				power: tr(
-					(5 * ((spcDV >> 3) + (2 * (speDV >> 3)) + (4 * (defDV >> 3)) + (8 * (atkDV >> 3))) + (spcDV % 4)) / 2 + 31),
+					(5 * ((spcDV >> 3) + (2 * (speDV >> 3)) + (4 * (defDV >> 3)) + (8 * (atkDV >> 3))) + (spcDV % 4)) / 2 + 31
+				),
 			};
 		} else {
 			// Hidden Power check for Gen 3 onwards
@@ -795,8 +804,12 @@ export class ModdedDex {
 		}
 	}
 
-	getRuleTable(format: Format, depth: number = 1, repeals?: Map<string, number>): Data.RuleTable {
+	getRuleTable(format: Format, depth = 1, repeals?: Map<string, number>): Data.RuleTable {
 		if (format.ruleTable && !repeals) return format.ruleTable;
+		if (depth === 1 && dexes[format.mod || 'base'] !== this) {
+			// throw new Error(`${format.mod} ${this.currentMod}`);
+			return this.mod(format.mod).getRuleTable(format, depth + 1);
+		}
 		const ruleTable = new Data.RuleTable();
 
 		const ruleset = format.ruleset.slice();
@@ -831,7 +844,7 @@ export class ModdedDex {
 
 		for (const rule of ruleset) {
 			const ruleSpec = this.validateRule(rule, format);
-			
+
 			if (typeof ruleSpec !== 'string') {
 				if (ruleSpec[0] === 'complexTeamBan') {
 					const complexTeamBan: Data.ComplexTeamBan = ruleSpec.slice(1) as Data.ComplexTeamBan;
@@ -844,7 +857,7 @@ export class ModdedDex {
 				}
 				continue;
 			}
-			
+
 			if (rule.startsWith('!')) {
 				const repealDepth = repeals!.get(ruleSpec.slice(1));
 				if (repealDepth === undefined) throw new Error(`Multiple "${rule}" rules in ${format.name}`);
@@ -858,13 +871,19 @@ export class ModdedDex {
 			if ("+-".includes(ruleSpec.charAt(0))) {
 				if (ruleSpec.startsWith('+')) ruleTable.delete('-' + ruleSpec.slice(1));
 				if (ruleSpec.startsWith('-')) ruleTable.delete('+' + ruleSpec.slice(1));
+				if (ruleTable.has(ruleSpec)) {
+					throw new Error(`Rule "${rule}" was added by "${format.name}" but already exists in "${ruleTable.get(ruleSpec) || format.name}"`);
+				}
 				ruleTable.set(ruleSpec, '');
 				continue;
 			}
 			const subformat = this.getFormat(ruleSpec);
-			if (repeals && repeals.has(subformat.id)) {
+			if (repeals?.has(subformat.id)) {
 				repeals.set(subformat.id, -Math.abs(repeals.get(subformat.id)!));
 				continue;
+			}
+			if (ruleTable.has(subformat.id)) {
+				throw new Error(`Rule "${rule}" was added by "${format.name}" but already exists in "${ruleTable.get(subformat.id) || format.name}"`);
 			}
 			ruleTable.set(subformat.id, '');
 			if (!subformat.exists) continue;
@@ -873,29 +892,31 @@ export class ModdedDex {
 			}
 			const subRuleTable = this.getRuleTable(subformat, depth + 1, repeals);
 			for (const [k, v] of subRuleTable) {
-				if (!ruleTable.has('!' + k)) ruleTable.set(k, v || subformat.name);
+				// don't check for "already exists" here; multiple inheritance is allowed
+				if (!repeals?.has(k)) {
+					ruleTable.set(k, v || subformat.name);
+				}
 			}
-			// tslint:disable-next-line:no-shadowed-variable
-			for (const [rule, source, limit, bans] of subRuleTable.complexBans) {
-				ruleTable.addComplexBan(rule, source || subformat.name, limit, bans);
+			for (const [subRule, source, limit, bans] of subRuleTable.complexBans) {
+				ruleTable.addComplexBan(subRule, source || subformat.name, limit, bans);
 			}
-			// tslint:disable-next-line:no-shadowed-variable
-			for (const [rule, source, limit, bans] of subRuleTable.complexTeamBans) {
-				ruleTable.addComplexTeamBan(rule, source || subformat.name, limit, bans);
+			for (const [subRule, source, limit, bans] of subRuleTable.complexTeamBans) {
+				ruleTable.addComplexTeamBan(subRule, source || subformat.name, limit, bans);
 			}
 			if (subRuleTable.checkLearnset) {
 				if (ruleTable.checkLearnset) {
 					throw new Error(
 						`"${format.name}" has conflicting move validation rules from ` +
-						`"${ruleTable.checkLearnset[1]}" and "${subRuleTable.checkLearnset[1]}"`);
+						`"${ruleTable.checkLearnset[1]}" and "${subRuleTable.checkLearnset[1]}"`
+					);
 				}
 				ruleTable.checkLearnset = subRuleTable.checkLearnset;
 			}
 			if (subRuleTable.timer) {
 				if (ruleTable.timer) {
 					throw new Error(
-						`"${format.name}" has conflicting timer validation rules from ` +
-						`"${ruleTable.timer[1]}" and "${subRuleTable.timer[1]}"`);
+						`"${format.name}" has conflicting timer validation rules from "${ruleTable.timer[1]}" and "${subRuleTable.timer[1]}"`
+					);
 				}
 				ruleTable.timer = subRuleTable.timer;
 			}
@@ -905,8 +926,8 @@ export class ModdedDex {
 			if (subRuleTable.minSourceGen && subRuleTable.minSourceGen[0] <= this.gen) {
 				if (ruleTable.minSourceGen) {
 					throw new Error(
-						`"${format.name}" has conflicting minSourceGen from ` +
-						`"${ruleTable.minSourceGen[1]}" and "${subRuleTable.minSourceGen[1]}"`);
+						`"${format.name}" has conflicting minSourceGen from "${ruleTable.minSourceGen[1]}" and "${subRuleTable.minSourceGen[1]}"`
+					);
 				}
 				ruleTable.minSourceGen = subRuleTable.minSourceGen;
 			}
@@ -920,13 +941,13 @@ export class ModdedDex {
 		switch (rule.charAt(0)) {
 		case '-':
 		case '+':
-			if (format && format.team) throw new Error(`We don't currently support bans in generated teams`);
+			if (format?.team) throw new Error(`We don't currently support bans in generated teams`);
 			if (rule.slice(1).includes('>') || rule.slice(1).includes('+')) {
 				let buf = rule.slice(1);
 				const gtIndex = buf.lastIndexOf('>');
 				let limit = rule.charAt(0) === '+' ? Infinity : 0;
 				if (gtIndex >= 0 && /^[0-9]+$/.test(buf.slice(gtIndex + 1).trim())) {
-					if (limit === 0) limit = parseInt(buf.slice(gtIndex + 1), 10);
+					if (limit === 0) limit = parseInt(buf.slice(gtIndex + 1));
 					buf = buf.slice(0, gtIndex);
 				}
 				let checkTeam = buf.includes('++');
@@ -1013,7 +1034,6 @@ export class ModdedDex {
 		}
 		if (matches.length > 1) {
 			throw new Error(`More than one thing matches "${rule}"; please specify one of: ` + matches.join(', '));
-			throw new Error(`More than one thing matches "${rule}"; please specify one of: ` + matches.join(', '));
 		}
 		if (matches.length < 1) {
 			throw new Error(`Nothing matches "${rule}"`);
@@ -1090,18 +1110,19 @@ export class ModdedDex {
 	 * Truncate a number into an unsigned 32-bit integer, for
 	 * compatibility with the cartridge games' math systems.
 	 */
-	trunc(num: number, bits: number = 0) {
+	trunc(num: number, bits = 0) {
 		if (bits) return (num >>> 0) % (2 ** bits);
 		return num >>> 0;
 	}
 
 	getTeamGenerator(format: Format | string, seed: PRNG | PRNGSeed | null = null) {
+		// eslint-disable-next-line @typescript-eslint/no-var-requires
 		const TeamGenerator = require(dexes['base'].forFormat(format).dataDir + '/random-teams');
 		return new TeamGenerator(format, seed);
 	}
 
 	generateTeam(format: Format | string, options: PlayerOptions | null = null): PokemonSet[] {
-		return this.getTeamGenerator(format, options && options.seed).getTeam(options);
+		return this.getTeamGenerator(format, options?.seed).getTeam(options);
 	}
 
 	dataSearch(target: string, searchIn?: DataType[] | null, isInexact?: boolean): AnyObject[] | false {
@@ -1353,7 +1374,7 @@ export class ModdedDex {
 			// level
 			j = buf.indexOf('|', i);
 			if (j < 0) return null;
-			if (i !== j) set.level = parseInt(buf.substring(i, j), 10);
+			if (i !== j) set.level = parseInt(buf.substring(i, j));
 			i = j + 1;
 
 			// happiness
@@ -1389,6 +1410,7 @@ export class ModdedDex {
 	loadDataFile(basePath: string, dataType: DataType | 'Aliases'): AnyObject {
 		try {
 			const filePath = basePath + DATA_FILES[dataType];
+			// eslint-disable-next-line @typescript-eslint/no-var-requires
 			const dataObject = require(filePath);
 			const key = `Battle${dataType}`;
 			if (!dataObject || typeof dataObject !== 'object') {
@@ -1445,8 +1467,8 @@ export class ModdedDex {
 			parentDex = dexes[this.parentMod];
 			if (!parentDex || parentDex === this) {
 				throw new Error(
-					"Unable to load " + this.currentMod + ". `inherit` should specify a parent mod " +
-					"from which to inherit data, or must be not specified.");
+					`Unable to load ${this.currentMod}. 'inherit' should specify a parent mod from which to inherit data, or must be not specified.`
+				);
 			}
 		}
 
@@ -1458,8 +1480,8 @@ export class ModdedDex {
 			const BattleData = this.loadDataFile(basePath, dataType);
 			if (!BattleData || typeof BattleData !== 'object') {
 				throw new TypeError(
-					"Exported property `Battle" + dataType + "`from `" + './data/' +
-					DATA_FILES[dataType] + "` must be an object except `null`.");
+					`Exported property 'Battle${dataType}'from './data/${DATA_FILES[dataType]}' must be an object except 'null'.`
+				);
 			}
 			if (BattleData !== dataCache[dataType]) dataCache[dataType] = Object.assign(BattleData, dataCache[dataType]);
 			if (dataType === 'Formats' && !parentDex) Object.assign(BattleData, this.formats);
@@ -1468,7 +1490,7 @@ export class ModdedDex {
 			// Formats are inherited by mods
 			this.includeFormats();
 		} else {
-			for (const dataType of DATA_TYPES.concat('Aliases')) {
+			for (const dataType of DATA_TYPES) {
 				const parentTypedData = parentDex.data[dataType];
 				const childTypedData = dataCache[dataType] || (dataCache[dataType] = {});
 				for (const entryId in parentTypedData) {
@@ -1499,6 +1521,7 @@ export class ModdedDex {
 					}
 				}
 			}
+			dataCache['Aliases'] = parentDex.data['Aliases'];
 		}
 
 		// Flag the generation. Required for team validator.
@@ -1549,7 +1572,7 @@ export class ModdedDex {
 			if (format.challengeShow === undefined) format.challengeShow = true;
 			if (format.searchShow === undefined) format.searchShow = true;
 			if (format.tournamentShow === undefined) format.tournamentShow = true;
-			if (format.mod === undefined) format.mod = 'gen7';
+			if (format.mod === undefined) format.mod = 'gen8';
 			if (!dexes[format.mod]) throw new Error(`Format "${format.name}" requires nonexistent mod: '${format.mod}'`);
 			this.formatsCache[id] = format;
 		}
@@ -1561,6 +1584,6 @@ export class ModdedDex {
 dexes['base'] = new ModdedDex(undefined, true);
 
 // "gen8" is an alias for the current base data
-dexes['gen8'] = dexes['base'];
+dexes[BASE_MOD] = dexes['base'];
 
-export const Dex = dexes['gen8'];
+export const Dex = dexes['base'];

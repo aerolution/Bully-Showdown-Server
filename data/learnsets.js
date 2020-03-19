@@ -52155,11 +52155,7 @@ let BattleLearnsets = {
 	},
 	foongus: {
 		learnset: {
-			solarbeam: ["9T"],
-			swift: ["9T"],
-			eerieimpulse: ["9T"],
-			endure: ["9T"],
-			energyball: ["9T"],
+			pollenpuff: ["9T"],
 			absorb: ["7L1", "6L1", "5L1"],
 			afteryou: ["7T", "6T", "5T"],
 			astonish: ["7L8", "6L8", "5L8"],

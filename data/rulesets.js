@@ -19,7 +19,7 @@ let BattleFormats = {
 		effectType: 'ValidatorRule',
 		name: 'Draft',
 		desc: "The custom Draft League ruleset",
-		ruleset: ['+Unreleased', 'Sleep Clause Mod', 'OHKO Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
+		ruleset: ['Sleep Clause Mod', 'OHKO Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	standardnext: {
 		effectType: 'ValidatorRule',

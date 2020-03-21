@@ -16,14 +16,14 @@ let Formats = [
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
+		ruleset: ['Obtainable', 'Draft', 'Team Preview'],
 	},
 	{
 		name: "[Gen 8] Galar Dex Wifi",
 
 		mod: 'gen8',
 		maxForcedLevel: 50,
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', 'VGC Timer'],
+		ruleset: ['Obtainable', 'Draft', 'Team Preview', 'VGC Timer'],
 	},
 	{
 		name: "[Gen 8] Galar Dex Pre-Home",
@@ -59,21 +59,21 @@ let Formats = [
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
+		ruleset: ['Obtainable', 'Draft', '+Past', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
 		name: "[Gen 8] National Dex Dynamax",
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
+		ruleset: ['Obtainable', 'Draft', '+Past', 'Team Preview'],
 	},
 	{
 		name: "[Gen 8] National Dex Legacy",
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
+		ruleset: ['Obtainable', 'Draft', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
 		name: "[Gen 8] National Dex Unrestricted",
@@ -87,7 +87,7 @@ let Formats = [
 
 		mod: 'gen8',
 		maxForcedLevel: 50,
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'VGC Timer'],
+		ruleset: ['Obtainable', 'Draft', '+Past', 'Team Preview', 'VGC Timer'],
 	},
 	{
 		name: "[Gen 8] National Dex Doubles",
@@ -95,7 +95,7 @@ let Formats = [
 		mod: 'gen8',
 		gameType: 'doubles',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
+		ruleset: ['Obtainable', 'Draft', '+Past', 'Team Preview'],
 	},
 	{
 		name: "[Gen 8] LC National Dex",
@@ -103,7 +103,7 @@ let Formats = [
 		mod: 'gen8',
 		maxLevel: 5,
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
+		ruleset: ['Obtainable', 'Draft', '+Past', '+PastMove', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	
@@ -118,21 +118,21 @@ let Formats = [
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', 'Draft', 'Allow Tradeback', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
+		ruleset: ['Obtainable', 'Draft', 'Allow Tradeback', '+Past', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
 		name: "[Gen 8] National Dex DLC Dynamax",
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', 'Draft', 'Allow Tradeback', '+Unreleased', '+Past', 'Team Preview'],
+		ruleset: ['Obtainable', 'Draft', 'Allow Tradeback', '+Past', 'Team Preview'],
 	},
 	{
 		name: "[Gen 8] National Dex DLC Legacy",
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', 'Draft', 'Allow Tradeback', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
+		ruleset: ['Obtainable', 'Draft', 'Allow Tradeback', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
 	},
 	
 	
@@ -147,14 +147,14 @@ let Formats = [
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', 'Draft', 'Allow Tradeback', '+Unreleased', '+CAP', '+Past', 'Team Preview', 'Dynamax Clause'],
+		ruleset: ['Obtainable', 'Draft', 'Allow Tradeback', '+CAP', '+Past', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
 		name: "[Gen 8] (National Dex) EBL",
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview', 'Dynamax Clause'],
+		ruleset: ['Obtainable', 'Draft', '+Past', 'Team Preview', 'Dynamax Clause'],
 		unbanlist: [
 			'Buginium Z', 'Darkinium Z', 'Dragonium Z', 'Electrium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Ghostium Z', 
 			'Grassium Z', 'Groundium Z', 'Icium Z', 'Normalium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z', 'Waterium Z',
@@ -181,7 +181,7 @@ let Formats = [
 
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		ruleset: ['Obtainable', '+Unreleased', '+Past', 'Draft', 'Team Preview', 'Dynamax Clause'],
+		ruleset: ['Obtainable', 'Draft', '+Past', 'Team Preview', 'Dynamax Clause'],
 		banlist: [
 			'Bright Powder', "King's Rock", 'Razor Fang', 'Focus Band', 'Quick Claw', 'Moody', 'Stench', 'Baton Pass > 1',
 			// Unreleased HAs
@@ -198,7 +198,7 @@ let Formats = [
 		name: "[Gen 8] (National Dex) PICA",
 
 		mod: 'gen8',
-		ruleset: ['Obtainable', '+Unreleased', '+Past', '+PastMove', 'Draft', 'Team Preview', 'Dynamax Clause'],
+		ruleset: ['Obtainable', 'Draft', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
 		banlist: [
 			// Items
 			'Bright Powder', 'Lax Incense', "King's Rock", 'Razor Fang', 'Focus Band', 'Quick Claw', 'Starf Berry',
@@ -2604,7 +2604,7 @@ let Formats = [
 		mod: 'gen8',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 60, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		searchShow: false,
-		ruleset: ['Obtainable', '+Unreleased', '+Past', '+PastMove', 'Draft', 'Team Preview'],
+		ruleset: ['Obtainable', 'Draft', '+Past', '+PastMove', 'Team Preview'],
 		banlist: [
 			// OU Banlist
 			'Dialga', 'Eternatus', 'Giratina', 'Groudon', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-White', 'Lucario-Mega', 'Lugia',

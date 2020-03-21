@@ -49,19 +49,19 @@ exports.commands = {
 **National Dex Unrestricted**:
 + everything is allowed, including illegal Pokemon and CAP
 
-**Wifi National Dex**:
+**National Dex Wifi**:
 + National Dex Dynamax rules
 + Pokemon are set to level 50
 + VGC timer
+
+**National Dex Doubles**:
++ National Dex Dynamax rules
++ Doubles format
 
 **LC National Dex**:
 + National Dex Legacy rules
 + LC format
 + Double Item Clause
-
-**Doubles National Dex**:
-+ National Dex Dynamax rules
-+ Doubles format
 
 
 

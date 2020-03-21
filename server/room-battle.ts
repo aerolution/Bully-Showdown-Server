@@ -606,7 +606,6 @@ export class RoomBattle extends RoomGames.RoomGame {
 			player.sendRoom(`|error|[Invalid choice] Sorry, too late to make a different move; the next turn has already started`);
 			return;
 		}
-		user.lastDecision = Date.now();
 		request.isWait = true;
 		request.choice = choice;
 
@@ -731,6 +730,9 @@ export class RoomBattle extends RoomGames.RoomGame {
 					this.turn = parseInt(line.slice(6));
 				}
 				this.room.add(line);
+				if (line.startsWith(`|bigerror|You will auto-tie if `)) {
+					if (Config.allowrequestingties) this.room.add(`|-hint|If you want to tie earlier, consider using \`/offertie\`.`);
+				}
 			}
 			this.room.update();
 			if (!this.ended) this.timer.nextRequest();

@@ -1,6 +1,6 @@
 'use strict';
 
-/**@type {{[k: string]: {learnset: {[k: string]: MoveSource[]}}}} */
+/**@type {{[k: string]: LearnsetData}} */
 let BattleLearnsets = {
 	missingno: {
 		learnset: {
@@ -29,7 +29,7 @@ let BattleLearnsets = {
 			toxic: ["5L1"],
 			triattack: ["5L1"],
 			watergun: ["5L1"],
-		}
+		},
 	},
 	bulbasaur: {
 		learnset: {
@@ -89,7 +89,7 @@ let BattleLearnsets = {
 			razorwind: ["7V"],
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "7V", "6M", "5M", "4E", "3E"],
@@ -118,7 +118,18 @@ let BattleLearnsets = {
 			weatherball: ["8M", "5S3"],
 			workup: ["8M", "7M"],
 			worryseed: ["8L30", "7T", "7L31", "6T", "6L31", "5T", "5L31", "4T", "4L31"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 70, "moves": ["sweetscent", "growth", "solarbeam", "synthesis"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["tackle", "growl", "leechseed", "vinewhip"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["tackle", "growl", "leechseed", "vinewhip"]},
+			{"generation": 5, "level": 1, "shiny": 1, "ivs": {"def": 31}, "moves": ["falseswipe", "block", "frenzyplant", "weatherball"], "pokeball": "pokeball"},
+			{"generation": 6, "level": 5, "moves": ["growl", "leechseed", "vinewhip", "poisonpowder"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 5, "isHidden": true, "moves": ["tackle", "growl", "celebrate"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 5},
+		],
 	},
 	ivysaur: {
 		learnset: {
@@ -171,7 +182,7 @@ let BattleLearnsets = {
 			razorleaf: ["8L12", "8V", "7L20", "7V", "6L20", "5L20", "4L20", "3L22"],
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M"],
@@ -198,7 +209,7 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			workup: ["8M", "7M"],
 			worryseed: ["8L40", "7T", "7L36", "6T", "6L36", "5T", "5L36", "4T", "4L36"],
-		}
+		},
 	},
 	venusaur: {
 		learnset: {
@@ -260,7 +271,7 @@ let BattleLearnsets = {
 			razorleaf: ["8L12", "8V", "7L20", "7V", "6L20", "5L20", "4L20", "3L22"],
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -290,7 +301,10 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			workup: ["8M", "7M"],
 			worryseed: ["8L44", "7T", "7L39", "6T", "6L39", "5T", "5L39", "4T", "4L39"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 100, "isHidden": true, "moves": ["solarbeam", "frenzyplant", "synthesis", "grasspledge"], "pokeball": "cherishball"},
+		],
 	},
 	charmander: {
 		learnset: {
@@ -370,7 +384,7 @@ let BattleLearnsets = {
 			rage: ["7V", "3L19"],
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "4S5", "4S3", "4S2", "4S1", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "4S5", "4S3", "4S2", "4S1", "3M"],
 			rockslide: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "4E", "3T", "3E"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M"],
@@ -399,7 +413,21 @@ let BattleLearnsets = {
 			willowisp: ["8M", "8V", "7M", "6M", "5M", "4M"],
 			wingattack: ["8E"],
 			workup: ["8M", "7M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["scratch", "growl", "ember"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 40, "gender": "M", "nature": "Mild", "moves": ["return", "hiddenpower", "quickattack", "howl"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 40, "gender": "M", "nature": "Naive", "moves": ["return", "hiddenpower", "quickattack", "howl"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 40, "gender": "M", "nature": "Naughty", "moves": ["return", "hiddenpower", "quickattack", "howl"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["scratch", "growl", "ember", "smokescreen"]},
+			{"generation": 4, "level": 40, "gender": "M", "nature": "Hardy", "moves": ["return", "hiddenpower", "quickattack", "howl"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 1, "shiny": 1, "ivs": {"spe": 31}, "moves": ["falseswipe", "block", "blastburn", "acrobatics"], "pokeball": "pokeball"},
+			{"generation": 6, "level": 5, "moves": ["growl", "ember", "smokescreen", "dragonrage"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 5, "isHidden": true, "moves": ["scratch", "growl", "celebrate"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 5},
+		],
 	},
 	charmeleon: {
 		learnset: {
@@ -468,7 +496,7 @@ let BattleLearnsets = {
 			rage: ["7V", "3L20"],
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockslide: ["8M", "8V", "7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M"],
@@ -496,7 +524,7 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			willowisp: ["8M", "8V", "7M", "6M", "5M", "4M"],
 			workup: ["8M", "7M"],
-		}
+		},
 	},
 	charizard: {
 		learnset: {
@@ -585,7 +613,7 @@ let BattleLearnsets = {
 			rage: ["7V", "3L20"],
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockslide: ["8M", "8V", "7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -622,7 +650,18 @@ let BattleLearnsets = {
 			willowisp: ["8M", "8V", "7M", "6M", "5M", "4M"],
 			wingattack: ["8V", "7L1", "7V", "6L36", "5L36", "4L36", "3L36", "3S0"],
 			workup: ["8M", "7M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 70, "moves": ["wingattack", "slash", "dragonrage", "firespin"], "pokeball": "pokeball"},
+			{"generation": 6, "level": 36, "gender": "M", "moves": ["firefang", "flameburst", "airslash", "inferno"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 36, "gender": "M", "moves": ["firefang", "airslash", "dragonclaw", "dragonrage"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 36, "shiny": true, "gender": "M", "moves": ["overheat", "solarbeam", "focusblast", "holdhands"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 100, "isHidden": true, "moves": ["flareblitz", "blastburn", "scaryface", "firepledge"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 36, "gender": "M", "nature": "Serious", "moves": ["flamethrower", "ember", "firespin", "flameburst"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 40, "gender": "M", "nature": "Jolly", "moves": ["flareblitz", "dragonclaw", "fly", "dragonrage"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 40, "gender": "M", "nature": "Adamant", "moves": ["flamethrower", "dragonrage", "slash", "seismictoss"], "pokeball": "pokeball"},
+			{"generation": 7, "level": 50, "moves": ["dragondance", "flareblitz", "fly", "earthquake"], "pokeball": "cherishball"},
+		],
 	},
 	squirtle: {
 		learnset: {
@@ -695,7 +734,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7V"],
 			refresh: ["7E", "6E", "5E", "4E", "3E"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockslide: ["8V"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M"],
@@ -728,7 +767,17 @@ let BattleLearnsets = {
 			workup: ["8M", "7M"],
 			yawn: ["8E", "7E", "6E", "5E", "4E", "3E"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["tackle", "tailwhip", "bubble", "withdraw"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["tackle", "tailwhip", "bubble", "withdraw"]},
+			{"generation": 5, "level": 1, "shiny": 1, "ivs": {"hp": 31}, "moves": ["falseswipe", "block", "hydrocannon", "followme"], "pokeball": "pokeball"},
+			{"generation": 6, "level": 5, "moves": ["tailwhip", "watergun", "withdraw", "bubble"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 5, "isHidden": true, "moves": ["tackle", "tailwhip", "celebrate"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 5},
+		],
 	},
 	wartortle: {
 		learnset: {
@@ -785,7 +834,7 @@ let BattleLearnsets = {
 			rapidspin: ["8L9", "7L21", "7V", "6L20", "5L20", "4L20", "3L25"],
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockslide: ["8V"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M"],
@@ -816,7 +865,7 @@ let BattleLearnsets = {
 			withdraw: ["8L1", "8V", "7L10", "7V", "6L10", "5L10", "4L10", "3L10"],
 			workup: ["8M", "7M"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	blastoise: {
 		learnset: {
@@ -890,7 +939,7 @@ let BattleLearnsets = {
 			rapidspin: ["8L9", "7L21", "7V", "6L20", "5L20", "4L20", "3L25"],
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockslide: ["8M", "8V", "7M", "6M", "5M", "4M"],
@@ -925,7 +974,11 @@ let BattleLearnsets = {
 			withdraw: ["8L1", "8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
 			workup: ["8M", "7M"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 70, "moves": ["protect", "raindance", "skullbash", "hydropump"], "pokeball": "pokeball"},
+			{"generation": 6, "level": 100, "isHidden": true, "moves": ["hydropump", "hydrocannon", "irondefense", "waterpledge"], "pokeball": "cherishball"},
+		],
 	},
 	caterpie: {
 		learnset: {
@@ -934,7 +987,12 @@ let BattleLearnsets = {
 			snore: ["7T", "6T", "5T", "4T"],
 			stringshot: ["8L1", "8V", "7L1", "7V", "6L1", "5L1", "4T", "4L1", "3L1"],
 			tackle: ["8L1", "8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 3},
+			{"generation": 2, "level": 3},
+			{"generation": 3, "level": 3},
+		],
 	},
 	metapod: {
 		learnset: {
@@ -943,7 +1001,15 @@ let BattleLearnsets = {
 			harden: ["8L0", "8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
 			irondefense: ["8M", "7T", "6T", "5T", "4T"],
 			stringshot: ["4T"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 4},
+			{"generation": 2, "level": 4},
+			{"generation": 3, "level": 4},
+			{"generation": 4, "level": 3},
+			{"generation": 6, "level": 4},
+			{"generation": 7, "level": 3},
+		],
 	},
 	butterfree: {
 		learnset: {
@@ -1001,7 +1067,7 @@ let BattleLearnsets = {
 			razorwind: ["7V"],
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roost: ["8V", "7M", "6M", "5T", "5D", "4M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "8L28", "7M", "7L25", "7V", "6M", "6L36", "5M", "5L36", "4M", "4L34", "3M", "3L40"],
@@ -1033,7 +1099,15 @@ let BattleLearnsets = {
 			uturn: ["8M", "8V", "7M", "6M", "5M", "4M"],
 			venoshock: ["8M", "7M", "6M", "5M"],
 			whirlwind: ["8L20", "8V", "7L29", "7V", "6L22", "5L22", "4L22", "3L23"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 30, "moves": ["morningsun", "psychic", "sleeppowder", "aerialace"]},
+		],
+		encounters: [
+			{"generation": 2, "level": 7},
+			{"generation": 4, "level": 6},
+			{"generation": 7, "level": 9},
+		],
 	},
 	weedle: {
 		learnset: {
@@ -1041,7 +1115,12 @@ let BattleLearnsets = {
 			electroweb: ["7T", "6T", "5T"],
 			poisonsting: ["8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
 			stringshot: ["8V", "7L1", "7V", "6L1", "5L1", "4T", "4L1", "3L1"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 3},
+			{"generation": 2, "level": 3},
+			{"generation": 3, "level": 3},
+		],
 	},
 	kakuna: {
 		learnset: {
@@ -1050,7 +1129,15 @@ let BattleLearnsets = {
 			harden: ["8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
 			irondefense: ["7T", "6T", "5T", "4T"],
 			stringshot: ["4T"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 4},
+			{"generation": 2, "level": 4},
+			{"generation": 3, "level": 4},
+			{"generation": 4, "level": 3},
+			{"generation": 6, "level": 4},
+			{"generation": 7, "level": 3},
+		],
 	},
 	beedrill: {
 		learnset: {
@@ -1109,7 +1196,7 @@ let BattleLearnsets = {
 			rage: ["8V", "7L14", "7V", "6L19", "5L19", "4L19", "3L25"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			roost: ["8V", "7M", "6M", "5T", "4M"],
 			round: ["7M", "6M", "5M"],
@@ -1138,7 +1225,14 @@ let BattleLearnsets = {
 			uturn: ["8V", "7M", "6M", "5M", "4M"],
 			venoshock: ["7M", "7L23", "6M", "5M"],
 			xscissor: ["8V", "7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 30, "moves": ["batonpass", "sludgebomb", "twineedle", "swordsdance"]},
+		],
+		encounters: [
+			{"generation": 2, "level": 7},
+			{"generation": 4, "level": 6},
+		],
 	},
 	pidgey: {
 		learnset: {
@@ -1182,7 +1276,7 @@ let BattleLearnsets = {
 			razorwind: ["8V", "7V"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roost: ["8V", "7M", "7L37", "6M", "6L37", "5T", "5L37", "4M", "4L37"],
 			round: ["7M", "6M", "5M"],
 			sandattack: ["8V", "7L5", "7V", "6L5", "5L5", "4L5", "3L5"],
@@ -1206,7 +1300,12 @@ let BattleLearnsets = {
 			whirlwind: ["8V", "7L17", "7V", "6L17", "5L17", "4L17", "3L19"],
 			wingattack: ["8V", "7L33", "7V", "6L33", "5L33", "4L33", "3L25"],
 			workup: ["7M", "5M"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 2},
+			{"generation": 2, "level": 2},
+			{"generation": 3, "level": 2},
+		],
 	},
 	pidgeotto: {
 		learnset: {
@@ -1247,7 +1346,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7V"],
 			refresh: ["3S0"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roost: ["8V", "7M", "7L42", "6M", "6L42", "5T", "5L42", "4M", "4L42"],
 			round: ["7M", "6M", "5M"],
 			sandattack: ["8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
@@ -1271,7 +1370,16 @@ let BattleLearnsets = {
 			whirlwind: ["8V", "7L17", "7V", "6L17", "5L17", "4L17", "3L20"],
 			wingattack: ["8V", "7L37", "7V", "6L37", "5L37", "4L37", "3L27", "3S0"],
 			workup: ["7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 30, "abilities": ["keeneye"], "moves": ["refresh", "wingattack", "steelwing", "featherdance"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 9},
+			{"generation": 2, "level": 7},
+			{"generation": 3, "level": 7},
+			{"generation": 4, "level": 7},
+		],
 	},
 	pidgeot: {
 		learnset: {
@@ -1314,7 +1422,7 @@ let BattleLearnsets = {
 			razorwind: ["8V", "7V"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roost: ["8V", "7M", "7L44", "6M", "6L44", "5T", "5L44", "4M", "4L44"],
 			round: ["7M", "6M", "5M"],
 			sandattack: ["8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
@@ -1338,7 +1446,13 @@ let BattleLearnsets = {
 			whirlwind: ["8V", "7L17", "7V", "6L17", "5L17", "5S0", "4L17", "3L20"],
 			wingattack: ["8V", "7L38", "7V", "6L38", "5L38", "5S0", "4L38", "3L27"],
 			workup: ["7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 61, "gender": "M", "nature": "Naughty", "ivs": {"hp": 30, "atk": 30, "def": 30, "spa": 30, "spd": 30, "spe": 30}, "abilities": ["keeneye"], "moves": ["whirlwind", "wingattack", "skyattack", "mirrormove"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 7, "level": 29},
+		],
 	},
 	rattata: {
 		learnset: {
@@ -1391,7 +1505,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			revenge: ["7E", "6E", "5E"],
 			reversal: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -1424,7 +1538,12 @@ let BattleLearnsets = {
 			wildcharge: ["7M", "6M", "5M"],
 			workup: ["7M", "5M"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 2},
+			{"generation": 2, "level": 2},
+			{"generation": 3, "level": 2},
+		],
 	},
 	rattataalola: {
 		learnset: {
@@ -1467,7 +1586,7 @@ let BattleLearnsets = {
 			quickattack: ["8V", "7L4"],
 			raindance: ["7M"],
 			rest: ["8V", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			revenge: ["7E"],
 			reversal: ["7E"],
 			round: ["7M"],
@@ -1496,7 +1615,7 @@ let BattleLearnsets = {
 			uproar: ["7T", "7E"],
 			uturn: ["8V", "7M"],
 			zenheadbutt: ["7T"],
-		}
+		},
 	},
 	raticate: {
 		learnset: {
@@ -1555,7 +1674,7 @@ let BattleLearnsets = {
 			refresh: ["3S0"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
@@ -1597,7 +1716,15 @@ let BattleLearnsets = {
 			wildcharge: ["7M", "6M", "5M"],
 			workup: ["7M", "5M"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 34, "moves": ["refresh", "superfang", "scaryface", "hyperfang"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 15},
+			{"generation": 2, "level": 6},
+			{"generation": 4, "level": 13},
+		],
 	},
 	raticatealola: {
 		learnset: {
@@ -1644,7 +1771,7 @@ let BattleLearnsets = {
 			quickattack: ["8V", "7L1"],
 			raindance: ["7M"],
 			rest: ["8V", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M"],
 			round: ["7M"],
 			scaryface: ["7L1"],
@@ -1675,7 +1802,10 @@ let BattleLearnsets = {
 			uturn: ["8V", "7M"],
 			venoshock: ["7M"],
 			zenheadbutt: ["7T"],
-		}
+		},
+		encounters: [
+			{"generation": 7, "level": 17},
+		],
 	},
 	raticatealolatotem: {
 		learnset: {
@@ -1711,7 +1841,7 @@ let BattleLearnsets = {
 			quickattack: ["7L1"],
 			raindance: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M"],
 			round: ["7M"],
 			scaryface: ["7L1"],
@@ -1742,7 +1872,11 @@ let BattleLearnsets = {
 			uturn: ["7M"],
 			venoshock: ["7M"],
 			zenheadbutt: ["7T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 20, "perfectIVs": 3, "moves": ["bite", "pursuit", "hyperfang", "assurance"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	spearow: {
 		learnset: {
@@ -1792,7 +1926,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			razorwind: ["7E", "7V", "6E", "5E"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roost: ["8V", "7M", "7L32", "6M", "6L33", "5T", "5L33", "4M", "4L33"],
 			round: ["7M", "6M", "5M"],
 			scaryface: ["7E", "7V", "6E", "5E", "4E", "3E"],
@@ -1815,7 +1949,15 @@ let BattleLearnsets = {
 			uturn: ["8V", "7M", "6M", "5M", "4M"],
 			whirlwind: ["7E", "7V", "6E", "5E", "4E"],
 			workup: ["7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 22, "moves": ["batonpass", "falseswipe", "leer", "aerialace"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 3},
+			{"generation": 2, "level": 2},
+			{"generation": 3, "level": 3},
+		],
 	},
 	fearow: {
 		learnset: {
@@ -1866,7 +2008,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			razorwind: ["7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roost: ["8V", "7M", "7L36", "6M", "6L41", "5T", "5L41", "4M", "4L41"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -1889,7 +2031,12 @@ let BattleLearnsets = {
 			uturn: ["8V", "7M", "6M", "5M", "4M"],
 			whirlwind: ["7V"],
 			workup: ["7M", "5M"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 19},
+			{"generation": 2, "level": 7},
+			{"generation": 4, "level": 7},
+		],
 	},
 	ekans: {
 		learnset: {
@@ -1944,7 +2091,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockslide: ["8V", "7M", "7V", "6M", "5M", "4M", "3T"],
 			rocktomb: ["7M", "6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
@@ -1975,7 +2122,15 @@ let BattleLearnsets = {
 			toxic: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			venoshock: ["7M", "6M", "5M"],
 			wrap: ["8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1", "3S1", "3S0"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 14, "gender": "F", "nature": "Docile", "ivs": {"hp": 26, "atk": 28, "def": 6, "spa": 14, "spd": 30, "spe": 11}, "abilities": ["shedskin"], "moves": ["leer", "wrap", "poisonsting", "bite"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["wrap", "leer", "poisonsting"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 6},
+			{"generation": 2, "level": 4},
+		],
 	},
 	arbok: {
 		learnset: {
@@ -2032,7 +2187,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			refresh: ["3S0"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockslide: ["8V", "7M", "7V", "6M", "5M", "4M", "3T"],
 			rocktomb: ["7M", "6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
@@ -2064,7 +2219,14 @@ let BattleLearnsets = {
 			toxic: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			venoshock: ["7M", "6M", "5M"],
 			wrap: ["8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 33, "moves": ["refresh", "sludgebomb", "glare", "bite"]},
+		],
+		encounters: [
+			{"generation": 2, "level": 10},
+			{"generation": 4, "level": 10},
+		],
 	},
 	pichu: {
 		learnset: {
@@ -2121,7 +2283,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			reflect: ["8M"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "4S4", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "4S4", "3M"],
 			reversal: ["8M", "7E", "7V", "6E", "5E", "4E", "3E"],
 			rollout: ["7V", "4T", "3T"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -2151,7 +2313,15 @@ let BattleLearnsets = {
 			wildcharge: ["8M", "7M", "6M", "5M"],
 			wish: ["8E", "7E", "6E", "5E", "4E", "3E", "3S1"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["thundershock", "charm", "surf"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["thundershock", "charm", "wish"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["thundershock", "charm", "teeterdance"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["thundershock", "charm", "followme"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 1, "moves": ["volttackle", "thunderbolt", "grassknot", "return"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 30, "shiny": true, "gender": "M", "nature": "Jolly", "moves": ["charge", "volttackle", "endeavor", "endure"], "pokeball": "cherishball"},
+		],
 	},
 	pichuspikyeared: {
 		learnset: {
@@ -2179,7 +2349,7 @@ let BattleLearnsets = {
 			protect: ["4M"],
 			raindance: ["4M"],
 			rest: ["4M"],
-			return : ["4M"],
+			return: ["4M"],
 			rollout: ["4T"],
 			secretpower: ["4M"],
 			shockwave: ["4M"],
@@ -2198,7 +2368,11 @@ let BattleLearnsets = {
 			toxic: ["4M"],
 			uproar: ["4T"],
 			volttackle: ["4S0"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 30, "gender": "F", "nature": "Naughty", "moves": ["helpinghand", "volttackle", "swagger", "painsplit"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	pikachu: {
 		learnset: {
@@ -2274,7 +2448,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "8V", "7V"],
 			refresh: ["7S48"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "4S19", "3M"],
-			return : ["7M", "7S44", "7V", "6M", "6S42", "5M", "4M", "3M"],
+			return: ["7M", "7S44", "7V", "6M", "6S42", "5M", "4M", "3M"],
 			reversal: ["8M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rollout: ["7V", "4T", "3T"],
@@ -2313,7 +2487,64 @@ let BattleLearnsets = {
 			wildcharge: ["8M", "7M", "7L50", "6M", "6L50", "5M"],
 			yawn: ["4S19"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 50, "moves": ["thunderbolt", "agility", "thunder", "lightscreen"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "moves": ["thundershock", "growl", "tailwhip", "thunderwave"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "moves": ["fly", "tailwhip", "growl", "thunderwave"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "moves": ["surf", "growl", "tailwhip", "thunderwave"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "moves": ["fly", "growl", "tailwhip", "thunderwave"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "moves": ["thundershock", "growl", "thunderwave", "surf"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 70, "moves": ["thunderbolt", "thunder", "lightscreen", "fly"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 70, "moves": ["thunderbolt", "thunder", "lightscreen", "surf"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 70, "moves": ["thunderbolt", "thunder", "lightscreen", "agility"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 10, "gender": "F", "nature": "Hardy", "moves": ["surf", "volttackle", "tailwhip", "thunderwave"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["thundershock", "growl", "tailwhip", "thunderwave"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 50, "gender": "M", "nature": "Hardy", "moves": ["surf", "thunderbolt", "lightscreen", "quickattack"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 20, "gender": "F", "nature": "Bashful", "moves": ["present", "quickattack", "thundershock", "tailwhip"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 20, "gender": "M", "nature": "Jolly", "moves": ["grassknot", "thunderbolt", "flash", "doubleteam"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 40, "gender": "M", "nature": "Modest", "moves": ["surf", "thunder", "protect"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 20, "gender": "F", "nature": "Bashful", "moves": ["quickattack", "thundershock", "tailwhip", "present"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 40, "gender": "M", "nature": "Mild", "moves": ["surf", "thunder", "protect"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 20, "gender": "F", "nature": "Bashful", "moves": ["present", "quickattack", "thunderwave", "tailwhip"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 30, "gender": "M", "nature": "Naughty", "moves": ["lastresort", "present", "thunderbolt", "quickattack"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 50, "gender": "M", "nature": "Relaxed", "moves": ["rest", "sleeptalk", "yawn", "snore"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 20, "gender": "M", "nature": "Docile", "moves": ["present", "quickattack", "thundershock", "tailwhip"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 50, "gender": "M", "nature": "Naughty", "moves": ["volttackle", "irontail", "quickattack", "thunderbolt"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 20, "gender": "M", "nature": "Bashful", "moves": ["present", "quickattack", "thundershock", "tailwhip"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 30, "gender": "F", "isHidden": true, "moves": ["sing", "teeterdance", "encore", "electroball"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 50, "moves": ["fly", "irontail", "electroball", "quickattack"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 100, "shiny": 1, "gender": "F", "moves": ["thunder", "volttackle", "grassknot", "quickattack"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 50, "shiny": 1, "gender": "F", "moves": ["extremespeed", "thunderbolt", "grassknot", "brickbreak"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 50, "gender": "F", "nature": "Timid", "isHidden": true, "moves": ["fly", "thunderbolt", "grassknot", "protect"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["thundershock", "tailwhip", "thunderwave", "headbutt"]},
+			{"generation": 5, "level": 100, "gender": "M", "isHidden": true, "moves": ["volttackle", "quickattack", "feint", "voltswitch"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 50, "gender": "M", "nature": "Brave", "moves": ["thunderbolt", "quickattack", "irontail", "electroball"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 10, "moves": ["celebrate", "growl", "playnice", "quickattack"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 22, "moves": ["quickattack", "electroball", "doubleteam", "megakick"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 10, "moves": ["thunderbolt", "quickattack", "surf", "holdhands"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 10, "gender": "F", "moves": ["thunderbolt", "quickattack", "heartstamp", "holdhands"], "pokeball": "healball"},
+			{"generation": 6, "level": 36, "shiny": true, "isHidden": true, "moves": ["thunder", "substitute", "playnice", "holdhands"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 10, "gender": "F", "moves": ["playnice", "charm", "nuzzle", "sweetkiss"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "gender": "M", "nature": "Naughty", "moves": ["thunderbolt", "quickattack", "irontail", "electroball"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 10, "shiny": true, "moves": ["teeterdance", "playnice", "tailwhip", "nuzzle"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 10, "perfectIVs": 2, "isHidden": true, "moves": ["fakeout", "encore", "volttackle", "endeavor"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 99, "moves": ["happyhour", "playnice", "holdhands", "flash"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 10, "moves": ["fly", "surf", "agility", "celebrate"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 10, "moves": ["bestow", "holdhands", "return", "playnice"], "pokeball": "healball"},
+			{"generation": 7, "level": 10, "nature": "Jolly", "moves": ["celebrate", "growl", "playnice", "quickattack"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 10, "moves": ["bestow", "holdhands", "return", "playnice"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 10, "moves": ["holdhands", "playnice", "teeterdance", "happyhour"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 10, "moves": ["growl", "quickattack", "thundershock", "happyhour"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 40, "shiny": 1, "perfectIVs": 3, "moves": ["nuzzle", "discharge", "slam", "surf"], "pokeball": "pokeball"},
+			{"generation": 7, "level": 5, "moves": ["celebrate", "sweetscent", "counter", "refresh"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 10, "moves": ["fly", "surf", "thunderbolt", "quickattack"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 3},
+			{"generation": 2, "level": 4},
+			{"generation": 3, "level": 3},
+		],
 	},
 	pikachucosplay: {
 		learnset: {
@@ -2349,7 +2580,7 @@ let BattleLearnsets = {
 			quickattack: ["6L10", "6S0"],
 			raindance: ["6M"],
 			rest: ["6M"],
-			return : ["6M"],
+			return: ["6M"],
 			rocksmash: ["6M"],
 			round: ["6M"],
 			secretpower: ["6M"],
@@ -2371,7 +2602,11 @@ let BattleLearnsets = {
 			toxic: ["6M"],
 			voltswitch: ["6M"],
 			wildcharge: ["6M", "6L50"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 20, "perfectIVs": 3, "moves": ["quickattack", "electroball", "thunderwave", "thundershock"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	pikachurockstar: {
 		learnset: {
@@ -2408,7 +2643,7 @@ let BattleLearnsets = {
 			quickattack: ["6L10", "6S0"],
 			raindance: ["6M"],
 			rest: ["6M"],
-			return : ["6M"],
+			return: ["6M"],
 			rocksmash: ["6M"],
 			round: ["6M"],
 			secretpower: ["6M"],
@@ -2430,7 +2665,11 @@ let BattleLearnsets = {
 			toxic: ["6M"],
 			voltswitch: ["6M"],
 			wildcharge: ["6M", "6L50"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 20, "perfectIVs": 3, "moves": ["quickattack", "electroball", "thunderwave", "meteormash"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	pikachubelle: {
 		learnset: {
@@ -2467,7 +2706,7 @@ let BattleLearnsets = {
 			quickattack: ["6L10", "6S0"],
 			raindance: ["6M"],
 			rest: ["6M"],
-			return : ["6M"],
+			return: ["6M"],
 			rocksmash: ["6M"],
 			round: ["6M"],
 			secretpower: ["6M"],
@@ -2489,7 +2728,11 @@ let BattleLearnsets = {
 			toxic: ["6M"],
 			voltswitch: ["6M"],
 			wildcharge: ["6M", "6L50"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 20, "perfectIVs": 3, "moves": ["quickattack", "electroball", "thunderwave", "iciclecrash"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	pikachupopstar: {
 		learnset: {
@@ -2526,7 +2769,7 @@ let BattleLearnsets = {
 			quickattack: ["6L10", "6S0"],
 			raindance: ["6M"],
 			rest: ["6M"],
-			return : ["6M"],
+			return: ["6M"],
 			rocksmash: ["6M"],
 			round: ["6M"],
 			secretpower: ["6M"],
@@ -2548,7 +2791,11 @@ let BattleLearnsets = {
 			toxic: ["6M"],
 			voltswitch: ["6M"],
 			wildcharge: ["6M", "6L50"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 20, "perfectIVs": 3, "moves": ["quickattack", "electroball", "thunderwave", "drainingkiss"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	pikachuphd: {
 		learnset: {
@@ -2585,7 +2832,7 @@ let BattleLearnsets = {
 			quickattack: ["6L10", "6S0"],
 			raindance: ["6M"],
 			rest: ["6M"],
-			return : ["6M"],
+			return: ["6M"],
 			rocksmash: ["6M"],
 			round: ["6M"],
 			secretpower: ["6M"],
@@ -2607,7 +2854,11 @@ let BattleLearnsets = {
 			toxic: ["6M"],
 			voltswitch: ["6M"],
 			wildcharge: ["6M", "6L50"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 20, "perfectIVs": 3, "moves": ["quickattack", "electroball", "thunderwave", "electricterrain"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	pikachulibre: {
 		learnset: {
@@ -2644,7 +2895,7 @@ let BattleLearnsets = {
 			quickattack: ["6L10", "6S0"],
 			raindance: ["6M"],
 			rest: ["6M"],
-			return : ["6M"],
+			return: ["6M"],
 			rocksmash: ["6M"],
 			round: ["6M"],
 			secretpower: ["6M"],
@@ -2666,7 +2917,11 @@ let BattleLearnsets = {
 			toxic: ["6M"],
 			voltswitch: ["6M"],
 			wildcharge: ["6M", "6L50"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 20, "perfectIVs": 3, "moves": ["quickattack", "electroball", "thunderwave", "flyingpress"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	pikachuoriginal: {
 		learnset: {
@@ -2714,7 +2969,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			reflect: ["8M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			reversal: ["8M"],
 			round: ["8M", "7M"],
 			shockwave: ["7T"],
@@ -2740,7 +2995,11 @@ let BattleLearnsets = {
 			voltswitch: ["8M", "7M"],
 			volttackle: ["7T"],
 			wildcharge: ["8M", "7M", "7L50"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 1, "nature": "Hardy", "moves": ["thunderbolt", "quickattack", "thunder", "agility"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	pikachuhoenn: {
 		learnset: {
@@ -2788,7 +3047,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			reflect: ["8M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			reversal: ["8M"],
 			round: ["8M", "7M"],
 			shockwave: ["7T"],
@@ -2814,7 +3073,11 @@ let BattleLearnsets = {
 			voltswitch: ["8M", "7M"],
 			volttackle: ["7T"],
 			wildcharge: ["8M", "7M", "7L50"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 6, "nature": "Hardy", "moves": ["thunderbolt", "quickattack", "thunder", "irontail"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	pikachusinnoh: {
 		learnset: {
@@ -2862,7 +3125,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			reflect: ["8M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			reversal: ["8M"],
 			round: ["8M", "7M"],
 			shockwave: ["7T"],
@@ -2888,7 +3151,11 @@ let BattleLearnsets = {
 			voltswitch: ["8M", "7M"],
 			volttackle: ["7T", "7S0"],
 			wildcharge: ["8M", "7M", "7L50"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 10, "nature": "Hardy", "moves": ["thunderbolt", "quickattack", "irontail", "volttackle"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	pikachuunova: {
 		learnset: {
@@ -2936,7 +3203,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			reflect: ["8M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			reversal: ["8M"],
 			round: ["8M", "7M"],
 			shockwave: ["7T"],
@@ -2962,7 +3229,11 @@ let BattleLearnsets = {
 			voltswitch: ["8M", "7M"],
 			volttackle: ["7T", "7S0"],
 			wildcharge: ["8M", "7M", "7L50"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 14, "nature": "Hardy", "moves": ["thunderbolt", "quickattack", "irontail", "volttackle"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	pikachukalos: {
 		learnset: {
@@ -3010,7 +3281,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			reflect: ["8M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			reversal: ["8M"],
 			round: ["8M", "7M"],
 			shockwave: ["7T"],
@@ -3036,7 +3307,11 @@ let BattleLearnsets = {
 			voltswitch: ["8M", "7M"],
 			volttackle: ["7T"],
 			wildcharge: ["8M", "7M", "7L50"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 17, "nature": "Hardy", "moves": ["thunderbolt", "quickattack", "irontail", "electroball"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	pikachualola: {
 		learnset: {
@@ -3084,7 +3359,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			reflect: ["8M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			reversal: ["8M"],
 			round: ["8M", "7M"],
 			shockwave: ["7T"],
@@ -3110,7 +3385,11 @@ let BattleLearnsets = {
 			voltswitch: ["8M", "7M"],
 			volttackle: ["7T"],
 			wildcharge: ["8M", "7M", "7L50"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 20, "nature": "Hardy", "moves": ["thunderbolt", "quickattack", "irontail", "electroball"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	pikachupartner: {
 		learnset: {
@@ -3158,7 +3437,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			reflect: ["8M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			reversal: ["8M"],
 			round: ["8M", "7M"],
 			shockwave: ["7T"],
@@ -3184,7 +3463,11 @@ let BattleLearnsets = {
 			voltswitch: ["8M", "7M"],
 			volttackle: ["7T"],
 			wildcharge: ["8M", "7M", "7L50"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 21, "shiny": 1, "nature": "Hardy", "moves": ["thunderbolt", "quickattack", "thunder", "irontail"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	pikachustarter: {
 		learnset: {
@@ -3219,7 +3502,11 @@ let BattleLearnsets = {
 			thunderwave: ["8V", "7M", "7L15"],
 			toxic: ["8V", "7M"],
 			zippyzap: ["8V", "7T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 5, "perfectIVs": 6, "moves": ["thundershock", "tailwhip", "growl"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	pikachugmax: {
 		learnset: {
@@ -3227,7 +3514,11 @@ let BattleLearnsets = {
 			growl: ["8S0"],
 			quickattack: ["8S0"],
 			thunderwave: ["8S0"],
-		}
+		},
+		eventData: [
+			{"generation": 8, "level": 10, "moves": ["growl", "quickattack", "thunderwave", "doubleteam"]},
+		],
+		eventOnly: true,
 	},
 	raichu: {
 		learnset: {
@@ -3296,7 +3587,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			reflect: ["8M", "8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reversal: ["8M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rollout: ["7V", "4T", "3T"],
@@ -3332,7 +3623,7 @@ let BattleLearnsets = {
 			voltswitch: ["8M", "7M", "6M", "5M"],
 			wildcharge: ["8M", "7M", "6M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
 	},
 	raichualola: {
 		learnset: {
@@ -3393,7 +3684,7 @@ let BattleLearnsets = {
 			recycle: ["7T"],
 			reflect: ["8M", "8V", "7M"],
 			rest: ["8M", "8V", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			reversal: ["8M"],
 			round: ["8M", "7M"],
 			safeguard: ["8M", "7M"],
@@ -3424,7 +3715,7 @@ let BattleLearnsets = {
 			uproar: ["8M"],
 			voltswitch: ["8M", "7M"],
 			wildcharge: ["8M", "7M"],
-		}
+		},
 	},
 	sandshrew: {
 		learnset: {
@@ -3482,7 +3773,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			rapidspin: ["7L9", "7E", "7V", "6L9", "6E", "5L13", "5E", "4L13", "4E", "3E"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["7E", "6E", "5E", "4M"],
 			rockslide: ["8V", "7M", "7V", "6M", "5M", "4M", "4E", "3T", "3E"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -3516,7 +3807,13 @@ let BattleLearnsets = {
 			thief: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			toxic: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			xscissor: ["8V", "7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 12, "gender": "M", "nature": "Docile", "ivs": {"hp": 4, "atk": 23, "def": 8, "spa": 31, "spd": 1, "spe": 25}, "moves": ["scratch", "defensecurl", "sandattack", "poisonsting"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 6},
+		],
 	},
 	sandshrewalola: {
 		learnset: {
@@ -3574,7 +3871,7 @@ let BattleLearnsets = {
 			protect: ["8V", "7M"],
 			rapidspin: ["7L9", "7S0"],
 			rest: ["8V", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockslide: ["8V", "7M"],
 			round: ["7M"],
 			safeguard: ["7M"],
@@ -3596,7 +3893,10 @@ let BattleLearnsets = {
 			toxic: ["8V", "7M"],
 			workup: ["7M"],
 			xscissor: ["8V", "7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 10, "moves": ["rapidspin", "iceball", "powdersnow", "bide"], "pokeball": "cherishball"},
+		],
 	},
 	sandslash: {
 		learnset: {
@@ -3657,7 +3957,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			rapidspin: ["7L9", "6L9", "5L13", "4L13"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockslide: ["8V", "7M", "7V", "6M", "5M", "4M", "3T"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -3691,7 +3991,11 @@ let BattleLearnsets = {
 			thief: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			toxic: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			xscissor: ["8V", "7M", "6M", "5M", "4M"],
-		}
+		},
+		encounters: [
+			{"generation": 2, "level": 10},
+			{"generation": 4, "level": 10},
+		],
 	},
 	sandslashalola: {
 		learnset: {
@@ -3745,7 +4049,7 @@ let BattleLearnsets = {
 			poisonjab: ["8V", "7M"],
 			protect: ["8V", "7M"],
 			rest: ["8V", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockslide: ["8V", "7M"],
 			round: ["7M"],
 			safeguard: ["7M"],
@@ -3766,7 +4070,7 @@ let BattleLearnsets = {
 			toxic: ["8V", "7M"],
 			workup: ["7M"],
 			xscissor: ["8V", "7M"],
-		}
+		},
 	},
 	nidoranf: {
 		learnset: {
@@ -3819,7 +4123,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			scratch: ["8V", "7L1", "7V", "6L1", "5L1", "5D", "4L1", "3L1"],
@@ -3848,7 +4152,10 @@ let BattleLearnsets = {
 			venomdrench: ["7E", "6E"],
 			venoshock: ["7M", "6M", "5M"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 2},
+		],
 	},
 	nidorina: {
 		learnset: {
@@ -3896,7 +4203,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			scratch: ["8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
@@ -3924,7 +4231,10 @@ let BattleLearnsets = {
 			venoshock: ["7M", "6M", "5M"],
 			watergun: ["7V"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
-		}
+		},
+		encounters: [
+			{"generation": 4, "level": 15, "pokeball": "safariball"},
+		],
 	},
 	nidoqueen: {
 		learnset: {
@@ -4003,7 +4313,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockslide: ["8V", "7M", "7V", "6M", "5M", "4M", "3T"],
@@ -4051,7 +4361,10 @@ let BattleLearnsets = {
 			watergun: ["7V"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["4M"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 41, "perfectIVs": 2, "abilities": ["poisonpoint"], "moves": ["tailwhip", "doublekick", "poisonsting", "bodyslam"], "pokeball": "cherishball"},
+		],
 	},
 	nidoranm: {
 		learnset: {
@@ -4105,7 +4418,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -4133,7 +4446,10 @@ let BattleLearnsets = {
 			venomdrench: ["7E", "6E"],
 			venoshock: ["7M", "6M", "5M"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 2},
+		],
 	},
 	nidorino: {
 		learnset: {
@@ -4181,7 +4497,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -4209,7 +4525,10 @@ let BattleLearnsets = {
 			venoshock: ["7M", "6M", "5M"],
 			watergun: ["7V"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
-		}
+		},
+		encounters: [
+			{"generation": 4, "level": 15, "pokeball": "safariball"},
+		],
 	},
 	nidoking: {
 		learnset: {
@@ -4291,7 +4610,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockslide: ["8V", "7M", "7V", "6M", "5M", "4M", "3T"],
@@ -4340,7 +4659,10 @@ let BattleLearnsets = {
 			watergun: ["7V"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["4M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 68, "abilities": ["poisonpoint"], "moves": ["earthquake", "poisonjab", "throatchop", "aquatail"], "pokeball": "cherishball"},
+		],
 	},
 	cleffa: {
 		learnset: {
@@ -4409,7 +4731,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			rollout: ["7V", "4T", "3T"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -4442,7 +4764,7 @@ let BattleLearnsets = {
 			workup: ["8M", "7M", "5M"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	clefairy: {
 		learnset: {
@@ -4543,7 +4865,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			rollout: ["7V", "4T", "3T"],
@@ -4589,7 +4911,10 @@ let BattleLearnsets = {
 			workup: ["8M", "7M", "5M"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 8},
+		],
 	},
 	clefable: {
 		learnset: {
@@ -4692,7 +5017,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			rollout: ["7V", "4T", "3T"],
@@ -4737,7 +5062,7 @@ let BattleLearnsets = {
 			workup: ["8M", "7M", "5M"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	vulpix: {
 		learnset: {
@@ -4799,7 +5124,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["8E", "8V", "7M", "7L7", "7V", "6M", "6L7", "5M", "5L7", "5D", "4M", "4L7", "3M", "3L9", "3S0"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -4821,7 +5146,14 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			willowisp: ["8M", "8L24", "8V", "7M", "7L20", "6M", "6L20", "5M", "5L31", "4M", "4L14", "3L17", "3S0"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 18, "gender": "F", "nature": "Quirky", "ivs": {"hp": 15, "atk": 6, "def": 3, "spa": 25, "spd": 13, "spe": 22}, "moves": ["tailwhip", "roar", "quickattack", "willowisp"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 18, "moves": ["charm", "heatwave", "ember", "dig"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 18},
+		],
 	},
 	vulpixalola: {
 		learnset: {
@@ -4879,7 +5211,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			reflect: ["8V"],
 			rest: ["8M", "8V", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["8E", "8V", "7M", "7L7"],
 			roleplay: ["7T"],
 			round: ["8M", "7M"],
@@ -4898,7 +5230,11 @@ let BattleLearnsets = {
 			toxic: ["8V", "7M"],
 			weatherball: ["8M"],
 			zenheadbutt: ["8M", "7T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 10, "moves": ["celebrate", "tailwhip", "babydolleyes", "iceshard"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 10, "gender": "F", "nature": "Modest", "moves": ["powdersnow"], "pokeball": "cherishball"},
+		],
 	},
 	ninetales: {
 		learnset: {
@@ -4961,7 +5297,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -4986,7 +5322,10 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			willowisp: ["8M", "8L1", "8V", "7M", "6M", "5M", "5S0", "4M"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 50, "gender": "M", "nature": "Bold", "ivs": {"def": 31}, "isHidden": true, "moves": ["heatwave", "solarbeam", "psyshock", "willowisp"], "pokeball": "cherishball"},
+		],
 	},
 	ninetalesalola: {
 		learnset: {
@@ -5046,7 +5385,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			reflect: ["8V"],
 			rest: ["8M", "8V", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M"],
 			roleplay: ["7T"],
 			round: ["8M", "7M"],
@@ -5067,7 +5406,7 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			wonderroom: ["8M", "7T"],
 			zenheadbutt: ["8M", "7T"],
-		}
+		},
 	},
 	igglybuff: {
 		learnset: {
@@ -5133,7 +5472,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			rollout: ["7V", "4T", "3T"],
 			round: ["7M", "6M", "5M"],
@@ -5159,7 +5498,10 @@ let BattleLearnsets = {
 			wish: ["7E", "6E", "5E", "4E", "3E"],
 			workup: ["7M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "abilities": ["cutecharm"], "moves": ["sing", "charm", "defensecurl", "tickle"], "pokeball": "pokeball"},
+		],
 	},
 	jigglypuff: {
 		learnset: {
@@ -5242,7 +5584,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8V", "7M", "7L30", "7V", "6M", "6L29", "5M", "5L29", "4M", "4L25", "3M", "3L29"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			rollout: ["7L20", "7V", "6L21", "5L21", "4T", "4L17", "3T", "3L19"],
 			round: ["7M", "7L22", "6M", "6L17", "5M", "5L17"],
@@ -5281,7 +5623,12 @@ let BattleLearnsets = {
 			wildcharge: ["7M", "6M", "5M"],
 			workup: ["7M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 3},
+			{"generation": 2, "level": 3},
+			{"generation": 3, "level": 3},
+		],
 	},
 	wigglytuff: {
 		learnset: {
@@ -5368,7 +5715,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			rollout: ["7V", "4T", "3T"],
 			round: ["7M", "6M", "5M"],
@@ -5403,7 +5750,10 @@ let BattleLearnsets = {
 			wildcharge: ["7M", "6M", "5M"],
 			workup: ["7M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 22},
+		],
 	},
 	zubat: {
 		learnset: {
@@ -5458,7 +5808,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			razorwind: ["7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roost: ["8V", "7M", "6M", "5T", "4M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -5488,7 +5838,11 @@ let BattleLearnsets = {
 			whirlwind: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			wingattack: ["8V", "7L13", "7V", "6L13", "5L17", "4L17", "3L21"],
 			zenheadbutt: ["7T", "7E", "6T", "6E", "5T", "5E", "4T", "4E"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 6},
+			{"generation": 2, "level": 2},
+		],
 	},
 	golbat: {
 		learnset: {
@@ -5540,7 +5894,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			razorwind: ["7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roost: ["8V", "7M", "6M", "5T", "4M"],
 			round: ["7M", "6M", "5M"],
 			screech: ["7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
@@ -5570,7 +5924,14 @@ let BattleLearnsets = {
 			whirlwind: ["8V", "7V"],
 			wingattack: ["8V", "7L13", "7V", "6L13", "5L17", "4L17", "3L21"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		encounters: [
+			{"generation": 2, "level": 13},
+			{"generation": 3, "level": 5},
+			{"generation": 4, "level": 10},
+			{"generation": 6, "level": 19, "maxEggMoves": 1},
+			{"generation": 7, "level": 20},
+		],
 	},
 	crobat: {
 		learnset: {
@@ -5619,7 +5980,7 @@ let BattleLearnsets = {
 			quickguard: ["7L51", "6L51"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roost: ["7M", "6M", "5T", "4M"],
 			round: ["7M", "6M", "5M"],
 			screech: ["7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
@@ -5649,7 +6010,11 @@ let BattleLearnsets = {
 			wingattack: ["7L13", "7V", "6L13", "5L17", "4L17", "3L21"],
 			xscissor: ["7M", "6M", "5M", "4M"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 30, "gender": "M", "nature": "Timid", "moves": ["heatwave", "airslash", "sludgebomb", "superfang"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 64, "gender": "M", "moves": ["airslash", "toxic", "darkpulse", "sludgebomb"], "pokeball": "cherishball"},
+		],
 	},
 	oddish: {
 		learnset: {
@@ -5697,7 +6062,7 @@ let BattleLearnsets = {
 			razorleaf: ["8E", "8V", "7E", "7V", "6E", "5E", "4E", "3E"],
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["7E", "6M", "6E", "5E", "4M", "3M"],
 			seedbomb: ["8M", "7T", "6T", "5T", "4T"],
@@ -5720,7 +6085,14 @@ let BattleLearnsets = {
 			toxic: ["8L24", "8V", "7M", "7L35", "7V", "6M", "6L35", "5M", "4M", "3M"],
 			venoshock: ["8M", "7M", "6M", "5M"],
 			worryseed: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 26, "gender": "M", "nature": "Quirky", "ivs": {"hp": 23, "atk": 24, "def": 20, "spa": 21, "spd": 9, "spe": 16}, "moves": ["poisonpowder", "stunspore", "sleeppowder", "acid"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["absorb", "leechseed"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 12},
+		],
 	},
 	gloom: {
 		learnset: {
@@ -5768,7 +6140,7 @@ let BattleLearnsets = {
 			razorleaf: ["8V"],
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
 			seedbomb: ["8M", "7T", "6T", "5T", "4T"],
@@ -5788,7 +6160,15 @@ let BattleLearnsets = {
 			toxic: ["8L26", "8V", "7M", "7L39", "7V", "6M", "6L39", "5M", "4M", "3M"],
 			venoshock: ["8M", "7M", "6M", "5M"],
 			worryseed: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 50, "moves": ["sleeppowder", "acid", "moonlight", "petaldance"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 2, "level": 14},
+			{"generation": 4, "level": 14},
+			{"generation": 6, "level": 18, "maxEggMoves": 1},
+		],
 	},
 	vileplume: {
 		learnset: {
@@ -5839,7 +6219,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -5861,7 +6241,7 @@ let BattleLearnsets = {
 			toxic: ["8L1", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			venoshock: ["8M", "7M", "6M", "5M"],
 			worryseed: ["7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	bellossom: {
 		learnset: {
@@ -5913,7 +6293,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			quiverdance: ["8L1", "7L39"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -5934,7 +6314,7 @@ let BattleLearnsets = {
 			uproar: ["8M", "7T", "6T", "5T", "4T"],
 			venoshock: ["8M", "7M", "6M", "5M"],
 			worryseed: ["7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	paras: {
 		learnset: {
@@ -5993,7 +6373,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7V"],
 			refresh: ["3S0"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			rototiller: ["7E", "6E"],
 			round: ["7M", "6M", "5M"],
@@ -6025,7 +6405,13 @@ let BattleLearnsets = {
 			wideguard: ["7E", "6E"],
 			worryseed: ["7T", "6T", "5T", "4T"],
 			xscissor: ["8V", "7M", "7L54", "6M", "6L54", "5M", "5L54", "4M", "4L43"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 28, "abilities": ["effectspore"], "moves": ["refresh", "spore", "slash", "falseswipe"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 8},
+		],
 	},
 	parasect: {
 		learnset: {
@@ -6078,7 +6464,7 @@ let BattleLearnsets = {
 			ragepowder: ["7L59", "6L59", "5L59"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			scratch: ["8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
@@ -6109,7 +6495,11 @@ let BattleLearnsets = {
 			venoshock: ["7M", "6M", "5M"],
 			worryseed: ["7T", "6T", "5T", "4T"],
 			xscissor: ["8V", "7M", "7L66", "6M", "6L66", "5M", "5L66", "4M", "4L55"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 13},
+			{"generation": 2, "level": 5},
+		],
 	},
 	venonat: {
 		learnset: {
@@ -6150,7 +6540,7 @@ let BattleLearnsets = {
 			ragepowder: ["7E", "6E", "5E"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			screech: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			secretpower: ["7E", "6M", "6E", "5E", "4M", "3M"],
@@ -6177,7 +6567,10 @@ let BattleLearnsets = {
 			toxicspikes: ["7E", "6E", "5E", "4E"],
 			venoshock: ["7M", "6M", "5M"],
 			zenheadbutt: ["7T", "7L37", "6T", "6L37", "5T", "5L37", "4T", "4L37"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 13},
+		],
 	},
 	venomoth: {
 		learnset: {
@@ -6229,7 +6622,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7V"],
 			refresh: ["3S0"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roost: ["8V", "7M", "6M", "5T", "4M"],
 			round: ["7M", "6M", "5M"],
 			screech: ["8V"],
@@ -6262,7 +6655,16 @@ let BattleLearnsets = {
 			venoshock: ["7M", "6M", "5M"],
 			whirlwind: ["7V"],
 			zenheadbutt: ["7T", "7L41", "6T", "6L41", "5T", "5L41", "4T", "4L41"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 32, "abilities": ["shielddust"], "moves": ["refresh", "silverwind", "substitute", "psychic"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 30},
+			{"generation": 2, "level": 10},
+			{"generation": 4, "level": 8},
+			{"generation": 6, "level": 30},
+		],
 	},
 	diglett: {
 		learnset: {
@@ -6308,7 +6710,7 @@ let BattleLearnsets = {
 			pursuit: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			rage: ["7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reversal: ["8M", "7E", "6E", "5E", "4E"],
 			rockslide: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "4E", "3T", "3E"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -6335,7 +6737,11 @@ let BattleLearnsets = {
 			toxic: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			uproar: ["8M", "7E", "6E", "5T", "5E", "4E", "3E"],
 			workup: ["8M"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 15},
+			{"generation": 2, "level": 2},
+		],
 	},
 	diglettalola: {
 		learnset: {
@@ -6378,7 +6784,7 @@ let BattleLearnsets = {
 			protect: ["8M", "8V", "7M"],
 			pursuit: ["7E"],
 			rest: ["8M", "8V", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			reversal: ["8M", "7E"],
 			rockslide: ["8M", "8V", "7M"],
 			rocktomb: ["8M", "7M"],
@@ -6404,7 +6810,10 @@ let BattleLearnsets = {
 			toxic: ["8V", "7M"],
 			uproar: ["8M"],
 			workup: ["8M", "7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 10, "abilities": ["tanglinghair"], "moves": ["mudslap", "astonish", "growl", "metalclaw"], "pokeball": "cherishball"},
+		],
 	},
 	dugtrio: {
 		learnset: {
@@ -6450,7 +6859,7 @@ let BattleLearnsets = {
 			protect: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rage: ["7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reversal: ["8M"],
 			rockslide: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3T"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -6482,7 +6891,15 @@ let BattleLearnsets = {
 			triattack: ["8M", "8L1", "8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1", "3S0"],
 			uproar: ["8M", "5T"],
 			workup: ["8M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 40, "moves": ["charm", "earthquake", "sandstorm", "triattack"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 15},
+			{"generation": 2, "level": 5},
+			{"generation": 4, "level": 19},
+		],
 	},
 	dugtrioalola: {
 		learnset: {
@@ -6522,7 +6939,7 @@ let BattleLearnsets = {
 			nightslash: ["8L1", "7L1"],
 			protect: ["8M", "8V", "7M"],
 			rest: ["8M", "8V", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			reversal: ["8M"],
 			rockslide: ["8M", "8V", "7M"],
 			rocktomb: ["8M", "7M"],
@@ -6552,7 +6969,7 @@ let BattleLearnsets = {
 			triattack: ["8M", "8L1", "8V", "7L1"],
 			uproar: ["8M"],
 			workup: ["8M", "7M"],
-		}
+		},
 	},
 	meowth: {
 		learnset: {
@@ -6619,7 +7036,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			scratch: ["8L8", "8V", "7L1", "7V", "6L1", "5L1", "5D", "4L1", "4S5", "3L1", "3S2", "3S1", "3S0"],
 			screech: ["8M", "8L32", "8V", "7L17", "7V", "6L17", "6S7", "5L17", "4L17", "4S4", "3L31"],
@@ -6654,7 +7071,21 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			workup: ["8M", "7M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["scratch", "growl", "petaldance"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "moves": ["scratch", "growl"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["scratch", "growl", "bite"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 22, "moves": ["sing", "slash", "payday", "bite"]},
+			{"generation": 4, "level": 21, "gender": "F", "nature": "Jolly", "abilities": ["pickup"], "moves": ["bite", "fakeout", "furyswipes", "screech"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 10, "gender": "M", "nature": "Jolly", "abilities": ["pickup"], "moves": ["fakeout", "payday", "assist", "scratch"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 15, "gender": "M", "abilities": ["pickup"], "moves": ["furyswipes", "sing", "nastyplot", "snatch"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 20, "abilities": ["pickup"], "moves": ["happyhour", "screech", "bite", "fakeout"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 10},
+			{"generation": 3, "level": 3, "gender": "M", "nature": "Naive", "ivs": {"hp": 4, "atk": 5, "def": 4, "spa": 5, "spd": 4, "spe": 4}, "abilities": ["pickup"], "pokeball": "pokeball"},
+		],
 	},
 	meowthalola: {
 		learnset: {
@@ -6708,7 +7139,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			rest: ["8M", "8V", "7M"],
 			retaliate: ["8M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["8M", "7M"],
 			scratch: ["8L8", "8V", "7L1"],
 			screech: ["8M", "8L32", "8V", "7L17"],
@@ -6736,7 +7167,7 @@ let BattleLearnsets = {
 			uturn: ["8M", "8V", "7M"],
 			waterpulse: ["7T"],
 			workup: ["8M", "7M"],
-		}
+		},
 	},
 	meowthgalar: {
 		learnset: {
@@ -6799,7 +7230,7 @@ let BattleLearnsets = {
 			uproar: ["8M"],
 			uturn: ["8M"],
 			workup: ["8M"],
-		}
+		},
 	},
 	meowthgmax: {
 		learnset: {
@@ -6807,7 +7238,11 @@ let BattleLearnsets = {
 			growl: ["8S0"],
 			payday: ["8S0"],
 			slash: ["8S0"],
-		}
+		},
+		eventData: [
+			{"generation": 8, "level": 5, "moves": ["fakeout", "growl", "slash", "payday"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	persian: {
 		learnset: {
@@ -6872,7 +7307,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			scratch: ["8L1", "8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
@@ -6907,7 +7342,11 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			workup: ["8M", "7M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
+		encounters: [
+			{"generation": 2, "level": 18},
+			{"generation": 4, "level": 19},
+		],
 	},
 	persianalola: {
 		learnset: {
@@ -6961,7 +7400,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			rest: ["8M", "8V", "7M"],
 			retaliate: ["8M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M"],
 			round: ["8M", "7M"],
 			scratch: ["8L1", "8V", "7L1"],
@@ -6992,7 +7431,7 @@ let BattleLearnsets = {
 			uturn: ["8M", "8V", "7M"],
 			waterpulse: ["7T"],
 			workup: ["8M", "7M"],
-		}
+		},
 	},
 	perrserker: {
 		learnset: {
@@ -7056,7 +7495,7 @@ let BattleLearnsets = {
 			uproar: ["8M"],
 			uturn: ["8M"],
 			workup: ["8M"],
-		}
+		},
 	},
 	psyduck: {
 		learnset: {
@@ -7124,7 +7563,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			refresh: ["7E", "6E", "5E", "4E", "3E"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			round: ["7M", "6M", "5M"],
@@ -7160,7 +7599,14 @@ let BattleLearnsets = {
 			worryseed: ["7T", "6T", "5T", "4T"],
 			yawn: ["7E", "6E", "5E", "4E"],
 			zenheadbutt: ["7T", "7L25", "6T", "6L29", "5T", "5L44", "4T", "4L40"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 27, "gender": "M", "nature": "Lax", "ivs": {"hp": 31, "atk": 16, "def": 12, "spa": 29, "spd": 31, "spe": 14}, "abilities": ["damp"], "moves": ["tailwhip", "confusion", "disable", "screech"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["watersport", "scratch", "tailwhip", "mudsport"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 15},
+		],
 	},
 	golduck: {
 		learnset: {
@@ -7231,7 +7677,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
@@ -7266,7 +7712,17 @@ let BattleLearnsets = {
 			worryseed: ["7T", "6T", "5T", "4T"],
 			yawn: ["8V"],
 			zenheadbutt: ["7T", "7L25", "6T", "6L25", "5T", "5L50", "4T", "4L44"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 33, "moves": ["charm", "waterfall", "psychup", "brickbreak"]},
+			{"generation": 7, "level": 50, "gender": "M", "nature": "Timid", "ivs": {"hp": 31, "atk": 30, "def": 31, "spa": 31, "spd": 31, "spe": 31}, "isHidden": true, "moves": ["hydropump", "scald", "encore", "protect"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 15},
+			{"generation": 2, "level": 10},
+			{"generation": 3, "level": 25, "pokeball": "safariball"},
+			{"generation": 4, "level": 10},
+		],
 	},
 	mankey: {
 		learnset: {
@@ -7343,7 +7799,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			revenge: ["7E", "6E", "5E", "4E", "3E"],
 			reversal: ["7E", "7V", "6E", "5E", "5D", "4E", "3E"],
 			rockclimb: ["4M"],
@@ -7382,7 +7838,11 @@ let BattleLearnsets = {
 			uturn: ["8V", "7M", "6M", "5M", "4M"],
 			vacuumwave: ["4T"],
 			workup: ["7M", "5M"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 3},
+			{"generation": 3, "level": 2},
+		],
 	},
 	primeape: {
 		learnset: {
@@ -7456,7 +7916,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reversal: ["3S0"],
 			rockclimb: ["4M"],
 			rockslide: ["8V", "7M", "7V", "6M", "5M", "4M", "3T"],
@@ -7495,7 +7955,14 @@ let BattleLearnsets = {
 			uturn: ["8V", "7M", "6M", "5M", "4M"],
 			vacuumwave: ["4T"],
 			workup: ["7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 34, "abilities": ["vitalspirit"], "moves": ["helpinghand", "crosschop", "focusenergy", "reversal"]},
+		],
+		encounters: [
+			{"generation": 2, "level": 15},
+			{"generation": 4, "level": 15},
+		],
 	},
 	growlithe: {
 		learnset: {
@@ -7553,7 +8020,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "8L28", "7L32", "6M", "6L32", "5M", "5L48"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reversal: ["8M", "8L52", "7L19", "6L19", "5L25", "4L25"],
 			roar: ["8L44", "8V", "7M", "7L1", "7V", "6M", "6L1", "5M", "5L1", "5D", "4M", "4L1", "3M", "3L1", "3S1"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -7575,7 +8042,15 @@ let BattleLearnsets = {
 			toxic: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			wildcharge: ["8M", "7M", "6M", "5M"],
 			willowisp: ["8M", "8V", "7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 32, "gender": "F", "nature": "Quiet", "ivs": {"hp": 11, "atk": 24, "def": 28, "spa": 1, "spd": 20, "spe": 2}, "abilities": ["intimidate"], "moves": ["leer", "odorsleuth", "takedown", "flamewheel"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["bite", "roar", "ember"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 28, "moves": ["charm", "flamethrower", "bite", "takedown"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 15},
+		],
 	},
 	arcanine: {
 		learnset: {
@@ -7637,7 +8112,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "8L1", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reversal: ["8M", "8L1"],
 			roar: ["8L1", "8V", "7M", "7L1", "7V", "6M", "6L1", "5M", "5L1", "4M", "4L1", "3M", "3L1"],
 			rockclimb: ["4M"],
@@ -7664,7 +8139,11 @@ let BattleLearnsets = {
 			toxic: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			wildcharge: ["8M", "7M", "6M", "5M"],
 			willowisp: ["8M", "8V", "7M", "7S1", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 50, "abilities": ["intimidate"], "moves": ["flareblitz", "thunderfang", "crunch", "extremespeed"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 50, "abilities": ["intimidate"], "moves": ["flareblitz", "extremespeed", "willowisp", "protect"], "pokeball": "cherishball"},
+		],
 	},
 	poliwag: {
 		learnset: {
@@ -7717,7 +8196,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7L18", "7V", "6M", "6L18", "5M", "5L18", "4M", "4L18", "3M", "3L25"],
 			refresh: ["7E", "6E", "5E", "4E"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			scald: ["8V", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -7738,10 +8217,19 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "7E", "6T", "6E", "5E", "4M", "3M"],
 			watersport: ["7L1", "7E", "6L1", "6E", "5L1", "5E", "4L1", "4E", "3E"],
 			whirlpool: ["7V", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["bubble", "sweetkiss"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 5},
+			{"generation": 2, "level": 3},
+		],
 	},
 	poliwhirl: {
 		learnset: {
+			bulldoze: ["9T"],
+			muddywater: ["9T"],
 			amnesia: ["7V"],
 			attract: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			bellydrum: ["7L37", "7V", "6L37", "5L37", "4L37", "3L43"],
@@ -7797,7 +8285,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			raindance: ["7M", "7L18", "7V", "6M", "6L18", "5M", "5L18", "4M", "4L18", "3M", "3L27"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			scald: ["8V", "7M", "6M", "5M"],
@@ -7820,7 +8308,15 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			watersport: ["7L1", "6L1", "5L1", "4L1"],
 			whirlpool: ["7V", "4M"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 15},
+			{"generation": 2, "level": 10},
+			{"generation": 3, "level": 20},
+			{"generation": 4, "level": 10},
+			{"generation": 7, "level": 24},
+			{"generation": 7, "level": 22, "gender": "F", "nature": "Naughty", "abilities": ["damp"], "pokeball": "pokeball"},
+		],
 	},
 	poliwrath: {
 		learnset: {
@@ -7894,7 +8390,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M", "3S0"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockslide: ["8V", "7M", "6M", "5M", "4M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -7922,7 +8418,10 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["7V", "4M"],
 			workup: ["7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 42, "moves": ["helpinghand", "hydropump", "raindance", "brickbreak"]},
+		],
 	},
 	politoed: {
 		learnset: {
@@ -7984,7 +8483,7 @@ let BattleLearnsets = {
 			psychic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			scald: ["7M", "6M", "5M", "5S0"],
@@ -8002,7 +8501,10 @@ let BattleLearnsets = {
 			watergun: ["7V", "3L1"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["7V", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 50, "gender": "M", "nature": "Calm", "ivs": {"hp": 31, "atk": 13, "def": 31, "spa": 5, "spd": 31, "spe": 5}, "isHidden": true, "moves": ["scald", "icebeam", "perishsong", "protect"], "pokeball": "cherishball"},
+		],
 	},
 	abra: {
 		learnset: {
@@ -8067,7 +8569,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M", "3M"],
@@ -8100,7 +8602,10 @@ let BattleLearnsets = {
 			wonderroom: ["7T", "6T", "5T"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 6},
+		],
 	},
 	kadabra: {
 		learnset: {
@@ -8168,7 +8673,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["8V", "7M", "7L26", "7V", "6M", "6L26", "5M", "5L30", "4M", "4L28", "3M", "3L23"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "7L41", "6T", "6L41", "5T", "5L42", "4T", "4L36", "3L33"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M", "3M"],
@@ -8201,7 +8706,12 @@ let BattleLearnsets = {
 			wonderroom: ["7T", "6T", "5T"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		encounters: [
+			{"generation": 2, "level": 15},
+			{"generation": 4, "level": 15},
+			{"generation": 7, "level": 11, "pokeball": "pokeball"},
+		],
 	},
 	alakazam: {
 		learnset: {
@@ -8278,7 +8788,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["8V", "7M", "7L26", "7V", "6M", "6L26", "5M", "5L30", "4M", "4L28", "3M", "3L23"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M", "3M"],
@@ -8311,7 +8821,10 @@ let BattleLearnsets = {
 			wonderroom: ["7T", "6T", "5T"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 70, "moves": ["futuresight", "calmmind", "psychic", "trick"], "pokeball": "pokeball"},
+		],
 	},
 	machop: {
 		learnset: {
@@ -8377,7 +8890,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			revenge: ["8M", "8L8", "7L19", "6L19", "5L25", "4L22", "3L25"],
 			reversal: ["8M"],
 			rockclimb: ["4M"],
@@ -8410,7 +8923,10 @@ let BattleLearnsets = {
 			vitalthrow: ["8L24", "7L25", "7V", "6L25", "5L31", "4L25", "3L31"],
 			wakeupslap: ["7L27", "6L27", "5L37", "4L34"],
 			workup: ["8M", "7M", "5M"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 15},
+		],
 	},
 	machoke: {
 		learnset: {
@@ -8472,7 +8988,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			revenge: ["8M", "8L1", "7L19", "6L19", "5L25", "5S0", "4L22", "3L25"],
 			reversal: ["8M"],
 			rockclimb: ["4M"],
@@ -8503,7 +9019,14 @@ let BattleLearnsets = {
 			vitalthrow: ["8L24", "7L25", "7V", "6L25", "5L32", "4L25", "3L33"],
 			wakeupslap: ["7L27", "6L27", "5L40", "4L36"],
 			workup: ["8M", "7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 30, "moves": ["lowsweep", "foresight", "seismictoss", "revenge"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 2, "level": 14},
+			{"generation": 4, "level": 14},
+		],
 	},
 	machamp: {
 		learnset: {
@@ -8572,7 +9095,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			revenge: ["8M", "8L1", "7L19", "6L19", "5L25", "4L22", "3L25", "3S0"],
 			reversal: ["8M"],
 			rockblast: ["8M"],
@@ -8607,7 +9130,17 @@ let BattleLearnsets = {
 			wakeupslap: ["7L27", "6L27", "5L40", "4L36"],
 			wideguard: ["8L1", "7L1", "6L1", "6S1", "5L1"],
 			workup: ["8M", "7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 38, "gender": "M", "nature": "Quiet", "ivs": {"hp": 9, "atk": 23, "def": 25, "spa": 20, "spd": 15, "spe": 10}, "abilities": ["guts"], "moves": ["seismictoss", "foresight", "revenge", "vitalthrow"], "pokeball": "pokeball"},
+			{"generation": 6, "level": 50, "shiny": true, "gender": "M", "nature": "Adamant", "ivs": {"hp": 31, "atk": 31, "def": 31, "spa": 31, "spd": 31, "spe": 31}, "abilities": ["noguard"], "moves": ["dynamicpunch", "stoneedge", "wideguard", "knockoff"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 39, "gender": "M", "nature": "Hardy", "abilities": ["noguard"], "moves": ["seismictoss", "dynamicpunch", "dig", "focusenergy"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 34, "gender": "F", "nature": "Brave", "ivs": {"atk": 31}, "abilities": ["guts"], "moves": ["strength", "bulkup", "quickguard", "doubleedge"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 16},
+			{"generation": 2, "level": 5},
+		],
 	},
 	bellsprout: {
 		learnset: {
@@ -8654,7 +9187,7 @@ let BattleLearnsets = {
 			razorleaf: ["8V", "7L39", "7V", "6L39", "5L39", "4L39", "3L37"],
 			reflect: ["8V", "7M", "7V", "6M", "5M", "4E", "3E"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
 			seedbomb: ["7T", "6T", "5T", "5D", "4T"],
@@ -8684,7 +9217,15 @@ let BattleLearnsets = {
 			worryseed: ["7T", "7E", "6T", "6E", "5T", "5E", "4T", "4E"],
 			wrap: ["8V", "7L11", "7V", "6L11", "5L11", "4L11", "3L11"],
 			wringout: ["7L50", "6L47", "5L47", "4L47"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["vinewhip", "teeterdance"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["vinewhip", "growth"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 12},
+			{"generation": 2, "level": 3},
+		],
 	},
 	weepinbell: {
 		learnset: {
@@ -8727,7 +9268,7 @@ let BattleLearnsets = {
 			razorleaf: ["8V", "7L44", "7V", "6L39", "5L39", "4L39", "3L42"],
 			reflect: ["8V", "7M", "7V", "6M", "5M"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
 			seedbomb: ["7T", "6T", "5T", "4T"],
@@ -8753,7 +9294,14 @@ let BattleLearnsets = {
 			worryseed: ["7T", "6T", "5T", "4T"],
 			wrap: ["8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
 			wringout: ["7L58", "6L47", "5L47", "4L47"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 32, "moves": ["morningsun", "magicalleaf", "sludgebomb", "sweetscent"]},
+		],
+		encounters: [
+			{"generation": 2, "level": 12},
+			{"generation": 4, "level": 10},
+		],
 	},
 	victreebel: {
 		learnset: {
@@ -8804,7 +9352,7 @@ let BattleLearnsets = {
 			razorleaf: ["7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
 			reflect: ["8V", "7M", "7V", "6M", "5M"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
 			seedbomb: ["7T", "6T", "5T", "4T"],
@@ -8831,7 +9379,7 @@ let BattleLearnsets = {
 			vinewhip: ["8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
 			worryseed: ["7T", "6T", "5T", "4T"],
 			wrap: ["8V", "7V"],
-		}
+		},
 	},
 	tentacool: {
 		learnset: {
@@ -8889,7 +9437,7 @@ let BattleLearnsets = {
 			rapidspin: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "7V", "6M", "5M", "4E", "3E"],
 			scald: ["8V", "7M", "6M", "5M"],
@@ -8917,7 +9465,10 @@ let BattleLearnsets = {
 			whirlpool: ["7V", "4M"],
 			wrap: ["8V", "7L19", "7V", "6L19", "5L22", "4L22", "3L30"],
 			wringout: ["7L49", "6L49", "5L54", "4L43"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 5},
+		],
 	},
 	tentacruel: {
 		learnset: {
@@ -8972,7 +9523,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7V"],
 			reflecttype: ["7L1", "6L1"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M"],
 			scald: ["8V", "7M", "6M", "5M"],
@@ -8999,7 +9550,14 @@ let BattleLearnsets = {
 			whirlpool: ["7V", "4M"],
 			wrap: ["8V", "7L19", "7V", "6L19", "5L22", "4L22", "3L30"],
 			wringout: ["7L1", "6L1", "5L61", "4L55"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 20},
+			{"generation": 2, "level": 20},
+			{"generation": 3, "level": 20},
+			{"generation": 4, "level": 15},
+			{"generation": 6, "level": 21, "maxEggMoves": 1},
+		],
 	},
 	geodude: {
 		learnset: {
@@ -9054,7 +9612,7 @@ let BattleLearnsets = {
 			protect: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rage: ["7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockblast: ["7L30", "6L22", "5L22", "4L25", "3L31"],
 			rockclimb: ["7E", "6E", "5E", "5D", "4M"],
 			rockpolish: ["7M", "7L6", "6M", "6L6", "5M", "5L8", "4M", "4L8"],
@@ -9086,7 +9644,11 @@ let BattleLearnsets = {
 			thunderpunch: ["8V", "7T", "6T", "5T", "4T"],
 			toxic: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			wideguard: ["7E", "6E"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 7},
+			{"generation": 2, "level": 2},
+		],
 	},
 	geodudealola: {
 		learnset: {
@@ -9129,7 +9691,7 @@ let BattleLearnsets = {
 			naturepower: ["7M"],
 			protect: ["8V", "7M"],
 			rest: ["8V", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockblast: ["7L30"],
 			rockclimb: ["7E"],
 			rockpolish: ["7M", "7L6"],
@@ -9162,7 +9724,7 @@ let BattleLearnsets = {
 			toxic: ["8V", "7M"],
 			voltswitch: ["7M"],
 			wideguard: ["7E"],
-		}
+		},
 	},
 	graveler: {
 		learnset: {
@@ -9215,7 +9777,7 @@ let BattleLearnsets = {
 			protect: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rage: ["7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockblast: ["7L34", "6L22", "5L22", "4L27", "3L37"],
 			rockclimb: ["4M"],
 			rockpolish: ["7M", "7L1", "6M", "6L1", "5M", "5L1", "4M", "4L1"],
@@ -9247,7 +9809,12 @@ let BattleLearnsets = {
 			takedown: ["8V", "7V"],
 			thunderpunch: ["8V", "7T", "6T", "5T", "4T"],
 			toxic: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-		}
+		},
+		encounters: [
+			{"generation": 2, "level": 23},
+			{"generation": 4, "level": 16, "pokeball": "safariball"},
+			{"generation": 6, "level": 24},
+		],
 	},
 	graveleralola: {
 		learnset: {
@@ -9287,7 +9854,7 @@ let BattleLearnsets = {
 			naturepower: ["7M"],
 			protect: ["8V", "7M"],
 			rest: ["8V", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockblast: ["7L34"],
 			rockpolish: ["7M", "7L1"],
 			rockslide: ["8V", "7M"],
@@ -9319,7 +9886,7 @@ let BattleLearnsets = {
 			thunderwave: ["8V"],
 			toxic: ["8V", "7M"],
 			voltswitch: ["7M"],
-		}
+		},
 	},
 	golem: {
 		learnset: {
@@ -9379,7 +9946,7 @@ let BattleLearnsets = {
 			protect: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rage: ["7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockblast: ["7L34", "6L22", "5L22", "4L27", "3L37"],
 			rockclimb: ["4M"],
@@ -9413,7 +9980,7 @@ let BattleLearnsets = {
 			takedown: ["8V", "7V"],
 			thunderpunch: ["8V", "7T", "6T", "5T", "4T"],
 			toxic: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-		}
+		},
 	},
 	golemalola: {
 		learnset: {
@@ -9460,7 +10027,7 @@ let BattleLearnsets = {
 			naturepower: ["7M"],
 			protect: ["8V", "7M"],
 			rest: ["8V", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M"],
 			rockblast: ["7L34"],
 			rockpolish: ["7M", "7L1"],
@@ -9494,7 +10061,7 @@ let BattleLearnsets = {
 			toxic: ["8V", "7M"],
 			voltswitch: ["7M"],
 			wildcharge: ["7M"],
-		}
+		},
 	},
 	ponyta: {
 		learnset: {
@@ -9544,7 +10111,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
 			skullbash: ["7V"],
@@ -9565,7 +10132,10 @@ let BattleLearnsets = {
 			toxic: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			wildcharge: ["8M", "7M", "6M", "5M"],
 			willowisp: ["8M", "8V", "7M", "6M", "5M", "4M"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 28},
+		],
 	},
 	ponytagalar: {
 		learnset: {
@@ -9613,7 +10183,7 @@ let BattleLearnsets = {
 			thrash: ["8E"],
 			wildcharge: ["8M"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	rapidash: {
 		learnset: {
@@ -9670,7 +10240,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
 			skullbash: ["7V"],
@@ -9693,7 +10263,14 @@ let BattleLearnsets = {
 			toxic: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			wildcharge: ["8M", "7M", "6M", "5M"],
 			willowisp: ["8M", "8V", "7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 40, "moves": ["batonpass", "solarbeam", "sunnyday", "flamethrower"]},
+		],
+		encounters: [
+			{"generation": 2, "level": 14, "gender": "M"},
+			{"generation": 3, "level": 37},
+		],
 	},
 	rapidashgalar: {
 		learnset: {
@@ -9751,7 +10328,7 @@ let BattleLearnsets = {
 			wildcharge: ["8M"],
 			wonderroom: ["8M"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	slowpoke: {
 		learnset: {
@@ -9830,7 +10407,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "7V", "6M", "5M", "4M", "4E", "3M", "3E"],
 			scald: ["8M", "8V", "7M", "6M", "5M"],
@@ -9867,7 +10444,15 @@ let BattleLearnsets = {
 			yawn: ["8L9", "8V", "7L1", "6L1", "5L1", "5D", "4L1", "3L1", "3S1"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["8M", "8L24", "7T", "7L32", "7E", "6T", "6L32", "6E", "5T", "5L32", "5E", "4T", "4L34", "4E"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 31, "gender": "F", "nature": "Naive", "ivs": {"hp": 17, "atk": 11, "def": 19, "spa": 20, "spd": 5, "spe": 10}, "abilities": ["oblivious"], "moves": ["watergun", "confusion", "disable", "headbutt"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["curse", "yawn", "tackle", "growl"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 30, "moves": ["confusion", "disable", "headbutt", "waterpulse"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 15},
+		],
 	},
 	slowpokegalar: {
 		learnset: {
@@ -9938,7 +10523,7 @@ let BattleLearnsets = {
 			wonderroom: ["8M"],
 			yawn: ["8L9"],
 			zenheadbutt: ["8M", "8L24"],
-		}
+		},
 	},
 	slowbro: {
 		learnset: {
@@ -10028,7 +10613,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M", "3M"],
@@ -10067,7 +10652,19 @@ let BattleLearnsets = {
 			yawn: ["8V", "7L1", "6L1", "5L1", "4L1", "3L1"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["7T", "7L32", "6T", "6L32", "5T", "5L32", "4T", "4L34"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 100, "nature": "Quiet", "abilities": ["oblivious"], "moves": ["scald", "trickroom", "slackoff", "irontail"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 15},
+			{"generation": 1, "level": 23},
+			{"generation": 2, "level": 20},
+			{"generation": 3, "level": 32},
+			{"generation": 4, "level": 15},
+			{"generation": 5, "level": 35},
+			{"generation": 7, "level": 15},
+		],
 	},
 	slowking: {
 		learnset: {
@@ -10153,7 +10750,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			recycle: ["7T", "6T", "5T", "4M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M", "3M"],
@@ -10185,7 +10782,7 @@ let BattleLearnsets = {
 			yawn: ["7L1", "6L1", "5L1", "4L1", "3L1"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["7T", "7L32", "6T", "6L32", "5T", "5L32", "4T", "4L34"],
-		}
+		},
 	},
 	magnemite: {
 		learnset: {
@@ -10225,7 +10822,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "5D", "4M"],
 			reflect: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rollout: ["7V", "4T", "3T"],
 			round: ["7M", "6M", "5M"],
 			screech: ["8V", "7L35", "7V", "6L35", "5L38", "4L33", "3L44"],
@@ -10252,7 +10849,10 @@ let BattleLearnsets = {
 			voltswitch: ["7M", "6M", "5M"],
 			wildcharge: ["7M", "6M", "5M"],
 			zapcannon: ["7L49", "7V", "6L49", "5L59", "4L54", "3L50"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 16},
+		],
 	},
 	magneton: {
 		learnset: {
@@ -10296,7 +10896,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			refresh: ["3S0"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rollout: ["7V", "4T", "3T"],
 			round: ["7M", "6M", "5M"],
 			screech: ["8V", "7L39", "7V", "6L39", "5L40", "4L34", "3L53"],
@@ -10324,7 +10924,15 @@ let BattleLearnsets = {
 			voltswitch: ["7M", "6M", "5M"],
 			wildcharge: ["7M", "6M", "5M"],
 			zapcannon: ["7L1", "7V", "6L1", "5L66", "4L60", "3L62"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 30, "moves": ["refresh", "doubleedge", "raindance", "thunder"]},
+		],
+		encounters: [
+			{"generation": 2, "level": 5},
+			{"generation": 3, "level": 26},
+			{"generation": 4, "level": 17, "pokeball": "safariball"},
+		],
 	},
 	magnezone: {
 		learnset: {
@@ -10369,7 +10977,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rollout: ["4T"],
 			round: ["7M", "6M", "5M"],
 			screech: ["7L39", "6L39", "5L40", "4L34"],
@@ -10395,7 +11003,7 @@ let BattleLearnsets = {
 			voltswitch: ["7M", "6M", "5M"],
 			wildcharge: ["7M", "6M", "5M"],
 			zapcannon: ["7L1", "6L1", "5L66", "4L60"],
-		}
+		},
 	},
 	farfetchd: {
 		learnset: {
@@ -10463,7 +11071,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			revenge: ["8M", "7E", "6E", "5E"],
 			roost: ["8E", "8V", "7M", "7E", "6M", "6E", "5T", "5E", "5D", "4M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -10495,7 +11103,15 @@ let BattleLearnsets = {
 			wish: ["3S0"],
 			workup: ["8M", "7M", "5M"],
 			yawn: ["3S0"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["yawn", "wish"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 36, "moves": ["batonpass", "slash", "swordsdance", "aerialace"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 3},
+			{"generation": 3, "level": 3, "gender": "M", "nature": "Adamant", "ivs": {"hp": 20, "atk": 25, "def": 21, "spa": 24, "spd": 15, "spe": 20}, "abilities": ["keeneye"], "pokeball": "pokeball"},
+		],
 	},
 	farfetchdgalar: {
 		learnset: {
@@ -10548,7 +11164,7 @@ let BattleLearnsets = {
 			swordsdance: ["8M", "8L45"],
 			throatchop: ["8M"],
 			workup: ["8M"],
-		}
+		},
 	},
 	sirfetchd: {
 		learnset: {
@@ -10593,7 +11209,7 @@ let BattleLearnsets = {
 			swordsdance: ["8M", "8L45"],
 			throatchop: ["8M"],
 			workup: ["8M"],
-		}
+		},
 	},
 	doduo: {
 		learnset: {
@@ -10640,7 +11256,7 @@ let BattleLearnsets = {
 			rage: ["8V", "7L8", "7V", "6L9", "5L10", "4L10", "3L25"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roost: ["8V", "7M", "6M", "5T", "5D", "4M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -10663,7 +11279,11 @@ let BattleLearnsets = {
 			uproar: ["7T", "7L29", "6T", "6L23", "5T", "5L23", "4T", "4L23", "3L33"],
 			whirlwind: ["7V"],
 			workup: ["7M", "5M"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 18},
+			{"generation": 2, "level": 4},
+		],
 	},
 	dodrio: {
 		learnset: {
@@ -10710,7 +11330,7 @@ let BattleLearnsets = {
 			rage: ["8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L25"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roost: ["8V", "7M", "6M", "5T", "4M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -10736,7 +11356,17 @@ let BattleLearnsets = {
 			uproar: ["7T", "7L29", "6T", "6L23", "5T", "5L23", "4T", "4L23", "3L38"],
 			whirlwind: ["7V"],
 			workup: ["7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 34, "moves": ["batonpass", "drillpeck", "agility", "triattack"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 29},
+			{"generation": 2, "level": 10, "gender": "F"},
+			{"generation": 2, "level": 30},
+			{"generation": 3, "level": 29, "pokeball": "safariball"},
+			{"generation": 4, "level": 15, "gender": "F", "nature": "Impish", "ivs": {"hp": 20, "atk": 20, "def": 20, "spa": 15, "spd": 15, "spe": 15}, "abilities": ["runaway"], "pokeball": "pokeball"},
+		],
 	},
 	seel: {
 		learnset: {
@@ -10789,7 +11419,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8V", "7M", "7L21", "7V", "6M", "6L21", "5M", "5L21", "4M", "4L21", "3M", "3L29"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "7L51", "7V", "6M", "6L51", "5M", "5L51", "4M", "4L51", "3M", "3L49", "3S0"],
 			secretpower: ["6M", "4M", "3M"],
@@ -10814,7 +11444,13 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "7E", "6T", "6E", "5E", "4M", "3M"],
 			watersport: ["7L7", "6L7", "5L7", "4L7"],
 			whirlpool: ["7V", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 23, "abilities": ["thickfat"], "moves": ["helpinghand", "surf", "safeguard", "icebeam"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 22},
+		],
 	},
 	dewgong: {
 		learnset: {
@@ -10866,7 +11502,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8V", "7M", "7L21", "7V", "6M", "6L21", "5M", "5L21", "4M", "4L21", "3M", "3L29"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "7L61", "7V", "6M", "6L61", "5M", "5L61", "4M", "4L51", "3M", "3L64"],
 			secretpower: ["6M", "4M", "3M"],
@@ -10887,7 +11523,14 @@ let BattleLearnsets = {
 			watergun: ["7V"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["7V", "4M"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 15},
+			{"generation": 2, "level": 5},
+			{"generation": 3, "level": 32},
+			{"generation": 5, "level": 30},
+			{"generation": 6, "level": 30, "maxEggMoves": 1},
+		],
 	},
 	grimer: {
 		learnset: {
@@ -10945,7 +11588,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockslide: ["8V", "7M", "6M", "5M", "4M"],
 			rocktomb: ["7M", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
@@ -10978,7 +11621,13 @@ let BattleLearnsets = {
 			toxic: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			venoshock: ["7M", "6M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 23, "moves": ["helpinghand", "sludgebomb", "shadowpunch", "minimize"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 23},
+		],
 	},
 	grimeralola: {
 		learnset: {
@@ -11034,7 +11683,7 @@ let BattleLearnsets = {
 			quash: ["7M"],
 			raindance: ["7M"],
 			rest: ["8V", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockpolish: ["7M"],
 			rockslide: ["8V", "7M"],
 			rocktomb: ["7M"],
@@ -11064,7 +11713,10 @@ let BattleLearnsets = {
 			torment: ["7M"],
 			toxic: ["8V", "7M"],
 			venoshock: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 10, "abilities": ["poisontouch"], "moves": ["bite", "harden", "poisongas", "pound"], "pokeball": "cherishball"},
+		],
 	},
 	muk: {
 		learnset: {
@@ -11127,7 +11779,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockslide: ["8V", "7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["7M", "6M", "5M", "4M", "3M"],
@@ -11156,7 +11808,16 @@ let BattleLearnsets = {
 			venomdrench: ["7L1", "6L38"],
 			venoshock: ["7M", "6M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 25},
+			{"generation": 2, "level": 5},
+			{"generation": 3, "level": 32},
+			{"generation": 4, "level": 15},
+			{"generation": 5, "level": 5},
+			{"generation": 5, "level": 35, "isHidden": true},
+			{"generation": 6, "level": 30},
+		],
 	},
 	mukalola: {
 		learnset: {
@@ -11217,7 +11878,7 @@ let BattleLearnsets = {
 			raindance: ["7M"],
 			recycle: ["7T"],
 			rest: ["8V", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockpolish: ["7M"],
 			rockslide: ["8V", "7M"],
 			rocktomb: ["7M"],
@@ -11243,7 +11904,7 @@ let BattleLearnsets = {
 			toxic: ["8V", "7M"],
 			venomdrench: ["7L1"],
 			venoshock: ["7M"],
-		}
+		},
 	},
 	shellder: {
 		learnset: {
@@ -11291,7 +11952,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7V"],
 			refresh: ["3S2"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockblast: ["8M", "7E", "6E", "5E", "4E"],
 			round: ["8M", "7M", "6M", "5M"],
 			screech: ["8M", "7E", "7V", "6E", "5E", "4E", "3E"],
@@ -11315,7 +11976,15 @@ let BattleLearnsets = {
 			waterpulse: ["8E", "7T", "7E", "6T", "6E", "5E", "4M", "3M"],
 			whirlpool: ["8M", "8L16", "7L40", "7V", "6L40", "5L40", "4M", "4L37"],
 			withdraw: ["8L4", "8V", "7L4", "7V", "6L4", "5L4", "5D", "4L4", "3L1", "3S1", "3S0"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 24, "gender": "F", "nature": "Brave", "ivs": {"hp": 5, "atk": 19, "def": 18, "spa": 5, "spd": 11, "spe": 13}, "abilities": ["shellarmor"], "moves": ["withdraw", "iciclespear", "supersonic", "aurorabeam"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "gender": "M", "abilities": ["shellarmor"], "moves": ["tackle", "withdraw", "iciclespear"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 29, "abilities": ["shellarmor"], "moves": ["refresh", "takedown", "surf", "aurorabeam"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 10},
+		],
 	},
 	cloyster: {
 		learnset: {
@@ -11366,7 +12035,7 @@ let BattleLearnsets = {
 			razorshell: ["8M", "8L1", "5S0"],
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockblast: ["8M", "5S0"],
 			round: ["8M", "7M", "6M", "5M"],
 			screech: ["8M"],
@@ -11397,7 +12066,10 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			whirlpool: ["8M", "8L1", "7V", "4M"],
 			withdraw: ["8L1", "8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 30, "gender": "M", "nature": "Naughty", "abilities": ["skilllink"], "moves": ["iciclespear", "rockblast", "hiddenpower", "razorshell"], "pokeball": "pokeball"},
+		],
 	},
 	gastly: {
 		learnset: {
@@ -11456,7 +12128,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			reflecttype: ["8E", "7E", "6E"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			scaryface: ["8M", "7E", "6E", "5E"],
 			secretpower: ["6M", "4M", "3M"],
@@ -11489,7 +12161,10 @@ let BattleLearnsets = {
 			willowisp: ["8M", "8V", "7M", "6M", "5M", "4M", "4E", "3E"],
 			wonderroom: ["8M", "7T", "6T", "5T"],
 			zapcannon: ["7V"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 18},
+		],
 	},
 	haunter: {
 		learnset: {
@@ -11543,7 +12218,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			scaryface: ["8M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -11578,7 +12253,16 @@ let BattleLearnsets = {
 			willowisp: ["8M", "8V", "7M", "6M", "5M", "4M"],
 			wonderroom: ["8M", "7T", "6T", "5T"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 30, "moves": ["confuseray", "suckerpunch", "shadowpunch", "payback"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 20},
+			{"generation": 2, "level": 15},
+			{"generation": 3, "level": 20},
+			{"generation": 4, "level": 16},
+		],
 	},
 	gengar: {
 		learnset: {
@@ -11656,7 +12340,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			reflecttype: ["8L1"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -11698,7 +12382,16 @@ let BattleLearnsets = {
 			willowisp: ["8M", "8V", "7M", "6M", "6S3", "5M", "4M"],
 			wonderroom: ["8M", "7T", "6T", "5T"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 23, "gender": "F", "nature": "Hardy", "ivs": {"hp": 19, "atk": 14, "def": 0, "spa": 14, "spd": 17, "spe": 27}, "moves": ["spite", "curse", "nightshade", "confuseray"], "pokeball": "pokeball"},
+			{"generation": 6, "level": 25, "nature": "Timid", "moves": ["psychic", "confuseray", "suckerpunch", "shadowpunch"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 25, "moves": ["nightshade", "confuseray", "suckerpunch", "shadowpunch"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "moves": ["shadowball", "sludgebomb", "willowisp", "destinybond"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 25, "shiny": true, "moves": ["shadowball", "sludgewave", "confuseray", "astonish"], "pokeball": "duskball"},
+			{"generation": 6, "level": 50, "shiny": true, "gender": "M", "moves": ["meanlook", "hypnosis", "psychic", "hyperbeam"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 100, "moves": ["meanlook", "hypnosis", "psychic", "hyperbeam"], "pokeball": "cherishball"},
+		],
 	},
 	onix: {
 		learnset: {
@@ -11752,7 +12445,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M", "4M", "3T"],
 			rage: ["8V", "7L13", "7V", "6L13", "5L14", "4L14", "3L23"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockblast: ["8M", "7E", "6E", "5E", "4E"],
 			rockclimb: ["7E", "6E", "5E", "5D", "4M"],
@@ -11789,7 +12482,10 @@ let BattleLearnsets = {
 			toxic: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			twister: ["4T"],
 			wideguard: ["8E", "7E"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 13},
+		],
 	},
 	steelix: {
 		learnset: {
@@ -11851,7 +12547,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M", "4M"],
 			rage: ["7L13", "7V", "6L13", "5L14", "4L14", "3L23"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockblast: ["8M"],
 			rockclimb: ["4M"],
@@ -11886,7 +12582,7 @@ let BattleLearnsets = {
 			torment: ["7M", "6M", "5M", "4M", "3M"],
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			twister: ["4T"],
-		}
+		},
 	},
 	drowzee: {
 		learnset: {
@@ -11960,7 +12656,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "7E", "6T", "6E", "5T", "5E", "4T", "4E", "3E"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M", "3M"],
@@ -11994,7 +12690,13 @@ let BattleLearnsets = {
 			wish: ["3S0"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["7T", "7L41", "6T", "6L41", "5T", "5L41", "4T", "4L50"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "abilities": ["insomnia"], "moves": ["bellydrum", "wish"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 9},
+		],
 	},
 	hypno: {
 		learnset: {
@@ -12065,7 +12767,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M", "3M"],
@@ -12099,7 +12801,14 @@ let BattleLearnsets = {
 			wakeupslap: ["7L29"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["7T", "7L41", "6T", "6L41", "5T", "5L41", "4T", "4L64"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 34, "abilities": ["insomnia"], "moves": ["batonpass", "psychic", "meditate", "shadowball"]},
+		],
+		encounters: [
+			{"generation": 2, "level": 16},
+			{"generation": 4, "level": 16},
+		],
 	},
 	krabby: {
 		learnset: {
@@ -12158,7 +12867,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			razorshell: ["8M", "8L32"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockslide: ["8M", "8V", "7M", "6M", "5M", "4M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M", "3M"],
@@ -12185,7 +12894,10 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["8M", "7V", "4M"],
 			xscissor: ["8M", "8V", "7M", "6M", "5M", "4M"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 10},
+		],
 	},
 	kingler: {
 		learnset: {
@@ -12247,7 +12959,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			razorshell: ["8M", "8L36"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockslide: ["8M", "8V", "7M", "6M", "5M", "4M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M", "3M"],
@@ -12274,7 +12986,12 @@ let BattleLearnsets = {
 			whirlpool: ["8M", "7V", "4M"],
 			wideguard: ["8L1", "7L1", "6L1", "5L1"],
 			xscissor: ["8M", "8V", "7M", "6M", "5M", "4M"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 15},
+			{"generation": 3, "level": 25},
+			{"generation": 4, "level": 22},
+		],
 	},
 	voltorb: {
 		learnset: {
@@ -12310,7 +13027,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7V"],
 			refresh: ["3S0"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rollout: ["7L11", "7V", "6L11", "5L15", "4T", "4L15", "3T", "3L32"],
 			round: ["7M", "6M", "5M"],
 			screech: ["8V", "7L13", "7V", "6L13", "5L19", "4L19", "3L8"],
@@ -12340,7 +13057,14 @@ let BattleLearnsets = {
 			voltswitch: ["7M", "6M", "5M"],
 			wildcharge: ["7M", "6M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 19, "moves": ["refresh", "mirrorcoat", "spark", "swift"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 14},
+			{"generation": 1, "level": 40},
+		],
 	},
 	electrode: {
 		learnset: {
@@ -12378,7 +13102,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rollout: ["7L11", "7V", "6L11", "5L15", "4T", "4L15", "3T", "3L34"],
 			round: ["7M", "6M", "5M"],
 			screech: ["8V", "7L13", "7V", "6L13", "5L19", "4L19", "3L1"],
@@ -12410,7 +13134,13 @@ let BattleLearnsets = {
 			voltswitch: ["7M", "6M", "5M"],
 			wildcharge: ["7M", "6M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 3},
+			{"generation": 2, "level": 23},
+			{"generation": 3, "level": 3, "nature": "Hasty", "ivs": {"hp": 19, "atk": 16, "def": 18, "spa": 25, "spd": 25, "spe": 19}, "abilities": ["static"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 23},
+		],
 	},
 	exeggcute: {
 		learnset: {
@@ -12465,7 +13195,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			reflect: ["8V", "7M", "7L7", "7V", "6M", "6L7", "5M", "5L7", "4M", "4L7", "4E", "3M", "3L7", "3E"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rollout: ["7V", "4T", "3T"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -12494,7 +13224,13 @@ let BattleLearnsets = {
 			uproar: ["7T", "7L1", "6T", "6L1", "5T", "5L1", "4T", "4L1", "3L1"],
 			wish: ["3S0"],
 			worryseed: ["7T", "7L33", "6T", "6L33", "5T", "5L33", "4T", "4L33"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["sweetscent", "wish"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 20},
+		],
 	},
 	exeggutor: {
 		learnset: {
@@ -12550,7 +13286,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			refresh: ["3S0"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rollout: ["7V", "4T", "3T"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -12579,7 +13315,10 @@ let BattleLearnsets = {
 			woodhammer: ["7L37", "6L37", "5L37", "4L37"],
 			worryseed: ["7T", "6T", "5T", "4T"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 46, "moves": ["refresh", "psychic", "hypnosis", "ancientpower"]},
+		],
 	},
 	exeggutoralola: {
 		learnset: {
@@ -12634,7 +13373,7 @@ let BattleLearnsets = {
 			psyshock: ["7M", "7L17"],
 			reflect: ["8V", "7M"],
 			rest: ["8V", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			seedbomb: ["7T", "7L1"],
 			selfdestruct: ["8V"],
@@ -12659,7 +13398,10 @@ let BattleLearnsets = {
 			woodhammer: ["7L37"],
 			worryseed: ["7T"],
 			zenheadbutt: ["7T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 50, "gender": "M", "nature": "Modest", "isHidden": true, "moves": ["powerswap", "celebrate", "leafstorm", "dracometeor"], "pokeball": "cherishball"},
+		],
 	},
 	cubone: {
 		learnset: {
@@ -12728,7 +13470,7 @@ let BattleLearnsets = {
 			rage: ["8V", "7L23", "7V", "6L23", "5L23", "4L23", "3L29"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["7L47", "6M", "6L47", "5M", "5L47"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockslide: ["8V", "7M", "7V", "6M", "5M", "4M", "4E", "3T", "3E"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -12758,7 +13500,10 @@ let BattleLearnsets = {
 			toxic: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			uproar: ["7T", "6T", "5T", "4T"],
 			watergun: ["7V"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 16},
+		],
 	},
 	marowak: {
 		learnset: {
@@ -12827,7 +13572,7 @@ let BattleLearnsets = {
 			rage: ["8V", "7L23", "7V", "6L23", "5L23", "4L23", "3L32"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["7L59", "6M", "6L59", "5M", "5L59"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockslide: ["8V", "7M", "6M", "5M", "4M", "3T", "3S0"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -12860,7 +13605,15 @@ let BattleLearnsets = {
 			toxic: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			uproar: ["7T", "6T", "5T", "4T"],
 			watergun: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 44, "moves": ["sing", "earthquake", "swordsdance", "rockslide"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 24},
+			{"generation": 2, "level": 12},
+			{"generation": 4, "level": 14},
+		],
 	},
 	marowakalola: {
 		learnset: {
@@ -12922,7 +13675,7 @@ let BattleLearnsets = {
 			raindance: ["7M"],
 			rest: ["8V", "7M"],
 			retaliate: ["7L59"],
-			return : ["7M"],
+			return: ["7M"],
 			rockslide: ["8V", "7M"],
 			rocktomb: ["7M"],
 			round: ["7M"],
@@ -12952,7 +13705,7 @@ let BattleLearnsets = {
 			toxic: ["8V", "7M"],
 			uproar: ["7T"],
 			willowisp: ["8V", "7M", "7L23"],
-		}
+		},
 	},
 	marowakalolatotem: {
 		learnset: {
@@ -13007,7 +13760,7 @@ let BattleLearnsets = {
 			raindance: ["7M"],
 			rest: ["7M"],
 			retaliate: ["7L59"],
-			return : ["7M"],
+			return: ["7M"],
 			rockslide: ["7M"],
 			rocktomb: ["7M"],
 			round: ["7M"],
@@ -13035,7 +13788,11 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			uproar: ["7T"],
 			willowisp: ["7M", "7L23", "7S0"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 25, "perfectIVs": 3, "moves": ["leer", "hex", "bonemerang", "willowisp"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	tyrogue: {
 		learnset: {
@@ -13081,7 +13838,7 @@ let BattleLearnsets = {
 			rapidspin: ["8E", "7E", "7V", "6E", "5E", "4E", "3E"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
@@ -13101,7 +13858,7 @@ let BattleLearnsets = {
 			uproar: ["8M", "7T", "6T", "5T", "4T"],
 			vacuumwave: ["8E", "7E", "6E", "5E", "4T", "4E"],
 			workup: ["8M", "7M", "5M"],
-		}
+		},
 	},
 	hitmonlee: {
 		learnset: {
@@ -13161,7 +13918,7 @@ let BattleLearnsets = {
 			refresh: ["3S0"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			revenge: ["8M", "8L16", "7L1", "6L1", "5L1", "4L1", "3L1"],
 			reversal: ["8M", "8L40", "7L1", "7V", "6L1", "5L61", "4L57", "3L51"],
 			rockclimb: ["4M"],
@@ -13195,7 +13952,13 @@ let BattleLearnsets = {
 			vacuumwave: ["4T"],
 			wideguard: ["8L21", "7L41", "6L41", "5L41"],
 			workup: ["8M", "7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 38, "abilities": ["limber"], "moves": ["refresh", "highjumpkick", "mindreader", "megakick"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 30},
+		],
 	},
 	hitmonchan: {
 		learnset: {
@@ -13256,7 +14019,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			revenge: ["8M", "8L16", "7L1", "6L1", "5L1", "4L1", "3L1"],
 			rockclimb: ["4M"],
 			rockslide: ["8M", "8V", "7M", "6M", "5M", "4M", "3T"],
@@ -13286,7 +14049,13 @@ let BattleLearnsets = {
 			uproar: ["8M"],
 			vacuumwave: ["8L1", "7L26", "6L26", "5L26", "4T", "4L26"],
 			workup: ["8M", "7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 38, "abilities": ["keeneye"], "moves": ["helpinghand", "skyuppercut", "mindreader", "megapunch"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 30},
+		],
 	},
 	hitmontop: {
 		learnset: {
@@ -13338,7 +14107,7 @@ let BattleLearnsets = {
 			rapidspin: ["8L1", "7L19", "7V", "6L24", "5L24", "4L24", "3L25"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			revenge: ["8M", "8L16", "7L1", "6L1", "5L1", "4L1", "3L1"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -13367,7 +14136,10 @@ let BattleLearnsets = {
 			vacuumwave: ["4T"],
 			wideguard: ["8L21", "7L46", "6L46", "5L46"],
 			workup: ["8M", "7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 55, "gender": "M", "nature": "Adamant", "abilities": ["intimidate"], "moves": ["fakeout", "closecombat", "suckerpunch", "helpinghand"]},
+		],
 	},
 	lickitung: {
 		learnset: {
@@ -13443,7 +14215,7 @@ let BattleLearnsets = {
 			refresh: ["7L45", "6L45", "5L45", "4L41", "3L51"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["5D", "4M"],
 			rockslide: ["8V", "7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -13487,7 +14259,14 @@ let BattleLearnsets = {
 			wrap: ["8V", "7L17", "7V", "6L17", "5L17", "4L17", "3L29"],
 			wringout: ["7L57", "6L57", "5L57", "4L53"],
 			zenheadbutt: ["7T", "7E", "6T", "6E", "5T", "5E", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["healbell", "wish"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 38, "moves": ["helpinghand", "doubleedge", "defensecurl", "rollout"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 15},
+		],
 	},
 	lickilicky: {
 		learnset: {
@@ -13546,7 +14325,7 @@ let BattleLearnsets = {
 			refresh: ["7L45", "6L45", "5L45", "4L41"],
 			rest: ["7M", "6M", "5M", "4M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
@@ -13582,7 +14361,7 @@ let BattleLearnsets = {
 			wrap: ["7L17", "6L17", "5L17", "4L17"],
 			wringout: ["7L1", "6L1", "5L57", "4L53"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	koffing: {
 		learnset: {
@@ -13623,7 +14402,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rollout: ["7V", "4T", "3T"],
 			round: ["8M", "7M", "6M", "5M"],
 			screech: ["8M", "7E", "7V", "6E", "5E", "4E", "3E"],
@@ -13658,7 +14437,10 @@ let BattleLearnsets = {
 			venoshock: ["8M", "7M", "6M", "5M"],
 			willowisp: ["8M", "8V", "7M", "6M", "5M", "4M", "4E", "3E"],
 			zapcannon: ["7V"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 30},
+		],
 	},
 	weezing: {
 		learnset: {
@@ -13701,7 +14483,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rollout: ["7V", "4T", "3T"],
 			round: ["8M", "7M", "6M", "5M"],
 			screech: ["8M", "8V"],
@@ -13733,7 +14515,12 @@ let BattleLearnsets = {
 			venoshock: ["8M", "7M", "6M", "5M"],
 			willowisp: ["8M", "8V", "7M", "6M", "5M", "4M"],
 			zapcannon: ["7V"],
-		}
+		},
+		encounters: [
+			{"generation": 2, "level": 16},
+			{"generation": 3, "level": 32},
+			{"generation": 4, "level": 15, "pokeball": "safariball"},
+		],
 	},
 	weezinggalar: {
 		learnset: {
@@ -13795,7 +14582,7 @@ let BattleLearnsets = {
 			venoshock: ["8M"],
 			willowisp: ["8M"],
 			wonderroom: ["8M"],
-		}
+		},
 	},
 	rhyhorn: {
 		learnset: {
@@ -13856,7 +14643,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reversal: ["8M", "7E", "7V", "6E", "5E", "4E", "3E"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockblast: ["8M", "8L30", "7L29", "6L23", "5L23", "4L25", "3L29"],
@@ -13901,7 +14688,10 @@ let BattleLearnsets = {
 			toxic: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			uproar: ["8M", "7T", "6T", "5T", "4T"],
 			zapcannon: ["7V"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 20},
+		],
 	},
 	rhydon: {
 		learnset: {
@@ -13985,7 +14775,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reversal: ["8M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockblast: ["8M", "8L30", "7L29", "6L23", "5L23", "4L25", "3L29"],
@@ -14035,7 +14825,16 @@ let BattleLearnsets = {
 			watergun: ["7V"],
 			whirlpool: ["8M", "4M"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 46, "moves": ["helpinghand", "megahorn", "scaryface", "earthquake"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 15},
+			{"generation": 2, "level": 10},
+			{"generation": 4, "level": 41},
+			{"generation": 6, "level": 30},
+		],
 	},
 	rhyperior: {
 		learnset: {
@@ -14111,7 +14910,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M", "4M"],
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			reversal: ["8M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rockblast: ["8M", "8L30", "7L29", "6L23", "5L23", "4L25"],
@@ -14155,7 +14954,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M"],
 			uproar: ["8M", "7T", "6T", "5T", "4T"],
 			whirlpool: ["8M", "4M"],
-		}
+		},
 	},
 	happiny: {
 		learnset: {
@@ -14205,7 +15004,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			refresh: ["7L9", "6L9", "5L9", "4L9"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rollout: ["4T"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M"],
@@ -14225,7 +15024,7 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M"],
 			workup: ["7M", "5M"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	chansey: {
 		learnset: {
@@ -14312,7 +15111,7 @@ let BattleLearnsets = {
 			refresh: ["7L9", "6L9", "5L9", "4L9", "3L9", "3S1"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockslide: ["8V", "7M", "6M", "5M", "4M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -14359,7 +15158,15 @@ let BattleLearnsets = {
 			workup: ["7M", "5M"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["sweetscent", "wish"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "moves": ["pound", "growl", "tailwhip", "refresh"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 39, "moves": ["sweetkiss", "thunderbolt", "softboiled", "skillswap"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 7},
+		],
 	},
 	blissey: {
 		learnset: {
@@ -14440,7 +15247,7 @@ let BattleLearnsets = {
 			refresh: ["7L9", "6L9", "5L9", "5S0", "4L9", "3L7"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -14479,7 +15286,10 @@ let BattleLearnsets = {
 			workup: ["7M", "5M"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 10, "isHidden": true, "moves": ["pound", "growl", "tailwhip", "refresh"]},
+		],
 	},
 	tangela: {
 		learnset: {
@@ -14534,7 +15344,7 @@ let BattleLearnsets = {
 			ragepowder: ["7E", "6E", "5E"],
 			reflect: ["8V", "7M", "7V", "6M", "5M", "4M", "4E", "3E"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -14562,7 +15372,13 @@ let BattleLearnsets = {
 			wakeupslap: ["7E"],
 			worryseed: ["7T", "6T", "5T", "4T"],
 			wringout: ["7L46", "6L46", "5L50", "4L50"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 30, "abilities": ["chlorophyll"], "moves": ["morningsun", "solarbeam", "sunnyday", "ingrain"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 13},
+		],
 	},
 	tangrowth: {
 		learnset: {
@@ -14617,7 +15433,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M", "4M"],
 			reflect: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
 			rocktomb: ["7M", "6M", "5M", "4M"],
@@ -14645,7 +15461,10 @@ let BattleLearnsets = {
 			vinewhip: ["7L7", "6L7", "5L19", "4L19"],
 			worryseed: ["7T", "6T", "5T", "4T"],
 			wringout: ["7L49", "6L49", "5L50", "4L50"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 50, "gender": "M", "nature": "Brave", "moves": ["sunnyday", "morningsun", "ancientpower", "naturalgift"], "pokeball": "cherishball"},
+		],
 	},
 	kangaskhan: {
 		learnset: {
@@ -14725,7 +15544,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "6S3", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "6S3", "5M", "4M", "3M"],
 			reversal: ["7L50", "7V", "6L50", "5L55", "4L49", "3L49"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
@@ -14770,7 +15589,16 @@ let BattleLearnsets = {
 			workup: ["7M", "5M"],
 			yawn: ["3S0"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "abilities": ["earlybird"], "moves": ["yawn", "wish"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "abilities": ["earlybird"], "moves": ["cometpunch", "leer", "bite"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 35, "abilities": ["earlybird"], "moves": ["sing", "earthquake", "tailwhip", "dizzypunch"]},
+			{"generation": 6, "level": 50, "abilities": ["scrappy"], "moves": ["fakeout", "return", "earthquake", "suckerpunch"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 25},
+		],
 	},
 	horsea: {
 		learnset: {
@@ -14819,7 +15647,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			razorwind: ["7E", "6E", "5E", "4E"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			scald: ["8V", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -14840,7 +15668,13 @@ let BattleLearnsets = {
 			watergun: ["8V", "7L13", "7V", "6L1", "5L11", "4L11", "3L22"],
 			waterpulse: ["7T", "7E", "6T", "6E", "5E", "4M", "3M"],
 			whirlpool: ["7V", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 1, "shiny": true, "moves": ["bubble"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 5},
+		],
 	},
 	seadra: {
 		learnset: {
@@ -14886,7 +15720,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			scald: ["8V", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -14906,7 +15740,16 @@ let BattleLearnsets = {
 			watergun: ["8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1", "3S0"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["7V", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 45, "abilities": ["poisonpoint"], "moves": ["leer", "watergun", "twister", "agility"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 20},
+			{"generation": 2, "level": 20},
+			{"generation": 3, "level": 25},
+			{"generation": 4, "level": 15},
+		],
 	},
 	kingdra: {
 		learnset: {
@@ -14955,7 +15798,7 @@ let BattleLearnsets = {
 			quash: ["7M", "6M", "5M"],
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			scald: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -14974,7 +15817,11 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["7V", "4M"],
 			yawn: ["7L1", "6L1", "5L1", "4L1"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 50, "abilities": ["swiftswim"], "moves": ["leer", "watergun", "twister", "agility"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 50, "gender": "M", "nature": "Timid", "ivs": {"hp": 31, "atk": 17, "def": 8, "spa": 31, "spd": 11, "spe": 31}, "abilities": ["swiftswim"], "moves": ["dracometeor", "muddywater", "dragonpulse", "protect"], "pokeball": "cherishball"},
+		],
 	},
 	goldeen: {
 		learnset: {
@@ -15026,7 +15873,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			scald: ["8M", "8V", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -15051,7 +15898,10 @@ let BattleLearnsets = {
 			waterpulse: ["8L10", "7T", "7L16", "6T", "6L16", "5L17", "5D", "4M", "4L17", "3M"],
 			watersport: ["7L1", "6L1", "5L1", "4L1", "3L1"],
 			whirlpool: ["8M", "4M"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 5},
+		],
 	},
 	seaking: {
 		learnset: {
@@ -15102,7 +15952,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			scald: ["8M", "8V", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -15127,7 +15977,15 @@ let BattleLearnsets = {
 			waterpulse: ["8L1", "7T", "7L16", "6T", "6L16", "5L17", "5D", "4M", "4L17", "3M"],
 			watersport: ["7L1", "6L1", "5L1", "4L1", "3L1"],
 			whirlpool: ["8M", "4M"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 23},
+			{"generation": 2, "level": 10},
+			{"generation": 3, "level": 20},
+			{"generation": 4, "level": 10},
+			{"generation": 6, "level": 26, "maxEggMoves": 1},
+			{"generation": 7, "level": 10},
+		],
 	},
 	staryu: {
 		learnset: {
@@ -15178,7 +16036,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			reflecttype: ["7L35", "6L35", "5L46"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rollout: ["4T"],
 			round: ["7M", "6M", "5M"],
 			scald: ["8V", "7M", "6M", "5M"],
@@ -15205,7 +16063,14 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["7V", "4M"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 50, "moves": ["minimize", "lightscreen", "cosmicpower", "hydropump"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 18, "nature": "Timid", "ivs": {"hp": 10, "atk": 3, "def": 22, "spa": 24, "spd": 3, "spe": 18}, "abilities": ["illuminate"], "moves": ["harden", "watergun", "rapidspin", "recover"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 5},
+		],
 	},
 	starmie: {
 		learnset: {
@@ -15262,7 +16127,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			refresh: ["3S0"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rollout: ["4T"],
 			round: ["7M", "6M", "5M"],
 			scald: ["8V", "7M", "6M", "5M"],
@@ -15295,7 +16160,10 @@ let BattleLearnsets = {
 			whirlpool: ["7V", "4M"],
 			wonderroom: ["7T", "6T", "5T"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 41, "moves": ["refresh", "waterfall", "icebeam", "recover"]},
+		],
 	},
 	mimejr: {
 		learnset: {
@@ -15356,7 +16224,7 @@ let BattleLearnsets = {
 			recycle: ["8L24", "7T", "7L32", "6T", "6L32", "5T", "5L32", "4M", "4L32"],
 			reflect: ["8M", "8L36", "7M", "7L22", "6M", "6L22", "5M", "5L22", "4M", "4L22"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roleplay: ["8L16", "7T", "7L43", "6T", "6L43", "5T", "5L43", "4T", "4L43"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "8L36", "7M", "7L50", "6M", "6L50", "5M", "5L50", "4M", "4L50"],
@@ -15389,7 +16257,7 @@ let BattleLearnsets = {
 			uproar: ["8M", "7T", "6T", "5T", "4T"],
 			wakeupslap: ["7E", "6E", "5E", "4E"],
 			wonderroom: ["8M", "7T", "6T", "5T"],
-		}
+		},
 	},
 	mrmime: {
 		learnset: {
@@ -15478,7 +16346,7 @@ let BattleLearnsets = {
 			recycle: ["8L24", "7T", "7L32", "6T", "6L32", "5T", "5L32", "4M", "4L32", "3L33"],
 			reflect: ["8M", "8L36", "8V", "7M", "7L22", "7V", "6M", "6L22", "5M", "5L22", "4M", "4L22", "3M", "3L19"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roleplay: ["8L16", "7T", "7L43", "6T", "6L43", "5T", "5L43", "4T", "4L43", "3L40"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "8L36", "7M", "7L50", "7V", "6M", "6L50", "5M", "5L50", "4M", "4L50", "3M", "3L50"],
@@ -15520,7 +16388,13 @@ let BattleLearnsets = {
 			wonderroom: ["8M", "7T", "6T", "5T"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 42, "abilities": ["soundproof"], "moves": ["followme", "psychic", "encore", "thunderpunch"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 6},
+		],
 	},
 	mrmimegalar: {
 		learnset: {
@@ -15611,7 +16485,7 @@ let BattleLearnsets = {
 			uproar: ["8M"],
 			wonderroom: ["8M"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	mrrime: {
 		learnset: {
@@ -15702,7 +16576,7 @@ let BattleLearnsets = {
 			uproar: ["8M"],
 			wonderroom: ["8M"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	scyther: {
 		learnset: {
@@ -15758,7 +16632,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			razorwind: ["8V", "7L33", "7E", "7V", "6L33", "6E", "5L33", "5E", "4L33", "4E", "3E", "3S1"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reversal: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			roost: ["8V", "7M", "6M", "5T", "4M"],
@@ -15785,7 +16659,16 @@ let BattleLearnsets = {
 			vacuumwave: ["7L1", "6L1", "5L1", "4L1"],
 			wingattack: ["8V", "7L21", "7V", "6L21", "5L21", "5S2", "4L21", "3L26"],
 			xscissor: ["8V", "7M", "7L41", "6M", "6L41", "5M", "5L41", "4M", "4L41"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "abilities": ["swarm"], "moves": ["quickattack", "leer", "focusenergy"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 40, "abilities": ["swarm"], "moves": ["morningsun", "razorwind", "silverwind", "slash"]},
+			{"generation": 5, "level": 30, "moves": ["agility", "wingattack", "furycutter", "slash"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 15},
+			{"generation": 1, "level": 25},
+		],
 	},
 	scizor: {
 		learnset: {
@@ -15841,7 +16724,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			razorwind: ["7L33", "6L33", "5L33", "4L33"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			roost: ["7M", "6M", "6S7", "5T", "5S2", "4M"],
 			round: ["7M", "6M", "5M"],
@@ -15867,7 +16750,17 @@ let BattleLearnsets = {
 			uturn: ["7M", "6M", "6S7", "5M", "4M"],
 			venoshock: ["7M", "6M", "5M"],
 			xscissor: ["7M", "7L41", "6M", "6L41", "6S4", "5M", "5L41", "4M", "4L41", "4S1"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 50, "gender": "M", "abilities": ["swarm"], "moves": ["furycutter", "metalclaw", "swordsdance", "slash"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 50, "gender": "M", "nature": "Adamant", "abilities": ["swarm"], "moves": ["xscissor", "swordsdance", "irondefense", "agility"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 100, "gender": "M", "abilities": ["technician"], "moves": ["bulletpunch", "bugbite", "roost", "swordsdance"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["leer", "focusenergy", "pursuit", "steelwing"]},
+			{"generation": 6, "level": 50, "gender": "M", "moves": ["xscissor", "nightslash", "doublehit", "ironhead"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 25, "nature": "Adamant", "abilities": ["technician"], "moves": ["aerialace", "falseswipe", "agility", "furycutter"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 25, "moves": ["metalclaw", "falseswipe", "agility", "furycutter"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "abilities": ["technician"], "moves": ["bulletpunch", "swordsdance", "roost", "uturn"], "pokeball": "cherishball"},
+		],
 	},
 	smoochum: {
 		learnset: {
@@ -15938,7 +16831,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -15963,7 +16856,7 @@ let BattleLearnsets = {
 			wish: ["7E", "6E", "5E", "4E", "3E"],
 			wonderroom: ["7T"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	jynx: {
 		learnset: {
@@ -16049,7 +16942,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			round: ["7M", "6M", "5M"],
 			screech: ["8V"],
@@ -16081,7 +16974,14 @@ let BattleLearnsets = {
 			wonderroom: ["7T"],
 			wringout: ["7L49", "6L49", "5L49", "4L44"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 15},
+			{"generation": 2, "level": 10},
+			{"generation": 3, "level": 20, "nature": "Mild", "ivs": {"hp": 18, "atk": 17, "def": 18, "spa": 22, "spd": 25, "spe": 21}, "abilities": ["oblivious"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 22},
+			{"generation": 7, "level": 9},
+		],
 	},
 	elekid: {
 		learnset: {
@@ -16134,7 +17034,7 @@ let BattleLearnsets = {
 			quickattack: ["7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rollingkick: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			round: ["7M", "6M", "5M"],
@@ -16159,7 +17059,10 @@ let BattleLearnsets = {
 			voltswitch: ["7M", "6M", "5M"],
 			wildcharge: ["7M", "6M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 20, "moves": ["icepunch", "firepunch", "thunderpunch", "crosschop"], "pokeball": "pokeball"},
+		],
 	},
 	electabuzz: {
 		learnset: {
@@ -16218,7 +17121,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
@@ -16248,7 +17151,20 @@ let BattleLearnsets = {
 			voltswitch: ["7M", "6M", "5M"],
 			wildcharge: ["7M", "6M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["quickattack", "leer", "thunderpunch"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 43, "moves": ["followme", "crosschop", "thunderwave", "thunderbolt"]},
+			{"generation": 4, "level": 30, "gender": "M", "nature": "Naughty", "moves": ["lowkick", "shockwave", "lightscreen", "thunderpunch"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 30, "moves": ["lowkick", "swift", "shockwave", "lightscreen"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 30, "gender": "M", "isHidden": true, "moves": ["lowkick", "shockwave", "lightscreen", "thunderpunch"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 33},
+			{"generation": 2, "level": 15},
+			{"generation": 4, "level": 15},
+			{"generation": 7, "level": 25},
+		],
 	},
 	electivire: {
 		learnset: {
@@ -16300,7 +17216,7 @@ let BattleLearnsets = {
 			quickattack: ["7L1", "6L1", "5L1", "4L1"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
@@ -16328,7 +17244,11 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M"],
 			voltswitch: ["7M", "6M", "5M"],
 			wildcharge: ["7M", "6M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 50, "gender": "M", "nature": "Adamant", "moves": ["thunderpunch", "icepunch", "crosschop", "earthquake"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 50, "gender": "M", "nature": "Serious", "moves": ["lightscreen", "thunderpunch", "discharge", "thunderbolt"], "pokeball": "cherishball"},
+		],
 	},
 	magby: {
 		learnset: {
@@ -16387,7 +17307,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			psychic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			screech: ["7E", "7V", "6E", "5E", "4E", "3E"],
@@ -16405,7 +17325,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			uproar: ["7T", "6T", "5T", "4T"],
 			willowisp: ["7M", "6M", "5M", "4M"],
-		}
+		},
 	},
 	magmar: {
 		learnset: {
@@ -16466,7 +17386,7 @@ let BattleLearnsets = {
 			psywave: ["7V"],
 			rage: ["7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
@@ -16489,7 +17409,20 @@ let BattleLearnsets = {
 			thunderpunch: ["8V", "7T", "7V", "6T", "5T", "4T", "3T", "3S1"],
 			toxic: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			willowisp: ["8V", "7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["leer", "smog", "firepunch", "ember"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 36, "moves": ["followme", "fireblast", "crosschop", "thunderpunch"]},
+			{"generation": 4, "level": 30, "gender": "M", "nature": "Quiet", "moves": ["smokescreen", "firespin", "confuseray", "firepunch"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 30, "moves": ["smokescreen", "feintattack", "firespin", "confuseray"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 30, "gender": "M", "isHidden": true, "moves": ["smokescreen", "firespin", "confuseray", "firepunch"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 34},
+			{"generation": 2, "level": 14},
+			{"generation": 4, "level": 14},
+			{"generation": 7, "level": 16},
+		],
 	},
 	magmortar: {
 		learnset: {
@@ -16539,7 +17472,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M"],
 			psychic: ["7M", "6M", "5M", "4M", "4S0"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
@@ -16563,7 +17496,11 @@ let BattleLearnsets = {
 			torment: ["7M", "6M", "5M", "4M"],
 			toxic: ["7M", "6M", "5M", "4M"],
 			willowisp: ["7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 50, "gender": "F", "nature": "Modest", "moves": ["flamethrower", "psychic", "hyperbeam", "solarbeam"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 50, "gender": "M", "nature": "Hardy", "moves": ["confuseray", "firepunch", "lavaplume", "flamethrower"], "pokeball": "cherishball"},
+		],
 	},
 	pinsir: {
 		learnset: {
@@ -16620,7 +17557,7 @@ let BattleLearnsets = {
 			rage: ["7V"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "6S1", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "6S1", "5M", "4M", "3M"],
 			revenge: ["7L15", "6L15", "5L18", "4L18", "3L25"],
 			rockclimb: ["4M"],
 			rockslide: ["8V", "7M", "6M", "5M", "4M", "3T"],
@@ -16653,7 +17590,16 @@ let BattleLearnsets = {
 			visegrip: ["8V", "7L1", "7V", "6L1", "5L1", "5D", "4L1", "3L1"],
 			vitalthrow: ["7L18", "6L18", "5L25", "4L25"],
 			xscissor: ["8V", "7M", "7L29", "6M", "6L29", "6S1", "5M", "5L30", "4M", "4L30"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 35, "abilities": ["hypercutter"], "moves": ["helpinghand", "guillotine", "falseswipe", "submission"]},
+			{"generation": 6, "level": 50, "gender": "F", "nature": "Adamant", "moves": ["xscissor", "earthquake", "stoneedge", "return"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "nature": "Jolly", "isHidden": true, "moves": ["earthquake", "swordsdance", "feint", "quickattack"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 15},
+			{"generation": 1, "level": 20},
+		],
 	},
 	tauros: {
 		learnset: {
@@ -16707,7 +17653,7 @@ let BattleLearnsets = {
 			refresh: ["3S2"],
 			rest: ["8V", "7M", "7L19", "7V", "6M", "6L19", "5M", "5L19", "4M", "4L19", "3M", "3L34"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["5D", "4M"],
 			rockslide: ["8V", "7M", "6M", "5M", "4M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -16746,7 +17692,15 @@ let BattleLearnsets = {
 			workup: ["7M", "7L29", "6L29", "5M", "5L29"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["7T", "7L35", "6T", "6L35", "5T", "5L35", "4T", "4L29"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 25, "nature": "Docile", "ivs": {"hp": 14, "atk": 19, "def": 12, "spa": 17, "spd": 5, "spe": 26}, "abilities": ["intimidate"], "moves": ["rage", "hornattack", "scaryface", "pursuit"], "pokeball": "safariball"},
+			{"generation": 3, "level": 10, "abilities": ["intimidate"], "moves": ["tackle", "tailwhip", "rage", "hornattack"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 46, "abilities": ["intimidate"], "moves": ["refresh", "earthquake", "tailwhip", "bodyslam"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 21},
+		],
 	},
 	magikarp: {
 		learnset: {
@@ -16757,7 +17711,20 @@ let BattleLearnsets = {
 			hydropump: ["8M", "5S5"],
 			splash: ["8L1", "8V", "7L1", "7S7", "7V", "6L1", "6S6", "5L1", "5D", "5S5", "4L1", "4S4", "4S3", "4S2", "4S1", "4S0", "3L1"],
 			tackle: ["8L15", "8V", "7L15", "7V", "6L15", "5L15", "4L15", "3L15"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 5, "gender": "M", "nature": "Relaxed", "moves": ["splash"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 6, "gender": "F", "nature": "Rash", "moves": ["splash"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 7, "gender": "F", "nature": "Hardy", "moves": ["splash"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 5, "gender": "F", "nature": "Lonely", "moves": ["splash"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 4, "gender": "M", "nature": "Modest", "moves": ["splash"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 99, "shiny": true, "gender": "M", "moves": ["flail", "hydropump", "bounce", "splash"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 1, "shiny": 1, "moves": ["splash", "celebrate", "happyhour"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 19, "shiny": true, "moves": ["splash", "bounce"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 5},
+		],
 	},
 	gyarados: {
 		learnset: {
@@ -16819,7 +17786,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "8L28", "7M", "7L51", "7V", "6M", "6L38", "5M", "5L38", "4M", "4L38", "3M", "3L45"],
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -16853,7 +17820,19 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["8M", "8L4", "7V", "4M"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 50, "moves": ["waterfall", "earthquake", "icefang", "dragondance"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 20, "shiny": true, "moves": ["waterfall", "bite", "icefang", "ironhead"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 15},
+			{"generation": 2, "level": 15},
+			{"generation": 3, "level": 5},
+			{"generation": 4, "level": 10},
+			{"generation": 5, "level": 1},
+			{"generation": 7, "level": 10},
+		],
 	},
 	lapras: {
 		learnset: {
@@ -16926,7 +17905,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7V"],
 			refresh: ["7E", "6E", "5E", "4E", "3E"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -16958,12 +17937,30 @@ let BattleLearnsets = {
 			whirlpool: ["8M", "7E", "7V", "6E", "5E", "4M", "4E"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 44, "moves": ["hydropump", "raindance", "blizzard", "healbell"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 15},
+		],
 	},
 	ditto: {
 		learnset: {
 			transform: ["8L1", "8V", "7L1", "7S0", "7V", "6L1", "5L1", "4L1", "3L1"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 10, "moves": ["transform"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 12},
+			{"generation": 2, "level": 10},
+			{"generation": 3, "level": 23},
+			{"generation": 4, "level": 10},
+			{"generation": 5, "level": 45},
+			{"generation": 6, "level": 30},
+			{"generation": 7, "level": 25},
+		],
 	},
 	eevee: {
 		learnset: {
@@ -17013,7 +18010,7 @@ let BattleLearnsets = {
 			refresh: ["7L20", "6L20"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "5S2", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "5S2", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			sandattack: ["8L5", "8V", "7L5", "7S5", "7V", "6L5", "6S3", "5L8", "5D", "4L8", "3L8"],
 			secretpower: ["6M", "4M", "3M"],
@@ -17038,7 +18035,18 @@ let BattleLearnsets = {
 			wish: ["8E", "7E", "6E", "5E", "4E", "3E"],
 			workup: ["8M", "7M", "5M"],
 			yawn: ["8E", "7E", "6E", "5E", "4E"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 10, "gender": "F", "nature": "Lonely", "abilities": ["adaptability"], "moves": ["covet", "bite", "helpinghand", "attract"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 50, "shiny": true, "gender": "M", "nature": "Hardy", "abilities": ["adaptability"], "moves": ["irontail", "trumpcard", "flail", "quickattack"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 50, "gender": "F", "nature": "Hardy", "abilities": ["adaptability"], "moves": ["sing", "return", "echoedvoice", "attract"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 10, "moves": ["celebrate", "sandattack", "babydolleyes", "swift"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 15, "shiny": true, "isHidden": true, "moves": ["swift", "quickattack", "babydolleyes", "helpinghand"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 10, "nature": "Jolly", "moves": ["celebrate", "sandattack", "babydolleyes"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 25},
+		],
 	},
 	eeveestarter: {
 		learnset: {
@@ -17073,7 +18081,11 @@ let BattleLearnsets = {
 			takedown: ["8V", "7L24"],
 			toxic: ["8V", "7M"],
 			veeveevolley: ["8V", "7T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 5, "perfectIVs": 6, "moves": ["tackle", "tailwhip", "growl"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	eeveegmax: {
 		learnset: {
@@ -17081,7 +18093,11 @@ let BattleLearnsets = {
 			quickattack: ["8S0"],
 			sandattack: ["8S0"],
 			tailwhip: ["8S0"],
-		}
+		},
+		eventData: [
+			{"generation": 8, "level": 10, "abilities": ["runaway"], "moves": ["growl", "tailwhip", "sandattack", "quickattack"]},
+		],
+		eventOnly: true,
 	},
 	vaporeon: {
 		learnset: {
@@ -17147,7 +18163,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7S2", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -17177,7 +18193,12 @@ let BattleLearnsets = {
 			whirlpool: ["8M", "7V", "4M"],
 			workup: ["8M", "7M", "5M"],
 			yawn: ["8V"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["tailwhip", "tackle", "helpinghand", "sandattack"]},
+			{"generation": 6, "level": 10, "moves": ["celebrate", "tailwhip", "sandattack", "watergun"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 50, "gender": "F", "isHidden": true, "moves": ["scald", "icebeam", "raindance", "rest"], "pokeball": "cherishball"},
+		],
 	},
 	jolteon: {
 		learnset: {
@@ -17235,7 +18256,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -17268,7 +18289,12 @@ let BattleLearnsets = {
 			workup: ["8M", "7M", "5M"],
 			yawn: ["8V"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["tailwhip", "tackle", "helpinghand", "sandattack"]},
+			{"generation": 6, "level": 10, "moves": ["celebrate", "tailwhip", "sandattack", "thundershock"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 50, "gender": "F", "moves": ["thunderbolt", "shadowball", "lightscreen", "voltswitch"], "pokeball": "cherishball"},
+		],
 	},
 	flareon: {
 		learnset: {
@@ -17331,7 +18357,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7V"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -17359,7 +18385,12 @@ let BattleLearnsets = {
 			workup: ["8M", "7M", "5M"],
 			yawn: ["8V"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["tailwhip", "tackle", "helpinghand", "sandattack"]},
+			{"generation": 6, "level": 10, "moves": ["celebrate", "tailwhip", "sandattack", "ember"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 50, "gender": "F", "isHidden": true, "moves": ["flareblitz", "facade", "willowisp", "quickattack"], "pokeball": "cherishball"},
+		],
 	},
 	espeon: {
 		learnset: {
@@ -17426,7 +18457,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "7S3", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			sandattack: ["8L5", "7L5", "7V", "6L5", "6S2", "5L8", "5S1", "4L8", "3L8"],
 			secretpower: ["6M", "4M", "3M"],
@@ -17451,7 +18482,13 @@ let BattleLearnsets = {
 			workup: ["8M", "7M", "5M"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 70, "moves": ["psybeam", "psychup", "psychic", "morningsun"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["tailwhip", "tackle", "helpinghand", "sandattack"]},
+			{"generation": 6, "level": 10, "moves": ["celebrate", "tailwhip", "sandattack", "confusion"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 50, "gender": "F", "isHidden": true, "moves": ["psychic", "dazzlinggleam", "shadowball", "reflect"], "pokeball": "cherishball"},
+		],
 	},
 	umbreon: {
 		learnset: {
@@ -17514,7 +18551,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			sandattack: ["8L5", "7L5", "7V", "6L5", "6S2", "5L8", "5S1", "4L8", "3L8"],
 			screech: ["8M", "8L45", "7L29", "7V", "6L29", "5L64", "4L64", "3L47", "3S0"],
@@ -17543,7 +18580,13 @@ let BattleLearnsets = {
 			wonderroom: ["8M", "7T", "6T", "5T"],
 			workup: ["8M", "7M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 70, "moves": ["feintattack", "meanlook", "screech", "moonlight"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["tailwhip", "tackle", "helpinghand", "sandattack"]},
+			{"generation": 6, "level": 10, "moves": ["celebrate", "tailwhip", "sandattack", "pursuit"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 50, "gender": "F", "moves": ["snarl", "toxic", "protect", "moonlight"], "pokeball": "cherishball"},
+		],
 	},
 	leafeon: {
 		learnset: {
@@ -17601,7 +18644,7 @@ let BattleLearnsets = {
 			razorleaf: ["8L0", "7L1", "6L9", "6S1", "5L15", "4L15"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -17629,7 +18672,12 @@ let BattleLearnsets = {
 			workup: ["8M", "7M", "5M"],
 			worryseed: ["7T", "6T", "5T", "4T"],
 			xscissor: ["8M", "7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["tailwhip", "tackle", "helpinghand", "sandattack"]},
+			{"generation": 6, "level": 10, "moves": ["celebrate", "tailwhip", "sandattack", "razorleaf"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 50, "gender": "F", "isHidden": true, "moves": ["leafblade", "swordsdance", "sunnyday", "synthesis"], "pokeball": "cherishball"},
+		],
 	},
 	glaceon: {
 		learnset: {
@@ -17686,7 +18734,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -17709,7 +18757,12 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M"],
 			weatherball: ["8M"],
 			workup: ["8M", "7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["tailwhip", "tackle", "helpinghand", "sandattack"]},
+			{"generation": 6, "level": 10, "moves": ["celebrate", "tailwhip", "sandattack", "icywind"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 50, "gender": "F", "moves": ["blizzard", "shadowball", "hail", "auroraveil"], "pokeball": "cherishball"},
+		],
 	},
 	porygon: {
 		learnset: {
@@ -17767,7 +18820,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "7L34", "6T", "6L34", "5T", "5L34", "4M", "4L34", "3L44"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
 			shadowball: ["8V", "7M", "6M", "5M", "4M", "3M"],
@@ -17797,7 +18850,13 @@ let BattleLearnsets = {
 			wonderroom: ["7T", "6T", "5T"],
 			zapcannon: ["7L62", "7V", "6L62", "5L62", "4L62", "3L48"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 10, "isHidden": true, "moves": ["tackle", "conversion", "sharpen", "psybeam"]},
+		],
+		encounters: [
+			{"generation": 1, "level": 18},
+		],
 	},
 	porygon2: {
 		learnset: {
@@ -17849,7 +18908,7 @@ let BattleLearnsets = {
 			recover: ["7L18", "7V", "6L18", "5L18", "4L18", "3L20"],
 			recycle: ["7T", "7L34", "6T", "6L34", "5T", "5L34", "4M", "4L34", "3L44"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
 			shadowball: ["7M", "6M", "5M", "4M", "3M"],
@@ -17875,7 +18934,7 @@ let BattleLearnsets = {
 			wonderroom: ["7T", "6T", "5T"],
 			zapcannon: ["7L1", "7V", "6L1", "5L62", "4L62", "3L48"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	porygonz: {
 		learnset: {
@@ -17925,7 +18984,7 @@ let BattleLearnsets = {
 			recover: ["7L18", "6L18", "5L18", "4L18"],
 			recycle: ["7T", "6T", "5T", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M"],
 			shadowball: ["7M", "6M", "5M", "4M"],
@@ -17952,7 +19011,7 @@ let BattleLearnsets = {
 			wonderroom: ["7T", "5T"],
 			zapcannon: ["7L1", "6L1", "5L62", "4L62"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	omanyte: {
 		learnset: {
@@ -17999,7 +19058,7 @@ let BattleLearnsets = {
 			reflect: ["8V", "7V"],
 			reflecttype: ["7E", "6E"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockblast: ["7L46", "6L46", "5L46", "4L46"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["8V", "7M", "6M", "5M", "4M", "4E", "3T", "3E"],
@@ -18034,7 +19093,13 @@ let BattleLearnsets = {
 			whirlpool: ["7E", "7V", "6E", "5E", "4M"],
 			withdraw: ["8V", "7L1", "7V", "6L1", "5L1", "5S0", "4L1", "3L1"],
 			wringout: ["7E", "6E", "5E", "4E"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 15, "gender": "M", "abilities": ["swiftswim"], "moves": ["bubblebeam", "supersonic", "withdraw", "bite"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 30},
+		],
 	},
 	omastar: {
 		learnset: {
@@ -18082,7 +19147,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockblast: ["7L56", "6L56", "5L56", "4L56"],
 			rockclimb: ["4M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
@@ -18118,7 +19183,7 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["7V", "4M"],
 			withdraw: ["8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
-		}
+		},
 	},
 	kabuto: {
 		learnset: {
@@ -18173,7 +19238,7 @@ let BattleLearnsets = {
 			rapidspin: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["8V", "7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -18203,7 +19268,13 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["4M"],
 			wringout: ["7L50", "6L50", "5L51", "4L51"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 15, "gender": "M", "abilities": ["battlearmor"], "moves": ["confuseray", "dig", "scratch", "harden"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 30},
+		],
 	},
 	kabutops: {
 		learnset: {
@@ -18271,7 +19342,7 @@ let BattleLearnsets = {
 			razorwind: ["7V"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["8V", "7M", "6M", "5M", "4M", "3T"],
@@ -18309,7 +19380,7 @@ let BattleLearnsets = {
 			whirlpool: ["7V", "4M"],
 			wringout: ["7L63", "6L63", "5L63", "4L63"],
 			xscissor: ["8V", "7M", "6M", "5M", "4M"],
-		}
+		},
 	},
 	aerodactyl: {
 		learnset: {
@@ -18373,7 +19444,7 @@ let BattleLearnsets = {
 			razorwind: ["7V"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["8V", "7M", "7L9", "7V", "6M", "6L9", "5M", "5L9", "4M", "4L9", "3M"],
 			rockpolish: ["7M", "7S1", "6M", "5M", "4M"],
 			rockslide: ["8V", "7M", "7L73", "6M", "6L73", "5M", "5L73", "4M", "4L65", "3T"],
@@ -18410,7 +19481,14 @@ let BattleLearnsets = {
 			whirlwind: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			wideguard: ["7E", "7S1", "6E"],
 			wingattack: ["8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 15, "gender": "M", "abilities": ["pressure"], "moves": ["steelwing", "icefang", "firefang", "thunderfang"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 50, "isHidden": true, "moves": ["ancientpower", "rockpolish", "wideguard", "celebrate"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 30},
+		],
 	},
 	munchlax: {
 		learnset: {
@@ -18474,7 +19552,7 @@ let BattleLearnsets = {
 			recycle: ["8L8", "7T", "7L1", "6T", "6L1", "5T", "5L17", "4M", "4L17"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["4M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
@@ -18512,7 +19590,12 @@ let BattleLearnsets = {
 			whirlwind: ["7E", "6E", "5E", "4E"],
 			workup: ["8M", "7M", "5M"],
 			zenheadbutt: ["8M", "7T", "7E", "6T", "6E", "5T", "5E", "4T", "4E"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 5, "moves": ["metronome", "tackle", "defensecurl", "selfdestruct"]},
+			{"generation": 4, "level": 5, "gender": "F", "nature": "Relaxed", "abilities": ["thickfat"], "moves": ["metronome", "odorsleuth", "tackle", "curse"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 5, "abilities": ["thickfat"], "moves": ["tackle", "metronome", "holdback", "happyhour"], "pokeball": "cherishball"},
+		],
 	},
 	snorlax: {
 		learnset: {
@@ -18598,7 +19681,7 @@ let BattleLearnsets = {
 			refresh: ["3S0"],
 			rest: ["8M", "8L20", "8V", "7M", "7L28", "7V", "6M", "6L28", "5M", "5L28", "4M", "4L25", "3M", "3L25"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockslide: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3T"],
 			rocksmash: ["7V", "6M", "5M", "4M"],
@@ -18645,7 +19728,14 @@ let BattleLearnsets = {
 			yawn: ["8L12", "8V", "7L20", "6L20", "5L20", "4L20", "3L21"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 43, "moves": ["refresh", "fissure", "curse", "bodyslam"]},
+			{"generation": 7, "level": 30, "abilities": ["thickfat"], "moves": ["sunnyday", "block", "bodyslam", "celebrate"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 1, "level": 30},
+		],
 	},
 	articuno: {
 		learnset: {
@@ -18705,7 +19795,7 @@ let BattleLearnsets = {
 			razorwind: ["7V"],
 			reflect: ["8V", "7M", "7L50", "7S7", "7V", "6M", "6L50", "6S6", "6S5", "5M", "5L50", "4M", "4L50", "4S3", "3M", "3L61", "3S1"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			roost: ["8V", "7M", "7L85", "6M", "6L1", "5T", "5L57", "4M", "4L57", "4S3"],
@@ -18731,7 +19821,21 @@ let BattleLearnsets = {
 			watergun: ["7V"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlwind: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 50, "shiny": 1, "moves": ["mist", "agility", "mindreader", "icebeam"]},
+			{"generation": 3, "level": 70, "moves": ["agility", "mindreader", "icebeam", "reflect"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 50, "moves": ["icebeam", "healbell", "extrasensory", "haze"]},
+			{"generation": 4, "level": 60, "shiny": 1, "moves": ["agility", "icebeam", "reflect", "roost"]},
+			{"generation": 4, "level": 50, "shiny": 1, "moves": ["mist", "agility", "mindreader", "icebeam"]},
+			{"generation": 6, "level": 70, "moves": ["icebeam", "reflect", "hail", "tailwind"]},
+			{"generation": 6, "level": 70, "isHidden": true, "moves": ["freezedry", "icebeam", "hail", "reflect"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["ancientpower", "freezedry", "reflect", "hail"]},
+		],
+		eventOnly: true,
+		encounters: [
+			{"generation": 1, "level": 50},
+		],
 	},
 	zapdos: {
 		learnset: {
@@ -18785,7 +19889,7 @@ let BattleLearnsets = {
 			razorwind: ["7V"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			roost: ["8V", "7M", "7L85", "6M", "6L1", "5T", "5L57", "4M", "4L57", "4S3"],
@@ -18816,7 +19920,21 @@ let BattleLearnsets = {
 			whirlwind: ["7V"],
 			wildcharge: ["7M", "6M", "5M"],
 			zapcannon: ["7L99", "7V", "6L1", "5L92"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 50, "shiny": 1, "moves": ["thunderwave", "agility", "detect", "drillpeck"]},
+			{"generation": 3, "level": 70, "moves": ["agility", "detect", "drillpeck", "charge"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 50, "moves": ["thunderbolt", "extrasensory", "batonpass", "metalsound"]},
+			{"generation": 4, "level": 60, "shiny": 1, "moves": ["charge", "agility", "discharge", "roost"]},
+			{"generation": 4, "level": 50, "shiny": 1, "moves": ["thunderwave", "agility", "detect", "drillpeck"]},
+			{"generation": 6, "level": 70, "moves": ["agility", "discharge", "raindance", "lightscreen"]},
+			{"generation": 6, "level": 70, "isHidden": true, "moves": ["discharge", "thundershock", "raindance", "agility"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["ancientpower", "discharge", "pluck", "raindance"]},
+		],
+		eventOnly: true,
+		encounters: [
+			{"generation": 1, "level": 50},
+		],
 	},
 	moltres: {
 		learnset: {
@@ -18871,7 +19989,7 @@ let BattleLearnsets = {
 			razorwind: ["7V"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			roost: ["8V", "7M", "7L85", "6M", "6L1", "5T", "5L57", "4M", "4L57", "4S3"],
@@ -18897,7 +20015,21 @@ let BattleLearnsets = {
 			whirlwind: ["7V"],
 			willowisp: ["8V", "7M", "6M", "5M", "4M", "3S2"],
 			wingattack: ["8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 50, "shiny": 1, "moves": ["firespin", "agility", "endure", "flamethrower"]},
+			{"generation": 3, "level": 70, "moves": ["agility", "endure", "flamethrower", "safeguard"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 50, "moves": ["extrasensory", "morningsun", "willowisp", "flamethrower"]},
+			{"generation": 4, "level": 60, "shiny": 1, "moves": ["flamethrower", "safeguard", "airslash", "roost"]},
+			{"generation": 4, "level": 50, "shiny": 1, "moves": ["firespin", "agility", "endure", "flamethrower"]},
+			{"generation": 6, "level": 70, "moves": ["safeguard", "airslash", "sunnyday", "heatwave"]},
+			{"generation": 6, "level": 70, "isHidden": true, "moves": ["skyattack", "heatwave", "sunnyday", "safeguard"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["ancientpower", "flamethrower", "airslash", "sunnyday"]},
+		],
+		eventOnly: true,
+		encounters: [
+			{"generation": 1, "level": 50},
+		],
 	},
 	dratini: {
 		learnset: {
@@ -18954,7 +20086,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "7L45", "7V", "6M", "6L45", "5M", "5L45", "4M", "4L41", "3M", "3L43"],
 			secretpower: ["6M", "4M", "3M"],
@@ -18981,7 +20113,10 @@ let BattleLearnsets = {
 			whirlpool: ["4M"],
 			wrap: ["8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
 			zapcannon: ["7V"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 10},
+		],
 	},
 	dragonair: {
 		learnset: {
@@ -19035,7 +20170,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "7L53", "7V", "6M", "6L53", "5M", "5L53", "4M", "4L47", "3M", "3L47"],
 			secretpower: ["6M", "4M", "3M"],
@@ -19061,7 +20196,14 @@ let BattleLearnsets = {
 			whirlpool: ["4M"],
 			wrap: ["8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
 			zapcannon: ["7V"],
-		}
+		},
+		encounters: [
+			{"generation": 1, "level": 15},
+			{"generation": 2, "level": 10},
+			{"generation": 3, "level": 25, "pokeball": "safariball"},
+			{"generation": 4, "level": 15},
+			{"generation": 7, "level": 10},
+		],
 	},
 	dragonite: {
 		learnset: {
@@ -19149,7 +20291,7 @@ let BattleLearnsets = {
 			razorwind: ["7V"],
 			reflect: ["8V", "7V"],
 			rest: ["8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["8V", "7M", "6M", "5M", "4M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -19189,7 +20331,22 @@ let BattleLearnsets = {
 			wingattack: ["8V", "7L1", "7V", "6L55", "5L55", "5S5", "5S4", "4L55", "3L55", "3S0"],
 			wrap: ["8V", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 70, "moves": ["agility", "safeguard", "wingattack", "outrage"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 55, "moves": ["healbell", "hyperbeam", "dragondance", "earthquake"]},
+			{"generation": 4, "level": 50, "gender": "M", "nature": "Mild", "moves": ["dracometeor", "thunderbolt", "outrage", "dragondance"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 100, "gender": "M", "isHidden": true, "moves": ["extremespeed", "firepunch", "dragondance", "outrage"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 55, "gender": "M", "isHidden": true, "moves": ["dragonrush", "safeguard", "wingattack", "thunderpunch"]},
+			{"generation": 5, "level": 55, "gender": "M", "isHidden": true, "moves": ["dragonrush", "safeguard", "wingattack", "extremespeed"]},
+			{"generation": 5, "level": 50, "gender": "M", "nature": "Brave", "ivs": {"hp": 30, "atk": 30, "def": 30, "spa": 30, "spd": 30, "spe": 30}, "moves": ["fireblast", "safeguard", "outrage", "hyperbeam"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 55, "gender": "M", "isHidden": true, "moves": ["dragondance", "outrage", "hurricane", "extremespeed"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 62, "gender": "M", "ivs": {"hp": 31, "def": 31, "spa": 31, "spd": 31}, "moves": ["agility", "slam", "barrier", "hyperbeam"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 5, "level": 50},
+			{"generation": 7, "level": 10},
+		],
 	},
 	mewtwo: {
 		learnset: {
@@ -19293,7 +20450,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockslide: ["8M", "8V", "7M", "6M", "5M", "4M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -19342,7 +20499,20 @@ let BattleLearnsets = {
 			wonderroom: ["8M", "7T", "6T", "5T"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 70, "shiny": 1, "moves": ["swift", "recover", "safeguard", "psychic"]},
+			{"generation": 4, "level": 70, "shiny": 1, "moves": ["psychocut", "amnesia", "powerswap", "guardswap"]},
+			{"generation": 5, "level": 70, "moves": ["psystrike", "shadowball", "aurasphere", "electroball"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 100, "nature": "Timid", "ivs": {"spa": 31, "spe": 31}, "isHidden": true, "moves": ["psystrike", "icebeam", "healpulse", "hurricane"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 70, "moves": ["recover", "psychic", "barrier", "aurasphere"]},
+			{"generation": 6, "level": 100, "shiny": true, "isHidden": true, "moves": ["psystrike", "psychic", "recover", "aurasphere"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["psychic", "recover", "swift", "psychocut"]},
+		],
+		eventOnly: true,
+		encounters: [
+			{"generation": 1, "level": 70},
+		],
 	},
 	mew: {
 		learnset: {
@@ -19562,7 +20732,7 @@ let BattleLearnsets = {
 			reflecttype: ["8L1", "7L1", "6L1", "5L1"],
 			rest: ["8M", "8V", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "4S20", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "4S20", "3M"],
 			revenge: ["8M"],
 			reversal: ["8M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
@@ -19670,7 +20840,36 @@ let BattleLearnsets = {
 			xscissor: ["8M", "8V", "7M", "6M", "5M", "4M"],
 			zapcannon: ["7V", "3S13", "3S12"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 30, "shiny": 1, "moves": ["pound", "transform", "megapunch", "metronome"]},
+			{"generation": 3, "level": 10, "moves": ["pound", "transform"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 30, "shiny": 1, "moves": ["fakeout"]},
+			{"generation": 3, "level": 10, "moves": ["fakeout"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 30, "shiny": 1, "moves": ["feintattack"]},
+			{"generation": 3, "level": 10, "moves": ["feintattack"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 30, "shiny": 1, "moves": ["hypnosis"]},
+			{"generation": 3, "level": 10, "moves": ["hypnosis"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 30, "shiny": 1, "moves": ["nightshade"]},
+			{"generation": 3, "level": 10, "moves": ["nightshade"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 30, "shiny": 1, "moves": ["roleplay"]},
+			{"generation": 3, "level": 10, "moves": ["roleplay"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 30, "shiny": 1, "moves": ["zapcannon"]},
+			{"generation": 3, "level": 10, "moves": ["zapcannon"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 50, "moves": ["ancientpower", "metronome", "teleport", "aurasphere"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 50, "moves": ["barrier", "metronome", "teleport", "aurasphere"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 50, "moves": ["megapunch", "metronome", "teleport", "aurasphere"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 50, "moves": ["amnesia", "metronome", "teleport", "aurasphere"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 50, "moves": ["transform", "metronome", "teleport", "aurasphere"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 50, "moves": ["psychic", "metronome", "teleport", "aurasphere"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 50, "moves": ["synthesis", "return", "hypnosis", "teleport"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 5, "moves": ["pound"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 100, "moves": ["pound"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 5, "perfectIVs": 5, "moves": ["pound"], "pokeball": "pokeball"},
+			{"generation": 7, "level": 50, "moves": ["psychic", "barrier", "metronome", "transform"], "pokeball": "cherishball"},
+			{"generation": 8, "level": 1, "moves": ["pound"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	chikorita: {
 		learnset: {
@@ -19724,7 +20923,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "7L17", "7V", "6M", "6L17", "5M", "5L17", "4M", "4L17", "3M", "3L12"],
 			refresh: ["7E", "6E", "5E"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "7L39", "7V", "6M", "6L39", "5M", "5L39", "4M", "4L39", "3M", "3L43"],
 			secretpower: ["6M", "4M", "3M"],
@@ -19744,7 +20943,12 @@ let BattleLearnsets = {
 			workup: ["7M"],
 			worryseed: ["7T", "6T", "5T", "4T"],
 			wringout: ["7E", "6E", "5E", "4E"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["tackle", "growl", "razorleaf"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "moves": ["tackle", "growl", "ancientpower", "frenzyplant"], "pokeball": "pokeball"},
+			{"generation": 6, "level": 5, "moves": ["tackle", "growl"], "pokeball": "cherishball"},
+		],
 	},
 	bayleef: {
 		learnset: {
@@ -19790,7 +20994,7 @@ let BattleLearnsets = {
 			razorleaf: ["7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
 			reflect: ["7M", "7L18", "7V", "6M", "6L18", "5M", "5L18", "4M", "4L18", "3M", "3L1"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "7L46", "7V", "6M", "6L46", "5M", "5L46", "4M", "4L46", "3M", "3L47"],
@@ -19810,7 +21014,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			workup: ["7M"],
 			worryseed: ["7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	meganium: {
 		learnset: {
@@ -19865,7 +21069,7 @@ let BattleLearnsets = {
 			razorleaf: ["7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
 			reflect: ["7M", "7L18", "7V", "6M", "6L18", "5M", "5L18", "4M", "4L18", "3M", "3L1"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
@@ -19887,7 +21091,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			workup: ["7M"],
 			worryseed: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 50, "isHidden": true, "moves": ["solarbeam", "sunnyday", "synthesis", "bodyslam"], "pokeball": "pokeball"},
+		],
 	},
 	cyndaquil: {
 		learnset: {
@@ -19940,7 +21147,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			quickattack: ["7L13", "7E", "7V", "6L13", "6E", "5L13", "5E", "4L13", "4E", "3L19", "3E"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reversal: ["7E", "7V", "6E", "5E", "4E", "3E", "3S1"],
 			rollout: ["7L49", "7V", "6L49", "5L49", "4T", "4L40", "3T"],
 			round: ["7M", "6M", "5M"],
@@ -19959,7 +21166,12 @@ let BattleLearnsets = {
 			wildcharge: ["7M", "6M", "5M"],
 			willowisp: ["7M", "6M", "5M", "4M"],
 			workup: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["tackle", "leer", "smokescreen"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "moves": ["tackle", "leer", "reversal", "blastburn"], "pokeball": "pokeball"},
+			{"generation": 6, "level": 5, "moves": ["tackle", "leer"], "pokeball": "cherishball"},
+		],
 	},
 	quilava: {
 		learnset: {
@@ -20006,7 +21218,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			quickattack: ["7L13", "7V", "6L13", "5L13", "4L13", "3L21"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			rollout: ["7L57", "7V", "6L57", "5L57", "4T", "4L46", "3T"],
@@ -20025,7 +21237,7 @@ let BattleLearnsets = {
 			wildcharge: ["7M", "6M", "5M"],
 			willowisp: ["7M", "6M", "5M", "4M"],
 			workup: ["7M"],
-		}
+		},
 	},
 	typhlosion: {
 		learnset: {
@@ -20089,7 +21301,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			quickattack: ["7L13", "7V", "6L13", "5L13", "4L13", "3L21", "3S0"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
@@ -20117,7 +21329,11 @@ let BattleLearnsets = {
 			wildcharge: ["7M", "6M", "5M"],
 			willowisp: ["7M", "6M", "5M", "4M"],
 			workup: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 70, "moves": ["quickattack", "flamewheel", "swift", "flamethrower"], "pokeball": "pokeball"},
+			{"generation": 6, "level": 50, "isHidden": true, "moves": ["overheat", "flamewheel", "flamecharge", "swift"], "pokeball": "pokeball"},
+		],
 	},
 	totodile: {
 		learnset: {
@@ -20182,7 +21398,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			razorwind: ["7V"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "7V", "6M", "5M", "4M", "4E", "3T", "3E"],
 			rocktomb: ["7M", "6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
@@ -20212,7 +21428,12 @@ let BattleLearnsets = {
 			watersport: ["7E", "6E", "5E", "4E", "3E"],
 			whirlpool: ["7V", "4M"],
 			workup: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["scratch", "leer", "rage"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "moves": ["scratch", "leer", "crunch", "hydrocannon"], "pokeball": "pokeball"},
+			{"generation": 6, "level": 5, "moves": ["scratch", "leer"], "pokeball": "cherishball"},
+		],
 	},
 	croconaw: {
 		learnset: {
@@ -20270,7 +21491,7 @@ let BattleLearnsets = {
 			rage: ["7L8", "7V", "6L8", "5L8", "4L8", "3L1"],
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -20302,7 +21523,7 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["7V", "4M"],
 			workup: ["7M"],
-		}
+		},
 	},
 	feraligatr: {
 		learnset: {
@@ -20376,7 +21597,7 @@ let BattleLearnsets = {
 			rage: ["7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
@@ -20409,7 +21630,10 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["7V", "4M"],
 			workup: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 50, "isHidden": true, "moves": ["icepunch", "crunch", "waterfall", "screech"], "pokeball": "pokeball"},
+		],
 	},
 	sentret: {
 		learnset: {
@@ -20473,7 +21697,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7L28", "7V", "6M", "6L28", "5M", "5L28", "4M", "4L28", "3M", "3L40"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reversal: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			rollout: ["7V", "4T", "3T"],
 			round: ["7M", "6M", "5M"],
@@ -20505,7 +21729,10 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["4M"],
 			workup: ["7M", "5M"],
-		}
+		},
+		encounters: [
+			{"generation": 2, "level": 2},
+		],
 	},
 	furret: {
 		learnset: {
@@ -20569,7 +21796,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7L32", "7V", "6M", "6L32", "5M", "5L32", "4M", "4L32", "3M", "3L48"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rollout: ["7V", "4T", "3T"],
 			round: ["7M", "6M", "5M"],
@@ -20601,7 +21828,11 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["4M"],
 			workup: ["7M", "5M"],
-		}
+		},
+		encounters: [
+			{"generation": 2, "level": 6},
+			{"generation": 4, "level": 6},
+		],
 	},
 	hoothoot: {
 		learnset: {
@@ -20659,7 +21890,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "5D", "4M"],
 			reflect: ["8M", "8L12", "7M", "7L28", "7V", "6M", "6L17", "5M", "5L17", "4M", "4L17", "3M", "3L22"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roost: ["8L30", "7M", "7L37", "6M", "6L53", "5T", "5L53", "4M", "4L45"],
 			round: ["8M", "7M", "6M", "5M"],
 			screech: ["8M"],
@@ -20688,7 +21919,13 @@ let BattleLearnsets = {
 			wingattack: ["8E", "7E", "7V", "6E", "5E", "4E", "3E"],
 			workup: ["8M", "7M", "5M"],
 			zenheadbutt: ["8M", "7T", "7L16", "6T", "6L37", "5T", "5L37", "4T", "4L33"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["tackle", "growl", "foresight"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 2, "level": 2},
+		],
 	},
 	noctowl: {
 		learnset: {
@@ -20745,7 +21982,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["8M", "8L12", "7M", "7L31", "7V", "6M", "6L17", "5M", "5L17", "4M", "4L17", "3M", "3L25"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roost: ["8L38", "7M", "7L43", "6M", "6L62", "5T", "5L62", "4M", "4L52"],
 			round: ["8M", "7M", "6M", "5M"],
 			screech: ["8M"],
@@ -20771,7 +22008,12 @@ let BattleLearnsets = {
 			uproar: ["8M", "8L33", "7T", "7L39", "6T", "6L13", "5T", "5L13", "4T", "4L13"],
 			workup: ["8M", "7M", "5M"],
 			zenheadbutt: ["8M", "7T", "7L16", "6T", "6L42", "5T", "5L42", "4T", "4L37"],
-		}
+		},
+		encounters: [
+			{"generation": 2, "level": 7},
+			{"generation": 4, "level": 5},
+			{"generation": 7, "level": 19},
+		],
 	},
 	ledyba: {
 		learnset: {
@@ -20824,7 +22066,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "7L12", "7V", "6M", "6L14", "5M", "5L14", "4M", "4L14", "3M", "3L22"],
 			refresh: ["3S0"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rollout: ["7V", "4T", "3T"],
 			roost: ["7M", "6M", "5T", "4M"],
 			round: ["7M", "6M", "5M"],
@@ -20851,7 +22093,13 @@ let BattleLearnsets = {
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			uproar: ["7T", "6T", "5T", "4T"],
 			uturn: ["7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "moves": ["refresh", "psybeam", "aerialace", "supersonic"]},
+		],
+		encounters: [
+			{"generation": 2, "level": 3},
+		],
 	},
 	ledian: {
 		learnset: {
@@ -20902,7 +22150,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reflect: ["7M", "7L12", "7V", "6M", "6L14", "5M", "5L14", "4M", "4L14", "3M", "3L24"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M"],
 			rollout: ["7V", "4T", "3T"],
 			roost: ["7M", "6M", "5T", "4M"],
@@ -20930,7 +22178,11 @@ let BattleLearnsets = {
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			uproar: ["7T", "6T", "5T", "4T"],
 			uturn: ["7M", "6M", "5M", "4M"],
-		}
+		},
+		encounters: [
+			{"generation": 2, "level": 7},
+			{"generation": 4, "level": 5},
+		],
 	},
 	spinarak: {
 		learnset: {
@@ -20980,7 +22232,7 @@ let BattleLearnsets = {
 			ragepowder: ["7E", "6E", "5E"],
 			refresh: ["3S0"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			scaryface: ["7L12", "7V", "6L5", "5L5", "4L5", "3L6"],
 			screech: ["7V"],
@@ -21007,7 +22259,13 @@ let BattleLearnsets = {
 			twineedle: ["7E", "6E", "5E"],
 			venoshock: ["7M", "6M", "5M"],
 			xscissor: ["7M", "6M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 14, "moves": ["refresh", "dig", "signalbeam", "nightshade"]},
+		],
+		encounters: [
+			{"generation": 2, "level": 3},
+		],
 	},
 	ariados: {
 		learnset: {
@@ -21052,7 +22310,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			psychic: ["7M", "7L46", "7V", "6M", "6L46", "5M", "5L46", "4M", "4L46", "3M", "3L63"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			scaryface: ["7L12", "7V", "6L1", "5L1", "4L1", "3L1"],
 			screech: ["7V"],
@@ -21081,7 +22339,12 @@ let BattleLearnsets = {
 			venomdrench: ["7L1", "6L1"],
 			venoshock: ["7M", "6M", "5M"],
 			xscissor: ["7M", "6M", "5M"],
-		}
+		},
+		encounters: [
+			{"generation": 2, "level": 7},
+			{"generation": 4, "level": 5},
+			{"generation": 6, "level": 19, "maxEggMoves": 1},
+		],
 	},
 	chinchou: {
 		learnset: {
@@ -21125,7 +22388,7 @@ let BattleLearnsets = {
 			psybeam: ["8E", "7E", "6E", "5E", "4E"],
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			scald: ["8M", "7M", "6M", "5M"],
 			screech: ["8M", "7E", "7V", "6E", "5E", "4E", "3E"],
@@ -21153,7 +22416,7 @@ let BattleLearnsets = {
 			whirlpool: ["8M", "7E", "7V", "6E", "5E", "4M", "4E"],
 			wildcharge: ["8M", "7M", "6M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
 	},
 	lanturn: {
 		learnset: {
@@ -21199,7 +22462,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			scald: ["8M", "7M", "6M", "5M"],
 			screech: ["8M"],
@@ -21230,7 +22493,12 @@ let BattleLearnsets = {
 			whirlpool: ["8M", "7V", "4M"],
 			wildcharge: ["8M", "7M", "6M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
+		encounters: [
+			{"generation": 4, "level": 20},
+			{"generation": 6, "level": 26, "maxEggMoves": 1},
+			{"generation": 7, "level": 10},
+		],
 	},
 	togepi: {
 		learnset: {
@@ -21303,7 +22571,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			reflect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			rollout: ["7V", "4T", "3T"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -21335,7 +22603,11 @@ let BattleLearnsets = {
 			yawn: ["8L20", "7L13", "6L13", "5L13", "4L15", "3L13", "3S0"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 20, "gender": "F", "abilities": ["serenegrace"], "moves": ["metronome", "charm", "sweetkiss", "yawn"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 25, "moves": ["triattack", "followme", "ancientpower", "helpinghand"]},
+		],
 	},
 	togetic: {
 		learnset: {
@@ -21414,7 +22686,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			rollout: ["7V", "4T", "3T"],
 			roost: ["7M", "6M", "5T", "4M"],
@@ -21453,7 +22725,7 @@ let BattleLearnsets = {
 			yawn: ["8L20", "7L13", "6L13", "5L13", "4L15", "3L13"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	togekiss: {
 		learnset: {
@@ -21534,7 +22806,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
 			rollout: ["4T"],
 			roost: ["7M", "6M", "5T", "4M"],
@@ -21570,7 +22842,10 @@ let BattleLearnsets = {
 			workup: ["8M", "7M", "5M"],
 			yawn: ["8L1"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["extremespeed", "aurasphere", "airslash", "present"]},
+		],
 	},
 	natu: {
 		learnset: {
@@ -21632,7 +22907,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			refresh: ["7E", "6E", "5E", "4E", "3E"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roost: ["8E", "7M", "7E", "6M", "6E", "5T", "5E", "4M"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -21665,7 +22940,10 @@ let BattleLearnsets = {
 			uturn: ["8M", "7M", "6M", "5M", "4M"],
 			wish: ["8L40", "7L28", "6L28", "5L28", "4L28", "3L30"],
 			zenheadbutt: ["8M", "7T", "7E", "6T", "6E", "5T", "5E", "4T", "4E"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 22, "moves": ["batonpass", "futuresight", "nightshade", "aerialace"]},
+		],
 	},
 	xatu: {
 		learnset: {
@@ -21727,7 +23005,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			reflect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roost: ["7M", "6M", "5T", "4M"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -21758,7 +23036,13 @@ let BattleLearnsets = {
 			uturn: ["8M", "7M", "6M", "5M", "4M"],
 			wish: ["8L48", "7L29", "6L29", "5L30", "4L30", "3L35"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		encounters: [
+			{"generation": 2, "level": 15},
+			{"generation": 4, "level": 16, "gender": "M", "nature": "Modest", "ivs": {"hp": 15, "atk": 20, "def": 15, "spa": 20, "spd": 20, "spe": 20}, "abilities": ["synchronize"], "pokeball": "pokeball"},
+			{"generation": 6, "level": 24, "maxEggMoves": 1},
+			{"generation": 7, "level": 21},
+		],
 	},
 	mareep: {
 		learnset: {
@@ -21805,7 +23089,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reflect: ["7V", "5D", "4E", "3E"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "7V", "6M", "5M", "4E", "3E"],
 			sandattack: ["7E", "6E", "5E", "4E"],
@@ -21827,7 +23111,13 @@ let BattleLearnsets = {
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			wildcharge: ["7M", "6M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 37, "gender": "F", "moves": ["thunder", "thundershock", "thunderwave", "cottonspore"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["tackle", "growl", "thundershock"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 17, "moves": ["healbell", "thundershock", "thunderwave", "bodyslam"]},
+			{"generation": 6, "level": 10, "moves": ["holdback", "tackle", "thunderwave", "thundershock"], "pokeball": "cherishball"},
+		],
 	},
 	flaaffy: {
 		learnset: {
@@ -21876,7 +23166,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M"],
@@ -21901,7 +23191,10 @@ let BattleLearnsets = {
 			voltswitch: ["7M", "6M", "5M"],
 			wildcharge: ["7M", "6M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
+		encounters: [
+			{"generation": 7, "level": 11, "pokeball": "pokeball"},
+		],
 	},
 	ampharos: {
 		learnset: {
@@ -21960,7 +23253,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
@@ -21986,7 +23279,7 @@ let BattleLearnsets = {
 			voltswitch: ["7M", "6M", "5M"],
 			wildcharge: ["7M", "6M", "5M"],
 			zapcannon: ["7L1", "7V", "6L1"],
-		}
+		},
 	},
 	azurill: {
 		learnset: {
@@ -22031,7 +23324,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			refresh: ["7E", "6E", "5E", "4E", "3E"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rollout: ["4T", "3T"],
 			round: ["7M", "6M", "5M"],
 			scald: ["7M", "6M", "5M"],
@@ -22056,7 +23349,7 @@ let BattleLearnsets = {
 			watersport: ["7L5", "7E", "6L5", "6E", "5L5", "5E"],
 			whirlpool: ["4M"],
 			workup: ["7M", "5M"],
-		}
+		},
 	},
 	marill: {
 		learnset: {
@@ -22121,7 +23414,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7L31", "7V", "6M", "6L31", "5M", "5L32", "4M", "4L32", "3M", "3L36"],
 			refresh: ["7E", "6E", "5E", "4E"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rollout: ["7L10", "7V", "6L10", "5L15", "4T", "4L15", "3T", "3L15"],
 			round: ["7M", "6M", "5M"],
@@ -22146,7 +23439,7 @@ let BattleLearnsets = {
 			watersport: ["7L5", "7E", "6L5", "6E", "5L5", "5E"],
 			whirlpool: ["7V", "4M"],
 			workup: ["7M", "5M"],
-		}
+		},
 	},
 	azumarill: {
 		learnset: {
@@ -22207,7 +23500,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			raindance: ["7M", "7L35", "7V", "6M", "6L35", "5M", "5L40", "4M", "4L40", "3M", "3L45"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			rollout: ["7L10", "7V", "6L10", "5L15", "4T", "4L15", "3T", "3L15"],
 			round: ["7M", "6M", "5M"],
@@ -22231,7 +23524,11 @@ let BattleLearnsets = {
 			watersport: ["7L1", "6L1", "5L1"],
 			whirlpool: ["7V", "4M"],
 			workup: ["7M", "5M"],
-		}
+		},
+		encounters: [
+			{"generation": 5, "level": 5},
+			{"generation": 6, "level": 16, "maxEggMoves": 1},
+		],
 	},
 	bonsly: {
 		learnset: {
@@ -22270,7 +23567,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M", "4M"],
 			psychup: ["7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rockpolish: ["8E", "7M", "6M", "5M", "4M"],
 			rockslide: ["8M", "8L32", "7M", "7L33", "6M", "6L29", "5M", "5L33", "4M", "4L33"],
 			rockthrow: ["8L8", "7L12", "6L12", "5L14", "4L14"],
@@ -22296,7 +23593,7 @@ let BattleLearnsets = {
 			thief: ["8M", "7M", "6M", "5M", "4M"],
 			toxic: ["7M", "6M", "5M", "4M"],
 			uproar: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	sudowoodo: {
 		learnset: {
@@ -22351,7 +23648,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			psychup: ["7M", "7V", "6M", "5M", "4M", "3T"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockblast: ["8M"],
 			rockpolish: ["8E", "7M", "6M", "5M", "4M"],
 			rockslide: ["8M", "8L32", "7M", "7L33", "7V", "6M", "6L29", "5M", "5L33", "4M", "4L33", "3T", "3L25"],
@@ -22386,7 +23683,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			uproar: ["8M"],
 			woodhammer: ["8L1", "7L1", "6L1", "5L1", "4L1"],
-		}
+		},
 	},
 	hoppip: {
 		learnset: {
@@ -22436,7 +23733,7 @@ let BattleLearnsets = {
 			ragepowder: ["7L31", "6L31", "5L31"],
 			reflect: ["7M", "7V", "6M", "5M", "4E", "3E"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
 			seedbomb: ["7T", "7E", "6T", "6E", "5T", "5E", "4T"],
@@ -22459,7 +23756,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			uturn: ["7M", "7L37", "6M", "6L37", "5M", "5L37", "4M", "4L31"],
 			worryseed: ["7T", "7L40", "7E", "6T", "6L40", "6E", "5T", "5L40", "5E", "4T", "4L34", "4E"],
-		}
+		},
+		encounters: [
+			{"generation": 2, "level": 3},
+		],
 	},
 	skiploom: {
 		learnset: {
@@ -22502,7 +23802,7 @@ let BattleLearnsets = {
 			ragepowder: ["7L36", "6L36", "5L36"],
 			reflect: ["7M", "6M", "5M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
 			seedbomb: ["7T", "6T", "5T", "4T"],
@@ -22524,7 +23824,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			uturn: ["7M", "7L44", "6M", "6L44", "5M", "5L44", "4M", "4L36"],
 			worryseed: ["7T", "7L48", "6T", "6L48", "5T", "5L48", "4T", "4L40"],
-		}
+		},
+		encounters: [
+			{"generation": 4, "level": 12},
+		],
 	},
 	jumpluff: {
 		learnset: {
@@ -22571,7 +23874,7 @@ let BattleLearnsets = {
 			ragepowder: ["7L39", "6L39", "5L39"],
 			reflect: ["7M", "6M", "5M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
 			seedbomb: ["7T", "6T", "5T", "4T"],
@@ -22593,7 +23896,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			uturn: ["7M", "7L49", "6M", "6L49", "5M", "5L49", "4M", "4L36"],
 			worryseed: ["7T", "7L54", "6T", "6L54", "5T", "5L54", "4T", "4L40"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 27, "gender": "M", "isHidden": true, "moves": ["falseswipe", "sleeppowder", "bulletseed", "leechseed"]},
+		],
 	},
 	aipom: {
 		learnset: {
@@ -22663,7 +23969,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			revenge: ["7E", "6E", "5E"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
@@ -22704,7 +24010,10 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			workup: ["7M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["scratch", "tailwhip", "sandattack"], "pokeball": "pokeball"},
+		],
 	},
 	ambipom: {
 		learnset: {
@@ -22761,7 +24070,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			round: ["7M", "6M", "5M"],
@@ -22796,7 +24105,7 @@ let BattleLearnsets = {
 			uturn: ["7M", "6M", "5M", "4M"],
 			waterpulse: ["7T", "6T", "4M"],
 			workup: ["7M", "5M"],
-		}
+		},
 	},
 	sunkern: {
 		learnset: {
@@ -22837,7 +24146,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			razorleaf: ["7L16", "6L16", "5L29", "4L29"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M", "3M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -22855,7 +24164,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			uproar: ["7T", "6T", "5T", "4T"],
 			worryseed: ["7T", "7L19", "6T", "6L19", "5T", "5L25", "4T", "4L25"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "abilities": ["chlorophyll"], "moves": ["absorb", "growth"], "pokeball": "pokeball"},
+		],
 	},
 	sunflora: {
 		learnset: {
@@ -22901,7 +24213,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			razorleaf: ["7L16", "7V", "6L16", "5L29", "4L29", "3L13"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M", "3M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -22919,7 +24231,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			uproar: ["7T", "6T", "5T", "4T"],
 			worryseed: ["7T", "7L19", "6T", "6L19", "5T", "5L25", "4T", "4L25"],
-		}
+		},
 	},
 	yanma: {
 		learnset: {
@@ -22960,7 +24272,7 @@ let BattleLearnsets = {
 			pursuit: ["7L30", "7E", "6L30", "6E", "5L30", "5E", "4L30", "4E"],
 			quickattack: ["7L6", "7V", "6L6", "5L6", "5D", "4L6", "3L6"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reversal: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			roost: ["7M", "6M", "5T", "4M"],
 			round: ["7M", "6M", "5M"],
@@ -22988,7 +24300,7 @@ let BattleLearnsets = {
 			uturn: ["7M", "7L49", "6M", "6L49", "5M", "5L49", "4M", "4L49"],
 			whirlwind: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			wingattack: ["7L43", "7V", "6L43", "5L43", "4L43", "3L39"],
-		}
+		},
 	},
 	yanmega: {
 		learnset: {
@@ -23030,7 +24342,7 @@ let BattleLearnsets = {
 			pursuit: ["7L30", "6L30", "5L30", "4L30"],
 			quickattack: ["7L1", "6L1", "5L1", "4L1"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roost: ["7M", "6M", "5T", "4M"],
 			round: ["7M", "6M", "5M"],
 			screech: ["7L46", "6L46", "5L46", "4L43"],
@@ -23057,7 +24369,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M"],
 			uproar: ["7T", "7L27", "6T", "6L27", "5T", "5L27", "4T", "4L27"],
 			uturn: ["7M", "7L49", "6M", "6L49", "5M", "5L49", "4M", "4L46"],
-		}
+		},
 	},
 	wooper: {
 		learnset: {
@@ -23113,7 +24425,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "8L4", "7M", "7L37", "7V", "6M", "6L37", "5M", "5L37", "4M", "4L37", "3M", "3L41"],
 			recover: ["8E", "7E", "6E", "5E", "4E"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			rollout: ["7V", "4T", "3T"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -23140,7 +24452,10 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["8M", "7V", "4M"],
 			yawn: ["8L21", "7L29", "6L29", "5L29", "4L29", "3L31"],
-		}
+		},
+		encounters: [
+			{"generation": 2, "level": 4},
+		],
 	},
 	quagsire: {
 		learnset: {
@@ -23203,7 +24518,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			raindance: ["8M", "8L1", "7M", "7L41", "7V", "6M", "6L41", "5M", "5L41", "4M", "4L41", "3M", "3L49"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M", "3M"],
@@ -23233,7 +24548,11 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["8M", "7V", "4M"],
 			yawn: ["8L23", "7L31", "6L31", "5L31", "4L31", "3L35"],
-		}
+		},
+		encounters: [
+			{"generation": 2, "level": 15},
+			{"generation": 4, "level": 10},
+		],
 	},
 	murkrow: {
 		learnset: {
@@ -23291,7 +24610,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roost: ["7M", "7E", "6M", "6E", "5T", "5E", "5D", "4M"],
 			round: ["7M", "6M", "5M"],
 			screech: ["7E", "6E", "5E", "4E"],
@@ -23319,7 +24638,10 @@ let BattleLearnsets = {
 			uproar: ["7T", "6T", "5T", "4T"],
 			whirlwind: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			wingattack: ["7L15", "7E", "7V", "6L15", "6E", "5L15", "5E", "4L15", "4E", "3E"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "abilities": ["insomnia"], "moves": ["peck", "astonish"], "pokeball": "pokeball"},
+		],
 	},
 	honchkrow: {
 		learnset: {
@@ -23367,7 +24689,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roost: ["7M", "6M", "5T", "4M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M"],
@@ -23394,7 +24716,10 @@ let BattleLearnsets = {
 			twister: ["4T"],
 			uproar: ["7T", "6T", "5T", "4T"],
 			wingattack: ["7L1", "6L1", "5L1", "4L1"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 65, "gender": "M", "abilities": ["superluck"], "moves": ["nightslash", "skyattack", "heatwave", "icywind"], "pokeball": "cherishball"},
+		],
 	},
 	misdreavus: {
 		learnset: {
@@ -23454,7 +24779,7 @@ let BattleLearnsets = {
 			psywave: ["7L1", "7V", "6L1", "5L1", "5D", "4L1", "3L1", "3S0"],
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			screech: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			secretpower: ["6M", "4M", "3M"],
@@ -23485,7 +24810,10 @@ let BattleLearnsets = {
 			willowisp: ["7M", "6M", "5M", "4M"],
 			wonderroom: ["7T", "7E", "6T", "6E", "5T", "5E"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["growl", "psywave", "spite"], "pokeball": "pokeball"},
+		],
 	},
 	mismagius: {
 		learnset: {
@@ -23536,7 +24864,7 @@ let BattleLearnsets = {
 			psywave: ["7L1", "6L1", "5L1", "4L1"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M"],
 			shadowball: ["7M", "6M", "5M", "4M"],
@@ -23564,12 +24892,18 @@ let BattleLearnsets = {
 			uproar: ["7T", "6T", "5T", "4T"],
 			willowisp: ["7M", "6M", "5M", "4M"],
 			wonderroom: ["7T", "6T", "5T"],
-		}
+		},
 	},
 	unown: {
 		learnset: {
 			hiddenpower: ["7M", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
-		}
+		},
+		encounters: [
+			{"generation": 2, "level": 5},
+			{"generation": 3, "level": 25},
+			{"generation": 4, "level": 5},
+			{"generation": 6, "level": 32},
+		],
 	},
 	wynaut: {
 		learnset: {
@@ -23582,7 +24916,10 @@ let BattleLearnsets = {
 			safeguard: ["8M", "8L1", "7M", "7L15", "6M", "6L15", "5L15", "4L15", "3L15", "3S0"],
 			splash: ["8L1", "7L1", "6L1", "5L1", "4L1", "3L1", "3S0"],
 			tickle: ["3S0"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["splash", "charm", "encore", "tickle"], "pokeball": "pokeball"},
+		],
 	},
 	wobbuffet: {
 		learnset: {
@@ -23594,7 +24931,17 @@ let BattleLearnsets = {
 			mirrorcoat: ["8L0", "7L1", "7V", "6L1", "6S3", "5L1", "5D", "4L1", "3L1", "3S1", "3S0"],
 			safeguard: ["8M", "8L0", "7M", "7L1", "7V", "6M", "6L1", "5L1", "4L1", "3L1", "3S1", "3S0"],
 			splash: ["8L1"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "moves": ["counter", "mirrorcoat", "safeguard", "destinybond"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["counter", "mirrorcoat", "safeguard", "destinybond"], "pokeball": "pokeball"},
+			{"generation": 6, "level": 10, "gender": "M", "moves": ["counter"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 15, "gender": "M", "moves": ["counter", "mirrorcoat"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 2, "level": 5},
+			{"generation": 4, "level": 3},
+		],
 	},
 	girafarig: {
 		learnset: {
@@ -23665,7 +25012,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["7E", "6M", "6E", "5E", "4M", "3M"],
@@ -23698,7 +25045,7 @@ let BattleLearnsets = {
 			workup: ["7M", "5M"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["7T", "7L32", "6T", "6L32", "5T", "5L41", "4T", "4L41"],
-		}
+		},
 	},
 	pineco: {
 		learnset: {
@@ -23742,7 +25089,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "7V", "6M", "5M", "4M", "4E", "3M", "3E"],
 			refresh: ["3S1"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			revenge: ["7E", "6E", "5E", "4E"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -23771,7 +25118,11 @@ let BattleLearnsets = {
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			toxicspikes: ["7E", "6E", "5E", "5D", "4E"],
 			venoshock: ["7M", "6M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["tackle", "protect", "selfdestruct"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 20, "moves": ["refresh", "pinmissile", "spikes", "counter"]},
+		],
 	},
 	forretress: {
 		learnset: {
@@ -23822,7 +25173,7 @@ let BattleLearnsets = {
 			rapidspin: ["7L17", "7V", "6L17", "5L17", "4L12", "3L22"],
 			reflect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -23853,7 +25204,10 @@ let BattleLearnsets = {
 			venoshock: ["7M", "6M", "5M"],
 			voltswitch: ["7M", "6M", "5M"],
 			zapcannon: ["7L1", "6L1", "5L64", "4L62", "3L31"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 30},
+		],
 	},
 	dunsparce: {
 		learnset: {
@@ -23918,7 +25272,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "7V", "6M", "5M", "4M", "4E", "3T", "3E"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			rocktomb: ["7M", "6M", "5M", "4M", "3M"],
@@ -23951,7 +25305,7 @@ let BattleLearnsets = {
 			yawn: ["7L13", "6L16", "5L8", "4L9", "3L11"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	gligar: {
 		learnset: {
@@ -24011,7 +25365,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			razorwind: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["7E", "6E", "5E"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
@@ -24049,7 +25403,10 @@ let BattleLearnsets = {
 			venoshock: ["7M", "6M", "5M"],
 			wingattack: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			xscissor: ["7M", "7L40", "6M", "6L40", "5M", "5L45", "4M", "4L42"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["poisonsting", "sandattack"], "pokeball": "pokeball"},
+		],
 	},
 	gliscor: {
 		learnset: {
@@ -24102,7 +25459,7 @@ let BattleLearnsets = {
 			quickattack: ["7L13", "6L13", "5L16", "4L16"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
@@ -24138,7 +25495,7 @@ let BattleLearnsets = {
 			uturn: ["7M", "7L30", "6M", "6L30", "5M", "5L42", "4M", "4L38"],
 			venoshock: ["7M", "6M", "5M"],
 			xscissor: ["7M", "7L40", "6M", "6L40", "5M", "5L45", "4M", "4L42"],
-		}
+		},
 	},
 	snubbull: {
 		learnset: {
@@ -24205,7 +25562,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "7V", "6M", "5M", "4E", "3E"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7L25", "7V", "6M", "6L25", "5M", "5L25", "4M", "4L25", "3M", "3L26"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
@@ -24242,7 +25599,10 @@ let BattleLearnsets = {
 			wildcharge: ["7M", "6M", "5M"],
 			workup: ["7M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["tackle", "scaryface", "tailwhip", "charm"], "pokeball": "pokeball"},
+		],
 	},
 	granbull: {
 		learnset: {
@@ -24311,7 +25671,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "6M", "5M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7L27", "7V", "6M", "6L27", "5M", "5L27", "4M", "4L27", "3M", "3L28"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
@@ -24352,7 +25712,10 @@ let BattleLearnsets = {
 			wildcharge: ["7M", "6M", "5M"],
 			workup: ["7M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
+		encounters: [
+			{"generation": 2, "level": 15},
+		],
 	},
 	qwilfish: {
 		learnset: {
@@ -24404,7 +25767,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			revenge: ["8M", "8L28", "7L29", "6L29", "5L29", "4L29", "3L25"],
 			reversal: ["8M"],
 			rollout: ["7L17", "7V", "6L17", "5L17", "4T", "4L17", "3T"],
@@ -24442,7 +25805,10 @@ let BattleLearnsets = {
 			watergun: ["8L8", "7L1", "7V", "6L1", "5L13", "4L13", "3L13"],
 			waterpulse: ["8E", "7T", "7E", "6T", "6E", "5E", "4M", "3M"],
 			whirlpool: ["8M", "7V", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["tackle", "poisonsting", "harden", "minimize"], "pokeball": "pokeball"},
+		],
 	},
 	shuckle: {
 		learnset: {
@@ -24490,7 +25856,7 @@ let BattleLearnsets = {
 			powertrick: ["8L55", "7L31", "6L31", "5L43", "4L48"],
 			protect: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8L25", "7M", "7L20", "7V", "6M", "6L20", "5M", "5L25", "4M", "4L27", "3M", "3L37"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reversal: ["8M"],
 			rockblast: ["8M", "7E", "6E", "5E"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
@@ -24524,7 +25890,11 @@ let BattleLearnsets = {
 			venoshock: ["8M", "7M", "6M", "5M"],
 			withdraw: ["8L1", "7L1", "7V", "6L1", "5L1", "4L1", "3L1", "3S0"],
 			wrap: ["8L1", "7L9", "7V", "6L9", "5L13", "4L22", "3L9", "3S0"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "abilities": ["sturdy"], "moves": ["constrict", "withdraw", "wrap"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 20, "abilities": ["sturdy"], "moves": ["substitute", "toxic", "sludgebomb", "encore"], "pokeball": "pokeball"},
+		],
 	},
 	heracross: {
 		learnset: {
@@ -24588,7 +25958,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			revenge: ["7E", "6E", "5E", "4E"],
 			reversal: ["7L46", "7V", "6L43", "5L43", "4L43", "3L45"],
 			rockblast: ["7E", "6E", "6S1"],
@@ -24617,7 +25987,11 @@ let BattleLearnsets = {
 			vacuumwave: ["4T"],
 			venoshock: ["7M", "6M", "5M"],
 			workup: ["7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 50, "gender": "F", "nature": "Adamant", "moves": ["bulletseed", "pinmissile", "closecombat", "megahorn"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "nature": "Adamant", "abilities": ["guts"], "moves": ["pinmissile", "bulletseed", "earthquake", "rockblast"], "pokeball": "cherishball"},
+		],
 	},
 	sneasel: {
 		learnset: {
@@ -24696,7 +26070,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "7V", "6M", "5M", "4E", "3E"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			scratch: ["8L1", "7L1", "7V", "6L1", "5L1", "4L1", "3L1", "3S0"],
@@ -24724,7 +26098,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			whirlpool: ["8M", "4M"],
 			xscissor: ["8M", "7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["scratch", "leer", "taunt", "quickattack"], "pokeball": "pokeball"},
+		],
 	},
 	weavile: {
 		learnset: {
@@ -24794,7 +26171,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			revenge: ["8M", "8L1", "7L1", "6L1", "5L1", "4L1"],
 			rocksmash: ["6M", "5M", "4M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -24823,7 +26200,11 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M"],
 			whirlpool: ["8M", "4M"],
 			xscissor: ["8M", "7M", "6M", "6S1", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 30, "gender": "M", "nature": "Jolly", "moves": ["fakeout", "iceshard", "nightslash", "brickbreak"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 48, "gender": "M", "perfectIVs": 2, "moves": ["nightslash", "icepunch", "brickbreak", "xscissor"], "pokeball": "cherishball"},
+		],
 	},
 	teddiursa: {
 		learnset: {
@@ -24889,7 +26270,7 @@ let BattleLearnsets = {
 			refresh: ["3S1"],
 			rest: ["7M", "7L43", "7V", "6M", "6L43", "5M", "5L43", "4M", "4L43", "3M", "3L31"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M", "3S1"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M", "3S1"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -24922,7 +26303,14 @@ let BattleLearnsets = {
 			workup: ["7M", "5M"],
 			yawn: ["7E", "6E", "5E", "4E", "3E"],
 			zapcannon: ["7V"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "abilities": ["pickup"], "moves": ["scratch", "leer", "lick"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 11, "abilities": ["pickup"], "moves": ["refresh", "metalclaw", "lick", "return"]},
+		],
+		encounters: [
+			{"generation": 2, "level": 2},
+		],
 	},
 	ursaring: {
 		learnset: {
@@ -24983,7 +26371,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7L47", "7V", "6M", "6L47", "5M", "5L47", "4M", "4L47", "3M", "3L31"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
@@ -25021,7 +26409,10 @@ let BattleLearnsets = {
 			uproar: ["7T", "6T", "5T", "4T"],
 			workup: ["7M", "5M"],
 			zapcannon: ["7V"],
-		}
+		},
+		encounters: [
+			{"generation": 2, "level": 25},
+		],
 	},
 	slugma: {
 		learnset: {
@@ -25071,7 +26462,7 @@ let BattleLearnsets = {
 			recover: ["7L43", "6L19", "5L19", "4L23"],
 			reflect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "7L29", "7V", "6M", "6L29", "5M", "5L41", "4M", "4L41", "3T", "3L43"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			rockthrow: ["7L8", "7V", "6L8", "5L10", "4L11", "3L15"],
@@ -25093,7 +26484,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			willowisp: ["7M", "6M", "5M", "4M"],
 			yawn: ["7L1", "6L1", "5L1", "4L1", "3L1"],
-		}
+		},
 	},
 	magcargo: {
 		learnset: {
@@ -25147,7 +26538,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "6M", "5M", "4M", "3M"],
 			refresh: ["3S0"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "7L29", "7V", "6M", "6L29", "5M", "5L44", "4M", "4L45", "3T", "3L48"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -25174,7 +26565,14 @@ let BattleLearnsets = {
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			willowisp: ["7M", "6M", "5M", "4M"],
 			yawn: ["7L1", "6L1", "5L1", "4L1", "3L1"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 38, "moves": ["refresh", "heatwave", "earthquake", "flamethrower"]},
+		],
+		encounters: [
+			{"generation": 3, "level": 25},
+			{"generation": 6, "level": 30},
+		],
 	},
 	swinub: {
 		learnset: {
@@ -25226,7 +26624,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			reflect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockslide: ["8M", "7M", "7V", "6M", "5M", "4M", "4E", "3T", "3E"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -25246,7 +26644,10 @@ let BattleLearnsets = {
 			tackle: ["8L1", "7L1", "7V", "6L1", "5L1", "4L1", "3L1"],
 			takedown: ["8L40", "7L28", "7E", "7V", "6L28", "6E", "5L32", "5E", "4L32", "4E", "3L28", "3E"],
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 22, "abilities": ["oblivious"], "moves": ["charm", "ancientpower", "mist", "mudshot"]},
+		],
 	},
 	piloswine: {
 		learnset: {
@@ -25300,7 +26701,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			reflect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -25323,7 +26724,10 @@ let BattleLearnsets = {
 			takedown: ["8L44", "7L28", "7V", "6L28", "5L32", "4L32", "3L28"],
 			thrash: ["8L65", "7L41", "6L41", "5L41"],
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 30},
+		],
 	},
 	mamoswine: {
 		learnset: {
@@ -25379,7 +26783,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			reflect: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rockblast: ["8M"],
 			rockclimb: ["4M"],
@@ -25404,7 +26808,11 @@ let BattleLearnsets = {
 			takedown: ["8L44", "7L28", "6L28", "5L32", "5S0", "4L32"],
 			thrash: ["8L65", "7L41", "6L41", "5L41"],
 			toxic: ["7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 34, "gender": "M", "isHidden": true, "moves": ["hail", "icefang", "takedown", "doublehit"]},
+			{"generation": 6, "level": 50, "shiny": true, "gender": "M", "nature": "Adamant", "isHidden": true, "moves": ["iciclespear", "earthquake", "iciclecrash", "rockslide"], "pokeball": "pokeball"},
+		],
 	},
 	corsola: {
 		learnset: {
@@ -25469,7 +26877,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			refresh: ["7L13", "6L13", "5L16", "4L16", "3L17"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockblast: ["8M", "7L31", "6L31", "5L20", "4L20", "3L34"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["8M", "7M", "7V", "6M", "5M", "4M", "4E", "3T", "3E"],
@@ -25502,7 +26910,11 @@ let BattleLearnsets = {
 			watergun: ["8L5"],
 			waterpulse: ["8E", "7T", "7E", "6T", "6E", "5E", "4M", "3M"],
 			whirlpool: ["8M", "7V", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["tackle", "mudsport"], "pokeball": "pokeball"},
+			{"generation": 7, "level": 50, "gender": "F", "nature": "Serious", "abilities": ["hustle"], "moves": ["tackle", "powergem"], "pokeball": "ultraball"},
+		],
 	},
 	corsolagalar: {
 		learnset: {
@@ -25572,7 +26984,7 @@ let BattleLearnsets = {
 			waterpulse: ["8E"],
 			whirlpool: ["8M"],
 			willowisp: ["8M"],
-		}
+		},
 	},
 	cursola: {
 		learnset: {
@@ -25642,7 +27054,7 @@ let BattleLearnsets = {
 			throatchop: ["8M"],
 			whirlpool: ["8M"],
 			willowisp: ["8M"],
-		}
+		},
 	},
 	remoraid: {
 		learnset: {
@@ -25691,7 +27103,7 @@ let BattleLearnsets = {
 			psychic: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockblast: ["8M", "7E", "6E", "5E", "5D", "4E", "3E"],
 			round: ["8M", "7M", "6M", "5M"],
 			scald: ["8M", "7M", "6M", "5M"],
@@ -25718,7 +27130,7 @@ let BattleLearnsets = {
 			waterpulse: ["8L4", "7T", "7L26", "7E", "6T", "6L26", "6E", "5L32", "5E", "4M", "4L32", "3M"],
 			waterspout: ["8E", "7E", "6E", "5E", "4E"],
 			whirlpool: ["8M", "7V", "4M"],
-		}
+		},
 	},
 	octillery: {
 		learnset: {
@@ -25770,7 +27182,7 @@ let BattleLearnsets = {
 			psychic: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockblast: ["8M", "8L1", "7L1", "6L1", "5L1", "4L1"],
 			round: ["8M", "7M", "6M", "5M"],
 			scald: ["8M", "7M", "6M", "5M"],
@@ -25800,7 +27212,14 @@ let BattleLearnsets = {
 			whirlpool: ["8M", "7V", "4M"],
 			wrap: ["8L1"],
 			wringout: ["7L28", "6L28", "5L36", "4L36"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 50, "gender": "F", "nature": "Serious", "abilities": ["suctioncups"], "moves": ["octazooka", "icebeam", "signalbeam", "hyperbeam"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 4, "level": 19},
+			{"generation": 7, "level": 10},
+		],
 	},
 	delibird: {
 		learnset: {
@@ -25867,7 +27286,7 @@ let BattleLearnsets = {
 			rapidspin: ["8E", "7E", "7V", "6E", "5E", "4E", "3E"],
 			recycle: ["7T", "6T", "5T", "4M"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rollout: ["4T"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -25887,7 +27306,11 @@ let BattleLearnsets = {
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			weatherball: ["8M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["present"], "pokeball": "pokeball"},
+			{"generation": 6, "level": 10, "abilities": ["vitalspirit"], "moves": ["present", "happyhour"], "pokeball": "cherishball"},
+		],
 	},
 	mantyke: {
 		learnset: {
@@ -25928,7 +27351,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M", "4M"],
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4E"],
 			round: ["8M", "7M", "6M", "5M"],
 			scald: ["8M", "7M", "6M", "5M"],
@@ -25955,7 +27378,7 @@ let BattleLearnsets = {
 			whirlpool: ["8M", "4M"],
 			wideguard: ["8L16", "7L23", "7E", "6L23", "6E", "5L23", "5E"],
 			wingattack: ["8L8", "7L14", "6L14", "5L22", "4L22"],
-		}
+		},
 	},
 	mantine: {
 		learnset: {
@@ -26013,7 +27436,7 @@ let BattleLearnsets = {
 			psybeam: ["8L1", "7L1", "6L1", "5L1", "4L1"],
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockblast: ["8M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M", "4E", "3E"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M"],
@@ -26045,7 +27468,10 @@ let BattleLearnsets = {
 			whirlpool: ["8M", "7V", "4M"],
 			wideguard: ["8L16", "7L23", "7E", "6L23", "6E", "5L23", "5E"],
 			wingattack: ["8L1", "7L14", "7V", "6L14", "5L22", "4L22", "3L36"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["tackle", "bubble", "supersonic"], "pokeball": "pokeball"},
+		],
 	},
 	skarmory: {
 		learnset: {
@@ -26098,7 +27524,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			pursuit: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -26129,7 +27555,7 @@ let BattleLearnsets = {
 			twister: ["4T"],
 			whirlwind: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			xscissor: ["7M", "6M", "5M", "4M"],
-		}
+		},
 	},
 	houndour: {
 		learnset: {
@@ -26185,7 +27611,7 @@ let BattleLearnsets = {
 			rage: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reversal: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			roar: ["7M", "7L13", "7V", "6M", "6L13", "5M", "5L13", "4M", "4L14", "3M", "3L19", "3S1"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -26214,7 +27640,11 @@ let BattleLearnsets = {
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			uproar: ["7T", "6T", "5T", "4T"],
 			willowisp: ["7M", "6M", "5M", "4M", "4E", "3E"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["leer", "ember", "howl"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 17, "moves": ["charm", "feintattack", "ember", "roar"]},
+		],
 	},
 	houndoom: {
 		learnset: {
@@ -26267,7 +27697,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7L13", "7V", "6M", "6L13", "5M", "5L13", "4M", "4L14", "3M", "3L19"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
@@ -26297,7 +27727,13 @@ let BattleLearnsets = {
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			uproar: ["7T", "6T", "5T", "4T"],
 			willowisp: ["7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 50, "nature": "Timid", "abilities": ["flashfire"], "moves": ["flamethrower", "darkpulse", "solarbeam", "sludgebomb"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 4, "level": 20},
+		],
 	},
 	phanpy: {
 		learnset: {
@@ -26344,7 +27780,7 @@ let BattleLearnsets = {
 			playrough: ["7E", "6E"],
 			protect: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -26367,7 +27803,10 @@ let BattleLearnsets = {
 			takedown: ["7L28", "7V", "6L10", "5L10", "4L10", "3L25"],
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			watergun: ["7V"],
-		}
+		},
+		encounters: [
+			{"generation": 2, "level": 2},
+		],
 	},
 	donphan: {
 		learnset: {
@@ -26422,7 +27861,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rapidspin: ["7L6", "7V", "6L6", "5L6", "4L6", "3L41"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
@@ -26447,7 +27886,10 @@ let BattleLearnsets = {
 			swagger: ["7M", "7V", "6M", "5M", "4M", "3T"],
 			thunderfang: ["7L1", "6L1", "5L1", "4L1"],
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 24, "maxEggMoves": 1},
+		],
 	},
 	stantler: {
 		learnset: {
@@ -26504,7 +27946,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "7L33", "6T", "6L33", "5T", "5L33", "4T", "4L33", "3L31"],
 			round: ["7M", "6M", "5M"],
@@ -26538,7 +27980,10 @@ let BattleLearnsets = {
 			wildcharge: ["7M", "6M", "5M"],
 			workup: ["7M", "5M"],
 			zenheadbutt: ["7T", "7L38", "7E", "6T", "6L38", "6E", "5T", "5L38", "5E", "4T", "4L38", "4E"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "abilities": ["intimidate"], "moves": ["tackle", "leer"], "pokeball": "pokeball"},
+		],
 	},
 	smeargle: {
 		learnset: {
@@ -26552,7 +27997,12 @@ let BattleLearnsets = {
 			sketch: ["7L1", "7V", "6L1", "6S2", "5L1", "5D", "4L1", "3L1", "3S0"],
 			sleeptalk: ["5D"],
 			spore: ["5S1"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "abilities": ["owntempo"], "moves": ["sketch"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 50, "gender": "F", "nature": "Jolly", "ivs": {"atk": 31, "spe": 31}, "abilities": ["technician"], "moves": ["falseswipe", "spore", "odorsleuth", "meanlook"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 40, "gender": "M", "nature": "Jolly", "abilities": ["owntempo"], "moves": ["sketch", "furyswipes", "seismictoss", "flamethrower"], "pokeball": "cherishball"},
+		],
 	},
 	miltank: {
 		learnset: {
@@ -26617,7 +28067,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reversal: ["7E", "7V", "6E", "5E", "4E", "3E"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -26653,7 +28103,10 @@ let BattleLearnsets = {
 			workup: ["7M", "5M"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["7T", "7L29", "6T", "6L29", "5T", "5L29", "4T", "4L29"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 20, "perfectIVs": 3, "abilities": ["scrappy"], "moves": ["rollout", "attract", "stomp", "milkdrink"], "pokeball": "cherishball"},
+		],
 	},
 	raikou: {
 		learnset: {
@@ -26703,7 +28156,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7L71", "7V", "6M", "6L71", "5M", "5L71", "4M", "4L71", "3M"],
 			reflect: ["7M", "7L36", "7S6", "7S5", "7V", "6M", "6L36", "6S4", "5M", "5L36", "4M", "4L36", "4S2", "3M", "3L51", "3S1"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7L15", "7V", "6M", "6L15", "5M", "5L15", "4M", "4L15", "4S2", "3M", "3L21", "3S0"],
 			rockclimb: ["4M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -26733,7 +28186,22 @@ let BattleLearnsets = {
 			weatherball: ["4S3", "9T"],
 			wildcharge: ["7M", "6M", "5M"],
 			zapcannon: ["7V", "4S3"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 50, "shiny": 1, "moves": ["thundershock", "roar", "quickattack", "spark"]},
+			{"generation": 3, "level": 70, "moves": ["quickattack", "spark", "reflect", "crunch"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 40, "shiny": 1, "moves": ["roar", "quickattack", "spark", "reflect"]},
+			{"generation": 4, "level": 30, "shiny": true, "nature": "Rash", "moves": ["zapcannon", "aurasphere", "extremespeed", "weatherball"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["spark", "reflect", "crunch", "thunderfang"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["reflect", "crunch", "thunderfang", "discharge"]},
+			{"generation": 7, "level": 60, "moves": ["reflect", "crunch", "thunderfang", "discharge"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "moves": ["thunderbolt", "voltswitch", "extrasensory", "calmmind"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
+		encounters: [
+			{"generation": 2, "level": 40},
+			{"generation": 3, "level": 40},
+		],
 	},
 	entei: {
 		learnset: {
@@ -26788,7 +28256,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			reflect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7L15", "7V", "6M", "6L15", "5M", "5L15", "4M", "4L15", "4S2", "3M", "3L21", "3S0"],
 			rockclimb: ["4M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -26811,7 +28279,22 @@ let BattleLearnsets = {
 			swift: ["7V", "4T", "3T"],
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			willowisp: ["7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 50, "shiny": 1, "moves": ["ember", "roar", "firespin", "stomp"]},
+			{"generation": 3, "level": 70, "moves": ["firespin", "stomp", "flamethrower", "swagger"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 40, "shiny": 1, "moves": ["roar", "firespin", "stomp", "flamethrower"]},
+			{"generation": 4, "level": 30, "shiny": true, "nature": "Adamant", "moves": ["flareblitz", "howl", "extremespeed", "crushclaw"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["stomp", "flamethrower", "swagger", "firefang"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["stomp", "bite", "swagger", "lavaplume"]},
+			{"generation": 7, "level": 60, "moves": ["stomp", "bite", "swagger", "lavaplume"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "moves": ["sacredfire", "stoneedge", "ironhead", "flamecharge"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
+		encounters: [
+			{"generation": 2, "level": 40},
+			{"generation": 3, "level": 40},
+		],
 	},
 	suicune: {
 		learnset: {
@@ -26869,7 +28352,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7L1", "7S5", "7V", "6M", "6L15", "6S4", "5M", "5L15", "4M", "4L15", "4S2", "3M", "3L21", "3S0"],
 			reflect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
@@ -26894,7 +28377,20 @@ let BattleLearnsets = {
 			watergun: ["7V"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["7V", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 50, "shiny": 1, "moves": ["bubblebeam", "raindance", "gust", "aurorabeam"]},
+			{"generation": 3, "level": 70, "moves": ["gust", "aurorabeam", "mist", "mirrorcoat"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 40, "shiny": 1, "moves": ["raindance", "gust", "aurorabeam", "mist"]},
+			{"generation": 4, "level": 30, "shiny": true, "nature": "Relaxed", "moves": ["sheercold", "airslash", "extremespeed", "aquaring"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["aurorabeam", "mist", "mirrorcoat", "icefang"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["bubblebeam", "aurorabeam", "mist", "raindance"]},
+		],
+		eventOnly: true,
+		encounters: [
+			{"generation": 2, "level": 40},
+			{"generation": 3, "level": 40},
+		],
 	},
 	larvitar: {
 		learnset: {
@@ -26941,7 +28437,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["8M", "8L15", "7M", "7L19", "7V", "6M", "6L19", "5M", "5L19", "4M", "4L14", "3T", "3L22"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -26972,7 +28468,11 @@ let BattleLearnsets = {
 			torment: ["7M", "6M", "5M", "4M", "3M"],
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			uproar: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 20, "moves": ["sandstorm", "dragondance", "bite", "outrage"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 5, "shiny": true, "gender": "M", "moves": ["bite", "leer", "sandstorm", "superpower"], "pokeball": "cherishball"},
+		],
 	},
 	pupitar: {
 		learnset: {
@@ -27018,7 +28518,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["8M", "8L15", "7M", "7L19", "7V", "6M", "6L19", "5M", "5L19", "4M", "4L14", "3T", "3L22"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -27048,7 +28548,7 @@ let BattleLearnsets = {
 			torment: ["7M", "6M", "5M", "4M", "3M"],
 			toxic: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			uproar: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	tyranitar: {
 		learnset: {
@@ -27131,7 +28631,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			revenge: ["8M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rockblast: ["8M"],
@@ -27177,7 +28677,19 @@ let BattleLearnsets = {
 			uproar: ["8M", "7T", "6T", "5T", "4T"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["8M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 70, "moves": ["thrash", "scaryface", "crunch", "earthquake"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 100, "gender": "M", "moves": ["fireblast", "icebeam", "stoneedge", "crunch"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 55, "gender": "M", "isHidden": true, "moves": ["payback", "crunch", "earthquake", "seismictoss"]},
+			{"generation": 6, "level": 50, "moves": ["stoneedge", "crunch", "earthquake", "icepunch"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "nature": "Jolly", "moves": ["rockslide", "earthquake", "crunch", "stoneedge"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 55, "shiny": true, "nature": "Adamant", "ivs": {"hp": 31, "atk": 31, "def": 31, "spa": 14, "spd": 31, "spe": 0}, "moves": ["crunch", "rockslide", "lowkick", "protect"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 100, "moves": ["rockslide", "crunch", "icepunch", "lowkick"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 5, "level": 50},
+		],
 	},
 	lugia: {
 		learnset: {
@@ -27250,7 +28762,7 @@ let BattleLearnsets = {
 			recover: ["7L71", "7V", "6L71", "5L71", "4L23", "3L33", "3S0"],
 			reflect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			roost: ["7M", "6M", "5T", "4M"],
@@ -27289,7 +28801,24 @@ let BattleLearnsets = {
 			wonderroom: ["7T", "6T", "5T"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 70, "shiny": 1, "moves": ["recover", "hydropump", "raindance", "swift"]},
+			{"generation": 3, "level": 50, "moves": ["psychoboost", "earthquake", "hydropump", "featherdance"]},
+			{"generation": 4, "level": 45, "shiny": 1, "moves": ["extrasensory", "raindance", "hydropump", "aeroblast"]},
+			{"generation": 4, "level": 70, "shiny": 1, "moves": ["aeroblast", "punishment", "ancientpower", "safeguard"]},
+			{"generation": 5, "level": 5, "isHidden": true, "moves": ["whirlwind", "weatherball"], "pokeball": "dreamball"},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["raindance", "hydropump", "aeroblast", "punishment"]},
+			{"generation": 6, "level": 50, "nature": "Timid", "moves": ["aeroblast", "hydropump", "dragonrush", "icebeam"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["skillswap", "aeroblast", "extrasensory", "ancientpower"]},
+			{"generation": 7, "level": 100, "isHidden": true, "moves": ["aeroblast", "hurricane", "defog", "tailwind"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "moves": ["skillswap", "aeroblast", "extrasensory", "ancientpower"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "moves": ["aeroblast", "earthpower", "psychic", "tailwind"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
+		encounters: [
+			{"generation": 2, "level": 40},
+		],
 	},
 	hooh: {
 		learnset: {
@@ -27356,7 +28885,7 @@ let BattleLearnsets = {
 			recover: ["7L71", "7S6", "7V", "6L71", "6S5", "5L71", "4L23", "3L33", "3S0"],
 			reflect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			rocksmash: ["7V", "6M", "5M", "4M", "3M"],
 			roost: ["7M", "6M", "5T", "4M"],
@@ -27390,7 +28919,23 @@ let BattleLearnsets = {
 			willowisp: ["7M", "6M", "5M", "4M"],
 			zapcannon: ["7V"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 70, "shiny": 1, "moves": ["recover", "fireblast", "sunnyday", "swift"]},
+			{"generation": 4, "level": 45, "shiny": 1, "moves": ["extrasensory", "sunnyday", "fireblast", "sacredfire"]},
+			{"generation": 4, "level": 70, "shiny": 1, "moves": ["sacredfire", "punishment", "ancientpower", "safeguard"]},
+			{"generation": 5, "level": 5, "isHidden": true, "moves": ["whirlwind", "weatherball"], "pokeball": "dreamball"},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["sunnyday", "fireblast", "sacredfire", "punishment"]},
+			{"generation": 6, "level": 50, "shiny": true, "moves": ["sacredfire", "bravebird", "recover", "celebrate"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "moves": ["sacredfire", "bravebird", "recover", "safeguard"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["burnup", "sacredfire", "extrasensory", "ancientpower"]},
+			{"generation": 7, "level": 60, "moves": ["burnup", "sacredfire", "extrasensory", "ancientpower"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "moves": ["sacredfire", "bravebird", "earthquake", "tailwind"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
+		encounters: [
+			{"generation": 2, "level": 40},
+		],
 	},
 	celebi: {
 		learnset: {
@@ -27460,7 +29005,7 @@ let BattleLearnsets = {
 			recover: ["8L60", "7L1", "7V", "6L1", "6S6", "6S5", "5L1", "4L1", "4S4", "3L1", "3S2", "3S0"],
 			reflect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
-			return : ["7M", "7V", "6M", "5M", "4M", "3M"],
+			return: ["7M", "7V", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "7L10", "7S7", "7V", "6M", "6L10", "6S6", "6S5", "5M", "5L10", "4M", "4L10", "3M", "3L10", "3S3", "3S2", "3S0"],
 			sandstorm: ["8M", "7M", "7V", "6M", "5M", "4M", "3M"],
@@ -27496,7 +29041,21 @@ let BattleLearnsets = {
 			wonderroom: ["8M", "7T", "6T", "5T"],
 			worryseed: ["7T", "6T", "5T", "4T"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "moves": ["confusion", "recover", "healbell", "safeguard"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 70, "moves": ["ancientpower", "futuresight", "batonpass", "perishsong"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "moves": ["leechseed", "recover", "healbell", "safeguard"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 30, "moves": ["healbell", "safeguard", "ancientpower", "futuresight"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 50, "moves": ["leafstorm", "recover", "nastyplot", "healingwish"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 10, "moves": ["recover", "healbell", "safeguard", "holdback"], "pokeball": "luxuryball"},
+			{"generation": 6, "level": 100, "moves": ["confusion", "recover", "healbell", "safeguard"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 30, "moves": ["healbell", "safeguard", "ancientpower", "futuresight"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
+		encounters: [
+			{"generation": 2, "level": 30},
+		],
 	},
 	treecko: {
 		learnset: {
@@ -27560,7 +29119,7 @@ let BattleLearnsets = {
 			quickguard: ["7L41", "6L41"],
 			razorwind: ["7E", "6E", "5E", "4E"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["7M", "6M", "5M", "4M", "3M"],
@@ -27585,7 +29144,11 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			workup: ["7M"],
 			worryseed: ["7T", "7E", "6T", "6E", "5T", "5E", "4T", "4E"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["pound", "leer", "absorb"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["pound", "leer", "absorb"]},
+		],
 	},
 	grovyle: {
 		learnset: {
@@ -27643,7 +29206,7 @@ let BattleLearnsets = {
 			quickattack: ["7L1", "6L1", "5L1", "4L1", "3L1"],
 			quickguard: ["7L53", "6L53"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["7M", "6M", "5M", "4M", "3M"],
@@ -27669,7 +29232,7 @@ let BattleLearnsets = {
 			workup: ["7M"],
 			worryseed: ["7T", "6T", "5T", "4T"],
 			xscissor: ["7M", "7L43", "6M", "6L43", "5M", "4M"],
-		}
+		},
 	},
 	sceptile: {
 		learnset: {
@@ -27744,7 +29307,7 @@ let BattleLearnsets = {
 			quickattack: ["7L1", "6L1", "5L1", "4L1", "3L1"],
 			quickguard: ["7L57", "6L57"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "6M", "5M", "5S0", "4M"],
@@ -27773,7 +29336,10 @@ let BattleLearnsets = {
 			workup: ["7M"],
 			worryseed: ["7T", "6T", "5T", "4T"],
 			xscissor: ["7M", "7L45", "6M", "6L16", "5M", "5L16", "4M", "4L16"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 50, "shiny": 1, "moves": ["leafstorm", "dragonpulse", "focusblast", "rockslide"], "pokeball": "cherishball"},
+		],
 	},
 	torchic: {
 		learnset: {
@@ -27829,7 +29395,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M", "3M"],
 			quickattack: ["7L23", "6L23", "5L28", "4L28", "3L28"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			reversal: ["7E", "6E", "5E", "4E", "3E"],
 			rockslide: ["7M", "6M", "5M", "4M", "4E", "3T", "3E"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -27853,7 +29419,12 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			willowisp: ["7M", "6M", "5M", "4M"],
 			workup: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["scratch", "growl", "focusenergy", "ember"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["scratch", "growl", "focusenergy", "ember"]},
+			{"generation": 6, "level": 10, "gender": "M", "isHidden": true, "moves": ["scratch", "growl", "focusenergy", "ember"], "pokeball": "cherishball"},
+		],
 	},
 	combusken: {
 		learnset: {
@@ -27915,7 +29486,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M", "3M"],
 			quickattack: ["7L25", "6L25", "5L32", "4L32", "3L32"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["7M", "6M", "5M", "4M", "3M"],
@@ -27940,7 +29511,7 @@ let BattleLearnsets = {
 			vacuumwave: ["4T"],
 			willowisp: ["7M", "6M", "5M", "4M"],
 			workup: ["7M", "5M"],
-		}
+		},
 	},
 	blaziken: {
 		learnset: {
@@ -28017,7 +29588,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M", "3M"],
 			quickattack: ["7L25", "6L25", "5L32", "4L32", "3L32"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
@@ -28048,7 +29619,11 @@ let BattleLearnsets = {
 			vacuumwave: ["4T"],
 			willowisp: ["7M", "6M", "5M", "4M"],
 			workup: ["7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 70, "moves": ["blazekick", "slash", "mirrormove", "skyuppercut"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 50, "shiny": 1, "moves": ["flareblitz", "highjumpkick", "thunderpunch", "stoneedge"], "pokeball": "cherishball"},
+		],
 	},
 	mudkip: {
 		learnset: {
@@ -28097,7 +29672,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			refresh: ["7E", "6E", "5E", "4E", "3E"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rockthrow: ["7L25", "6L25"],
@@ -28128,7 +29703,11 @@ let BattleLearnsets = {
 			wideguard: ["7E", "6E", "5E"],
 			workup: ["7M"],
 			yawn: ["7E", "6E", "5E", "4E"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["tackle", "growl", "mudslap", "watergun"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["tackle", "growl", "mudslap", "watergun"]},
+		],
 	},
 	marshtomp: {
 		learnset: {
@@ -28181,7 +29760,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7L32", "6M", "6L32", "5M", "5L42", "4M", "4L42", "3M", "3L42"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "7L28", "6M", "6L28", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["7M", "6M", "5M", "4M", "3M"],
@@ -28209,7 +29788,7 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["4M"],
 			workup: ["7M"],
-		}
+		},
 	},
 	swampert: {
 		learnset: {
@@ -28277,7 +29856,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7L32", "6M", "6L32", "5M", "5L46", "4M", "4L46", "3M", "3L46"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "7L28", "6M", "6L28", "5M", "4M", "3T"],
@@ -28309,7 +29888,10 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["4M"],
 			workup: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 50, "shiny": 1, "moves": ["earthquake", "icebeam", "hydropump", "hammerarm"], "pokeball": "cherishball"},
+		],
 	},
 	poochyena: {
 		learnset: {
@@ -28358,7 +29940,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7L16", "6M", "6L16", "5M", "5L21", "4M", "4L21", "3M", "3L21"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
@@ -28385,7 +29967,13 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			uproar: ["7T", "6T", "5T", "4T"],
 			yawn: ["7L37", "7E", "6E", "5E", "4E", "3E"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "abilities": ["runaway"], "moves": ["healbell", "dig", "poisonfang", "howl"]},
+		],
+		encounters: [
+			{"generation": 3, "level": 2},
+		],
 	},
 	mightyena: {
 		learnset: {
@@ -28432,7 +30020,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7L16", "6M", "6L16", "5M", "5L22", "4M", "4L22", "3M", "3L22"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
@@ -28461,7 +30049,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			uproar: ["7T", "6T", "5T", "4T"],
 			yawn: ["7L44"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 64, "gender": "M", "abilities": ["intimidate"], "moves": ["crunch", "firefang", "icefang", "thunderfang"], "pokeball": "cherishball"},
+		],
 	},
 	zigzagoon: {
 		learnset: {
@@ -28513,7 +30104,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8L21", "7M", "7L35", "6M", "6L35", "5M", "5L41", "4M", "4L37", "3M", "3L37"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockclimb: ["7E", "6E", "5E"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rollout: ["4T", "3T"],
@@ -28546,7 +30137,14 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["8M", "4M"],
 			workup: ["8M", "7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": true, "abilities": ["pickup"], "moves": ["tackle", "growl", "tailwhip"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "shiny": 1, "abilities": ["pickup"], "moves": ["tackle", "growl", "tailwhip", "extremespeed"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 3, "level": 2},
+		],
 	},
 	zigzagoongalar: {
 		learnset: {
@@ -28605,7 +30203,7 @@ let BattleLearnsets = {
 			trick: ["8M"],
 			whirlpool: ["8M"],
 			workup: ["8M"],
-		}
+		},
 	},
 	linoone: {
 		learnset: {
@@ -28660,7 +30258,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8L23", "7M", "7L40", "6M", "6L40", "5M", "5L53", "4M", "4L47", "3M", "3L47"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rollout: ["4T", "3T"],
@@ -28698,7 +30296,14 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["8M", "4M"],
 			workup: ["8M", "7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 50, "moves": ["extremespeed", "helpinghand", "babydolleyes", "protect"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 4, "level": 3},
+			{"generation": 6, "level": 17, "maxEggMoves": 1},
+		],
 	},
 	linoonegalar: {
 		learnset: {
@@ -28764,7 +30369,7 @@ let BattleLearnsets = {
 			trick: ["8M"],
 			whirlpool: ["8M"],
 			workup: ["8M"],
-		}
+		},
 	},
 	obstagoon: {
 		learnset: {
@@ -28848,7 +30453,7 @@ let BattleLearnsets = {
 			whirlpool: ["8M"],
 			workup: ["8M"],
 			xscissor: ["8M"],
-		}
+		},
 	},
 	wurmple: {
 		learnset: {
@@ -28858,7 +30463,10 @@ let BattleLearnsets = {
 			snore: ["7T", "6T", "5T", "5D", "4T"],
 			stringshot: ["7L1", "6L1", "5L1", "4T", "4L1", "3L1"],
 			tackle: ["7L1", "6L1", "5L1", "4L1", "3L1"],
-		}
+		},
+		encounters: [
+			{"generation": 3, "level": 2},
+		],
 	},
 	silcoon: {
 		learnset: {
@@ -28867,7 +30475,12 @@ let BattleLearnsets = {
 			harden: ["7L1", "6L1", "5L1", "4L1", "3L1"],
 			irondefense: ["7T", "6T", "5T", "4T"],
 			stringshot: ["4T"],
-		}
+		},
+		encounters: [
+			{"generation": 3, "level": 5},
+			{"generation": 4, "level": 5},
+			{"generation": 6, "level": 2, "maxEggMoves": 1},
+		],
 	},
 	beautifly: {
 		learnset: {
@@ -28907,7 +30520,7 @@ let BattleLearnsets = {
 			quiverdance: ["7L40", "6L40", "5L45"],
 			rage: ["7L37", "6L37"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roost: ["7M", "6M", "5T", "4M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M", "3M"],
@@ -28932,7 +30545,7 @@ let BattleLearnsets = {
 			uturn: ["7M", "6M", "5M", "4M"],
 			venoshock: ["7M", "6M", "5M"],
 			whirlwind: ["7L30", "6L27", "5L27", "4L27", "3L27"],
-		}
+		},
 	},
 	cascoon: {
 		learnset: {
@@ -28941,7 +30554,12 @@ let BattleLearnsets = {
 			harden: ["7L1", "6L1", "5L1", "4L1", "3L1"],
 			irondefense: ["7T", "6T", "5T", "4T"],
 			stringshot: ["4T"],
-		}
+		},
+		encounters: [
+			{"generation": 3, "level": 5},
+			{"generation": 4, "level": 5},
+			{"generation": 6, "level": 2, "maxEggMoves": 1},
+		],
 	},
 	dustox: {
 		learnset: {
@@ -28982,7 +30600,7 @@ let BattleLearnsets = {
 			psychic: ["7M", "6M", "5M", "4M", "3M"],
 			quiverdance: ["7L40", "6L40", "5L45"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roost: ["7M", "6M", "5T", "4M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -29006,7 +30624,7 @@ let BattleLearnsets = {
 			uturn: ["7M", "6M", "5M", "4M"],
 			venoshock: ["7M", "7L20", "6M", "6L20", "5M"],
 			whirlwind: ["7L30", "6L27", "5L27", "4L27", "3L27"],
-		}
+		},
 	},
 	lotad: {
 		learnset: {
@@ -29048,7 +30666,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "8L33", "7M", "7L27", "6M", "6L27", "5M", "5L37", "4M", "4L35", "3M", "3L31"],
 			razorleaf: ["8E", "7E", "6E", "5E", "4E", "3E"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			scald: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -29072,7 +30690,13 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "5D", "4M", "3M"],
 			whirlpool: ["8M", "4M"],
 			zenheadbutt: ["8M", "8L38", "7T", "7L33", "6T", "6L31", "5T", "5L31", "4T", "4L27"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["astonish", "growl", "absorb"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 3, "level": 3},
+		],
 	},
 	lombre: {
 		learnset: {
@@ -29131,7 +30755,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			raindance: ["8M", "8L43", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			scald: ["8M", "7M", "6M", "5M"],
@@ -29158,7 +30782,10 @@ let BattleLearnsets = {
 			watersport: ["7L20", "6L19", "5L19", "4L19", "3L31"],
 			whirlpool: ["8M", "4M"],
 			zenheadbutt: ["8M", "8L50", "7T", "7L40", "6T", "6L31", "5T", "5L31", "4T", "4L27"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 13, "maxEggMoves": 1},
+		],
 	},
 	ludicolo: {
 		learnset: {
@@ -29224,7 +30851,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			raindance: ["8M", "8L1", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -29253,7 +30880,11 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			whirlpool: ["8M", "4M"],
 			zenheadbutt: ["8M", "8L1", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 50, "shiny": 1, "abilities": ["swiftswim"], "moves": ["fakeout", "hydropump", "icebeam", "gigadrain"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 30, "gender": "M", "nature": "Calm", "abilities": ["swiftswim"], "moves": ["scald", "gigadrain", "icebeam", "sunnyday"], "pokeball": "pokeball"},
+		],
 	},
 	seedot: {
 		learnset: {
@@ -29302,7 +30933,7 @@ let BattleLearnsets = {
 			refresh: ["3S1"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rollout: ["8L12", "4T", "3T"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -29324,7 +30955,14 @@ let BattleLearnsets = {
 			takedown: ["8E", "7E", "6E", "5E", "4E", "3E"],
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			worryseed: ["8E", "7T", "7E", "6T", "6E", "5T", "5E", "4T", "4E"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["bide", "harden", "growth"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 17, "moves": ["refresh", "gigadrain", "bulletseed", "secretpower"]},
+		],
+		encounters: [
+			{"generation": 3, "level": 3},
+		],
 	},
 	nuzleaf: {
 		learnset: {
@@ -29389,7 +31027,7 @@ let BattleLearnsets = {
 			razorwind: ["7L20", "6L20", "5L37", "4L37", "3L37"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M", "3M"],
@@ -29418,7 +31056,10 @@ let BattleLearnsets = {
 			torment: ["8L1", "7M", "7L9", "6M", "6L16", "5M", "5L25", "4M", "4L25", "3M", "3L25"],
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			worryseed: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 13, "maxEggMoves": 1},
+		],
 	},
 	shiftry: {
 		learnset: {
@@ -29495,7 +31136,7 @@ let BattleLearnsets = {
 			razorleaf: ["8L1", "7L1", "6L1", "5L1", "4L1"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			revenge: ["8M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -29532,7 +31173,7 @@ let BattleLearnsets = {
 			whirlwind: ["8L1", "7L1", "6L1", "5L1", "4L1"],
 			worryseed: ["7T", "6T", "5T", "4T"],
 			xscissor: ["8M", "7M", "6M", "5M", "4M"],
-		}
+		},
 	},
 	taillow: {
 		learnset: {
@@ -29578,7 +31219,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			refresh: ["7E", "6E", "5E", "4E", "3E"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			reversal: ["7L45"],
 			roost: ["7M", "7E", "6M", "6E", "5T", "5E", "4M"],
 			round: ["7M", "6M", "5M"],
@@ -29600,7 +31241,13 @@ let BattleLearnsets = {
 			whirlwind: ["7E", "6E", "5E", "4E"],
 			wingattack: ["7L13", "6L13", "5L13", "4L13", "3L13"],
 			workup: ["7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["peck", "growl", "focusenergy", "featherdance"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 3, "level": 4},
+		],
 	},
 	swellow: {
 		learnset: {
@@ -29642,7 +31289,7 @@ let BattleLearnsets = {
 			quickguard: ["7L27", "6L27"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			reversal: ["7L57"],
 			roost: ["7M", "6M", "5T", "4M"],
 			round: ["7M", "6M", "5M"],
@@ -29662,7 +31309,13 @@ let BattleLearnsets = {
 			uturn: ["7M", "6M", "5M", "4M"],
 			wingattack: ["7L13", "6L13", "5L13", "4L13", "3L13"],
 			workup: ["7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 43, "moves": ["batonpass", "skyattack", "agility", "facade"]},
+		],
+		encounters: [
+			{"generation": 4, "level": 20},
+		],
 	},
 	wingull: {
 		learnset: {
@@ -29704,7 +31357,7 @@ let BattleLearnsets = {
 			quickattack: ["8L5", "7L19", "6L19", "5L24", "4L24", "3L31"],
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roost: ["8L40", "7M", "7L33", "7E", "6M", "6L26", "6E", "5T", "5L29", "5E", "4M", "4L29"],
 			round: ["8M", "7M", "6M", "5M"],
 			scald: ["8M", "7M", "6M", "5M"],
@@ -29730,7 +31383,10 @@ let BattleLearnsets = {
 			watersport: ["7E", "6E", "5E", "4E", "3E"],
 			wideguard: ["8E", "7E", "6E"],
 			wingattack: ["8L15", "7L8", "6L8", "5L11", "4L11", "3L13"],
-		}
+		},
+		encounters: [
+			{"generation": 3, "level": 2},
+		],
 	},
 	pelipper: {
 		learnset: {
@@ -29776,7 +31432,7 @@ let BattleLearnsets = {
 			quickattack: ["8L1"],
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roost: ["8L48", "7M", "7L39", "6M", "6L22", "5T", "5L31", "4M", "4L31"],
 			round: ["8M", "7M", "6M", "5M"],
 			scald: ["8M", "7M", "6M", "5M"],
@@ -29809,7 +31465,11 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			whirlpool: ["8M", "4M"],
 			wingattack: ["8L15", "7L1", "6L1", "5L1", "4L1", "3L1"],
-		}
+		},
+		encounters: [
+			{"generation": 4, "level": 15},
+			{"generation": 6, "level": 18, "maxEggMoves": 1},
+		],
 	},
 	ralts: {
 		learnset: {
@@ -29879,7 +31539,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["8M", "7M", "6M", "5M", "4M", "3M", "3S2"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -29913,7 +31573,16 @@ let BattleLearnsets = {
 			wish: ["3S0"],
 			wonderroom: ["8M", "7T", "6T", "5T"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["growl", "wish"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["growl", "charm"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 20, "moves": ["sing", "shockwave", "reflect", "confusion"]},
+			{"generation": 6, "level": 1, "isHidden": true, "moves": ["growl", "encore"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 3, "level": 4},
+		],
 	},
 	kirlia: {
 		learnset: {
@@ -29976,7 +31645,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -30006,7 +31675,10 @@ let BattleLearnsets = {
 			willowisp: ["8M", "7M", "6M", "5M"],
 			wonderroom: ["8M", "7T", "6T", "5T"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		encounters: [
+			{"generation": 4, "level": 6},
+		],
 	},
 	gardevoir: {
 		learnset: {
@@ -30080,7 +31752,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -30111,7 +31783,11 @@ let BattleLearnsets = {
 			wish: ["8L28", "7L14", "6L14", "5L17", "4L17"],
 			wonderroom: ["8M", "7T", "6T", "5T"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 50, "shiny": 1, "abilities": ["trace"], "moves": ["hypnosis", "thunderbolt", "focusblast", "psychic"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "shiny": true, "gender": "F", "abilities": ["synchronize"], "moves": ["dazzlinggleam", "moonblast", "storedpower", "calmmind"], "pokeball": "cherishball"},
+		],
 	},
 	gallade: {
 		learnset: {
@@ -30200,7 +31876,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			revenge: ["8M"],
 			reversal: ["8M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M"],
@@ -30245,7 +31921,7 @@ let BattleLearnsets = {
 			workup: ["8M", "7M", "5M"],
 			xscissor: ["8M", "7M", "6M", "5M", "4M"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	surskit: {
 		learnset: {
@@ -30290,7 +31966,7 @@ let BattleLearnsets = {
 			quickattack: ["7L6", "6L6", "5L7", "4L7", "3L7", "3S1"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			scald: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -30311,7 +31987,14 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			watersport: ["7L14", "6L14", "5L19", "4L19", "3L19"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["bubble", "mudsport"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["bubble", "quickattack"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 3, "level": 3},
+		],
 	},
 	masquerain: {
 		learnset: {
@@ -30354,7 +32037,7 @@ let BattleLearnsets = {
 			quiverdance: ["7L1", "6L1", "5L68"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roost: ["7M", "6M", "5T", "4M"],
 			round: ["7M", "6M", "5M"],
 			scald: ["7M", "6M", "5M"],
@@ -30382,7 +32065,10 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			watersport: ["7L1", "6L1", "5L1", "4L1", "3L1"],
 			whirlwind: ["7L1", "6L1", "5L54", "4L54", "3L53"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 21, "maxEggMoves": 1},
+		],
 	},
 	shroomish: {
 		learnset: {
@@ -30419,7 +32105,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M", "3M"],
 			refresh: ["3S0"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M", "3M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -30441,7 +32127,10 @@ let BattleLearnsets = {
 			venoshock: ["7M", "6M", "5M"],
 			wakeupslap: ["7E", "6E", "5E", "4E"],
 			worryseed: ["7T", "7L22", "7E", "6T", "6L22", "6E", "5T", "5L29", "5E", "4T", "4L29", "4E"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 15, "abilities": ["effectspore"], "moves": ["refresh", "falseswipe", "megadrain", "stunspore"]},
+		],
 	},
 	breloom: {
 		learnset: {
@@ -30498,7 +32187,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["7M", "6M", "5M", "4M"],
@@ -30529,7 +32218,7 @@ let BattleLearnsets = {
 			venoshock: ["7M", "6M", "5M"],
 			workup: ["7M", "5M"],
 			worryseed: ["7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	slakoth: {
 		learnset: {
@@ -30587,7 +32276,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["7M", "6M", "5M", "4M"],
@@ -30616,7 +32305,7 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			workup: ["7M", "5M"],
 			yawn: ["7L1", "6L1", "5L1", "5D", "4L1", "3L1"],
-		}
+		},
 	},
 	vigoroth: {
 		learnset: {
@@ -30672,7 +32361,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			reversal: ["7L1", "6L1", "5L55", "4L49", "3L49"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
@@ -30703,7 +32392,7 @@ let BattleLearnsets = {
 			uproar: ["7T", "7L1", "6T", "6L1", "5T", "5L1", "4T", "4L1", "3L1"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			workup: ["7M", "5M"],
-		}
+		},
 	},
 	slaking: {
 		learnset: {
@@ -30769,7 +32458,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "4S0", "3M"],
+			return: ["7M", "6M", "5M", "4M", "4S0", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
@@ -30801,7 +32490,10 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			workup: ["7M", "5M"],
 			yawn: ["7L1", "6L1", "5L1", "4L1", "3L1"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 50, "gender": "M", "nature": "Adamant", "moves": ["gigaimpact", "return", "shadowclaw", "aerialace"], "pokeball": "cherishball"},
+		],
 	},
 	nincada: {
 		learnset: {
@@ -30839,7 +32531,7 @@ let BattleLearnsets = {
 			nightslash: ["8E", "7E", "6E", "5E", "5D", "4E"],
 			protect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			sandattack: ["8L1", "7L9", "6L9", "5L9", "4L9", "3L9"],
 			sandstorm: ["8M", "7M", "6M", "5M", "4M", "3M"],
@@ -30858,7 +32550,7 @@ let BattleLearnsets = {
 			swagger: ["7M", "6M", "5M", "4M", "3T"],
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			xscissor: ["8M", "7M", "6M", "5M", "4M"],
-		}
+		},
 	},
 	ninjask: {
 		learnset: {
@@ -30902,7 +32594,7 @@ let BattleLearnsets = {
 			ominouswind: ["4T"],
 			protect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roost: ["7M", "6M", "5T", "4M"],
 			round: ["8M", "7M", "6M", "5M"],
 			sandattack: ["8L1", "7L1", "6L1", "5L1", "4L1", "3L1"],
@@ -30929,7 +32621,7 @@ let BattleLearnsets = {
 			uproar: ["8M", "7T", "6T", "5T", "4T"],
 			uturn: ["8M", "7M", "6M", "5M", "4M"],
 			xscissor: ["8M", "8L64", "7M", "7L47", "6M", "6L47", "5M", "5L52", "4M", "4L52"],
-		}
+		},
 	},
 	shedinja: {
 		learnset: {
@@ -30973,7 +32665,7 @@ let BattleLearnsets = {
 			phantomforce: ["8M", "8L64", "7L45", "6L45"],
 			protect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			sandattack: ["8L1", "7L1", "6L9", "5L9", "4L9", "3L9"],
 			sandstorm: ["8M", "7M", "6M", "5M", "4M", "3M"],
@@ -31001,7 +32693,10 @@ let BattleLearnsets = {
 			trick: ["8M", "7T", "6T", "5T", "4T"],
 			willowisp: ["8M", "7M", "6M", "5M", "4M"],
 			xscissor: ["8M", "7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 50, "moves": ["spite", "confuseray", "shadowball", "grudge"], "pokeball": "pokeball"},
+		],
 	},
 	whismur: {
 		learnset: {
@@ -31049,7 +32744,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7L32", "6M", "6L32", "5M", "5L45", "4M", "4L41", "3M", "3L41"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7L29", "6M", "6L29", "5M", "5L35", "4M", "4L35", "3M", "3L35"],
 			rollout: ["4T", "3T"],
 			round: ["7M", "6M", "5M"],
@@ -31078,7 +32773,10 @@ let BattleLearnsets = {
 			whirlwind: ["7E"],
 			workup: ["7M", "5M"],
 			zenheadbutt: ["7T", "6T", "5T", "5D", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["pound", "uproar", "teeterdance"], "pokeball": "pokeball"},
+		],
 	},
 	loudred: {
 		learnset: {
@@ -31128,7 +32826,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7L36", "6M", "6L36", "5M", "5L57", "4M", "4L51", "3M", "3L51"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7L32", "6M", "6L32", "5M", "5L43", "4M", "4L43", "3M", "3L43"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -31160,7 +32858,10 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			workup: ["7M", "5M"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 16, "maxEggMoves": 1},
+		],
 	},
 	exploud: {
 		learnset: {
@@ -31220,7 +32921,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7L36", "6M", "6L36", "5M", "5L55", "4M", "4L55", "3M", "3L55", "3S0"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7L32", "6M", "6L32", "5M", "5L45", "4M", "4L45", "3M", "3L45", "3S1", "3S0"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
@@ -31256,7 +32957,11 @@ let BattleLearnsets = {
 			whirlpool: ["4M"],
 			workup: ["7M", "5M"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 100, "moves": ["roar", "rest", "sleeptalk", "hypervoice"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 50, "moves": ["stomp", "screech", "hyperbeam", "roar"], "pokeball": "pokeball"},
+		],
 	},
 	makuhita: {
 		learnset: {
@@ -31316,7 +33021,7 @@ let BattleLearnsets = {
 			refresh: ["3S0"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			revenge: ["7E", "6E", "5E", "4E", "3E"],
 			reversal: ["7L43", "6L43", "5L43", "4L43", "3L49"],
 			rockclimb: ["4M"],
@@ -31348,7 +33053,10 @@ let BattleLearnsets = {
 			whirlwind: ["7L16", "6L16", "5L16", "4L16", "3L22"],
 			wideguard: ["7E", "6E", "5E"],
 			workup: ["7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 18, "moves": ["refresh", "brickbreak", "armthrust", "rocktomb"]},
+		],
 	},
 	hariyama: {
 		learnset: {
@@ -31408,7 +33116,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			reversal: ["7L50", "6L50", "5L57", "4L57", "3L55"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
@@ -31441,7 +33149,10 @@ let BattleLearnsets = {
 			whirlpool: ["4M"],
 			whirlwind: ["7L16", "6L16", "5L16", "4L16", "3L22"],
 			workup: ["7M", "5M"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 22},
+		],
 	},
 	nosepass: {
 		learnset: {
@@ -31488,7 +33199,7 @@ let BattleLearnsets = {
 			powergem: ["7L25", "6L25", "5L49", "4L49"],
 			protect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7L16", "6M", "6L16", "5M", "5L43", "4M", "4L43", "3M", "3L37"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockblast: ["7L28", "6L18", "5L18"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "7L22", "6M", "6L22", "5M", "5L31", "4M", "4L31", "3T", "3L28", "3S0"],
@@ -31523,7 +33234,10 @@ let BattleLearnsets = {
 			voltswitch: ["7M", "6M", "5M"],
 			wideguard: ["7E", "6E"],
 			zapcannon: ["7L43", "6L43", "5L67", "4L61", "3L43"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 26, "moves": ["helpinghand", "thunderbolt", "thunderwave", "rockslide"]},
+		],
 	},
 	probopass: {
 		learnset: {
@@ -31570,7 +33284,7 @@ let BattleLearnsets = {
 			powergem: ["7L25", "6L25", "5L49", "4L49"],
 			protect: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "7L16", "6M", "6L16", "5M", "5L43", "4M", "4L43"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rockblast: ["7L28", "6L18", "5L18"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "7L22", "6M", "6L22", "5M", "5L31", "4M", "4L31"],
@@ -31605,7 +33319,7 @@ let BattleLearnsets = {
 			voltswitch: ["7M", "6M", "5M"],
 			wideguard: ["7L1", "6L1"],
 			zapcannon: ["7L43", "6L43", "5L67", "4L61"],
-		}
+		},
 	},
 	skitty: {
 		learnset: {
@@ -31665,7 +33379,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rollout: ["4T", "3T", "3S1"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M", "3M"],
@@ -31696,13 +33410,22 @@ let BattleLearnsets = {
 			wish: ["7E", "6E", "5E", "4E", "3E"],
 			workup: ["7M", "5M"],
 			zenheadbutt: ["7T", "7E", "6T", "6E", "5T", "5E", "4T", "4E"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "abilities": ["cutecharm"], "moves": ["tackle", "growl", "tailwhip", "payday"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "shiny": 1, "abilities": ["cutecharm"], "moves": ["growl", "tackle", "tailwhip", "rollout"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "gender": "M", "abilities": ["cutecharm"], "moves": ["growl", "tackle", "tailwhip", "attract"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 3, "level": 3, "gender": "F", "ivs": {"hp": 5, "atk": 4, "def": 4, "spa": 5, "spd": 4, "spe": 4}, "abilities": ["cutecharm"], "pokeball": "pokeball"},
+		],
 	},
 	delcatty: {
 		learnset: {
 			payday: ["9T"],
 			tailslap: ["9T"],
 			drainingkiss: ["9T"],
+			nastyplot: ["9T"],
 			nastyplot: ["9T"],
 			attract: ["7M", "7L1", "6M", "6L1", "5M", "5L1", "4M", "4L1", "3M", "3L1", "3S0"],
 			blizzard: ["7M", "6M", "5M", "4M", "3M"],
@@ -31747,7 +33470,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rollout: ["4T", "3T"],
 			round: ["7M", "6M", "5M"],
@@ -31776,7 +33499,10 @@ let BattleLearnsets = {
 			wildcharge: ["7M", "6M", "5M"],
 			workup: ["7M", "5M"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 18, "abilities": ["cutecharm"], "moves": ["sweetkiss", "secretpower", "attract", "shockwave"]},
+		],
 	},
 	sableye: {
 		learnset: {
@@ -31864,7 +33590,7 @@ let BattleLearnsets = {
 			recover: ["8E", "7E", "6E", "6S4", "6S3", "5E", "4E", "3E", "3S1"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
@@ -31898,7 +33624,14 @@ let BattleLearnsets = {
 			willowisp: ["8M", "7M", "6M", "6S4", "6S3", "5M", "4M"],
 			wonderroom: ["8M", "7T", "6T", "5T"],
 			zenheadbutt: ["8M", "8L42", "7T", "7L34", "6T", "6L1", "5T", "5L53", "4T", "4L50"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "abilities": ["keeneye"], "moves": ["leer", "scratch", "foresight", "nightshade"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 33, "abilities": ["keeneye"], "moves": ["helpinghand", "shadowball", "feintattack", "recover"]},
+			{"generation": 5, "level": 50, "gender": "M", "isHidden": true, "moves": ["foulplay", "octazooka", "tickle", "trick"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "nature": "Relaxed", "ivs": {"hp": 31, "spa": 31}, "isHidden": true, "moves": ["calmmind", "willowisp", "recover", "shadowball"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 100, "nature": "Bold", "isHidden": true, "moves": ["willowisp", "recover", "taunt", "shockwave"], "pokeball": "cherishball"},
+		],
 	},
 	mawile: {
 		learnset: {
@@ -31975,7 +33708,7 @@ let BattleLearnsets = {
 			punishment: ["7E", "6E", "5E", "4E"],
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M", "3M"],
@@ -32012,7 +33745,13 @@ let BattleLearnsets = {
 			torment: ["7M", "6M", "5M", "4M", "3M"],
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			visegrip: ["7L17", "6L17", "5L21", "4L21", "3L21", "3S1"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["astonish", "faketears"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 22, "moves": ["sing", "falseswipe", "visegrip", "irondefense"]},
+			{"generation": 6, "level": 50, "abilities": ["intimidate"], "moves": ["ironhead", "playrough", "firefang", "suckerpunch"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 100, "abilities": ["intimidate"], "moves": ["suckerpunch", "protect", "playrough", "ironhead"], "pokeball": "cherishball"},
+		],
 	},
 	aron: {
 		learnset: {
@@ -32058,7 +33797,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7L16", "6M", "6L16", "5M", "5L32", "4M", "4L32", "3M", "3L34"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			reversal: ["7E", "6E"],
 			roar: ["7M", "7L19", "6M", "6L18", "5M", "5L22", "4M", "4L22", "3M", "3L21"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
@@ -32088,7 +33827,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			uproar: ["7T", "6T", "5T", "4T"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
-		}
+		},
 	},
 	lairon: {
 		learnset: {
@@ -32133,7 +33872,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7L16", "6M", "6L16", "5M", "5L34", "4M", "4L34", "3M", "3L37"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7L19", "6M", "6L18", "5M", "5L22", "4M", "4L22", "3M", "3L21"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "7L25", "6M", "6L25", "5M", "4M", "3T"],
@@ -32161,7 +33900,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			uproar: ["7T", "6T", "5T", "4T"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
-		}
+		},
 	},
 	aggron: {
 		learnset: {
@@ -32243,7 +33982,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7L16", "6M", "6L16", "5M", "5L34", "4M", "4L34", "3M", "3L37", "3S1", "3S0"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "7L19", "6M", "6L18", "5M", "5L22", "4M", "4L22", "3M", "3L21"],
 			rockclimb: ["4M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
@@ -32283,7 +34022,12 @@ let BattleLearnsets = {
 			uproar: ["7T", "6T", "5T", "4T"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 100, "moves": ["irontail", "protect", "metalsound", "doubleedge"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 50, "moves": ["takedown", "irontail", "protect", "metalsound"], "pokeball": "pokeball"},
+			{"generation": 6, "level": 50, "nature": "Brave", "abilities": ["rockhead"], "moves": ["ironhead", "earthquake", "headsmash", "rockslide"], "pokeball": "cherishball"},
+		],
 	},
 	meditite: {
 		learnset: {
@@ -32357,7 +34101,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			reversal: ["7L39", "6L39", "5L46", "4L43", "3L41"],
 			rockslide: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -32382,7 +34126,11 @@ let BattleLearnsets = {
 			vacuumwave: ["4T"],
 			workup: ["7M", "5M"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["bide", "meditate", "confusion"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 20, "moves": ["dynamicpunch", "confusion", "shadowball", "detect"], "pokeball": "pokeball"},
+		],
 	},
 	medicham: {
 		learnset: {
@@ -32454,7 +34202,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			reversal: ["7L42", "6L42", "5L55", "4L49", "3L46"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -32479,7 +34227,11 @@ let BattleLearnsets = {
 			vacuumwave: ["4T"],
 			workup: ["7M", "5M"],
 			zenheadbutt: ["7T", "7L1", "6T", "6L1", "5T", "4T"],
-		}
+		},
+		encounters: [
+			{"generation": 4, "level": 35},
+			{"generation": 6, "level": 34, "maxEggMoves": 1},
+		],
 	},
 	electrike: {
 		learnset: {
@@ -32522,7 +34274,7 @@ let BattleLearnsets = {
 			quickattack: ["8L12", "7L10", "6L10", "5L17", "4L17", "3L17"],
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["8L28", "7M", "7L34", "6M", "6L34", "5M", "5L36", "4M", "4L36", "3M", "3L28"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -32547,7 +34299,7 @@ let BattleLearnsets = {
 			uproar: ["8M", "7T", "7E", "6T", "6E", "5T", "5E", "4E", "3E"],
 			voltswitch: ["8M", "7M", "6M", "5M"],
 			wildcharge: ["8M", "8L40", "7M", "7L39", "6M", "6L39", "5M", "5L49"],
-		}
+		},
 	},
 	manectric: {
 		learnset: {
@@ -32595,7 +34347,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M", "3S0"],
 			refresh: ["3S0"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["8L30", "7M", "7L36", "6M", "6L36", "5M", "5L42", "4M", "4L42", "3M", "3L31"],
 			round: ["8M", "7M", "6M", "5M"],
 			scaryface: ["8M"],
@@ -32620,7 +34372,11 @@ let BattleLearnsets = {
 			uproar: ["8M", "7T", "6T", "5T"],
 			voltswitch: ["8M", "7M", "6M", "6S1", "5M"],
 			wildcharge: ["8M", "8L48", "7M", "7L42", "6M", "6L42", "5M", "5L61"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 44, "moves": ["refresh", "thunder", "raindance", "bite"]},
+			{"generation": 6, "level": 50, "nature": "Timid", "abilities": ["lightningrod"], "moves": ["overheat", "thunderbolt", "voltswitch", "protect"], "pokeball": "cherishball"},
+		],
 	},
 	plusle: {
 		learnset: {
@@ -32677,7 +34433,7 @@ let BattleLearnsets = {
 			quickattack: ["7L1", "6L1", "5L7", "4L7", "3L10", "3S1"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rollout: ["4T", "3T"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -32702,7 +34458,11 @@ let BattleLearnsets = {
 			voltswitch: ["7M", "6M", "5M"],
 			wildcharge: ["7M", "6M", "5M"],
 			wish: ["7E", "6E", "5E", "4E", "3E"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["growl", "thunderwave", "mudsport"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["growl", "thunderwave", "quickattack"], "pokeball": "pokeball"},
+		],
 	},
 	minun: {
 		learnset: {
@@ -32757,7 +34517,7 @@ let BattleLearnsets = {
 			quickattack: ["7L1", "6L1", "5L7", "4L7", "3L10", "3S1"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rollout: ["4T", "3T"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -32785,7 +34545,11 @@ let BattleLearnsets = {
 			watersport: ["3S0"],
 			wildcharge: ["7M", "6M", "5M"],
 			wish: ["7E", "6E", "5E", "4E", "3E"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["growl", "thunderwave", "watersport"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["growl", "thunderwave", "quickattack"], "pokeball": "pokeball"},
+		],
 	},
 	volbeat: {
 		learnset: {
@@ -32840,7 +34604,7 @@ let BattleLearnsets = {
 			quickattack: ["7L12", "6L12", "5L17", "4L17", "3L17"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roost: ["7M", "6M", "5T", "4M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -32871,7 +34635,7 @@ let BattleLearnsets = {
 			uturn: ["7M", "6M", "5M", "4M"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			zenheadbutt: ["7T", "7L33", "6T", "6L33", "5T", "5L37", "4T", "4L37"],
-		}
+		},
 	},
 	illumise: {
 		learnset: {
@@ -32930,7 +34694,7 @@ let BattleLearnsets = {
 			quickattack: ["7L12", "6L12", "5L17", "4L17", "3L17"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roost: ["7M", "6M", "5T", "4M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -32960,7 +34724,7 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			wish: ["7L22", "6L21", "5L21", "4L21", "3L21"],
 			zenheadbutt: ["7T", "7L33", "6T", "6L33", "5T", "5L37", "4T", "4L37"],
-		}
+		},
 	},
 	budew: {
 		learnset: {
@@ -32998,7 +34762,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			razorleaf: ["8E", "7E", "6E", "5E", "4E"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M"],
 			seedbomb: ["8M", "7T", "7E", "6T", "6E", "5T", "5E", "4T"],
@@ -33022,7 +34786,7 @@ let BattleLearnsets = {
 			watersport: ["7L7", "6L7", "5L7", "4L7"],
 			weatherball: ["8M"],
 			worryseed: ["8L1", "7T", "7L16", "6T", "6L16", "5T", "5L16", "4T", "4L16"],
-		}
+		},
 	},
 	roselia: {
 		learnset: {
@@ -33074,7 +34838,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			razorleaf: ["8E", "7E", "6E", "5E", "4E"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
 			seedbomb: ["8M", "7T", "7E", "6T", "6E", "5T", "5E", "4T"],
@@ -33100,7 +34864,11 @@ let BattleLearnsets = {
 			venoshock: ["8M", "7M", "6M", "5M"],
 			weatherball: ["8M"],
 			worryseed: ["8L1", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["absorb", "growth", "poisonsting"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 22, "moves": ["sweetkiss", "magicalleaf", "leechseed", "grasswhistle"]},
+		],
 	},
 	roserade: {
 		learnset: {
@@ -33147,7 +34915,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M", "4M"],
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M"],
 			seedbomb: ["8M", "7T", "6T", "5T", "4T"],
@@ -33172,7 +34940,7 @@ let BattleLearnsets = {
 			venoshock: ["8M", "7M", "6M", "5M"],
 			weatherball: ["8M", "7L1", "6L1", "5L1", "4L1"],
 			worryseed: ["8L1", "7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	gulpin: {
 		learnset: {
@@ -33218,7 +34986,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M", "3M"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rollout: ["4T", "3T"],
 			round: ["7M", "6M", "5M"],
@@ -33250,7 +35018,10 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			wringout: ["7L44", "6L44", "5L54", "4L49"],
 			yawn: ["7L5", "6L5", "5L6", "4L6", "3L6"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 17, "moves": ["sing", "shockwave", "sludge", "toxic"]},
+		],
 	},
 	swalot: {
 		learnset: {
@@ -33298,7 +35069,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M", "3M"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rollout: ["4T", "3T"],
 			round: ["7M", "6M", "5M"],
@@ -33328,7 +35099,7 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			wringout: ["7L1", "6L1", "5L66", "4L59"],
 			yawn: ["7L1", "6L1", "5L1", "4L1", "3L1"],
-		}
+		},
 	},
 	carvanha: {
 		learnset: {
@@ -33373,7 +35144,7 @@ let BattleLearnsets = {
 			refresh: ["3S0"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			scald: ["7M", "6M", "5M"],
 			scaryface: ["7L29", "6L11", "5L11", "4L11", "3L16", "3S0"],
@@ -33399,7 +35170,11 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M", "3S0"],
 			whirlpool: ["4M"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 15, "moves": ["refresh", "waterpulse", "bite", "scaryface"]},
+			{"generation": 6, "level": 1, "isHidden": true, "moves": ["leer", "bite", "hydropump"], "pokeball": "pokeball"},
+		],
 	},
 	sharpedo: {
 		learnset: {
@@ -33451,7 +35226,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["7M", "6M", "5M", "4M", "3M"],
@@ -33481,7 +35256,14 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["4M"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 50, "nature": "Adamant", "isHidden": true, "moves": ["aquajet", "crunch", "icefang", "destinybond"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 43, "gender": "M", "perfectIVs": 2, "moves": ["scaryface", "slash", "poisonfang", "crunch"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 7, "level": 10},
+		],
 	},
 	wailmer: {
 		learnset: {
@@ -33525,7 +35307,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8L39", "7M", "7L29", "6M", "6L27", "5M", "5L27", "4M", "4L27", "3M", "3L37"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M", "3M"],
@@ -33552,7 +35334,7 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			whirlpool: ["8M", "8L27", "7L13", "6L13", "5L14", "4M", "4L14", "3L19"],
 			zenheadbutt: ["8M", "7T", "7E", "6T", "6E", "5T", "5E"],
-		}
+		},
 	},
 	wailord: {
 		learnset: {
@@ -33598,7 +35380,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8L39", "7M", "7L29", "6M", "6L25", "5M", "5L27", "4M", "4L27", "3M", "3L37", "3S1", "3S0"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M", "3M"],
@@ -33623,7 +35405,17 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			whirlpool: ["8M", "8L27", "7L13", "6L13", "5L14", "4M", "4L14", "3L19"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 100, "moves": ["rest", "waterspout", "amnesia", "hydropump"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 50, "moves": ["waterpulse", "mist", "rest", "waterspout"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 3, "level": 25},
+			{"generation": 4, "level": 35},
+			{"generation": 5, "level": 30},
+			{"generation": 7, "level": 10},
+		],
 	},
 	numel: {
 		learnset: {
@@ -33674,7 +35466,7 @@ let BattleLearnsets = {
 			overheat: ["7M", "6M", "5M", "4M", "3M"],
 			protect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["7M", "6M", "5M", "4M", "3M"],
@@ -33699,7 +35491,11 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			willowisp: ["7M", "6M", "5M", "4M"],
 			yawn: ["7L36", "7E", "6L36", "6E", "5L36", "5E", "4E"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 14, "abilities": ["oblivious"], "moves": ["charm", "takedown", "dig", "ember"]},
+			{"generation": 6, "level": 1, "moves": ["growl", "tackle", "ironhead"], "pokeball": "pokeball"},
+		],
 	},
 	camerupt: {
 		learnset: {
@@ -33753,7 +35549,7 @@ let BattleLearnsets = {
 			overheat: ["7M", "6M", "5M", "4M", "3M"],
 			protect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "7L1", "6M", "6L33", "6S0", "5M", "5L39", "4M", "4L33", "3T", "3L33"],
@@ -33779,7 +35575,13 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			willowisp: ["7M", "6M", "5M", "4M"],
 			yawn: ["7L39", "6L39", "6S0", "5L39"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 43, "gender": "M", "perfectIVs": 2, "abilities": ["solidrock"], "moves": ["curse", "takedown", "rockslide", "yawn"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 6, "level": 30},
+		],
 	},
 	torkoal: {
 		learnset: {
@@ -33832,7 +35634,7 @@ let BattleLearnsets = {
 			protect: ["8M", "8L24", "7M", "7L30", "6M", "6L1", "5M", "5L36", "4M", "4L36", "3M", "3L27"],
 			rapidspin: ["8L8", "7L10", "6L10", "5L23", "4L23"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M"],
@@ -33861,7 +35663,7 @@ let BattleLearnsets = {
 			willowisp: ["8M", "7M", "6M", "5M", "4M"],
 			withdraw: ["8L4", "7L7", "6L7", "5L7", "4L7"],
 			yawn: ["8E", "7E", "6E", "5E", "4E", "3E"],
-		}
+		},
 	},
 	spoink: {
 		learnset: {
@@ -33911,7 +35713,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "5D", "4M"],
 			reflect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7L29", "6M", "6L29", "5M", "5L29", "4M", "4L29", "3M", "3L37"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -33939,7 +35741,10 @@ let BattleLearnsets = {
 			uproar: ["3S0"],
 			whirlwind: ["7E", "6E", "5E"],
 			zenheadbutt: ["7T", "7L26", "7E", "6T", "6L26", "6E", "5T", "5L26", "5E", "4T", "4L26", "4E"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "abilities": ["owntempo"], "moves": ["splash", "uproar"], "pokeball": "pokeball"},
+		],
 	},
 	grumpig: {
 		learnset: {
@@ -34004,7 +35809,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7L35", "6M", "6L29", "5M", "5L29", "4M", "4L29", "3M", "3L43"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -34032,7 +35837,10 @@ let BattleLearnsets = {
 			trick: ["7T", "6T", "5T", "4T"],
 			trickroom: ["7M", "6M", "5M", "4M"],
 			zenheadbutt: ["7T", "7L26", "6T", "6L26", "5T", "5L26", "4T", "4L26"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 30},
+		],
 	},
 	spinda: {
 		learnset: {
@@ -34097,7 +35905,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M", "4E", "3T", "3E"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["7M", "6M", "5M", "4M", "3M"],
@@ -34138,7 +35946,10 @@ let BattleLearnsets = {
 			wish: ["7E", "6E", "5E", "4E", "3E"],
 			workup: ["7M", "5M"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["tackle", "uproar", "sing"], "pokeball": "pokeball"},
+		],
 	},
 	trapinch: {
 		learnset: {
@@ -34180,7 +35991,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			quickattack: ["8E", "7E", "6E", "5E", "4E", "3E"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["8M", "7M", "7L15", "6M", "6L15", "5M", "5L25", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M", "3M"],
@@ -34200,7 +36011,10 @@ let BattleLearnsets = {
 			superpower: ["8M", "8L44", "7T", "7L40", "6T", "6L1", "5T", "5L67"],
 			swagger: ["7M", "6M", "5M", "4M", "3T"],
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 1, "shiny": true, "moves": ["bite"], "pokeball": "pokeball"},
+		],
 	},
 	vibrava: {
 		learnset: {
@@ -34251,7 +36065,7 @@ let BattleLearnsets = {
 			outrage: ["8M", "7T", "6T", "5T", "4T"],
 			protect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["8M", "7M", "7L15", "6M", "6L15", "5M", "5L25", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M", "3M"],
@@ -34283,7 +36097,7 @@ let BattleLearnsets = {
 			twister: ["4T"],
 			uproar: ["8M", "8L50", "7T", "7L40", "6T", "6L40"],
 			uturn: ["8M", "7M", "6M", "5M", "4M"],
-		}
+		},
 	},
 	flygon: {
 		learnset: {
@@ -34351,7 +36165,7 @@ let BattleLearnsets = {
 			poweruppunch: ["6M"],
 			protect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["8M", "7M", "7L15", "6M", "6L15", "5M", "5L25", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M", "3M"],
@@ -34385,7 +36199,11 @@ let BattleLearnsets = {
 			twister: ["4T"],
 			uproar: ["8M", "8L52", "7T", "7L40", "6T", "6L40"],
 			uturn: ["8M", "7M", "6M", "5M", "4M", "4S1"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 45, "moves": ["sandtomb", "crunch", "dragonbreath", "screech"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 50, "gender": "M", "nature": "Naive", "moves": ["dracometeor", "uturn", "earthquake", "dragonclaw"], "pokeball": "cherishball"},
+		],
 	},
 	cacnea: {
 		learnset: {
@@ -34446,7 +36264,7 @@ let BattleLearnsets = {
 			poweruppunch: ["7E", "6M"],
 			protect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			rototiller: ["7E", "6E"],
 			round: ["7M", "6M", "5M"],
@@ -34473,7 +36291,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			venoshock: ["7M", "6M", "5M"],
 			worryseed: ["7T", "7E", "6T", "6E", "5T", "5E", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["poisonsting", "leer", "absorb", "encore"], "pokeball": "pokeball"},
+		],
 	},
 	cacturne: {
 		learnset: {
@@ -34533,7 +36354,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			revenge: ["7L1", "6L1", "5L1", "4L1", "3L1"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			round: ["7M", "6M", "5M"],
@@ -34561,7 +36382,13 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			venoshock: ["7M", "6M", "5M"],
 			worryseed: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 45, "moves": ["ingrain", "feintattack", "spikes", "needlearm"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 6, "level": 30},
+		],
 	},
 	swablu: {
 		learnset: {
@@ -34618,7 +36445,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			refresh: ["7L26", "6L26", "5L45", "4L40", "3L41"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roost: ["7M", "7E", "6M", "6E", "5T", "5E", "5D", "4M"],
 			round: ["7M", "7L17", "6M", "6L17", "5M", "5L18"],
 			safeguard: ["7M", "7L9", "6M", "6L9", "5M", "5L18", "4M", "4L18", "3M", "3L21"],
@@ -34639,7 +36466,12 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			twister: ["4T"],
 			uproar: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["peck", "growl", "falseswipe"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 1, "shiny": true, "moves": ["peck", "growl"], "pokeball": "pokeball"},
+			{"generation": 6, "level": 1, "isHidden": true, "moves": ["peck", "growl", "hypervoice"], "pokeball": "pokeball"},
+		],
 	},
 	altaria: {
 		learnset: {
@@ -34703,7 +36535,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			refresh: ["7L26", "6L26", "5L54", "4L46", "3L45", "3S0"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			roost: ["7M", "6M", "5T", "4M"],
@@ -34727,7 +36559,13 @@ let BattleLearnsets = {
 			twister: ["4T"],
 			uproar: ["7T", "6T", "5T", "4T"],
 			wonderroom: ["7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 45, "moves": ["takedown", "dragonbreath", "dragondance", "refresh"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 36, "moves": ["healbell", "dragonbreath", "solarbeam", "aerialace"]},
+			{"generation": 5, "level": 35, "gender": "M", "isHidden": true, "moves": ["takedown", "naturalgift", "dragonbreath", "falseswipe"]},
+			{"generation": 6, "level": 100, "nature": "Modest", "isHidden": true, "moves": ["hypervoice", "fireblast", "protect", "agility"], "pokeball": "cherishball"},
+		],
 	},
 	zangoose: {
 		learnset: {
@@ -34801,7 +36639,7 @@ let BattleLearnsets = {
 			refresh: ["3S2"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			revenge: ["7L22", "6L22", "5L26"],
 			roar: ["7M", "6M", "5M", "4M", "4E", "3M", "3E"],
 			rockclimb: ["4M"],
@@ -34837,7 +36675,12 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			workup: ["7M", "5M"],
 			xscissor: ["7M", "7L40", "6M", "6L36", "5M", "5L48", "4M", "4L48"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 18, "moves": ["leer", "quickattack", "swordsdance", "furycutter"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["scratch", "leer", "quickattack", "swordsdance"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 28, "moves": ["refresh", "brickbreak", "counter", "crushclaw"]},
+		],
 	},
 	seviper: {
 		learnset: {
@@ -34891,7 +36734,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			scaryface: ["7E", "6E", "5E", "4E"],
@@ -34922,7 +36765,12 @@ let BattleLearnsets = {
 			wrap: ["7L1", "6L1", "5L1", "4L1", "3L1", "3S2", "3S0"],
 			wringout: ["7L46", "7E", "6L49", "6E", "5L61", "5E", "4L55"],
 			xscissor: ["7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 18, "moves": ["wrap", "lick", "bite", "poisontail"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 30, "moves": ["poisontail", "screech", "glare", "crunch"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["wrap", "lick", "bite"], "pokeball": "pokeball"},
+		],
 	},
 	lunatone: {
 		learnset: {
@@ -34987,7 +36835,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockblast: ["8M"],
 			rockpolish: ["8L10", "7M", "7L9", "6M", "6L9", "5M", "5L20", "4M", "4L20"],
 			rockslide: ["8M", "8L15", "7M", "7L21", "6M", "6L21", "5M", "5L25", "4M", "3T"],
@@ -35019,7 +36867,12 @@ let BattleLearnsets = {
 			trickroom: ["8M", "7M", "6M", "5M", "4M"],
 			weatherball: ["8M"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "moves": ["tackle", "harden", "confusion"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 25, "moves": ["batonpass", "psychic", "raindance", "rocktomb"]},
+			{"generation": 7, "level": 30, "moves": ["cosmicpower", "hiddenpower", "moonblast", "powergem"], "pokeball": "cherishball"},
+		],
 	},
 	solrock: {
 		learnset: {
@@ -35083,7 +36936,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockblast: ["8M"],
 			rockpolish: ["8L10", "7M", "7L9", "6M", "6L9", "5M", "5L20", "4M", "4L20"],
 			rockslide: ["8M", "8L15", "7M", "7L21", "6M", "6L21", "5M", "5L45", "4M", "4L45", "3T", "3L37"],
@@ -35120,7 +36973,12 @@ let BattleLearnsets = {
 			willowisp: ["8M", "7M", "6M", "5M", "4M"],
 			wonderroom: ["8M", "8L45", "7T", "7L49", "6T", "6L1", "5T", "5L64"],
 			zenheadbutt: ["8M", "8L20", "7T", "6T", "5T", "5D", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "moves": ["tackle", "harden", "confusion"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 41, "moves": ["batonpass", "psychic", "sunnyday", "cosmicpower"]},
+			{"generation": 7, "level": 30, "moves": ["cosmicpower", "hiddenpower", "solarbeam", "stoneedge"], "pokeball": "cherishball"},
+		],
 	},
 	barboach: {
 		learnset: {
@@ -35161,7 +37019,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8L6", "7M", "7L25", "6M", "6L25", "5M", "5L31", "4M", "4L31", "3M", "3L26"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			sandstorm: ["8M", "7M", "6M", "5M", "4M", "3M"],
@@ -35181,7 +37039,7 @@ let BattleLearnsets = {
 			waterpulse: ["8L12", "7T", "7L17", "6T", "6L17", "5L22", "4M", "4L22", "3M"],
 			watersport: ["7L6", "6L6", "5L6", "4L6", "3L6"],
 			whirlpool: ["8M", "7E", "6E", "5E", "4M", "4E", "3E"],
-		}
+		},
 	},
 	whiscash: {
 		learnset: {
@@ -35225,7 +37083,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "8L1", "7M", "7L25", "6M", "6L25", "5M", "5L33", "4M", "4L33", "3M", "3L26"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M", "3M"],
@@ -35253,7 +37111,14 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			whirlpool: ["8M", "4M"],
 			zenheadbutt: ["8M", "8L1", "7T", "7L1", "6T", "6L1", "5T", "5L1", "4T", "4L1", "4S0"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 51, "gender": "F", "nature": "Gentle", "abilities": ["oblivious"], "moves": ["earthquake", "aquatail", "zenheadbutt", "gigaimpact"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 4, "level": 10},
+			{"generation": 7, "level": 10},
+		],
 	},
 	corphish: {
 		learnset: {
@@ -35309,7 +37174,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			razorshell: ["8M", "8L32", "7L31", "6L31"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M", "3M"],
@@ -35338,7 +37203,10 @@ let BattleLearnsets = {
 			watersport: ["3S0"],
 			whirlpool: ["8M", "4M"],
 			xscissor: ["8M", "7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["bubble", "watersport"], "pokeball": "pokeball"},
+		],
 	},
 	crawdaunt: {
 		learnset: {
@@ -35400,7 +37268,7 @@ let BattleLearnsets = {
 			razorshell: ["8M", "8L34", "7L32", "6L32"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			revenge: ["8M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -35429,7 +37297,14 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["8M", "4M"],
 			xscissor: ["8M", "7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 100, "moves": ["taunt", "crabhammer", "swordsdance", "guillotine"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 50, "moves": ["knockoff", "taunt", "crabhammer", "swordsdance"], "pokeball": "pokeball"},
+		],
+		encounters: [
+			{"generation": 7, "level": 10},
+		],
 	},
 	baltoy: {
 		learnset: {
@@ -35488,7 +37363,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			refresh: ["3S0"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M", "3T"],
 			rocktomb: ["8M", "8L9", "7M", "7L13", "6M", "6L10", "5M", "5L18", "4M", "4L15", "3M", "3L15", "3S0"],
@@ -35515,7 +37390,10 @@ let BattleLearnsets = {
 			trickroom: ["8M", "7M", "6M", "5M", "4M"],
 			wonderroom: ["8M", "7T", "6T", "5T"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "5D", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 17, "moves": ["refresh", "rocktomb", "mudslap", "psybeam"]},
+		],
 	},
 	claydol: {
 		learnset: {
@@ -35579,7 +37457,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -35611,7 +37489,7 @@ let BattleLearnsets = {
 			trickroom: ["8M", "7M", "6M", "5M", "4M"],
 			wonderroom: ["8M", "7T", "6T", "5T"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	lileep: {
 		learnset: {
@@ -35656,7 +37534,7 @@ let BattleLearnsets = {
 			psychup: ["3T"],
 			recover: ["7E", "6E", "5E", "5S0", "4E", "3E"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "6M", "5M", "5S0", "4M", "4E", "3T", "3E"],
 			rocktomb: ["7M", "6M", "5M", "4M"],
@@ -35683,7 +37561,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			worryseed: ["7T", "6T", "5T", "4T"],
 			wringout: ["7L52", "7E", "6L52", "6E", "5L64", "5E", "4L64", "4E"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 15, "gender": "M", "moves": ["recover", "rockslide", "constrict", "acid"], "pokeball": "cherishball"},
+		],
 	},
 	cradily: {
 		learnset: {
@@ -35732,7 +37613,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M", "3M"],
 			psychup: ["3T"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -35762,7 +37643,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			worryseed: ["7T", "6T", "5T", "4T"],
 			wringout: ["7L1", "6L1", "5L76", "4L76"],
-		}
+		},
 	},
 	anorith: {
 		learnset: {
@@ -35804,7 +37685,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7L49", "6M", "6L25", "5M", "5L25", "4M", "4L25", "3M", "3L31"],
 			rapidspin: ["7E", "6E", "5E", "4E", "3E"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockblast: ["7L55", "6L49", "5L49", "4L49", "3L55"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "6M", "5M", "4M", "4E", "3T", "3E"],
@@ -35831,7 +37712,10 @@ let BattleLearnsets = {
 			watergun: ["7L7", "6L7", "5L13", "5S0", "4L13", "3L19"],
 			waterpulse: ["7T", "7E", "6T", "6E", "5E", "4M", "3M"],
 			xscissor: ["7M", "7L44", "6M", "6L44", "5M", "5L61", "4M", "4L61"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 15, "gender": "M", "moves": ["harden", "mudsport", "watergun", "crosspoison"], "pokeball": "cherishball"},
+		],
 	},
 	armaldo: {
 		learnset: {
@@ -35881,7 +37765,7 @@ let BattleLearnsets = {
 			naturalgift: ["4M"],
 			protect: ["7M", "7L53", "6M", "6L25", "5M", "5L25", "4M", "4L25", "3M", "3L31"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockblast: ["7L61", "6L55", "5L55", "4L55", "3L64"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
@@ -35911,7 +37795,7 @@ let BattleLearnsets = {
 			watergun: ["7L1", "6L1", "5L1", "4L1", "3L1"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			xscissor: ["7M", "7L46", "6M", "6L46", "5M", "5L73", "4M", "4L73"],
-		}
+		},
 	},
 	feebas: {
 		learnset: {
@@ -35948,7 +37832,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			scald: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -35965,7 +37849,10 @@ let BattleLearnsets = {
 			waterfall: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["8M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 5, "gender": "F", "nature": "Calm", "moves": ["splash", "mirrorcoat"], "pokeball": "cherishball"},
+		],
 	},
 	milotic: {
 		learnset: {
@@ -36021,7 +37908,7 @@ let BattleLearnsets = {
 			recover: ["8L28", "7L27", "6L21", "5L21", "5S4", "5S3", "4L21", "4S2", "4S1", "3L30", "3S0"],
 			refresh: ["7L1", "6L7", "5L9", "4L9", "3L15"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "8L36", "7M", "7L37", "6M", "6L41", "5M", "5L45", "4M", "4L45", "3M", "3L50"],
 			scald: ["8M", "7M", "6M", "5M"],
@@ -36043,7 +37930,14 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			whirlpool: ["8M", "4M"],
 			wrap: ["8L1", "7L1", "6L1", "5L1", "4L1", "3L5"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 35, "moves": ["waterpulse", "twister", "recover", "raindance"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 50, "gender": "F", "nature": "Bold", "moves": ["recover", "raindance", "icebeam", "hydropump"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 50, "shiny": true, "gender": "M", "nature": "Timid", "moves": ["raindance", "recover", "hydropump", "icywind"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 50, "shiny": 1, "moves": ["recover", "hydropump", "icebeam", "mirrorcoat"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 58, "gender": "M", "nature": "Lax", "ivs": {"hp": 30, "atk": 30, "def": 30, "spa": 30, "spd": 30, "spe": 30}, "moves": ["recover", "surf", "icebeam", "toxic"], "pokeball": "cherishball"},
+		],
 	},
 	castform: {
 		learnset: {
@@ -36092,7 +37986,7 @@ let BattleLearnsets = {
 			reflecttype: ["7E", "6E"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			sandstorm: ["7M", "6M", "5M", "4M", "3M"],
 			scald: ["7M", "6M", "5M"],
@@ -36117,7 +38011,7 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "5D", "4M", "3M"],
 			weatherball: ["7L25", "6L25", "5L40", "4L30", "3L30"],
 			workup: ["7M", "5M"],
-		}
+		},
 	},
 	kecleon: {
 		learnset: {
@@ -36191,7 +38085,7 @@ let BattleLearnsets = {
 			reflecttype: ["5D"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["7M", "6M", "5M", "4M", "3M"],
@@ -36232,7 +38126,7 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			wonderroom: ["7T", "6T", "5T"],
 			workup: ["7M", "5M"],
-		}
+		},
 	},
 	shuppet: {
 		learnset: {
@@ -36285,7 +38179,7 @@ let BattleLearnsets = {
 			pursuit: ["7E", "6E", "5E", "4E"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			round: ["7M", "6M", "5M"],
 			screech: ["7L4", "6L4", "5L5", "4L5", "3L8"],
@@ -36313,7 +38207,10 @@ let BattleLearnsets = {
 			trick: ["7T", "7L50", "6T", "6L50", "5T", "5L55", "4T", "4L50"],
 			trickroom: ["7M", "6M", "5M", "4M"],
 			willowisp: ["7M", "7L16", "6M", "6L13", "5M", "5L23", "4M", "4L23", "3L32", "3S0"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 45, "abilities": ["insomnia"], "moves": ["spite", "willowisp", "feintattack", "shadowball"], "pokeball": "pokeball"},
+		],
 	},
 	banette: {
 		learnset: {
@@ -36368,7 +38265,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M", "4M", "3T"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			round: ["7M", "6M", "5M"],
 			screech: ["7L1", "6L1", "5L1", "4L1", "3L1"],
@@ -36398,7 +38295,14 @@ let BattleLearnsets = {
 			trick: ["7T", "7L58", "6T", "6L58", "5T", "5L75", "4T", "4L66"],
 			trickroom: ["7M", "6M", "5M", "4M"],
 			willowisp: ["7M", "7L16", "6M", "6L13", "5M", "5L23", "4M", "4L23", "3L32"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 37, "abilities": ["insomnia"], "moves": ["helpinghand", "feintattack", "shadowball", "curse"]},
+			{"generation": 5, "level": 37, "gender": "F", "isHidden": true, "moves": ["feintattack", "hex", "shadowball", "cottonguard"]},
+		],
+		encounters: [
+			{"generation": 5, "level": 32},
+		],
 	},
 	duskull: {
 		learnset: {
@@ -36455,7 +38359,7 @@ let BattleLearnsets = {
 			pursuit: ["7L22", "6L22", "5L25", "4L25", "3L27", "3S0"],
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			revenge: ["8M"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -36479,7 +38383,11 @@ let BattleLearnsets = {
 			trickroom: ["8M", "7M", "6M", "5M", "4M"],
 			willowisp: ["8M", "8L24", "7M", "7L25", "6M", "6L25", "5M", "5L33", "4M", "4L33", "3L38", "3S0"],
 			wonderroom: ["8M", "7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 45, "moves": ["pursuit", "curse", "willowisp", "meanlook"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 19, "moves": ["helpinghand", "shadowball", "astonish", "confuseray"]},
+		],
 	},
 	dusclops: {
 		learnset: {
@@ -36547,7 +38455,7 @@ let BattleLearnsets = {
 			pursuit: ["7L22", "6L22", "5L25", "4L25", "3L27"],
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			revenge: ["8M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -36578,7 +38486,11 @@ let BattleLearnsets = {
 			trickroom: ["8M", "7M", "6M", "5M", "4M"],
 			willowisp: ["8M", "8L24", "7M", "7L25", "6M", "6L25", "5M", "5L33", "4M", "4L33", "3L41"],
 			wonderroom: ["8M", "7T", "6T", "5T"],
-		}
+		},
+		encounters: [
+			{"generation": 4, "level": 16},
+			{"generation": 6, "level": 30},
+		],
 	},
 	dusknoir: {
 		learnset: {
@@ -36645,7 +38557,7 @@ let BattleLearnsets = {
 			pursuit: ["7L22", "6L22", "5L25", "4L25"],
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			revenge: ["8M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
@@ -36675,7 +38587,7 @@ let BattleLearnsets = {
 			trickroom: ["8M", "7M", "6M", "5M", "4M"],
 			willowisp: ["8M", "8L24", "7M", "7L25", "6M", "6L25", "5M", "5L33", "4M", "4L33"],
 			wonderroom: ["8M", "7T", "6T"],
-		}
+		},
 	},
 	tropius: {
 		learnset: {
@@ -36730,7 +38642,7 @@ let BattleLearnsets = {
 			razorleaf: ["7L1", "6L1", "5L11", "4L11", "3L11"],
 			razorwind: ["7E", "6E", "5E", "4E", "3E"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			roost: ["7M", "6M", "5T", "4M"],
@@ -36758,7 +38670,10 @@ let BattleLearnsets = {
 			twister: ["4T"],
 			whirlwind: ["7L21", "6L21", "5L27", "4L27", "3L27"],
 			worryseed: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 53, "gender": "F", "nature": "Jolly", "abilities": ["chlorophyll"], "moves": ["airslash", "synthesis", "sunnyday", "solarbeam"], "pokeball": "cherishball"},
+		],
 	},
 	chingling: {
 		learnset: {
@@ -36807,7 +38722,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rollout: ["4T"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M"],
@@ -36836,7 +38751,7 @@ let BattleLearnsets = {
 			wrap: ["7L1", "6L1", "5L1", "4L1"],
 			yawn: ["7L13", "6L13"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	chimecho: {
 		learnset: {
@@ -36897,7 +38812,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rollout: ["4T", "3T"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "7L37", "6M", "6L37", "5M", "5L41", "4M", "4L41", "3M", "3L41"],
@@ -36927,7 +38842,10 @@ let BattleLearnsets = {
 			wrap: ["7L1", "6L1", "5L1", "5D", "4L1", "3L1", "3S0"],
 			yawn: ["7L13", "6L13", "5L25", "4L25", "3L25"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 10, "gender": "M", "moves": ["wrap", "growl", "astonish"], "pokeball": "pokeball"},
+		],
 	},
 	absol: {
 		learnset: {
@@ -37003,7 +38921,7 @@ let BattleLearnsets = {
 			razorwind: ["7L49", "6L1", "5L17", "4L17", "3L17", "3S2"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["7M", "6M", "5M", "4M"],
@@ -37043,7 +38961,13 @@ let BattleLearnsets = {
 			wish: ["3S0"],
 			xscissor: ["7M", "6M", "5M", "4M"],
 			zenheadbutt: ["7T", "7E", "6T", "6E", "5T", "5E", "4T", "4E"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "abilities": ["pressure"], "moves": ["scratch", "leer", "wish"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "shiny": 1, "abilities": ["pressure"], "moves": ["scratch", "leer", "spite"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 35, "abilities": ["pressure"], "moves": ["razorwind", "bite", "swordsdance", "spite"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 70, "abilities": ["pressure"], "moves": ["doubleteam", "slash", "futuresight", "perishsong"], "pokeball": "pokeball"},
+		],
 	},
 	snorunt: {
 		learnset: {
@@ -37084,7 +39008,7 @@ let BattleLearnsets = {
 			protect: ["8M", "8L20", "7M", "7L32", "6M", "6L22", "5M", "5L22", "4M", "4L22", "3M", "3L25"],
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rollout: ["8E", "7E", "6E", "5E", "4T", "4E"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M", "4M", "3M"],
@@ -37101,7 +39025,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			waterpulse: ["7T", "6T", "5D", "4M", "3M", "3S0"],
 			weatherball: ["8M", "7E", "6E", "5E", "5D", "4E"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 20, "abilities": ["innerfocus"], "moves": ["sing", "waterpulse", "bite", "icywind"]},
+		],
 	},
 	glalie: {
 		learnset: {
@@ -37152,7 +39079,7 @@ let BattleLearnsets = {
 			protect: ["8M", "8L20", "7M", "7L32", "6M", "6L22", "5M", "5L22", "4M", "4L22", "3M", "3L25"],
 			raindance: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			rest: ["8M", "7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rollout: ["4T", "3T"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M", "4M", "3M"],
@@ -37174,7 +39101,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			weatherball: ["8M"],
-		}
+		},
 	},
 	froslass: {
 		learnset: {
@@ -37232,7 +39159,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			reflect: ["8M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rollout: ["4T"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M", "4M"],
@@ -37260,7 +39187,7 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M"],
 			weatherball: ["8M"],
 			willowisp: ["8M", "8L47", "7M", "7L28"],
-		}
+		},
 	},
 	spheal: {
 		learnset: {
@@ -37304,7 +39231,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M", "3M"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7L31", "6M", "6L31", "5M", "5L37", "4M", "4L37", "3M", "3L37"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M", "4E", "3T", "3E"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["7M", "6M", "5M", "4M", "3M"],
@@ -37330,7 +39257,10 @@ let BattleLearnsets = {
 			watersport: ["7E", "6E", "5E", "4E", "3E"],
 			whirlpool: ["4M"],
 			yawn: ["7E", "6E", "5E", "4E", "3E"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 17, "abilities": ["thickfat"], "moves": ["charm", "aurorabeam", "watergun", "mudslap"]},
+		],
 	},
 	sealeo: {
 		learnset: {
@@ -37370,7 +39300,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M", "3M"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7L31", "6M", "6L31", "5M", "5L39", "4M", "4L39", "3M", "3L39"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -37392,7 +39322,11 @@ let BattleLearnsets = {
 			watergun: ["7L1", "6L1", "5L1", "4L1", "3L1"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["4M"],
-		}
+		},
+		encounters: [
+			{"generation": 4, "level": 25},
+			{"generation": 6, "level": 28, "maxEggMoves": 1},
+		],
 	},
 	walrein: {
 		learnset: {
@@ -37445,7 +39379,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M", "3M"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7L31", "6M", "6L31", "5M", "5L39", "4M", "4L39", "3M", "3L39"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -37468,7 +39402,13 @@ let BattleLearnsets = {
 			watergun: ["7L1", "6L1", "5L1", "4L1", "3L1"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["4M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 50, "abilities": ["thickfat"], "moves": ["icebeam", "brine", "hail", "sheercold"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 5, "level": 30},
+		],
 	},
 	clamperl: {
 		learnset: {
@@ -37501,7 +39441,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			refresh: ["7E", "6E", "5E", "4E", "3E"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			scald: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M", "3M"],
@@ -37517,7 +39457,7 @@ let BattleLearnsets = {
 			watergun: ["7L1", "6L1", "5L1", "4L1", "3L1"],
 			waterpulse: ["7T", "7E", "6T", "6E", "5E", "4M", "3M"],
 			whirlpool: ["7L1", "6L1", "5L1", "5D", "4M", "4L1", "3L1"],
-		}
+		},
 	},
 	huntail: {
 		learnset: {
@@ -37556,7 +39496,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M", "3M"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rocktomb: ["7M", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			scald: ["7M", "6M", "5M"],
@@ -37576,7 +39516,7 @@ let BattleLearnsets = {
 			waterfall: ["7M", "6M", "5M", "4M", "3M"],
 			waterpulse: ["7T", "7L14", "6T", "6L14", "5L15", "4M", "4L15", "3M", "3L22"],
 			whirlpool: ["7L1", "6L1", "5L1", "4M", "4L1", "3L1"],
-		}
+		},
 	},
 	gorebyss: {
 		learnset: {
@@ -37618,7 +39558,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M", "4M"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M", "3M"],
 			scald: ["7M", "6M", "5M"],
@@ -37636,7 +39576,7 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "7L14", "6T", "6L14", "5L15", "4M", "4L15", "3M", "3L22"],
 			watersport: ["7L5", "6L5"],
 			whirlpool: ["7L1", "6L1", "5L1", "4M", "4L1", "3L1"],
-		}
+		},
 	},
 	relicanth: {
 		learnset: {
@@ -37685,7 +39625,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M", "4M", "3T"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7L41", "6M", "6L41", "5M", "5L64", "4M", "4L64", "3M", "3L50"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "6M", "5M", "4M", "4E", "3T", "3E"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -37715,7 +39655,7 @@ let BattleLearnsets = {
 			whirlpool: ["4M"],
 			yawn: ["7L35", "6L22", "5L22", "4L22", "3L22"],
 			zenheadbutt: ["7T", "7E", "6T", "6E", "5T", "5E"],
-		}
+		},
 	},
 	luvdisc: {
 		learnset: {
@@ -37754,7 +39694,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M", "4M", "3T"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "7L49", "6M", "6L55", "5M", "5L55", "4M", "4L51", "3M", "3L48"],
 			scald: ["7M", "6M", "5M"],
@@ -37777,7 +39717,7 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "7L17", "6T", "6L17", "5L22", "4M", "4L31", "3M"],
 			watersport: ["7E", "6E", "5E", "4E", "3E"],
 			whirlpool: ["4M"],
-		}
+		},
 	},
 	bagon: {
 		learnset: {
@@ -37825,7 +39765,7 @@ let BattleLearnsets = {
 			rage: ["7L1", "6L1", "6S3", "5L1", "5S2", "4L1", "3L1", "3S1", "3S0"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -37845,7 +39785,13 @@ let BattleLearnsets = {
 			twister: ["7E", "6E", "5E", "4T", "4E", "3E"],
 			wish: ["3S0"],
 			zenheadbutt: ["7T", "7L34", "6T", "6L34", "5T", "5L35", "4T", "4L35"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["rage", "bite", "wish"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "shiny": 1, "moves": ["rage", "bite", "irondefense"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 1, "shiny": true, "moves": ["rage"], "pokeball": "pokeball"},
+			{"generation": 6, "level": 1, "moves": ["rage", "thrash"], "pokeball": "pokeball"},
+		],
 	},
 	shelgon: {
 		learnset: {
@@ -37888,7 +39834,7 @@ let BattleLearnsets = {
 			rage: ["7L1", "6L1", "5L1", "4L1", "3L1"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -37907,7 +39853,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			twister: ["4T"],
 			zenheadbutt: ["7T", "7L35", "6T", "6L35", "5T", "5L37", "4T", "4L37"],
-		}
+		},
+		encounters: [
+			{"generation": 7, "level": 15},
+		],
 	},
 	salamence: {
 		learnset: {
@@ -37970,7 +39919,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			refresh: ["3S1"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -37995,7 +39944,16 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			twister: ["4T"],
 			zenheadbutt: ["7T", "7L35", "6T", "6L35", "5T", "5L37", "4T", "4L37"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 50, "moves": ["protect", "dragonbreath", "scaryface", "fly"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 50, "moves": ["refresh", "dragonclaw", "dragondance", "aerialace"]},
+			{"generation": 4, "level": 50, "gender": "M", "nature": "Naughty", "moves": ["hydropump", "stoneedge", "fireblast", "dragonclaw"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 50, "shiny": 1, "moves": ["dragondance", "dragonclaw", "outrage", "aerialace"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 7, "level": 9},
+		],
 	},
 	beldum: {
 		learnset: {
@@ -38005,7 +39963,10 @@ let BattleLearnsets = {
 			ironhead: ["7T", "6T", "6S0", "5T", "5D", "4T"],
 			takedown: ["7L1", "6L1", "5L1", "5D", "4L1", "3L1"],
 			zenheadbutt: ["7T", "6T", "6S0", "5T", "5D", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 5, "shiny": true, "moves": ["holdback", "ironhead", "zenheadbutt", "irondefense"], "pokeball": "cherishball"},
+		],
 	},
 	metang: {
 		learnset: {
@@ -38062,7 +40023,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "6M", "5M", "4M", "3M"],
 			refresh: ["3S0"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -38090,7 +40051,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			trick: ["7T", "6T", "5T", "4T"],
 			zenheadbutt: ["7T", "7L32", "6T", "6L29", "5T", "5L52", "4T", "4L52"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 30, "moves": ["takedown", "confusion", "metalclaw", "refresh"], "pokeball": "pokeball"},
+		],
 	},
 	metagross: {
 		learnset: {
@@ -38151,7 +40115,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			reflect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -38180,7 +40144,17 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			trick: ["7T", "6T", "5T", "4T"],
 			zenheadbutt: ["7T", "7L32", "6T", "6L29", "5T", "5L62", "5S3", "5S2", "4T", "4L62", "4S0"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 62, "nature": "Brave", "moves": ["bulletpunch", "meteormash", "hammerarm", "zenheadbutt"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 50, "shiny": 1, "moves": ["meteormash", "earthquake", "bulletpunch", "hammerarm"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 100, "moves": ["bulletpunch", "zenheadbutt", "hammerarm", "icepunch"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 45, "shiny": true, "moves": ["meteormash", "zenheadbutt", "earthquake", "protect"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 45, "isHidden": true, "moves": ["irondefense", "agility", "hammerarm", "doubleedge"]},
+			{"generation": 5, "level": 45, "isHidden": true, "moves": ["psychic", "meteormash", "hammerarm", "doubleedge"]},
+			{"generation": 5, "level": 58, "nature": "Serious", "ivs": {"hp": 30, "atk": 30, "def": 30, "spa": 30, "spd": 30, "spe": 30}, "moves": ["earthquake", "hyperbeam", "psychic", "meteormash"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 50, "nature": "Jolly", "ivs": {"hp": 31, "atk": 31, "def": 31, "spa": 31, "spd": 31, "spe": 31}, "moves": ["ironhead", "icepunch", "bulletpunch", "stompingtantrum"], "pokeball": "cherishball"},
+		],
 	},
 	regirock: {
 		learnset: {
@@ -38233,7 +40207,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M", "3M"],
 			psychup: ["7M", "6M", "5M", "4M", "3T"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
@@ -38266,7 +40240,17 @@ let BattleLearnsets = {
 			thunderwave: ["7M", "6M", "5M", "4M", "3T"],
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			zapcannon: ["7L55", "7S6", "6L1", "5L65", "5S3", "4L65", "3L49"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 40, "shiny": 1, "moves": ["rockthrow", "curse", "superpower", "ancientpower"]},
+			{"generation": 3, "level": 40, "moves": ["curse", "superpower", "ancientpower", "hyperbeam"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 30, "shiny": 1, "moves": ["stomp", "rockthrow", "curse", "superpower"]},
+			{"generation": 5, "level": 65, "shiny": 1, "moves": ["irondefense", "chargebeam", "lockon", "zapcannon"]},
+			{"generation": 6, "level": 40, "shiny": 1, "moves": ["bulldoze", "curse", "ancientpower", "irondefense"]},
+			{"generation": 6, "level": 50, "isHidden": true, "moves": ["explosion", "icepunch", "stoneedge", "hammerarm"], "pokeball": "pokeball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["stoneedge", "hammerarm", "lockon", "zapcannon"]},
+		],
+		eventOnly: true,
 	},
 	regice: {
 		learnset: {
@@ -38321,7 +40305,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M", "4M", "3T"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
@@ -38349,7 +40333,17 @@ let BattleLearnsets = {
 			thunderwave: ["7M", "6M", "5M", "4M", "3T"],
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			zapcannon: ["7L55", "7S6", "6L1", "5L65", "5S3", "4L65", "3L49"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 40, "shiny": 1, "moves": ["icywind", "curse", "superpower", "ancientpower"]},
+			{"generation": 3, "level": 40, "moves": ["curse", "superpower", "ancientpower", "hyperbeam"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 30, "shiny": 1, "moves": ["stomp", "icywind", "curse", "superpower"]},
+			{"generation": 5, "level": 65, "shiny": 1, "moves": ["amnesia", "chargebeam", "lockon", "zapcannon"]},
+			{"generation": 6, "level": 40, "shiny": 1, "moves": ["bulldoze", "curse", "ancientpower", "amnesia"]},
+			{"generation": 6, "level": 50, "isHidden": true, "moves": ["thunderbolt", "amnesia", "icebeam", "hail"], "pokeball": "pokeball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["icebeam", "hammerarm", "lockon", "zapcannon"]},
+		],
+		eventOnly: true,
 	},
 	registeel: {
 		learnset: {
@@ -38403,7 +40397,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M", "4M", "3T"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "6M", "6S5", "5M", "4M", "3T"],
@@ -38434,7 +40428,17 @@ let BattleLearnsets = {
 			thunderwave: ["7M", "6M", "5M", "4M", "3T"],
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			zapcannon: ["7L55", "7S6", "6L1", "5L65", "5S3", "4L65", "3L49"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 40, "shiny": 1, "moves": ["metalclaw", "curse", "superpower", "ancientpower"]},
+			{"generation": 3, "level": 40, "moves": ["curse", "superpower", "ancientpower", "hyperbeam"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 30, "shiny": 1, "moves": ["stomp", "metalclaw", "curse", "superpower"]},
+			{"generation": 5, "level": 65, "shiny": 1, "moves": ["amnesia", "chargebeam", "lockon", "zapcannon"]},
+			{"generation": 6, "level": 40, "shiny": 1, "moves": ["curse", "ancientpower", "irondefense", "amnesia"]},
+			{"generation": 6, "level": 50, "isHidden": true, "moves": ["ironhead", "rockslide", "gravity", "irondefense"], "pokeball": "pokeball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["flashcannon", "hammerarm", "lockon", "zapcannon"]},
+		],
+		eventOnly: true,
 	},
 	latias: {
 		learnset: {
@@ -38511,7 +40515,7 @@ let BattleLearnsets = {
 			refresh: ["7L13", "6L13", "5L30", "4L30", "4S4", "4S3", "3L30", "3S0"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			roost: ["7M", "6M", "5T", "4M"],
@@ -38547,7 +40551,20 @@ let BattleLearnsets = {
 			whirlpool: ["4M"],
 			wish: ["7L1", "7S8", "7S7", "6L1", "5L5", "4L5", "3L5"],
 			zenheadbutt: ["7T", "7L41", "6T", "6L40", "5T", "5L40", "4T", "4L40", "4S4"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 40, "shiny": 1, "moves": ["watersport", "refresh", "mistball", "psychic"]},
+			{"generation": 3, "level": 50, "shiny": 1, "moves": ["mistball", "psychic", "recover", "charm"]},
+			{"generation": 3, "level": 70, "moves": ["mistball", "psychic", "recover", "charm"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 35, "shiny": 1, "moves": ["dragonbreath", "watersport", "refresh", "mistball"]},
+			{"generation": 4, "level": 40, "shiny": 1, "moves": ["watersport", "refresh", "mistball", "zenheadbutt"]},
+			{"generation": 5, "level": 68, "shiny": 1, "moves": ["psychoshift", "charm", "psychic", "healpulse"]},
+			{"generation": 6, "level": 30, "shiny": 1, "moves": ["healpulse", "dragonbreath", "mistball", "psychoshift"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["mistball", "dragonpulse", "psychoshift", "wish"]},
+			{"generation": 7, "level": 60, "moves": ["mistball", "dragonpulse", "psychoshift", "wish"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "moves": ["mistball", "psychic", "dracometeor", "tailwind"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	latios: {
 		learnset: {
@@ -38621,7 +40638,7 @@ let BattleLearnsets = {
 			refresh: ["7L13", "6L13", "5L30", "4L30", "4S4", "4S3", "3L30", "3S0"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			roost: ["7M", "6M", "5T", "4M"],
 			round: ["7M", "6M", "5M"],
@@ -38654,7 +40671,21 @@ let BattleLearnsets = {
 			whirlpool: ["4M"],
 			wonderroom: ["7T", "6T", "5T"],
 			zenheadbutt: ["7T", "7L41", "6T", "6L40", "5T", "5L40", "4T", "4L40", "4S4"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 40, "shiny": 1, "moves": ["protect", "refresh", "lusterpurge", "psychic"]},
+			{"generation": 3, "level": 50, "shiny": 1, "moves": ["lusterpurge", "psychic", "recover", "dragondance"]},
+			{"generation": 3, "level": 70, "moves": ["lusterpurge", "psychic", "recover", "dragondance"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 35, "shiny": 1, "moves": ["dragonbreath", "protect", "refresh", "lusterpurge"]},
+			{"generation": 4, "level": 40, "shiny": 1, "moves": ["protect", "refresh", "lusterpurge", "zenheadbutt"]},
+			{"generation": 5, "level": 68, "shiny": 1, "moves": ["psychoshift", "dragondance", "psychic", "healpulse"]},
+			{"generation": 6, "level": 30, "shiny": 1, "moves": ["healpulse", "dragonbreath", "lusterpurge", "psychoshift"]},
+			{"generation": 6, "level": 50, "nature": "Modest", "moves": ["dragonpulse", "lusterpurge", "psychic", "healpulse"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["lusterpurge", "dragonpulse", "psychoshift", "dragonbreath"]},
+			{"generation": 7, "level": 60, "moves": ["lusterpurge", "dragonpulse", "psychoshift", "dragonbreath"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "moves": ["lusterpurge", "psychic", "dracometeor", "tailwind"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	kyogre: {
 		learnset: {
@@ -38698,7 +40729,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M", "4M", "3T"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "4L50", "3M", "3L50", "3S1"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -38727,7 +40758,21 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "7L1", "6T", "6L1", "5L1", "4M", "4L1", "3M", "3L1"],
 			waterspout: ["7L90", "7S10", "6L50", "6S6", "5L50", "5S4", "5S3", "4L50", "4S2", "3L75"],
 			whirlpool: ["4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 45, "shiny": 1, "moves": ["bodyslam", "calmmind", "icebeam", "hydropump"]},
+			{"generation": 3, "level": 70, "shiny": 1, "moves": ["hydropump", "rest", "sheercold", "doubleedge"]},
+			{"generation": 4, "level": 50, "shiny": 1, "moves": ["aquaring", "icebeam", "ancientpower", "waterspout"]},
+			{"generation": 5, "level": 80, "shiny": 1, "moves": ["icebeam", "ancientpower", "waterspout", "thunder"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 100, "moves": ["waterspout", "thunder", "icebeam", "sheercold"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 45, "moves": ["bodyslam", "aquaring", "icebeam", "originpulse"]},
+			{"generation": 6, "level": 100, "nature": "Timid", "moves": ["waterspout", "thunder", "sheercold", "icebeam"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["icebeam", "originpulse", "calmmind", "muddywater"]},
+			{"generation": 7, "level": 60, "shiny": true, "moves": ["icebeam", "originpulse", "calmmind", "muddywater"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "moves": ["icebeam", "originpulse", "calmmind", "muddywater"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "moves": ["originpulse", "icebeam", "waterspout", "calmmind"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	groudon: {
 		learnset: {
@@ -38788,7 +40833,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M", "3M"],
 			psychup: ["7M", "6M", "5M", "4M", "3T"],
 			rest: ["7M", "7L30", "6M", "6L30", "6S5", "5M", "5L30", "4M", "4L30", "4S2", "3M", "3L50", "3S1"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rockclimb: ["4M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
@@ -38824,7 +40869,21 @@ let BattleLearnsets = {
 			thunderwave: ["7M", "6M", "5M", "4M", "3T"],
 			toxic: ["7M", "6M", "5M", "4M", "3M"],
 			uproar: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 45, "shiny": 1, "moves": ["slash", "bulkup", "earthquake", "fireblast"]},
+			{"generation": 3, "level": 70, "shiny": 1, "moves": ["fireblast", "rest", "fissure", "solarbeam"]},
+			{"generation": 4, "level": 50, "shiny": 1, "moves": ["rest", "earthquake", "ancientpower", "eruption"]},
+			{"generation": 5, "level": 80, "shiny": 1, "moves": ["earthquake", "ancientpower", "eruption", "solarbeam"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 100, "moves": ["eruption", "hammerarm", "earthpower", "solarbeam"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 45, "moves": ["lavaplume", "rest", "earthquake", "precipiceblades"]},
+			{"generation": 6, "level": 100, "nature": "Adamant", "moves": ["firepunch", "solarbeam", "hammerarm", "rockslide"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["earthquake", "precipiceblades", "bulkup", "solarbeam"]},
+			{"generation": 7, "level": 60, "shiny": true, "moves": ["earthquake", "precipiceblades", "bulkup", "solarbeam"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "moves": ["earthquake", "precipiceblades", "bulkup", "solarbeam"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "moves": ["precipiceblades", "earthpower", "firepunch", "swordsdance"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	rayquaza: {
 		learnset: {
@@ -38891,7 +40950,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M", "4M", "3T"],
 			raindance: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "7L35", "7S8", "6M", "6L30", "5M", "5L30", "4M", "4L30", "4S1", "3M", "3L50", "3S0"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			roar: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
@@ -38925,7 +40984,19 @@ let BattleLearnsets = {
 			waterfall: ["7M", "6M", "5M", "4M", "3M"],
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			whirlpool: ["4M"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 70, "shiny": 1, "moves": ["fly", "rest", "extremespeed", "outrage"]},
+			{"generation": 4, "level": 50, "shiny": 1, "moves": ["rest", "airslash", "ancientpower", "outrage"]},
+			{"generation": 5, "level": 70, "shiny": true, "moves": ["dragonpulse", "ancientpower", "outrage", "dragondance"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 100, "moves": ["extremespeed", "hyperbeam", "dragonpulse", "vcreate"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 70, "moves": ["extremespeed", "dragonpulse", "dragondance", "dragonascent"]},
+			{"generation": 6, "level": 70, "shiny": true, "moves": ["dragonpulse", "thunder", "twister", "extremespeed"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 70, "shiny": true, "moves": ["dragonascent", "dragonclaw", "extremespeed", "dragondance"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 100, "shiny": true, "moves": ["dragonascent", "dracometeor", "fly", "celebrate"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["rest", "extremespeed", "dragonpulse", "dragondance"]},
+		],
+		eventOnly: true,
 	},
 	jirachi: {
 		learnset: {
@@ -39003,7 +41074,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			refresh: ["7L25", "6L25", "5L25", "4L25", "3L25", "3S10"],
 			rest: ["8M", "8L63", "7M", "7L30", "7S22", "6M", "6L5", "6S21", "5M", "5L5", "4M", "4L5", "4S12", "4S11", "3M", "3L5", "3S10", "3S9", "3S8", "3S7", "3S6", "3S5", "3S4", "3S3", "3S2", "3S1", "3S0"],
-			return : ["7M", "6M", "6S18", "5M", "5S16", "4M", "3M"],
+			return: ["7M", "6M", "6S18", "5M", "5S16", "4M", "3M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M", "4M", "3M"],
 			sandstorm: ["8M", "7M", "6M", "5M", "4M", "3M"],
@@ -39034,7 +41105,33 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			wish: ["8L1", "7L1", "7S22", "6L1", "6S21", "6S20", "6S19", "6S18", "6S17", "5L1", "5S16", "5S15", "5S14", "4L1", "4S12", "4S11", "3L1", "3S9", "3S8", "3S7", "3S6", "3S5", "3S4", "3S3", "3S2", "3S1", "3S0"],
 			zenheadbutt: ["8M", "8L28", "7T", "7L35", "6T", "6L35", "5T", "5L35", "4T", "4L35"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 5, "moves": ["wish", "confusion", "rest"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "shiny": true, "nature": "Bashful", "ivs": {"hp": 24, "atk": 3, "def": 30, "spa": 12, "spd": 16, "spe": 11}, "moves": ["wish", "confusion", "rest"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "shiny": true, "nature": "Careful", "ivs": {"hp": 10, "atk": 0, "def": 10, "spa": 10, "spd": 26, "spe": 12}, "moves": ["wish", "confusion", "rest"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "shiny": true, "nature": "Docile", "ivs": {"hp": 19, "atk": 7, "def": 10, "spa": 19, "spd": 10, "spe": 16}, "moves": ["wish", "confusion", "rest"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "shiny": true, "nature": "Hasty", "ivs": {"hp": 3, "atk": 12, "def": 12, "spa": 7, "spd": 11, "spe": 9}, "moves": ["wish", "confusion", "rest"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "shiny": true, "nature": "Jolly", "ivs": {"hp": 11, "atk": 8, "def": 6, "spa": 14, "spd": 5, "spe": 20}, "moves": ["wish", "confusion", "rest"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "shiny": true, "nature": "Lonely", "ivs": {"hp": 31, "atk": 23, "def": 26, "spa": 29, "spd": 18, "spe": 5}, "moves": ["wish", "confusion", "rest"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "shiny": true, "nature": "Naughty", "ivs": {"hp": 21, "atk": 31, "def": 31, "spa": 18, "spd": 24, "spe": 19}, "moves": ["wish", "confusion", "rest"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "shiny": true, "nature": "Serious", "ivs": {"hp": 29, "atk": 10, "def": 31, "spa": 25, "spd": 23, "spe": 21}, "moves": ["wish", "confusion", "rest"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 5, "shiny": true, "nature": "Timid", "ivs": {"hp": 15, "atk": 28, "def": 29, "spa": 3, "spd": 0, "spe": 7}, "moves": ["wish", "confusion", "rest"], "pokeball": "pokeball"},
+			{"generation": 3, "level": 30, "moves": ["helpinghand", "psychic", "refresh", "rest"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 5, "moves": ["wish", "confusion", "rest"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 5, "moves": ["wish", "confusion", "rest", "dracometeor"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 50, "moves": ["healingwish", "psychic", "swift", "meteormash"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 50, "moves": ["dracometeor", "meteormash", "wish", "followme"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 50, "moves": ["wish", "healingwish", "cosmicpower", "meteormash"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 50, "moves": ["wish", "healingwish", "swift", "return"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 10, "shiny": true, "moves": ["wish", "swift", "healingwish", "moonblast"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 15, "shiny": true, "moves": ["wish", "confusion", "helpinghand", "return"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 100, "moves": ["heartstamp", "playrough", "wish", "cosmicpower"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 25, "shiny": true, "moves": ["wish", "confusion", "swift", "happyhour"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 100, "moves": ["wish", "confusion", "rest"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 15, "moves": ["swift", "wish", "healingwish", "rest"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	deoxys: {
 		learnset: {
@@ -39112,7 +41209,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["7M", "6M", "5M", "4M", "3M"],
 			rest: ["7M", "6M", "5M", "4M", "3M"],
-			return : ["7M", "6M", "5M", "4M", "3M"],
+			return: ["7M", "6M", "5M", "4M", "3M"],
 			rockslide: ["7M", "6M", "5M", "4M", "3T"],
 			rocksmash: ["6M", "5M", "4M", "3M"],
 			rocktomb: ["7M", "6M", "5M", "4M", "3M"],
@@ -39155,7 +41252,30 @@ let BattleLearnsets = {
 			wrap: ["7L1", "6L1", "5L1", "4L1", "4S8", "3L1"],
 			zapcannon: ["7L61", "6L61", "5L81", "4L81", "4S4", "3L40"],
 			zenheadbutt: ["7T", "7L49", "6T", "6L49", "5T", "5L65", "4T", "4L65"],
-		}
+		},
+		eventData: [
+			{"generation": 3, "level": 30, "shiny": 1, "moves": ["taunt", "pursuit", "psychic", "superpower"]},
+			{"generation": 3, "level": 30, "shiny": 1, "moves": ["knockoff", "spikes", "psychic", "snatch"]},
+			{"generation": 3, "level": 30, "shiny": 1, "moves": ["knockoff", "pursuit", "psychic", "swift"]},
+			{"generation": 3, "level": 70, "moves": ["cosmicpower", "recover", "psychoboost", "hyperbeam"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 50, "moves": ["psychoboost", "zapcannon", "irondefense", "extremespeed"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 50, "moves": ["psychoboost", "swift", "doubleteam", "extremespeed"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 50, "moves": ["psychoboost", "detect", "counter", "mirrorcoat"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 50, "moves": ["psychoboost", "meteormash", "superpower", "hyperbeam"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 50, "moves": ["psychoboost", "leer", "wrap", "nightshade"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 100, "moves": ["nastyplot", "darkpulse", "recover", "psychoboost"], "pokeball": "duskball"},
+			{"generation": 6, "level": 80, "moves": ["cosmicpower", "recover", "psychoboost", "hyperbeam"]},
+		],
+		eventOnly: true,
+	},
+	deoxysattack: {
+		eventOnly: true,
+	},
+	deoxysdefense: {
+		eventOnly: true,
+	},
+	deoxysspeed: {
+		eventOnly: true,
 	},
 	turtwig: {
 		learnset: {
@@ -39198,7 +41318,7 @@ let BattleLearnsets = {
 			razorleaf: ["7L13", "6L13", "5L13", "4L13"],
 			reflect: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["4M"],
 			rocksmash: ["6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
@@ -39228,7 +41348,11 @@ let BattleLearnsets = {
 			withdraw: ["7L5", "6L5", "5L5", "5S1", "5S0", "4L5"],
 			workup: ["7M"],
 			worryseed: ["7T", "7E", "6T", "6E", "5T", "5E", "4T", "4E"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["tackle", "withdraw", "absorb"]},
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["tackle", "withdraw", "absorb", "stockpile"]},
+		],
 	},
 	grotle: {
 		learnset: {
@@ -39265,7 +41389,7 @@ let BattleLearnsets = {
 			razorleaf: ["7L13", "6L13", "5L13", "4L13"],
 			reflect: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["4M"],
 			rocksmash: ["6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
@@ -39288,7 +41412,7 @@ let BattleLearnsets = {
 			withdraw: ["7L1", "6L1", "5L1", "4L1"],
 			workup: ["7M"],
 			worryseed: ["7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	torterra: {
 		learnset: {
@@ -39333,7 +41457,7 @@ let BattleLearnsets = {
 			razorleaf: ["7L1", "6L1", "5L1", "4L1"],
 			reflect: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["4M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
@@ -39364,7 +41488,10 @@ let BattleLearnsets = {
 			woodhammer: ["7L1", "6L1", "5L1", "5S0", "4L1"],
 			workup: ["7M"],
 			worryseed: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 100, "gender": "M", "moves": ["woodhammer", "earthquake", "outrage", "stoneedge"], "pokeball": "cherishball"},
+		],
 	},
 	chimchar: {
 		learnset: {
@@ -39421,7 +41548,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M"],
 			quickguard: ["7E", "6E", "5E"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["4M"],
 			rocksmash: ["6M", "5M", "4M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
@@ -39450,7 +41577,13 @@ let BattleLearnsets = {
 			vacuumwave: ["4T"],
 			willowisp: ["7M", "6M", "5M", "4M"],
 			workup: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 40, "gender": "M", "nature": "Mild", "moves": ["flamethrower", "thunderpunch", "grassknot", "helpinghand"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["scratch", "leer", "ember", "taunt"]},
+			{"generation": 4, "level": 40, "gender": "M", "nature": "Hardy", "moves": ["flamethrower", "thunderpunch", "grassknot", "helpinghand"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["leer", "ember", "taunt", "fakeout"]},
+		],
 	},
 	monferno: {
 		learnset: {
@@ -39506,7 +41639,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
@@ -39535,7 +41668,7 @@ let BattleLearnsets = {
 			vacuumwave: ["4T"],
 			willowisp: ["7M", "6M", "5M", "4M"],
 			workup: ["7M", "5M"],
-		}
+		},
 	},
 	infernape: {
 		learnset: {
@@ -39599,7 +41732,7 @@ let BattleLearnsets = {
 			punishment: ["7L29", "6L29", "5L29", "4L33"],
 			rest: ["7M", "6M", "5M", "4M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
@@ -39630,7 +41763,11 @@ let BattleLearnsets = {
 			vacuumwave: ["4T"],
 			willowisp: ["7M", "6M", "5M", "4M"],
 			workup: ["7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 100, "gender": "M", "moves": ["fireblast", "closecombat", "uturn", "grassknot"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 88, "isHidden": true, "moves": ["fireblast", "closecombat", "firepunch", "focuspunch"], "pokeball": "cherishball"},
+		],
 	},
 	piplup: {
 		learnset: {
@@ -39682,7 +41819,7 @@ let BattleLearnsets = {
 			quash: ["7M", "6M", "5M"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "6S4", "5M", "4M"],
+			return: ["7M", "6M", "6S4", "5M", "4M"],
 			rocktomb: ["7M", "6M", "5M", "4M"],
 			round: ["7M", "6M", "5M", "5S2"],
 			scald: ["7M", "6M", "5M"],
@@ -39704,7 +41841,15 @@ let BattleLearnsets = {
 			whirlpool: ["7L32", "7S5", "6L32", "5L32", "4M", "4L32"],
 			workup: ["7M"],
 			yawn: ["7E", "6E", "5E", "4E"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["pound", "growl", "bubble"]},
+			{"generation": 5, "level": 15, "shiny": 1, "moves": ["hydropump", "featherdance", "watersport", "peck"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 15, "gender": "M", "moves": ["sing", "round", "featherdance", "peck"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["pound", "growl", "bubble", "featherdance"]},
+			{"generation": 6, "level": 7, "moves": ["pound", "growl", "return"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 30, "gender": "M", "nature": "Hardy", "moves": ["hydropump", "bubblebeam", "whirlpool", "drillpeck"], "pokeball": "pokeball"},
+		],
 	},
 	prinplup: {
 		learnset: {
@@ -39750,7 +41895,7 @@ let BattleLearnsets = {
 			quash: ["7M", "6M", "5M"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
 			rocktomb: ["7M", "6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
@@ -39773,7 +41918,7 @@ let BattleLearnsets = {
 			watersport: ["7L11", "6L11", "5L11", "4L11"],
 			whirlpool: ["7L37", "6L37", "5L37", "4M", "4L37"],
 			workup: ["7M"],
-		}
+		},
 	},
 	empoleon: {
 		learnset: {
@@ -39831,7 +41976,7 @@ let BattleLearnsets = {
 			quash: ["7M", "6M", "5M"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
@@ -39859,7 +42004,10 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M"],
 			whirlpool: ["7L39", "6L39", "5L39", "4M", "4L39"],
 			workup: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 100, "gender": "M", "moves": ["hydropump", "icebeam", "aquajet", "grassknot"], "pokeball": "cherishball"},
+		],
 	},
 	starly: {
 		learnset: {
@@ -39898,7 +42046,7 @@ let BattleLearnsets = {
 			quickattack: ["7L5", "6L5", "5L5", "4L5"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			revenge: ["7E", "6E", "5E"],
 			roost: ["7M", "7E", "6M", "6E", "5T", "5E", "4M"],
 			round: ["7M", "6M", "5M"],
@@ -39922,7 +42070,10 @@ let BattleLearnsets = {
 			whirlwind: ["7L21", "6L21", "5L21", "4L21"],
 			wingattack: ["7L9", "6L9", "5L9", "4L9"],
 			workup: ["7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 1, "gender": "M", "nature": "Mild", "moves": ["tackle", "growl"], "pokeball": "pokeball"},
+		],
 	},
 	staravia: {
 		learnset: {
@@ -39955,7 +42106,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roost: ["7M", "6M", "5T", "4M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M"],
@@ -39977,7 +42128,10 @@ let BattleLearnsets = {
 			whirlwind: ["7L23", "6L23", "5L23", "4L23"],
 			wingattack: ["7L9", "6L9", "5L9", "5D", "4L9"],
 			workup: ["7M", "5M"],
-		}
+		},
+		encounters: [
+			{"generation": 4, "level": 4},
+		],
 	},
 	staraptor: {
 		learnset: {
@@ -40013,7 +42167,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roost: ["7M", "6M", "5T", "4M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M"],
@@ -40036,7 +42190,7 @@ let BattleLearnsets = {
 			whirlwind: ["7L23", "6L23", "5L23", "4L23"],
 			wingattack: ["7L1", "6L1", "5L1", "4L1"],
 			workup: ["7M", "5M"],
-		}
+		},
 	},
 	bidoof: {
 		learnset: {
@@ -40080,7 +42234,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["7E", "6E", "5E"],
 			rocksmash: ["6M", "5M", "4M"],
 			rollout: ["7L9", "7E", "6L13", "6E", "5L13", "5E", "4T", "4L13", "4E"],
@@ -40110,7 +42264,10 @@ let BattleLearnsets = {
 			watersport: ["7E", "6E", "5E", "4E"],
 			workup: ["7M", "5M"],
 			yawn: ["7L21", "6L25", "5L25", "4L25"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 1, "gender": "M", "nature": "Lonely", "abilities": ["simple"], "moves": ["tackle"], "pokeball": "pokeball"},
+		],
 	},
 	bibarel: {
 		learnset: {
@@ -40157,7 +42314,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["4M"],
 			rocksmash: ["6M", "5M", "4M"],
 			rollout: ["7L9", "6L13", "5L13", "4T", "4L13"],
@@ -40194,7 +42351,10 @@ let BattleLearnsets = {
 			whirlpool: ["4M"],
 			workup: ["7M", "5M"],
 			yawn: ["7L23", "6L28", "5L28", "4L28"],
-		}
+		},
+		encounters: [
+			{"generation": 4, "level": 4},
+		],
 	},
 	kricketot: {
 		learnset: {
@@ -40207,7 +42367,7 @@ let BattleLearnsets = {
 			stringshot: ["4T"],
 			strugglebug: ["7L6", "6M", "6L6", "5L6", "5D"],
 			uproar: ["7T", "6T", "5T", "5D", "4T"],
-		}
+		},
 	},
 	kricketune: {
 		learnset: {
@@ -40251,7 +42411,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
 			screech: ["7L34", "6L34", "5L34", "4L30"],
@@ -40274,7 +42434,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M"],
 			uproar: ["7T", "6T", "5T", "4T"],
 			xscissor: ["7M", "7L30", "6M", "6L30", "5M", "5L30", "4M", "4L26"],
-		}
+		},
 	},
 	shinx: {
 		learnset: {
@@ -40316,7 +42476,7 @@ let BattleLearnsets = {
 			quickattack: ["7E", "6E", "5E", "4E"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "7L21", "6M", "6L21", "5M", "5L21", "4M", "4L21"],
 			round: ["7M", "6M", "5M"],
 			scaryface: ["7L37", "6L37", "5L37", "4L37"],
@@ -40341,7 +42501,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M"],
 			voltswitch: ["7M", "6M", "5M"],
 			wildcharge: ["7M", "7L45", "6M", "6L45", "5M", "5L45"],
-		}
+		},
 	},
 	luxio: {
 		learnset: {
@@ -40374,7 +42534,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "7L23", "6M", "6L23", "5M", "5L23", "4M", "4L23"],
 			round: ["7M", "6M", "5M"],
 			scaryface: ["7L43", "6L43", "5L43", "4L43"],
@@ -40398,7 +42558,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M"],
 			voltswitch: ["7M", "6M", "5M"],
 			wildcharge: ["7M", "7L53", "6M", "6L53", "5M", "5L53"],
-		}
+		},
 	},
 	luxray: {
 		learnset: {
@@ -40436,7 +42596,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "7L23", "6M", "6L23", "5M", "5L23", "4M", "4L23"],
 			round: ["7M", "6M", "5M"],
 			scaryface: ["7L49", "6L49", "5L49", "4L49"],
@@ -40462,7 +42622,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M"],
 			voltswitch: ["7M", "6M", "5M"],
 			wildcharge: ["7M", "7L63", "6M", "6L63", "5M", "5L63"],
-		}
+		},
 	},
 	cranidos: {
 		learnset: {
@@ -40508,7 +42668,7 @@ let BattleLearnsets = {
 			pursuit: ["7L10", "6L10", "5L10", "5S0", "4L10"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["4M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
@@ -40545,7 +42705,10 @@ let BattleLearnsets = {
 			uproar: ["7T", "6T", "5T", "4T"],
 			whirlwind: ["7E", "6E", "5E", "4E"],
 			zenheadbutt: ["7T", "7L37", "6T", "6L37", "5T", "5L37", "4T", "4L33"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 15, "gender": "M", "moves": ["pursuit", "takedown", "crunch", "headbutt"], "pokeball": "cherishball"},
+		],
 	},
 	rampardos: {
 		learnset: {
@@ -40598,7 +42761,7 @@ let BattleLearnsets = {
 			pursuit: ["7L1", "6L10", "5L10", "4L10"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["4M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
@@ -40634,7 +42797,7 @@ let BattleLearnsets = {
 			uproar: ["7T", "6T", "5T", "4T"],
 			whirlpool: ["4M"],
 			zenheadbutt: ["7T", "7L43", "6T", "6L43", "5T", "5L43", "4T", "4L36"],
-		}
+		},
 	},
 	shieldon: {
 		learnset: {
@@ -40677,7 +42840,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7L1", "6M", "6L1", "5M", "5L1", "5D", "5S0", "4M", "4L1"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rockblast: ["7E", "6E", "5E", "4E"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
@@ -40707,7 +42870,10 @@ let BattleLearnsets = {
 			torment: ["7M", "6M", "5M", "4M"],
 			toxic: ["7M", "6M", "5M", "4M"],
 			wideguard: ["7E", "6E", "5E"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 15, "gender": "M", "moves": ["metalsound", "takedown", "bodyslam", "protect"], "pokeball": "cherishball"},
+		],
 	},
 	bastiodon: {
 		learnset: {
@@ -40749,7 +42915,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7L1", "6M", "6L1", "5M", "5L1", "4M", "4L1"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
@@ -40776,7 +42942,7 @@ let BattleLearnsets = {
 			thunderbolt: ["7M", "6M", "5M", "4M"],
 			torment: ["7M", "6M", "5M", "4M"],
 			toxic: ["7M", "6M", "5M", "4M"],
-		}
+		},
 	},
 	burmy: {
 		learnset: {
@@ -40787,7 +42953,7 @@ let BattleLearnsets = {
 			snore: ["7T", "6T", "5T", "5D", "4T"],
 			stringshot: ["4T"],
 			tackle: ["7L10", "6L10", "5L10", "4L10"],
-		}
+		},
 	},
 	wormadam: {
 		learnset: {
@@ -40827,7 +42993,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M"],
 			razorleaf: ["7L26", "6L26", "5L26", "4L26"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M"],
 			secretpower: ["6M", "4M"],
@@ -40852,7 +43018,7 @@ let BattleLearnsets = {
 			uproar: ["7T", "6T", "5T", "4T"],
 			venoshock: ["7M", "6M", "5M"],
 			worryseed: ["7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	wormadamsandy: {
 		learnset: {
@@ -40892,7 +43058,7 @@ let BattleLearnsets = {
 			quiverdance: ["7L1"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rockblast: ["7L26", "6L26", "5L26", "4L26"],
 			rocktomb: ["7M", "6M", "5M", "4M"],
 			rollout: ["4T"],
@@ -40918,7 +43084,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M"],
 			uproar: ["7T", "6T", "5T", "4T"],
 			venoshock: ["7M", "6M", "5M"],
-		}
+		},
 	},
 	wormadamtrash: {
 		learnset: {
@@ -40960,7 +43126,7 @@ let BattleLearnsets = {
 			quiverdance: ["7L1"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M"],
 			secretpower: ["6M", "4M"],
@@ -40982,7 +43148,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M"],
 			uproar: ["7T", "6T", "5T", "4T"],
 			venoshock: ["7M", "6M", "5M"],
-		}
+		},
 	},
 	mothim: {
 		learnset: {
@@ -41024,7 +43190,7 @@ let BattleLearnsets = {
 			quiverdance: ["7L1", "6L50", "5L50"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roost: ["7M", "6M", "5T", "4M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M"],
@@ -41049,7 +43215,7 @@ let BattleLearnsets = {
 			twister: ["4T"],
 			uturn: ["7M", "6M", "5M", "4M"],
 			venoshock: ["7M", "6M", "5M"],
-		}
+		},
 	},
 	combee: {
 		learnset: {
@@ -41066,7 +43232,7 @@ let BattleLearnsets = {
 			sweetscent: ["8L1", "7L1", "6L1", "5L1", "4L1"],
 			swift: ["4T"],
 			tailwind: ["7T", "6T", "5T", "5D", "4T"],
-		}
+		},
 	},
 	vespiquen: {
 		learnset: {
@@ -41120,7 +43286,7 @@ let BattleLearnsets = {
 			quash: ["7M", "6M", "5M"],
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			revenge: ["8M"],
 			reversal: ["8M"],
 			roost: ["7M", "6M", "5T", "4M"],
@@ -41148,7 +43314,7 @@ let BattleLearnsets = {
 			uturn: ["8M", "7M", "6M", "5M", "4M"],
 			venoshock: ["8M", "7M", "6M", "5M"],
 			xscissor: ["8M", "7M", "6M", "5M", "4M"],
-		}
+		},
 	},
 	pachirisu: {
 		learnset: {
@@ -41200,7 +43366,7 @@ let BattleLearnsets = {
 			quickattack: ["7L5", "6L5", "5L5", "5D", "4L5"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rollout: ["7E", "6E", "5E", "4T", "4E"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M"],
@@ -41223,7 +43389,10 @@ let BattleLearnsets = {
 			uproar: ["7T", "6T", "5T", "4T"],
 			uturn: ["7M", "6M", "5M", "4M"],
 			voltswitch: ["7M", "6M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 50, "nature": "Impish", "ivs": {"hp": 31, "atk": 31, "def": 31, "spa": 14, "spd": 31, "spe": 31}, "isHidden": true, "moves": ["nuzzle", "superfang", "followme", "protect"], "pokeball": "cherishball"},
+		],
 	},
 	buizel: {
 		learnset: {
@@ -41272,7 +43441,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M"],
 			razorwind: ["7L35", "6L35", "5L45", "4L45"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
 			rocktomb: ["7M", "6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
@@ -41296,7 +43465,7 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "5D", "4M"],
 			watersport: ["7L7", "6L7", "5L1", "5D", "4L1"],
 			whirlpool: ["7L31", "6L31", "5L36", "4M", "4L36"],
-		}
+		},
 	},
 	floatzel: {
 		learnset: {
@@ -41346,7 +43515,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M"],
 			razorwind: ["7L41", "6L41", "5L50", "4L50"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
 			rocktomb: ["7M", "6M", "5M", "4M"],
@@ -41369,7 +43538,11 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M"],
 			watersport: ["7L1", "6L1", "5L1", "4L1"],
 			whirlpool: ["7L35", "6L35", "5L39", "4M", "4L39"],
-		}
+		},
+		encounters: [
+			{"generation": 4, "level": 22},
+			{"generation": 5, "level": 10},
+		],
 	},
 	cherubi: {
 		learnset: {
@@ -41409,7 +43582,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M", "4M"],
 			razorleaf: ["8E", "7E", "6E", "5E", "4E"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rollout: ["8E", "7E", "6E", "5E", "4T"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M", "4M"],
@@ -41430,7 +43603,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M"],
 			weatherball: ["8M", "7E", "6E", "5E", "4E"],
 			worryseed: ["8L40", "7T", "7L28", "6T", "6L28", "5T", "5L28", "4T", "4L28"],
-		}
+		},
 	},
 	cherrim: {
 		learnset: {
@@ -41469,7 +43642,7 @@ let BattleLearnsets = {
 			pollenpuff: ["8M"],
 			protect: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rollout: ["4T"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M", "4M"],
@@ -41489,7 +43662,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M"],
 			weatherball: ["8M"],
 			worryseed: ["8L48", "7T", "7L30", "6T", "6L30", "5T", "5L30", "4T", "4L30"],
-		}
+		},
 	},
 	shellos: {
 		learnset: {
@@ -41534,7 +43707,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "8L40", "7M", "7L22", "6M", "6L22", "5M", "5L22", "4M", "4L22"],
 			recover: ["8L10", "7L46", "6L46", "5L46", "4L46"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			round: ["8M", "7M", "6M", "5M"],
 			scald: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M", "5D", "4M"],
@@ -41554,7 +43727,7 @@ let BattleLearnsets = {
 			waterpulse: ["8L15", "7T", "7L7", "6T", "6L7", "5L7", "4M", "4L7"],
 			whirlpool: ["8M", "4M"],
 			yawn: ["8E", "7E", "6E", "5E", "5D", "4E"],
-		}
+		},
 	},
 	gastrodon: {
 		learnset: {
@@ -41599,7 +43772,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "8L46", "7M", "7L22", "6M", "6L22", "5M", "5L22", "4M", "4L22"],
 			recover: ["8L1", "7L54", "6L54", "5L54", "4L54"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M"],
@@ -41625,7 +43798,10 @@ let BattleLearnsets = {
 			waterpulse: ["8L15", "7T", "7L1", "6T", "6L1", "5L1", "4M", "4L1"],
 			weatherball: ["8M"],
 			whirlpool: ["8M", "4M"],
-		}
+		},
+		encounters: [
+			{"generation": 4, "level": 20},
+		],
 	},
 	drifloon: {
 		learnset: {
@@ -41680,7 +43856,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			recycle: ["7T", "6T", "5T", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rollout: ["4T"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M"],
@@ -41710,7 +43886,7 @@ let BattleLearnsets = {
 			trick: ["8M", "7T", "6T", "5T", "4T"],
 			weatherball: ["8M", "7E", "6E", "5E", "4E"],
 			willowisp: ["8M", "7M", "6M", "5M", "4M"],
-		}
+		},
 	},
 	drifblim: {
 		learnset: {
@@ -41765,7 +43941,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			recycle: ["7T", "6T", "5T", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rollout: ["4T"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M"],
@@ -41796,7 +43972,10 @@ let BattleLearnsets = {
 			trick: ["8M", "7T", "6T", "5T", "4T"],
 			weatherball: ["8M"],
 			willowisp: ["8M", "7M", "6M", "5M", "4M"],
-		}
+		},
+		encounters: [
+			{"generation": 7, "level": 11, "pokeball": "pokeball"},
+		],
 	},
 	buneary: {
 		learnset: {
@@ -41864,7 +44043,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M"],
@@ -41889,7 +44068,7 @@ let BattleLearnsets = {
 			uproar: ["7T", "6T", "5T", "4T"],
 			waterpulse: ["7T", "6T", "4M"],
 			workup: ["7M", "5M"],
-		}
+		},
 	},
 	lopunny: {
 		learnset: {
@@ -41963,7 +44142,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "7L1", "6M", "6L13", "5M", "5L13", "4M", "4L13"],
+			return: ["7M", "7L1", "6M", "6L13", "5M", "5L13", "4M", "4L13"],
 			rocksmash: ["6M", "5M", "4M"],
 			rototiller: ["7L1", "6L1"],
 			round: ["7M", "6M", "5M"],
@@ -41987,7 +44166,7 @@ let BattleLearnsets = {
 			uproar: ["7T", "6T", "5T", "4T"],
 			waterpulse: ["7T", "6T", "4M"],
 			workup: ["7M", "5M"],
-		}
+		},
 	},
 	glameow: {
 		learnset: {
@@ -42035,7 +44214,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
 			sandattack: ["7E", "6E", "5E", "4E"],
 			scratch: ["7L5", "6L5", "5L5", "4L5"],
@@ -42064,7 +44243,7 @@ let BattleLearnsets = {
 			wakeupslap: ["7E", "6E", "5E"],
 			waterpulse: ["7T", "6T", "4M"],
 			workup: ["7M", "5M"],
-		}
+		},
 	},
 	purugly: {
 		learnset: {
@@ -42110,7 +44289,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rollout: ["4T"],
 			round: ["7M", "6M", "5M"],
@@ -42140,7 +44319,10 @@ let BattleLearnsets = {
 			uturn: ["7M", "6M", "5M", "4M"],
 			waterpulse: ["7T", "6T", "4M"],
 			workup: ["7M", "5M"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 32, "maxEggMoves": 1},
+		],
 	},
 	stunky: {
 		learnset: {
@@ -42192,7 +44374,7 @@ let BattleLearnsets = {
 			pursuit: ["7E", "6E", "5E", "4E"],
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -42223,7 +44405,7 @@ let BattleLearnsets = {
 			toxic: ["8L27", "7M", "7L27", "6M", "6L27", "5M", "5L27", "4M", "4L20"],
 			venomdrench: ["8M", "8L42", "7L37"],
 			venoshock: ["8M", "8L21", "7M", "6M", "5M"],
-		}
+		},
 	},
 	skuntank: {
 		learnset: {
@@ -42272,7 +44454,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M", "4M"],
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -42303,7 +44485,10 @@ let BattleLearnsets = {
 			toxic: ["8L27", "7M", "7L27", "6M", "6L27", "5M", "5L27", "4M", "4L20"],
 			venomdrench: ["8M", "8L48", "7L37"],
 			venoshock: ["8M", "8L21", "7M", "6M", "5M"],
-		}
+		},
+		encounters: [
+			{"generation": 4, "level": 29},
+		],
 	},
 	bronzor: {
 		learnset: {
@@ -42351,7 +44536,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M"],
@@ -42378,7 +44563,7 @@ let BattleLearnsets = {
 			trick: ["8M", "7T", "6T", "5T", "4T"],
 			trickroom: ["8M", "7M", "6M", "5M", "4M"],
 			wonderroom: ["8M", "7T", "6T", "5T"],
-		}
+		},
 	},
 	bronzong: {
 		learnset: {
@@ -42433,7 +44618,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
@@ -42464,7 +44649,10 @@ let BattleLearnsets = {
 			weatherball: ["8M", "8L1"],
 			wonderroom: ["8M", "7T", "6T", "5T"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 30},
+		],
 	},
 	chatot: {
 		learnset: {
@@ -42502,7 +44690,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roleplay: ["7T", "6T", "5T", "5D", "4T"],
 			roost: ["7M", "7L41", "6M", "6L41", "5T", "5L41", "4M", "4L33"],
 			round: ["7M", "7L29", "6M", "6L29", "5M", "5L29"],
@@ -42527,7 +44715,10 @@ let BattleLearnsets = {
 			uproar: ["7T", "7L45", "6T", "6L45", "5T", "5L45", "4T", "4L37"],
 			uturn: ["7M", "6M", "5M", "4M"],
 			workup: ["7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 25, "gender": "M", "nature": "Jolly", "abilities": ["keeneye"], "moves": ["mirrormove", "furyattack", "chatter", "taunt"]},
+		],
 	},
 	spiritomb: {
 		learnset: {
@@ -42574,7 +44765,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rocktomb: ["7M", "6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M"],
@@ -42602,7 +44793,10 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M"],
 			willowisp: ["7M", "6M", "5M", "4M"],
 			wonderroom: ["7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 61, "gender": "F", "nature": "Quiet", "ivs": {"hp": 30, "atk": 30, "def": 30, "spa": 30, "spd": 30, "spe": 30}, "moves": ["darkpulse", "psychic", "silverwind", "embargo"], "pokeball": "cherishball"},
+		],
 	},
 	gible: {
 		learnset: {
@@ -42644,7 +44838,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["7E", "6E", "5E", "4M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
@@ -42672,7 +44866,7 @@ let BattleLearnsets = {
 			thrash: ["7E", "6E", "5E", "4E"],
 			toxic: ["7M", "6M", "5M", "4M"],
 			twister: ["7E", "6E", "5E", "4T", "4E"],
-		}
+		},
 	},
 	gabite: {
 		learnset: {
@@ -42711,7 +44905,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
@@ -42737,7 +44931,7 @@ let BattleLearnsets = {
 			takedown: ["7L15", "6L15", "5L15", "4L15"],
 			toxic: ["7M", "6M", "5M", "4M"],
 			twister: ["4T"],
-		}
+		},
 	},
 	garchomp: {
 		learnset: {
@@ -42788,7 +44982,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M", "4M"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
@@ -42818,7 +45012,14 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M"],
 			twister: ["4T"],
 			whirlpool: ["4M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 100, "gender": "M", "moves": ["outrage", "earthquake", "swordsdance", "stoneedge"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 48, "gender": "M", "isHidden": true, "moves": ["dragonclaw", "dig", "crunch", "outrage"]},
+			{"generation": 6, "level": 48, "gender": "M", "moves": ["dracometeor", "dragonclaw", "dig", "crunch"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "gender": "M", "moves": ["slash", "dragonclaw", "dig", "crunch"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 66, "gender": "F", "perfectIVs": 3, "moves": ["dragonrush", "earthquake", "brickbreak", "gigaimpact"], "pokeball": "cherishball"},
+		],
 	},
 	riolu: {
 		learnset: {
@@ -42885,7 +45086,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			revenge: ["8M"],
 			reversal: ["8M", "8L56", "7L29", "6L29", "5L19", "4L19"],
 			roar: ["7M", "6M", "5M", "4M"],
@@ -42911,7 +45112,10 @@ let BattleLearnsets = {
 			vacuumwave: ["8E", "7E", "6E", "5E", "4T", "4E"],
 			workup: ["8M", "8L16", "7M", "5M"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 30, "gender": "M", "nature": "Serious", "abilities": ["steadfast"], "moves": ["aurasphere", "shadowclaw", "bulletpunch", "drainpunch"], "pokeball": "pokeball"},
+		],
 	},
 	lucario: {
 		learnset: {
@@ -42988,7 +45192,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			revenge: ["8M"],
 			reversal: ["8M", "8L1"],
 			roar: ["7M", "6M", "5M", "4M"],
@@ -43019,7 +45223,15 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M", "4S0"],
 			workup: ["8M", "8L1", "7M", "7L42", "5M"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 50, "gender": "M", "nature": "Modest", "abilities": ["steadfast"], "moves": ["aurasphere", "darkpulse", "dragonpulse", "waterpulse"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 30, "gender": "M", "nature": "Adamant", "abilities": ["innerfocus"], "moves": ["forcepalm", "bonerush", "sunnyday", "blazekick"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["detect", "metalclaw", "counter", "bulletpunch"]},
+			{"generation": 5, "level": 50, "gender": "M", "nature": "Naughty", "ivs": {"atk": 31}, "isHidden": true, "moves": ["bulletpunch", "closecombat", "stoneedge", "shadowclaw"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 100, "nature": "Jolly", "abilities": ["innerfocus"], "moves": ["closecombat", "aurasphere", "flashcannon", "quickattack"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 40, "gender": "M", "nature": "Serious", "abilities": ["steadfast"], "moves": ["aurasphere", "highjumpkick", "dragonpulse", "extremespeed"], "pokeball": "pokeball"},
+		],
 	},
 	hippopotas: {
 		learnset: {
@@ -43051,7 +45263,7 @@ let BattleLearnsets = {
 			naturalgift: ["4M"],
 			protect: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "8L36", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			revenge: ["8M", "7E", "6E", "5E", "4E"],
 			roar: ["8L32", "7M", "6M", "5M", "4M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M"],
@@ -43082,7 +45294,7 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			whirlwind: ["8E", "7E", "6E", "5E"],
 			yawn: ["8L8", "7L13", "6L13", "5L13", "4L13"],
-		}
+		},
 	},
 	hippowdon: {
 		learnset: {
@@ -43120,7 +45332,7 @@ let BattleLearnsets = {
 			naturalgift: ["4M"],
 			protect: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "8L38", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			revenge: ["8M"],
 			roar: ["8L32", "7M", "6M", "5M", "4M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M"],
@@ -43149,7 +45361,7 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M"],
 			weatherball: ["8M"],
 			yawn: ["8L1", "7L1", "6L1", "5L1", "4L1"],
-		}
+		},
 	},
 	skorupi: {
 		learnset: {
@@ -43201,7 +45413,7 @@ let BattleLearnsets = {
 			pursuit: ["7L16", "7E", "6L16", "6E", "5L16", "5E", "4E"],
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
 			rocktomb: ["8M", "7M", "6M", "5M", "4M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -43229,7 +45441,7 @@ let BattleLearnsets = {
 			venoshock: ["8M", "8L21", "7M", "7L27", "6M", "6L27", "5M", "5L50"],
 			whirlwind: ["8E", "7E", "6E", "5E", "4E"],
 			xscissor: ["8M", "8L42", "7M", "6M", "5M", "4M"],
-		}
+		},
 	},
 	drapion: {
 		learnset: {
@@ -43288,7 +45500,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["4M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M"],
@@ -43321,7 +45533,11 @@ let BattleLearnsets = {
 			venomdrench: ["8M"],
 			venoshock: ["8M", "8L21", "7M", "7L27", "6M", "6L27", "5M", "5L56"],
 			xscissor: ["8M", "8L44", "7M", "6M", "5M", "4M"],
-		}
+		},
+		encounters: [
+			{"generation": 4, "level": 22, "pokeball": "safariball"},
+			{"generation": 6, "level": 30},
+		],
 	},
 	croagunk: {
 		learnset: {
@@ -43388,7 +45604,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			revenge: ["8M", "8L16", "7L22", "6L22", "5L22", "4L22"],
 			rockclimb: ["4M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M"],
@@ -43423,7 +45639,11 @@ let BattleLearnsets = {
 			wakeupslap: ["7E", "6E", "5E", "4E"],
 			workup: ["8M", "7M", "5M"],
 			xscissor: ["8M", "7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["astonish", "mudslap", "poisonsting", "taunt"]},
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["mudslap", "poisonsting", "taunt", "poisonjab"]},
+		],
 	},
 	toxicroak: {
 		learnset: {
@@ -43485,7 +45705,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			revenge: ["8M", "8L16", "7L22", "6L22", "5L22", "4L22"],
 			rockclimb: ["4M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M"],
@@ -43520,7 +45740,11 @@ let BattleLearnsets = {
 			venoshock: ["8M", "8L20", "7M", "7L36", "6M", "6L36", "5M", "5L36"],
 			workup: ["8M", "7M", "5M"],
 			xscissor: ["8M", "7M", "6M", "5M", "4M"],
-		}
+		},
+		encounters: [
+			{"generation": 4, "level": 22, "pokeball": "safariball"},
+			{"generation": 6, "level": 30},
+		],
 	},
 	carnivine: {
 		learnset: {
@@ -43567,7 +45791,7 @@ let BattleLearnsets = {
 			ragepowder: ["7E", "6E", "5E", "5D"],
 			razorleaf: ["7E", "6E", "5E", "4E"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M", "4M"],
 			seedbomb: ["7T", "6T", "5T", "4T"],
@@ -43593,7 +45817,7 @@ let BattleLearnsets = {
 			vinewhip: ["7L11", "6L11", "5L11", "4L11"],
 			worryseed: ["7T", "7E", "6T", "6E", "5T", "5E", "4T", "4E"],
 			wringout: ["7L47", "6L47", "5L47", "4L41"],
-		}
+		},
 	},
 	finneon: {
 		learnset: {
@@ -43633,7 +45857,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M", "4M"],
 			raindance: ["7M", "7L13", "6M", "6L13", "5M", "5L13", "4M", "4L13"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "7L29", "6M", "6L29", "5M", "5L29", "4M", "4L29"],
 			scald: ["7M", "6M", "5M"],
@@ -43658,7 +45882,7 @@ let BattleLearnsets = {
 			watergun: ["7L6", "6L6", "5L6", "4L6"],
 			waterpulse: ["7T", "7L22", "6T", "6L22", "5L22", "5D", "4M", "4L22"],
 			whirlpool: ["7L38", "6L38", "5L38", "4M", "4L38"],
-		}
+		},
 	},
 	lumineon: {
 		learnset: {
@@ -43693,7 +45917,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M", "4M"],
 			raindance: ["7M", "7L13", "6M", "6L13", "5M", "5L13", "4M", "4L13"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "7L29", "6M", "6L29", "5M", "5L29", "4M", "4L29"],
 			scald: ["7M", "6M", "5M"],
@@ -43715,7 +45939,10 @@ let BattleLearnsets = {
 			watergun: ["7L1", "6L1", "5L1", "4L1"],
 			waterpulse: ["7T", "7L22", "6T", "6L22", "5L22", "4M", "4L22"],
 			whirlpool: ["7L42", "6L42", "5L42", "4M", "4L42"],
-		}
+		},
+		encounters: [
+			{"generation": 4, "level": 20},
+		],
 	},
 	snover: {
 		learnset: {
@@ -43760,7 +45987,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			razorleaf: ["8L20", "7L5", "6L5", "5L5", "5D", "4L5"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M", "4M"],
@@ -43782,7 +46009,7 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			woodhammer: ["8L41", "7L36", "6L36", "5L36", "4L36"],
 			worryseed: ["7T", "6T", "5T", "4T"],
-		}
+		},
 	},
 	abomasnow: {
 		learnset: {
@@ -43840,7 +46067,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			razorleaf: ["8L20", "7L1", "6L1", "5L1", "4L1"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["4M"],
 			rockslide: ["8M", "7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
@@ -43866,7 +46093,10 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			woodhammer: ["8L43", "7L36", "6L36", "5L36", "4L36"],
 			worryseed: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		encounters: [
+			{"generation": 4, "level": 38},
+		],
 	},
 	rotom: {
 		learnset: {
@@ -43906,7 +46136,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M", "4M"],
 			reflect: ["8M", "7M", "6M", "5M", "4M"],
 			rest: ["8M", "7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M", "4M"],
 			shadowball: ["8M", "7M", "6M", "5M", "4M"],
@@ -43933,32 +46163,37 @@ let BattleLearnsets = {
 			uproar: ["8M", "8L55", "7T", "7L8", "7S2", "6T", "6L8", "5T", "5L8", "5S0", "4T", "4L8"],
 			voltswitch: ["8M", "7M", "6M", "5M"],
 			willowisp: ["8M", "7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 10, "nature": "Naughty", "moves": ["uproar", "astonish", "trick", "thundershock"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 10, "nature": "Quirky", "moves": ["shockwave", "astonish", "trick", "thunderwave"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 10, "moves": ["uproar", "confide", "disarmingvoice"], "pokeball": "cherishball"},
+		],
 	},
 	rotomheat: {
 		learnset: {
 			overheat: ["8L1", "7R", "6R", "5R", "4R"],
-		}
+		},
 	},
 	rotomwash: {
 		learnset: {
 			hydropump: ["8L1", "7R", "6R", "5R", "4R"],
-		}
+		},
 	},
 	rotomfrost: {
 		learnset: {
 			blizzard: ["8L1", "7R", "6R", "5R", "4R"],
-		}
+		},
 	},
 	rotomfan: {
 		learnset: {
 			airslash: ["8L1", "7R", "6R", "5R", "4R"],
-		}
+		},
 	},
 	rotommow: {
 		learnset: {
 			leafstorm: ["8L1", "7R", "6R", "5R", "4R"],
-		}
+		},
 	},
 	uxie: {
 		learnset: {
@@ -44021,7 +46256,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "7L1", "6M", "6L1", "5M", "5L1", "4M", "4L1"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M"],
@@ -44052,7 +46287,15 @@ let BattleLearnsets = {
 			wonderroom: ["7T", "6T", "5T"],
 			yawn: ["7L31", "7S4", "6L31", "6S3", "5L31", "4L31", "4S1", "4S0"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 50, "shiny": 1, "moves": ["confusion", "yawn", "futuresight", "amnesia"]},
+			{"generation": 4, "level": 50, "shiny": 1, "moves": ["swift", "yawn", "futuresight", "amnesia"]},
+			{"generation": 5, "level": 65, "shiny": 1, "moves": ["futuresight", "amnesia", "extrasensory", "flail"]},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["yawn", "futuresight", "amnesia", "extrasensory"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["extrasensory", "yawn", "amnesia", "swift"]},
+		],
+		eventOnly: true,
 	},
 	mesprit: {
 		learnset: {
@@ -44115,7 +46358,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "7L1", "6M", "6L1", "5M", "5L1", "4M", "4L1"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M"],
@@ -44144,7 +46387,15 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M"],
 			wonderroom: ["7T", "6T", "5T"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 50, "shiny": 1, "moves": ["confusion", "luckychant", "futuresight", "charm"]},
+			{"generation": 4, "level": 50, "shiny": 1, "moves": ["swift", "luckychant", "futuresight", "charm"]},
+			{"generation": 5, "level": 50, "shiny": 1, "moves": ["futuresight", "charm", "extrasensory", "copycat"]},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["luckychant", "futuresight", "charm", "extrasensory"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["extrasensory", "charm", "futuresight", "swift"]},
+		],
+		eventOnly: true,
 	},
 	azelf: {
 		learnset: {
@@ -44210,7 +46461,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "7L1", "6M", "6L1", "5M", "5L1", "4M", "4L1"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roleplay: ["7T", "6T", "5T", "4T"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M"],
@@ -44242,7 +46493,15 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T", "4M"],
 			wonderroom: ["7T", "6T", "5T"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 50, "shiny": 1, "moves": ["confusion", "uproar", "futuresight", "nastyplot"]},
+			{"generation": 4, "level": 50, "shiny": 1, "moves": ["swift", "uproar", "futuresight", "nastyplot"]},
+			{"generation": 5, "level": 50, "shiny": 1, "moves": ["futuresight", "nastyplot", "extrasensory", "lastresort"]},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["uproar", "futuresight", "nastyplot", "extrasensory"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["extrasensory", "nastyplot", "uproar", "swift"]},
+		],
+		eventOnly: true,
 	},
 	dialga: {
 		learnset: {
@@ -44301,7 +46560,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M", "4M"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			roaroftime: ["7L46", "7S10", "7S9", "7S8", "7S7", "6L46", "6S6", "6S5", "5L46", "5S4", "4L40", "4S1", "4S0"],
 			rockslide: ["7M", "6M", "5M", "4M"],
@@ -44331,7 +46590,21 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M"],
 			trickroom: ["7M", "6M", "5M", "4M"],
 			twister: ["4T"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 47, "shiny": 1, "moves": ["metalclaw", "ancientpower", "dragonclaw", "roaroftime"]},
+			{"generation": 4, "level": 70, "shiny": 1, "moves": ["roaroftime", "healblock", "earthpower", "slash"]},
+			{"generation": 4, "level": 1, "shiny": 1, "moves": ["dragonbreath", "scaryface"]},
+			{"generation": 5, "level": 5, "isHidden": true, "moves": ["dragonbreath", "scaryface"], "pokeball": "dreamball"},
+			{"generation": 5, "level": 100, "shiny": true, "moves": ["dragonpulse", "dracometeor", "aurasphere", "roaroftime"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["aurasphere", "irontail", "roaroftime", "flashcannon"]},
+			{"generation": 6, "level": 100, "nature": "Modest", "isHidden": true, "moves": ["metalburst", "overheat", "roaroftime", "flashcannon"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["aurasphere", "irontail", "roaroftime", "flashcannon"]},
+			{"generation": 7, "level": 60, "moves": ["aurasphere", "irontail", "roaroftime", "flashcannon"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "moves": ["roaroftime", "aurasphere", "dracometeor", "flashcannon"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 50, "moves": ["flashcannon", "dracometeor", "roaroftime", "aurasphere"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	palkia: {
 		learnset: {
@@ -44392,7 +46665,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M", "4M"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
@@ -44424,7 +46697,21 @@ let BattleLearnsets = {
 			twister: ["4T"],
 			waterpulse: ["7T", "7L6", "6T", "6L6", "5L6", "4M", "4L6", "4S0"],
 			whirlpool: ["4M"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 47, "shiny": 1, "moves": ["waterpulse", "ancientpower", "dragonclaw", "spacialrend"]},
+			{"generation": 4, "level": 70, "shiny": 1, "moves": ["spacialrend", "healblock", "earthpower", "slash"]},
+			{"generation": 4, "level": 1, "shiny": 1, "moves": ["dragonbreath", "scaryface"]},
+			{"generation": 5, "level": 5, "isHidden": true, "moves": ["dragonbreath", "scaryface"], "pokeball": "dreamball"},
+			{"generation": 5, "level": 100, "shiny": true, "moves": ["hydropump", "dracometeor", "spacialrend", "aurasphere"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["earthpower", "aurasphere", "spacialrend", "hydropump"]},
+			{"generation": 6, "level": 100, "nature": "Timid", "isHidden": true, "moves": ["earthpower", "aurasphere", "spacialrend", "hydropump"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["aurasphere", "aquatail", "spacialrend", "hydropump"]},
+			{"generation": 7, "level": 60, "moves": ["aurasphere", "aquatail", "spacialrend", "hydropump"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "moves": ["spacialrend", "aurasphere", "dracometeor", "hydropump"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 50, "moves": ["hydropump", "dracometeor", "spacialrend", "aurasphere"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	heatran: {
 		learnset: {
@@ -44476,7 +46763,7 @@ let BattleLearnsets = {
 			payback: ["7M", "6M", "5M", "4M"],
 			protect: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
@@ -44500,7 +46787,18 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M"],
 			uproar: ["7T", "6T", "5T", "4T"],
 			willowisp: ["7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 70, "shiny": 1, "moves": ["scaryface", "lavaplume", "firespin", "ironhead"]},
+			{"generation": 4, "level": 50, "shiny": 1, "moves": ["metalsound", "crunch", "scaryface", "lavaplume"]},
+			{"generation": 4, "level": 50, "nature": "Quiet", "moves": ["eruption", "magmastorm", "earthpower", "ancientpower"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 68, "shiny": 1, "moves": ["scaryface", "lavaplume", "firespin", "ironhead"]},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["metalsound", "crunch", "scaryface", "lavaplume"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["crunch", "scaryface", "lavaplume", "firespin"]},
+			{"generation": 7, "level": 60, "moves": ["crunch", "scaryface", "lavaplume", "firespin"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "moves": ["magmastorm", "heatwave", "earthpower", "flashcannon"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	regigigas: {
 		learnset: {
@@ -44555,7 +46853,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M", "4M"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			revenge: ["7L25", "7S6", "7S5", "6L25", "6S4", "5L25", "5S3", "4L25"],
 			rockclimb: ["4M"],
 			rockpolish: ["7M", "6M", "5M", "4M"],
@@ -44584,7 +46882,18 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M"],
 			wideguard: ["7L40", "6L40", "6S4", "5L40", "5S3"],
 			zenheadbutt: ["7T", "7L50", "7S7", "7S6", "7S5", "6T", "6L50", "6S4", "5T", "5L50", "5S3", "4T", "4L50", "4S0"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 70, "shiny": 1, "moves": ["confuseray", "stomp", "superpower", "zenheadbutt"]},
+			{"generation": 4, "level": 1, "shiny": 1, "moves": ["dizzypunch", "knockoff", "foresight", "confuseray"]},
+			{"generation": 4, "level": 100, "moves": ["ironhead", "rockslide", "icywind", "crushgrip"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 68, "shiny": 1, "moves": ["revenge", "wideguard", "zenheadbutt", "payback"]},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["foresight", "revenge", "wideguard", "zenheadbutt"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["zenheadbutt", "revenge", "dizzypunch", "confuseray"]},
+			{"generation": 7, "level": 60, "moves": ["zenheadbutt", "revenge", "dizzypunch", "confuseray"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "moves": ["crushgrip", "drainpunch", "zenheadbutt", "heavyslam"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	giratina: {
 		learnset: {
@@ -44645,7 +46954,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M", "4M"],
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			rockclimb: ["4M"],
 			rocksmash: ["6M", "5M", "4M"],
@@ -44678,7 +46987,21 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M"],
 			twister: ["4T"],
 			willowisp: ["7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 70, "shiny": 1, "moves": ["shadowforce", "healblock", "earthpower", "slash"]},
+			{"generation": 4, "level": 47, "shiny": 1, "moves": ["ominouswind", "ancientpower", "dragonclaw", "shadowforce"]},
+			{"generation": 4, "level": 1, "shiny": 1, "moves": ["dragonbreath", "scaryface"]},
+			{"generation": 5, "level": 5, "isHidden": true, "moves": ["dragonbreath", "scaryface"], "pokeball": "dreamball"},
+			{"generation": 5, "level": 100, "shiny": true, "moves": ["dragonpulse", "dragonclaw", "aurasphere", "shadowforce"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["aurasphere", "shadowclaw", "shadowforce", "hex"]},
+			{"generation": 6, "level": 100, "nature": "Brave", "isHidden": true, "moves": ["aurasphere", "dracometeor", "shadowforce", "ironhead"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["shadowforce", "aurasphere", "earthpower", "dragonclaw"]},
+		],
+		eventOnly: true,
+	},
+	giratinaorigin: {
+		eventOnly: true,
 	},
 	cresselia: {
 		learnset: {
@@ -44731,7 +47054,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T", "4M"],
 			reflect: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "7L11", "6M", "6L11", "5M", "5L11", "4M", "4L11"],
 			secretpower: ["6M", "4M"],
@@ -44752,7 +47075,15 @@ let BattleLearnsets = {
 			trick: ["7T", "6T", "5T", "5S1", "4T"],
 			trickroom: ["7M", "6M", "5M", "4M"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 50, "shiny": 1, "moves": ["mist", "aurorabeam", "futuresight", "slash"]},
+			{"generation": 5, "level": 68, "shiny": 1, "moves": ["futuresight", "slash", "moonlight", "psychocut"]},
+			{"generation": 5, "level": 68, "nature": "Modest", "moves": ["icebeam", "psyshock", "energyball", "hiddenpower"]},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["mist", "aurorabeam", "futuresight", "slash"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["aurorabeam", "futuresight", "slash", "moonlight"]},
+		],
+		eventOnly: true,
 	},
 	phione: {
 		learnset: {
@@ -44790,7 +47121,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M", "4M"],
 			raindance: ["7M", "7L69", "6M", "6L69", "5M", "5L69", "4M", "4L69", "4S0"],
 			rest: ["7M", "6M", "5M", "4M", "4S0"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M"],
 			scald: ["7M", "6M", "5M"],
@@ -44810,7 +47141,10 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "7L46", "6T", "6L46", "5L46", "4M", "4L46"],
 			watersport: ["7L1", "6L1", "5L1", "4L1"],
 			whirlpool: ["7L39", "6L39", "5L39", "4M", "4L39"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 50, "moves": ["grassknot", "raindance", "rest", "surf"], "pokeball": "cherishball"},
+		],
 	},
 	manaphy: {
 		learnset: {
@@ -44857,7 +47191,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7L69", "6M", "6L69", "5M", "5L69", "4M", "4L69"],
 			reflect: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M"],
 			scald: ["7M", "6M", "5M"],
@@ -44880,7 +47214,17 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "7L46", "7S6", "6T", "6L46", "5L46", "4M", "4L46", "4S3", "4S2"],
 			watersport: ["7L1", "6L1", "6S5", "6S4", "5L1", "4L1", "4S3", "4S1", "4S0"],
 			whirlpool: ["7L39", "6L39", "5L39", "4M", "4L39", "4S2"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 5, "moves": ["tailglow", "bubble", "watersport"]},
+			{"generation": 4, "level": 1, "shiny": 1, "moves": ["tailglow", "bubble", "watersport"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 50, "moves": ["heartswap", "waterpulse", "whirlpool", "acidarmor"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 50, "nature": "Impish", "moves": ["aquaring", "waterpulse", "watersport", "heartswap"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 1, "moves": ["tailglow", "bubble", "watersport", "heartswap"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 100, "moves": ["tailglow", "bubble", "watersport"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 15, "moves": ["tailglow", "waterpulse", "aquaring", "heartswap"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	darkrai: {
 		learnset: {
@@ -44937,7 +47281,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M", "4M"],
 			rest: ["7M", "6M", "5M", "4M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roaroftime: ["4S1"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "6M", "5M", "4M"],
@@ -44974,7 +47318,18 @@ let BattleLearnsets = {
 			willowisp: ["7M", "6M", "5M", "4M"],
 			wonderroom: ["7T", "6T", "5T"],
 			xscissor: ["7M", "6M", "5M", "4M"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 40, "shiny": 1, "moves": ["quickattack", "hypnosis", "pursuit", "nightmare"]},
+			{"generation": 4, "level": 50, "moves": ["roaroftime", "spacialrend", "nightmare", "hypnosis"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 50, "moves": ["darkvoid", "darkpulse", "shadowball", "doubleteam"], "pokeball": "pokeball"},
+			{"generation": 4, "level": 50, "shiny": 1, "moves": ["hypnosis", "feintattack", "nightmare", "doubleteam"]},
+			{"generation": 5, "level": 50, "moves": ["darkvoid", "ominouswind", "feintattack", "nightmare"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "moves": ["darkvoid", "darkpulse", "phantomforce", "dreameater"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 100, "moves": ["darkvoid", "ominouswind", "nightmare", "feintattack"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 50, "moves": ["darkvoid", "feintattack", "nightmare", "ominouswind"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	shaymin: {
 		learnset: {
@@ -45019,7 +47374,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M", "4M"],
 			quickattack: ["7L28", "6L28", "5L28", "4L28"],
 			rest: ["7M", "6M", "5M", "4M"],
-			return : ["7M", "7S5", "6M", "5M", "4M"],
+			return: ["7M", "7S5", "6M", "5M", "4M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M", "4M"],
 			secretpower: ["6M", "4M"],
@@ -45040,7 +47395,19 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M", "4M"],
 			worryseed: ["7T", "7L55", "6T", "6L55", "5T", "5L55", "4T", "4L55"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 50, "moves": ["seedflare", "aromatherapy", "substitute", "energyball"], "pokeball": "cherishball"},
+			{"generation": 4, "level": 30, "shiny": 1, "moves": ["growth", "magicalleaf", "leechseed", "synthesis"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 50, "moves": ["seedflare", "leechseed", "synthesis", "sweetscent"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 15, "moves": ["growth", "magicalleaf", "seedflare", "airslash"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 100, "moves": ["seedflare", "aromatherapy", "substitute", "energyball"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 20, "moves": ["return", "growth", "seedflare", "celebrate"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
+	},
+	shayminsky: {
+		eventOnly: true,
 	},
 	arceus: {
 		learnset: {
@@ -45128,7 +47495,7 @@ let BattleLearnsets = {
 			refresh: ["7L50", "6L50", "5L50", "4L50"],
 			rest: ["7M", "6M", "5M", "4M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M", "4M"],
+			return: ["7M", "6M", "5M", "4M"],
 			roar: ["7M", "6M", "5M", "4M"],
 			roaroftime: ["4S0"],
 			rockclimb: ["4M"],
@@ -45177,7 +47544,66 @@ let BattleLearnsets = {
 			workup: ["7M", "5M"],
 			xscissor: ["7M", "6M", "5M", "4M"],
 			zenheadbutt: ["7T", "6T", "5T", "4T"],
-		}
+		},
+		eventData: [
+			{"generation": 4, "level": 100, "moves": ["judgment", "roaroftime", "spacialrend", "shadowforce"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 100, "moves": ["recover", "hyperbeam", "perishsong", "judgment"]},
+			{"generation": 6, "level": 100, "shiny": 1, "moves": ["judgment", "blastburn", "hydrocannon", "earthpower"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 100, "moves": ["judgment", "perishsong", "hyperbeam", "recover"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "moves": ["judgment", "extremespeed", "recover", "hyperbeam"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
+	},
+	arceusbug: {
+		eventOnly: true,
+	},
+	arceusdark: {
+		eventOnly: true,
+	},
+	arceusdragon: {
+		eventOnly: true,
+	},
+	arceuselectric: {
+		eventOnly: true,
+	},
+	arceusfairy: {
+		eventOnly: true,
+	},
+	arceusfighting: {
+		eventOnly: true,
+	},
+	arceusfire: {
+		eventOnly: true,
+	},
+	arceusflying: {
+		eventOnly: true,
+	},
+	arceusghost: {
+		eventOnly: true,
+	},
+	arceusgrass: {
+		eventOnly: true,
+	},
+	arceusground: {
+		eventOnly: true,
+	},
+	arceusice: {
+		eventOnly: true,
+	},
+	arceuspoison: {
+		eventOnly: true,
+	},
+	arceuspsychic: {
+		eventOnly: true,
+	},
+	arceusrock: {
+		eventOnly: true,
+	},
+	arceussteel: {
+		eventOnly: true,
+	},
+	arceuswater: {
+		eventOnly: true,
 	},
 	victini: {
 		learnset: {
@@ -45244,7 +47670,7 @@ let BattleLearnsets = {
 			psyshock: ["7M", "6M", "5M"],
 			quickattack: ["7L1", "6L1", "6S5", "6S4", "6S3", "5L1", "5S0"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			reversal: ["7L33", "7S6", "6L33", "5L33"],
 			rocksmash: ["6M", "5M"],
 			roleplay: ["7T", "6T", "5T"],
@@ -45279,7 +47705,17 @@ let BattleLearnsets = {
 			willowisp: ["7M", "6M", "5M"],
 			workup: ["7M", "5M"],
 			zenheadbutt: ["7T", "7L49", "6T", "6L49", "5T", "5L49"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 15, "moves": ["quickattack", "incinerate", "confusion", "endure"]},
+			{"generation": 5, "level": 50, "moves": ["vcreate", "fusionflare", "fusionbolt", "searingshot"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 100, "moves": ["vcreate", "blueflare", "boltstrike", "glaciate"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 15, "moves": ["confusion", "quickattack", "vcreate", "searingshot"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 100, "moves": ["incinerate", "quickattack", "endure", "confusion"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 15, "moves": ["quickattack", "swagger", "vcreate"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 15, "moves": ["vcreate", "reversal", "storedpower", "celebrate"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	snivy: {
 		learnset: {
@@ -45326,7 +47762,7 @@ let BattleLearnsets = {
 			pursuit: ["7E", "6E", "5E"],
 			reflect: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M"],
 			secretpower: ["6M"],
@@ -45352,7 +47788,10 @@ let BattleLearnsets = {
 			worryseed: ["7T", "6T", "5T"],
 			wrap: ["7L10", "6L10", "5L10"],
 			wringout: ["7L37", "6L37", "5L37"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 5, "gender": "M", "nature": "Hardy", "moves": ["growth", "synthesis", "energyball", "aromatherapy"], "pokeball": "cherishball"},
+		],
 	},
 	servine: {
 		learnset: {
@@ -45390,7 +47829,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M"],
 			reflect: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M"],
 			secretpower: ["6M"],
@@ -45414,7 +47853,7 @@ let BattleLearnsets = {
 			worryseed: ["7T", "6T", "5T"],
 			wrap: ["7L1", "6L1", "5L1"],
 			wringout: ["7L44", "6L44", "5L44"],
-		}
+		},
 	},
 	serperior: {
 		learnset: {
@@ -45460,7 +47899,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M"],
 			reflect: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M"],
@@ -45486,7 +47925,11 @@ let BattleLearnsets = {
 			worryseed: ["7T", "6T", "5T"],
 			wrap: ["7L1", "6L1", "5L1"],
 			wringout: ["7L50", "6L50", "6S1", "5L50"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 100, "gender": "M", "moves": ["leafstorm", "substitute", "gigadrain", "leechseed"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "isHidden": true, "moves": ["leafstorm", "holdback", "wringout", "gigadrain"], "pokeball": "cherishball"},
+		],
 	},
 	tepig: {
 		learnset: {
@@ -45525,7 +47968,7 @@ let BattleLearnsets = {
 			overheat: ["7M", "6M", "5M"],
 			protect: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roar: ["7M", "7L39", "6M", "6L39", "5M", "5L39"],
 			rocksmash: ["6M", "5M"],
 			rocktomb: ["7M", "6M", "5M"],
@@ -45554,7 +47997,7 @@ let BattleLearnsets = {
 			workup: ["7M"],
 			yawn: ["7E", "6E", "5E"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
 	},
 	pignite: {
 		learnset: {
@@ -45600,7 +48043,7 @@ let BattleLearnsets = {
 			poweruppunch: ["6M"],
 			protect: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roar: ["7M", "7L47", "6M", "6L47", "5M", "5L47"],
 			rockslide: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
@@ -45629,7 +48072,7 @@ let BattleLearnsets = {
 			willowisp: ["7M", "6M", "5M"],
 			workup: ["7M", "5M"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
 	},
 	emboar: {
 		learnset: {
@@ -45684,7 +48127,7 @@ let BattleLearnsets = {
 			poweruppunch: ["6M"],
 			protect: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roar: ["7M", "7L55", "6M", "6L55", "5M", "5L55"],
 			rockslide: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
@@ -45715,7 +48158,11 @@ let BattleLearnsets = {
 			willowisp: ["7M", "6M", "5M"],
 			workup: ["7M", "5M"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 100, "gender": "M", "moves": ["flareblitz", "hammerarm", "wildcharge", "headsmash"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "isHidden": true, "moves": ["flareblitz", "holdback", "headsmash", "takedown"], "pokeball": "cherishball"},
+		],
 	},
 	oshawott: {
 		learnset: {
@@ -45757,7 +48204,7 @@ let BattleLearnsets = {
 			razorshell: ["7L17", "6L17", "5L17"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["7L37", "6M", "6L37", "5M", "5L37"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["7L25", "6L25", "5L25"],
 			rocksmash: ["6M", "5M"],
 			round: ["7M", "6M", "5M"],
@@ -45783,7 +48230,7 @@ let BattleLearnsets = {
 			watersport: ["7L11", "6L11", "5L11"],
 			workup: ["7M"],
 			xscissor: ["7M", "6M", "5M"],
-		}
+		},
 	},
 	dewott: {
 		learnset: {
@@ -45819,7 +48266,7 @@ let BattleLearnsets = {
 			razorshell: ["7L18", "6L17", "5L17"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["7L45", "6M", "6L44", "5M", "5L44"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["7L29", "6L28", "5L28"],
 			rocksmash: ["6M", "5M"],
 			round: ["7M", "6M", "5M"],
@@ -45842,7 +48289,7 @@ let BattleLearnsets = {
 			watersport: ["7L1", "6L1", "5L1"],
 			workup: ["7M"],
 			xscissor: ["7M", "6M", "5M"],
-		}
+		},
 	},
 	samurott: {
 		learnset: {
@@ -45887,7 +48334,7 @@ let BattleLearnsets = {
 			razorshell: ["7L18", "6L17", "6S1", "5L17"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["7L51", "6M", "6L50", "5M", "5L50"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["7L29", "6L28", "5L28"],
 			rocksmash: ["6M", "5M"],
 			round: ["7M", "6M", "5M"],
@@ -45914,7 +48361,11 @@ let BattleLearnsets = {
 			watersport: ["7L1", "6L1", "5L1"],
 			workup: ["7M"],
 			xscissor: ["7M", "6M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 100, "gender": "M", "moves": ["hydropump", "icebeam", "megahorn", "superpower"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "isHidden": true, "moves": ["razorshell", "holdback", "confide", "hydropump"], "pokeball": "cherishball"},
+		],
 	},
 	patrat: {
 		learnset: {
@@ -45959,7 +48410,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["7E", "6E", "5E"],
 			round: ["7M", "6M", "5M"],
 			sandattack: ["7L13", "6L13", "5L13"],
@@ -45982,7 +48433,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			workup: ["7M", "7L28", "6L26", "5M", "5L26"],
 			zenheadbutt: ["7T", "6T", "5T"],
-		}
+		},
 	},
 	watchog: {
 		learnset: {
@@ -46037,7 +48488,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			rototiller: ["7L1", "6L1"],
 			round: ["7M", "6M", "5M"],
@@ -46065,7 +48516,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			workup: ["7M", "5M"],
 			zenheadbutt: ["7T", "6T", "5T"],
-		}
+		},
 	},
 	lillipup: {
 		learnset: {
@@ -46103,7 +48554,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["7L29", "6M", "6L29", "5M", "5L29"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			reversal: ["7L33", "6L33", "5L33"],
 			roar: ["7M", "7L26", "6M", "6L26", "5M", "5L26"],
 			rocksmash: ["6M", "5M"],
@@ -46129,7 +48580,7 @@ let BattleLearnsets = {
 			wildcharge: ["7M", "6M", "5M"],
 			workup: ["7M", "7L19", "6L19", "5M", "5L19"],
 			yawn: ["7E", "6E", "5E"],
-		}
+		},
 	},
 	herdier: {
 		learnset: {
@@ -46157,7 +48608,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["7L33", "6M", "6L33", "5M", "5L33"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			reversal: ["7L38", "6L38", "5L38"],
 			roar: ["7M", "7L29", "6M", "6L29", "5M", "5L29"],
 			rocksmash: ["6M", "5M"],
@@ -46182,7 +48633,10 @@ let BattleLearnsets = {
 			uproar: ["7T", "6T", "5T"],
 			wildcharge: ["7M", "6M", "5M"],
 			workup: ["7M", "7L20", "6L20", "5M", "5L20"],
-		}
+		},
+		encounters: [
+			{"generation": 5, "level": 20, "isHidden": true},
+		],
 	},
 	stoutland: {
 		learnset: {
@@ -46214,7 +48668,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["7L36", "6M", "6L36", "5M", "5L36"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			reversal: ["7L42", "6L42", "5L42"],
 			roar: ["7M", "7L29", "6M", "6L29", "5M", "5L29"],
 			rocksmash: ["6M", "5M"],
@@ -46243,7 +48697,10 @@ let BattleLearnsets = {
 			uproar: ["7T", "6T", "5T"],
 			wildcharge: ["7M", "6M", "5M"],
 			workup: ["7M", "7L20", "6L20", "5M", "5L20"],
-		}
+		},
+		encounters: [
+			{"generation": 5, "level": 23},
+		],
 	},
 	purrloin: {
 		learnset: {
@@ -46291,7 +48748,7 @@ let BattleLearnsets = {
 			quickattack: ["8E"],
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roleplay: ["7T", "6T", "5T"],
 			round: ["8M", "7M", "6M", "5M"],
 			sandattack: ["8L4", "7L10", "6L10", "5L10"],
@@ -46320,7 +48777,7 @@ let BattleLearnsets = {
 			trick: ["8M", "7T", "6T", "5T"],
 			uturn: ["8M", "7M", "6M", "5M"],
 			yawn: ["8E", "7E", "6E", "5E"],
-		}
+		},
 	},
 	liepard: {
 		learnset: {
@@ -46368,7 +48825,7 @@ let BattleLearnsets = {
 			pursuit: ["7L15", "6L15", "5L15"],
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			roleplay: ["7T", "6T", "5T"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -46398,7 +48855,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			trick: ["8M", "7T", "6T", "5T"],
 			uturn: ["8M", "7M", "6M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 20, "gender": "F", "nature": "Jolly", "isHidden": true, "moves": ["fakeout", "foulplay", "encore", "swagger"]},
+		],
 	},
 	pansage: {
 		learnset: {
@@ -46450,7 +48910,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M"],
 			recycle: ["7T", "7L37", "6T", "6L37", "5T", "5L37"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			rocktomb: ["7M", "6M", "5M", "5S2"],
 			roleplay: ["7T", "7E", "6T", "6E", "5T", "5E"],
@@ -46476,7 +48936,12 @@ let BattleLearnsets = {
 			vinewhip: ["7L10", "6L10", "5L10", "5S1"],
 			workup: ["7M", "5M"],
 			worryseed: ["7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 1, "shiny": 1, "gender": "M", "nature": "Brave", "ivs": {"spa": 31}, "moves": ["bulletseed", "bite", "solarbeam", "dig"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["leer", "lick", "vinewhip", "leafstorm"]},
+			{"generation": 5, "level": 30, "gender": "M", "nature": "Serious", "moves": ["seedbomb", "solarbeam", "rocktomb", "dig"], "pokeball": "cherishball"},
+		],
 	},
 	simisage: {
 		learnset: {
@@ -46521,7 +48986,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M"],
 			recycle: ["7T", "6T", "5T"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			rocktomb: ["7M", "6M", "5M"],
@@ -46546,7 +49011,7 @@ let BattleLearnsets = {
 			uproar: ["7T", "6T", "5T"],
 			workup: ["7M", "5M"],
 			worryseed: ["7T", "6T", "5T"],
-		}
+		},
 	},
 	pansear: {
 		learnset: {
@@ -46601,7 +49066,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M"],
 			recycle: ["7T", "7L37", "6T", "6L37", "5T", "5L37"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			rocktomb: ["7M", "6M", "5M"],
 			roleplay: ["7T", "7E", "6T", "6E", "5T", "5E"],
@@ -46624,7 +49089,10 @@ let BattleLearnsets = {
 			willowisp: ["7M", "6M", "5M"],
 			workup: ["7M", "5M"],
 			yawn: ["7L16", "6L16", "5L16"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["leer", "lick", "incinerate", "heatwave"]},
+		],
 	},
 	simisear: {
 		learnset: {
@@ -46673,7 +49141,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M"],
 			recycle: ["7T", "6T", "5T"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			rocktomb: ["7M", "6M", "5M"],
@@ -46696,7 +49164,10 @@ let BattleLearnsets = {
 			uproar: ["7T", "6T", "5T"],
 			willowisp: ["7M", "6M", "5M"],
 			workup: ["7M", "6S0", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 5, "perfectIVs": 2, "moves": ["workup", "honeclaws", "poweruppunch", "gigaimpact"], "pokeball": "cherishball"},
+		],
 	},
 	panpour: {
 		learnset: {
@@ -46750,7 +49221,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M"],
 			recycle: ["7T", "7L37", "6T", "6L37", "5T", "5L37"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			rocktomb: ["7M", "6M", "5M"],
 			roleplay: ["7T", "7E", "6T", "6E", "5T", "5E"],
@@ -46776,7 +49247,10 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T"],
 			watersport: ["7L16", "6L16", "5L16"],
 			workup: ["7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 10, "gender": "M", "isHidden": true, "moves": ["leer", "lick", "watergun", "hydropump"]},
+		],
 	},
 	simipour: {
 		learnset: {
@@ -46824,7 +49298,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M"],
 			recycle: ["7T", "6T", "5T"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			rocktomb: ["7M", "6M", "5M"],
@@ -46849,7 +49323,7 @@ let BattleLearnsets = {
 			waterpledge: ["7T"],
 			waterpulse: ["7T", "6T"],
 			workup: ["7M", "5M"],
-		}
+		},
 	},
 	munna: {
 		learnset: {
@@ -46899,7 +49373,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			reflect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -46927,7 +49401,7 @@ let BattleLearnsets = {
 			worryseed: ["7T", "6T", "5T"],
 			yawn: ["8L32", "7L7", "6L7", "5L7"],
 			zenheadbutt: ["8M", "8L24", "7T", "7L23", "6T", "6L23", "5T", "5L23"],
-		}
+		},
 	},
 	musharna: {
 		learnset: {
@@ -46974,7 +49448,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			reflect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -47000,7 +49474,10 @@ let BattleLearnsets = {
 			worryseed: ["7T", "6T", "5T"],
 			yawn: ["8L1"],
 			zenheadbutt: ["8M", "8L1", "7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 50, "isHidden": true, "moves": ["defensecurl", "luckychant", "psybeam", "hypnosis"]},
+		],
 	},
 	pidove: {
 		learnset: {
@@ -47036,7 +49513,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			razorwind: ["7L32", "6L32", "5L32"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roost: ["8L36", "7M", "7L18", "6M", "6L18", "5T", "5L18"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M"],
@@ -47055,7 +49532,10 @@ let BattleLearnsets = {
 			uturn: ["8M", "7M", "6M", "5M"],
 			wish: ["8E", "7E", "6E", "5E"],
 			workup: ["8M", "7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 1, "shiny": 1, "gender": "F", "nature": "Hardy", "ivs": {"atk": 31}, "abilities": ["superluck"], "moves": ["gust", "quickattack", "aircutter"], "pokeball": "pokeball"},
+		],
 	},
 	tranquill: {
 		learnset: {
@@ -47086,7 +49566,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			razorwind: ["7L36", "6L36", "5L36"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roost: ["8L44", "7M", "7L18", "6M", "6L18", "5T", "5L18"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M"],
@@ -47104,7 +49584,7 @@ let BattleLearnsets = {
 			uproar: ["8M", "7T", "6T", "5T"],
 			uturn: ["8M", "7M", "6M", "5M"],
 			workup: ["8M", "7M", "5M"],
-		}
+		},
 	},
 	unfezant: {
 		learnset: {
@@ -47140,7 +49620,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			razorwind: ["7L38", "6L38", "5L38"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roost: ["8L50", "7M", "7L18", "6M", "6L18", "5T", "5L18"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M"],
@@ -47158,7 +49638,10 @@ let BattleLearnsets = {
 			uproar: ["8M", "7T", "6T", "5T"],
 			uturn: ["8M", "7M", "6M", "5M"],
 			workup: ["8M", "7M", "5M"],
-		}
+		},
+		encounters: [
+			{"generation": 5, "level": 22},
+		],
 	},
 	blitzle: {
 		learnset: {
@@ -47189,7 +49672,7 @@ let BattleLearnsets = {
 			rage: ["7E", "6E", "5E"],
 			raindance: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["7M", "6M", "5M"],
 			sandattack: ["7E", "6E", "5E"],
 			screech: ["7E", "6E", "5E"],
@@ -47212,7 +49695,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			voltswitch: ["7M", "6M", "5M"],
 			wildcharge: ["7M", "7L39", "6M", "6L39", "5M", "5L39"],
-		}
+		},
 	},
 	zebstrika: {
 		learnset: {
@@ -47243,7 +49726,7 @@ let BattleLearnsets = {
 			quickattack: ["7L1", "6L1", "5L1"],
 			raindance: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M"],
@@ -47264,7 +49747,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			voltswitch: ["7M", "6M", "5M"],
 			wildcharge: ["7M", "7L47", "6M", "6L47", "5M", "5L47"],
-		}
+		},
 	},
 	roggenrola: {
 		learnset: {
@@ -47295,7 +49778,7 @@ let BattleLearnsets = {
 			naturepower: ["7M", "6M"],
 			protect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockblast: ["8M", "8L32", "7L14", "6L14", "5L14"],
 			rockpolish: ["7M", "6M", "5M"],
 			rockslide: ["8M", "8L28", "7M", "7L27", "6M", "6L27", "5M", "5L27"],
@@ -47318,7 +49801,7 @@ let BattleLearnsets = {
 			takedown: ["8E", "7E", "6E", "5E"],
 			toxic: ["7M", "6M", "5M"],
 			wideguard: ["8E", "7E", "6E"],
-		}
+		},
 	},
 	boldore: {
 		learnset: {
@@ -47347,7 +49830,7 @@ let BattleLearnsets = {
 			powergem: ["8M", "8L0", "7L1", "6L25", "5L25"],
 			protect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockblast: ["8M", "8L36", "7L14", "6L14", "5L14"],
 			rockpolish: ["7M", "6M", "5M"],
 			rockslide: ["8M", "8L30", "7M", "7L30", "6M", "6L30", "5M", "5L30"],
@@ -47369,7 +49852,10 @@ let BattleLearnsets = {
 			swagger: ["7M", "6M", "5M"],
 			tackle: ["8L1", "7L1", "6L1", "5L1"],
 			toxic: ["7M", "6M", "5M"],
-		}
+		},
+		encounters: [
+			{"generation": 5, "level": 24},
+		],
 	},
 	gigalith: {
 		learnset: {
@@ -47401,7 +49887,7 @@ let BattleLearnsets = {
 			powergem: ["8M", "8L1", "7L1", "6L25", "5L25"],
 			protect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockblast: ["8M", "8L36", "7L14", "6L14", "5L14"],
 			rockpolish: ["7M", "6M", "5M"],
 			rockslide: ["8M", "8L30", "7M", "7L30", "6M", "6L30", "5M", "5L30"],
@@ -47428,7 +49914,7 @@ let BattleLearnsets = {
 			throatchop: ["8M", "7T"],
 			toxic: ["7M", "6M", "5M"],
 			weatherball: ["8M"],
-		}
+		},
 	},
 	woobat: {
 		learnset: {
@@ -47485,7 +49971,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			reflect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roost: ["8E", "7M", "7E", "6M", "6E", "5T", "5E"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M"],
@@ -47519,7 +50005,7 @@ let BattleLearnsets = {
 			uturn: ["8M", "7M", "6M", "5M"],
 			venomdrench: ["8M", "7E", "6E"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
 	},
 	swoobat: {
 		learnset: {
@@ -47577,7 +50063,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			reflect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roost: ["7M", "6M", "5T"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M"],
@@ -47610,7 +50096,7 @@ let BattleLearnsets = {
 			uturn: ["8M", "7M", "6M", "5M"],
 			venomdrench: ["8M"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
 	},
 	drilbur: {
 		learnset: {
@@ -47645,7 +50131,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M"],
 			rapidspin: ["8L1", "7L5", "7E", "6L5", "6E", "5L5", "5E", "5D"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockclimb: ["7E", "6E", "5E", "5D"],
 			rockslide: ["8M", "8L28", "7M", "7L29", "6M", "6L29", "5M", "5L29"],
 			rocksmash: ["6M", "5M"],
@@ -47669,7 +50155,7 @@ let BattleLearnsets = {
 			swordsdance: ["8M", "8L36", "7M", "7L36", "6M", "6L36", "5M", "5L36"],
 			toxic: ["7M", "6M", "5M"],
 			xscissor: ["8M", "7M", "6M", "5M"],
-		}
+		},
 	},
 	excadrill: {
 		learnset: {
@@ -47710,7 +50196,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M"],
 			rapidspin: ["8L1", "7L1", "6L1", "5L1"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockblast: ["8M"],
 			rockslide: ["8M", "8L28", "7M", "7L29", "6M", "6L29", "5M", "5L29"],
 			rocksmash: ["6M", "5M"],
@@ -47736,7 +50222,10 @@ let BattleLearnsets = {
 			swordsdance: ["8M", "8L40", "7M", "7L42", "6M", "6L42", "5M", "5L42"],
 			toxic: ["7M", "6M", "5M"],
 			xscissor: ["8M", "7M", "6M", "5M"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 30},
+		],
 	},
 	audino: {
 		learnset: {
@@ -47814,7 +50303,7 @@ let BattleLearnsets = {
 			refresh: ["7L9", "6L5", "5L5", "5S2", "5S1", "5S0"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roleplay: ["7T", "6T", "5T"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M"],
@@ -47848,7 +50337,13 @@ let BattleLearnsets = {
 			workup: ["7M", "5M"],
 			yawn: ["7E", "6E", "5E", "5D"],
 			zenheadbutt: ["7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 30, "gender": "F", "nature": "Calm", "abilities": ["healer"], "moves": ["healpulse", "helpinghand", "refresh", "doubleslap"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 30, "gender": "F", "nature": "Serious", "abilities": ["healer"], "moves": ["healpulse", "helpinghand", "refresh", "present"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 30, "gender": "F", "nature": "Jolly", "abilities": ["healer"], "moves": ["healpulse", "helpinghand", "refresh", "present"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 100, "nature": "Relaxed", "abilities": ["regenerator"], "moves": ["trickroom", "healpulse", "simplebeam", "thunderbolt"], "pokeball": "cherishball"},
+		],
 	},
 	timburr: {
 		learnset: {
@@ -47898,7 +50393,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["8M"],
 			reversal: ["8M", "7E", "6E", "5E"],
 			rockslide: ["8M", "8L20", "7M", "7L31", "6M", "6L31", "5M", "5L31"],
@@ -47925,7 +50420,7 @@ let BattleLearnsets = {
 			wakeupslap: ["7L20", "6L20", "5L20"],
 			wideguard: ["8E", "7E", "6E", "5E"],
 			workup: ["8M", "7M", "5M"],
-		}
+		},
 	},
 	gurdurr: {
 		learnset: {
@@ -47971,7 +50466,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["8M"],
 			reversal: ["8M"],
 			rockslide: ["8M", "8L20", "7M", "7L33", "6M", "6L33", "5M", "5L33"],
@@ -47996,7 +50491,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			wakeupslap: ["7L20", "6L20", "5L20"],
 			workup: ["8M", "7M", "5M"],
-		}
+		},
 	},
 	conkeldurr: {
 		learnset: {
@@ -48045,7 +50540,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["8M"],
 			reversal: ["8M"],
 			rockblast: ["8M"],
@@ -48072,7 +50567,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			wakeupslap: ["7L20", "6L20", "5L20"],
 			workup: ["8M", "7M", "5M"],
-		}
+		},
 	},
 	tympole: {
 		learnset: {
@@ -48109,7 +50604,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "8L44", "7M", "7L31", "6M", "6L31", "5M", "5L31"],
 			refresh: ["7E", "6E", "5E"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["8M", "8L16", "7M", "7L9", "6M", "6L9", "5M", "5L9", "5D"],
 			scald: ["8M", "7M", "6M", "5M"],
 			screech: ["8M"],
@@ -48127,7 +50622,7 @@ let BattleLearnsets = {
 			venomdrench: ["8M", "7E"],
 			waterpulse: ["8E", "7T", "7E", "6T", "6E", "5E", "5D"],
 			weatherball: ["8M"],
-		}
+		},
 	},
 	palpitoad: {
 		learnset: {
@@ -48163,7 +50658,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M"],
 			raindance: ["8M", "8L54", "7M", "7L33", "6M", "6L33", "5M", "5L33"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			round: ["8M", "8L16", "7M", "7L1", "6M", "6L1", "5M", "5L1"],
 			scald: ["8M", "7M", "6M", "5M"],
@@ -48183,7 +50678,7 @@ let BattleLearnsets = {
 			venomdrench: ["8M"],
 			waterpulse: ["7T", "6T"],
 			weatherball: ["8M"],
-		}
+		},
 	},
 	seismitoad: {
 		learnset: {
@@ -48238,7 +50733,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M"],
 			raindance: ["8M", "8L62", "7M", "7L33", "6M", "6L33", "5M", "5L33"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
@@ -48263,7 +50758,10 @@ let BattleLearnsets = {
 			venoshock: ["8M", "7M", "6M", "5M"],
 			waterpulse: ["7T", "6T"],
 			weatherball: ["8M"],
-		}
+		},
+		encounters: [
+			{"generation": 5, "level": 15},
+		],
 	},
 	throh: {
 		learnset: {
@@ -48309,7 +50807,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["8M", "8L20", "7L13", "6L21", "5L21"],
 			reversal: ["8M", "8L50", "7L45", "6L50", "5L53"],
 			rockslide: ["8M", "7M", "6M", "5M"],
@@ -48336,7 +50834,7 @@ let BattleLearnsets = {
 			wideguard: ["8L15", "7L37", "6L45", "5L45"],
 			workup: ["8M", "7M", "5M"],
 			zenheadbutt: ["8M", "7T", "6T"],
-		}
+		},
 	},
 	sawk: {
 		learnset: {
@@ -48384,7 +50882,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
 			retaliate: ["8M", "8L30", "7L29", "6M", "6L37", "5M", "5L37"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["8M"],
 			reversal: ["8M", "8L50", "7L45", "6L50", "5L53"],
 			rockslide: ["8M", "7M", "6M", "5M"],
@@ -48407,7 +50905,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			workup: ["8M", "7M", "5M"],
 			zenheadbutt: ["8M", "7T", "6T"],
-		}
+		},
 	},
 	sewaddle: {
 		learnset: {
@@ -48445,7 +50943,7 @@ let BattleLearnsets = {
 			razorleaf: ["7L15", "6L15", "5L15"],
 			razorwind: ["7E", "6E", "5E"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M"],
 			screech: ["7E", "6E", "5E"],
@@ -48466,7 +50964,7 @@ let BattleLearnsets = {
 			tackle: ["7L1", "6L1", "5L1"],
 			toxic: ["7M", "6M", "5M"],
 			worryseed: ["7T", "6T", "5T"],
-		}
+		},
 	},
 	swadloon: {
 		learnset: {
@@ -48494,7 +50992,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7L1", "6M", "6L20", "5M", "5L20"],
 			razorleaf: ["7L1", "6L1", "5L1"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M"],
 			secretpower: ["6M"],
@@ -48512,7 +51010,10 @@ let BattleLearnsets = {
 			tackle: ["7L1", "6L1", "5L1"],
 			toxic: ["7M", "6M", "5M"],
 			worryseed: ["7T", "6T", "5T"],
-		}
+		},
+		encounters: [
+			{"generation": 5, "level": 19},
+		],
 	},
 	leavanny: {
 		learnset: {
@@ -48555,7 +51056,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M"],
 			secretpower: ["6M"],
@@ -48579,7 +51080,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			worryseed: ["7T", "6T", "5T"],
 			xscissor: ["7M", "7L39", "6M", "6L39", "5M", "5L39"],
-		}
+		},
+		encounters: [
+			{"generation": 5, "level": 20, "isHidden": true},
+		],
 	},
 	venipede: {
 		learnset: {
@@ -48607,7 +51111,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7L15", "6M", "6L15", "5M", "5L15"],
 			pursuit: ["7L12", "6L12", "5L12"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockclimb: ["7L40", "7E", "6L40", "6E", "5L40", "5E"],
 			rocksmash: ["6M", "5M"],
 			rollout: ["7L1", "6L1", "5L1"],
@@ -48631,7 +51135,7 @@ let BattleLearnsets = {
 			twineedle: ["7E", "6E", "5E"],
 			venomdrench: ["7L38"],
 			venoshock: ["7M", "7L26", "6M", "6L26", "5M", "5L26"],
-		}
+		},
 	},
 	whirlipede: {
 		learnset: {
@@ -48658,7 +51162,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7L15", "6M", "6L15", "5M", "5L15"],
 			pursuit: ["7L12", "6L12", "5L12"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockclimb: ["7L46", "6L46", "5L46"],
 			rocksmash: ["6M", "5M"],
 			rollout: ["7L1", "6L1", "5L1"],
@@ -48678,7 +51182,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "7L41", "6M", "6L41", "5M", "5L41"],
 			venomdrench: ["7L43", "6L43"],
 			venoshock: ["7M", "7L28", "6M", "6L28", "5M", "5L28"],
-		}
+		},
 	},
 	scolipede: {
 		learnset: {
@@ -48717,7 +51221,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7L15", "6M", "6L15", "5M", "5L15"],
 			pursuit: ["7L12", "6L12", "5L12"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockclimb: ["7L50", "6L50", "5L50"],
 			rockslide: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
@@ -48748,7 +51252,7 @@ let BattleLearnsets = {
 			venomdrench: ["7L47", "6L47"],
 			venoshock: ["7M", "7L28", "6M", "6L28", "5M", "5L28"],
 			xscissor: ["7M", "6M", "5M"],
-		}
+		},
 	},
 	cottonee: {
 		learnset: {
@@ -48792,7 +51296,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M"],
 			razorleaf: ["8L15", "7L19", "6L19", "5L19"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M"],
@@ -48811,7 +51315,7 @@ let BattleLearnsets = {
 			tickle: ["8E", "7E", "6E", "5E"],
 			toxic: ["7M", "6M", "5M"],
 			worryseed: ["8E", "7T", "7E", "6T", "6E", "5T", "5E", "5D"],
-		}
+		},
 	},
 	whimsicott: {
 		learnset: {
@@ -48861,7 +51365,7 @@ let BattleLearnsets = {
 			psychic: ["8M", "7M", "6M", "5M"],
 			razorleaf: ["8L1"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M"],
@@ -48882,7 +51386,10 @@ let BattleLearnsets = {
 			trickroom: ["8M", "7M", "6M", "5M"],
 			uturn: ["8M", "7M", "6M", "5M"],
 			worryseed: ["7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 50, "gender": "F", "nature": "Timid", "ivs": {"spe": 31}, "abilities": ["prankster"], "moves": ["swagger", "gigadrain", "beatup", "helpinghand"], "pokeball": "cherishball"},
+		],
 	},
 	petilil: {
 		learnset: {
@@ -48923,7 +51430,7 @@ let BattleLearnsets = {
 			naturepower: ["7M", "6M"],
 			protect: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M"],
 			secretpower: ["6M"],
@@ -48940,7 +51447,7 @@ let BattleLearnsets = {
 			synthesis: ["7T", "7L17", "6T", "6L17", "5T", "5L17"],
 			toxic: ["7M", "6M", "5M"],
 			worryseed: ["7T", "7E", "6T", "6E", "5T", "5E"],
-		}
+		},
 	},
 	lilligant: {
 		learnset: {
@@ -48977,7 +51484,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M"],
 			quiverdance: ["7L28", "6L28", "5L28"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roleplay: ["7T", "6T", "5T"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M"],
@@ -48994,7 +51501,7 @@ let BattleLearnsets = {
 			teeterdance: ["7L10", "6L10", "5L10"],
 			toxic: ["7M", "6M", "5M"],
 			worryseed: ["7T", "6T", "5T"],
-		}
+		},
 	},
 	basculin: {
 		learnset: {
@@ -49036,7 +51543,7 @@ let BattleLearnsets = {
 			rage: ["7E", "6E", "5E"],
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["8M", "7E", "6E", "5E"],
 			reversal: ["8M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -49062,7 +51569,7 @@ let BattleLearnsets = {
 			watergun: ["8L1", "7L1", "6L1", "5L1"],
 			whirlpool: ["8M", "7E", "6E", "5E"],
 			zenheadbutt: ["8M", "7T", "6T", "5T", "5D"],
-		}
+		},
 	},
 	sandile: {
 		learnset: {
@@ -49104,7 +51611,7 @@ let BattleLearnsets = {
 			rage: ["7L1", "6L1", "5L1"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roar: ["7M", "6M", "5M"],
 			rockclimb: ["7E", "6E", "5E"],
 			rockslide: ["7M", "6M", "5M"],
@@ -49132,7 +51639,7 @@ let BattleLearnsets = {
 			torment: ["7M", "7L10", "6M", "6L10", "5M", "5L10"],
 			toxic: ["7M", "6M", "5M"],
 			uproar: ["7T", "7E", "6T", "6E", "5T", "5E"],
-		}
+		},
 	},
 	krokorok: {
 		learnset: {
@@ -49177,7 +51684,7 @@ let BattleLearnsets = {
 			rage: ["7L1", "6L1", "5L1"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roar: ["7M", "6M", "5M"],
 			rockslide: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
@@ -49206,7 +51713,7 @@ let BattleLearnsets = {
 			torment: ["7M", "7L10", "6M", "6L10", "5M", "5L10"],
 			toxic: ["7M", "6M", "5M"],
 			uproar: ["7T", "6T", "5T"],
-		}
+		},
 	},
 	krookodile: {
 		learnset: {
@@ -49268,7 +51775,7 @@ let BattleLearnsets = {
 			rage: ["7L1", "6L1", "5L1"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roar: ["7M", "6M", "5M"],
 			rockslide: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
@@ -49300,7 +51807,7 @@ let BattleLearnsets = {
 			torment: ["7M", "7L10", "6M", "6L10", "5M", "5L10"],
 			toxic: ["7M", "6M", "5M"],
 			uproar: ["7T", "6T", "5T"],
-		}
+		},
 	},
 	darumaka: {
 		learnset: {
@@ -49343,7 +51850,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M"],
 			rage: ["7L9", "6L9", "5L9"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roar: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
@@ -49372,7 +51879,7 @@ let BattleLearnsets = {
 			workup: ["8M", "8L16", "7M", "7L25", "6L25", "5M", "5L25"],
 			yawn: ["8E", "7E", "6E", "5E"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
 	},
 	darumakagalar: {
 		learnset: {
@@ -49433,7 +51940,7 @@ let BattleLearnsets = {
 			workup: ["8M", "8L16"],
 			yawn: ["8E"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	darmanitan: {
 		learnset: {
@@ -49491,7 +51998,7 @@ let BattleLearnsets = {
 			psychic: ["8M", "7M", "6M", "5M"],
 			rage: ["7L1", "6L1", "5L1"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			reversal: ["8M"],
 			roar: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
@@ -49523,7 +52030,14 @@ let BattleLearnsets = {
 			willowisp: ["8M", "7M", "6M", "5M"],
 			workup: ["8M", "8L16", "7M", "7L25", "6L25", "5M", "5L25"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 35, "isHidden": true, "moves": ["thrash", "bellydrum", "flareblitz", "hammerarm"]},
+			{"generation": 6, "level": 35, "gender": "M", "nature": "Calm", "ivs": {"hp": 30, "atk": 30, "def": 30, "spa": 30, "spd": 30, "spe": 30}, "isHidden": true, "moves": ["thrash", "bellydrum", "flareblitz", "hammerarm"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 6, "level": 32, "maxEggMoves": 1},
+		],
 	},
 	darmanitangalar: {
 		learnset: {
@@ -49591,7 +52105,7 @@ let BattleLearnsets = {
 			willowisp: ["8M"],
 			workup: ["8M", "8L16"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	maractus: {
 		learnset: {
@@ -49636,7 +52150,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M"],
 			raindance: ["8M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M"],
 			screech: ["8M"],
@@ -49659,7 +52173,7 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			woodhammer: ["8E", "7E", "6E", "5E"],
 			worryseed: ["8E", "7T", "7E", "6T", "6E", "5T", "5E"],
-		}
+		},
 	},
 	dwebble: {
 		learnset: {
@@ -49690,7 +52204,7 @@ let BattleLearnsets = {
 			poisonjab: ["8M", "7M", "6M", "5M"],
 			protect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockblast: ["8M", "8L32", "7L5", "6L5", "5L5"],
 			rockpolish: ["8L40", "7M", "7L19", "6M", "6L19", "5M", "5L19"],
 			rockslide: ["8M", "8L24", "7M", "7L29", "6M", "6L29", "5M", "5L29"],
@@ -49722,7 +52236,7 @@ let BattleLearnsets = {
 			wideguard: ["8E", "7E", "6E"],
 			withdraw: ["8L4", "7L7", "6L7", "5L7"],
 			xscissor: ["8M", "8L36", "7M", "7L35", "6M", "6L35", "5M", "5L35"],
-		}
+		},
 	},
 	crustle: {
 		learnset: {
@@ -49756,7 +52270,7 @@ let BattleLearnsets = {
 			poisonjab: ["8M", "7M", "6M", "5M"],
 			protect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockblast: ["8M", "8L32", "7L1", "6L1", "5L1"],
 			rockpolish: ["8L44", "7M", "7L19", "6M", "6L19", "5M", "5L19"],
 			rockslide: ["8M", "8L24", "7M", "7L29", "6M", "6L29", "5M", "5L29", "5D"],
@@ -49788,7 +52302,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			withdraw: ["8L1", "7L1", "6L1", "5L1"],
 			xscissor: ["8M", "8L38", "7M", "7L38", "6M", "6L38", "5M", "5L38"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 33, "maxEggMoves": 1},
+		],
 	},
 	scraggy: {
 		learnset: {
@@ -49848,7 +52365,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["8M"],
 			roar: ["7M", "6M", "5M"],
 			rockclimb: ["7L45", "6L45", "5L45"],
@@ -49879,7 +52396,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			workup: ["8M", "7M", "5M"],
 			zenheadbutt: ["8M", "7T", "7E", "6T", "6E", "5T", "5E"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 1, "gender": "M", "nature": "Adamant", "abilities": ["moxie"], "moves": ["headbutt", "leer", "highjumpkick", "lowkick"], "pokeball": "cherishball"},
+		],
 	},
 	scrafty: {
 		learnset: {
@@ -49938,7 +52458,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["8M"],
 			roar: ["7M", "6M", "5M"],
 			rockclimb: ["7L51", "6L51", "5L51"],
@@ -49970,7 +52490,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			workup: ["8M", "7M", "5M"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 50, "gender": "M", "nature": "Brave", "abilities": ["moxie"], "moves": ["firepunch", "payback", "drainpunch", "substitute"], "pokeball": "cherishball"},
+		],
 	},
 	sigilyph: {
 		learnset: {
@@ -50025,7 +52548,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			reflect: ["8M", "8L50", "7M", "7L28", "6M", "6L28", "5M", "5L28"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roost: ["8E", "7M", "7E", "6M", "6E", "5T", "5E"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M"],
@@ -50055,7 +52578,7 @@ let BattleLearnsets = {
 			trickroom: ["8M", "7M", "6M", "5M"],
 			whirlwind: ["8L25", "7L14", "6L14", "5L14"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
 	},
 	yamask: {
 		learnset: {
@@ -50105,7 +52628,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M"],
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roleplay: ["7T", "6T", "5T"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M"],
@@ -50128,7 +52651,7 @@ let BattleLearnsets = {
 			willowisp: ["8M", "8L16", "7M", "7L21", "6M", "6L21", "5M", "5L21"],
 			wonderroom: ["8M", "7T", "6T", "5T"],
 			zenheadbutt: ["8M", "7T", "6T"],
-		}
+		},
 	},
 	yamaskgalar: {
 		learnset: {
@@ -50181,7 +52704,7 @@ let BattleLearnsets = {
 			willowisp: ["8M"],
 			wonderroom: ["8M"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	cofagrigus: {
 		learnset: {
@@ -50235,7 +52758,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M"],
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["8M"],
 			roleplay: ["7T", "6T", "5T"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -50261,7 +52784,13 @@ let BattleLearnsets = {
 			willowisp: ["8M", "8L16", "7M", "7L21", "7S0", "6M", "6L21", "5M", "5L21"],
 			wonderroom: ["8M", "7T", "6T", "5T"],
 			zenheadbutt: ["8M", "7T", "6T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 66, "gender": "M", "moves": ["willowisp", "shadowball", "powersplit", "darkpulse"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 6, "level": 32, "maxEggMoves": 1},
+		],
 	},
 	runerigus: {
 		learnset: {
@@ -50331,7 +52860,7 @@ let BattleLearnsets = {
 			willowisp: ["8M"],
 			wonderroom: ["8M"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	tirtouga: {
 		learnset: {
@@ -50373,7 +52902,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7L11", "6M", "6L11", "5M", "5L11", "5S0"],
 			raindance: ["7M", "7L48", "6M", "6L48", "5M", "5L48"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockpolish: ["7M", "6M", "5M"],
 			rockslide: ["7M", "7L45", "6M", "6L45", "5M", "5L45"],
 			rocksmash: ["6M", "5M"],
@@ -50403,7 +52932,10 @@ let BattleLearnsets = {
 			wideguard: ["7L25", "6L25", "5L25"],
 			withdraw: ["7L1", "6L1", "5L1"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 15, "gender": "M", "abilities": ["sturdy"], "moves": ["bite", "protect", "aquajet", "bodyslam"], "pokeball": "cherishball"},
+		],
 	},
 	carracosta: {
 		learnset: {
@@ -50448,7 +52980,7 @@ let BattleLearnsets = {
 			protect: ["7M", "7L11", "6M", "6L11", "5M", "5L11"],
 			raindance: ["7M", "7L56", "6M", "6L56", "5M", "5L56"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockpolish: ["7M", "6M", "5M"],
 			rockslide: ["7M", "7L51", "6M", "6L51", "5M", "5L51"],
 			rocksmash: ["6M", "5M"],
@@ -50476,15 +53008,14 @@ let BattleLearnsets = {
 			wideguard: ["7L25", "6L25", "5L25"],
 			withdraw: ["7L1", "6L1", "5L1"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
 	},
 	archen: {
 		learnset: {
-			mudshot: ["9T"],
+			swift: ["9T"],
 			rockblast: ["9T"],
+			assurance: ["9T"],
 			endure: ["9T"],
-			muddywater: ["9T"],
-			razorshell: ["9T"],
 			acrobatics: ["7M", "7L28", "6M", "6L28", "5M", "5L28"],
 			aerialace: ["7M", "6M", "5M"],
 			agility: ["7L21", "6L21", "5L21"],
@@ -50522,7 +53053,7 @@ let BattleLearnsets = {
 			quickattack: ["7L1", "6L1", "5L1"],
 			quickguard: ["7L25", "6L25", "5L25"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roar: ["7M", "6M", "5M"],
 			rockpolish: ["7M", "6M", "5M"],
 			rockslide: ["7M", "7L45", "6M", "6L45", "5M", "5L45"],
@@ -50553,7 +53084,10 @@ let BattleLearnsets = {
 			uturn: ["7M", "7L41", "6M", "6L41", "5M", "5L41"],
 			wingattack: ["7L1", "6L1", "5L1", "5S0"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 15, "gender": "M", "moves": ["headsmash", "wingattack", "doubleteam", "scaryface"], "pokeball": "cherishball"},
+		],
 	},
 	archeops: {
 		learnset: {
@@ -50603,7 +53137,7 @@ let BattleLearnsets = {
 			quickattack: ["7L1", "6L1", "5L1"],
 			quickguard: ["7L25", "6L25", "5L25"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roar: ["7M", "6M", "5M"],
 			rockpolish: ["7M", "6M", "5M"],
 			rockslide: ["7M", "7L51", "6M", "6L51", "5M", "5L51"],
@@ -50634,7 +53168,7 @@ let BattleLearnsets = {
 			uturn: ["7M", "7L45", "6M", "6L45", "5M", "5L45"],
 			wingattack: ["7L1", "6L1", "5L1"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
 	},
 	trubbish: {
 		learnset: {
@@ -50668,7 +53202,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			recycle: ["8L3", "7T", "7L3", "6T", "6L3", "5T", "5L3"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockblast: ["8M", "7E", "6E", "5E"],
 			rollout: ["8E", "7E", "6E", "5E"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -50694,7 +53228,7 @@ let BattleLearnsets = {
 			toxicspikes: ["8M", "8L15", "7L7", "6L7", "5L7"],
 			venomdrench: ["8M"],
 			venoshock: ["8M", "7M", "6M", "5M"],
-		}
+		},
 	},
 	garbodor: {
 		learnset: {
@@ -50733,7 +53267,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			recycle: ["8L1", "7T", "7L1", "6T", "6L1", "5T", "5L1"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockblast: ["8M"],
 			rockpolish: ["7M", "6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -50763,7 +53297,12 @@ let BattleLearnsets = {
 			toxicspikes: ["8M", "8L15", "7L1", "6L1", "5L1"],
 			venomdrench: ["8M"],
 			venoshock: ["8M", "7M", "6M", "5M"],
-		}
+		},
+		encounters: [
+			{"generation": 5, "level": 31},
+			{"generation": 6, "level": 30},
+			{"generation": 7, "level": 24},
+		],
 	},
 	zorua: {
 		learnset: {
@@ -50816,7 +53355,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roar: ["7M", "6M", "5M"],
 			round: ["7M", "6M", "5M"],
 			scaryface: ["7L21", "6L21", "5L21"],
@@ -50840,7 +53379,7 @@ let BattleLearnsets = {
 			trick: ["7T", "6T", "5T"],
 			uproar: ["7T", "6T", "5T"],
 			uturn: ["7M", "6M", "5M"],
-		}
+		},
 	},
 	zoroark: {
 		learnset: {
@@ -50896,7 +53435,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roar: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			round: ["7M", "6M", "5M"],
@@ -50924,7 +53463,15 @@ let BattleLearnsets = {
 			trick: ["7T", "6T", "5T"],
 			uproar: ["7T", "6T", "5T"],
 			uturn: ["7M", "7L1", "6M", "6L1", "5M", "5L1"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 50, "gender": "M", "nature": "Quirky", "moves": ["agility", "embargo", "punishment", "snarl"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "moves": ["sludgebomb", "darkpulse", "flamethrower", "suckerpunch"], "pokeball": "ultraball"},
+			{"generation": 6, "level": 45, "gender": "M", "nature": "Naughty", "moves": ["scaryface", "furyswipes", "nastyplot", "punishment"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 5, "level": 25},
+		],
 	},
 	minccino: {
 		learnset: {
@@ -50965,7 +53512,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M"],
@@ -50990,7 +53537,7 @@ let BattleLearnsets = {
 			uturn: ["8M", "7M", "6M", "5M"],
 			wakeupslap: ["7L31", "6L31", "5L31"],
 			workup: ["8M", "7M", "5M"],
-		}
+		},
 	},
 	cinccino: {
 		learnset: {
@@ -51032,7 +53579,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockblast: ["8M", "8L1", "7L1", "6L1", "5L1"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M"],
@@ -51057,7 +53604,7 @@ let BattleLearnsets = {
 			uproar: ["8M", "7T", "6T", "5T"],
 			uturn: ["8M", "7M", "6M", "5M"],
 			workup: ["8M", "7M", "5M"],
-		}
+		},
 	},
 	gothita: {
 		learnset: {
@@ -51115,7 +53662,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T"],
 			reflect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
 			roleplay: ["7T", "6T", "5T"],
@@ -51144,7 +53691,7 @@ let BattleLearnsets = {
 			trickroom: ["8M", "7M", "6M", "5M"],
 			uproar: ["8M", "7T", "7E", "6T", "6E", "5T", "5E"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
 	},
 	gothorita: {
 		learnset: {
@@ -51198,7 +53745,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T"],
 			reflect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
 			roleplay: ["7T", "6T", "5T"],
@@ -51227,7 +53774,14 @@ let BattleLearnsets = {
 			trickroom: ["8M", "7M", "6M", "5M"],
 			uproar: ["8M", "7T", "6T", "5T"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 32, "gender": "M", "isHidden": true, "moves": ["psyshock", "flatter", "futuresight", "mirrorcoat"]},
+			{"generation": 5, "level": 32, "gender": "M", "isHidden": true, "moves": ["psyshock", "flatter", "futuresight", "imprison"]},
+		],
+		encounters: [
+			{"generation": 5, "level": 31},
+		],
 	},
 	gothitelle: {
 		learnset: {
@@ -51287,7 +53841,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T"],
 			reflect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
 			roleplay: ["7T", "6T", "5T"],
@@ -51316,7 +53870,10 @@ let BattleLearnsets = {
 			trickroom: ["8M", "7M", "6M", "5M"],
 			uproar: ["8M", "7T", "6T", "5T"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
+		encounters: [
+			{"generation": 5, "level": 34},
+		],
 	},
 	solosis: {
 		learnset: {
@@ -51368,7 +53925,7 @@ let BattleLearnsets = {
 			recover: ["8L4", "7L24", "6L24", "5L24"],
 			reflect: ["8M", "8L24", "7M", "7L3", "6M", "6L3", "5M", "5L3"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
 			roleplay: ["7T", "6T", "5T"],
@@ -51394,7 +53951,7 @@ let BattleLearnsets = {
 			trickroom: ["8M", "7M", "6M", "5M"],
 			wonderroom: ["8M", "8L48", "7T", "7L48", "6T", "6L48", "5T", "5L48"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
 	},
 	duosion: {
 		learnset: {
@@ -51442,7 +53999,7 @@ let BattleLearnsets = {
 			recover: ["8L1", "7L24", "6L24", "5L24", "5D"],
 			reflect: ["8M", "8L24", "7M", "7L1", "6M", "6L1", "5M", "5L1"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
 			roleplay: ["7T", "6T", "5T"],
@@ -51468,7 +54025,10 @@ let BattleLearnsets = {
 			trickroom: ["8M", "7M", "6M", "5M"],
 			wonderroom: ["8M", "8L58", "7T", "7L53", "6T", "6L53", "5T", "5L53"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
+		encounters: [
+			{"generation": 5, "level": 31},
+		],
 	},
 	reuniclus: {
 		learnset: {
@@ -51531,7 +54091,7 @@ let BattleLearnsets = {
 			recover: ["8L1", "7L24", "6L24", "5L24"],
 			reflect: ["8M", "8L24", "7M", "7L1", "6M", "6L1", "5M", "5L1"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
@@ -51561,7 +54121,10 @@ let BattleLearnsets = {
 			trickroom: ["8M", "7M", "6M", "5M"],
 			wonderroom: ["8M", "8L64", "7T", "7L59", "6T", "6L59", "5T", "5L59"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
+		encounters: [
+			{"generation": 5, "level": 34},
+		],
 	},
 	ducklett: {
 		learnset: {
@@ -51599,7 +54162,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M"],
 			raindance: ["7M", "7L34", "6M", "6L34", "5M", "5L34"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roost: ["7M", "7L30", "6M", "6L30", "5T", "5L30"],
 			round: ["7M", "6M", "5M"],
 			scald: ["7M", "6M", "5M"],
@@ -51617,7 +54180,7 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "7L13", "6T", "6L13", "5L13"],
 			watersport: ["7L3", "6L3", "5L3"],
 			wingattack: ["7L9", "6L9", "5L9"],
-		}
+		},
 	},
 	swanna: {
 		learnset: {
@@ -51649,7 +54212,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M"],
 			raindance: ["7M", "7L34", "6M", "6L34", "5M", "5L34"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roost: ["7M", "7L30", "6M", "6L30", "5T", "5L30"],
 			round: ["7M", "6M", "5M"],
 			scald: ["7M", "6M", "5M"],
@@ -51668,7 +54231,10 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "7L13", "6T", "6L13", "5L13"],
 			watersport: ["7L1", "6L1", "5L1"],
 			wingattack: ["7L1", "6L1", "5L1"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 30},
+		],
 	},
 	vanillite: {
 		learnset: {
@@ -51710,7 +54276,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M"],
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M"],
 			selfdestruct: ["8M"],
@@ -51724,7 +54290,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			uproar: ["8M", "8L28", "7T", "7L10", "6T", "6L10", "5T", "5L10"],
 			waterpulse: ["7T", "7E", "6T", "6E", "5E"],
-		}
+		},
 	},
 	vanillish: {
 		learnset: {
@@ -51761,7 +54327,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M"],
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M"],
 			selfdestruct: ["8M"],
@@ -51775,7 +54341,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			uproar: ["8M", "8L28", "7T", "7L1", "6T", "6L1", "5T", "5L1"],
 			waterpulse: ["7T", "6T"],
-		}
+		},
 	},
 	vanilluxe: {
 		learnset: {
@@ -51816,7 +54382,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M"],
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M"],
 			selfdestruct: ["8M"],
@@ -51831,7 +54397,7 @@ let BattleLearnsets = {
 			uproar: ["8M", "8L28", "7T", "7L1", "6T", "6L1", "5T", "5L1"],
 			waterpulse: ["7T", "6T"],
 			weatherball: ["8M", "8L1", "7L1", "6L1", "5L1"],
-		}
+		},
 	},
 	deerling: {
 		learnset: {
@@ -51871,7 +54437,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M"],
 			sandattack: ["7L7", "6L7", "5L7"],
@@ -51892,7 +54458,10 @@ let BattleLearnsets = {
 			wildcharge: ["7M", "6M", "5M"],
 			workup: ["7M", "5M"],
 			worryseed: ["7T", "7E", "6T", "6E", "5T", "5E"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 30, "gender": "F", "isHidden": true, "moves": ["feintattack", "takedown", "jumpkick", "aromatherapy"]},
+		],
 	},
 	sawsbuck: {
 		learnset: {
@@ -51930,7 +54499,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M"],
@@ -51954,7 +54523,10 @@ let BattleLearnsets = {
 			wildcharge: ["7M", "6M", "5M"],
 			workup: ["7M", "5M"],
 			worryseed: ["7T", "6T", "5T"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 30},
+		],
 	},
 	emolga: {
 		learnset: {
@@ -51999,7 +54571,7 @@ let BattleLearnsets = {
 			quickattack: ["7L4", "6L4", "5L4", "5D"],
 			raindance: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roost: ["7M", "7E", "6M", "6E", "5T", "5E"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M"],
@@ -52023,7 +54595,7 @@ let BattleLearnsets = {
 			uturn: ["7M", "6M", "5M"],
 			voltswitch: ["7M", "7L42", "6M", "6L42", "5M", "5L42"],
 			wildcharge: ["7M", "6M", "5M"],
-		}
+		},
 	},
 	karrablast: {
 		learnset: {
@@ -52064,7 +54636,7 @@ let BattleLearnsets = {
 			pursuit: ["7E", "6E", "5E"],
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
 			scaryface: ["8M", "8L28", "7L40", "6L40", "5L40"],
 			screech: ["8M", "7E", "6E", "5E"],
@@ -52080,7 +54652,11 @@ let BattleLearnsets = {
 			takedown: ["8L40", "7L37", "6L37", "5L37", "5S1"],
 			toxic: ["7M", "6M", "5M"],
 			xscissor: ["8M", "8L32", "7M", "7L44", "6M", "6L44", "5M", "5L44", "5S1"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 30, "moves": ["furyattack", "headbutt", "falseswipe", "bugbuzz"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 50, "moves": ["megahorn", "takedown", "xscissor", "flail"], "pokeball": "cherishball"},
+		],
 	},
 	escavalier: {
 		learnset: {
@@ -52128,7 +54704,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			razorshell: ["8M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["8M"],
 			reversal: ["8M", "8L24", "7L49", "6L49", "5L49"],
 			rocksmash: ["6M", "5M"],
@@ -52151,7 +54727,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			twineedle: ["7L1", "6L1", "5L1"],
 			xscissor: ["8M", "8L32", "7M", "7L44", "6M", "6L44", "5M", "5L44"],
-		}
+		},
 	},
 	foongus: {
 		learnset: {
@@ -52187,7 +54763,7 @@ let BattleLearnsets = {
 			ragepowder: ["7L45", "6L45", "5L45"],
 			raindance: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rollout: ["7E", "6E", "5E"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M"],
@@ -52206,7 +54782,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "7L32", "6M", "6L32", "5M", "5L32"],
 			venoshock: ["7M", "6M", "5M"],
 			worryseed: ["7T", "6T", "5T"],
-		}
+		},
 	},
 	amoonguss: {
 		learnset: {
@@ -52242,7 +54818,7 @@ let BattleLearnsets = {
 			ragepowder: ["7L54", "6L54", "5L54"],
 			raindance: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M"],
 			seedbomb: ["7T", "6T", "5T"],
@@ -52260,7 +54836,11 @@ let BattleLearnsets = {
 			toxic: ["7M", "7L32", "6M", "6L32", "5M", "5L32"],
 			venoshock: ["7M", "6M", "5M"],
 			worryseed: ["7T", "6T", "5T"],
-		}
+		},
+		encounters: [
+			{"generation": 5, "level": 37},
+			{"generation": 5, "level": 35, "isHidden": true},
+		],
 	},
 	frillish: {
 		learnset: {
@@ -52306,7 +54886,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "8L16", "7M", "7L37", "6M", "6L37", "5M", "5L37"],
 			recover: ["8L28", "7L17", "7E", "6L17", "6E", "5L17", "5E"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M"],
 			scald: ["8M", "7M", "6M", "5M"],
@@ -52334,7 +54914,7 @@ let BattleLearnsets = {
 			whirlpool: ["8M", "8L36"],
 			willowisp: ["8M", "7M", "6M", "5M"],
 			wringout: ["7L55", "6L55", "5L55"],
-		}
+		},
 	},
 	jellicent: {
 		learnset: {
@@ -52380,7 +54960,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "8L16", "7M", "7L37", "6M", "6L37", "5M", "5L37", "5S0"],
 			recover: ["8L28", "7L17", "6L17", "5L17"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M"],
 			scald: ["8M", "7M", "6M", "5M"],
@@ -52407,7 +54987,13 @@ let BattleLearnsets = {
 			whirlpool: ["8M", "8L36"],
 			willowisp: ["8M", "7M", "6M", "5M"],
 			wringout: ["7L1", "6L1", "5L61"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 40, "isHidden": true, "moves": ["waterpulse", "ominouswind", "brine", "raindance"]},
+		],
+		encounters: [
+			{"generation": 5, "level": 5},
+		],
 	},
 	alomomola: {
 		learnset: {
@@ -52448,7 +55034,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M"],
 			refresh: ["7E", "6E", "5E"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "7L45", "6M", "6L45", "5M", "5L45"],
 			scald: ["7M", "6M", "5M"],
@@ -52469,7 +55055,7 @@ let BattleLearnsets = {
 			whirlpool: ["7L49"],
 			wideguard: ["7L1", "6L1", "5L53"],
 			wish: ["7L37", "6L37", "5L37"],
-		}
+		},
 	},
 	joltik: {
 		learnset: {
@@ -52511,7 +55097,7 @@ let BattleLearnsets = {
 			pursuit: ["7E", "6E", "5E"],
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockclimb: ["7E", "6E", "5E"],
 			round: ["8M", "7M", "6M", "5M"],
 			screech: ["8M", "8L40", "7L7", "6L7", "5L7"],
@@ -52536,7 +55122,7 @@ let BattleLearnsets = {
 			voltswitch: ["8M", "7M", "6M", "5M"],
 			wildcharge: ["8M", "7M", "6M", "5M"],
 			xscissor: ["8M", "7M", "6M", "5M"],
-		}
+		},
 	},
 	galvantula: {
 		learnset: {
@@ -52576,7 +55162,7 @@ let BattleLearnsets = {
 			pursuit: ["5D"],
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
 			screech: ["8M", "8L44", "7L7", "6L7", "5L7"],
 			secretpower: ["6M"],
@@ -52603,7 +55189,10 @@ let BattleLearnsets = {
 			voltswitch: ["8M", "7M", "6M", "5M"],
 			wildcharge: ["8M", "7M", "6M", "5M"],
 			xscissor: ["8M", "7M", "6M", "5M"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 30},
+		],
 	},
 	ferroseed: {
 		learnset: {
@@ -52642,7 +55231,7 @@ let BattleLearnsets = {
 			poisonjab: ["8M", "7M", "6M", "5M"],
 			protect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["8M"],
 			rockclimb: ["7E", "6E", "5E"],
 			rockpolish: ["7M", "6M", "5M"],
@@ -52666,7 +55255,7 @@ let BattleLearnsets = {
 			thunderwave: ["8M", "7M", "6M", "5M"],
 			toxic: ["8E", "7M", "6M", "5M"],
 			worryseed: ["7T", "7E", "6T", "6E", "5T", "5E"],
-		}
+		},
 	},
 	ferrothorn: {
 		learnset: {
@@ -52714,7 +55303,7 @@ let BattleLearnsets = {
 			powerwhip: ["8M", "8L0", "7L1", "6L40", "5L40"],
 			protect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["8M"],
 			rockclimb: ["7L1", "6L1", "5L1"],
 			rockpolish: ["7M", "6M", "5M"],
@@ -52743,7 +55332,7 @@ let BattleLearnsets = {
 			thunderwave: ["8M", "7M", "6M", "5M"],
 			toxic: ["7M", "6M", "5M"],
 			worryseed: ["7T", "6T", "5T"],
-		}
+		},
 	},
 	klink: {
 		learnset: {
@@ -52773,7 +55362,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M"],
 			recycle: ["7T", "6T", "5T"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockpolish: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -52798,7 +55387,7 @@ let BattleLearnsets = {
 			voltswitch: ["8M", "7M", "6M", "5M"],
 			wildcharge: ["8M", "7M", "6M", "5M"],
 			zapcannon: ["8L44", "7L54", "6L54", "5L54"],
-		}
+		},
 	},
 	klang: {
 		learnset: {
@@ -52829,7 +55418,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M"],
 			recycle: ["7T", "6T", "5T"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockpolish: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -52854,7 +55443,10 @@ let BattleLearnsets = {
 			voltswitch: ["8M", "7M", "6M", "5M"],
 			wildcharge: ["8M", "7M", "6M", "5M"],
 			zapcannon: ["8L48", "7L60", "6L60", "5L60"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 30},
+		],
 	},
 	klinklang: {
 		learnset: {
@@ -52889,7 +55481,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M"],
 			recycle: ["7T", "6T", "5T"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockpolish: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -52916,7 +55508,7 @@ let BattleLearnsets = {
 			voltswitch: ["8M", "7M", "6M", "5M"],
 			wildcharge: ["8M", "7M", "6M", "5M"],
 			zapcannon: ["8L48", "7L66", "6L1", "5L66"],
-		}
+		},
 	},
 	tynamo: {
 		learnset: {
@@ -52926,7 +55518,7 @@ let BattleLearnsets = {
 			spark: ["7L1", "6L1", "5L1"],
 			tackle: ["7L1", "6L1", "5L1"],
 			thunderwave: ["7M", "7L1", "6M", "6L1", "5L1"],
-		}
+		},
 	},
 	eelektrik: {
 		learnset: {
@@ -52959,7 +55551,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M"],
 			raindance: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M"],
 			shockwave: ["7T", "6T"],
@@ -52980,7 +55572,7 @@ let BattleLearnsets = {
 			voltswitch: ["7M", "6M", "5M"],
 			wildcharge: ["7M", "7L59", "6M", "6L59", "5M", "5L59"],
 			zapcannon: ["7L69", "6L69", "5L69"],
-		}
+		},
 	},
 	eelektross: {
 		learnset: {
@@ -53030,7 +55622,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M"],
 			raindance: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roar: ["7M", "6M", "5M"],
 			rockslide: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
@@ -53057,7 +55649,7 @@ let BattleLearnsets = {
 			voltswitch: ["7M", "6M", "5M"],
 			wildcharge: ["7M", "6M", "5M"],
 			zapcannon: ["7L1", "6L1"],
-		}
+		},
 	},
 	elgyem: {
 		learnset: {
@@ -53109,7 +55701,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T"],
 			reflect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
 			roleplay: ["7T", "6T", "5T"],
@@ -53141,7 +55733,7 @@ let BattleLearnsets = {
 			uproar: ["8M", "7T", "6T", "5T"],
 			wonderroom: ["8M", "8L54", "7T", "7L56", "6T", "6L56", "5T", "5L56"],
 			zenheadbutt: ["8M", "8L36", "7T", "7L32", "6T", "6L32", "5T", "5L32"],
-		}
+		},
 	},
 	beheeyem: {
 		learnset: {
@@ -53194,7 +55786,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T"],
 			reflect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
 			roleplay: ["7T", "6T", "5T"],
@@ -53227,7 +55819,7 @@ let BattleLearnsets = {
 			uproar: ["8M", "7T", "6T", "5T"],
 			wonderroom: ["8M", "8L60", "7T", "7L1", "6T", "6L1", "5T", "5L68"],
 			zenheadbutt: ["8M", "8L36", "7T", "7L32", "6T", "6L32", "5T", "5L32"],
-		}
+		},
 	},
 	litwick: {
 		learnset: {
@@ -53276,7 +55868,7 @@ let BattleLearnsets = {
 			psychic: ["8M", "7M", "6M", "5M"],
 			psychup: ["7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M"],
@@ -53297,7 +55889,7 @@ let BattleLearnsets = {
 			trick: ["8M", "7T", "6T", "5T"],
 			trickroom: ["8M", "7M", "6M", "5M"],
 			willowisp: ["8M", "8L20", "7M", "7L16", "6M", "6L16", "5M", "5L16"],
-		}
+		},
 	},
 	lampent: {
 		learnset: {
@@ -53340,7 +55932,7 @@ let BattleLearnsets = {
 			psychic: ["8M", "7M", "6M", "5M"],
 			psychup: ["7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M"],
@@ -53361,7 +55953,10 @@ let BattleLearnsets = {
 			trick: ["8M", "7T", "6T", "5T"],
 			trickroom: ["8M", "7M", "6M", "5M"],
 			willowisp: ["8M", "8L20", "7M", "7L16", "6M", "6L16", "5M", "5L16"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 30},
+		],
 	},
 	chandelure: {
 		learnset: {
@@ -53407,7 +56002,7 @@ let BattleLearnsets = {
 			psychic: ["8M", "7M", "6M", "5M", "5S0"],
 			psychup: ["7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
 			safeguard: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M"],
@@ -53428,7 +56023,10 @@ let BattleLearnsets = {
 			trick: ["8M", "7T", "6T", "5T"],
 			trickroom: ["8M", "7M", "6M", "5M"],
 			willowisp: ["8M", "8L1", "7M", "6M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 50, "gender": "F", "nature": "Modest", "ivs": {"spa": 31}, "abilities": ["flashfire"], "moves": ["heatwave", "shadowball", "energyball", "psychic"], "pokeball": "cherishball"},
+		],
 	},
 	axew: {
 		learnset: {
@@ -53475,7 +56073,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			razorwind: ["7E", "6E", "5E"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M", "5S1"],
+			return: ["7M", "6M", "5M", "5S1"],
 			reversal: ["8M", "7E", "6E", "5E"],
 			roar: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
@@ -53498,7 +56096,12 @@ let BattleLearnsets = {
 			taunt: ["8M", "8L12", "7M", "7L36", "6M", "6L36", "5M", "5L36"],
 			toxic: ["7M", "6M", "5M"],
 			xscissor: ["8M", "7M", "6M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 1, "shiny": 1, "gender": "M", "nature": "Naive", "ivs": {"spe": 31}, "abilities": ["moldbreaker"], "moves": ["scratch", "dragonrage"], "pokeball": "pokeball"},
+			{"generation": 5, "level": 10, "gender": "F", "abilities": ["moldbreaker"], "moves": ["dragonrage", "return", "endure", "dragonclaw"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 30, "gender": "M", "nature": "Naive", "abilities": ["rivalry"], "moves": ["dragonrage", "scratch", "outrage", "gigaimpact"], "pokeball": "cherishball"},
+		],
 	},
 	fraxure: {
 		learnset: {
@@ -53542,7 +56145,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M"],
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			reversal: ["8M"],
 			roar: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
@@ -53567,7 +56170,10 @@ let BattleLearnsets = {
 			taunt: ["8M", "8L12", "7M", "7L36", "6M", "6L36", "5M", "5L36"],
 			toxic: ["7M", "6M", "5M"],
 			xscissor: ["8M", "7M", "6M", "5M"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 30},
+		],
 	},
 	haxorus: {
 		learnset: {
@@ -53620,7 +56226,7 @@ let BattleLearnsets = {
 			psychocut: ["8M"],
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			reversal: ["8M"],
 			roar: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
@@ -53648,7 +56254,10 @@ let BattleLearnsets = {
 			taunt: ["8M", "8L12", "7M", "7L36", "6M", "6L36", "5M", "5L36"],
 			toxic: ["7M", "6M", "5M"],
 			xscissor: ["8M", "7M", "6M", "5M", "5S0"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 59, "gender": "F", "nature": "Naive", "ivs": {"hp": 30, "atk": 30, "def": 30, "spa": 30, "spd": 30, "spe": 30}, "abilities": ["moldbreaker"], "moves": ["earthquake", "dualchop", "xscissor", "dragondance"], "pokeball": "cherishball"},
+		],
 	},
 	cubchoo: {
 		learnset: {
@@ -53695,7 +56304,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M"],
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "8L36", "7M", "7L41", "6M", "6L41", "5M", "5L41"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -53714,7 +56323,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			waterpulse: ["7T", "6T"],
 			yawn: ["8E", "7E", "6E", "5E"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 15, "moves": ["powdersnow", "growl", "bide", "icywind"], "pokeball": "cherishball"},
+		],
 	},
 	beartic: {
 		learnset: {
@@ -53773,7 +56385,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M"],
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "8L36", "7M", "7L41", "6M", "6L41", "5M", "5L41"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roar: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
@@ -53798,7 +56410,10 @@ let BattleLearnsets = {
 			throatchop: ["8M", "7T"],
 			toxic: ["7M", "6M", "5M"],
 			waterpulse: ["7T", "6T"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 30},
+		],
 	},
 	cryogonal: {
 		learnset: {
@@ -53845,7 +56460,7 @@ let BattleLearnsets = {
 			recover: ["7L45", "6L49", "5L49"],
 			reflect: ["7M", "7L33", "6M", "6L37", "5M", "5L37"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["7M", "6M", "5M"],
 			secretpower: ["6M"],
 			sharpen: ["7L1", "6L9", "5L9"],
@@ -53859,7 +56474,7 @@ let BattleLearnsets = {
 			swagger: ["7M", "6M", "5M"],
 			toxic: ["7M", "6M", "5M"],
 			waterpulse: ["7T", "6T"],
-		}
+		},
 	},
 	shelmet: {
 		learnset: {
@@ -53899,7 +56514,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			recover: ["8L40", "7L49", "6L49", "5L49"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
 			secretpower: ["6M"],
 			signalbeam: ["7T", "6T", "5T"],
@@ -53914,7 +56529,11 @@ let BattleLearnsets = {
 			toxicspikes: ["8M", "7E"],
 			venoshock: ["8M", "7M", "6M", "5M"],
 			yawn: ["8L20", "7L25", "6L25", "5L25", "5S0"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 30, "moves": ["strugglebug", "megadrain", "yawn", "protect"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 50, "moves": ["encore", "gigadrain", "bodyslam", "bugbuzz"], "pokeball": "cherishball"},
+		],
 	},
 	accelgor: {
 		learnset: {
@@ -53958,7 +56577,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			recover: ["8L40", "7L49", "6L49", "5L49"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			reversal: ["8M"],
 			round: ["8M", "7M", "6M", "5M"],
 			sandstorm: ["8M", "7M", "6M", "5M"],
@@ -53979,7 +56598,7 @@ let BattleLearnsets = {
 			venoshock: ["8M", "7M", "6M", "5M"],
 			watershuriken: ["8L1", "7L1", "6L1"],
 			yawn: ["8L1"],
-		}
+		},
 	},
 	stunfisk: {
 		learnset: {
@@ -54024,7 +56643,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			reflecttype: ["8E", "7E", "6E"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["8M", "8L15", "7L50", "6L50", "5L50"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
@@ -54056,7 +56675,7 @@ let BattleLearnsets = {
 			watergun: ["8L1", "7L1", "6L1"],
 			waterpulse: ["7T", "6T"],
 			yawn: ["8E", "7E", "6E", "5E", "5D"],
-		}
+		},
 	},
 	stunfiskgalar: {
 		learnset: {
@@ -54115,7 +56734,7 @@ let BattleLearnsets = {
 			uproar: ["8M"],
 			watergun: ["8L1"],
 			yawn: ["8E"],
-		}
+		},
 	},
 	mienfoo: {
 		learnset: {
@@ -54172,7 +56791,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			reversal: ["7L57", "6L57", "5L57"],
 			rockslide: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
@@ -54195,7 +56814,7 @@ let BattleLearnsets = {
 			uturn: ["7M", "7L41", "6M", "6L41", "5M", "5L41"],
 			vitalthrow: ["7E", "6E", "5E"],
 			workup: ["7M", "5M"],
-		}
+		},
 	},
 	mienshao: {
 		learnset: {
@@ -54253,7 +56872,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			reversal: ["7L1", "6L1", "5L63"],
 			rockslide: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
@@ -54275,7 +56894,10 @@ let BattleLearnsets = {
 			uturn: ["7M", "7L41", "7S0", "6M", "6L41", "5M", "5L41"],
 			wideguard: ["7L45", "6L45", "5L45"],
 			workup: ["7M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 65, "gender": "M", "abilities": ["innerfocus"], "moves": ["fakeout", "dualchop", "highjumpkick", "uturn"], "pokeball": "cherishball"},
+		],
 	},
 	druddigon: {
 		learnset: {
@@ -54333,7 +56955,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["7L35", "6L35", "5L35"],
 			roar: ["7M", "6M", "5M"],
 			rockclimb: ["7L49", "6L49", "5L49"],
@@ -54367,7 +56989,10 @@ let BattleLearnsets = {
 			thunderpunch: ["7T", "6T", "5T"],
 			torment: ["7M", "6M", "5M"],
 			toxic: ["7M", "6M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 1, "shiny": true, "moves": ["leer", "scratch"], "pokeball": "pokeball"},
+		],
 	},
 	golett: {
 		learnset: {
@@ -54420,7 +57045,7 @@ let BattleLearnsets = {
 			psychic: ["8M", "7M", "6M", "5M"],
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockpolish: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
@@ -54446,7 +57071,7 @@ let BattleLearnsets = {
 			thief: ["8M", "7M", "6M", "5M"],
 			thunderpunch: ["8M", "7T", "6T", "5T", "5D"],
 			toxic: ["7M", "6M", "5M"],
-		}
+		},
 	},
 	golurk: {
 		learnset: {
@@ -54510,7 +57135,7 @@ let BattleLearnsets = {
 			psychic: ["8M", "7M", "6M", "5M"],
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockpolish: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
@@ -54541,7 +57166,13 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			trick: ["8M"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 70, "shiny": true, "abilities": ["ironfist"], "moves": ["shadowpunch", "hyperbeam", "gyroball", "hammerarm"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 6, "level": 30},
+		],
 	},
 	pawniard: {
 		learnset: {
@@ -54592,7 +57223,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["8M", "7E", "6E", "5E"],
 			rockpolish: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
@@ -54623,7 +57254,7 @@ let BattleLearnsets = {
 			torment: ["8L15", "7M", "7L14", "6M", "6L14", "5M", "5L14"],
 			toxic: ["7M", "6M", "5M"],
 			xscissor: ["8M", "7M", "6M", "5M"],
-		}
+		},
 	},
 	bisharp: {
 		learnset: {
@@ -54675,7 +57306,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["8M"],
 			rockpolish: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
@@ -54707,7 +57338,10 @@ let BattleLearnsets = {
 			torment: ["8L15", "7M", "7L1", "6M", "6L1", "5M", "5L1"],
 			toxic: ["7M", "6M", "5M"],
 			xscissor: ["8M", "7M", "6M", "5M"],
-		}
+		},
+		encounters: [
+			{"generation": 7, "level": 33},
+		],
 	},
 	bouffalant: {
 		learnset: {
@@ -54750,7 +57384,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["7L26", "6L26", "5L26"],
 			reversal: ["7L46", "6L46", "5L46"],
 			rockclimb: ["7E", "6E", "5E"],
@@ -54781,7 +57415,10 @@ let BattleLearnsets = {
 			wildcharge: ["7M", "6M", "5M"],
 			workup: ["7M", "5M"],
 			zenheadbutt: ["7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 50, "nature": "Adamant", "ivs": {"hp": 31, "atk": 31}, "isHidden": true, "moves": ["headcharge", "facade", "earthquake", "rockslide"], "pokeball": "cherishball"},
+		],
 	},
 	rufflet: {
 		learnset: {
@@ -54814,7 +57451,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
@@ -54842,7 +57479,7 @@ let BattleLearnsets = {
 			wingattack: ["8L12", "7L10", "6L10", "5L10"],
 			workup: ["8M", "7M", "5M"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	braviary: {
 		learnset: {
@@ -54879,7 +57516,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
@@ -54908,7 +57545,13 @@ let BattleLearnsets = {
 			wingattack: ["8L1", "7L1", "6L1", "5L1", "5S0"],
 			workup: ["8M", "7M", "5M"],
 			zenheadbutt: ["8M", "7T", "6T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 25, "gender": "M", "isHidden": true, "moves": ["wingattack", "honeclaws", "scaryface", "aerialace"]},
+		],
+		encounters: [
+			{"generation": 6, "level": 45},
+		],
 	},
 	vullaby: {
 		learnset: {
@@ -54951,7 +57594,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
 			roost: ["8E", "7M", "7E", "6M", "6E", "5T", "5E"],
@@ -54975,7 +57618,7 @@ let BattleLearnsets = {
 			toxic: ["8E", "7M", "6M", "5M"],
 			uturn: ["8M", "7M", "6M", "5M"],
 			whirlwind: ["8L36", "7L55", "6L55", "5L55"],
-		}
+		},
 	},
 	mandibuzz: {
 		learnset: {
@@ -55020,7 +57663,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
 			roost: ["7M", "6M", "5T"],
@@ -55045,7 +57688,10 @@ let BattleLearnsets = {
 			toxic: ["8L1", "7M", "6M", "5M"],
 			uturn: ["8M", "7M", "6M", "5M"],
 			whirlwind: ["8L36", "7L1", "6L1", "5L57"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 25, "gender": "F", "isHidden": true, "moves": ["pluck", "nastyplot", "flatter", "feintattack"]},
+		],
 	},
 	heatmor: {
 		learnset: {
@@ -55098,7 +57744,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			recycle: ["7T", "6T", "5T"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -55127,7 +57773,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			willowisp: ["8M", "7M", "6M", "5M"],
 			wrap: ["7E", "6E", "5E"],
-		}
+		},
 	},
 	durant: {
 		learnset: {
@@ -55168,7 +57814,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
 			retaliate: ["8M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockclimb: ["7E", "6E", "5E"],
 			rockpolish: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
@@ -55195,7 +57841,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			visegrip: ["8L4", "7L1", "6L1", "5L1"],
 			xscissor: ["8M", "8L32", "7M", "7L41", "6M", "6L51", "5M", "5L51"],
-		}
+		},
 	},
 	deino: {
 		learnset: {
@@ -55235,7 +57881,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M"],
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roar: ["8L12", "7M", "7L20", "6M", "6L20", "5M", "5L20"],
 			rocksmash: ["6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -55262,7 +57908,10 @@ let BattleLearnsets = {
 			uproar: ["8M", "7T", "6T", "5T"],
 			workup: ["8M", "8L24", "7M", "7L38", "6L38", "5M", "5L38"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 1, "shiny": true, "moves": ["tackle", "dragonrage"], "pokeball": "pokeball"},
+		],
 	},
 	zweilous: {
 		learnset: {
@@ -55301,7 +57950,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M", "5M"],
 			raindance: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roar: ["8L12", "7M", "7L20", "6M", "6L20", "5M", "5L20"],
 			rocksmash: ["6M", "5M"],
 			round: ["8M", "7M", "6M", "5M"],
@@ -55328,7 +57977,10 @@ let BattleLearnsets = {
 			uproar: ["8M", "7T", "6T", "5T"],
 			workup: ["8M", "8L24", "7M", "7L38", "6L38", "5M", "5L38"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
+		encounters: [
+			{"generation": 5, "level": 49},
+		],
 	},
 	hydreigon: {
 		learnset: {
@@ -55389,7 +58041,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			reflect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roar: ["8L12", "7M", "7L20", "6M", "6L20", "5M", "5L20"],
 			rockslide: ["8M", "7M", "6M", "6S1", "5M"],
 			rocksmash: ["6M", "5M"],
@@ -55428,7 +58080,14 @@ let BattleLearnsets = {
 			uturn: ["8M", "7M", "6M", "5M"],
 			workup: ["8M", "8L24", "7M", "7L38", "6L38", "5M", "5L38"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 70, "shiny": true, "gender": "M", "moves": ["hypervoice", "dragonbreath", "flamethrower", "focusblast"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 52, "gender": "M", "perfectIVs": 2, "moves": ["dragonrush", "crunch", "rockslide", "frustration"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 6, "level": 59},
+		],
 	},
 	larvesta: {
 		learnset: {
@@ -55465,7 +58124,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M", "5M"],
 			psychic: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M"],
 			secretpower: ["6M"],
@@ -55485,7 +58144,7 @@ let BattleLearnsets = {
 			wildcharge: ["7M", "6M", "5M"],
 			willowisp: ["7M", "6M", "5M"],
 			zenheadbutt: ["7T", "7E", "6T", "6E", "5T", "5E"],
-		}
+		},
 	},
 	volcarona: {
 		learnset: {
@@ -55530,7 +58189,7 @@ let BattleLearnsets = {
 			quiverdance: ["7L1", "6L1", "5L59", "5S1"],
 			ragepowder: ["7L1", "6L1", "5L80"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			roost: ["7M", "6M", "5T"],
 			round: ["7M", "6M", "5M"],
 			safeguard: ["7M", "6M", "5M"],
@@ -55553,7 +58212,14 @@ let BattleLearnsets = {
 			wildcharge: ["7M", "6M", "5M"],
 			willowisp: ["7M", "6M", "5M"],
 			zenheadbutt: ["7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 35, "moves": ["stringshot", "leechlife", "gust", "firespin"]},
+			{"generation": 5, "level": 77, "gender": "M", "nature": "Calm", "ivs": {"hp": 30, "atk": 30, "def": 30, "spa": 30, "spd": 30, "spe": 30}, "moves": ["bugbuzz", "overheat", "hyperbeam", "quiverdance"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 7, "level": 41},
+		],
 	},
 	cobalion: {
 		learnset: {
@@ -55595,7 +58261,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
 			retaliate: ["8M", "8L28", "7L19", "6M", "6L31", "6S3", "5M", "5L31", "5S1", "5S0"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["8M"],
 			reversal: ["8M"],
 			roar: ["7M", "6M", "5M"],
@@ -55627,7 +58293,15 @@ let BattleLearnsets = {
 			workup: ["8M", "8L1", "7M", "7L49", "6L1", "5M", "5L61", "5S2"],
 			xscissor: ["8M", "7M", "6M", "5M"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 42, "shiny": 1, "moves": ["helpinghand", "retaliate", "ironhead", "sacredsword"]},
+			{"generation": 5, "level": 45, "shiny": 1, "moves": ["helpinghand", "retaliate", "ironhead", "sacredsword"]},
+			{"generation": 5, "level": 65, "shiny": 1, "moves": ["sacredsword", "swordsdance", "quickguard", "workup"]},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["retaliate", "ironhead", "sacredsword", "swordsdance"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["sacredsword", "swordsdance", "quickattack", "ironhead"]},
+		],
+		eventOnly: true,
 	},
 	terrakion: {
 		learnset: {
@@ -55665,7 +58339,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
 			retaliate: ["8M", "8L28", "7L19", "6M", "6L31", "6S3", "5M", "5L31", "5S1", "5S0"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["8M"],
 			reversal: ["8M"],
 			roar: ["7M", "6M", "5M"],
@@ -55699,7 +58373,15 @@ let BattleLearnsets = {
 			workup: ["8M", "8L1", "7M", "7L49", "6L1", "5M", "5L61", "5S2"],
 			xscissor: ["8M", "7M", "6M", "5M"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 42, "shiny": 1, "moves": ["helpinghand", "retaliate", "rockslide", "sacredsword"]},
+			{"generation": 5, "level": 45, "shiny": 1, "moves": ["helpinghand", "retaliate", "rockslide", "sacredsword"]},
+			{"generation": 5, "level": 65, "shiny": 1, "moves": ["sacredsword", "swordsdance", "quickguard", "workup"]},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["retaliate", "rockslide", "sacredsword", "swordsdance"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["sacredsword", "swordsdance", "rockslide", "stoneedge"]},
+		],
+		eventOnly: true,
 	},
 	virizion: {
 		learnset: {
@@ -55742,7 +58424,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
 			retaliate: ["8M", "8L28", "7L19", "6M", "6L31", "6S3", "5M", "5L31", "5S1", "5S0"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["8M"],
 			reversal: ["8M"],
 			roar: ["7M", "6M", "5M"],
@@ -55773,7 +58455,15 @@ let BattleLearnsets = {
 			worryseed: ["7T", "6T", "5T"],
 			xscissor: ["8M", "7M", "6M", "5M"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 42, "shiny": 1, "moves": ["helpinghand", "retaliate", "gigadrain", "sacredsword"]},
+			{"generation": 5, "level": 45, "shiny": 1, "moves": ["helpinghand", "retaliate", "gigadrain", "sacredsword"]},
+			{"generation": 5, "level": 65, "shiny": 1, "moves": ["sacredsword", "swordsdance", "quickguard", "workup"]},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["retaliate", "gigadrain", "sacredsword", "swordsdance"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["sacredsword", "swordsdance", "gigadrain", "leafblade"]},
+		],
+		eventOnly: true,
 	},
 	tornadus: {
 		learnset: {
@@ -55824,7 +58514,7 @@ let BattleLearnsets = {
 			psychic: ["7M", "6M", "5M"],
 			raindance: ["7M", "7L55", "7S5", "7S4", "6M", "6L61", "5M", "5L61"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["7L13", "6L19", "5L19", "5S0"],
 			rocksmash: ["6M", "5M"],
 			roleplay: ["7T", "6T", "5T"],
@@ -55848,7 +58538,20 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			uproar: ["7T", "7L1", "6T", "6L1", "5T", "5L1", "5S1"],
 			uturn: ["7M", "6M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 40, "shiny": 1, "moves": ["revenge", "aircutter", "extrasensory", "agility"]},
+			{"generation": 5, "level": 5, "isHidden": true, "moves": ["uproar", "astonish", "gust"], "pokeball": "dreamball"},
+			{"generation": 5, "level": 70, "moves": ["hurricane", "hammerarm", "airslash", "hiddenpower"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["extrasensory", "agility", "airslash", "crunch"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["airslash", "crunch", "tailwind", "raindance"]},
+			{"generation": 7, "level": 60, "moves": ["airslash", "crunch", "tailwind", "raindance"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "moves": ["hurricane", "heatwave", "grassknot", "tailwind"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
+	},
+	tornadustherian: {
+		eventOnly: true,
 	},
 	thundurus: {
 		learnset: {
@@ -55898,7 +58601,7 @@ let BattleLearnsets = {
 			psychic: ["7M", "6M", "5M"],
 			raindance: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["7L13", "6L19", "5L19", "5S0"],
 			rocksmash: ["6M", "5M"],
 			roleplay: ["7T", "6T", "5T"],
@@ -55930,7 +58633,20 @@ let BattleLearnsets = {
 			uturn: ["7M", "6M", "5M"],
 			voltswitch: ["7M", "6M", "5M"],
 			wildcharge: ["7M", "6M", "5M", "5S2"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 40, "shiny": 1, "moves": ["revenge", "shockwave", "healblock", "agility"]},
+			{"generation": 5, "level": 5, "isHidden": true, "moves": ["uproar", "astonish", "thundershock"], "pokeball": "dreamball"},
+			{"generation": 5, "level": 70, "moves": ["thunder", "hammerarm", "focusblast", "wildcharge"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["healblock", "agility", "discharge", "crunch"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["discharge", "crunch", "charge", "nastyplot"]},
+			{"generation": 7, "level": 60, "moves": ["discharge", "crunch", "charge", "nastyplot"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "moves": ["thunderbolt", "focusblast", "grassknot", "nastyplot"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
+	},
+	thundurustherian: {
+		eventOnly: true,
 	},
 	reshiram: {
 		learnset: {
@@ -55989,7 +58705,7 @@ let BattleLearnsets = {
 			raindance: ["8M"],
 			reflect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
@@ -56015,7 +58731,17 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			willowisp: ["8M", "7M", "6M", "5M"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 50, "moves": ["dragonbreath", "slash", "extrasensory", "fusionflare"]},
+			{"generation": 5, "level": 70, "moves": ["extrasensory", "fusionflare", "dragonpulse", "imprison"]},
+			{"generation": 5, "level": 100, "moves": ["blueflare", "fusionflare", "mist", "dracometeor"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["dragonbreath", "slash", "extrasensory", "fusionflare"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["slash", "extrasensory", "fusionflare", "dragonpulse"]},
+			{"generation": 7, "level": 60, "moves": ["slash", "extrasensory", "fusionflare", "dragonpulse"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "moves": ["fusionflare", "blueflare", "dracometeor", "earthpower"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	zekrom: {
 		learnset: {
@@ -56068,7 +58794,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			reflect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
@@ -56100,7 +58826,17 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			wildcharge: ["8M", "7M", "6M", "5M"],
 			zenheadbutt: ["8M", "8L24", "7T", "7L43", "7S5", "7S4", "6T", "6L43", "6S3", "5T", "5L43", "5S1", "5S0"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 50, "moves": ["dragonbreath", "slash", "zenheadbutt", "fusionbolt"]},
+			{"generation": 5, "level": 70, "moves": ["zenheadbutt", "fusionbolt", "dragonclaw", "imprison"]},
+			{"generation": 5, "level": 100, "moves": ["boltstrike", "fusionbolt", "haze", "outrage"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["dragonbreath", "slash", "zenheadbutt", "fusionbolt"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["slash", "zenheadbutt", "fusionbolt", "dragonclaw"]},
+			{"generation": 7, "level": 60, "moves": ["slash", "zenheadbutt", "fusionbolt", "dragonclaw"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "moves": ["fusionbolt", "boltstrike", "outrage", "stoneedge"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	landorus: {
 		learnset: {
@@ -56147,7 +58883,7 @@ let BattleLearnsets = {
 			psychic: ["7M", "6M", "5M"],
 			punishment: ["7L7", "6L13", "5L13"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockpolish: ["7M", "6M", "5M"],
 			rockslide: ["7M", "7L43", "7S4", "6M", "6L49", "6S2", "5M", "5L49", "5S0"],
 			rocksmash: ["6M", "5M"],
@@ -56171,7 +58907,18 @@ let BattleLearnsets = {
 			swordsdance: ["7M", "7L31", "6M", "6L37", "6S2", "5M", "5L37"],
 			toxic: ["7M", "6M", "5M"],
 			uturn: ["7M", "6M", "6S3", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 70, "shiny": 1, "moves": ["rockslide", "earthquake", "sandstorm", "fissure"]},
+			{"generation": 5, "level": 5, "isHidden": true, "moves": ["block", "mudshot", "rocktomb"], "pokeball": "dreamball"},
+			{"generation": 6, "level": 65, "shiny": 1, "moves": ["extrasensory", "swordsdance", "earthpower", "rockslide"]},
+			{"generation": 6, "level": 50, "nature": "Adamant", "ivs": {"hp": 31, "atk": 31, "def": 31, "spa": 1, "spd": 31, "spe": 24}, "moves": ["earthquake", "knockoff", "uturn", "rocktomb"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["earthpower", "rockslide", "earthquake", "sandstorm"]},
+		],
+		eventOnly: true,
+	},
+	landorustherian: {
+		eventOnly: true,
 	},
 	kyurem: {
 		learnset: {
@@ -56224,7 +58971,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			reflect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
@@ -56250,7 +58997,15 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			weatherball: ["8M"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 75, "shiny": 1, "moves": ["glaciate", "dragonpulse", "imprison", "endeavor"]},
+			{"generation": 5, "level": 70, "shiny": 1, "moves": ["scaryface", "glaciate", "dragonpulse", "imprison"]},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["dragonbreath", "slash", "scaryface", "glaciate"]},
+			{"generation": 6, "level": 100, "moves": ["glaciate", "scaryface", "dracometeor", "ironhead"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["slash", "scaryface", "glaciate", "dragonpulse"]},
+		],
+		eventOnly: true,
 	},
 	kyuremblack: {
 		learnset: {
@@ -56304,7 +59059,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			reflect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
@@ -56330,7 +59085,15 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			weatherball: ["8M"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 75, "shiny": 1, "moves": ["freezeshock", "dragonpulse", "imprison", "endeavor"]},
+			{"generation": 5, "level": 70, "shiny": 1, "moves": ["fusionbolt", "freezeshock", "dragonpulse", "imprison"]},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["dragonbreath", "slash", "fusionbolt", "freezeshock"]},
+			{"generation": 6, "level": 100, "moves": ["freezeshock", "fusionbolt", "dracometeor", "ironhead"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["slash", "fusionbolt", "freezeshock", "dragonpulse"]},
+		],
+		eventOnly: true,
 	},
 	kyuremwhite: {
 		learnset: {
@@ -56384,7 +59147,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M", "5M"],
 			reflect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockslide: ["8M", "7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			rocktomb: ["8M", "7M", "6M", "5M"],
@@ -56410,7 +59173,15 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M", "5M"],
 			weatherball: ["8M"],
 			zenheadbutt: ["8M", "7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 75, "shiny": 1, "moves": ["iceburn", "dragonpulse", "imprison", "endeavor"]},
+			{"generation": 5, "level": 70, "shiny": 1, "moves": ["fusionflare", "iceburn", "dragonpulse", "imprison"]},
+			{"generation": 6, "level": 50, "shiny": 1, "moves": ["dragonbreath", "slash", "fusionflare", "iceburn"]},
+			{"generation": 6, "level": 100, "moves": ["iceburn", "fusionflare", "dracometeor", "ironhead"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["slash", "fusionflare", "iceburn", "dragonpulse"]},
+		],
+		eventOnly: true,
 	},
 	keldeo: {
 		learnset: {
@@ -56456,7 +59227,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "6M", "5M"],
 			rest: ["8M", "7M", "6M", "5M"],
 			retaliate: ["8M", "8L28", "7L31", "6M", "6L31", "5M", "5L31"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			revenge: ["8M"],
 			reversal: ["8M"],
 			roar: ["7M", "6M", "5M"],
@@ -56485,7 +59256,17 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "6T"],
 			workup: ["8M", "8L1", "7M", "7L61", "6L61", "5M", "5L61"],
 			xscissor: ["8M", "7M", "6M", "5M"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 15, "moves": ["aquajet", "leer", "doublekick", "bubblebeam"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 50, "moves": ["sacredsword", "hydropump", "aquajet", "swordsdance"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 15, "moves": ["aquajet", "leer", "doublekick", "hydropump"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 100, "moves": ["aquajet", "leer", "doublekick", "bubblebeam"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
+	},
+	keldeoresolute: {
+		eventOnly: true,
 	},
 	meloetta: {
 		learnset: {
@@ -56548,7 +59329,7 @@ let BattleLearnsets = {
 			relicsong: ["7T", "7S3", "6T", "5T"],
 			rest: ["7M", "6M", "5M"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rocksmash: ["6M", "5M"],
 			roleplay: ["7T", "7L71", "6T", "6L71", "5T", "5L71"],
 			round: ["7M", "7L1", "7S3", "6M", "6L1", "5M", "5L1", "5S1", "5S0"],
@@ -56583,7 +59364,14 @@ let BattleLearnsets = {
 			wonderroom: ["7T", "6T", "5T"],
 			workup: ["7M", "5M"],
 			zenheadbutt: ["7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 15, "moves": ["quickattack", "confusion", "round"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 50, "moves": ["round", "teeterdance", "psychic", "closecombat"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 15, "moves": ["sing", "psychic", "closecombat"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 50, "moves": ["sing", "celebrate", "round", "relicsong"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	genesect: {
 		learnset: {
@@ -56639,7 +59427,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T", "5T"],
 			reflect: ["7M", "6M", "5M"],
 			rest: ["7M", "6M", "5M"],
-			return : ["7M", "6M", "5M"],
+			return: ["7M", "6M", "5M"],
 			rockpolish: ["7M", "6M", "5M"],
 			round: ["7M", "6M", "5M"],
 			screech: ["7L1", "6L1", "5L1"],
@@ -56668,7 +59456,26 @@ let BattleLearnsets = {
 			xscissor: ["7M", "7L51", "6M", "6L51", "5M", "5L51"],
 			zapcannon: ["7L66", "6L66", "5L66"],
 			zenheadbutt: ["7T", "6T", "5T"],
-		}
+		},
+		eventData: [
+			{"generation": 5, "level": 50, "moves": ["technoblast", "magnetbomb", "solarbeam", "signalbeam"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 15, "moves": ["technoblast", "magnetbomb", "solarbeam", "signalbeam"], "pokeball": "cherishball"},
+			{"generation": 5, "level": 100, "shiny": true, "nature": "Hasty", "ivs": {"atk": 31, "spe": 31}, "moves": ["extremespeed", "technoblast", "blazekick", "shiftgear"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 100, "moves": ["technoblast", "magnetbomb", "solarbeam", "signalbeam"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
+	},
+	genesectburn: {
+		eventOnly: true,
+	},
+	genesectchill: {
+		eventOnly: true,
+	},
+	genesectdouse: {
+		eventOnly: true,
+	},
+	genesectshock: {
+		eventOnly: true,
 	},
 	chespin: {
 		learnset: {
@@ -56725,7 +59532,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "6M"],
 			rest: ["7M", "6M"],
 			retaliate: ["6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roar: ["7M", "6M"],
 			rockslide: ["7M", "6M"],
 			rocksmash: ["6M"],
@@ -56761,7 +59568,7 @@ let BattleLearnsets = {
 			workup: ["7M"],
 			worryseed: ["7T", "6T"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
 	},
 	quilladin: {
 		learnset: {
@@ -56813,7 +59620,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "6M"],
 			rest: ["7M", "6M"],
 			retaliate: ["6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roar: ["7M", "6M"],
 			rockslide: ["7M", "6M"],
 			rocksmash: ["6M"],
@@ -56848,7 +59655,7 @@ let BattleLearnsets = {
 			workup: ["7M"],
 			worryseed: ["7T", "6T"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
 	},
 	chesnaught: {
 		learnset: {
@@ -56910,7 +59717,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "6M"],
 			rest: ["7M", "6M"],
 			retaliate: ["6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roar: ["7M", "6M"],
 			rockslide: ["7M", "6M"],
 			rocksmash: ["6M"],
@@ -56946,7 +59753,7 @@ let BattleLearnsets = {
 			workup: ["7M"],
 			worryseed: ["7T", "6T"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
 	},
 	fennekin: {
 		learnset: {
@@ -56990,7 +59797,7 @@ let BattleLearnsets = {
 			psyshock: ["7M", "7L31", "6M", "6L31"],
 			raindance: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			round: ["7M", "6M"],
 			safeguard: ["7M", "6M"],
 			scratch: ["7L1", "6L1", "6S0"],
@@ -57007,7 +59814,10 @@ let BattleLearnsets = {
 			willowisp: ["7M", "7L38", "6M", "6L38"],
 			wish: ["7E", "6E"],
 			workup: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 15, "gender": "F", "nature": "Hardy", "moves": ["scratch", "flamethrower", "hiddenpower"], "pokeball": "cherishball"},
+		],
 	},
 	braixen: {
 		learnset: {
@@ -57053,7 +59863,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M"],
 			recycle: ["7T", "6T"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			round: ["7M", "6M"],
 			safeguard: ["7M", "6M"],
 			scratch: ["7L1", "6L1"],
@@ -57077,7 +59887,7 @@ let BattleLearnsets = {
 			wonderroom: ["7T", "6T"],
 			workup: ["7M"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
 	},
 	delphox: {
 		learnset: {
@@ -57130,7 +59940,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M"],
 			recycle: ["7T", "6T"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roleplay: ["7T", "7L1", "6T", "6L1"],
 			round: ["7M", "6M"],
 			safeguard: ["7M", "6M"],
@@ -57159,7 +59969,7 @@ let BattleLearnsets = {
 			wonderroom: ["7T", "6T"],
 			workup: ["7M"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
 	},
 	froakie: {
 		learnset: {
@@ -57196,7 +60006,7 @@ let BattleLearnsets = {
 			quickattack: ["7L8", "6L8"],
 			raindance: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M", "6S0"],
+			return: ["7M", "6M", "6S0"],
 			rockslide: ["7M", "6M"],
 			rocksmash: ["6M"],
 			rocktomb: ["7M", "6M"],
@@ -57224,7 +60034,10 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "7L14", "6T", "6L14"],
 			watersport: ["7E", "6E"],
 			workup: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 7, "moves": ["pound", "growl", "bubble", "return"], "pokeball": "cherishball"},
+		],
 	},
 	frogadier: {
 		learnset: {
@@ -57261,7 +60074,7 @@ let BattleLearnsets = {
 			quickattack: ["7L8", "6L8"],
 			raindance: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockslide: ["7M", "6M"],
 			rocksmash: ["6M"],
 			rocktomb: ["7M", "6M"],
@@ -57287,7 +60100,7 @@ let BattleLearnsets = {
 			waterpledge: ["7T", "6T"],
 			waterpulse: ["7T", "7L14", "6T", "6L14"],
 			workup: ["7M"],
-		}
+		},
 	},
 	greninja: {
 		learnset: {
@@ -57334,7 +60147,7 @@ let BattleLearnsets = {
 			quickattack: ["7L1", "6L8"],
 			raindance: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockslide: ["7M", "6M"],
 			rocksmash: ["6M"],
 			rocktomb: ["7M", "6M"],
@@ -57363,7 +60176,11 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "7L14", "6T", "6L14"],
 			watershuriken: ["7L1", "6L36", "6S0"],
 			workup: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 36, "ivs": {"spe": 31}, "isHidden": true, "moves": ["watershuriken", "shadowsneak", "hydropump", "substitute"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 100, "isHidden": true, "moves": ["hydrocannon", "gunkshot", "matblock", "happyhour"], "pokeball": "cherishball"},
+		],
 	},
 	greninjaash: {
 		learnset: {
@@ -57404,7 +60221,7 @@ let BattleLearnsets = {
 			quickattack: ["7L1"],
 			raindance: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockslide: ["7M"],
 			rocktomb: ["7M"],
 			roleplay: ["7T", "7L1"],
@@ -57430,7 +60247,11 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "7L14"],
 			watershuriken: ["7L1", "7S0"],
 			workup: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 36, "ivs": {"hp": 20, "atk": 31, "def": 20, "spa": 31, "spd": 20, "spe": 31}, "moves": ["watershuriken", "aerialace", "doubleteam", "nightslash"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	bunnelby: {
 		learnset: {
@@ -57471,7 +60292,7 @@ let BattleLearnsets = {
 			quickattack: ["8L9", "7L7", "6L7"],
 			recycle: ["7T", "6T"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockslide: ["8M", "7M", "6M"],
 			rocksmash: ["6M"],
 			rocktomb: ["8M", "7M", "6M"],
@@ -57499,7 +60320,7 @@ let BattleLearnsets = {
 			uturn: ["8M", "7M", "6M"],
 			wildcharge: ["8M", "7M", "6M"],
 			workup: ["8M", "7M"],
-		}
+		},
 	},
 	diggersby: {
 		learnset: {
@@ -57556,7 +60377,7 @@ let BattleLearnsets = {
 			quickattack: ["8L9", "7L7", "6L7"],
 			recycle: ["7T", "6T"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockslide: ["8M", "7M", "6M"],
 			rocksmash: ["6M"],
 			rocktomb: ["8M", "7M", "6M"],
@@ -57590,7 +60411,7 @@ let BattleLearnsets = {
 			uturn: ["8M", "7M", "6M"],
 			wildcharge: ["8M", "7M", "6M"],
 			workup: ["8M", "7M"],
-		}
+		},
 	},
 	fletchling: {
 		learnset: {
@@ -57621,7 +60442,7 @@ let BattleLearnsets = {
 			quickguard: ["7E", "6E"],
 			razorwind: ["7L25", "6L25"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roost: ["7M", "7L21", "6M", "6L21"],
 			round: ["7M", "6M"],
 			secretpower: ["6M"],
@@ -57640,7 +60461,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M"],
 			uturn: ["7M", "6M"],
 			workup: ["7M"],
-		}
+		},
 	},
 	fletchinder: {
 		learnset: {
@@ -57674,7 +60495,7 @@ let BattleLearnsets = {
 			quickattack: ["7L1", "6L6"],
 			razorwind: ["7L27", "6L27"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roost: ["7M", "7L25", "6M", "6L25"],
 			round: ["7M", "6M"],
 			secretpower: ["6M"],
@@ -57694,7 +60515,10 @@ let BattleLearnsets = {
 			uturn: ["7M", "6M"],
 			willowisp: ["7M", "6M"],
 			workup: ["7M"],
-		}
+		},
+		encounters: [
+			{"generation": 7, "level": 16},
+		],
 	},
 	talonflame: {
 		learnset: {
@@ -57735,7 +60559,7 @@ let BattleLearnsets = {
 			quickattack: ["7L1", "6L6"],
 			razorwind: ["7L27", "6L27"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roost: ["7M", "7L25", "6M", "6L25"],
 			round: ["7M", "6M"],
 			secretpower: ["6M"],
@@ -57756,7 +60580,7 @@ let BattleLearnsets = {
 			uturn: ["7M", "6M"],
 			willowisp: ["7M", "6M"],
 			workup: ["7M"],
-		}
+		},
 	},
 	scatterbug: {
 		learnset: {
@@ -57766,7 +60590,7 @@ let BattleLearnsets = {
 			stringshot: ["7L1", "6L1"],
 			stunspore: ["7L6", "7E", "6L6", "6E"],
 			tackle: ["7L1", "6L1"],
-		}
+		},
 	},
 	spewpa: {
 		learnset: {
@@ -57775,7 +60599,7 @@ let BattleLearnsets = {
 			harden: ["7L1", "6L1"],
 			irondefense: ["7T", "6T"],
 			protect: ["7M", "7L1", "6M", "6L9"],
-		}
+		},
 	},
 	vivillon: {
 		learnset: {
@@ -57816,7 +60640,7 @@ let BattleLearnsets = {
 			quiverdance: ["7L45", "6L45"],
 			raindance: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roost: ["7M", "6M"],
 			round: ["7M", "6M"],
 			safeguard: ["7M", "7L41", "6M", "6L41"],
@@ -57836,7 +60660,7 @@ let BattleLearnsets = {
 			thief: ["7M", "6M"],
 			toxic: ["7M", "6M"],
 			uturn: ["7M", "6M"],
-		}
+		},
 	},
 	vivillonfancy: {
 		learnset: {
@@ -57877,7 +60701,7 @@ let BattleLearnsets = {
 			quiverdance: ["7L45", "6L45"],
 			raindance: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roost: ["7M", "6M"],
 			round: ["7M", "6M"],
 			safeguard: ["7M", "7L41", "6M", "6L41"],
@@ -57897,7 +60721,11 @@ let BattleLearnsets = {
 			thief: ["7M", "6M"],
 			toxic: ["7M", "6M"],
 			uturn: ["7M", "6M"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 12, "moves": ["gust", "lightscreen", "strugglebug", "holdhands"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	vivillonpokeball: {
 		learnset: {
@@ -57937,7 +60765,7 @@ let BattleLearnsets = {
 			quiverdance: ["7L45", "6L45"],
 			raindance: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roost: ["7M", "6M"],
 			round: ["7M", "6M"],
 			safeguard: ["7M", "7L41", "6M", "6L41"],
@@ -57957,7 +60785,11 @@ let BattleLearnsets = {
 			thief: ["7M", "6M"],
 			toxic: ["7M", "6M"],
 			uturn: ["7M", "6M"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 12, "moves": ["stunspore", "gust", "lightscreen", "strugglebug"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	litleo: {
 		learnset: {
@@ -57997,7 +60829,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M"],
 			rest: ["7M", "6M"],
 			retaliate: ["6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roar: ["7M", "6M"],
 			rocksmash: ["6M"],
 			round: ["7M", "6M"],
@@ -58020,7 +60852,7 @@ let BattleLearnsets = {
 			willowisp: ["7M", "6M"],
 			workup: ["7M", "7L8", "6L8"],
 			yawn: ["7E", "6E"],
-		}
+		},
 	},
 	pyroar: {
 		learnset: {
@@ -58060,7 +60892,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M"],
 			rest: ["7M", "6M"],
 			retaliate: ["6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roar: ["7M", "6M"],
 			rocksmash: ["6M"],
 			round: ["7M", "6M"],
@@ -58082,7 +60914,13 @@ let BattleLearnsets = {
 			wildcharge: ["7M", "6M"],
 			willowisp: ["7M", "6M"],
 			workup: ["7M", "7L1", "6L8"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 49, "gender": "M", "perfectIVs": 2, "abilities": ["unnerve"], "moves": ["hypervoice", "fireblast", "darkpulse"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 6, "level": 30},
+		],
 	},
 	flabebe: {
 		learnset: {
@@ -58124,7 +60962,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M"],
 			razorleaf: ["7L15", "6L15"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			round: ["7M", "6M"],
 			safeguard: ["7M", "6M"],
 			secretpower: ["6M"],
@@ -58142,7 +60980,7 @@ let BattleLearnsets = {
 			vinewhip: ["7L1", "6L1"],
 			wish: ["7L20", "6L20"],
 			worryseed: ["7T", "6T"],
-		}
+		},
 	},
 	floette: {
 		learnset: {
@@ -58181,7 +61019,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M"],
 			razorleaf: ["7L15", "6L15"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			round: ["7M", "6M"],
 			safeguard: ["7M", "6M"],
 			secretpower: ["6M"],
@@ -58198,7 +61036,7 @@ let BattleLearnsets = {
 			vinewhip: ["7L1", "6L1"],
 			wish: ["7L20", "6L20"],
 			worryseed: ["7T", "6T"],
-		}
+		},
 	},
 	floetteeternal: {
 		learnset: {
@@ -58238,7 +61076,7 @@ let BattleLearnsets = {
 			raindance: ["6M"],
 			razorleaf: ["6L15"],
 			rest: ["6M"],
-			return : ["6M"],
+			return: ["6M"],
 			round: ["6M"],
 			safeguard: ["6M"],
 			secretpower: ["6M"],
@@ -58255,7 +61093,7 @@ let BattleLearnsets = {
 			vinewhip: ["6L1"],
 			wish: ["6L20"],
 			worryseed: ["7T"],
-		}
+		},
 	},
 	florges: {
 		learnset: {
@@ -58298,7 +61136,7 @@ let BattleLearnsets = {
 			psychic: ["7M", "6M"],
 			raindance: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			round: ["7M", "6M"],
 			safeguard: ["7M", "6M"],
 			secretpower: ["6M"],
@@ -58313,7 +61151,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M"],
 			wish: ["7L1", "6L1"],
 			worryseed: ["7T", "6T"],
-		}
+		},
 	},
 	skiddo: {
 		learnset: {
@@ -58347,7 +61185,7 @@ let BattleLearnsets = {
 			razorleaf: ["7L13", "6L13"],
 			rest: ["7M", "6M"],
 			retaliate: ["6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roar: ["7M", "6M"],
 			rockslide: ["7M", "6M"],
 			rocksmash: ["6M"],
@@ -58373,7 +61211,7 @@ let BattleLearnsets = {
 			workup: ["7M"],
 			worryseed: ["7T", "7L16", "6T", "6L16"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
 	},
 	gogoat: {
 		learnset: {
@@ -58410,7 +61248,7 @@ let BattleLearnsets = {
 			razorleaf: ["7L13", "6L13"],
 			rest: ["7M", "6M"],
 			retaliate: ["6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roar: ["7M", "6M"],
 			rockslide: ["7M", "6M"],
 			rocksmash: ["6M"],
@@ -58437,7 +61275,10 @@ let BattleLearnsets = {
 			workup: ["7M"],
 			worryseed: ["7T", "7L16", "6T", "6L16"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 30},
+		],
 	},
 	pancham: {
 		learnset: {
@@ -58496,7 +61337,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M"],
 			rest: ["8M", "7M", "6M"],
 			retaliate: ["8M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roar: ["7M", "6M"],
 			rockslide: ["8M", "7M", "6M"],
 			rocksmash: ["6M"],
@@ -58530,7 +61371,10 @@ let BattleLearnsets = {
 			vitalthrow: ["8L28", "7L27", "6L27"],
 			workup: ["8M", "8L20", "7M", "7L10", "6L10"],
 			zenheadbutt: ["8M", "7T", "6T"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 30, "gender": "M", "nature": "Adamant", "abilities": ["moldbreaker"], "moves": ["armthrust", "stoneedge", "darkpulse"], "pokeball": "cherishball"},
+		],
 	},
 	pangoro: {
 		learnset: {
@@ -58604,7 +61448,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M"],
 			rest: ["8M", "7M", "6M"],
 			retaliate: ["8M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			revenge: ["8M"],
 			reversal: ["8M"],
 			roar: ["7M", "6M"],
@@ -58644,7 +61488,10 @@ let BattleLearnsets = {
 			workup: ["8M", "8L20", "7M", "7L1", "6L10"],
 			xscissor: ["8M", "7M", "6M"],
 			zenheadbutt: ["8M", "7T", "6T"],
-		}
+		},
+		encounters: [
+			{"generation": 7, "level": 24},
+		],
 	},
 	furfrou: {
 		learnset: {
@@ -58681,7 +61528,7 @@ let BattleLearnsets = {
 			refresh: ["7E", "6E"],
 			rest: ["7M", "6M"],
 			retaliate: ["7L33", "6M", "6L33"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roar: ["7M", "6M"],
 			rocksmash: ["6M"],
 			roleplay: ["7T", "7E", "6T", "6E"],
@@ -58706,7 +61553,7 @@ let BattleLearnsets = {
 			wildcharge: ["7M", "6M"],
 			workup: ["7M", "7E", "6E"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
 	},
 	espurr: {
 		learnset: {
@@ -58754,7 +61601,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T"],
 			reflect: ["8M", "8L30", "7M", "6M"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roleplay: ["7T", "6T"],
 			round: ["8M", "7M", "6M"],
 			safeguard: ["8M", "7M", "6M"],
@@ -58782,7 +61629,7 @@ let BattleLearnsets = {
 			workup: ["8M", "7M"],
 			yawn: ["8E", "7E", "6E"],
 			zenheadbutt: ["8M", "7T", "6T"],
-		}
+		},
 	},
 	meowstic: {
 		learnset: {
@@ -58839,7 +61686,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T"],
 			reflect: ["8M", "8L34", "7M", "7L35", "6M", "6L35"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roleplay: ["8L29", "7T", "7L43", "6T", "6L43"],
 			round: ["8M", "7M", "6M"],
 			safeguard: ["8M", "7M", "6M"],
@@ -58868,7 +61715,7 @@ let BattleLearnsets = {
 			wonderroom: ["8M", "7T", "6T"],
 			workup: ["8M", "7M"],
 			zenheadbutt: ["8M", "7T", "6T"],
-		}
+		},
 	},
 	meowsticf: {
 		learnset: {
@@ -58924,7 +61771,7 @@ let BattleLearnsets = {
 			recycle: ["7T"],
 			reflect: ["8M", "8L34", "7M", "6M"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roleplay: ["8L29", "7T", "7L43", "6L43"],
 			round: ["8M", "7M", "6M"],
 			safeguard: ["8M", "7M", "6M"],
@@ -58954,7 +61801,7 @@ let BattleLearnsets = {
 			wonderroom: ["8M", "7T"],
 			workup: ["8M", "7M"],
 			zenheadbutt: ["8M", "7T"],
-		}
+		},
 	},
 	honedge: {
 		learnset: {
@@ -58992,7 +61839,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "6M"],
 			rest: ["8M", "7M", "6M"],
 			retaliate: ["8M", "8L28", "7L26", "6M", "6L26"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			reversal: ["8M"],
 			rockslide: ["8M", "7M", "6M"],
 			rocksmash: ["6M"],
@@ -59015,7 +61862,7 @@ let BattleLearnsets = {
 			tackle: ["8L1", "7L1", "6L1"],
 			toxic: ["7M", "6M"],
 			wideguard: ["8E", "7E", "6E"],
-		}
+		},
 	},
 	doublade: {
 		learnset: {
@@ -59051,7 +61898,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "6M"],
 			rest: ["8M", "7M", "6M"],
 			retaliate: ["8M", "8L28", "7L26", "6M", "6L26"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			reversal: ["8M"],
 			rockslide: ["8M", "7M", "6M"],
 			rocksmash: ["6M"],
@@ -59073,7 +61920,7 @@ let BattleLearnsets = {
 			swordsdance: ["8M", "8L50", "7M", "7L1", "6M", "6L1"],
 			tackle: ["8L1", "7L1", "6L1"],
 			toxic: ["7M", "6M"],
-		}
+		},
 	},
 	aegislash: {
 		learnset: {
@@ -59115,7 +61962,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "6M"],
 			rest: ["8M", "7M", "6M"],
 			retaliate: ["8M", "8L1", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			reversal: ["8M"],
 			rockslide: ["8M", "7M", "6M"],
 			rocksmash: ["6M"],
@@ -59140,7 +61987,10 @@ let BattleLearnsets = {
 			tackle: ["8L1"],
 			toxic: ["7M", "6M"],
 			wideguard: ["6S0"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 50, "gender": "F", "nature": "Quiet", "moves": ["wideguard", "kingsshield", "shadowball", "flashcannon"], "pokeball": "cherishball"},
+		],
 	},
 	spritzee: {
 		learnset: {
@@ -59189,7 +62039,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "6M"],
 			refresh: ["7E", "6E"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			round: ["8M", "7M", "6M"],
 			secretpower: ["6M"],
 			skillswap: ["8M", "8L39", "7T", "7L44", "6T", "6L44"],
@@ -59206,7 +62056,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M"],
 			trickroom: ["8M", "7M", "6M"],
 			wish: ["8E", "7E", "6E"],
-		}
+		},
 	},
 	aromatisse: {
 		learnset: {
@@ -59260,7 +62110,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M"],
 			reflect: ["8M", "7M", "7L57", "6M", "6L57"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			round: ["8M", "7M", "6M"],
 			secretpower: ["6M"],
 			skillswap: ["8M", "8L39", "7T", "7L44", "6T", "6L44"],
@@ -59277,7 +62127,10 @@ let BattleLearnsets = {
 			torment: ["7M", "6M"],
 			toxic: ["7M", "6M"],
 			trickroom: ["8M", "7M", "6M", "6S0"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 50, "nature": "Relaxed", "isHidden": true, "moves": ["trickroom", "healpulse", "disable", "moonblast"], "pokeball": "cherishball"},
+		],
 	},
 	swirlix: {
 		learnset: {
@@ -59319,7 +62172,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M"],
 			raindance: ["8M", "7M", "6M"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			round: ["8M", "8L18", "7M", "7L13", "6M", "6L13"],
 			safeguard: ["8M", "7M", "7L67", "6M", "6L67"],
 			secretpower: ["6M"],
@@ -59338,7 +62191,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M"],
 			wish: ["8L30", "7L45", "6L45"],
 			yawn: ["8E", "7E", "6E"],
-		}
+		},
 	},
 	slurpuff: {
 		learnset: {
@@ -59382,7 +62235,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M"],
 			raindance: ["8M", "7M", "6M"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			round: ["8M", "8L18", "7M", "7L13", "6M", "6L13"],
 			safeguard: ["8M", "7M", "7L67", "6M", "6L67"],
 			secretpower: ["6M"],
@@ -59401,7 +62254,7 @@ let BattleLearnsets = {
 			thunderbolt: ["8M", "7M", "6M"],
 			toxic: ["7M", "6M"],
 			wish: ["8L30", "7L45", "6L45"],
-		}
+		},
 	},
 	inkay: {
 		learnset: {
@@ -59454,7 +62307,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "7L4", "6M", "6L4"],
 			rest: ["8M", "7M", "6M"],
 			retaliate: ["8M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockslide: ["8M", "7M", "6M"],
 			roleplay: ["7T", "6T"],
 			round: ["8M", "7M", "6M"],
@@ -59481,7 +62334,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M"],
 			trickroom: ["8M", "7M", "6M"],
 			wrap: ["8L6"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 10, "moves": ["happyhour", "foulplay", "hypnosis", "topsyturvy"], "pokeball": "cherishball"},
+		],
 	},
 	malamar: {
 		learnset: {
@@ -59532,7 +62388,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "7L1", "6M", "6L4"],
 			rest: ["8M", "7M", "6M"],
 			retaliate: ["8M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			reversal: ["8M", "8L1", "7L1", "6L1"],
 			rockslide: ["8M", "7M", "6M", "6S0"],
 			roleplay: ["7T", "6T"],
@@ -59562,7 +62418,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M"],
 			trickroom: ["8M", "7M", "6M"],
 			wrap: ["8L1"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 50, "nature": "Adamant", "ivs": {"hp": 31, "atk": 31}, "abilities": ["contrary"], "moves": ["superpower", "knockoff", "facade", "rockslide"], "pokeball": "cherishball"},
+		],
 	},
 	binacle: {
 		learnset: {
@@ -59611,7 +62470,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M"],
 			razorshell: ["8M", "8L36", "7L45", "6L45"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockblast: ["8M"],
 			rockpolish: ["8L24", "7M", "7L24", "6M", "6L24"],
 			rockslide: ["8M", "7M", "6M"],
@@ -59652,7 +62511,7 @@ let BattleLearnsets = {
 			watersport: ["7E", "6E"],
 			withdraw: ["8L4", "7L7", "6L7"],
 			xscissor: ["8M", "7M", "6M"],
-		}
+		},
 	},
 	barbaracle: {
 		learnset: {
@@ -59712,7 +62571,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M"],
 			razorshell: ["8M", "8L36", "7L48", "6L48"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockblast: ["8M"],
 			rockpolish: ["8L24", "7M", "7L24", "6M", "6L24"],
 			rockslide: ["8M", "7M", "6M"],
@@ -59753,7 +62612,10 @@ let BattleLearnsets = {
 			whirlpool: ["8M"],
 			withdraw: ["8L1", "7L7", "6L7"],
 			xscissor: ["8M", "7M", "6M"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 30},
+		],
 	},
 	skrelp: {
 		learnset: {
@@ -59785,7 +62647,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M"],
 			raindance: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			round: ["7M", "6M"],
 			scald: ["7M", "6M"],
 			secretpower: ["6M"],
@@ -59809,7 +62671,7 @@ let BattleLearnsets = {
 			waterfall: ["7M", "6M"],
 			watergun: ["7L1", "6L1"],
 			waterpulse: ["7T", "7L25", "6T", "6L25"],
-		}
+		},
 	},
 	dragalge: {
 		learnset: {
@@ -59843,7 +62705,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M"],
 			raindance: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			round: ["7M", "6M"],
 			scald: ["7M", "6M"],
 			secretpower: ["6M"],
@@ -59867,7 +62729,10 @@ let BattleLearnsets = {
 			waterfall: ["7M", "6M"],
 			watergun: ["7L1", "6L1"],
 			waterpulse: ["7T", "7L25", "6T", "6L25"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 35},
+		],
 	},
 	clauncher: {
 		learnset: {
@@ -59898,7 +62763,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M"],
 			raindance: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockslide: ["7M", "6M"],
 			round: ["7M", "6M"],
 			scald: ["7M", "6M"],
@@ -59921,7 +62786,7 @@ let BattleLearnsets = {
 			watergun: ["7L1", "6L1"],
 			waterpulse: ["7T", "7L34", "6T", "6L34"],
 			watersport: ["7L7", "6L7"],
-		}
+		},
 	},
 	clawitzer: {
 		learnset: {
@@ -59958,7 +62823,7 @@ let BattleLearnsets = {
 			protect: ["7M", "6M"],
 			raindance: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockslide: ["7M", "6M"],
 			round: ["7M", "6M"],
 			scald: ["7M", "6M"],
@@ -59982,7 +62847,10 @@ let BattleLearnsets = {
 			watergun: ["7L1", "6L1"],
 			waterpulse: ["7T", "7L34", "6T", "6L34"],
 			watersport: ["7L1", "6L7"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 35},
+		],
 	},
 	helioptile: {
 		learnset: {
@@ -60024,7 +62892,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M"],
 			razorwind: ["7L22", "6L22"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockslide: ["8M", "7M", "6M"],
 			rocktomb: ["8M", "7M", "6M"],
 			round: ["8M", "7M", "6M"],
@@ -60047,7 +62915,7 @@ let BattleLearnsets = {
 			uturn: ["8M", "7M", "6M"],
 			voltswitch: ["8M", "8L24", "7M", "7L40", "6M", "6L40"],
 			wildcharge: ["8M", "7M", "6M"],
-		}
+		},
 	},
 	heliolisk: {
 		learnset: {
@@ -60099,7 +62967,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M"],
 			razorwind: ["7L1", "6L1"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockslide: ["8M", "7M", "6M"],
 			rocktomb: ["8M", "7M", "6M"],
 			round: ["8M", "7M", "6M"],
@@ -60126,7 +62994,7 @@ let BattleLearnsets = {
 			voltswitch: ["8M", "8L1", "7M", "6M"],
 			weatherball: ["8M"],
 			wildcharge: ["8M", "7M", "6M"],
-		}
+		},
 	},
 	tyrunt: {
 		learnset: {
@@ -60173,7 +63041,7 @@ let BattleLearnsets = {
 			poisonfang: ["7E", "6E"],
 			protect: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roar: ["7M", "7L6", "6M", "6L6", "6S0"],
 			rockpolish: ["7M", "7E", "6M", "6E"],
 			rockslide: ["7M", "6M"],
@@ -60199,7 +63067,10 @@ let BattleLearnsets = {
 			thunderfang: ["7E", "6E"],
 			toxic: ["7M", "6M"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 10, "isHidden": true, "moves": ["tailwhip", "tackle", "roar", "stomp"], "pokeball": "cherishball"},
+		],
 	},
 	tyrantrum: {
 		learnset: {
@@ -60247,7 +63118,7 @@ let BattleLearnsets = {
 			outrage: ["7T", "6T"],
 			protect: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roar: ["7M", "7L1", "6M", "6L6"],
 			rockpolish: ["7M", "6M"],
 			rockslide: ["7M", "7L1", "6M", "6L68"],
@@ -60272,7 +63143,7 @@ let BattleLearnsets = {
 			thrash: ["7L42", "6L42"],
 			toxic: ["7M", "6M"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
 	},
 	amaura: {
 		learnset: {
@@ -60328,7 +63199,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M"],
 			reflect: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roar: ["7M", "6M"],
 			rockpolish: ["7M", "6M"],
 			rockslide: ["7M", "6M"],
@@ -60351,7 +63222,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M"],
 			waterpulse: ["7T", "6T"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 10, "isHidden": true, "moves": ["growl", "powdersnow", "thunderwave", "rockthrow"], "pokeball": "cherishball"},
+		],
 	},
 	aurorus: {
 		learnset: {
@@ -60408,7 +63282,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M"],
 			reflect: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roar: ["7M", "6M"],
 			rockpolish: ["7M", "6M"],
 			rockslide: ["7M", "6M"],
@@ -60432,7 +63306,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M"],
 			waterpulse: ["7T", "6T"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
 	},
 	sylveon: {
 		learnset: {
@@ -60488,7 +63362,7 @@ let BattleLearnsets = {
 			reflect: ["8M", "7M", "6M"],
 			rest: ["8M", "7M", "6M"],
 			retaliate: ["8M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			round: ["8M", "7M", "6M"],
 			safeguard: ["8M", "7M", "6M"],
 			sandattack: ["8L5", "7L5", "6L5", "6S0"],
@@ -60509,7 +63383,12 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M"],
 			weatherball: ["8M"],
 			workup: ["8M", "7M"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 10, "moves": ["celebrate", "helpinghand", "sandattack", "fairywind"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 10, "gender": "F", "moves": ["disarmingvoice", "babydolleyes", "quickattack", "drainingkiss"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 50, "gender": "F", "isHidden": true, "moves": ["hyperbeam", "drainingkiss", "psyshock", "calmmind"], "pokeball": "cherishball"},
+		],
 	},
 	hawlucha: {
 		learnset: {
@@ -60575,7 +63454,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M", "6M"],
 			rest: ["8M", "7M", "6M"],
 			retaliate: ["8M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			revenge: ["8M"],
 			reversal: ["8M"],
 			rockslide: ["8M", "7M", "6M"],
@@ -60610,7 +63489,7 @@ let BattleLearnsets = {
 			workup: ["8M", "7M"],
 			xscissor: ["8M", "7M", "6M"],
 			zenheadbutt: ["8M", "7T", "6T"],
-		}
+		},
 	},
 	dedenne: {
 		learnset: {
@@ -60652,7 +63531,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T"],
 			rest: ["7M", "7L30", "6M", "6L30"],
 			retaliate: ["6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			round: ["7M", "6M"],
 			secretpower: ["6M"],
 			shockwave: ["7T", "6T"],
@@ -60676,7 +63555,7 @@ let BattleLearnsets = {
 			uturn: ["7M", "6M"],
 			voltswitch: ["7M", "7L26", "6M", "6L26"],
 			wildcharge: ["7M", "6M"],
-		}
+		},
 	},
 	carbink: {
 		learnset: {
@@ -60717,7 +63596,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "6M"],
 			reflect: ["7M", "7L18", "6M", "6L18"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockpolish: ["7M", "6M"],
 			rockslide: ["7M", "6M"],
 			rockthrow: ["7L5", "6L5"],
@@ -60742,7 +63621,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M"],
 			trickroom: ["7M", "6M"],
 			wonderroom: ["7T", "6T"],
-		}
+		},
 	},
 	goomy: {
 		learnset: {
@@ -60774,7 +63653,7 @@ let BattleLearnsets = {
 			protect: ["8M", "8L15", "7M", "7L9", "6M", "6L9"],
 			raindance: ["8M", "8L30", "7M", "7L25", "6M", "6L25"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockslide: ["8M", "7M", "6M"],
 			round: ["8M", "7M", "6M"],
 			secretpower: ["6M"],
@@ -60791,7 +63670,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M"],
 			watergun: ["8L5"],
 			waterpulse: ["8L25", "7T", "6T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 1, "shiny": 1, "isHidden": true, "moves": ["bodyslam", "dragonpulse", "counter"], "pokeball": "cherishball"},
+		],
 	},
 	sliggoo: {
 		learnset: {
@@ -60822,7 +63704,7 @@ let BattleLearnsets = {
 			protect: ["8M", "8L15", "7M", "7L9", "6M", "6L9"],
 			raindance: ["8M", "8L30", "7M", "7L25", "6M", "6L25"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockslide: ["8M", "7M", "6M"],
 			round: ["8M", "7M", "6M"],
 			secretpower: ["6M"],
@@ -60839,7 +63721,10 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M"],
 			watergun: ["8L1"],
 			waterpulse: ["8L25", "7T", "6T"],
-		}
+		},
+		encounters: [
+			{"generation": 6, "level": 30},
+		],
 	},
 	goodra: {
 		learnset: {
@@ -60894,7 +63779,7 @@ let BattleLearnsets = {
 			protect: ["8M", "8L15", "7M", "7L1", "6M", "6L9"],
 			raindance: ["8M", "8L30", "7M", "7L25", "6M", "6L25"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockslide: ["8M", "7M", "6M"],
 			rocksmash: ["6M"],
 			round: ["8M", "7M", "6M"],
@@ -60920,7 +63805,7 @@ let BattleLearnsets = {
 			watergun: ["8L1"],
 			waterpulse: ["8L25", "7T", "6T"],
 			weatherball: ["8M"],
-		}
+		},
 	},
 	klefki: {
 		learnset: {
@@ -60967,7 +63852,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "7L40", "6T", "6L40"],
 			reflect: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			round: ["7M", "6M"],
 			safeguard: ["7M", "6M"],
 			secretpower: ["6M"],
@@ -60983,7 +63868,7 @@ let BattleLearnsets = {
 			thunderwave: ["7M", "6M"],
 			torment: ["7M", "7L32", "6M", "6L32"],
 			toxic: ["7M", "6M"],
-		}
+		},
 	},
 	phantump: {
 		learnset: {
@@ -61031,7 +63916,7 @@ let BattleLearnsets = {
 			psychic: ["8M", "7M", "6M"],
 			reflect: ["8M", "7M", "6M"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockslide: ["8M", "7M", "6M"],
 			rocksmash: ["6M"],
 			roleplay: ["7T", "6T"],
@@ -61061,7 +63946,7 @@ let BattleLearnsets = {
 			willowisp: ["8M", "8L16", "7M", "7L31", "6M", "6L31"],
 			woodhammer: ["8L44", "7L49", "6L49"],
 			worryseed: ["7T", "6T"],
-		}
+		},
 	},
 	trevenant: {
 		learnset: {
@@ -61116,7 +64001,7 @@ let BattleLearnsets = {
 			psychic: ["8M", "7M", "6M"],
 			reflect: ["8M", "7M", "6M"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockslide: ["8M", "7M", "6M"],
 			rocksmash: ["6M"],
 			roleplay: ["7T", "6T"],
@@ -61146,7 +64031,7 @@ let BattleLearnsets = {
 			woodhammer: ["8L44", "7L49", "6L49"],
 			worryseed: ["7T", "6T"],
 			xscissor: ["8M", "7M", "6M"],
-		}
+		},
 	},
 	pumpkaboo: {
 		learnset: {
@@ -61191,7 +64076,7 @@ let BattleLearnsets = {
 			psychic: ["8M", "7M", "6M"],
 			razorleaf: ["8L12", "7L16", "6L16"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockslide: ["8M", "7M", "6M"],
 			rocksmash: ["6M"],
 			roleplay: ["7T", "6T"],
@@ -61220,7 +64105,12 @@ let BattleLearnsets = {
 			trickroom: ["8M", "7M", "6M"],
 			willowisp: ["8M", "7M", "6M"],
 			worryseed: ["8L28", "7T", "7L11", "6T", "6L11"],
-		}
+		},
+	},
+	pumpkaboosuper: {
+		eventData: [
+			{"generation": 6, "level": 50, "moves": ["trickortreat", "astonish", "scaryface", "shadowsneak"], "pokeball": "cherishball"},
+		],
 	},
 	gourgeist: {
 		learnset: {
@@ -61269,7 +64159,7 @@ let BattleLearnsets = {
 			psychic: ["8M", "7M", "6M"],
 			razorleaf: ["8L12", "7L16", "6L16"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockslide: ["8M", "7M", "6M"],
 			rocksmash: ["6M"],
 			roleplay: ["7T", "6T"],
@@ -61298,7 +64188,7 @@ let BattleLearnsets = {
 			trickroom: ["8M", "7M", "6M"],
 			willowisp: ["8M", "7M", "6M"],
 			worryseed: ["8L28", "7T", "7L11", "6T", "6L11"],
-		}
+		},
 	},
 	bergmite: {
 		learnset: {
@@ -61338,7 +64228,7 @@ let BattleLearnsets = {
 			rapidspin: ["8L1", "7L35", "6L35"],
 			recover: ["8L30", "7L47", "7E", "6L47", "6E"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockpolish: ["7M", "6M"],
 			rockslide: ["8M", "7M", "6M"],
 			rocksmash: ["6M"],
@@ -61358,7 +64248,7 @@ let BattleLearnsets = {
 			takedown: ["8L36", "7L15", "6L15"],
 			toxic: ["7M", "6M"],
 			waterpulse: ["7T", "6T"],
-		}
+		},
 	},
 	avalugg: {
 		learnset: {
@@ -61405,7 +64295,7 @@ let BattleLearnsets = {
 			rapidspin: ["8L1", "7L35", "6L35"],
 			recover: ["8L30", "7L51", "6L51"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roar: ["7M", "6M"],
 			rockpolish: ["7M", "6M"],
 			rockslide: ["8M", "7M", "6M"],
@@ -61430,7 +64320,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M"],
 			waterpulse: ["7T", "6T"],
 			wideguard: ["8L1", "7L1"],
-		}
+		},
 	},
 	noibat: {
 		learnset: {
@@ -61469,7 +64359,7 @@ let BattleLearnsets = {
 			psychic: ["8M", "7M", "6M"],
 			razorwind: ["7L31", "6L31"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roost: ["8L44", "7M", "7L27", "6M", "6L27"],
 			round: ["8M", "7M", "6M"],
 			screech: ["8M", "8L40", "7L1", "6L1"],
@@ -61502,7 +64392,7 @@ let BattleLearnsets = {
 			wildcharge: ["8M", "7M", "6M"],
 			wingattack: ["8L16", "7L16", "6L16"],
 			xscissor: ["8M", "7M", "6M"],
-		}
+		},
 	},
 	noivern: {
 		learnset: {
@@ -61550,7 +64440,7 @@ let BattleLearnsets = {
 			psychic: ["8M", "7M", "6M"],
 			razorwind: ["7L31", "6L31"],
 			rest: ["8M", "7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roost: ["8L44", "7M", "7L27", "6M", "6L27"],
 			round: ["8M", "7M", "6M"],
 			screech: ["8M", "8L40", "7L1", "6L1"],
@@ -61582,7 +64472,7 @@ let BattleLearnsets = {
 			wildcharge: ["8M", "7M", "6M"],
 			wingattack: ["8L16", "7L16", "6L16"],
 			xscissor: ["8M", "7M", "6M"],
-		}
+		},
 	},
 	xerneas: {
 		learnset: {
@@ -61635,7 +64525,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M"],
 			reflect: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roar: ["7M", "6M"],
 			rockslide: ["7M", "6M"],
 			round: ["7M", "6M"],
@@ -61652,7 +64542,15 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M"],
 			wonderroom: ["7T", "6T"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 50, "moves": ["gravity", "geomancy", "moonblast", "megahorn"]},
+			{"generation": 6, "level": 100, "shiny": true, "moves": ["geomancy", "moonblast", "aromatherapy", "focusblast"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["geomancy", "hornleech", "nightslash", "moonblast"]},
+			{"generation": 7, "level": 60, "moves": ["geomancy", "hornleech", "nightslash", "moonblast"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "moves": ["geomancy", "focusblast", "grassknot", "moonblast"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	yveltal: {
 		learnset: {
@@ -61695,7 +64593,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "6M"],
 			razorwind: ["7L1", "6L1"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockslide: ["7M", "6M"],
 			roost: ["7M", "7L1", "6M", "6L1"],
 			round: ["7M", "6M"],
@@ -61719,7 +64617,15 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M"],
 			uturn: ["7M", "6M"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 50, "moves": ["snarl", "oblivionwing", "disable", "darkpulse"]},
+			{"generation": 6, "level": 100, "shiny": true, "moves": ["oblivionwing", "suckerpunch", "darkpulse", "foulplay"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["oblivionwing", "darkpulse", "phantomforce", "psychic"]},
+			{"generation": 7, "level": 60, "moves": ["oblivionwing", "darkpulse", "phantomforce", "psychic"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "moves": ["oblivionwing", "darkpulse", "heatwave", "tailwind"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	zygarde: {
 		learnset: {
@@ -61766,7 +64672,7 @@ let BattleLearnsets = {
 			painsplit: ["7T", "6T"],
 			protect: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockslide: ["7M", "6M"],
 			rocksmash: ["6M"],
 			round: ["7M", "6M"],
@@ -61789,7 +64695,28 @@ let BattleLearnsets = {
 			thousandwaves: ["7T"],
 			toxic: ["7M", "6M"],
 			zenheadbutt: ["7T", "6T"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 70, "moves": ["crunch", "earthquake", "camouflage", "dragonpulse"]},
+			{"generation": 6, "level": 100, "moves": ["landswrath", "extremespeed", "glare", "outrage"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 30, "moves": ["safeguard", "dig", "bind", "landswrath"]},
+			{"generation": 7, "level": 50, "moves": ["bind", "landswrath", "sandstorm", "haze"]},
+			{"generation": 7, "level": 50, "isHidden": true, "moves": ["bind", "landswrath", "sandstorm", "haze"]},
+			{"generation": 7, "level": 60, "shiny": true, "moves": ["landswrath", "glare", "safeguard", "dragonbreath"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": true, "isHidden": true, "moves": ["landswrath", "glare", "safeguard", "dragonbreath"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "shiny": true, "moves": ["thousandarrows", "outrage", "extremespeed", "dragondance"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "shiny": true, "isHidden": true, "moves": ["thousandarrows", "outrage", "extremespeed", "dragondance"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
+	},
+	zygarde10: {
+		eventData: [
+			{"generation": 7, "level": 30, "moves": ["safeguard", "dig", "bind", "landswrath"]},
+			{"generation": 7, "level": 50, "isHidden": true, "moves": ["safeguard", "dig", "bind", "landswrath"]},
+			{"generation": 7, "level": 60, "shiny": true, "isHidden": true, "moves": ["landswrath", "glare", "safeguard", "dragonbreath"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 100, "shiny": true, "isHidden": true, "moves": ["thousandarrows", "outrage", "extremespeed", "dragondance"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	diancie: {
 		learnset: {
@@ -61846,7 +64773,7 @@ let BattleLearnsets = {
 			psyshock: ["7M", "6M"],
 			reflect: ["7M", "7L12", "6M", "6L18", "6S1", "6S0"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M", "6S1", "6S0"],
+			return: ["7M", "6M", "6S1", "6S0"],
 			rockpolish: ["7M", "6M"],
 			rockslide: ["7M", "6M"],
 			rockthrow: ["7L1", "6L5"],
@@ -61870,7 +64797,12 @@ let BattleLearnsets = {
 			toxic: ["7M", "6M"],
 			trickroom: ["7M", "7L46", "6M", "6L46"],
 			wonderroom: ["7T", "6T"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 50, "moves": ["diamondstorm", "reflect", "return", "moonblast"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 50, "shiny": true, "moves": ["diamondstorm", "moonblast", "reflect", "return"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	hoopa: {
 		learnset: {
@@ -61931,7 +64863,7 @@ let BattleLearnsets = {
 			recycle: ["7T", "6T"],
 			reflect: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roleplay: ["7T", "6T"],
 			round: ["7M", "6M"],
 			safeguard: ["7M", "6M"],
@@ -61960,7 +64892,15 @@ let BattleLearnsets = {
 			uproar: ["7T", "6T"],
 			wonderroom: ["7T", "7L50", "6T", "6L50"],
 			zenheadbutt: ["7T", "7L46", "6T", "6L46"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 50, "moves": ["hyperspacehole", "nastyplot", "psychic", "astonish"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 15, "moves": ["shadowball", "nastyplot", "psychic", "hyperspacehole"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
+	},
+	hoopaunbound: {
+		eventOnly: true,
 	},
 	volcanion: {
 		learnset: {
@@ -62007,7 +64947,7 @@ let BattleLearnsets = {
 			overheat: ["7M", "7L65", "6M", "6L65", "6S0"],
 			protect: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			roar: ["7M", "6M"],
 			rockslide: ["7M", "6M"],
 			rocksmash: ["6M"],
@@ -62035,7 +64975,12 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "7L21", "6T", "6L21"],
 			weatherball: ["7L40", "6L40"],
 			willowisp: ["7M", "6M"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 70, "moves": ["steameruption", "overheat", "hydropump", "mist"], "pokeball": "cherishball"},
+			{"generation": 6, "level": 70, "moves": ["steameruption", "flamethrower", "hydropump", "explosion"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	rowlet: {
 		learnset: {
@@ -62076,7 +65021,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M"],
 			razorleaf: ["8L15", "7L14"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roost: ["7M"],
 			round: ["8M", "7M"],
 			safeguard: ["8M", "7M"],
@@ -62099,7 +65044,7 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			workup: ["8M", "7M"],
 			worryseed: ["7T"],
-		}
+		},
 	},
 	dartrix: {
 		learnset: {
@@ -62136,7 +65081,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M"],
 			razorleaf: ["8L15", "7L14"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roost: ["7M"],
 			round: ["8M", "7M"],
 			safeguard: ["8M", "7M"],
@@ -62159,7 +65104,7 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			workup: ["8M", "7M"],
 			worryseed: ["7T"],
-		}
+		},
 	},
 	decidueye: {
 		learnset: {
@@ -62209,7 +65154,7 @@ let BattleLearnsets = {
 			psychocut: ["8M"],
 			razorleaf: ["8L15", "7L14"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roost: ["7M"],
 			round: ["8M", "7M"],
 			safeguard: ["8M", "7M"],
@@ -62239,7 +65184,10 @@ let BattleLearnsets = {
 			uturn: ["8M", "8L1", "7M", "7L1"],
 			workup: ["8M", "7M"],
 			worryseed: ["7T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 50, "isHidden": true, "moves": ["leafblade", "phantomforce", "shadowsneak", "bravebird"], "pokeball": "pokeball"},
+		],
 	},
 	litten: {
 		learnset: {
@@ -62281,7 +65229,7 @@ let BattleLearnsets = {
 			powertrip: ["8E", "7E"],
 			protect: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			revenge: ["8M", "7E"],
 			roar: ["8L9", "7M", "7L18"],
 			round: ["8M", "7M"],
@@ -62301,7 +65249,7 @@ let BattleLearnsets = {
 			uturn: ["8M", "7M"],
 			willowisp: ["8M", "7M"],
 			workup: ["8M", "7M"],
-		}
+		},
 	},
 	torracat: {
 		learnset: {
@@ -62341,7 +65289,7 @@ let BattleLearnsets = {
 			payday: ["8M"],
 			protect: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			revenge: ["8M"],
 			roar: ["8L9", "7M", "7L19"],
 			round: ["8M", "7M"],
@@ -62361,7 +65309,7 @@ let BattleLearnsets = {
 			uturn: ["8M", "7M"],
 			willowisp: ["8M", "7M"],
 			workup: ["8M", "7M"],
-		}
+		},
 	},
 	incineroar: {
 		learnset: {
@@ -62430,7 +65378,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M"],
 			quash: ["7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			revenge: ["8M"],
 			reversal: ["8M"],
 			roar: ["8L9", "7M", "7L19"],
@@ -62457,7 +65405,10 @@ let BattleLearnsets = {
 			uturn: ["8M", "7M", "7S0"],
 			willowisp: ["8M", "7M"],
 			workup: ["8M", "7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 50, "isHidden": true, "moves": ["fakeout", "uturn", "darkestlariat", "flareblitz"], "pokeball": "pokeball"},
+		],
 	},
 	popplio: {
 		learnset: {
@@ -62504,7 +65455,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M"],
 			raindance: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["8M", "7M"],
 			scald: ["8M", "7M"],
 			sing: ["8L18", "7L25"],
@@ -62522,7 +65473,7 @@ let BattleLearnsets = {
 			whirlpool: ["8M"],
 			wonderroom: ["8M", "7T", "7E"],
 			workup: ["8M", "7M"],
-		}
+		},
 	},
 	brionne: {
 		learnset: {
@@ -62565,7 +65516,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M"],
 			raindance: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["8M", "7M"],
 			scald: ["8M", "7M"],
 			sing: ["8L20", "7L28"],
@@ -62583,7 +65534,7 @@ let BattleLearnsets = {
 			whirlpool: ["8M"],
 			wonderroom: ["8M", "7T"],
 			workup: ["8M", "7M"],
-		}
+		},
 	},
 	primarina: {
 		learnset: {
@@ -62639,7 +65590,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			reflect: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["8M", "7M"],
 			scald: ["8M", "7M"],
 			shadowball: ["8M", "7M"],
@@ -62661,7 +65612,10 @@ let BattleLearnsets = {
 			whirlpool: ["8M"],
 			wonderroom: ["8M", "7T"],
 			workup: ["8M", "7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 50, "isHidden": true, "moves": ["hypervoice", "moonblast", "icywind", "perishsong"], "pokeball": "pokeball"},
+		],
 	},
 	pikipek: {
 		learnset: {
@@ -62693,7 +65647,7 @@ let BattleLearnsets = {
 			pluck: ["7L15"],
 			protect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rocksmash: ["7L9"],
 			roost: ["7M", "7L19"],
 			round: ["7M"],
@@ -62714,7 +65668,7 @@ let BattleLearnsets = {
 			uproar: ["7T", "7E"],
 			uturn: ["7M"],
 			workup: ["7M"],
-		}
+		},
 	},
 	trumbeak: {
 		learnset: {
@@ -62743,7 +65697,7 @@ let BattleLearnsets = {
 			pluck: ["7L16"],
 			protect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockblast: ["7L1"],
 			rocksmash: ["7L1"],
 			roost: ["7M", "7L21"],
@@ -62765,7 +65719,7 @@ let BattleLearnsets = {
 			uproar: ["7T"],
 			uturn: ["7M"],
 			workup: ["7M"],
-		}
+		},
 	},
 	toucannon: {
 		learnset: {
@@ -62797,7 +65751,7 @@ let BattleLearnsets = {
 			pluck: ["7L16"],
 			protect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockblast: ["7L1"],
 			rocksmash: ["7L1"],
 			roost: ["7M", "7L21"],
@@ -62820,7 +65774,10 @@ let BattleLearnsets = {
 			uproar: ["7T"],
 			uturn: ["7M"],
 			workup: ["7M"],
-		}
+		},
+		encounters: [
+			{"generation": 7, "level": 26},
+		],
 	},
 	yungoos: {
 		learnset: {
@@ -62849,7 +65806,7 @@ let BattleLearnsets = {
 			protect: ["7M"],
 			pursuit: ["7L7"],
 			rest: ["7M", "7L46"],
-			return : ["7M"],
+			return: ["7M"],
 			revenge: ["7E"],
 			rocktomb: ["7M"],
 			round: ["7M"],
@@ -62875,7 +65832,7 @@ let BattleLearnsets = {
 			uturn: ["7M"],
 			workup: ["7M"],
 			yawn: ["7L40"],
-		}
+		},
 	},
 	gumshoos: {
 		learnset: {
@@ -62909,7 +65866,7 @@ let BattleLearnsets = {
 			protect: ["7M"],
 			pursuit: ["7L1"],
 			rest: ["7M", "7L55"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M"],
 			rocktomb: ["7M"],
 			round: ["7M"],
@@ -62936,7 +65893,10 @@ let BattleLearnsets = {
 			workup: ["7M"],
 			yawn: ["7L47"],
 			zenheadbutt: ["7T"],
-		}
+		},
+		encounters: [
+			{"generation": 7, "level": 17},
+		],
 	},
 	gumshoostotem: {
 		learnset: {
@@ -62969,7 +65929,7 @@ let BattleLearnsets = {
 			protect: ["7M"],
 			pursuit: ["7L1"],
 			rest: ["7M", "7L55"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M"],
 			rocktomb: ["7M"],
 			round: ["7M"],
@@ -62996,7 +65956,11 @@ let BattleLearnsets = {
 			workup: ["7M"],
 			yawn: ["7L47"],
 			zenheadbutt: ["7T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 20, "perfectIVs": 3, "moves": ["sandattack", "odorsleuth", "bide", "bite"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	grubbin: {
 		learnset: {
@@ -63024,7 +65988,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M"],
 			raindance: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["8M", "7M"],
 			screech: ["8M"],
 			shockwave: ["7T"],
@@ -63042,7 +66006,7 @@ let BattleLearnsets = {
 			voltswitch: ["8M", "7M"],
 			wildcharge: ["8M", "7M"],
 			xscissor: ["8M", "8L30", "7M", "7L25"],
-		}
+		},
 	},
 	charjabug: {
 		learnset: {
@@ -63073,7 +66037,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M"],
 			raindance: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["8M", "7M"],
 			screech: ["8M"],
 			shockwave: ["7T"],
@@ -63091,7 +66055,7 @@ let BattleLearnsets = {
 			voltswitch: ["8M", "7M"],
 			wildcharge: ["8M", "7M"],
 			xscissor: ["8M", "8L36", "7M", "7L31"],
-		}
+		},
 	},
 	vikavolt: {
 		learnset: {
@@ -63132,7 +66096,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M"],
 			raindance: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roost: ["7M"],
 			round: ["8M", "7M"],
 			screech: ["8M"],
@@ -63156,7 +66120,7 @@ let BattleLearnsets = {
 			wildcharge: ["8M", "7M"],
 			xscissor: ["8M", "8L1", "7M"],
 			zapcannon: ["8L64", "7L41"],
-		}
+		},
 	},
 	vikavolttotem: {
 		learnset: {
@@ -63190,7 +66154,7 @@ let BattleLearnsets = {
 			protect: ["7M"],
 			raindance: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roost: ["7M"],
 			round: ["7M"],
 			shockwave: ["7T"],
@@ -63212,7 +66176,11 @@ let BattleLearnsets = {
 			wildcharge: ["7M"],
 			xscissor: ["7M"],
 			zapcannon: ["7L41"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 35, "perfectIVs": 3, "moves": ["spark", "acrobatics", "guillotine", "bugbuzz"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	crabrawler: {
 		learnset: {
@@ -63253,7 +66221,7 @@ let BattleLearnsets = {
 			pursuit: ["7L13"],
 			raindance: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			reversal: ["7L33"],
 			rockslide: ["7M"],
 			rocksmash: ["7L5"],
@@ -63273,7 +66241,7 @@ let BattleLearnsets = {
 			wideguard: ["7E"],
 			workup: ["7M"],
 			zenheadbutt: ["7T"],
-		}
+		},
 	},
 	crabominable: {
 		learnset: {
@@ -63320,7 +66288,7 @@ let BattleLearnsets = {
 			pursuit: ["7L1"],
 			raindance: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			reversal: ["7L33"],
 			rockslide: ["7M"],
 			rocksmash: ["7L1"],
@@ -63339,7 +66307,7 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			workup: ["7M"],
 			zenheadbutt: ["7T"],
-		}
+		},
 	},
 	oricorio: {
 		learnset: {
@@ -63375,7 +66343,7 @@ let BattleLearnsets = {
 			protect: ["7M"],
 			quash: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			revelationdance: ["7L40"],
 			roleplay: ["7T"],
 			roost: ["7M", "7L30"],
@@ -63395,7 +66363,7 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			uturn: ["7M"],
 			workup: ["7M"],
-		}
+		},
 	},
 	cutiefly: {
 		learnset: {
@@ -63443,7 +66411,7 @@ let BattleLearnsets = {
 			quiverdance: ["8L54", "7L41"],
 			reflect: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roost: ["7M"],
 			round: ["8M", "7M"],
 			safeguard: ["8M", "7M"],
@@ -63469,7 +66437,7 @@ let BattleLearnsets = {
 			trick: ["8M", "7T"],
 			uturn: ["8M", "7M"],
 			wonderroom: ["8M", "7T"],
-		}
+		},
 	},
 	ribombee: {
 		learnset: {
@@ -63518,7 +66486,7 @@ let BattleLearnsets = {
 			quiverdance: ["8L64", "7L49"],
 			reflect: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roost: ["7M"],
 			round: ["8M", "7M"],
 			safeguard: ["8M", "7M"],
@@ -63544,7 +66512,7 @@ let BattleLearnsets = {
 			trick: ["8M", "7T"],
 			uturn: ["8M", "7M"],
 			wonderroom: ["8M", "7T"],
-		}
+		},
 	},
 	ribombeetotem: {
 		learnset: {
@@ -63584,7 +66552,7 @@ let BattleLearnsets = {
 			quiverdance: ["7L49", "7S0"],
 			reflect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roost: ["7M"],
 			round: ["7M"],
 			safeguard: ["7M"],
@@ -63607,7 +66575,11 @@ let BattleLearnsets = {
 			trick: ["7T"],
 			uturn: ["7M"],
 			wonderroom: ["7T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 50, "perfectIVs": 3, "moves": ["bugbuzz", "dazzlinggleam", "aromatherapy", "quiverdance"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	rockruff: {
 		learnset: {
@@ -63638,7 +66610,7 @@ let BattleLearnsets = {
 			odorsleuth: ["7L18"],
 			protect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M", "7L26"],
 			rockclimb: ["7L45"],
 			rockpolish: ["7M"],
@@ -63663,10 +66635,13 @@ let BattleLearnsets = {
 			thunderfang: ["7E"],
 			toxic: ["7M"],
 			zenheadbutt: ["7T"],
-		}
+		},
 	},
 	rockruffdusk: {
 		learnset: {
+			swordsdance: ["9T"],
+			endure: ["9T"],
+			playrough: ["9T"],
 			attract: ["7M"],
 			bite: ["7L7", "7S1", "7S0"],
 			confide: ["7M"],
@@ -63692,7 +66667,7 @@ let BattleLearnsets = {
 			odorsleuth: ["7L18"],
 			protect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M", "7L26"],
 			rockclimb: ["7L45"],
 			rockpolish: ["7M"],
@@ -63717,7 +66692,11 @@ let BattleLearnsets = {
 			thunderfang: ["7E", "7S1"],
 			toxic: ["7M"],
 			zenheadbutt: ["7T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 10, "moves": ["tackle", "bite", "firefang", "happyhour"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 10, "moves": ["tackle", "bite", "thunderfang", "happyhour"], "pokeball": "cherishball"},
+		],
 	},
 	lycanroc: {
 		learnset: {
@@ -63760,7 +66739,7 @@ let BattleLearnsets = {
 			quickattack: ["7L1"],
 			quickguard: ["7L1"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M", "7L26"],
 			rockclimb: ["7L45"],
 			rockpolish: ["7M"],
@@ -63783,7 +66762,7 @@ let BattleLearnsets = {
 			taunt: ["7M"],
 			toxic: ["7M"],
 			zenheadbutt: ["7T"],
-		}
+		},
 	},
 	lycanrocmidnight: {
 		learnset: {
@@ -63832,7 +66811,7 @@ let BattleLearnsets = {
 			outrage: ["7T"],
 			protect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			reversal: ["7L1"],
 			roar: ["7M", "7L26"],
 			rockclimb: ["7L45"],
@@ -63860,7 +66839,10 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			uproar: ["7T"],
 			zenheadbutt: ["7T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 50, "isHidden": true, "moves": ["stoneedge", "firefang", "suckerpunch", "swordsdance"], "pokeball": "cherishball"},
+		],
 	},
 	lycanrocdusk: {
 		learnset: {
@@ -63901,7 +66883,7 @@ let BattleLearnsets = {
 			outrage: ["7T"],
 			protect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M", "7L26"],
 			rockclimb: ["7L45"],
 			rockpolish: ["7M"],
@@ -63925,7 +66907,7 @@ let BattleLearnsets = {
 			thrash: ["7L1"],
 			toxic: ["7M"],
 			zenheadbutt: ["7T"],
-		}
+		},
 	},
 	wishiwashi: {
 		learnset: {
@@ -63960,7 +66942,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M"],
 			raindance: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["8M", "7M"],
 			scald: ["8M", "7M"],
 			sleeptalk: ["8M", "7M"],
@@ -63979,7 +66961,7 @@ let BattleLearnsets = {
 			waterpulse: ["8E", "7T", "7E"],
 			watersport: ["7E"],
 			whirlpool: ["8M", "7E"],
-		}
+		},
 	},
 	mareanie: {
 		learnset: {
@@ -64020,7 +67002,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			recover: ["8L20", "7L33"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["8M", "7M"],
 			safeguard: ["8M", "7M"],
 			scald: ["8M", "7M"],
@@ -64043,7 +67025,10 @@ let BattleLearnsets = {
 			venoshock: ["8M", "8L15", "7M", "7L25"],
 			waterpulse: ["7T"],
 			wideguard: ["8L5", "7L17"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 1, "shiny": 1, "isHidden": true, "moves": ["toxic", "stockpile", "swallow"], "pokeball": "cherishball"},
+		],
 	},
 	toxapex: {
 		learnset: {
@@ -64088,7 +67073,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			recover: ["8L20", "7L33"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["8M", "7M"],
 			safeguard: ["8M", "7M"],
 			scald: ["8M", "7M"],
@@ -64109,7 +67094,7 @@ let BattleLearnsets = {
 			venoshock: ["8M", "8L15", "7M", "7L25"],
 			waterpulse: ["7T"],
 			wideguard: ["8L1", "7L17"],
-		}
+		},
 	},
 	mudbray: {
 		learnset: {
@@ -64145,7 +67130,7 @@ let BattleLearnsets = {
 			payback: ["8M", "7M"],
 			protect: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["8E", "7M"],
 			rockslide: ["8M", "7M"],
 			rocksmash: ["8L1"],
@@ -64165,7 +67150,7 @@ let BattleLearnsets = {
 			superpower: ["8M", "8L44", "7T", "7L45"],
 			swagger: ["7M"],
 			toxic: ["7M"],
-		}
+		},
 	},
 	mudsdale: {
 		learnset: {
@@ -64202,7 +67187,7 @@ let BattleLearnsets = {
 			payback: ["8M", "7M"],
 			protect: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			revenge: ["8M"],
 			roar: ["7M"],
 			rockslide: ["8M", "7M"],
@@ -64223,7 +67208,10 @@ let BattleLearnsets = {
 			superpower: ["8M", "8L52", "7T", "7L60"],
 			swagger: ["7M"],
 			toxic: ["7M"],
-		}
+		},
+		encounters: [
+			{"generation": 7, "level": 29},
+		],
 	},
 	dewpider: {
 		learnset: {
@@ -64262,7 +67250,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M"],
 			raindance: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["8M", "7M"],
 			scald: ["8M", "7M"],
 			signalbeam: ["7T"],
@@ -64283,7 +67271,7 @@ let BattleLearnsets = {
 			watersport: ["7L1"],
 			wonderroom: ["8M", "7T"],
 			xscissor: ["8M", "7M"],
-		}
+		},
 	},
 	araquanid: {
 		learnset: {
@@ -64324,7 +67312,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			reflect: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["8M", "7M"],
 			safeguard: ["8M", "7M"],
 			scald: ["8M", "7M"],
@@ -64343,7 +67331,7 @@ let BattleLearnsets = {
 			wideguard: ["8L1", "7L1"],
 			wonderroom: ["8M", "7T"],
 			xscissor: ["8M", "7M"],
-		}
+		},
 	},
 	araquanidtotem: {
 		learnset: {
@@ -64379,7 +67367,7 @@ let BattleLearnsets = {
 			raindance: ["7M"],
 			reflect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			safeguard: ["7M"],
 			scald: ["7M"],
@@ -64397,7 +67385,11 @@ let BattleLearnsets = {
 			wideguard: ["7L1"],
 			wonderroom: ["7T"],
 			xscissor: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 25, "perfectIVs": 3, "moves": ["spiderweb", "bugbite", "bubblebeam", "bite"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	fomantis: {
 		learnset: {
@@ -64432,7 +67424,7 @@ let BattleLearnsets = {
 			protect: ["7M"],
 			razorleaf: ["7L10"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			safeguard: ["7M"],
 			seedbomb: ["7T"],
@@ -64451,7 +67443,7 @@ let BattleLearnsets = {
 			weatherball: ["7E"],
 			worryseed: ["7T"],
 			xscissor: ["7M"],
-		}
+		},
 	},
 	lurantis: {
 		learnset: {
@@ -64496,7 +67488,7 @@ let BattleLearnsets = {
 			protect: ["7M"],
 			razorleaf: ["7L1"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			safeguard: ["7M"],
 			seedbomb: ["7T"],
@@ -64516,7 +67508,7 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			worryseed: ["7T"],
 			xscissor: ["7M", "7L1"],
-		}
+		},
 	},
 	lurantistotem: {
 		learnset: {
@@ -64555,7 +67547,7 @@ let BattleLearnsets = {
 			protect: ["7M"],
 			razorleaf: ["7L1"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			safeguard: ["7M"],
 			seedbomb: ["7T"],
@@ -64575,7 +67567,11 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			worryseed: ["7T"],
 			xscissor: ["7M", "7L1"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 30, "perfectIVs": 3, "moves": ["growth", "ingrain", "leafblade", "synthesis"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	morelull: {
 		learnset: {
@@ -64613,7 +67609,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M"],
 			recycle: ["7T"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["8M", "7M"],
 			safeguard: ["8M", "7M"],
 			seedbomb: ["8M", "7T"],
@@ -64635,7 +67631,7 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			wonderroom: ["8M", "7T"],
 			worryseed: ["7T"],
-		}
+		},
 	},
 	shiinotic: {
 		learnset: {
@@ -64675,7 +67671,7 @@ let BattleLearnsets = {
 			raindance: ["8M"],
 			recycle: ["7T"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["8M", "7M"],
 			safeguard: ["8M", "7M"],
 			seedbomb: ["8M", "7T"],
@@ -64697,7 +67693,7 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			wonderroom: ["8M", "7T"],
 			worryseed: ["7T"],
-		}
+		},
 	},
 	salandit: {
 		learnset: {
@@ -64740,7 +67736,7 @@ let BattleLearnsets = {
 			poisonjab: ["8M", "7M"],
 			protect: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["8M", "7M"],
 			sandattack: ["8E", "7E"],
 			scratch: ["8L1", "7L1"],
@@ -64763,7 +67759,7 @@ let BattleLearnsets = {
 			venomdrench: ["8M", "8L45", "7L45"],
 			venoshock: ["8M", "8L35", "7M", "7L37"],
 			willowisp: ["8M", "7M"],
-		}
+		},
 	},
 	salazzle: {
 		learnset: {
@@ -64817,7 +67813,7 @@ let BattleLearnsets = {
 			pound: ["8L1", "7L1"],
 			protect: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["8M", "7M"],
 			scratch: ["8L1"],
 			shadowclaw: ["8M", "7M"],
@@ -64839,7 +67835,13 @@ let BattleLearnsets = {
 			venomdrench: ["8M", "8L51", "7L51"],
 			venoshock: ["8M", "8L37", "7M", "7L39"],
 			willowisp: ["8M", "7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 50, "moves": ["fakeout", "toxic", "sludgebomb", "flamethrower"], "pokeball": "cherishball"},
+		],
+		encounters: [
+			{"generation": 7, "level": 16},
+		],
 	},
 	salazzletotem: {
 		learnset: {
@@ -64881,7 +67883,7 @@ let BattleLearnsets = {
 			pound: ["7L1"],
 			protect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			shadowclaw: ["7M"],
 			sleeptalk: ["7M"],
@@ -64900,7 +67902,11 @@ let BattleLearnsets = {
 			venomdrench: ["7L51"],
 			venoshock: ["7M", "7L39"],
 			willowisp: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 30, "perfectIVs": 3, "moves": ["smog", "doubleslap", "flameburst", "toxic"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	stufful: {
 		learnset: {
@@ -64940,7 +67946,7 @@ let BattleLearnsets = {
 			payback: ["8M", "8L8", "7M", "7L23"],
 			protect: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M"],
 			rockslide: ["8M", "7M"],
 			rocktomb: ["8M", "7M"],
@@ -64965,7 +67971,7 @@ let BattleLearnsets = {
 			wideguard: ["7E"],
 			workup: ["8M", "7M"],
 			zenheadbutt: ["8M", "7T"],
-		}
+		},
 	},
 	bewear: {
 		learnset: {
@@ -65013,7 +68019,7 @@ let BattleLearnsets = {
 			payback: ["8M", "8L1", "7M", "7L23"],
 			protect: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			revenge: ["8M"],
 			reversal: ["8M"],
 			roar: ["7M"],
@@ -65038,7 +68044,10 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			workup: ["8M", "7M"],
 			zenheadbutt: ["8M", "7T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 50, "gender": "F", "isHidden": true, "moves": ["babydolleyes", "brutalswing", "superpower", "bind"], "pokeball": "cherishball"},
+		],
 	},
 	bounsweet: {
 		learnset: {
@@ -65075,7 +68084,7 @@ let BattleLearnsets = {
 			razorleaf: ["8L12", "7L13"],
 			reflect: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["8M", "7M"],
 			safeguard: ["8M", "7M"],
 			seedbomb: ["8M", "7T"],
@@ -65092,7 +68101,7 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			worryseed: ["7T"],
 			zenheadbutt: ["8M", "7T"],
-		}
+		},
 	},
 	steenee: {
 		learnset: {
@@ -65133,7 +68142,7 @@ let BattleLearnsets = {
 			razorleaf: ["8L1", "7L1"],
 			reflect: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["8M", "7M"],
 			safeguard: ["8M", "7M"],
 			seedbomb: ["8M", "7T"],
@@ -65151,7 +68160,10 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			worryseed: ["7T"],
 			zenheadbutt: ["8M", "7T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 20, "nature": "Naive", "abilities": ["leafguard"], "moves": ["magicalleaf", "doubleslap", "sweetscent"], "pokeball": "cherishball"},
+		],
 	},
 	tsareena: {
 		learnset: {
@@ -65201,7 +68213,7 @@ let BattleLearnsets = {
 			razorleaf: ["8L1", "7L1"],
 			reflect: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["8M", "7M"],
 			safeguard: ["8M", "7M"],
 			seedbomb: ["8M", "7T"],
@@ -65223,7 +68235,7 @@ let BattleLearnsets = {
 			uturn: ["8M", "7M"],
 			worryseed: ["7T"],
 			zenheadbutt: ["8M", "7T"],
-		}
+		},
 	},
 	comfey: {
 		learnset: {
@@ -65277,7 +68289,7 @@ let BattleLearnsets = {
 			protect: ["7M"],
 			psychup: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roleplay: ["7T"],
 			round: ["7M"],
 			safeguard: ["7M"],
@@ -65302,7 +68314,10 @@ let BattleLearnsets = {
 			vinewhip: ["7L1"],
 			worryseed: ["7T"],
 			wrap: ["7L16"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 10, "nature": "Jolly", "moves": ["celebrate", "leechseed", "drainingkiss", "magicalleaf"], "pokeball": "cherishball"},
+		],
 	},
 	oranguru: {
 		learnset: {
@@ -65359,7 +68374,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			reflect: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockslide: ["8M", "7M"],
 			round: ["8M", "7M"],
 			safeguard: ["8M", "7M"],
@@ -65383,7 +68398,11 @@ let BattleLearnsets = {
 			workup: ["8M", "7M"],
 			yawn: ["8E"],
 			zenheadbutt: ["8M", "8L35", "7T", "7L29"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 1, "shiny": 1, "abilities": ["telepathy"], "moves": ["instruct", "psychic", "psychicterrain"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 50, "isHidden": true, "moves": ["instruct", "foulplay", "trickroom", "allyswitch"], "pokeball": "pokeball"},
+		],
 	},
 	passimian: {
 		learnset: {
@@ -65437,7 +68456,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			rest: ["8M", "7M"],
 			retaliate: ["8M"],
-			return : ["7M"],
+			return: ["7M"],
 			revenge: ["8M"],
 			reversal: ["8M", "8L55", "7L46"],
 			rockslide: ["8M", "7M"],
@@ -65467,7 +68486,11 @@ let BattleLearnsets = {
 			uturn: ["8M", "7M", "7S1"],
 			vitalthrow: ["8E", "7E"],
 			workup: ["8M", "7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 1, "shiny": 1, "moves": ["bestow", "fling", "feint"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 50, "isHidden": true, "moves": ["closecombat", "uturn", "knockoff", "gunkshot"], "pokeball": "pokeball"},
+		],
 	},
 	wimpod: {
 		learnset: {
@@ -65490,7 +68513,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M"],
 			raindance: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rollout: ["8E"],
 			round: ["8M", "7M"],
 			sandattack: ["8L1", "7L1"],
@@ -65508,7 +68531,7 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			waterfall: ["8M", "7M"],
 			wideguard: ["8E", "7E"],
-		}
+		},
 	},
 	golisopod: {
 		learnset: {
@@ -65561,7 +68584,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			razorshell: ["8M", "8L32", "7L26"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockslide: ["8M", "7M"],
 			rocksmash: ["8L4", "7L1"],
 			rocktomb: ["8M", "7M"],
@@ -65592,7 +68615,7 @@ let BattleLearnsets = {
 			waterfall: ["8M", "7M"],
 			waterpulse: ["7T"],
 			xscissor: ["8M", "7M"],
-		}
+		},
 	},
 	sandygast: {
 		learnset: {
@@ -65630,7 +68653,7 @@ let BattleLearnsets = {
 			psychic: ["7M"],
 			recycle: ["7T"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockpolish: ["7M"],
 			rockslide: ["7M"],
 			rocktomb: ["7M"],
@@ -65654,7 +68677,7 @@ let BattleLearnsets = {
 			swallow: ["7E"],
 			toxic: ["7M"],
 			trick: ["7T"],
-		}
+		},
 	},
 	palossand: {
 		learnset: {
@@ -65691,7 +68714,7 @@ let BattleLearnsets = {
 			quash: ["7M"],
 			recycle: ["7T"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockpolish: ["7M"],
 			rockslide: ["7M"],
 			rocktomb: ["7M"],
@@ -65713,7 +68736,7 @@ let BattleLearnsets = {
 			swagger: ["7M"],
 			toxic: ["7M"],
 			trick: ["7T"],
-		}
+		},
 	},
 	pyukumuku: {
 		learnset: {
@@ -65757,7 +68780,7 @@ let BattleLearnsets = {
 			toxic: ["8L55", "7M", "7L45"],
 			venomdrench: ["8M", "7E"],
 			watersport: ["7L1"],
-		}
+		},
 	},
 	typenull: {
 		learnset: {
@@ -65793,7 +68816,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			razorwind: ["7L70"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M"],
 			rockslide: ["8M", "7M"],
 			round: ["8M", "7M"],
@@ -65816,7 +68839,13 @@ let BattleLearnsets = {
 			uturn: ["8M", "7M"],
 			workup: ["8M", "7M"],
 			xscissor: ["8M", "8L40", "8S2", "7M", "7L35", "7S0"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 40, "shiny": 1, "perfectIVs": 3, "moves": ["crushclaw", "scaryface", "xscissor", "takedown"]},
+			{"generation": 7, "level": 60, "shiny": 1, "perfectIVs": 3, "moves": ["metalsound", "ironhead", "doublehit", "airslash"]},
+			{"generation": 8, "level": 50, "shiny": 1, "perfectIVs": 3, "moves": ["triattack", "xscissor", "ironhead", "takedown"]},
+		],
+		eventOnly: true,
 	},
 	silvally: {
 		learnset: {
@@ -65871,7 +68900,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			razorwind: ["7L70"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			reversal: ["8M"],
 			roar: ["7M"],
 			rockslide: ["8M", "7M"],
@@ -65905,7 +68934,10 @@ let BattleLearnsets = {
 			workup: ["8M", "7M"],
 			xscissor: ["8M", "8L40", "7M", "7L35"],
 			zenheadbutt: ["8M", "7T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 100, "shiny": true, "moves": ["multiattack", "partingshot", "punishment", "scaryface"], "pokeball": "cherishball"},
+		],
 	},
 	minior: {
 		learnset: {
@@ -65944,7 +68976,7 @@ let BattleLearnsets = {
 			psychup: ["7M"],
 			reflect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockpolish: ["7M"],
 			rockslide: ["7M"],
 			rocktomb: ["7M"],
@@ -65968,7 +69000,7 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			uturn: ["7M"],
 			zenheadbutt: ["7T"],
-		}
+		},
 	},
 	komala: {
 		learnset: {
@@ -66001,7 +69033,7 @@ let BattleLearnsets = {
 			psychup: ["7M", "7L36"],
 			quash: ["7M"],
 			rapidspin: ["7L11"],
-			return : ["7M"],
+			return: ["7M"],
 			rockslide: ["7M"],
 			rollout: ["7L1"],
 			round: ["7M"],
@@ -66028,7 +69060,7 @@ let BattleLearnsets = {
 			workup: ["7M"],
 			yawn: ["7L16"],
 			zenheadbutt: ["7T"],
-		}
+		},
 	},
 	turtonator: {
 		learnset: {
@@ -66082,7 +69114,7 @@ let BattleLearnsets = {
 			protect: ["8M", "8L8", "7M", "7L9"],
 			rapidspin: ["8E"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			revenge: ["8M", "7E"],
 			roar: ["7M"],
 			rocktomb: ["8M", "7M"],
@@ -66108,7 +69140,11 @@ let BattleLearnsets = {
 			wideguard: ["8E", "7E", "7S0"],
 			willowisp: ["8M", "7M"],
 			workup: ["8M", "7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 1, "shiny": 1, "moves": ["flamethrower", "bodyslam", "wideguard"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 30, "gender": "M", "nature": "Brave", "moves": ["flamethrower", "shelltrap", "dragontail"], "pokeball": "cherishball"},
+		],
 	},
 	togedemaru: {
 		learnset: {
@@ -66157,7 +69193,7 @@ let BattleLearnsets = {
 			protect: ["8M", "7M"],
 			reflect: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			reversal: ["8M", "7E"],
 			roleplay: ["7T"],
 			rollout: ["7L9"],
@@ -66188,7 +69224,7 @@ let BattleLearnsets = {
 			workup: ["8M", "7M"],
 			zenheadbutt: ["8M", "7T"],
 			zingzap: ["8L40", "7L33"],
-		}
+		},
 	},
 	togedemarutotem: {
 		learnset: {
@@ -66226,7 +69262,7 @@ let BattleLearnsets = {
 			protect: ["7M"],
 			reflect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roleplay: ["7T"],
 			rollout: ["7L9"],
 			round: ["7M"],
@@ -66251,7 +69287,11 @@ let BattleLearnsets = {
 			workup: ["7M"],
 			zenheadbutt: ["7T"],
 			zingzap: ["7L33", "7S0"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 30, "perfectIVs": 3, "moves": ["nuzzle", "magnetrise", "discharge", "zingzap"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	mimikyu: {
 		learnset: {
@@ -66302,7 +69342,7 @@ let BattleLearnsets = {
 			psychic: ["8M", "7M"],
 			psychup: ["7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["8M", "7M"],
 			safeguard: ["8M", "7M"],
 			scratch: ["8L1", "7L1"],
@@ -66332,7 +69372,11 @@ let BattleLearnsets = {
 			woodhammer: ["8L1", "7L1"],
 			workup: ["8M", "7M"],
 			xscissor: ["8M", "7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 10, "moves": ["copycat", "babydolleyes", "splash", "astonish"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 10, "shiny": true, "moves": ["astonish", "playrough", "copycat", "substitute"], "pokeball": "cherishball"},
+		],
 	},
 	mimikyutotem: {
 		learnset: {
@@ -66373,7 +69417,7 @@ let BattleLearnsets = {
 			psychic: ["7M"],
 			psychup: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			safeguard: ["7M"],
 			scratch: ["7L1"],
@@ -66402,7 +69446,11 @@ let BattleLearnsets = {
 			woodhammer: ["7L1"],
 			workup: ["7M"],
 			xscissor: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 40, "perfectIVs": 3, "moves": ["feintattack", "charm", "slash", "shadowclaw"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	bruxish: {
 		learnset: {
@@ -66449,7 +69497,7 @@ let BattleLearnsets = {
 			raindance: ["7M"],
 			reflect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			safeguard: ["7M"],
 			scald: ["7M"],
@@ -66474,7 +69522,7 @@ let BattleLearnsets = {
 			watergun: ["7L1"],
 			waterpulse: ["7T", "7E"],
 			wonderroom: ["7T"],
-		}
+		},
 	},
 	drampa: {
 		learnset: {
@@ -66533,7 +69581,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			razorwind: ["7E"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M"],
 			rockslide: ["8M", "7M"],
 			roost: ["7M"],
@@ -66564,7 +69612,10 @@ let BattleLearnsets = {
 			uproar: ["8M", "7T"],
 			waterpulse: ["7T"],
 			workup: ["8M", "7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 1, "shiny": 1, "isHidden": true, "moves": ["playnice", "echoedvoice", "hurricane"], "pokeball": "cherishball"},
+		],
 	},
 	dhelmise: {
 		learnset: {
@@ -66616,7 +69667,7 @@ let BattleLearnsets = {
 			raindance: ["8M", "7M"],
 			rapidspin: ["8L1", "7L1"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockslide: ["8M", "7M"],
 			roleplay: ["7T"],
 			round: ["8M", "7M"],
@@ -66641,7 +69692,7 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			whirlpool: ["8M", "8L32", "7L27"],
 			wrap: ["8L8", "7L9"],
-		}
+		},
 	},
 	jangmoo: {
 		learnset: {
@@ -66683,7 +69734,7 @@ let BattleLearnsets = {
 			payback: ["8M", "7M"],
 			protect: ["8M", "8L4", "7M", "7L13"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			reversal: ["8M", "7E"],
 			roar: ["7M"],
 			rockslide: ["8M", "7M"],
@@ -66705,7 +69756,7 @@ let BattleLearnsets = {
 			uproar: ["8M", "7T"],
 			workup: ["8M", "8L20", "7M", "7L29"],
 			xscissor: ["8M", "7M"],
-		}
+		},
 	},
 	hakamoo: {
 		learnset: {
@@ -66750,7 +69801,7 @@ let BattleLearnsets = {
 			payback: ["8M", "7M"],
 			protect: ["8M", "8L1", "7M", "7L1"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			reversal: ["8M"],
 			roar: ["7M"],
 			rockslide: ["8M", "7M"],
@@ -66773,7 +69824,7 @@ let BattleLearnsets = {
 			uproar: ["8M", "7T"],
 			workup: ["8M", "8L20", "7M", "7L29"],
 			xscissor: ["8M", "7M"],
-		}
+		},
 	},
 	kommoo: {
 		learnset: {
@@ -66836,7 +69887,7 @@ let BattleLearnsets = {
 			poisonjab: ["8M", "7M"],
 			protect: ["8M", "8L1", "7M", "7L1"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			revenge: ["8M"],
 			reversal: ["8M"],
 			roar: ["7M"],
@@ -66867,7 +69918,10 @@ let BattleLearnsets = {
 			waterpulse: ["7T"],
 			workup: ["8M", "8L20", "7M", "7L29"],
 			xscissor: ["8M", "7M"],
-		}
+		},
+		encounters: [
+			{"generation": 7, "level": 41},
+		],
 	},
 	kommoototem: {
 		learnset: {
@@ -66922,7 +69976,7 @@ let BattleLearnsets = {
 			poisonjab: ["7M"],
 			protect: ["7M", "7L1"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M"],
 			rockpolish: ["7M"],
 			rockslide: ["7M"],
@@ -66951,7 +70005,11 @@ let BattleLearnsets = {
 			waterpulse: ["7T"],
 			workup: ["7M", "7L29", "7S0"],
 			xscissor: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 50, "perfectIVs": 3, "moves": ["workup", "screech", "irondefense", "dragonclaw"], "pokeball": "pokeball"},
+		],
+		eventOnly: true,
 	},
 	tapukoko: {
 		learnset: {
@@ -67000,7 +70058,7 @@ let BattleLearnsets = {
 			quickattack: ["7L1"],
 			raindance: ["7M"],
 			reflect: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M"],
 			roost: ["7M"],
 			round: ["7M"],
@@ -67030,7 +70088,13 @@ let BattleLearnsets = {
 			wildcharge: ["7M", "7L32"],
 			withdraw: ["7L1"],
 			workup: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 60, "moves": ["naturesmadness", "discharge", "agility", "electroball"]},
+			{"generation": 7, "level": 60, "shiny": true, "nature": "Timid", "moves": ["naturesmadness", "discharge", "agility", "electroball"], "pokeball": "cherishball"},
+			{"generation": 7, "level": 60, "shiny": true, "moves": ["thunderbolt", "dazzlinggleam", "voltswitch", "naturesmadness"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	tapulele: {
 		learnset: {
@@ -67084,7 +70148,7 @@ let BattleLearnsets = {
 			psyshock: ["7M", "7L32"],
 			psywave: ["7L8"],
 			reflect: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			safeguard: ["7M"],
 			shadowball: ["7M"],
@@ -67105,7 +70169,12 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			withdraw: ["7L1"],
 			wonderroom: ["7T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 60, "moves": ["naturesmadness", "extrasensory", "flatter", "moonblast"]},
+			{"generation": 7, "level": 60, "shiny": true, "moves": ["naturesmadness", "extrasensory", "flatter", "moonblast"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	tapubulu: {
 		learnset: {
@@ -67157,7 +70226,7 @@ let BattleLearnsets = {
 			protect: ["7M"],
 			psychup: ["7M"],
 			reflect: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M"],
 			rockslide: ["7M"],
 			rocktomb: ["7M"],
@@ -67189,7 +70258,12 @@ let BattleLearnsets = {
 			workup: ["7M"],
 			worryseed: ["7T"],
 			zenheadbutt: ["7T", "7L48", "7S1", "7S0"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 60, "moves": ["naturesmadness", "zenheadbutt", "megahorn", "skullbash"]},
+			{"generation": 7, "level": 60, "shiny": true, "moves": ["naturesmadness", "zenheadbutt", "megahorn", "skullbash"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	tapufini: {
 		learnset: {
@@ -67240,7 +70314,7 @@ let BattleLearnsets = {
 			raindance: ["7M"],
 			reflect: ["7M"],
 			refresh: ["7L26"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			safeguard: ["7M"],
 			scald: ["7M"],
@@ -67263,19 +70337,28 @@ let BattleLearnsets = {
 			whirlpool: ["7L14"],
 			withdraw: ["7L1"],
 			wonderroom: ["7T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 60, "moves": ["naturesmadness", "muddywater", "aquaring", "hydropump"]},
+			{"generation": 7, "level": 60, "shiny": true, "moves": ["naturesmadness", "muddywater", "aquaring", "hydropump"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	cosmog: {
 		learnset: {
 			splash: ["8L1", "7L1", "7S0"],
 			teleport: ["8L1", "7L23"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 5, "moves": ["splash"]},
+		],
+		eventOnly: true,
 	},
 	cosmoem: {
 		learnset: {
 			cosmicpower: ["8M", "8L0", "7L1"],
 			teleport: ["8L1", "7L1"],
-		}
+		},
 	},
 	solgaleo: {
 		learnset: {
@@ -67328,7 +70411,7 @@ let BattleLearnsets = {
 			psyshock: ["8M", "7M"],
 			reflect: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M"],
 			rockslide: ["8M", "7M"],
 			rocktomb: ["8M", "7M"],
@@ -67359,7 +70442,12 @@ let BattleLearnsets = {
 			wildcharge: ["8M", "8L56", "7M"],
 			workup: ["8M", "7M"],
 			zenheadbutt: ["8M", "8L21", "7T", "7L19", "7S2", "7S1", "7S0"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 55, "moves": ["sunsteelstrike", "cosmicpower", "crunch", "zenheadbutt"]},
+			{"generation": 7, "level": 60, "moves": ["sunsteelstrike", "cosmicpower", "crunch", "zenheadbutt"]},
+			{"generation": 7, "level": 60, "shiny": true, "moves": ["sunsteelstrike", "zenheadbutt", "nobleroar", "morningsun"], "pokeball": "cherishball"},
+		],
 	},
 	lunala: {
 		learnset: {
@@ -67409,7 +70497,7 @@ let BattleLearnsets = {
 			psyshock: ["8M", "7M", "7S2"],
 			reflect: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M"],
 			roost: ["7M"],
 			round: ["8M", "7M"],
@@ -67442,7 +70530,12 @@ let BattleLearnsets = {
 			willowisp: ["8M", "7M"],
 			wonderroom: ["8M", "7T"],
 			workup: ["8M", "7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 55, "moves": ["moongeistbeam", "cosmicpower", "nightdaze", "shadowball"]},
+			{"generation": 7, "level": 60, "moves": ["moongeistbeam", "cosmicpower", "nightdaze", "shadowball"]},
+			{"generation": 7, "level": 60, "shiny": true, "moves": ["moongeistbeam", "psyshock", "moonblast", "moonlight"], "pokeball": "cherishball"},
+		],
 	},
 	nihilego: {
 		learnset: {
@@ -67489,7 +70582,7 @@ let BattleLearnsets = {
 			psywave: ["7L13"],
 			reflect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roleplay: ["7T"],
 			round: ["7M"],
 			safeguard: ["7M", "7L31"],
@@ -67515,7 +70608,12 @@ let BattleLearnsets = {
 			wonderroom: ["7T", "7L67"],
 			worryseed: ["7T"],
 			zenheadbutt: ["7T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 55, "moves": ["powergem", "mirrorcoat", "acidspray", "venomdrench"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["powergem", "acidspray", "stealthrock", "mirrorcoat"]},
+		],
+		eventOnly: true,
 	},
 	buzzwole: {
 		learnset: {
@@ -67563,7 +70661,7 @@ let BattleLearnsets = {
 			poweruppunch: ["7L1"],
 			protect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			reversal: ["7L1"],
 			rockslide: ["7M"],
 			rocktomb: ["7M"],
@@ -67582,7 +70680,12 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			vitalthrow: ["7L19"],
 			workup: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 65, "moves": ["counter", "hammerarm", "lunge", "dynamicpunch"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["counter", "hammerarm", "lunge", "dynamicpunch"]},
+		],
+		eventOnly: true,
 	},
 	pheromosa: {
 		learnset: {
@@ -67629,7 +70732,7 @@ let BattleLearnsets = {
 			quiverdance: ["7L1"],
 			rapidspin: ["7L1"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roost: ["7M"],
 			round: ["7M"],
 			shockwave: ["7T"],
@@ -67649,7 +70752,12 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			triplekick: ["7L43", "7S1", "7S0"],
 			uturn: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 60, "moves": ["triplekick", "lunge", "bugbuzz", "mefirst"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["triplekick", "lunge", "bugbuzz", "mefirst"]},
+		],
+		eventOnly: true,
 	},
 	xurkitree: {
 		learnset: {
@@ -67688,7 +70796,7 @@ let BattleLearnsets = {
 			raindance: ["7M"],
 			reflect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			shockwave: ["7T", "7L13"],
 			signalbeam: ["7T", "7L31"],
@@ -67710,7 +70818,12 @@ let BattleLearnsets = {
 			wildcharge: ["7M"],
 			wrap: ["7L1"],
 			zapcannon: ["7L73"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 65, "moves": ["hypnosis", "discharge", "electricterrain", "powerwhip"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["hypnosis", "discharge", "electricterrain", "powerwhip"]},
+		],
+		eventOnly: true,
 	},
 	celesteela: {
 		learnset: {
@@ -67757,7 +70870,7 @@ let BattleLearnsets = {
 			metalsound: ["7L23"],
 			protect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockslide: ["7M"],
 			round: ["7M"],
 			seedbomb: ["7T", "7L47", "7S1", "7S0"],
@@ -67777,7 +70890,12 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			wideguard: ["7L1"],
 			zenheadbutt: ["7T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 65, "moves": ["autotomize", "seedbomb", "skullbash", "irondefense"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["autotomize", "seedbomb", "skullbash", "irondefense"]},
+		],
+		eventOnly: true,
 	},
 	kartana: {
 		learnset: {
@@ -67811,7 +70929,7 @@ let BattleLearnsets = {
 			psychocut: ["7L67"],
 			razorleaf: ["7L13"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			sacredsword: ["7L1"],
 			sleeptalk: ["7M"],
@@ -67825,7 +70943,12 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			vacuumwave: ["7L1"],
 			xscissor: ["7M", "7L47", "7S1", "7S0"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 60, "moves": ["leafblade", "xscissor", "detect", "airslash"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["leafblade", "xscissor", "detect", "airslash"]},
+		],
+		eventOnly: true,
 	},
 	guzzlord: {
 		learnset: {
@@ -67878,7 +71001,7 @@ let BattleLearnsets = {
 			poisonjab: ["7M"],
 			protect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockslide: ["7M"],
 			rocktomb: ["7M"],
 			round: ["7M"],
@@ -67902,7 +71025,12 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			wideguard: ["7L1"],
 			wringout: ["7L67", "7S0"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 70, "moves": ["thrash", "gastroacid", "heavyslam", "wringout"]},
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["hammerarm", "thrash", "gastroacid", "heavyslam"]},
+		],
+		eventOnly: true,
 	},
 	necrozma: {
 		learnset: {
@@ -67961,7 +71089,7 @@ let BattleLearnsets = {
 			recycle: ["7T"],
 			reflect: ["8M", "7M"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockblast: ["8M", "8L48", "7L19"],
 			rockpolish: ["7M"],
 			rockslide: ["8M", "7M"],
@@ -67989,23 +71117,31 @@ let BattleLearnsets = {
 			trickroom: ["8M", "7M"],
 			wringout: ["7L67", "7S0"],
 			xscissor: ["8M", "7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 75, "moves": ["stealthrock", "irondefense", "wringout", "prismaticlaser"]},
+			{"generation": 7, "level": 65, "moves": ["photongeyser", "irondefense", "powergem", "nightslash"]},
+			{"generation": 7, "level": 75, "shiny": true, "moves": ["lightscreen", "substitute", "moonlight"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	necrozmaduskmane: {
 		learnset: {
 			sunsteelstrike: ["8R", "7R"],
-		}
+		},
+		eventOnly: true,
 	},
 	necrozmadawnwings: {
 		learnset: {
 			moongeistbeam: ["8R", "7R"],
-		}
+		},
+		eventOnly: true,
 	},
 	necrozmaultra: {
 		learnset: {
 			moongeistbeam: ["8R", "7R"],
 			sunsteelstrike: ["8R", "7R"],
-		}
+		},
 	},
 	magearna: {
 		learnset: {
@@ -68068,7 +71204,7 @@ let BattleLearnsets = {
 			protect: ["7M"],
 			psybeam: ["7L1"],
 			reflect: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			shadowball: ["7M"],
 			shiftgear: ["7L1"],
@@ -68086,7 +71222,11 @@ let BattleLearnsets = {
 			trumpcard: ["7L97"],
 			voltswitch: ["7M"],
 			zenheadbutt: ["7T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 50, "moves": ["fleurcannon", "flashcannon", "luckychant", "helpinghand"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	magearnaoriginal: {
 		learnset: {
@@ -68132,7 +71272,7 @@ let BattleLearnsets = {
 			protect: ["7M"],
 			psybeam: ["7L1"],
 			reflect: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			shadowball: ["7M"],
 			shiftgear: ["7L1"],
@@ -68150,7 +71290,7 @@ let BattleLearnsets = {
 			trumpcard: ["7L97"],
 			voltswitch: ["7M"],
 			zenheadbutt: ["7T"],
-		}
+		},
 	},
 	marshadow: {
 		learnset: {
@@ -68205,7 +71345,7 @@ let BattleLearnsets = {
 			psychup: ["8L63", "7M", "7L41"],
 			pursuit: ["7L1"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			revenge: ["8M"],
 			reversal: ["8M"],
 			rockslide: ["8M", "7M"],
@@ -68235,7 +71375,11 @@ let BattleLearnsets = {
 			willowisp: ["8M", "7M"],
 			workup: ["8M", "7M"],
 			zenheadbutt: ["8M", "7T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 50, "moves": ["spectralthief", "closecombat", "forcepalm", "shadowball"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	poipole: {
 		learnset: {
@@ -68263,7 +71407,7 @@ let BattleLearnsets = {
 			poisonjab: ["7M", "7L37", "7S1", "7S0"],
 			protect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			signalbeam: ["7T"],
 			sleeptalk: ["7M"],
@@ -68276,7 +71420,12 @@ let BattleLearnsets = {
 			uproar: ["7T"],
 			venomdrench: ["7L23", "7S1", "7S0"],
 			venoshock: ["7M", "7L13"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 40, "shiny": 1, "perfectIVs": 3, "moves": ["charm", "venomdrench", "nastyplot", "poisonjab"], "pokeball": "pokeball"},
+			{"generation": 7, "level": 40, "shiny": true, "nature": "Modest", "perfectIVs": 3, "moves": ["venomdrench", "nastyplot", "poisonjab", "dragonpulse"], "pokeball": "cherishball"},
+		],
+		eventOnly: true,
 	},
 	naganadel: {
 		learnset: {
@@ -68329,7 +71478,7 @@ let BattleLearnsets = {
 			poisonjab: ["7M", "7L37"],
 			protect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			shadowclaw: ["7M"],
 			shockwave: ["7T"],
@@ -68354,7 +71503,7 @@ let BattleLearnsets = {
 			venomdrench: ["7L23"],
 			venoshock: ["7M", "7L13"],
 			xscissor: ["7M"],
-		}
+		},
 	},
 	stakataka: {
 		learnset: {
@@ -68393,7 +71542,7 @@ let BattleLearnsets = {
 			recycle: ["7T"],
 			reflect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockblast: ["7L47", "7S0"],
 			rockpolish: ["7M"],
 			rockslide: ["7M", "7L5"],
@@ -68420,7 +71569,11 @@ let BattleLearnsets = {
 			wideguard: ["7L53", "7S0"],
 			wonderroom: ["7T"],
 			zenheadbutt: ["7T"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["irondefense", "ironhead", "rockblast", "wideguard"]},
+		],
+		eventOnly: true,
 	},
 	blacephalon: {
 		learnset: {
@@ -68468,7 +71621,7 @@ let BattleLearnsets = {
 			quash: ["7M"],
 			recycle: ["7T"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			shadowball: ["7M", "7L41", "7S0"],
 			shadowclaw: ["7M"],
@@ -68487,7 +71640,11 @@ let BattleLearnsets = {
 			trick: ["7T", "7L47", "7S0"],
 			uproar: ["7T"],
 			willowisp: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 60, "shiny": 1, "moves": ["fireblast", "shadowball", "trick", "mindblown"]},
+		],
+		eventOnly: true,
 	},
 	zeraora: {
 		learnset: {
@@ -68546,7 +71703,7 @@ let BattleLearnsets = {
 			quickattack: ["8L1", "7L8"],
 			quickguard: ["8L16", "7L40"],
 			rest: ["8M", "7M"],
-			return : ["7M"],
+			return: ["7M"],
 			revenge: ["8M"],
 			reversal: ["8M"],
 			round: ["8M", "7M"],
@@ -68572,7 +71729,11 @@ let BattleLearnsets = {
 			voltswitch: ["8M", "8L32", "7M", "7L15"],
 			wildcharge: ["8M", "8L72", "7M", "7L36"],
 			workup: ["8M", "7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 50, "moves": ["plasmafists", "thunderpunch", "closecombat", "thunder"]},
+		],
+		eventOnly: true,
 	},
 	meltan: {
 		learnset: {
@@ -68596,7 +71757,7 @@ let BattleLearnsets = {
 			thundershock: ["8L1", "8V", "7L27"],
 			thunderwave: ["8M", "8L24", "8V", "7M", "7L18"],
 			toxic: ["8V", "7M"],
-		}
+		},
 	},
 	melmetal: {
 		learnset: {
@@ -68646,7 +71807,7 @@ let BattleLearnsets = {
 			thundershock: ["8L1", "8V", "7L27"],
 			thunderwave: ["8M", "8L24", "8V", "7M", "7L1"],
 			toxic: ["8V", "7M"],
-		}
+		},
 	},
 	grookey: {
 		learnset: {
@@ -68698,7 +71859,7 @@ let BattleLearnsets = {
 			woodhammer: ["8L32"],
 			workup: ["8M"],
 			worryseed: ["8E"],
-		}
+		},
 	},
 	thwackey: {
 		learnset: {
@@ -68744,7 +71905,7 @@ let BattleLearnsets = {
 			uturn: ["8M"],
 			woodhammer: ["8L42"],
 			workup: ["8M"],
-		}
+		},
 	},
 	rillaboom: {
 		learnset: {
@@ -68816,7 +71977,7 @@ let BattleLearnsets = {
 			uturn: ["8M"],
 			woodhammer: ["8L46"],
 			workup: ["8M"],
-		}
+		},
 	},
 	scorbunny: {
 		learnset: {
@@ -68868,7 +72029,7 @@ let BattleLearnsets = {
 			taunt: ["8M"],
 			uturn: ["8M"],
 			workup: ["8M"],
-		}
+		},
 	},
 	raboot: {
 		learnset: {
@@ -68918,7 +72079,7 @@ let BattleLearnsets = {
 			taunt: ["8M"],
 			uturn: ["8M"],
 			workup: ["8M"],
-		}
+		},
 	},
 	cinderace: {
 		learnset: {
@@ -68983,7 +72144,7 @@ let BattleLearnsets = {
 			uturn: ["8M"],
 			workup: ["8M"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	sobble: {
 		learnset: {
@@ -69028,7 +72189,7 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			whirlpool: ["8M"],
 			workup: ["8M"],
-		}
+		},
 	},
 	drizzile: {
 		learnset: {
@@ -69067,7 +72228,7 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			whirlpool: ["8M"],
 			workup: ["8M"],
-		}
+		},
 	},
 	inteleon: {
 		learnset: {
@@ -69126,7 +72287,7 @@ let BattleLearnsets = {
 			weatherball: ["8M"],
 			whirlpool: ["8M"],
 			workup: ["8M"],
-		}
+		},
 	},
 	skwovet: {
 		learnset: {
@@ -69170,7 +72331,7 @@ let BattleLearnsets = {
 			tailwhip: ["8L1"],
 			thief: ["8M"],
 			uproar: ["8M"],
-		}
+		},
 	},
 	greedent: {
 		learnset: {
@@ -69223,7 +72384,7 @@ let BattleLearnsets = {
 			thunderfang: ["8M"],
 			uproar: ["8M"],
 			wildcharge: ["8M"],
-		}
+		},
 	},
 	rookidee: {
 		learnset: {
@@ -69269,7 +72430,7 @@ let BattleLearnsets = {
 			thief: ["8M"],
 			uturn: ["8M"],
 			workup: ["8M"],
-		}
+		},
 	},
 	corvisquire: {
 		learnset: {
@@ -69308,7 +72469,7 @@ let BattleLearnsets = {
 			thief: ["8M"],
 			uturn: ["8M"],
 			workup: ["8M"],
-		}
+		},
 	},
 	corviknight: {
 		learnset: {
@@ -69363,7 +72524,7 @@ let BattleLearnsets = {
 			thief: ["8M"],
 			uturn: ["8M"],
 			workup: ["8M"],
-		}
+		},
 	},
 	blipbug: {
 		learnset: {
@@ -69372,7 +72533,7 @@ let BattleLearnsets = {
 			stickyweb: ["8E"],
 			strugglebug: ["8L1"],
 			supersonic: ["8E"],
-		}
+		},
 	},
 	dottler: {
 		learnset: {
@@ -69415,7 +72576,7 @@ let BattleLearnsets = {
 			trickroom: ["8M"],
 			wonderroom: ["8M"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	orbeetle: {
 		learnset: {
@@ -69471,7 +72632,7 @@ let BattleLearnsets = {
 			uturn: ["8M"],
 			wonderroom: ["8M"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	nickit: {
 		learnset: {
@@ -69509,7 +72670,7 @@ let BattleLearnsets = {
 			taunt: ["8M"],
 			thief: ["8M"],
 			torment: ["8E"],
-		}
+		},
 	},
 	thievul: {
 		learnset: {
@@ -69557,7 +72718,7 @@ let BattleLearnsets = {
 			thief: ["8M", "8L0"],
 			thunderfang: ["8M"],
 			uturn: ["8M"],
-		}
+		},
 	},
 	gossifleur: {
 		learnset: {
@@ -69598,7 +72759,7 @@ let BattleLearnsets = {
 			sweetscent: ["8L8"],
 			synthesis: ["8L24"],
 			worryseed: ["8E"],
-		}
+		},
 	},
 	eldegoss: {
 		learnset: {
@@ -69639,7 +72800,7 @@ let BattleLearnsets = {
 			sweetscent: ["8L1"],
 			synthesis: ["8L28"],
 			weatherball: ["8M"],
-		}
+		},
 	},
 	wooloo: {
 		learnset: {
@@ -69672,7 +72833,7 @@ let BattleLearnsets = {
 			takedown: ["8L25"],
 			thunderwave: ["8M"],
 			wildcharge: ["8M"],
-		}
+		},
 	},
 	dubwool: {
 		learnset: {
@@ -69713,7 +72874,7 @@ let BattleLearnsets = {
 			thunderwave: ["8M"],
 			wildcharge: ["8M"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	chewtle: {
 		learnset: {
@@ -69747,7 +72908,7 @@ let BattleLearnsets = {
 			tackle: ["8L1"],
 			watergun: ["8L1"],
 			whirlpool: ["8M"],
-		}
+		},
 	},
 	drednaw: {
 		learnset: {
@@ -69813,7 +72974,7 @@ let BattleLearnsets = {
 			waterfall: ["8M"],
 			watergun: ["8L1"],
 			whirlpool: ["8M"],
-		}
+		},
 	},
 	yamper: {
 		learnset: {
@@ -69854,7 +73015,7 @@ let BattleLearnsets = {
 			uproar: ["8M"],
 			voltswitch: ["8M"],
 			wildcharge: ["8M", "8L40"],
-		}
+		},
 	},
 	boltund: {
 		learnset: {
@@ -69900,7 +73061,7 @@ let BattleLearnsets = {
 			uproar: ["8M"],
 			voltswitch: ["8M"],
 			wildcharge: ["8M", "8L48"],
-		}
+		},
 	},
 	rolycoly: {
 		learnset: {
@@ -69939,7 +73100,7 @@ let BattleLearnsets = {
 			substitute: ["8M"],
 			tackle: ["8L1"],
 			willowisp: ["8M"],
-		}
+		},
 	},
 	carkol: {
 		learnset: {
@@ -69987,7 +73148,7 @@ let BattleLearnsets = {
 			substitute: ["8M"],
 			tackle: ["8L1"],
 			willowisp: ["8M"],
-		}
+		},
 	},
 	coalossal: {
 		learnset: {
@@ -70046,7 +73207,7 @@ let BattleLearnsets = {
 			tackle: ["8L1"],
 			tarshot: ["8L0"],
 			willowisp: ["8M"],
-		}
+		},
 	},
 	applin: {
 		learnset: {
@@ -70058,7 +73219,7 @@ let BattleLearnsets = {
 			rollout: ["8E"],
 			suckerpunch: ["8E"],
 			withdraw: ["8L1"],
-		}
+		},
 	},
 	flapple: {
 		learnset: {
@@ -70103,7 +73264,7 @@ let BattleLearnsets = {
 			uturn: ["8M"],
 			wingattack: ["8L0"],
 			withdraw: ["8L1"],
-		}
+		},
 	},
 	appletun: {
 		learnset: {
@@ -70153,7 +73314,7 @@ let BattleLearnsets = {
 			superpower: ["8M"],
 			sweetscent: ["8L1"],
 			withdraw: ["8L1"],
-		}
+		},
 	},
 	silicobra: {
 		learnset: {
@@ -70188,7 +73349,7 @@ let BattleLearnsets = {
 			snore: ["8M"],
 			substitute: ["8M"],
 			wrap: ["8L1"],
-		}
+		},
 	},
 	sandaconda: {
 		learnset: {
@@ -70234,7 +73395,7 @@ let BattleLearnsets = {
 			substitute: ["8M"],
 			wrap: ["8L1"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	cramorant: {
 		learnset: {
@@ -70288,7 +73449,7 @@ let BattleLearnsets = {
 			watergun: ["8L7"],
 			weatherball: ["8M"],
 			whirlpool: ["8M"],
-		}
+		},
 	},
 	arrokuda: {
 		learnset: {
@@ -70330,7 +73491,7 @@ let BattleLearnsets = {
 			throatchop: ["8M"],
 			waterfall: ["8M"],
 			whirlpool: ["8M"],
-		}
+		},
 	},
 	barraskewda: {
 		learnset: {
@@ -70373,7 +73534,7 @@ let BattleLearnsets = {
 			throatchop: ["8M", "8L1"],
 			waterfall: ["8M"],
 			whirlpool: ["8M"],
-		}
+		},
 	},
 	toxel: {
 		learnset: {
@@ -70396,7 +73557,7 @@ let BattleLearnsets = {
 			snore: ["8M"],
 			substitute: ["8M"],
 			tearfullook: ["8L1"],
-		}
+		},
 	},
 	toxtricity: {
 		learnset: {
@@ -70460,7 +73621,7 @@ let BattleLearnsets = {
 			venoshock: ["8M", "8L20"],
 			voltswitch: ["8M"],
 			wildcharge: ["8M"],
-		}
+		},
 	},
 	toxtricitylowkey: {
 		learnset: {
@@ -70524,7 +73685,7 @@ let BattleLearnsets = {
 			venomdrench: ["8M", "8L20"],
 			voltswitch: ["8M"],
 			wildcharge: ["8M"],
-		}
+		},
 	},
 	sizzlipede: {
 		learnset: {
@@ -70563,7 +73724,7 @@ let BattleLearnsets = {
 			sunnyday: ["8M"],
 			venoshock: ["8M"],
 			wrap: ["8L5"],
-		}
+		},
 	},
 	centiskorch: {
 		learnset: {
@@ -70611,7 +73772,7 @@ let BattleLearnsets = {
 			willowisp: ["8M"],
 			wrap: ["8L1"],
 			xscissor: ["8M"],
-		}
+		},
 	},
 	clobbopus: {
 		learnset: {
@@ -70656,7 +73817,7 @@ let BattleLearnsets = {
 			taunt: ["8M", "8L35"],
 			waterfall: ["8M"],
 			workup: ["8M"],
-		}
+		},
 	},
 	grapploct: {
 		learnset: {
@@ -70708,7 +73869,7 @@ let BattleLearnsets = {
 			waterfall: ["8M"],
 			whirlpool: ["8M"],
 			workup: ["8M"],
-		}
+		},
 	},
 	sinistea: {
 		learnset: {
@@ -70746,7 +73907,7 @@ let BattleLearnsets = {
 			willowisp: ["8M"],
 			withdraw: ["8L1"],
 			wonderroom: ["8M"],
-		}
+		},
 	},
 	polteageist: {
 		learnset: {
@@ -70792,7 +73953,7 @@ let BattleLearnsets = {
 			willowisp: ["8M"],
 			withdraw: ["8L1"],
 			wonderroom: ["8M"],
-		}
+		},
 	},
 	hatenna: {
 		learnset: {
@@ -70836,7 +73997,7 @@ let BattleLearnsets = {
 			storedpower: ["8M"],
 			substitute: ["8M"],
 			thunderwave: ["8M"],
-		}
+		},
 	},
 	hattrem: {
 		learnset: {
@@ -70877,7 +74038,7 @@ let BattleLearnsets = {
 			storedpower: ["8M"],
 			substitute: ["8M"],
 			thunderwave: ["8M"],
-		}
+		},
 	},
 	hatterene: {
 		learnset: {
@@ -70932,7 +74093,7 @@ let BattleLearnsets = {
 			thunderwave: ["8M"],
 			trickroom: ["8M"],
 			wonderroom: ["8M"],
-		}
+		},
 	},
 	impidimp: {
 		learnset: {
@@ -70973,7 +74134,7 @@ let BattleLearnsets = {
 			torment: ["8L28"],
 			trick: ["8M"],
 			uproar: ["8M"],
-		}
+		},
 	},
 	morgrem: {
 		learnset: {
@@ -71019,7 +74180,7 @@ let BattleLearnsets = {
 			torment: ["8L28"],
 			trick: ["8M"],
 			uproar: ["8M"],
-		}
+		},
 	},
 	grimmsnarl: {
 		learnset: {
@@ -71088,7 +74249,7 @@ let BattleLearnsets = {
 			trick: ["8M"],
 			uproar: ["8M"],
 			wonderroom: ["8M"],
-		}
+		},
 	},
 	milcery: {
 		learnset: {
@@ -71118,7 +74279,7 @@ let BattleLearnsets = {
 			sweetkiss: ["8L5"],
 			sweetscent: ["8L10"],
 			tackle: ["8L1"],
-		}
+		},
 	},
 	alcremie: {
 		learnset: {
@@ -71168,7 +74329,7 @@ let BattleLearnsets = {
 			tackle: ["8L1"],
 			triattack: ["8M"],
 			wonderroom: ["8M"],
-		}
+		},
 	},
 	falinks: {
 		learnset: {
@@ -71214,7 +74375,7 @@ let BattleLearnsets = {
 			tackle: ["8L1"],
 			throatchop: ["8M"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	pincurchin: {
 		learnset: {
@@ -71264,7 +74425,7 @@ let BattleLearnsets = {
 			venoshock: ["8M"],
 			watergun: ["8L5"],
 			zingzap: ["8L50"],
-		}
+		},
 	},
 	snom: {
 		learnset: {
@@ -71285,7 +74446,7 @@ let BattleLearnsets = {
 			snore: ["8M"],
 			strugglebug: ["8L1"],
 			substitute: ["8M"],
-		}
+		},
 	},
 	frosmoth: {
 		learnset: {
@@ -71334,7 +74495,7 @@ let BattleLearnsets = {
 			uturn: ["8M"],
 			weatherball: ["8M"],
 			wideguard: ["8L48"],
-		}
+		},
 	},
 	stonjourner: {
 		learnset: {
@@ -71381,7 +74542,7 @@ let BattleLearnsets = {
 			superpower: ["8M"],
 			wideguard: ["8L48"],
 			wonderroom: ["8M"],
-		}
+		},
 	},
 	eiscue: {
 		learnset: {
@@ -71428,7 +74589,7 @@ let BattleLearnsets = {
 			weatherball: ["8M", "8L12"],
 			whirlpool: ["8M"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	indeedee: {
 		learnset: {
@@ -71480,7 +74641,7 @@ let BattleLearnsets = {
 			trickroom: ["8M"],
 			wonderroom: ["8M"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	indeedeef: {
 		learnset: {
@@ -71532,7 +74693,7 @@ let BattleLearnsets = {
 			swift: ["8M"],
 			trick: ["8M"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	morpeko: {
 		learnset: {
@@ -71598,7 +74759,7 @@ let BattleLearnsets = {
 			uproar: ["8M"],
 			voltswitch: ["8M"],
 			wildcharge: ["8M"],
-		}
+		},
 	},
 	cufant: {
 		learnset: {
@@ -71650,7 +74811,7 @@ let BattleLearnsets = {
 			whirlwind: ["8E"],
 			workup: ["8M"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	copperajah: {
 		learnset: {
@@ -71707,7 +74868,7 @@ let BattleLearnsets = {
 			taunt: ["8M"],
 			workup: ["8M"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	dracozolt: {
 		learnset: {
@@ -71767,7 +74928,7 @@ let BattleLearnsets = {
 			thundershock: ["8L1"],
 			thunderwave: ["8M"],
 			wildcharge: ["8M"],
-		}
+		},
 	},
 	arctozolt: {
 		learnset: {
@@ -71823,7 +74984,7 @@ let BattleLearnsets = {
 			thundershock: ["8L1"],
 			thunderwave: ["8M"],
 			wildcharge: ["8M"],
-		}
+		},
 	},
 	dracovish: {
 		learnset: {
@@ -71876,7 +75037,7 @@ let BattleLearnsets = {
 			watergun: ["8L1"],
 			whirlpool: ["8M"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	arctovish: {
 		learnset: {
@@ -71924,7 +75085,7 @@ let BattleLearnsets = {
 			watergun: ["8L1"],
 			whirlpool: ["8M"],
 			zenheadbutt: ["8M"],
-		}
+		},
 	},
 	duraludon: {
 		learnset: {
@@ -71981,7 +75142,7 @@ let BattleLearnsets = {
 			thunder: ["8M"],
 			thunderbolt: ["8M"],
 			thunderwave: ["8M"],
-		}
+		},
 	},
 	dreepy: {
 		learnset: {
@@ -72010,7 +75171,7 @@ let BattleLearnsets = {
 			suckerpunch: ["8E"],
 			swift: ["8M"],
 			thunderwave: ["8M"],
-		}
+		},
 	},
 	drakloak: {
 		learnset: {
@@ -72064,7 +75225,7 @@ let BattleLearnsets = {
 			thunderwave: ["8M"],
 			uturn: ["8M", "8L36"],
 			willowisp: ["8M"],
-		}
+		},
 	},
 	dragapult: {
 		learnset: {
@@ -72130,7 +75291,7 @@ let BattleLearnsets = {
 			triattack: ["8M"],
 			uturn: ["8M", "8L36"],
 			willowisp: ["8M"],
-		}
+		},
 	},
 	zacian: {
 		learnset: {
@@ -72179,7 +75340,7 @@ let BattleLearnsets = {
 			snarl: ["8M"],
 			snore: ["8M"],
 			solarblade: ["8M"],
-			steelbeam: ["8T"],
+			steelbeam: ["8M"],
 			substitute: ["8M"],
 			swift: ["8M"],
 			swordsdance: ["8M", "8L22", "8S0"],
@@ -72187,12 +75348,17 @@ let BattleLearnsets = {
 			thunderfang: ["8M"],
 			wildcharge: ["8M"],
 			workup: ["8M"],
-		}
+		},
+		eventData: [
+			{"generation": 8, "level": 70, "perfectIVs": 3, "moves": ["sacredsword", "swordsdance", "ironhead", "crunch"]},
+		],
+		eventOnly: true,
 	},
 	zaciancrowned: {
 		learnset: {
 			behemothblade: ["8M", "8L33"],
-		}
+		},
+		eventOnly: true,
 	},
 	zamazenta: {
 		learnset: {
@@ -72243,7 +75409,7 @@ let BattleLearnsets = {
 			snarl: ["8M"],
 			snore: ["8M"],
 			solarbeam: ["8M"],
-			steelbeam: ["8T"],
+			steelbeam: ["8M"],
 			substitute: ["8M"],
 			swift: ["8M"],
 			tailslap: ["8M"],
@@ -72251,12 +75417,17 @@ let BattleLearnsets = {
 			wideguard: ["8L1"],
 			wildcharge: ["8M"],
 			workup: ["8M"],
-		}
+		},
+		eventData: [
+			{"generation": 8, "level": 70, "perfectIVs": 3, "moves": ["slash", "crunch", "ironhead", "irondefense"]},
+		],
+		eventOnly: true,
 	},
 	zamazentacrowned: {
 		learnset: {
 			behemothbash: ["8M", "8L33"],
-		}
+		},
+		eventOnly: true,
 	},
 	eternatus: {
 		learnset: {
@@ -72302,7 +75473,11 @@ let BattleLearnsets = {
 			toxicspikes: ["8M"],
 			venomdrench: ["8M"],
 			venoshock: ["8M", "8L16"],
-		}
+		},
+		eventData: [
+			{"generation": 8, "level": 60, "perfectIVs": 3, "moves": ["crosspoison", "dragonpulse", "flamethrower", "dynamaxcannon"]},
+		],
+		eventOnly: true,
 	},
 	tomohawk: {
 		learnset: {
@@ -72353,7 +75528,7 @@ let BattleLearnsets = {
 			rapidspin: ["7E", "5E"],
 			rest: ["7M", "7L53", "5M", "5L53"],
 			retaliate: ["6M", "5M"],
-			return : ["7M", "5M"],
+			return: ["7M", "5M"],
 			roar: ["7M", "5M"],
 			rockslide: ["7M", "5M"],
 			rocksmash: ["6M", "5M"],
@@ -72381,7 +75556,7 @@ let BattleLearnsets = {
 			whirlwind: ["7L23", "5L23"],
 			workup: ["7M", "5M"],
 			yawn: ["7E", "5E"],
-		}
+		},
 	},
 	necturna: {
 		learnset: {
@@ -72427,7 +75602,7 @@ let BattleLearnsets = {
 			psychic: ["7M", "5M"],
 			psychup: ["7M", "5M"],
 			rest: ["7M", "5M"],
-			return : ["7M", "5M"],
+			return: ["7M", "5M"],
 			round: ["7M", "5M"],
 			secretpower: ["7M"],
 			seedbomb: ["7T"],
@@ -72453,7 +75628,7 @@ let BattleLearnsets = {
 			vinewhip: ["7L1", "5L1"],
 			willowisp: ["7M", "7L23", "5M", "5L19"],
 			worryseed: ["7T"],
-		}
+		},
 	},
 	mollux: {
 		learnset: {
@@ -72502,7 +75677,7 @@ let BattleLearnsets = {
 			rapidspin: ["7E", "5E"],
 			recover: ["7L41", "5L36"],
 			rest: ["7M", "5M"],
-			return : ["7M", "5M"],
+			return: ["7M", "5M"],
 			round: ["7M", "5M"],
 			secretpower: ["7M"],
 			shockwave: ["7T"],
@@ -72527,7 +75702,7 @@ let BattleLearnsets = {
 			venoshock: ["7M", "5M"],
 			willowisp: ["7M", "5M"],
 			withdraw: ["7L9", "5L9"],
-		}
+		},
 	},
 	aurumoth: {
 		learnset: {
@@ -72581,7 +75756,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "5M"],
 			rest: ["7M", "5M"],
 			retaliate: ["5M"],
-			return : ["7M", "5M"],
+			return: ["7M", "5M"],
 			roleplay: ["7T", "5T"],
 			round: ["7M", "5M"],
 			safeguard: ["7M", "7E", "5M", "5E"],
@@ -72616,7 +75791,7 @@ let BattleLearnsets = {
 			wonderroom: ["7T", "5T"],
 			xscissor: ["7M", "5M"],
 			zenheadbutt: ["7T", "5T"],
-		}
+		},
 	},
 	malaconda: {
 		learnset: {
@@ -72662,7 +75837,7 @@ let BattleLearnsets = {
 			recycle: ["7T"],
 			rest: ["7M", "5M"],
 			retaliate: ["7M", "5M"],
-			return : ["7M", "5M"],
+			return: ["7M", "5M"],
 			roar: ["7M", "5M"],
 			round: ["7M", "5M"],
 			scaryface: ["7L15", "7E", "5E"],
@@ -72695,7 +75870,7 @@ let BattleLearnsets = {
 			worryseed: ["7T", "5T"],
 			wrap: ["7L1", "5L1"],
 			wringout: ["7L57", "5L48"],
-		}
+		},
 	},
 	cawmodore: {
 		learnset: {
@@ -72741,7 +75916,7 @@ let BattleLearnsets = {
 			razorwind: ["7E", "5E"],
 			rest: ["7M", "5M"],
 			retaliate: ["7M", "5M"],
-			return : ["7M", "5M"],
+			return: ["7M", "5M"],
 			rocksmash: ["6M", "5M"],
 			round: ["7M", "5M"],
 			screech: ["7L18", "5L18"],
@@ -72764,7 +75939,7 @@ let BattleLearnsets = {
 			waterpulse: ["7T"],
 			watersport: ["7E", "5E"],
 			wingattack: ["7L22", "5L22"],
-		}
+		},
 	},
 	volkraken: {
 		learnset: {
@@ -72812,7 +75987,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "7L1", "6M", "6L1"],
 			reflecttype: ["7E"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			round: ["7M", "6M"],
 			scald: ["7M", "7L28", "6M", "6L28"],
 			scaryface: ["7E", "6E"],
@@ -72834,7 +76009,7 @@ let BattleLearnsets = {
 			whirlpool: ["7L14", "6L14"],
 			willowisp: ["7M", "6M"],
 			wringout: ["7L60"],
-		}
+		},
 	},
 	plasmanta: {
 		learnset: {
@@ -72874,7 +76049,7 @@ let BattleLearnsets = {
 			psywave: ["7L42", "6L42"],
 			raindance: ["7M", "6M"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			round: ["7M", "6M"],
 			shockwave: ["7E", "6T", "6E"],
 			signalbeam: ["7E", "6T", "6E"],
@@ -72898,7 +76073,7 @@ let BattleLearnsets = {
 			wideguard: ["7E", "6E"],
 			wildcharge: ["7M", "6M"],
 			zenheadbutt: ["7T"],
-		}
+		},
 	},
 	naviathan: {
 		learnset: {
@@ -72951,7 +76126,7 @@ let BattleLearnsets = {
 			refresh: ["7E", "6E"],
 			rest: ["7M", "6M"],
 			retaliate: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rocksmash: ["7M", "6M"],
 			round: ["7M", "6M"],
 			scald: ["7M", "6M"],
@@ -72976,7 +76151,7 @@ let BattleLearnsets = {
 			whirlpool: ["7E", "6E"],
 			wideguard: ["7L54", "7E", "6L54", "6E"],
 			wildcharge: ["7M", "6M"],
-		}
+		},
 	},
 	crucibelle: {
 		learnset: {
@@ -73013,7 +76188,7 @@ let BattleLearnsets = {
 			psychic: ["7M", "6M"],
 			reflect: ["7M", "7L25", "6M", "6L25"],
 			rest: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			rockblast: ["7L52", "6L52"],
 			rockpolish: ["7M", "6M"],
 			rockslide: ["7M", "7L36", "6M", "6L36"],
@@ -73048,7 +76223,7 @@ let BattleLearnsets = {
 			wonderroom: ["6T"],
 			woodhammer: ["7E", "6E"],
 			zenheadbutt: ["6T"],
-		}
+		},
 	},
 	kerfluffle: {
 		learnset: {
@@ -73095,7 +76270,7 @@ let BattleLearnsets = {
 			quickguard: ["7E", "6E"],
 			rest: ["7M", "7L41", "6M", "6L41"],
 			retaliate: ["7M", "6M"],
-			return : ["7M", "6M"],
+			return: ["7M", "6M"],
 			round: ["7M", "6M"],
 			scaryface: ["7L29", "6L29"],
 			scratch: ["7L1", "6L1"],
@@ -73117,7 +76292,10 @@ let BattleLearnsets = {
 			wish: ["7E", "6E"],
 			workup: ["7M"],
 			yawn: ["7L9", "6L9"],
-		}
+		},
+		eventData: [
+			{"generation": 6, "level": 16, "abilities": ["naturalcure"], "moves": ["celebrate", "holdhands", "fly", "metronome"], "pokeball": "cherishball"},
+		],
 	},
 	pajantom: {
 		learnset: {
@@ -73170,7 +76348,7 @@ let BattleLearnsets = {
 			psychup: ["7M"],
 			raindance: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockslide: ["7M"],
 			rocktomb: ["7M"],
 			round: ["7M"],
@@ -73195,7 +76373,7 @@ let BattleLearnsets = {
 			whirlpool: ["7E"],
 			wrap: ["7L1"],
 			zenheadbutt: ["7T"],
-		}
+		},
 	},
 	jumbao: {
 		learnset: {
@@ -73243,7 +76421,7 @@ let BattleLearnsets = {
 			protect: ["7M"],
 			psychup: ["7M", "7L24"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rototiller: ["7L10"],
 			round: ["7M"],
 			safeguard: ["7M"],
@@ -73266,7 +76444,7 @@ let BattleLearnsets = {
 			wonderroom: ["7T"],
 			woodhammer: ["7E"],
 			worryseed: ["7T"],
-		}
+		},
 	},
 	caribolt: {
 		learnset: {
@@ -73318,7 +76496,7 @@ let BattleLearnsets = {
 			rapidspin: ["7E"],
 			razorleaf: ["7L15"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			seedbomb: ["7T", "7L37"],
 			shockwave: ["7T"],
@@ -73345,7 +76523,10 @@ let BattleLearnsets = {
 			workup: ["7M"],
 			worryseed: ["7T"],
 			zapcannon: ["7L57"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 50, "moves": ["celebrate", "hornleech", "wildcharge", "metronome"], "pokeball": "cherishball"},
+		],
 	},
 	smokomodo: {
 		learnset: {
@@ -73401,7 +76582,7 @@ let BattleLearnsets = {
 			poisonjab: ["7M"],
 			protect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M"],
 			round: ["7M"],
 			sandtomb: ["7E"],
@@ -73425,7 +76606,10 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			willowisp: ["7M"],
 			workup: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 50, "moves": ["celebrate", "eruption", "magnitude", "camouflage"], "pokeball": "cherishball"},
+		],
 	},
 	snaelstrom: {
 		learnset: {
@@ -73472,7 +76656,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "7L32"],
 			rapidspin: ["7L1"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			safeguard: ["7M"],
 			scald: ["7M"],
@@ -73500,7 +76684,10 @@ let BattleLearnsets = {
 			whirlpool: ["7L1"],
 			wonderroom: ["7T"],
 			workup: ["7M"],
-		}
+		},
+		eventData: [
+			{"generation": 7, "level": 50, "moves": ["celebrate", "liquidation", "leechlife", "metronome"], "pokeball": "cherishball"},
+		],
 	},
 	equilibra: {
 		learnset: {
@@ -73549,7 +76736,7 @@ let BattleLearnsets = {
 			rapidspin: ["7L1"],
 			recycle: ["7T"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rockpolish: ["7M"],
 			rockslide: ["7M"],
 			rocktomb: ["7M"],
@@ -73564,7 +76751,7 @@ let BattleLearnsets = {
 			trickroom: ["7M"],
 			wonderroom: ["7T"],
 			workup: ["7M"],
-		}
+		},
 	},
 	syclant: {
 		learnset: {
@@ -73616,7 +76803,7 @@ let BattleLearnsets = {
 			protect: ["7M", "4M"],
 			raindance: ["7M", "4M"],
 			rest: ["7M", "4M"],
-			return : ["7M", "4M"],
+			return: ["7M", "4M"],
 			rockslide: ["7M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
 			round: ["7M"],
@@ -73642,7 +76829,7 @@ let BattleLearnsets = {
 			uturn: ["7M", "4M"],
 			waterpulse: ["6T", "4M"],
 			xscissor: ["7M", "7L32", "4M", "4L27"],
-		}
+		},
 	},
 	revenankh: {
 		learnset: {
@@ -73704,7 +76891,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "4M"],
 			rest: ["7M", "4M"],
 			retaliate: ["7M"],
-			return : ["7M", "4M"],
+			return: ["7M", "4M"],
 			revenge: ["7L33", "4L33"],
 			rockslide: ["7M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
@@ -73738,7 +76925,7 @@ let BattleLearnsets = {
 			workup: ["7M"],
 			wrap: ["7L1", "4L1"],
 			wringout: ["7L66", "4L9"],
-		}
+		},
 	},
 	pyroak: {
 		learnset: {
@@ -73803,7 +76990,7 @@ let BattleLearnsets = {
 			protect: ["7M", "4M"],
 			psybeam: ["7E", "4E"],
 			rest: ["7M", "4M"],
-			return : ["7M", "4M"],
+			return: ["7M", "4M"],
 			revenge: ["7E", "4E"],
 			roar: ["7M", "4M"],
 			rockclimb: ["4M"],
@@ -73834,7 +77021,7 @@ let BattleLearnsets = {
 			worryseed: ["7T", "4T"],
 			zapcannon: ["7L64", "4L60"],
 			zenheadbutt: ["7T"],
-		}
+		},
 	},
 	fidgit: {
 		learnset: {
@@ -73890,7 +77077,7 @@ let BattleLearnsets = {
 			rapidspin: ["7L9", "4L9"],
 			reflect: ["7M", "4M"],
 			rest: ["7M", "4M"],
-			return : ["7M", "4M"],
+			return: ["7M", "4M"],
 			rockclimb: ["4M"],
 			rockslide: ["7M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
@@ -73930,7 +77117,7 @@ let BattleLearnsets = {
 			wideguard: ["7L1"],
 			wish: ["7E", "4E"],
 			wonderroom: ["7T"],
-		}
+		},
 	},
 	stratagem: {
 		learnset: {
@@ -73980,7 +77167,7 @@ let BattleLearnsets = {
 			quickguard: ["7L1"],
 			raindance: ["7M", "4M"],
 			rest: ["7M", "4M"],
-			return : ["7M", "4M"],
+			return: ["7M", "4M"],
 			rockblast: ["7L13", "4L15"],
 			rockclimb: ["4M"],
 			rockpolish: ["7M", "4M"],
@@ -74009,7 +77196,7 @@ let BattleLearnsets = {
 			vacuumwave: ["7L60", "4T"],
 			weatherball: ["7L1", "4L1"],
 			zenheadbutt: ["7T"],
-		}
+		},
 	},
 	arghonaut: {
 		learnset: {
@@ -74065,7 +77252,7 @@ let BattleLearnsets = {
 			recover: ["7E", "4E"],
 			rest: ["7M", "4M"],
 			retaliate: ["7M"],
-			return : ["7M", "4M"],
+			return: ["7M", "4M"],
 			revenge: ["7L46", "4L41"],
 			roar: ["7M", "4M"],
 			rockslide: ["7M", "4M"],
@@ -74101,7 +77288,7 @@ let BattleLearnsets = {
 			workup: ["7M"],
 			wrap: ["7L1", "4L1"],
 			yawn: ["7L10", "4L1"],
-		}
+		},
 	},
 	kitsunoh: {
 		learnset: {
@@ -74166,7 +77353,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "4M"],
 			rest: ["7M", "4M"],
 			retaliate: ["7M"],
-			return : ["7M", "4M"],
+			return: ["7M", "4M"],
 			revenge: ["7L39", "4L44"],
 			roar: ["7M", "4M"],
 			round: ["7M"],
@@ -74200,7 +77387,7 @@ let BattleLearnsets = {
 			willowisp: ["7M", "4M"],
 			wish: ["7E"],
 			yawn: ["7E", "4E"],
-		}
+		},
 	},
 	cyclohm: {
 		learnset: {
@@ -74255,7 +77442,7 @@ let BattleLearnsets = {
 			protect: ["7M", "4M"],
 			raindance: ["7M", "7L37", "4M", "4L19"],
 			rest: ["7M", "4M"],
-			return : ["7M", "4M"],
+			return: ["7M", "4M"],
 			roar: ["7M", "4M"],
 			round: ["7M"],
 			sandstorm: ["7M", "4M"],
@@ -74290,7 +77477,7 @@ let BattleLearnsets = {
 			whirlwind: ["7L1", "4L1"],
 			wildcharge: ["7M"],
 			zapcannon: ["7L59", "4L59"],
-		}
+		},
 	},
 	colossoil: {
 		learnset: {
@@ -74349,7 +77536,7 @@ let BattleLearnsets = {
 			rapidspin: ["7L21", "4L17"],
 			rest: ["7M", "4M"],
 			retaliate: ["7M"],
-			return : ["7M", "4M"],
+			return: ["7M", "4M"],
 			roar: ["7M", "4M"],
 			rockslide: ["7M", "4M"],
 			rocksmash: ["7M", "4M"],
@@ -74381,7 +77568,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "4M"],
 			uturn: ["7M", "4M"],
 			wideguard: ["7E"],
-		}
+		},
 	},
 	krilowatt: {
 		learnset: {
@@ -74439,7 +77626,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "4M"],
 			recycle: ["7T", "4M"],
 			rest: ["7M", "4M"],
-			return : ["7M", "4M"],
+			return: ["7M", "4M"],
 			round: ["7M"],
 			scald: ["7M"],
 			secretpower: ["7T", "4M"],
@@ -74465,7 +77652,7 @@ let BattleLearnsets = {
 			waterpulse: ["7T", "4M"],
 			whirlpool: ["7M", "4M"],
 			wildcharge: ["7M", "7L53"],
-		}
+		},
 	},
 	voodoom: {
 		learnset: {
@@ -74533,7 +77720,7 @@ let BattleLearnsets = {
 			pursuit: ["7E", "4E"],
 			rest: ["7M", "4M"],
 			retaliate: ["7M"],
-			return : ["7M", "4M"],
+			return: ["7M", "4M"],
 			revenge: ["7L1", "4L1"],
 			rockslide: ["7M", "4M"],
 			rocksmash: ["7M", "4M"],
@@ -74564,7 +77751,7 @@ let BattleLearnsets = {
 			vacuumwave: ["4T"],
 			workup: ["7M"],
 			wrap: ["7L1", "4L1"],
-		}
+		},
 	},
 	syclar: {
 		learnset: {
@@ -74607,7 +77794,7 @@ let BattleLearnsets = {
 			protect: ["7M", "4M"],
 			raindance: ["7M", "4M"],
 			rest: ["7M", "4M"],
-			return : ["7M", "4M"],
+			return: ["7M", "4M"],
 			rocksmash: ["6M", "5M", "4M"],
 			round: ["7M"],
 			secretpower: ["7M", "4M"],
@@ -74631,7 +77818,7 @@ let BattleLearnsets = {
 			uturn: ["7M", "4M"],
 			waterpulse: ["6T", "4M"],
 			xscissor: ["7M", "7L31", "4M", "4L23"],
-		}
+		},
 	},
 	embirch: {
 		learnset: {
@@ -74679,7 +77866,7 @@ let BattleLearnsets = {
 			protect: ["7M", "4M"],
 			psybeam: ["7E", "4E"],
 			rest: ["7M", "4M"],
-			return : ["7M", "4M"],
+			return: ["7M", "4M"],
 			revenge: ["7E", "4E"],
 			roar: ["7M", "4M"],
 			rockclimb: ["4M"],
@@ -74707,7 +77894,7 @@ let BattleLearnsets = {
 			willowisp: ["7M", "4M"],
 			worryseed: ["7T", "4T"],
 			zapcannon: ["4L44"],
-		}
+		},
 	},
 	flarelm: {
 		learnset: {
@@ -74766,7 +77953,7 @@ let BattleLearnsets = {
 			protect: ["7M", "4M"],
 			psybeam: ["7E", "4E"],
 			rest: ["7M", "4M"],
-			return : ["7M", "4M"],
+			return: ["7M", "4M"],
 			revenge: ["7E", "4E"],
 			roar: ["7M", "4M"],
 			rockclimb: ["4M"],
@@ -74796,7 +77983,7 @@ let BattleLearnsets = {
 			worryseed: ["7T", "4T"],
 			zapcannon: ["4L52"],
 			zenheadbutt: ["7T"],
-		}
+		},
 	},
 	breezi: {
 		learnset: {
@@ -74840,7 +78027,7 @@ let BattleLearnsets = {
 			raindance: ["7M", "4M"],
 			reflect: ["7M", "4M"],
 			rest: ["7M", "7L44", "4M", "4L44"],
-			return : ["7M", "4M"],
+			return: ["7M", "4M"],
 			roleplay: ["7T"],
 			round: ["7M"],
 			safeguard: ["7M", "7L9", "4M", "4L9"],
@@ -74870,7 +78057,7 @@ let BattleLearnsets = {
 			venoshock: ["7M"],
 			whirlwind: ["7L25", "4L25"],
 			wish: ["7E", "4E"],
-		}
+		},
 	},
 	scratchet: {
 		learnset: {
@@ -74908,7 +78095,7 @@ let BattleLearnsets = {
 			rapidspin: ["7E", "5E"],
 			rest: ["7M", "7L53", "5M", "5L53"],
 			retaliate: ["7L57", "6M", "5M", "5L57"],
-			return : ["7M", "5M"],
+			return: ["7M", "5M"],
 			roar: ["7M", "7L23", "5M", "5L23"],
 			rockslide: ["7M", "5M"],
 			rocksmash: ["7T", "7L9", "6M", "5M", "5L18"],
@@ -74931,7 +78118,7 @@ let BattleLearnsets = {
 			toxic: ["7M", "5M"],
 			workup: ["7M", "7L27", "5M", "5L27"],
 			yawn: ["7E", "5E"],
-		}
+		},
 	},
 	necturine: {
 		learnset: {
@@ -74973,7 +78160,7 @@ let BattleLearnsets = {
 			psychic: ["7M", "5M"],
 			psychup: ["7M", "5M"],
 			rest: ["7M", "5M"],
-			return : ["7M", "5M"],
+			return: ["7M", "5M"],
 			round: ["7M", "5M"],
 			secretpower: ["7M"],
 			seedbomb: ["7T", "7L39"],
@@ -74995,7 +78182,7 @@ let BattleLearnsets = {
 			vinewhip: ["7L1", "5L1"],
 			willowisp: ["7M", "7L15", "5M", "5L19"],
 			worryseed: ["7T"],
-		}
+		},
 	},
 	cupra: {
 		learnset: {
@@ -75039,7 +78226,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "5M"],
 			rest: ["7M", "5M"],
 			retaliate: ["5M"],
-			return : ["7M", "5M"],
+			return: ["7M", "5M"],
 			roleplay: ["7T", "5T"],
 			round: ["7M", "5M"],
 			safeguard: ["7M", "7E", "5M", "5E"],
@@ -75068,7 +78255,7 @@ let BattleLearnsets = {
 			wonderroom: ["7T", "5T"],
 			xscissor: ["7M", "5M"],
 			zenheadbutt: ["7T", "5T", "5L54"],
-		}
+		},
 	},
 	argalis: {
 		learnset: {
@@ -75115,7 +78302,7 @@ let BattleLearnsets = {
 			reflect: ["7M", "7L57", "5M"],
 			rest: ["7M", "5M"],
 			retaliate: ["5M"],
-			return : ["7M", "5M"],
+			return: ["7M", "5M"],
 			roleplay: ["7T", "5T"],
 			round: ["7M", "5M"],
 			safeguard: ["7M", "7E", "5M", "5E"],
@@ -75148,7 +78335,7 @@ let BattleLearnsets = {
 			wonderroom: ["7T", "5T"],
 			xscissor: ["7M", "5M"],
 			zenheadbutt: ["7T", "5T"],
-		}
+		},
 	},
 	brattler: {
 		learnset: {
@@ -75190,7 +78377,7 @@ let BattleLearnsets = {
 			recycle: ["7T"],
 			rest: ["7M", "5M"],
 			retaliate: ["7M", "5M"],
-			return : ["7M", "5M"],
+			return: ["7M", "5M"],
 			roar: ["7M", "5M"],
 			round: ["7M", "5M"],
 			scaryface: ["7L11", "7E", "5E"],
@@ -75222,7 +78409,7 @@ let BattleLearnsets = {
 			worryseed: ["7T", "5T"],
 			wrap: ["7L1", "5L1"],
 			wringout: ["7L49", "5L44"],
-		}
+		},
 	},
 	cawdet: {
 		learnset: {
@@ -75264,7 +78451,7 @@ let BattleLearnsets = {
 			razorwind: ["5E"],
 			rest: ["5M"],
 			retaliate: ["5M"],
-			return : ["5M"],
+			return: ["5M"],
 			rocksmash: ["5M"],
 			round: ["5M"],
 			screech: ["5L18"],
@@ -75284,7 +78471,7 @@ let BattleLearnsets = {
 			toxic: ["5M"],
 			watersport: ["5E"],
 			wingattack: ["5L22"],
-		}
+		},
 	},
 	volkritter: {
 		learnset: {
@@ -75322,7 +78509,7 @@ let BattleLearnsets = {
 			raindance: ["6M"],
 			reflect: ["6M", "6L4"],
 			rest: ["6M"],
-			return : ["6M"],
+			return: ["6M"],
 			round: ["6M"],
 			scald: ["6M", "6L28"],
 			scaryface: ["6E"],
@@ -75341,7 +78528,7 @@ let BattleLearnsets = {
 			waterpulse: ["6E"],
 			whirlpool: ["6L14"],
 			willowisp: ["6M"],
-		}
+		},
 	},
 	snugglow: {
 		learnset: {
@@ -75371,7 +78558,7 @@ let BattleLearnsets = {
 			psywave: ["6L39"],
 			raindance: ["6M"],
 			rest: ["6M"],
-			return : ["6M"],
+			return: ["6M"],
 			round: ["6M"],
 			shockwave: ["6E"],
 			signalbeam: ["6E"],
@@ -75392,7 +78579,7 @@ let BattleLearnsets = {
 			waterpulse: ["6E"],
 			wideguard: ["6E"],
 			wildcharge: ["6M"],
-		}
+		},
 	},
 	floatoy: {
 		learnset: {
@@ -75435,7 +78622,7 @@ let BattleLearnsets = {
 			raindance: ["6M"],
 			refresh: ["6E"],
 			rest: ["6M"],
-			return : ["6M"],
+			return: ["6M"],
 			rocksmash: ["6M"],
 			round: ["6M"],
 			scald: ["6M"],
@@ -75456,7 +78643,7 @@ let BattleLearnsets = {
 			waterpulse: ["6T", "6E"],
 			whirlpool: ["6E"],
 			wideguard: ["6E"],
-		}
+		},
 	},
 	caimanoe: {
 		learnset: {
@@ -75503,7 +78690,7 @@ let BattleLearnsets = {
 			refresh: ["6E"],
 			rest: ["6M"],
 			retaliate: ["6M"],
-			return : ["6M"],
+			return: ["6M"],
 			rocksmash: ["6M"],
 			round: ["6M"],
 			scald: ["6M"],
@@ -75527,7 +78714,7 @@ let BattleLearnsets = {
 			waterpulse: ["6T", "6E"],
 			whirlpool: ["6E"],
 			wideguard: ["6E"],
-		}
+		},
 	},
 	pluffle: {
 		learnset: {
@@ -75558,7 +78745,7 @@ let BattleLearnsets = {
 			quickguard: ["6E"],
 			rest: ["6M", "6L31"],
 			retaliate: ["6M"],
-			return : ["6M"],
+			return: ["6M"],
 			round: ["6M"],
 			scaryface: ["6L20"],
 			scratch: ["6L1"],
@@ -75577,7 +78764,7 @@ let BattleLearnsets = {
 			wideguard: ["6E"],
 			wish: ["6E"],
 			yawn: ["6L7"],
-		}
+		},
 	},
 	rebble: {
 		learnset: {
@@ -75646,7 +78833,7 @@ let BattleLearnsets = {
 			trick: ["7T", "4T"],
 			vacuumwave: ["7L60", "4T"],
 			zenheadbutt: ["7T"],
-		}
+		},
 	},
 	tactite: {
 		learnset: {
@@ -75718,7 +78905,7 @@ let BattleLearnsets = {
 			trick: ["7T", "4T"],
 			vacuumwave: ["7L60", "4T"],
 			zenheadbutt: ["7T"],
-		}
+		},
 	},
 	privatyke: {
 		learnset: {
@@ -75770,7 +78957,7 @@ let BattleLearnsets = {
 			recover: ["7E", "4E"],
 			rest: ["7M", "4M"],
 			retaliate: ["7M"],
-			return : ["7M", "4M"],
+			return: ["7M", "4M"],
 			revenge: ["7L42", "4L41"],
 			roar: ["7M", "4M"],
 			rockslide: ["7M", "4M"],
@@ -75805,7 +78992,7 @@ let BattleLearnsets = {
 			workup: ["7M"],
 			wrap: ["7L1", "4L1"],
 			yawn: ["7L10", "4L1"],
-		}
+		},
 	},
 	voodoll: {
 		learnset: {
@@ -75857,7 +79044,7 @@ let BattleLearnsets = {
 			pursuit: ["7E", "4E"],
 			rest: ["7M", "4M"],
 			retaliate: ["7M"],
-			return : ["7M", "4M"],
+			return: ["7M", "4M"],
 			rocksmash: ["7M", "4M"],
 			round: ["7M"],
 			screech: ["7E", "4E"],
@@ -75884,7 +79071,7 @@ let BattleLearnsets = {
 			vacuumwave: ["4T"],
 			workup: ["7M"],
 			wrap: ["7L1", "4L1"],
-		}
+		},
 	},
 	mumbao: {
 		learnset: {
@@ -75920,7 +79107,7 @@ let BattleLearnsets = {
 			protect: ["7M"],
 			psychup: ["7M", "7L26"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			rototiller: ["7L8"],
 			round: ["7M"],
 			safeguard: ["7M"],
@@ -75938,7 +79125,7 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			wish: ["7L22"],
 			worryseed: ["7T"],
-		}
+		},
 	},
 	fawnifer: {
 		learnset: {
@@ -75976,7 +79163,7 @@ let BattleLearnsets = {
 			rapidspin: ["7E"],
 			razorleaf: ["7L14"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			seedbomb: ["7T", "7L34"],
 			signalbeam: ["7L46"],
@@ -75999,7 +79186,7 @@ let BattleLearnsets = {
 			workup: ["7M"],
 			worryseed: ["7T"],
 			zapcannon: ["7L50"],
-		}
+		},
 	},
 	electrelk: {
 		learnset: {
@@ -76035,7 +79222,7 @@ let BattleLearnsets = {
 			quickattack: ["7L11"],
 			razorleaf: ["7L14"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			seedbomb: ["7T", "7L35"],
 			shockwave: ["7T"],
@@ -76061,7 +79248,7 @@ let BattleLearnsets = {
 			workup: ["7M"],
 			worryseed: ["7T"],
 			zapcannon: ["7L53"],
-		}
+		},
 	},
 	smogecko: {
 		learnset: {
@@ -76104,7 +79291,7 @@ let BattleLearnsets = {
 			poisonjab: ["7M"],
 			protect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M"],
 			round: ["7M"],
 			sandtomb: ["7E"],
@@ -76126,7 +79313,7 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			willowisp: ["7M"],
 			workup: ["7M"],
-		}
+		},
 	},
 	smoguana: {
 		learnset: {
@@ -76164,7 +79351,7 @@ let BattleLearnsets = {
 			poisonjab: ["7M"],
 			protect: ["7M"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			roar: ["7M"],
 			round: ["7M"],
 			scratch: ["7L1"],
@@ -76186,7 +79373,7 @@ let BattleLearnsets = {
 			toxic: ["7M"],
 			willowisp: ["7M"],
 			workup: ["7M"],
-		}
+		},
 	},
 	swirlpool: {
 		learnset: {
@@ -76225,7 +79412,7 @@ let BattleLearnsets = {
 			psychoshift: ["7E"],
 			raindance: ["7M", "7L29"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			safeguard: ["7M"],
 			scald: ["7M"],
@@ -76251,7 +79438,7 @@ let BattleLearnsets = {
 			waterpledge: ["7T"],
 			waterpulse: ["7T"],
 			workup: ["7M"],
-		}
+		},
 	},
 	coribalis: {
 		learnset: {
@@ -76288,7 +79475,7 @@ let BattleLearnsets = {
 			psychic: ["7M", "7L38"],
 			raindance: ["7M", "7L30"],
 			rest: ["7M"],
-			return : ["7M"],
+			return: ["7M"],
 			round: ["7M"],
 			safeguard: ["7M"],
 			scald: ["7M"],
@@ -76312,7 +79499,120 @@ let BattleLearnsets = {
 			waterpulse: ["7T"],
 			wonderroom: ["7T"],
 			workup: ["7M"],
-		}
+		},
+	},
+	pokestarsmeargle: {
+		eventData: [
+			{"generation": 5, "level": 60, "gender": "M", "abilities": ["owntempo"], "moves": ["mindreader", "guillotine", "tailwhip", "gastroacid"]},
+			{"generation": 5, "level": 30, "gender": "M", "abilities": ["owntempo"], "moves": ["outrage", "magiccoat"]},
+			{"generation": 5, "level": 99, "gender": "M", "abilities": ["owntempo"], "moves": ["nastyplot", "sheercold", "attract", "shadowball"]},
+		],
+	},
+	pokestarufo: {
+		eventData: [
+			{"generation": 5, "level": 38, "moves": ["bubblebeam", "counter", "recover", "signalbeam"]},
+		],
+	},
+	pokestarufo2: {
+		eventData: [
+			{"generation": 5, "level": 47, "moves": ["darkpulse", "flamethrower", "hyperbeam", "icebeam"]},
+		],
+	},
+	pokestarbrycenman: {
+		eventData: [
+			{"generation": 5, "level": 56, "moves": ["icebeam", "nightshade", "psychic", "uturn"]},
+		],
+	},
+	pokestarmt: {
+		eventData: [
+			{"generation": 5, "level": 63, "moves": ["earthquake", "ironhead", "spark", "surf"]},
+		],
+	},
+	pokestarmt2: {
+		eventData: [
+			{"generation": 5, "level": 72, "moves": ["dragonpulse", "flamethrower", "metalburst", "thunderbolt"]},
+		],
+	},
+	pokestartransport: {
+		eventData: [
+			{"generation": 5, "level": 20, "moves": ["clearsmog", "flameburst", "discharge"]},
+			{"generation": 5, "level": 50, "moves": ["iciclecrash", "overheat", "signalbeam"]},
+		],
+	},
+	pokestargiant: {
+		eventData: [
+			{"generation": 5, "level": 99, "moves": ["crushgrip", "focuspunch", "growl", "rage"]},
+		],
+	},
+	pokestargiant2: {
+		eventData: [
+			{"generation": 5, "level": 99, "moves": ["crushgrip", "doubleslap", "teeterdance", "stomp"]},
+		],
+	},
+	pokestarhumanoid: {
+		eventData: [
+			{"generation": 5, "level": 20, "gender": "M", "moves": ["scratch", "shadowclaw", "acid"]},
+			{"generation": 5, "level": 30, "gender": "M", "moves": ["darkpulse", "shadowclaw", "slash"]},
+			{"generation": 5, "level": 20, "gender": "F", "moves": ["acid", "nightslash"]},
+			{"generation": 5, "level": 20, "gender": "M", "moves": ["acid", "doubleedge"]},
+			{"generation": 5, "level": 20, "gender": "F", "moves": ["acid", "rockslide"]},
+			{"generation": 5, "level": 20, "gender": "M", "moves": ["acid", "thudnerpunch"]},
+			{"generation": 5, "level": 20, "gender": "F", "moves": ["acid", "icepunch"]},
+			{"generation": 5, "level": 40, "gender": "F", "moves": ["explosion", "selfdestruct"]},
+			{"generation": 5, "level": 40, "gender": "F", "moves": ["shadowclaw", "scratch"]},
+			{"generation": 5, "level": 40, "gender": "M", "moves": ["nightslash", "scratch"]},
+			{"generation": 5, "level": 40, "gender": "M", "moves": ["doubleedge", "scratch"]},
+			{"generation": 5, "level": 40, "gender": "F", "moves": ["rockslide", "scratch"]},
+		],
+	},
+	pokestarmonster: {
+		eventData: [
+			{"generation": 5, "level": 50, "moves": ["darkpulse", "confusion"]},
+		],
+	},
+	pokestarf00: {
+		eventData: [
+			{"generation": 5, "level": 10, "moves": ["teeterdance", "growl", "flail", "chatter"]},
+			{"generation": 5, "level": 58, "moves": ["needlearm", "headsmash", "headbutt", "defensecurl"]},
+			{"generation": 5, "level": 60, "moves": ["hammerarm", "perishsong", "ironhead", "thrash"]},
+		],
+	},
+	pokestarf002: {
+		eventData: [
+			{"generation": 5, "level": 52, "moves": ["flareblitz", "ironhead", "psychic", "wildcharge"]},
+		],
+	},
+	pokestarspirit: {
+		eventData: [
+			{"generation": 5, "level": 99, "moves": ["crunch", "dualchop", "slackoff", "swordsdance"]},
+		],
+	},
+	pokestarblackdoor: {
+		eventData: [
+			{"generation": 5, "level": 53, "moves": ["luckychant", "amnesia", "ingrain", "rest"]},
+			{"generation": 5, "level": 70, "moves": ["batonpass", "counter", "flamecharge", "toxic"]},
+		],
+	},
+	pokestarwhitedoor: {
+		eventData: [
+			{"generation": 5, "level": 7, "moves": ["batonpass", "inferno", "mirrorcoat", "toxic"]},
+		],
+	},
+	pokestarblackbelt: {
+		eventData: [
+			{"generation": 5, "level": 30, "moves": ["focuspunch", "machpunch", "taunt"]},
+			{"generation": 5, "level": 40, "moves": ["machpunch", "hammerarm", "jumpkick"]},
+		],
+	},
+	pokestargiantpropo2: {
+		eventData: [
+			{"generation": 5, "level": 99, "moves": ["crushgrip", "doubleslap", "teeterdance", "stomp"]},
+		],
+	},
+	pokestarufopropu2: {
+		eventData: [
+			{"generation": 5, "level": 47, "moves": ["darkpulse", "flamethrower", "hyperbeam", "icebeam"]},
+		],
 	},
 };
 

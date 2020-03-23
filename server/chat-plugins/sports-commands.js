@@ -77,23 +77,38 @@ exports.commands = {
 + National Dex Legacy rules
 + moveset additions from the Pokemon Home leaks are allowed
 
-(Note: all leaked moves will show up as Illegal in the Teambuilder, as the client won't recognize custom moveset additions. This is just a visual issue, all moves will validate as intended)
+__NOTE: all leaked moves will show up as Illegal in the Teambuilder, as the client won't recognize custom moveset additions. This is just a visual issue, all moves will validate as intended__
 
 
 
 All Draft formats use a DS style timer (100s per turn, auto pick on timeout)`);
 	},
 	
-	sportsmod(target, room, user, connection) {
-		return connection.popup(`**Mod Permissions**:
-If you're a league owner/admin, you can request the Big Fan role to gain timer and modjoin permissions.
-Please contact an Admin, Leader or Moderator here or on Discord.`);
-	},
-	
 	sportsavatar(target, room, user, connection) {
 		return connection.popup(`**Custom Avatars**:
 You can request a custom avatar by simply providing us with an 80x80 image.
-Please contact an Admin, Leader or Moderator here or on Discord.`);
+Please contact us through the #avatar-requests channel on our Discord server.`);
+	},
+	
+	sportsstaff(target, room, user, connection) {
+		return connection.popup(`**Administrators** (~):
+Free Baton Pass (GoodMorningCrono#1726)
+Jackinev (Jackinev#9756)
+
+**Leaders** (&):
+Beezle (Beezle#2412)
+Miocchi (Mio#1041)
+Princess Furfrou (Furfrou#1049)
+
+**Moderators** (@):
+angryairair (woodlandapple#5780)
+Kaltchre (Kalt#7849)
+KmjNext (KmjNext#8246)
+Venuaur (Venuaur#2153)
+
+
+__NOTE: If you're a league owner/admin, you can request the Big Fan role to gain timer and modjoin permissions.
+Please contact us over on Discord.__`);
 	},
 	
 };

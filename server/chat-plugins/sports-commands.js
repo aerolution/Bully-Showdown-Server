@@ -77,7 +77,7 @@ exports.commands = {
 + National Dex Legacy rules
 + moveset additions from the Pokemon Home leaks are allowed
 
-__NOTE: all leaked moves will show up as Illegal in the Teambuilder, as the client won't recognize custom moveset additions. This is just a visual issue, all moves will validate as intended__
+__NOTE: all DLC moves will show up as Illegal in the Teambuilder, as the client won't recognize custom moveset additions. This is just a visual issue, all moves will validate as intended__
 
 
 

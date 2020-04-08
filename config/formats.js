@@ -662,6 +662,7 @@ let Formats = [
 		team: 'random',
 		ruleset: ['PotD', 'Obtainable', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
 	},
+	{
 		name: "[Gen 8] Random Battle (Blitz)",
 
 		mod: 'gen8',

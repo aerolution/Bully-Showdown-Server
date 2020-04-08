@@ -2,6 +2,7 @@
  * Pokemon Showdown log viewer
  *
  * by Zarel
+ * @license MIT
  */
 
 import {FS} from "../../lib/fs";
@@ -123,7 +124,7 @@ const LogReader = new class {
 		return prevMonth.toISOString().slice(0, 7);
 	}
 	today() {
-		return new Date().toISOString().slice(0, 10);
+		return Chat.toTimestamp(new Date()).slice(0, 10);
 	}
 };
 
@@ -190,6 +191,12 @@ const LogViewer = new class {
 			if (message.startsWith(`/log `)) {
 				return `<div class="chat"><small>[${timestamp}] </small><q>${Chat.formatText(message.slice(5))}</q></div>`;
 			}
+			if (message.startsWith(`/raw `)) {
+				return `<div class="notice">${message.slice(5)}</div>`;
+			}
+			if (message.startsWith(`/uhtml `) || message.startsWith(`/uhtmlchange `)) {
+				return `<div class="notice">${message.slice(message.indexOf(',') + 1)}</div>`;
+			}
 			const group = name.charAt(0) !== ' ' ? `<small>${name.charAt(0)}</small>` : ``;
 			return `<div class="chat"><small>[${timestamp}] </small><strong>${group}${name.slice(1)}:</strong> <q>${Chat.formatText(message)}</q></div>`;
 		}
@@ -197,7 +204,7 @@ const LogViewer = new class {
 			const [, html] = Chat.splitFirst(line, '|', 1);
 			return `<div class="notice">${html}</div>`;
 		}
-		case 'uhtml': {
+		case 'uhtml': case 'uhtmlchange': {
 			const [, , html] = Chat.splitFirst(line, '|', 2);
 			return `<div class="notice">${html}</div>`;
 		}
@@ -206,7 +213,7 @@ const LogViewer = new class {
 		case '':
 			return `<div class="chat"><small>[${timestamp}] </small>${Chat.escapeHTML(line.slice(1))}</div>`;
 		default:
-			return `<div class="chat"><small>[${timestamp}] </small>${'|' + Chat.escapeHTML(line)}</div>`;
+			return `<div class="chat"><small>[${timestamp}] </small><code>${'|' + Chat.escapeHTML(line)}</code></div>`;
 		}
 	}
 	async month(roomid: RoomID, month: string) {
@@ -361,6 +368,8 @@ export const pages: PageTable = {
 
 export const commands: ChatCommands = {
 	chatlog(target, room, user) {
-		this.parse(`/join view-chatlog-${room.roomid}--today`);
+		const targetRoom = target ? Rooms.search(target) : room;
+		const roomid = targetRoom ? targetRoom.roomid : target;
+		this.parse(`/join view-chatlog-${roomid}--today`);
 	},
 };

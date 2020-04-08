@@ -77,11 +77,15 @@ exports.commands = {
 + National Dex Legacy rules
 + moveset additions from the Pokemon Home leaks are allowed
 
-__NOTE: all DLC moves will show up as Illegal in the Teambuilder, as the client won't recognize custom moveset additions. This is just a visual issue, all moves will validate as intended__
+**LC National Dex DLC**:
++ LC National Dex rules
++ moveset additions from the Pokemon Home leaks are allowed
+
+__NOTE: all DLC moves will show up as Illegal in the Teambuilder, as the client won't recognize custom moveset additions. This is just a visual issue, all moves will validate as intended.__
 
 
 
-All Draft formats use a DS style timer (100s per turn, auto pick on timeout)`);
+All Draft formats use a DS style timer (**100s per turn, auto pick on timeout**).`);
 	},
 	
 	sportsavatar(target, room, user, connection) {

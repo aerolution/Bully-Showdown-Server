@@ -327,7 +327,7 @@ export abstract class BasicRoom {
 	/**
 	 * Gets the group symbol of a user in the room.
 	 */
-	getAuth(user: User): GroupSymbol {
+	getAuth(user: {id: ID, group: GroupSymbol} | User): GroupSymbol {
 		if (this.auth && user.id in this.auth) {
 			return this.auth[user.id];
 		}
@@ -1070,6 +1070,7 @@ export class BasicChatRoom extends BasicRoom {
 	logUserStatsInterval: NodeJS.Timer | null;
 	expireTimer: NodeJS.Timer | null;
 	userList: string;
+	rulesLink: string | null;
 	reportJoinsInterval: NodeJS.Timer | null;
 	game: RoomGame | null;
 	battle: RoomBattle | null;
@@ -1136,6 +1137,7 @@ export class BasicChatRoom extends BasicRoom {
 		if (this.batchJoins) {
 			this.userList = this.getUserList();
 		}
+		this.rulesLink = null;
 		this.reportJoinsInterval = null;
 		this.tour = null;
 		this.game = null;
@@ -1159,10 +1161,10 @@ export class BasicChatRoom extends BasicRoom {
 		this.log.modlog(message);
 		return this;
 	}
-	hideText(userids: ID[]) {
-		const cleared = this.log.clearText(userids);
+	hideText(userids: ID[], lineCount = 0) {
+		const cleared = this.log.clearText(userids, lineCount);
 		for (const userid of cleared) {
-			this.send(`|unlink|hide|${userid}`);
+			this.send(`|unlink|hide|${userid}|${lineCount}`);
 		}
 		this.update();
 	}

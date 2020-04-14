@@ -527,7 +527,7 @@ let BattleFormatsData = {
 	},
 	slowpokegalar: {
 		unreleasedHidden: true,
-		tier: "LC",
+		tier: "NU",
 		doublesTier: "(DUU)",
 	},
 	slowbro: {
@@ -1097,7 +1097,7 @@ let BattleFormatsData = {
 	},
 	noctowl: {
 		randomBattleMoves: ["airslash", "defog", "heatwave", "hurricane", "nastyplot", "roost"],
-		tier: "PU",
+		tier: "PUBL",
 		doublesTier: "(DUU)",
 	},
 	ledyba: {
@@ -3927,7 +3927,7 @@ let BattleFormatsData = {
 	},
 	silvallyfire: {
 		randomBattleMoves: ["crunch", "ironhead", "multiattack", "swordsdance"],
-		tier: "PU",
+		tier: "PUBL",
 		doublesTier: "(DUU)",
 	},
 	silvallyflying: {
@@ -3947,7 +3947,7 @@ let BattleFormatsData = {
 	},
 	silvallyground: {
 		randomBattleMoves: ["defog", "flamethrower", "icebeam", "multiattack", "partingshot", "toxic"],
-		tier: "PU",
+		tier: "PUBL",
 		doublesTier: "(DUU)",
 	},
 	silvallyice: {
@@ -4165,7 +4165,7 @@ let BattleFormatsData = {
 		doublesTier: "DOU",
 	},
 	meltan: {
-		tier: "LC",
+		tier: "RU",
 		doublesTier: "(DUU)",
 	},
 	melmetal: {
@@ -4369,7 +4369,7 @@ let BattleFormatsData = {
 	},
 	barraskewda: {
 		randomBattleMoves: ["closecombat", "crunch", "drillrun", "liquidation", "poisonjab"],
-		tier: "RU",
+		tier: "RUBL",
 		doublesTier: "(DUU)",
 	},
 	toxel: {
@@ -4398,7 +4398,7 @@ let BattleFormatsData = {
 	},
 	centiskorch: {
 		randomBattleMoves: ["coil", "firelash", "knockoff", "leechlife", "powerwhip"],
-		tier: "RU",
+		tier: "RUBL",
 		doublesTier: "DUU",
 	},
 	centiskorchgmax: {

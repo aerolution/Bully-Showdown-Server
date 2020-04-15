@@ -102,13 +102,14 @@ Jackinev (Jackinev#9756)
 **Leaders** (&):
 Beezle (Beezle#2412)
 Miocchi (Mio#1041)
-Princess Furfrou (Furfrou#1049)
+Princess Furfrou (Princess#6721)
 
 **Moderators** (@):
 angryairair (woodlandapple#5780)
 Kaltchre (Kalt#7849)
 KmjNext (KmjNext#8246)
 Venuaur (Venuaur#2153)
+
 
 
 __NOTE: If you're a league owner/admin, you can request the Big Fan role to gain timer and modjoin permissions. Please contact us over on Discord.__`);

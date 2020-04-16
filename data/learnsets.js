@@ -70092,6 +70092,7 @@ let BattleLearnsets = {
 		},
 		eventData: [
 			{"generation": 7, "level": 60, "moves": ["naturesmadness", "discharge", "agility", "electroball"]},
+			{"generation": 7, "level": 60, "isHidden": true, "moves": ["naturesmadness", "discharge", "agility", "electroball"]},
 			{"generation": 7, "level": 60, "shiny": true, "nature": "Timid", "moves": ["naturesmadness", "discharge", "agility", "electroball"], "pokeball": "cherishball"},
 			{"generation": 7, "level": 60, "shiny": true, "moves": ["thunderbolt", "dazzlinggleam", "voltswitch", "naturesmadness"], "pokeball": "cherishball"},
 		],
@@ -70173,6 +70174,7 @@ let BattleLearnsets = {
 		},
 		eventData: [
 			{"generation": 7, "level": 60, "moves": ["naturesmadness", "extrasensory", "flatter", "moonblast"]},
+			{"generation": 7, "level": 60, "isHidden": true, "moves": ["naturesmadness", "extrasensory", "flatter", "moonblast"]},
 			{"generation": 7, "level": 60, "shiny": true, "moves": ["naturesmadness", "extrasensory", "flatter", "moonblast"], "pokeball": "cherishball"},
 		],
 		eventOnly: true,
@@ -70262,6 +70264,7 @@ let BattleLearnsets = {
 		},
 		eventData: [
 			{"generation": 7, "level": 60, "moves": ["naturesmadness", "zenheadbutt", "megahorn", "skullbash"]},
+			{"generation": 7, "level": 60, "isHidden": true, "moves": ["naturesmadness", "zenheadbutt", "megahorn", "skullbash"]},
 			{"generation": 7, "level": 60, "shiny": true, "moves": ["naturesmadness", "zenheadbutt", "megahorn", "skullbash"], "pokeball": "cherishball"},
 		],
 		eventOnly: true,
@@ -70341,6 +70344,7 @@ let BattleLearnsets = {
 		},
 		eventData: [
 			{"generation": 7, "level": 60, "moves": ["naturesmadness", "muddywater", "aquaring", "hydropump"]},
+			{"generation": 7, "level": 60, "isHidden": true, "moves": ["naturesmadness", "muddywater", "aquaring", "hydropump"]},
 			{"generation": 7, "level": 60, "shiny": true, "moves": ["naturesmadness", "muddywater", "aquaring", "hydropump"], "pokeball": "cherishball"},
 		],
 		eventOnly: true,
@@ -74932,6 +74936,7 @@ let BattleLearnsets = {
 		},
 		eventData: [
 			{"generation": 8, "level": 10, "shiny": 1, "perfectIVs": 3, "moves": ["tackle", "thundershock", "charge"], "pokeball": "pokeball"},
+			{"generation": 8, "level": 10, "shiny": 1, "perfectIVs": 3, "isHidden": true, "moves": ["tackle", "thundershock", "charge"], "pokeball": "pokeball"},
 		],
 		eventOnly: true,
 	},
@@ -74992,6 +74997,7 @@ let BattleLearnsets = {
 		},
 		eventData: [
 			{"generation": 8, "level": 10, "shiny": 1, "perfectIVs": 3, "moves": ["powdersnow", "thundershock", "charge"], "pokeball": "pokeball"},
+			{"generation": 8, "level": 10, "shiny": 1, "perfectIVs": 3, "isHidden": true, "moves": ["powdersnow", "thundershock", "charge"], "pokeball": "pokeball"},
 		],
 		eventOnly: true,
 	},
@@ -75049,6 +75055,7 @@ let BattleLearnsets = {
 		},
 		eventData: [
 			{"generation": 8, "level": 10, "shiny": 1, "perfectIVs": 3, "moves": ["tackle", "watergun", "protect"], "pokeball": "pokeball"},
+			{"generation": 8, "level": 10, "shiny": 1, "perfectIVs": 3, "isHidden": true, "moves": ["tackle", "watergun", "protect"], "pokeball": "pokeball"},
 		],
 		eventOnly: true,
 	},
@@ -75101,6 +75108,7 @@ let BattleLearnsets = {
 		},
 		eventData: [
 			{"generation": 8, "level": 10, "shiny": 1, "perfectIVs": 3, "moves": ["powdersnow", "watergun", "protect"], "pokeball": "pokeball"},
+			{"generation": 8, "level": 10, "shiny": 1, "perfectIVs": 3, "isHidden": true, "moves": ["powdersnow", "watergun", "protect"], "pokeball": "pokeball"},
 		],
 		eventOnly: true,
 	},

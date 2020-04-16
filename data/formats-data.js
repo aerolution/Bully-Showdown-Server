@@ -522,7 +522,7 @@ let BattleFormatsData = {
 		doublesTier: "(DUU)",
 	},
 	slowpoke: {
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 		tier: "Unreleased",
 	},
 	slowpokegalar: {
@@ -4174,7 +4174,7 @@ let BattleFormatsData = {
 		doublesTier: "DOU",
 	},
 	melmetalgmax: {
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 		tier: "Unreleased",
 	},
 	grookey: {
@@ -4600,7 +4600,7 @@ let BattleFormatsData = {
 		doublesTier: "DUber",
 	},
 	eternatuseternamax: {
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 		tier: "Illegal",
 	},
 	missingno: {

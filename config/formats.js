@@ -238,7 +238,6 @@ let Formats = [
 		name: "[Gen 7] Draft League",
 
 		mod: 'gen7',
-		searchShow: false,
 		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview'],
 	},
 	{
@@ -246,7 +245,6 @@ let Formats = [
 
 		mod: 'gen7',
 		maxForcedLevel: 50,
-		searchShow: false,
 		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview', 'VGC Timer'],
 	},
 	{
@@ -254,7 +252,6 @@ let Formats = [
 
 		mod: 'gen7',
 		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
-		searchShow: false,
 		ruleset: ['[Gen 7] Draft League'],
 	},
 	{
@@ -262,7 +259,6 @@ let Formats = [
 
 		mod: 'gen7',
 		maxLevel: 5,
-		searchShow: false,
 		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview', 'Double Item Clause', 'Little Cup'],
 		banlist: ['Eevium Z', 'Dragon Rage', 'Sonic Boom'],
 	},
@@ -270,7 +266,6 @@ let Formats = [
 		name: "[Gen 7] Unrestricted Draft League",
 
 		mod: 'gen7',
-		searchShow: false,
 		ruleset: ['-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', 'Draft', 'Team Preview'],
 	},
 	

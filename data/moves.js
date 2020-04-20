@@ -1584,7 +1584,7 @@ let BattleMovedex = {
 		accuracy: 100,
 		basePower: 80,
 		category: "Physical",
-desc: "Damage is calculated using the user's Defense stat as its Attack, including stat stage changes. Other effects that modify the Attack stat are used as normal.",
+		desc: "Damage is calculated using the user's Defense stat as its Attack, including stat stage changes. Other effects that modify the Attack stat are used as normal.",
 		shortDesc: "Uses user's Def stat as Atk in damage calculation.",
 		id: "bodypress",
 		isViable: true,
@@ -2321,7 +2321,7 @@ desc: "Damage is calculated using the user's Defense stat as its Attack, includi
 			onRestart(pokemon) {
 				this.effectData.duration = 2;
 			},
-			onBasePowerPriority: 3,
+			onBasePowerPriority: 9,
 			onBasePower(basePower, attacker, defender, move) {
 				if (move.type === 'Electric') {
 					this.debug('charge boost');
@@ -4553,6 +4553,7 @@ desc: "Damage is calculated using the user's Defense stat as its Attack, includi
 					return null;
 				}
 			},
+			onBasePowerPriority: 6,
 			onBasePower(basePower, attacker, defender, move) {
 				if (move.type === 'Electric' && attacker.isGrounded() && !attacker.isSemiInvulnerable()) {
 					this.debug('electric terrain boost');
@@ -7697,6 +7698,7 @@ desc: "Damage is calculated using the user's Defense stat as its Attack, includi
 				}
 				return 5;
 			},
+			onBasePowerPriority: 6,
 			onBasePower(basePower, attacker, defender, move) {
 				let weakenedMoves = ['earthquake', 'bulldoze', 'magnitude'];
 				if (weakenedMoves.includes(move.id)) {
@@ -8631,7 +8633,7 @@ desc: "Damage is calculated using the user's Defense stat as its Attack, includi
 				this.effectData.multiplier *= 1.5;
 				this.add('-singleturn', target, 'Helping Hand', '[of] ' + source);
 			},
-			onBasePowerPriority: 3,
+			onBasePowerPriority: 10,
 			onBasePower(basePower) {
 				this.debug('Boosting from Helping Hand: ' + this.effectData.multiplier);
 				return this.chainModify(this.effectData.multiplier);
@@ -11782,7 +11784,7 @@ desc: "Damage is calculated using the user's Defense stat as its Attack, includi
 		},
 		effect: {
 			duration: 1,
-			onBasePowerPriority: 4,
+			onBasePowerPriority: 12,
 			onBasePower(basePower) {
 				return this.chainModify(1.5);
 			},
@@ -12466,6 +12468,7 @@ desc: "Damage is calculated using the user's Defense stat as its Attack, includi
 					return null;
 				}
 			},
+			onBasePowerPriority: 6,
 			onBasePower(basePower, attacker, defender, move) {
 				if (move.type === 'Dragon' && defender.isGrounded() && !defender.isSemiInvulnerable()) {
 					this.debug('misty terrain weaken');
@@ -14493,6 +14496,7 @@ desc: "Damage is calculated using the user's Defense stat as its Attack, includi
 				this.add('-activate', target, 'move: Psychic Terrain');
 				return null;
 			},
+			onBasePowerPriority: 6,
 			onBasePower(basePower, attacker, defender, move) {
 				if (move.type === 'Psychic' && attacker.isGrounded() && !attacker.isSemiInvulnerable()) {
 					this.debug('psychic terrain boost');
@@ -17056,7 +17060,7 @@ desc: "Damage is calculated using the user's Defense stat as its Attack, includi
 			}
 		},
 		onHit(target, source) {
-			this.add('-end', target, 'Sky Drop');
+			if (target.hp) this.add('-end', target, 'Sky Drop');
 		},
 		effect: {
 			duration: 2,

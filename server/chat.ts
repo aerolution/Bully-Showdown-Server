@@ -1428,7 +1428,7 @@ export const Chat = new class {
 			for (const target of toUncache) {
 				if (require.cache[target]) {
 					// cachedModule
-					const children: {id: string}[] = require.cache[target].children;
+					const children: {id: string}[] = require.cache[target]!.children;
 					newuncache.push(
 						...(children
 							.filter(cachedModule => !cachedModule.id.endsWith('.node'))

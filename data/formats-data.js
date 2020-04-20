@@ -3137,7 +3137,7 @@ let BattleFormatsData = {
 		tier: "Illegal",
 	},
 	rufflet: {
-		tier: "LC",
+		tier: "LC Uber",
 	},
 	braviary: {
 		randomBattleMoves: ["bravebird", "bulkup", "closecombat", "facade", "roost", "uturn"],
@@ -4174,7 +4174,7 @@ let BattleFormatsData = {
 		doublesTier: "DOU",
 	},
 	melmetalgmax: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
 	},
 	grookey: {
@@ -4600,7 +4600,7 @@ let BattleFormatsData = {
 		doublesTier: "DUber",
 	},
 	eternatuseternamax: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
 		tier: "Illegal",
 	},
 	missingno: {

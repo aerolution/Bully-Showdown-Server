@@ -91,7 +91,7 @@ All Draft formats use a DS style timer (**100s per turn, auto pick on timeout**)
 	sportsavatar(target, room, user, connection) {
 		return connection.popup(`**Custom Avatars**:
 You can request a custom avatar by simply providing us with an 80x80 image.
-Please contact us through the #avatar-requests channel on our Discord server.`);
+Please contact us through the **#avatar-submissions** channel on our Discord server.`);
 	},
 	
 	sportsstaff(target, room, user, connection) {
@@ -107,7 +107,7 @@ Princess Furfrou (Princess#6721)
 **Moderators** (@):
 angryairair (woodlandapple#5780)
 Kaltchre (Kalt#7849)
-KmjNext (KmjNext#8246)
+KmjNext (Spacegirl | KmjNext#8246)
 Venuaur (Venuaur#2153)
 
 

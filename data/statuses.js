@@ -457,6 +457,7 @@ let BattleStatuses = {
 		num: 0,
 		duration: 1,
 		affectsFainted: true,
+		onBasePowerPriority: 14,
 		onBasePower(basePower, user, target, move) {
 			this.debug('Gem Boost');
 			return this.chainModify([0x14CD, 0x1000]);
@@ -762,7 +763,7 @@ let BattleStatuses = {
 			this.add('-block', pokemon, 'Dynamax');
 			return null;
 		},
-		onResidualOrder: 30,
+		onResidualPriority: -100,
 		onEnd(pokemon) {
 			this.add('-end', pokemon, 'Dynamax');
 			if (pokemon.canGigantamax) this.add('-formechange', pokemon, pokemon.species.name);

@@ -7791,7 +7791,7 @@ let BattleItems = {
 
 	// Gen 2 items
 
-	"berserkgene: {
+	berserkgene: {
 		id: "berserkgene",
 		name: "Berserk Gene",
 		spritenum: 388,
@@ -8094,7 +8094,7 @@ let BattleItems = {
 
 	// CAP items
 
-	"crucibellite: {
+	crucibellite: {
 		id: "crucibellite",
 		name: "Crucibellite",
 		spritenum: 577,

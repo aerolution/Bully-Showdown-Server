@@ -58,10 +58,16 @@ exports.commands = {
 + National Dex Dynamax rules
 + Doubles format
 
-**LC National Dex**:
+**LC National Dex Draft**:
++ National Dex Draft rules
++ LC format
++ Double Item Clause
+
+**LC National Dex Legacy**:
 + National Dex Legacy rules
 + LC format
 + Double Item Clause
+
 
 
 
@@ -77,8 +83,12 @@ exports.commands = {
 + National Dex Legacy rules
 + moveset additions from the Pokemon Home leaks are allowed
 
-**LC National Dex DLC**:
-+ LC National Dex rules
+**LC National Dex DLC Draft**:
++ LC National Dex Draft rules
++ moveset additions from the Pokemon Home leaks are allowed
+
+**LC National Dex DLC Legacy**:
++ LC National Dex Legacy rules
 + moveset additions from the Pokemon Home leaks are allowed
 
 __NOTE: all DLC moves will show up as Illegal in the Teambuilder, as the client won't recognize custom moveset additions. This is just a visual issue, all moves will validate as intended.__

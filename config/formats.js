@@ -98,7 +98,16 @@ let Formats = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] LC National Dex",
+		name: "[Gen 8] LC National Dex Draft",
+
+		mod: 'gen8',
+		maxLevel: 5,
+		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
+		banlist: ['Dragon Rage', 'Sonic Boom'],
+	},
+	{
+		name: "[Gen 8] LC National Dex Legacy",
 
 		mod: 'gen8',
 		maxLevel: 5,
@@ -135,7 +144,16 @@ let Formats = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
-		name: "[Gen 8] LC National Dex DLC",
+		name: "[Gen 8] LC National Dex DLC Draft",
+
+		mod: 'gen8',
+		maxLevel: 5,
+		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
+		banlist: ['Dragon Rage', 'Sonic Boom'],
+	},
+	{
+		name: "[Gen 8] LC National Dex DLC Legacy",
 
 		mod: 'gen8',
 		maxLevel: 5,

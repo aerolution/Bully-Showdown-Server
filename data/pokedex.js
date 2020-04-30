@@ -1742,6 +1742,7 @@ let BattlePokedex = {
 		heightm: 1.2,
 		weightkg: 36,
 		color: "Pink",
+		evos: ["slowbro", "slowking"],
 		eggGroups: ["Monster", "Water 1"],
 	},
 	slowbro: {

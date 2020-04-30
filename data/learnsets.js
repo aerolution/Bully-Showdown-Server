@@ -46798,6 +46798,7 @@ let BattleLearnsets = {
 			{generation: 7, level: 60, shiny: 1, moves: ["crunch", "scaryface", "lavaplume", "firespin"]},
 			{generation: 7, level: 60, moves: ["crunch", "scaryface", "lavaplume", "firespin"], pokeball: "cherishball"},
 			{generation: 7, level: 100, moves: ["magmastorm", "heatwave", "earthpower", "flashcannon"], pokeball: "cherishball"},
+			{generation: 7, level: 100, isHidden: true, moves: ["magmastorm", "heatwave", "earthpower", "flashcannon"]},
 		],
 		eventOnly: true,
 	},

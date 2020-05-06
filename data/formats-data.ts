@@ -4938,7 +4938,7 @@ export const BattleFormatsData: {[speciesid: string]: SpeciesFormatsData} = {
 		tier: "Illegal",
 	},
 	tapukoko: {
-		randomBattleMoves: ["bravebird", "closecombat", "playrough", "uturn", "wildcharge", "voltswitch"],
+		randomBattleMoves: ["bravebird", "closecombat", "playrough", "uturn", "wildcharge", "roost", "defog"],
 		randomDoubleBattleMoves: ["bravebird", "closecombat", "playrough", "uturn", "wildcharge"],
 		unreleasedHidden: true,
 		isNonstandard: "Past",

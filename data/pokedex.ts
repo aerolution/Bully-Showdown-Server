@@ -1744,6 +1744,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		heightm: 1.2,
 		weightkg: 36,
 		color: "Pink",
+		evos: ["Slowbro", "Slowking"],
 		eggGroups: ["Monster", "Water 1"],
 	},
 	slowbro: {

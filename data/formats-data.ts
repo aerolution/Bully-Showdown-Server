@@ -1,4 +1,4 @@
-export const BattleFormatsData: {[speciesid: string]: SpeciesFormatsData} = {
+export const BattleFormatsData: {[k: string]: SpeciesFormatsData} = {
 	bulbasaur: {
 		randomBattleMoves: ["solarbeam", "sludgebomb", "weatherball", "sunnyday"],
 		tier: "LC",

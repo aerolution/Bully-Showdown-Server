@@ -806,6 +806,9 @@ export class RandomTeams {
 					if (!!counter['speedsetup'] || hasType['Rock'] && !!counter.Status) rejected = true;
 					if (counter.Physical > 3 && movePool.includes('uturn')) rejected = true;
 					break;
+				case 'blueflare':
+					if (hasMove['vcreate']) rejected = true;
+					break;
 				case 'fierydance': case 'firefang': 
 					if (hasMove['blazekick'] || hasMove['heatwave'] || hasMove['overheat']) rejected = true;
 					if ((hasMove['fireblast'] || hasMove['lavaplume']) && counter.setupType !== 'Physical') rejected = true;
@@ -874,8 +877,12 @@ export class RandomTeams {
 				case 'bodypress':
 					if (hasMove['mirrorcoat'] || hasMove['shellsmash'] || hasMove['earthquake'] && movePool.includes('shellsmash')) rejected = true;
 					break;
+				case 'drainpunch':
+					if (hasMove['closecombat'] && !hasMove['bulkup']) rejected = true;
+					break;
 				case 'closecombat':
 					if (hasMove['substitute'] || hasMove['toxic'] && movePool.includes('substitute')) rejected = true;
+					if (hasMove['bulkup'] && (hasMove['drainpunch'] || movePool.includes('drainpunch'))) rejected = true;
 					break;
 				case 'highjumpkick':
 					if (hasMove['curse'] || hasMove['closecombat']) rejected = true;
@@ -1128,7 +1135,7 @@ export class RandomTeams {
 					rejectAbility = !counter['inaccurate'];
 				} else if (ability === 'Cursed Body' || ability === 'Speed Boost') {
 					rejectAbility = hasAbility['Infiltrator'];
-				} else if (ability === 'Defiant' || ability === 'Moxie') {
+				} else if (ability === 'Defiant') {
 					rejectAbility = (!counter['Physical'] || hasMove['dragontail']);
 				} else if (ability === 'Flash Fire') {
 					rejectAbility = (this.dex.getEffectiveness('Fire', species) < -1);
@@ -1152,6 +1159,8 @@ export class RandomTeams {
 					rejectAbility = hasAbility['Neutralizing Gas'];
 				} else if (ability === 'Mold Breaker') {
 					rejectAbility = (hasAbility['Adaptability'] || hasAbility['Scrappy'] || hasAbility['Unburden'] && counter.setupType);
+				} else if (ability === 'Moxie') {
+					rejectAbility = (!counter['Physical'] || hasMove['stealthrock']);
 				} else if (ability === 'Neutralizing Gas') {
 					rejectAbility = !hasMove['toxicspikes'];
 				} else if (ability === 'Overgrow') {
@@ -1394,7 +1403,7 @@ export class RandomTeams {
 			item = 'Focus Sash';
 		} else if (ability === 'Water Bubble' && !isDoubles) {
 			item = 'Mystic Water';
-		} else if (hasMove['clangoroussoul'] || hasMove['boomburst'] && !!counter['speedsetup']) {
+		} else if ((hasMove['clangoroussoul'] && counter.Special >= 2) || hasMove['boomburst'] && !!counter['speedsetup']) {
 			item = 'Throat Spray';
 		} else if (this.dex.getEffectiveness('Rock', species) >= 1 && (ability === 'Intimidate' || !!counter['recovery']) && !hasMove['bulkup'] && !hasMove['calmmind'] && !isDoubles) {
 			item = 'Heavy-Duty Boots';

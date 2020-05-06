@@ -3,7 +3,13 @@
 exports.commands = {
 	
 	sportstiers(target, room, user, connection) {
-		return connection.popup(`**Galar Dex Draft**:
+		return connection.popup(`• All Draft formats use a DS style timer by default. If you want to change timer settings, use:
+- **/timer ds**: fixed 100s per turn, auto pick on timeout
+- **/timer smogon**: 300s timer, get an extra 10s every turn, forfeit on timeout
+
+
+
+**Galar Dex Draft**:
 + Galar Dex Pokemon only are allowed
 + unreleased Pokemon and abilities found in Sword/Shield are allowed
 + Dynamax and Gigantamax are allowed
@@ -73,11 +79,7 @@ exports.commands = {
 + Same rules as the corresponding National Dex format
 + moveset additions from the Pokemon Home leaks are allowed
 
-__NOTE: all DLC moves will show up as Illegal in the Teambuilder, this is just a visual issue and they will validate as intended. If you're not sure a move is legal always refer to the Validate button.__
-
-
-
-All Draft formats use a DS style timer (**100s per turn, auto pick on timeout**).`);
+__NOTE: all DLC moves will show up as Illegal in the Teambuilder, this is just a visual issue and they will validate as intended. If you're not sure a move is legal always refer to the Validate button.__`);
 	},
 	
 	sportsavatar(target, room, user, connection) {

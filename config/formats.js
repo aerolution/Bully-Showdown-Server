@@ -928,7 +928,7 @@ const Formats = [
 	},
 	{
 		name: "[Gen 8] Random Tier Shift",
-		desc: `Pok&eacute;mon below OU get all their base stats boosted. UU/RUBL get +10, RU/NUBL get +20, NU/PUBL get +30, PU and NFE get +40, LC get +50.`,
+		desc: `Pok&eacute;mon below OU get all their base stats boosted, except HP. UU/RUBL get +10, RU/NUBL get +20, NU/PUBL get +30, PU and NFE get +40, LC get +50. Ubers get -10.`,
 		
 		mod: 'gen8',
 		team: 'random',
@@ -936,12 +936,13 @@ const Formats = [
 		allowUnevolved: true,
 		level100: true,
 		onBegin() {
-			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Pok&eacute;mon below OU get all their base stats boosted:<br>* UU/RUBL: +10<br>* RU/NUBL: +20<br>* NU/PUBL: +30<br>* PU/NFE: +40<br>* LC: +50</div>`);
+			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Pok&eacute;mon below OU get all their base stats boosted, except HP:<br>* Uber: -10<br>* UU/RUBL: +10<br>* RU/NUBL: +20<br>* NU/PUBL: +30<br>* PU/NFE: +40<br>* LC: +50</div>`);
 		},
 		onModifySpecies(species, target, source, effect) {
 			if (!species.baseStats) return false;
 			/** @type {{[tier: string]: number}} */
 			const boosts = {
+				'Uber': -10,
 				'UU': 10,
 				'RUBL': 10,
 				'RU': 20,
@@ -1087,7 +1088,7 @@ const Formats = [
 
 	{
 		section: "Classic Randomized Metas",
-		column: 2,
+		column: 3,
 	},
 	{
 		name: "[Gen 8] Random Doubles Battle",
@@ -1422,7 +1423,7 @@ const Formats = [
 	
 	{
 		section: "US/UM",
-		column: 3,
+		column: 4,
 	},
 	{
 		name: "[Gen 7] OU",
@@ -1433,6 +1434,7 @@ const Formats = [
 		],
 
 		mod: 'gen7',
+		searchShow: false,
 		ruleset: ['Standard'],
 		banlist: ['Uber', 'Arena Trap', 'Power Construct', 'Shadow Tag', 'Baton Pass'],
 	},
@@ -1443,7 +1445,7 @@ const Formats = [
 		],
 
 		mod: 'gen7',
-		// searchShow: false,
+		searchShow: false,
 		ruleset: ['Standard', 'Mega Rayquaza Clause'],
 		banlist: ['Baton Pass'],
 	},
@@ -1475,7 +1477,7 @@ const Formats = [
 		],
 
 		mod: 'gen7',
-		// searchShow: false,
+		searchShow: false,
 		ruleset: ['Obtainable', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
 	},
 	{
@@ -1516,7 +1518,7 @@ const Formats = [
 
 		mod: 'gen7',
 		gameType: 'doubles',
-		// searchShow: false,
+		searchShow: false,
 		ruleset: ['Standard Doubles', 'Swagger Clause'],
 		banlist: ['DUber', 'Power Construct', 'Eevium Z', 'Dark Void'],
 	},
@@ -1554,6 +1556,7 @@ const Formats = [
 		],
 
 		mod: 'letsgo',
+		searchShow: false,
 		forcedLevel: 50,
 		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
 		banlist: ['Uber'],
@@ -1578,7 +1581,7 @@ const Formats = [
 	
 	{
 		section: "OR/AS",
-		column: 3,
+		column: 4,
 	},
 	{
 		name: "[Gen 6] OU",
@@ -1805,7 +1808,7 @@ const Formats = [
 	
 	{
 		section: "DPP",
-		column: 4,
+		column: 5,
 	},
 	{
 		name: "[Gen 4] OU",
@@ -1896,7 +1899,7 @@ const Formats = [
 	
 	{
 		section: "ADV",
-		column: 4,
+		column: 5,
 	},
 	{
 		name: "[Gen 3] OU",
@@ -1948,7 +1951,7 @@ const Formats = [
 	
 	{
 		section: "GSC",
-		column: 4,
+		column: 5,
 	},
 	{
 		name: "[Gen 2] OU",
@@ -1990,7 +1993,7 @@ const Formats = [
 	
 	{
 		section: "RBY",
-		column: 4,
+		column: 5,
 	},
 	{
 		name: "[Gen 1] OU",
@@ -2032,7 +2035,7 @@ const Formats = [
 
 	{
 		section: "Other Other Metagames",
-		column: 4,
+		column: 5,
 	},
 	{
 		name: "[Gen 8] Rock Paper Scissors",

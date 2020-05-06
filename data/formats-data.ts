@@ -2409,7 +2409,7 @@ export const BattleFormatsData: {[speciesid: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	glalie: {
-		randomBattleMoves: ["disable", "earthquake", "freezedry", "protect", "substitute"],
+		randomBattleMoves: ["disable", "freezedry", "protect", "substitute"],
 		randomDoubleBattleMoves: ["disable", "earthquake", "freezedry", "protect", "substitute"],
 		tier: "(PU)",
 		doublesTier: "(DUU)",

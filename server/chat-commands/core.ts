@@ -1153,23 +1153,40 @@ export const commands: ChatCommands = {
 		} else if (this.meansYes(target) || target === 'start') {
 			timer.start(user);
 		} else if (target === 'ds') {
-			const timerSettings = {
-				starting: 60 * 60,
-				grace: 0,
-				addPerTurn: 10,
-				maxPerTurn: 100,
-				timeoutAutoChoose: true,
-			};
-			timer.setSettings(timerSettings);
-			timer.start(user);
+			if (timer.timerRequesters.size) {
+				this.errorReply(`You can't change timer settings when the timer is already on.`);
+			} else {
+				const timerSettings = {
+					starting: 60 * 60,
+					grace: 0,
+					addPerTurn: 10,
+					maxPerTurn: 100,
+					timeoutAutoChoose: true,
+				};
+				timer.setSettings(timerSettings);
+				timer.start(user);
+			}
 		} else if (target === 'smogon') {
-			const timerSettings = {
-				starting: 5 * 60,
-				addPerTurn: 10,
-				maxPerTurn: 0,
-			};
-			timer.setSettings(timerSettings);
-			timer.start(user);
+			if (timer.timerRequesters.size) {
+				this.errorReply(`You can't change timer settings when the timer is already on.`);
+			} else {
+				const timerSettings = {
+					starting: 5 * 60,
+					addPerTurn: 10,
+					maxPerTurn: 0,
+				};
+				timer.setSettings(timerSettings);
+				timer.start(user);
+			}
+		} else if (target === 'default') {
+			if (timer.timerRequesters.size) {
+				this.errorReply(`You can't change timer settings when the timer is already on.`);
+			} else {
+				const timerEntry = Dex.getRuleTable(Dex.getFormat(room.battle.format, true)).timer;
+				const timerSettings = timerEntry?.[0];
+				timer.setSettings(timerSettings);
+				timer.start(user);
+			}
 		} else {
 			this.errorReply(`"${target}" is not a recognized timer state.`);
 		}

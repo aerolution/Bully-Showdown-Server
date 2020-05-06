@@ -3,9 +3,10 @@
 exports.commands = {
 	
 	sportstiers(target, room, user, connection) {
-		return connection.popup(`__All Draft formats use a DS style timer by default. If you want to change timer settings, use:__
+		return connection.popup(`__All Draft formats use a DS-style timer by default. If you want to change timer settings, use:__
 __- **/timer ds**: fixed 100s per turn, auto pick on timeout__
 __- **/timer smogon**: 300s timer, get an extra 10s every turn, forfeit on timeout__
+__- **/timer default**: resets the timer to the format's default settings__
 
 
 
@@ -84,8 +85,8 @@ __NOTE: all DLC moves will show up as Illegal in the Teambuilder, this is just a
 	
 	sportsavatar(target, room, user, connection) {
 		return connection.popup(`**Custom Avatars**:
-You can request a custom avatar by simply providing us with an 80x80 image.
-Please contact us through the __**#avatar-submissions**__ channel on our Discord server.`);
+If you want to request a custom avatar, check out the __**#avatar-submissions**__ channel on our Discord server. There you can find instructions to make and upload your image.
+Requests through DMs here on Showdown will be ignored.`);
 	},
 	
 	sportsstaff(target, room, user, connection) {
@@ -106,7 +107,7 @@ Venuaur (Venuaur#2153)
 
 
 
-__NOTE: If you're a league owner/admin, you can request the Big Fan role to gain timer and modjoin permissions. Please contact us over on Discord.__`);
+__NOTE: If you're a league owner/admin, you can request the Big Fan role to gain timer and modjoin permissions. Please contact us on Discord.__`);
 	},
 	
 };

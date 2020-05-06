@@ -393,6 +393,9 @@ export class CommandContext extends MessageContext {
 					this.room.add((this.room.type === 'chat' ? (this.room.type === 'chat' ? '|c:|' + (~~(Date.now() / 1000)) + '|' : '|c|') : '|c|') + this.user.getIdentity(this.room.roomid) + '|' + message);
 					this.room.messageCount++;
 				}
+				if (this.room && this.room.game && this.room.game.onLogMessage) {
+					this.room.game.onLogMessage(message, this.user);
+				}
 			}
 		}
 
@@ -1411,7 +1414,7 @@ export const Chat = new class {
 		let noEmotes = message;
 		let emoticons = Chat.parseEmoticons(message);
 		if (emoticons) message = "/html " + emoticons;
-		let buf = `|pm|${user.getIdentity()}|${pmTarget.getIdentity()}|${(Users.ignoreEmotes[user.userid] ? noEmotes : message)}`;
+		const buf = `|pm|${user.getIdentity()}|${pmTarget.getIdentity()}|${(Users.ignoreEmotes[user.userid] ? noEmotes : message)}`;
 		if (onlyRecipient) return onlyRecipient.send(buf);
 		user.send(buf);
 		if (pmTarget !== user) pmTarget.send(buf);
@@ -1441,8 +1444,8 @@ export const Chat = new class {
 		} while (toUncache.length > 0);
 	}
 
-	uncacheDir(root: string) {
-		const absoluteRoot = FS(root).path;
+	uncacheDir(root: string, followSymlink?: boolean) {
+		const absoluteRoot = followSymlink ? FS(root).realpathSync() : FS(root).path;
 		for (const key in require.cache) {
 			if (key.startsWith(absoluteRoot)) {
 				delete require.cache[key];
@@ -1928,12 +1931,12 @@ export const Chat = new class {
 		const options = 'or change it in the <button name="openOptions" class="subtle">Options</button> menu in the upper right.';
 		if (blocked === 'pm') {
 			if (!targetUser.blockPMsNotified) {
-				targetUser.send(`${prefix}The user '${user.name}' attempted to PM you but was blocked. To enable PMs, use /unblockpms ${options}`);
+				targetUser.send(`${prefix}The user '${this.escapeHTML(user.name)}' attempted to PM you but was blocked. To enable PMs, use /unblockpms ${options}`);
 				targetUser.blockPMsNotified = true;
 			}
 		} else if (blocked === 'challenge') {
 			if (!targetUser.blockChallengesNotified) {
-				targetUser.send(`${prefix}The user '${user.name}' attempted to challenge you to a battle but was blocked. To enable challenges, use /unblockchallenges ${options}`);
+				targetUser.send(`${prefix}The user '${this.escapeHTML(user.name)}' attempted to challenge you to a battle but was blocked. To enable challenges, use /unblockchallenges ${options}`);
 				targetUser.blockChallengesNotified = true;
 			}
 		}

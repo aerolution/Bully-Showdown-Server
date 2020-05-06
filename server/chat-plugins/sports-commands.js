@@ -52,7 +52,6 @@ exports.commands = {
 **National Dex Wifi**:
 + National Dex Dynamax rules
 + Pokemon are set to level 50
-+ VGC timer
 
 **National Dex Doubles**:
 + National Dex Dynamax rules
@@ -70,28 +69,11 @@ exports.commands = {
 
 
 
-
-**National Dex DLC Draft**:
-+ National Dex Draft rules
+**National Dex DLC Formats**:
++ Same rules as the corresponding National Dex format
 + moveset additions from the Pokemon Home leaks are allowed
 
-**National Dex DLC Dynamax**:
-+ National Dex Dynamax rules
-+ moveset additions from the Pokemon Home leaks are allowed
-
-**National Dex DLC Legacy**:
-+ National Dex Legacy rules
-+ moveset additions from the Pokemon Home leaks are allowed
-
-**LC National Dex DLC Draft**:
-+ LC National Dex Draft rules
-+ moveset additions from the Pokemon Home leaks are allowed
-
-**LC National Dex DLC Legacy**:
-+ LC National Dex Legacy rules
-+ moveset additions from the Pokemon Home leaks are allowed
-
-__NOTE: all DLC moves will show up as Illegal in the Teambuilder, as the client won't recognize custom moveset additions. This is just a visual issue, all moves will validate as intended.__
+__NOTE: all DLC moves will show up as Illegal in the Teambuilder, this is just a visual issue and they will validate as intended. If you're not sure a move is legal always refer to the Validate button.__
 
 
 

@@ -4,7 +4,7 @@
 // The rules that formats use are stored in data/rulesets.js
 
 /**@type {(FormatsData | {section: string, column?: number})[]} */
-let Formats = [
+const Formats = [
 
 	// Galar Draft Tiers
 	///////////////////////////////////////////////////////////////////
@@ -15,7 +15,6 @@ let Formats = [
 		name: "[Gen 8] Galar Dex Draft",
 
 		mod: 'gen8',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
 	},
 	{
@@ -23,13 +22,12 @@ let Formats = [
 
 		mod: 'gen8',
 		maxForcedLevel: 50,
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', 'VGC Timer'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
 	},
 	{
 		name: "[Gen 8] Galar Dex Pre-Home",
 
 		mod: 'gen8',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', 'Draft', 'Team Preview'],
 		banlist: [
 			// Unreleased Hidden Abilities
@@ -58,28 +56,24 @@ let Formats = [
 		name: "[Gen 8] National Dex Draft",
 
 		mod: 'gen8',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
 		name: "[Gen 8] National Dex Dynamax",
 
 		mod: 'gen8',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
 	{
 		name: "[Gen 8] National Dex Legacy",
 
 		mod: 'gen8',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
 		name: "[Gen 8] National Dex Unrestricted",
 
 		mod: 'gen8',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Draft', '+Unreleased', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+PastMove', 'Team Preview'],
 	},
 	{
@@ -87,14 +81,13 @@ let Formats = [
 
 		mod: 'gen8',
 		maxForcedLevel: 50,
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'VGC Timer'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
 	{
 		name: "[Gen 8] National Dex Doubles",
 
 		mod: 'gen8',
 		gameType: 'doubles',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
 	{
@@ -102,7 +95,6 @@ let Formats = [
 
 		mod: 'gen8',
 		maxLevel: 5,
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
@@ -111,7 +103,6 @@ let Formats = [
 
 		mod: 'gen8',
 		maxLevel: 5,
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
@@ -126,29 +117,45 @@ let Formats = [
 		name: "[Gen 8] National Dex DLC Draft",
 
 		mod: 'gen8',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
 		name: "[Gen 8] National Dex DLC Dynamax",
 
 		mod: 'gen8',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
 	},
 	{
 		name: "[Gen 8] National Dex DLC Legacy",
 
 		mod: 'gen8',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
+	},
+	{
+		name: "[Gen 8] National Dex DLC Unrestricted",
+
+		mod: 'gen8',
+		ruleset: ['Draft', '+Unreleased', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', 'Allow Tradeback', '+Past', '+PastMove', 'Team Preview'],
+	},
+	{
+		name: "[Gen 8] National Dex DLC Wifi",
+
+		mod: 'gen8',
+		maxForcedLevel: 50,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
+	},
+	{
+		name: "[Gen 8] National Dex DLC Doubles",
+
+		mod: 'gen8',
+		gameType: 'doubles',
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
 	},
 	{
 		name: "[Gen 8] LC National Dex DLC Draft",
 
 		mod: 'gen8',
 		maxLevel: 5,
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
@@ -157,7 +164,6 @@ let Formats = [
 
 		mod: 'gen8',
 		maxLevel: 5,
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', '+PastMove', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
@@ -173,14 +179,12 @@ let Formats = [
 		name: "[Gen 8] (National Dex) CAPtyLtd",
 
 		mod: 'gen8',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+CAP', '+Past', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
 		name: "[Gen 8] (National Dex) EBL",
 
 		mod: 'gen8',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
 		unbanlist: [
 			'Buginium Z', 'Darkinium Z', 'Dragonium Z', 'Electrium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Ghostium Z', 
@@ -189,9 +193,9 @@ let Formats = [
 		],
 		
 		onValidateSet(set) {
-			let species = this.dex.getSpecies(set.species);
+			const species = this.dex.getSpecies(set.species);
 			let bst = 0;
-			for (let stat in species.baseStats) {
+			for (const stat in species.baseStats) {
 				// @ts-ignore
 				bst += species.baseStats[stat];
 			}
@@ -207,7 +211,7 @@ let Formats = [
 		name: "[Gen 8] (National Dex) PICA",
 
 		mod: 'gen8',
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
+		ruleset: ['Obtainable', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause', 'Sleep Clause Mod', 'OHKO Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
 		banlist: [
 			// Items
 			'Bright Powder', 'Lax Incense', "King's Rock", 'Razor Fang', 'Focus Band', 'Quick Claw', 'Starf Berry',
@@ -231,7 +235,6 @@ let Formats = [
 		name: "[Gen 8] (National Dex) The Hive",
 
 		mod: 'gen8',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
 		banlist: [
 			'Bright Powder', "King's Rock", 'Razor Fang', 'Focus Band', 'Quick Claw', 'Moody', 'Stench', 'Baton Pass > 1',
@@ -328,6 +331,11 @@ let Formats = [
 			'Arena Trap', 'Contrary', 'Gorilla Tactics', 'Huge Power', 'Illusion', 'Innards Out', 'Libero', 'Magnet Pull', 'Moody',
 			'Neutralizing Gas', 'Parental Bond', 'Protean', 'Psychic Surge', 'Pure Power', 'Shadow Tag', 'Stakeout', 'Water Bubble', 'Wonder Guard',
 		],
+		onBegin() {
+			if (this.rated && this.format.id === 'gen8balancedhackmons') {
+				this.add('html', `<div class="broadcast-red"><strong>Balanced Hackmons is currently suspecting Shell Smash! For information on how to participate check out the <a href="https://www.smogon.com/forums/threads/3663202/">suspect thread</a>.</strong></div>`);
+			}
+		},
 		onValidateSet(set) {
 			if (set.species === 'Zacian-Crowned' && (toID(set.item) !== 'rustedsword' || toID(set.ability) !== 'intrepidsword')) {
 				return [set.species + " is banned."];
@@ -338,7 +346,7 @@ let Formats = [
 			if (set.species === 'Zacian' && item === 'rustedsword') {
 				set.species = 'Zacian-Crowned';
 				set.ability = 'Intrepid Sword';
-				let ironHead = set.moves.indexOf('ironhead');
+				const ironHead = set.moves.indexOf('ironhead');
 				if (ironHead >= 0) {
 					set.moves[ironHead] = 'behemothblade';
 				}
@@ -346,7 +354,7 @@ let Formats = [
 			if (set.species === 'Zamazenta' && item === 'rustedshield') {
 				set.species = 'Zamazenta-Crowned';
 				set.ability = 'Dauntless Shield';
-				let ironHead = set.moves.indexOf('ironhead');
+				const ironHead = set.moves.indexOf('ironhead');
 				if (ironHead >= 0) {
 					set.moves[ironHead] = 'behemothbash';
 				}
@@ -363,14 +371,14 @@ let Formats = [
 		mod: 'gen8',
 		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Dynamax Clause', 'Sleep Clause Mod', 'Endless Battle Clause'],
 		banlist: [
-			'Darmanitan-Galar', 'Eternatus', 'Hydreigon', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow', 'Melmetal', 'Mewtwo',
+			'Darmanitan-Galar', 'Eternatus', 'Hydreigon', 'Kyurem', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow', 'Melmetal', 'Mewtwo',
 			'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Shedinja', 'Solgaleo', 'Zacian', 'Zamazenta', 'Zekrom', 'Zeraora',
 			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
 		],
 		onModifySpecies(species, target, source, effect) {
 			if (!target) return; // Chat command
 			if (effect && ['imposter', 'transform'].includes(effect.id)) return;
-			let types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => this.dex.getMove(move.id).type))];
+			const types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => this.dex.getMove(move.id).type))];
 			return Object.assign({}, species, {types: types});
 		},
 		onSwitchIn(pokemon) {
@@ -378,6 +386,28 @@ let Formats = [
 		},
 		onAfterMega(pokemon) {
 			this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
+		},
+	},
+	{
+		name: "[Gen 8] Flipped",
+		desc: `Every Pok&eacute;mon's stats are reversed. HP becomes Spe, Atk becomes Sp. Def, Def becomes Sp. Atk, and vice versa. To see a Pok&eacute;mon's stats outside of battle, type <code>/dt [pokemon], flipped</code>.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3662020/">Flipped</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['[Gen 8] OU'],
+		banlist: ['Psychic Surge', 'Psychic Terrain', 'Shell Smash'],
+		unbanlist: ['Darmanitan-Galar'],
+		onModifySpecies(species, target, source, effect) {
+			const newSpecies = this.dex.deepClone(species);
+			/** @type {number[]} */
+			const reversedNums = Object.values(newSpecies.baseStats).reverse();
+			newSpecies.baseStats = this.dex.deepClone(newSpecies.baseStats);
+			for (const [i, statName] of Object.keys(newSpecies.baseStats).entries()) {
+				newSpecies.baseStats[statName] = reversedNums[i];
+			}
+			return newSpecies;
 		},
 	},
 	{
@@ -391,18 +421,18 @@ let Formats = [
 		mod: 'mixandmega',
 		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Dynamax Clause', 'Sleep Clause Mod', 'Endless Battle Clause'],
 		banlist: [
-			'Eternatus', 'Zacian', 'Moody', 'Shadow Tag', 'Baton Pass', 'Electrify',
+			'Eternatus', 'Lunala', 'Zacian', 'Moody', 'Shadow Tag', 'Baton Pass', 'Electrify',
 			'Beedrillite', 'Blazikenite', 'Gengarite', 'Kangaskhanite', 'Mawilite', 'Medichamite', 'Pidgeotite',
 		],
-		restricted: ['Gengar', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow', 'Melmetal', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Solgaleo', 'Zamazenta', 'Zekrom'],
+		restricted: ['Gengar', 'Kyurem-Black', 'Kyurem-White', 'Marshadow', 'Melmetal', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Solgaleo', 'Zamazenta', 'Zekrom'],
 		onValidateTeam(team, format) {
 			const restrictedPokemon = format.restricted || [];
 			/**@type {{[k: string]: true}} */
-			let itemTable = {};
+			const itemTable = {};
 			for (const set of team) {
-				let item = this.dex.getItem(set.item);
+				const item = this.dex.getItem(set.item);
 				if (!item || !item.megaStone) continue;
-				let species = this.dex.getSpecies(set.species);
+				const species = this.dex.getSpecies(set.species);
 				if (species.isNonstandard) return [`${species.baseSpecies} does not exist in gen 8.`];
 				if (restrictedPokemon.includes(species.name)) {
 					return [`${species.name} is not allowed to hold ${item.name}.`];
@@ -418,11 +448,11 @@ let Formats = [
 		},
 		onSwitchIn(pokemon) {
 			// @ts-ignore
-			let oMegaSpecies = this.dex.getSpecies(pokemon.species.originalMega);
+			const oMegaSpecies = this.dex.getSpecies(pokemon.species.originalMega);
 			if (oMegaSpecies.exists && pokemon.m.originalSpecies !== oMegaSpecies.baseSpecies) {
 				// Place volatiles on the Pokémon to show its mega-evolved condition and details
 				this.add('-start', pokemon, oMegaSpecies.requiredItem || oMegaSpecies.requiredMove, '[silent]');
-				let oSpecies = this.dex.getSpecies(pokemon.m.originalSpecies);
+				const oSpecies = this.dex.getSpecies(pokemon.m.originalSpecies);
 				if (oSpecies.types.length !== pokemon.species.types.length || oSpecies.types[1] !== pokemon.species.types[1]) {
 					this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
 				}
@@ -430,36 +460,10 @@ let Formats = [
 		},
 		onSwitchOut(pokemon) {
 			// @ts-ignore
-			let oMegaSpecies = this.dex.getSpecies(pokemon.species.originalMega);
+			const oMegaSpecies = this.dex.getSpecies(pokemon.species.originalMega);
 			if (oMegaSpecies.exists && pokemon.m.originalSpecies !== oMegaSpecies.baseSpecies) {
 				this.add('-end', pokemon, oMegaSpecies.requiredItem || oMegaSpecies.requiredMove, '[silent]');
 			}
-		},
-	},
-	{
-		name: "[Gen 8] Pacifistmons",
-		desc: `Pok&eacute;mon can only use status moves. Recovery moves are banned.`,
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3658719/">Pacifistmons</a>`,
-		],
-
-		mod: 'gen8',
-		ruleset: ['[Gen 8] Ubers'],
-		banlist: [
-			'Magic Bounce', 'Magic Guard', 'Neutralizing Gas', 'Regenerator', 'Assault Vest',
-			'Ingrain', 'Life Dew', 'move:Metronome', 'Moonlight', 'Morning Sun', 'Nature Power', 'Purify', 'Recover',
-			'Rest', 'Roost', 'Slack Off', 'Soft-Boiled', 'Strength Sap', 'Swallow', 'Synthesis', 'Taunt', 'Wish',
-		],
-		onValidateSet(set) {
-			if (set.moves) {
-				for (const moveid of set.moves) {
-					const move = this.dex.getMove(moveid);
-					if (move.category !== "Status") {
-						return [`${set.species}'s move ${move.name} is banned.`, `(Non-Status moves are banned.)`];
-					}
-				}
-			}
-			if (set.level !== 100) return [`${set.species} must be Level 100.`];
 		},
 	},
 	{
@@ -470,6 +474,7 @@ let Formats = [
 		],
 
 		mod: 'gen8',
+		searchShow: false,
 		ruleset: ['-Nonexistent', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
 	},
 	{
@@ -491,14 +496,15 @@ let Formats = [
 		],
 
 		mod: 'gen8',
+		searchShow: false,
 		ruleset: ['Standard', 'Dynamax Clause'],
 		banlist: [
 			'Darmanitan-Galar', 'Eternatus', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow', 'Melmetal',
 			'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Shedinja', 'Solgaleo', 'Toxapex',
-			'Zacian', 'Zamazenta', 'Zekrom', 'Baton Pass',
+			'Zacian', 'Zamazenta', 'Zekrom', 'Leppa Berry', 'Baton Pass',
 			'Arena Trap', 'Contrary', 'Drizzle ++ Swift Swim', 'Drought ++ Chlorophyll', 'Electric Surge ++ Surge Surfer',
-			'Flare Boost', 'Fur Coat', 'Guts', 'Harvest', 'Huge Power', 'Imposter', 'Innards Out', 'Magic Bounce',
-			'Magic Guard', 'Mirror Armor', 'Mold Breaker', 'Moody', 'Neutralizing Gas', 'Regenerator ++ Emergency Exit',
+			'Flare Boost', 'Fur Coat', 'Guts', 'Huge Power', 'Imposter', 'Innards Out', 'Magic Bounce', 'Magic Guard',
+			'Mirror Armor', 'Mold Breaker', 'Moody', 'Neutralizing Gas', 'Regenerator ++ Emergency Exit',
 			'Regenerator ++ Wimp Out', 'Sand Rush', 'Sand Veil', 'Shadow Tag', 'Simple', 'Slush Rush', 'Snow Cloak',
 			'Speed Boost', 'Steelworker ++ Steely Spirit', 'Tinted Lens', 'Trace', 'Unaware', 'Unburden', 'Water Bubble',
 		],
@@ -506,7 +512,7 @@ let Formats = [
 		// @ts-ignore
 		getSharedPower(pokemon) {
 			/** @type {Set<string>} */
-			let sharedPower = new Set();
+			const sharedPower = new Set();
 			for (const ally of pokemon.side.pokemon) {
 				if (ally.previouslySwitchedIn > 0) {
 					sharedPower.add(ally.baseAbility);
@@ -520,7 +526,7 @@ let Formats = [
 			if (!this.format.getSharedPower) return;
 			// @ts-ignore
 			for (const ability of this.format.getSharedPower(pokemon)) {
-				let effect = 'ability:' + ability;
+				const effect = 'ability:' + ability;
 				pokemon.volatiles[effect] = {id: toID(effect), target: pokemon};
 			}
 		},
@@ -530,7 +536,7 @@ let Formats = [
 			if (!this.format.getSharedPower) return;
 			// @ts-ignore
 			for (const ability of this.format.getSharedPower(pokemon)) {
-				let effect = 'ability:' + ability;
+				const effect = 'ability:' + ability;
 				delete pokemon.volatiles[effect];
 				pokemon.addVolatile(effect);
 			}
@@ -551,7 +557,7 @@ let Formats = [
 			hasAbility(ability) {
 				if (this.ignoringAbility()) return false;
 				if (Array.isArray(ability)) return ability.some(ability => this.hasAbility(ability));
-				let abilityid = toID(ability);
+				const abilityid = toID(ability);
 				return this.ability === abilityid || !!this.volatiles['ability:' + abilityid];
 			},
 		},
@@ -602,9 +608,9 @@ let Formats = [
 			let tier = species.tier || 'OU';
 			if (tier[0] === '(') tier = tier.slice(1, -1);
 			if (!(tier in boosts)) return;
-			let pokemon = this.dex.deepClone(species);
-			let boost = boosts[tier];
-			for (let statName in pokemon.baseStats) {
+			const pokemon = this.dex.deepClone(species);
+			const boost = boosts[tier];
+			for (const statName in pokemon.baseStats) {
 				if (statName === 'hp') continue;
 				pokemon.baseStats[statName] = this.dex.clampIntRange(pokemon.baseStats[statName] + boost, 1, 255);
 			}
@@ -633,7 +639,7 @@ let Formats = [
 		validateSet(set, teamHas) {
 			const restrictedMoves = (this.format.restricted || []).concat('Yawn');
 			const dex = this.dex;
-			let ability = dex.getMove(set.ability);
+			const ability = dex.getMove(set.ability);
 			if (ability.category !== 'Status' || ability.status === 'slp' || restrictedMoves.includes(ability.name) || set.moves.map(toID).includes(ability.id)) return this.validateSet(set, teamHas);
 			let customRules = this.format.customRules || [];
 			if (!customRules.includes('!obtainableabilities')) customRules.push('!obtainableabilities');
@@ -716,7 +722,7 @@ let Formats = [
 		onModifySpecies(species, target, source, effect) {
 			if (!target) return; // Chat command
 			if (effect && ['imposter', 'transform'].includes(effect.id)) return;
-			let types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => this.dex.getMove(move.id).type))];
+			const types = [...new Set(target.baseMoveSlots.slice(0, 2).map(move => this.dex.getMove(move.id).type))];
 			return Object.assign({}, species, {types: types});
 		},
 		onSwitchIn(pokemon) {
@@ -746,9 +752,9 @@ let Formats = [
 			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Team order will determine the following characteristics of your lead Pok&eacute;mon:<br>* Slot 1: Species and typing<br>* Slot 2: Item<br>* Slot 3: Ability<br>* Slot 4: Stats<br>* Slot 5: Moves 1+2<br>* Slot 6: Moves 3+4</div>`);
 		},
 		onBeforeSwitchIn(pokemon) {
-			let allies = pokemon.side.pokemon.splice(1);
+			const allies = pokemon.side.pokemon.splice(1);
 			pokemon.side.pokemonLeft = 1;
-			let species = this.dex.deepClone(pokemon.baseSpecies);
+			const species = this.dex.deepClone(pokemon.baseSpecies);
 			pokemon.item = allies[0].item;
 			species.abilities = allies[1].baseSpecies.abilities;
 			pokemon.ability = pokemon.baseAbility = allies[1].ability;
@@ -796,11 +802,11 @@ let Formats = [
 		},
 		onSwitchIn(pokemon) {
 			// @ts-ignore
-			let oMegaSpecies = this.dex.getSpecies(pokemon.species.originalMega);
+			const oMegaSpecies = this.dex.getSpecies(pokemon.species.originalMega);
 			if (oMegaSpecies.exists && pokemon.m.originalSpecies !== oMegaSpecies.baseSpecies) {
 				// Place volatiles on the Pokémon to show its mega-evolved condition and details
 				this.add('-start', pokemon, oMegaSpecies.requiredItem || oMegaSpecies.requiredMove, '[silent]');
-				let oSpecies = this.dex.getSpecies(pokemon.m.originalSpecies);
+				const oSpecies = this.dex.getSpecies(pokemon.m.originalSpecies);
 				if (oSpecies.types.length !== pokemon.species.types.length || oSpecies.types[1] !== pokemon.species.types[1]) {
 					this.add('-start', pokemon, 'typechange', pokemon.species.types.join('/'), '[silent]');
 				}
@@ -808,7 +814,7 @@ let Formats = [
 		},
 		onSwitchOut(pokemon) {
 			// @ts-ignore
-			let oMegaSpecies = this.dex.getSpecies(pokemon.species.originalMega);
+			const oMegaSpecies = this.dex.getSpecies(pokemon.species.originalMega);
 			if (oMegaSpecies.exists && pokemon.m.originalSpecies !== oMegaSpecies.baseSpecies) {
 				this.add('-end', pokemon, oMegaSpecies.requiredItem || oMegaSpecies.requiredMove, '[silent]');
 			}
@@ -850,7 +856,7 @@ let Formats = [
 		// @ts-ignore
 		getSharedPower(pokemon) {
 			/** @type {Set<string>} */
-			let sharedPower = new Set();
+			const sharedPower = new Set();
 			for (const ally of pokemon.side.pokemon) {
 				if (ally.previouslySwitchedIn > 0) {
 					sharedPower.add(ally.baseAbility);
@@ -864,7 +870,7 @@ let Formats = [
 			if (!this.format.getSharedPower) return;
 			// @ts-ignore
 			for (const ability of this.format.getSharedPower(pokemon)) {
-				let effect = 'ability:' + ability;
+				const effect = 'ability:' + ability;
 				pokemon.volatiles[effect] = {id: toID(effect), target: pokemon};
 			}
 		},
@@ -874,7 +880,7 @@ let Formats = [
 			if (!this.format.getSharedPower) return;
 			// @ts-ignore
 			for (const ability of this.format.getSharedPower(pokemon)) {
-				let effect = 'ability:' + ability;
+				const effect = 'ability:' + ability;
 				delete pokemon.volatiles[effect];
 				pokemon.addVolatile(effect);
 			}
@@ -895,7 +901,7 @@ let Formats = [
 			hasAbility(ability) {
 				if (this.ignoringAbility()) return false;
 				if (Array.isArray(ability)) return ability.some(ability => this.hasAbility(ability));
-				let abilityid = toID(ability);
+				const abilityid = toID(ability);
 				return this.ability === abilityid || !!this.volatiles['ability:' + abilityid];
 			},
 		},
@@ -930,9 +936,9 @@ let Formats = [
 			let tier = species.tier || 'OU';
 			if (tier[0] === '(') tier = tier.slice(1, -1);
 			if (!(tier in boosts)) return;
-			let pokemon = this.dex.deepClone(species);
-			let boost = boosts[tier];
-			for (let statName in pokemon.baseStats) {
+			const pokemon = this.dex.deepClone(species);
+			const boost = boosts[tier];
+			for (const statName in pokemon.baseStats) {
 				if (statName === 'hp') continue;
 				pokemon.baseStats[statName] = this.dex.clampIntRange(pokemon.baseStats[statName] + boost, 1, 255);
 			}
@@ -982,7 +988,7 @@ let Formats = [
 		onPrepareHitPriority: -1,
 		onPrepareHit(source, target, move) {
 			if (move.hasBounced) return;
-			let type = move.type;
+			const type = move.type;
 			if (type && type !== '???' && source.getTypes().join() !== type) {
 				if (!source.setType(type)) return;
 				this.add('-start', source, 'typechange', type);
@@ -1020,7 +1026,7 @@ let Formats = [
 			if (pokemon.illusion) {
 				this.debug('illusion cleared');
 				pokemon.illusion = null;
-				let details = pokemon.species.name + (pokemon.level === 100 ? '' : ', L' + pokemon.level) + (pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
+				const details = pokemon.species.name + (pokemon.level === 100 ? '' : ', L' + pokemon.level) + (pokemon.gender === '' ? '' : ', ' + pokemon.gender) + (pokemon.set.shiny ? ', shiny' : '');
 				this.add('replace', pokemon, details);
 				this.add('-end', pokemon, 'Illusion');
 			}
@@ -1072,7 +1078,7 @@ let Formats = [
 
 		mod: 'gen8',
 		team: 'random',
-		ruleset: ['PotD', 'Obtainable', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
+		ruleset: ['PotD', 'Obtainable', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod'],
 	},
 	{
 		name: "[Gen 8] Random Battle (Blitz)",
@@ -2082,8 +2088,8 @@ let Formats = [
 		],
 
 		onValidateTeam(team) {
-			let problems = [];
-			let stallMons = [];
+			const problems = [];
+			const stallMons = [];
 			const stallList = [
 				'Slowbro-Mega', 'Audino-Mega', 'Snorlax', 'Blissey', 'Tangrowth', 'Pelipper', 'Amoonguss', 'Corviknight', 'Quagsire',
 				'Clefable', 'Dugtrio', 'Gothitelle', 'Toxapex', 'Slowking', 'Gliscor', 'Gligar', 'Cresselia', 'Mandibuzz', 'Shedinja',
@@ -2119,7 +2125,7 @@ let Formats = [
 			return problems;
 		},
 		onValidateSet(set) {
-			let problems = [];
+			const problems = [];
 			const species = this.dex.getSpecies(set.species);
 			if (species.abilities) for (const abilitySlot in species.abilities) {
 				const abilityName = species.abilities[abilitySlot];

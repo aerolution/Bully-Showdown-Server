@@ -1152,6 +1152,24 @@ export const commands: ChatCommands = {
 			}
 		} else if (this.meansYes(target) || target === 'start') {
 			timer.start(user);
+		} else if (target === 'ds') {
+			const timerSettings = {
+				starting: 60 * 60,
+				grace: 0,
+				addPerTurn: 10,
+				maxPerTurn: 100,
+				timeoutAutoChoose: true,
+			};
+			timer.setSettings(timerSettings);
+			timer.start(user);
+		} else if (target === 'smogon') {
+			const timerSettings = {
+				starting: 5 * 60,
+				addPerTurn: 10,
+				maxPerTurn: 0,
+			};
+			timer.setSettings(timerSettings);
+			timer.start(user);
 		} else {
 			this.errorReply(`"${target}" is not a recognized timer state.`);
 		}

@@ -766,7 +766,7 @@ const Formats = [
 			battle: 6,
 		},
 		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Team Preview', 'Dynamax Clause'],
-		customBanlist: ['Shedinja', 'Darmanitan-Galar', 'Huge Power', 'Pure Power'],
+		randomBanlist: ['Shedinja', 'Darmanitan-Galar', 'Huge Power', 'Pure Power'],
 		level100: true,
 		onBegin() {
 			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Team order will determine the following characteristics of your lead Pok&eacute;mon:<br>* Slot 1: Species and typing<br>* Slot 2: Item<br>* Slot 3: Ability<br>* Slot 4: Stats<br>* Slot 5: Moves 1+2<br>* Slot 6: Moves 3+4</div>`);
@@ -865,7 +865,8 @@ const Formats = [
 		team: 'random',
 		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Dynamax Clause'],
 		randomBanlist: [
-			'Darmanitan-Galar', 'Zoroark', 'Ditto', 'Shedinja', 'Furfrou', 'Wimpod', 'Golisopod', 'Tornadus-Therian',
+			'Darmanitan-Galar', 'Zoroark', 'Ditto', 'Shedinja', 'Furfrou', 'Golisopod', 'Tornadus-Therian', 'Bibarel', 'Swoobat', 
+			'Gardevoir', 'Porygon2',
 			'Arena Trap', 'Fur Coat', 'Huge Power', 'Moody', 'Neutralizing Gas', 'Pure Power', 'Regenerator',
 			'Shadow Tag', 'Simple', 'Speed Boost', 'Trace', 'Ice Scales',
 		],
@@ -1063,7 +1064,7 @@ const Formats = [
 		mod: 'gen8',
 		team: 'random',
 		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Dynamax Clause'],
-		customBanlist: ['fakeout'],
+		randomBanlist: ['fakeout'],
 		onBegin() {
 			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">All Pok&eacute;mon automatically switch out upon using a move that affects the opponent.</div>`);
 		},

@@ -4003,12 +4003,12 @@ export const BattleFormatsData: {[k: string]: SpeciesFormatsData} = {
 		isNonstandard: "Past",
 	},
 	chespin: {
-		randomBattleMoves: ["curse", "gyroball", "seedbomb", "stoneedge", "spikes", "synthesis"],
+		randomBattleMoves: ["substitute", "bellydrum", "seedbomb", "drainpunch"],
 		isNonstandard: "Past",
 		tier: "LC",
 	},
 	quilladin: {
-		randomBattleMoves: ["curse", "gyroball", "seedbomb", "stoneedge", "spikes", "synthesis"],
+		randomBattleMoves: ["leechseed", "synthesis", "spikes", "drainpunch", "toxic", "seedbomb"],
 		isNonstandard: "Past",
 		tier: "NFE",
 	},

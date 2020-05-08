@@ -132,12 +132,6 @@ const Formats = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC Unrestricted",
-
-		mod: 'gen8',
-		ruleset: ['Draft', '+Unreleased', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', 'Allow Tradeback', '+Past', '+PastMove', 'Team Preview'],
-	},
-	{
 		name: "[Gen 8] National Dex DLC Wifi",
 
 		mod: 'gen8',

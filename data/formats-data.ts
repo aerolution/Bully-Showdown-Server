@@ -4418,7 +4418,7 @@ export const BattleFormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Uber",
 	},
 	diancie: {
-		randomBattleMoves: ["reflect", "lightscreen", "stealthrock", "diamondstorm", "moonblast", "mysticalfire", "bodypress"],
+		randomBattleMoves: ["healbell", "toxic", "stealthrock", "diamondstorm", "moonblast", "mysticalfire", "bodypress"],
 		isNonstandard: "Past",
 		tier: "RU",
 	},

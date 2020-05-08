@@ -866,7 +866,7 @@ const Formats = [
 		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Dynamax Clause'],
 		randomBanlist: [
 			'Darmanitan-Galar', 'Zoroark', 'Ditto', 'Shedinja', 'Furfrou', 'Golisopod', 'Tornadus-Therian', 'Bibarel', 'Swoobat', 
-			'Gardevoir', 'Porygon2',
+			'Gardevoir', 'Porygon2', 'Glalie',
 			'Arena Trap', 'Fur Coat', 'Huge Power', 'Moody', 'Neutralizing Gas', 'Pure Power', 'Regenerator',
 			'Shadow Tag', 'Simple', 'Speed Boost', 'Trace', 'Ice Scales',
 		],

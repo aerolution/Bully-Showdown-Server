@@ -1026,7 +1026,7 @@ export class RandomTeams {
 					if (hasMove['toxic'] || hasMove['stealthrock']) rejected = true;
 					break;
 				case 'destinybond':
-					if (counter.setupType && counter.damagingMoves.length < 2) rejected = true;
+					if (hasMove['memento'] || (counter.setupType && counter.damagingMoves.length < 2)) rejected = true;
 					break;
 				}
 				

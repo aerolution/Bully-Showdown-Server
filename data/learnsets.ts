@@ -5975,7 +5975,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 			{generation: 2, level: 13},
 			{generation: 3, level: 5},
 			{generation: 4, level: 10},
-			{generation: 6, level: 19, "maxEggMoves: 1},
+			{generation: 6, level: 19, maxEggMoves: 1},
 			{generation: 7, level: 20},
 		],
 	},
@@ -6216,7 +6216,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 		encounters: [
 			{generation: 2, level: 14},
 			{generation: 4, level: 14},
-			{generation: 6, level: 18, "maxEggMoves: 1},
+			{generation: 6, level: 18, maxEggMoves: 1},
 		],
 	},
 	vileplume: {
@@ -9630,7 +9630,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 			{generation: 2, level: 20},
 			{generation: 3, level: 20},
 			{generation: 4, level: 15},
-			{generation: 6, level: 21, "maxEggMoves: 1},
+			{generation: 6, level: 21, maxEggMoves: 1},
 		],
 	},
 	geodude: {
@@ -11617,7 +11617,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 			{generation: 2, level: 5},
 			{generation: 3, level: 32},
 			{generation: 5, level: 30},
-			{generation: 6, level: 30, "maxEggMoves: 1},
+			{generation: 6, level: 30, maxEggMoves: 1},
 		],
 	},
 	grimer: {
@@ -16106,7 +16106,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 			{generation: 2, level: 10},
 			{generation: 3, level: 20},
 			{generation: 4, level: 10},
-			{generation: 6, level: 26, "maxEggMoves: 1},
+			{generation: 6, level: 26, maxEggMoves: 1},
 			{generation: 7, level: 10},
 		],
 	},
@@ -22513,7 +22513,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 		encounters: [
 			{generation: 2, level: 7},
 			{generation: 4, level: 5},
-			{generation: 6, level: 19, "maxEggMoves: 1},
+			{generation: 6, level: 19, maxEggMoves: 1},
 		],
 	},
 	chinchou: {
@@ -22666,7 +22666,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 		},
 		encounters: [
 			{generation: 4, level: 20},
-			{generation: 6, level: 26, "maxEggMoves: 1},
+			{generation: 6, level: 26, maxEggMoves: 1},
 			{generation: 7, level: 10},
 		],
 	},
@@ -23210,7 +23210,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 		encounters: [
 			{generation: 2, level: 15},
 			{generation: 4, level: 16, gender: "M", nature: "Modest", ivs: {hp: 15, atk: 20, def: 15, spa: 20, spd: 20, spe: 20}, abilities: ["synchronize"], pokeball: "pokeball"},
-			{generation: 6, level: 24, "maxEggMoves: 1},
+			{generation: 6, level: 24, maxEggMoves: 1},
 			{generation: 7, level: 21},
 		],
 	},
@@ -23715,7 +23715,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 		},
 		encounters: [
 			{generation: 5, level: 5},
-			{generation: 6, level: 16, "maxEggMoves: 1},
+			{generation: 6, level: 16, maxEggMoves: 1},
 		],
 	},
 	bonsly: {
@@ -28119,7 +28119,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 			bodypress: ["9M"],
 		},
 		encounters: [
-			{generation: 6, level: 24, "maxEggMoves: 1},
+			{generation: 6, level: 24, maxEggMoves: 1},
 		],
 	},
 	stantler: {
@@ -30545,7 +30545,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 		],
 		encounters: [
 			{generation: 4, level: 3},
-			{generation: 6, level: 17, "maxEggMoves: 1},
+			{generation: 6, level: 17, maxEggMoves: 1},
 		],
 	},
 	linoonegalar: {
@@ -30722,7 +30722,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 		encounters: [
 			{generation: 3, level: 5},
 			{generation: 4, level: 5},
-			{generation: 6, level: 2, "maxEggMoves: 1},
+			{generation: 6, level: 2, maxEggMoves: 1},
 		],
 	},
 	beautifly: {
@@ -30802,7 +30802,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 		encounters: [
 			{generation: 3, level: 5},
 			{generation: 4, level: 5},
-			{generation: 6, level: 2, "maxEggMoves: 1},
+			{generation: 6, level: 2, maxEggMoves: 1},
 		],
 	},
 	dustox: {
@@ -31029,7 +31029,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 			zenheadbutt: ["8M", "8L50", "7T", "7L40", "6T", "6L31", "5T", "5L31", "4T", "4L27", "9M"],
 		},
 		encounters: [
-			{generation: 6, level: 13, "maxEggMoves: 1},
+			{generation: 6, level: 13, maxEggMoves: 1},
 		],
 	},
 	ludicolo: {
@@ -31303,7 +31303,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 			worryseed: ["7T", "6T", "5T", "4T"],
 		},
 		encounters: [
-			{generation: 6, level: 13, "maxEggMoves: 1},
+			{generation: 6, level: 13, maxEggMoves: 1},
 		],
 	},
 	shiftry: {
@@ -31714,7 +31714,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 		},
 		encounters: [
 			{generation: 4, level: 15},
-			{generation: 6, level: 18, "maxEggMoves: 1},
+			{generation: 6, level: 18, maxEggMoves: 1},
 		],
 	},
 	ralts: {
@@ -32317,7 +32317,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 			batonpass: ["9M"],
 		},
 		encounters: [
-			{generation: 6, level: 21, "maxEggMoves: 1},
+			{generation: 6, level: 21, maxEggMoves: 1},
 		],
 	},
 	shroomish: {
@@ -33119,7 +33119,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 			faketears: ["9M"],
 		},
 		encounters: [
-			{generation: 6, level: 16, "maxEggMoves: 1},
+			{generation: 6, level: 16, maxEggMoves: 1},
 		],
 	},
 	exploud: {
@@ -34498,7 +34498,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 		},
 		encounters: [
 			{generation: 4, level: 35},
-			{generation: 6, level: 34, "maxEggMoves: 1},
+			{generation: 6, level: 34, maxEggMoves: 1},
 		],
 	},
 	electrike: {
@@ -39603,7 +39603,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 		},
 		encounters: [
 			{generation: 4, level: 25},
-			{generation: 6, level: 28, "maxEggMoves: 1},
+			{generation: 6, level: 28, maxEggMoves: 1},
 		],
 	},
 	walrein: {
@@ -44656,7 +44656,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 			playrough: ["9M"],
 		},
 		encounters: [
-			{generation: 6, level: 32, "maxEggMoves: 1},
+			{generation: 6, level: 32, maxEggMoves: 1},
 		],
 	},
 	stunky: {
@@ -52452,7 +52452,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 			{generation: 6, level: 35, gender: "M", nature: "Calm", ivs: {hp: 30, atk: 30, def: 30, spa: 30, spd: 30, spe: 30}, isHidden: true, moves: ["thrash", "bellydrum", "flareblitz", "hammerarm"], pokeball: "cherishball"},
 		],
 		encounters: [
-			{generation: 6, level: 32, "maxEggMoves: 1},
+			{generation: 6, level: 32, maxEggMoves: 1},
 		],
 	},
 	darmanitangalar: {
@@ -52720,7 +52720,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 			xscissor: ["8M", "8L38", "7M", "7L38", "6M", "6L38", "5M", "5L38", "9M"],
 		},
 		encounters: [
-			{generation: 6, level: 33, "maxEggMoves: 1},
+			{generation: 6, level: 33, maxEggMoves: 1},
 		],
 	},
 	scraggy: {
@@ -53205,7 +53205,7 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 			{generation: 7, level: 66, gender: "M", moves: ["willowisp", "shadowball", "powersplit", "darkpulse"], pokeball: "cherishball"},
 		],
 		encounters: [
-			{generation: 6, level: 32, "maxEggMoves: 1},
+			{generation: 6, level: 32, maxEggMoves: 1},
 		],
 	},
 	runerigus: {

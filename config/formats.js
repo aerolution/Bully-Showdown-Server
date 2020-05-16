@@ -272,7 +272,6 @@ const Formats = [
 		name: "[Gen 7] DS Timer Draft League",
 
 		mod: 'gen7',
-		timer: {starting: 600*60, addPerTurn: 0, maxPerTurn: 100, maxFirstTurn: 90, timeoutAutoChoose: true, dcTimerBank: false},
 		ruleset: ['[Gen 7] Draft League'],
 	},
 	{

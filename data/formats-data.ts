@@ -232,7 +232,6 @@ export const BattleFormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	pikachugmax: {
 		randomDoubleBattleMoves: ["extremespeed", "fakeout", "knockoff", "surf", "volttackle"],
-		unreleasedHidden: true,
 		tier: "(Uber)",
 		doublesTier: "(DUber)",
 	},
@@ -4790,7 +4789,7 @@ export const BattleFormatsData: {[k: string]: SpeciesFormatsData} = {
 	silvallyfighting: {
 		randomBattleMoves: ["crunch", "ironhead", "multiattack", "swordsdance", "uturn"],
 		randomDoubleBattleMoves: ["crunch", "multiattack", "rockslide", "swordsdance", "tailwind"],
-		tier: "PU",
+		tier: "PUBL",
 		doublesTier: "(DUU)",
 	},
 	silvallyfire: {
@@ -4832,7 +4831,7 @@ export const BattleFormatsData: {[k: string]: SpeciesFormatsData} = {
 	silvallypoison: {
 		randomBattleMoves: ["defog", "flamethrower", "grasspledge", "multiattack", "partingshot", "toxic"],
 		randomDoubleBattleMoves: ["flamethrower", "grasspledge", "multiattack", "partingshot", "snarl", "tailwind"],
-		tier: "PU",
+		tier: "PUBL",
 		doublesTier: "(DUU)",
 	},
 	silvallypsychic: {
@@ -5292,7 +5291,7 @@ export const BattleFormatsData: {[k: string]: SpeciesFormatsData} = {
 	appletun: {
 		randomBattleMoves: ["appleacid", "dragonpulse", "leechseed", "recover"],
 		randomDoubleBattleMoves: ["appleacid", "dracometeor", "dragonpulse", "leechseed", "protect", "recover"],
-		tier: "PU",
+		tier: "PUBL",
 		doublesTier: "(DUU)",
 	},
 	appletungmax: {

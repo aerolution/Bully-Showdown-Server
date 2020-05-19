@@ -170,6 +170,18 @@ const Formats = [
 		section: "Custom League Tiers",
 	},
 	{
+		name: "[Gen 8] (National Dex) BBL",
+
+		mod: 'gen8',
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
+		
+		onBegin() {
+			for (let pokemon of this.getAllPokemon()) {
+				if (!pokemon.canGigantamax) pokemon.canDynamax = false;
+			}
+		},
+	},
+	{
 		name: "[Gen 8] (National Dex) CAPtyLtd",
 
 		mod: 'gen8',

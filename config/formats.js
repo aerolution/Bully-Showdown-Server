@@ -25,6 +25,18 @@ const Formats = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
 	},
 	{
+		name: "[Gen 8] Galar Dex VGC",
+
+		mod: 'gen8',
+		gameType: 'doubles',
+		forcedLevel: 50,
+		teamLength: {
+			validate: [4, 6],
+			battle: 4,
+		},
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
+	},
+	{
 		name: "[Gen 8] Galar Dex Pre-Home",
 
 		mod: 'gen8',
@@ -91,6 +103,18 @@ const Formats = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
 	{
+		name: "[Gen 8] National Dex VGC",
+
+		mod: 'gen8',
+		gameType: 'doubles',
+		forcedLevel: 50,
+		teamLength: {
+			validate: [4, 6],
+			battle: 4,
+		},
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
+	},
+	{
 		name: "[Gen 8] LC National Dex Draft",
 
 		mod: 'gen8',
@@ -143,6 +167,18 @@ const Formats = [
 
 		mod: 'gen8',
 		gameType: 'doubles',
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
+	},
+	{
+		name: "[Gen 8] National Dex DLC VGC",
+
+		mod: 'gen8',
+		gameType: 'doubles',
+		forcedLevel: 50,
+		teamLength: {
+			validate: [4, 6],
+			battle: 4,
+		},
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
 	},
 	{
@@ -261,45 +297,6 @@ const Formats = [
 		],
 	},
 	
-	
-	// Past Gens Draft League
-	///////////////////////////////////////////////////////////////////
-	{
-		section: "Past Gens Draft League",
-	},
-	{
-		name: "[Gen 7] Draft League",
-
-		mod: 'gen7',
-		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview'],
-	},
-	{
-		name: "[Gen 7] Wifi Draft League",
-
-		mod: 'gen7',
-		maxForcedLevel: 50,
-		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview', 'VGC Timer'],
-	},
-	{
-		name: "[Gen 7] DS Timer Draft League",
-
-		mod: 'gen7',
-		ruleset: ['[Gen 7] Draft League'],
-	},
-	{
-		name: "[Gen 7] LC Draft League",
-
-		mod: 'gen7',
-		maxLevel: 5,
-		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview', 'Double Item Clause', 'Little Cup'],
-		banlist: ['Eevium Z', 'Dragon Rage', 'Sonic Boom'],
-	},
-	{
-		name: "[Gen 7] Unrestricted Draft League",
-
-		mod: 'gen7',
-		ruleset: ['-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', 'Draft', 'Team Preview'],
-	},
 	
 	
 	// Other Metagames
@@ -637,7 +634,6 @@ const Formats = [
 
 		mod: 'gen8',
 		ruleset: ['[Gen 8] OU'],
-		banlist: ['Arena Trap'],
 		restricted: [
 			'Baneful Bunker', 'Block', 'Copycat', 'Detect', 'Destiny Bond', 'Ingrain', 'King\'s Shield', 'Mean Look', 'Metronome', 'Obstruct',
 			'Octolock', 'Nature Power', 'Parting Shot', 'Protect', 'Roar', 'Skill Swap', 'Sleep Talk', 'Spiky Shield', 'Teleport', 'Whirlwind', 'Wish',
@@ -1428,6 +1424,51 @@ const Formats = [
 		// no restrictions, for serious (other than team preview)
 		ruleset: ['Team Preview', 'Cancel Mod'],
 	},
+	
+	// Past Gens Draft League
+	///////////////////////////////////////////////////////////////////
+	{
+		section: "Past Gens Draft League",
+		column: 4,
+	},
+	{
+		name: "[Gen 7] Draft League",
+
+		mod: 'gen7',
+		searchShow: false,
+		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview'],
+	},
+	{
+		name: "[Gen 7] Wifi Draft League",
+
+		mod: 'gen7',
+		searchShow: false,
+		maxForcedLevel: 50,
+		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview', 'VGC Timer'],
+	},
+	{
+		name: "[Gen 7] DS Timer Draft League",
+
+		mod: 'gen7',
+		searchShow: false,
+		ruleset: ['[Gen 7] Draft League'],
+	},
+	{
+		name: "[Gen 7] LC Draft League",
+
+		mod: 'gen7',
+		searchShow: false,
+		maxLevel: 5,
+		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview', 'Double Item Clause', 'Little Cup'],
+		banlist: ['Eevium Z', 'Dragon Rage', 'Sonic Boom'],
+	},
+	{
+		name: "[Gen 7] Unrestricted Draft League",
+
+		mod: 'gen7',
+		searchShow: false,
+		ruleset: ['-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', 'Draft', 'Team Preview'],
+	},
 
 
 	// US/UM
@@ -1715,7 +1756,7 @@ const Formats = [
 	
 	{
 		section: "B2/W2",
-		column: 4,
+		column: 5,
 	},
 	{
 		name: "[Gen 5] OU",

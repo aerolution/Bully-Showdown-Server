@@ -21,7 +21,12 @@ __- **/timer default**: resets the timer to the format's default settings__
 **Galar Dex Wifi**:
 + Galar Dex Draft rules
 + Pokemon are set to level 50
-+ VGC timer
+
+**Galar Dex VGC**:
++ Galar Dex Draft rules
++ Doubles format
++ Pokemon are set to level 50
++ Bring 4 out of 6 Pokemon
 
 **Galar Dex Pre-Home**:
 + Galar Dex Draft rules
@@ -63,6 +68,12 @@ __- **/timer default**: resets the timer to the format's default settings__
 **National Dex Doubles**:
 + National Dex Dynamax rules
 + Doubles format
+
+**National Dex VGC**:
++ National Dex Dynamax rules
++ Doubles format
++ Pokemon are set to level 50
++ Bring 4 out of 6 Pokemon
 
 **LC National Dex Draft**:
 + National Dex Draft rules

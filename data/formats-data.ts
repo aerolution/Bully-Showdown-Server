@@ -5097,52 +5097,43 @@ export const BattleFormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	grookey: {
 		randomBattleMoves: ["swordsdance", "drainpunch", "knockoff", "uturn", "woodhammer"],
-		unreleasedHidden: true,
 		tier: "LC",
 	},
 	thwackey: {
 		randomBattleMoves: ["leechseed", "uturn", "hammerarm", "knockoff", "fakeout", "woodhammer", "protect"],
-		unreleasedHidden: true,
 		tier: "NFE",
 	},
 	rillaboom: {
 		randomBattleMoves: ["bulkup", "drumbeating", "highhorsepower", "knockoff", "substitute", "uturn", "woodhammer"],
 		randomDoubleBattleMoves: ["drumbeating", "fakeout", "highhorsepower", "superpower", "swordsdance", "uturn"],
-		unreleasedHidden: true,
 		tier: "RU",
 		doublesTier: "(DUU)",
 	},
 	scorbunny: {
 		randomBattleMoves: ["blazekick", "gunkshot", "highjumpkick", "taunt", "uturn", "suckerpunch"],
-		unreleasedHidden: true,
 		tier: "LC",
 	},
 	raboot: {
 		randomBattleMoves: ["bulkup", "flamecharge", "highjumpkick", "flareblitz", "uturn", "suckerpunch"],
-		unreleasedHidden: true,
 		tier: "NFE",
 	},
 	cinderace: {
 		randomBattleMoves: ["courtchange", "suckerpunch", "highjumpkick", "pyroball", "uturn", "zenheadbutt"],
 		randomDoubleBattleMoves: ["courtchange", "gunkshot", "highjumpkick", "ironhead", "protect", "pyroball", "uturn", "zenheadbutt"],
-		unreleasedHidden: true,
 		tier: "OU",
 		doublesTier: "DUU",
 	},
 	sobble: {
 		randomBattleMoves: ["surf", "reflect", "lightscreen", "uturn"],
-		unreleasedHidden: true,
 		tier: "LC",
 	},
 	drizzile: {
 		randomBattleMoves: ["surf", "reflect", "lightscreen", "uturn"],
-		unreleasedHidden: true,
 		tier: "NFE",
 	},
 	inteleon: {
 		randomBattleMoves: ["airslash", "darkpulse", "hydropump", "icebeam", "scald", "uturn"],
 		randomDoubleBattleMoves: ["airslash", "hydropump", "icebeam", "muddywater", "shadowball", "uturn"],
-		unreleasedHidden: true,
 		tier: "RU",
 		doublesTier: "DUU",
 	},

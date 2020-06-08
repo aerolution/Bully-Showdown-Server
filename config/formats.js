@@ -206,6 +206,33 @@ const Formats = [
 		section: "Custom League Tiers",
 	},
 	{
+		name: "[Gen 8] (National Dex) APA Gym Challenge",
+
+		mod: 'gen8',
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview', 'Dynamax Clause'],
+		unbanlist: [
+			'Buginium Z', 'Darkinium Z', 'Dragonium Z', 'Electrium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 
+			'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Normalium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 
+			'Steelium Z', 'Waterium Z', 'Aloraichium Z', 'Decidium Z', 'Eevium Z', 'Incinium Z', 'Kommonium Z', 'Lunalium Z', 
+			'Lycanium Z', 'Marshadium Z', 'Mewnium Z', 'Mimikium Z', 'Pikanium Z', 'Pikashunium Z', 'Primarium Z', 'Snorlium Z', 
+			'Solganium Z', 'Tapunium Z', 'Ultranecrozium Z',
+		]
+	},
+	{
+		name: "[Gen 8] (National Dex) APA Gym Challenge Doubles",
+
+		mod: 'gen8',
+		gameType: 'doubles',
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview', 'Dynamax Clause'],
+		unbanlist: [
+			'Buginium Z', 'Darkinium Z', 'Dragonium Z', 'Electrium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 
+			'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Normalium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 
+			'Steelium Z', 'Waterium Z', 'Aloraichium Z', 'Decidium Z', 'Eevium Z', 'Incinium Z', 'Kommonium Z', 'Lunalium Z', 
+			'Lycanium Z', 'Marshadium Z', 'Mewnium Z', 'Mimikium Z', 'Pikanium Z', 'Pikashunium Z', 'Primarium Z', 'Snorlium Z', 
+			'Solganium Z', 'Tapunium Z', 'Ultranecrozium Z',
+		]
+	},
+	{
 		name: "[Gen 8] (National Dex) BBL",
 
 		mod: 'gen8',

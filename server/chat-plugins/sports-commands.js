@@ -28,10 +28,6 @@ __- **/timer default**: resets the timer to the format's default settings__
 + Pokemon are set to level 50
 + Bring 4 out of 6 Pokemon
 
-**Galar Dex Pre-Home**:
-+ Galar Dex Draft rules
-+ only Pokemon, moves, abilities and items native to the pre-Home games are allowed
-
 
 
 **National Dex Draft**:
@@ -87,11 +83,11 @@ __- **/timer default**: resets the timer to the format's default settings__
 
 
 
-**National Dex DLC Formats**:
+**National Dex DLC2 Formats**:
 + Same rules as the corresponding National Dex format
 + moveset additions from the Pokemon Home leaks are allowed
 
-__NOTE: all DLC moves will show up as Illegal in the Teambuilder, this is just a visual issue and they will validate as intended. If you're not sure a move is legal always refer to the Validate button.__`);
+__NOTE: all leaked moves will show up as Illegal in the Teambuilder, this is just a visual issue and they will validate as intended. If you're not sure a move is legal always refer to the Validate button.__`);
 	},
 	
 	sportsavatar(target, room, user, connection) {

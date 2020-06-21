@@ -678,7 +678,7 @@ export const BattleFormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Illegal",
 	},
 	slowbrogalar: {
-		randomBattleMoves: ["flamethrower", "psyshock", "shellsidearm", "trick", "trickroom"],
+		randomBattleMoves: ["flamethrower", "psyshock", "shellsidearm", "nastyplot", "trickroom"],
 		randomBattleLevel: 82,
 		tier: "OU",
 		doublesTier: "DOU",
@@ -5969,10 +5969,10 @@ export const BattleFormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Illegal",
 	},
 	kubfu: {
-		tier: "NFE",
+		tier: "LC",
 	},
 	urshifu: {
-		randomBattleMoves: ["closecombat", "ironhead", "uturn", "wickedblow"],
+		randomBattleMoves: ["closecombat", "poisonjab", "uturn", "wickedblow", "suckerpunch"],
 		randomBattleLevel: 80,
 		tier: "OU",
 		doublesTier: "DOU",
@@ -5984,18 +5984,15 @@ export const BattleFormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "DOU",
 	},
 	urshifugmax: {
-		randomBattleMoves: ["bulkup", "drainpunch", "substitute", "wickedblow"],
 		tier: "(Uber)",
 		doublesTier: "(DUber)",
 	},
 	urshifurapidstrikegmax: {
-		randomBattleMoves: ["bulkup", "drainpunch", "substitute", "surgingstrikes"],
-		randomBattleLevel: 82,
 		tier: "(Uber)",
 		doublesTier: "(DUber)",
 	},
 	zarude: {
-		randomBattleMoves: ["bulkup", "closecombat", "darkestlariat", "powerwhip", "uturn"],
+		randomBattleMoves: ["bulkup", "closecombat", "darkestlariat", "powerwhip", "uturn", "synthesis"],
 		randomBattleLevel: 80,
 		tier: "Unreleased",
 	},

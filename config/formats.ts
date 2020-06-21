@@ -324,12 +324,14 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8] Galar Dex Draft Pre-DLC",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
 	},
 	{
 		name: "[Gen 8] Galar Dex Draft Pre-Home",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', 'Team Preview'],
 		banlist: [
 			// Unreleased Hidden Abilities
@@ -351,6 +353,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8] Galar Dex Wifi Pre-DLC",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		maxForcedLevel: 50,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
 	},
@@ -358,6 +361,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8] Galar Dex VGC Pre-DLC",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		gameType: 'doubles',
 		forcedLevel: 50,
 		teamLength: {
@@ -379,30 +383,35 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8] National Dex Draft Pre-DLC",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
 		name: "[Gen 8] National Dex Dynamax Pre-DLC",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
 	{
 		name: "[Gen 8] National Dex Legacy Pre-DLC",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
 		name: "[Gen 8] National Dex Unrestricted Pre-DLC",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		ruleset: ['Draft', '+Unreleased', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+PastMove', 'Team Preview'],
 	},
 	{
 		name: "[Gen 8] National Dex Wifi Pre-DLC",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		maxForcedLevel: 50,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
@@ -410,6 +419,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8] National Dex Doubles Pre-DLC",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		gameType: 'doubles',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
@@ -417,6 +427,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8] National Dex VGC Pre-DLC",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		gameType: 'doubles',
 		forcedLevel: 50,
 		teamLength: {
@@ -429,6 +440,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8] LC National Dex Draft Pre-DLC",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		maxLevel: 5,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
@@ -437,6 +449,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8] LC National Dex Legacy Pre-DLC",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		maxLevel: 5,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
@@ -454,24 +467,28 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8] National Dex DLC1 Draft",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
 		name: "[Gen 8] National Dex DLC1 Dynamax",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
 	},
 	{
 		name: "[Gen 8] National Dex DLC1 Legacy",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
 		name: "[Gen 8] National Dex DLC1 Wifi",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		maxForcedLevel: 50,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
 	},
@@ -479,6 +496,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8] National Dex DLC1 Doubles",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		gameType: 'doubles',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
 	},
@@ -486,6 +504,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8] National Dex DLC1 VGC",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		gameType: 'doubles',
 		forcedLevel: 50,
 		teamLength: {
@@ -498,6 +517,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8] LC National Dex DLC1 Draft",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		maxLevel: 5,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
@@ -506,6 +526,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8] LC National Dex DLC1 Legacy",
 
 		mod: 'gen8predlc',
+		searchShow: false,
 		maxLevel: 5,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', '+PastMove', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],

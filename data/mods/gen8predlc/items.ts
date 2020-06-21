@@ -7647,5 +7647,3 @@ export const BattleItems: {[k: string]: ModdedItemData} = {
 		desc: "(Gen 2) Holder is cured if it is poisoned. Single use.",
 	},
 };
-
-exports.BattleItems = BattleItems;

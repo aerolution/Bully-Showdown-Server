@@ -20426,5 +20426,3 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 		contestType: "Cool",
 	},
 };
-
-exports.BattleMovedex = BattleMovedex;

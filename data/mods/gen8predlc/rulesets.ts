@@ -8,7 +8,7 @@ export const BattleFormats: {[k: string]: ModdedFormatsData} = {
 		],
 		timer: {starting: 60 * 60, grace: 0, addPerTurn: 10, maxPerTurn: 100, timeoutAutoChoose: true},
 		banlist: [
-			'Kubfu', 'Urshifu', 'Zarude',
+			'Slowbro-Galar', 'Kubfu', 'Urshifu', 'Zarude',
 		],
 	},
 };

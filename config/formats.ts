@@ -474,7 +474,7 @@ const Formats = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] LC National Dex DLC1",
+		name: "[Gen 8] LC National Dex DLC1 Draft",
 
 		mod: 'gen8predlc',
 		maxLevel: 5,
@@ -482,7 +482,7 @@ const Formats = [
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	{
-		name: "[Gen 8] LC National Dex DLC1",
+		name: "[Gen 8] LC National Dex DLC1 Legacy",
 
 		mod: 'gen8predlc',
 		maxLevel: 5,

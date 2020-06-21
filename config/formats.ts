@@ -318,13 +318,13 @@ const Formats = [
 		column: 2,
 	},
 	{
-		name: "[Gen 8] Galar Dex Draft (Pre-DLC)",
+		name: "[Gen 8] Galar Dex Draft Pre-DLC",
 
 		mod: 'gen8predlc',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] Galar Dex Draft (Pre-Home)",
+		name: "[Gen 8] Galar Dex Draft Pre-Home",
 
 		mod: 'gen8predlc',
 		ruleset: ['Obtainable', 'Draft', 'Team Preview'],
@@ -345,14 +345,14 @@ const Formats = [
 		minSourceGen: 8,
 	},
 	{
-		name: "[Gen 8] Galar Dex Wifi (Pre-DLC)",
+		name: "[Gen 8] Galar Dex Wifi Pre-DLC",
 
 		mod: 'gen8predlc',
 		maxForcedLevel: 50,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] Galar Dex VGC (Pre-DLC)",
+		name: "[Gen 8] Galar Dex VGC Pre-DLC",
 
 		mod: 'gen8predlc',
 		gameType: 'doubles',
@@ -364,45 +364,45 @@ const Formats = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Dex Draft (Pre-DLC)",
+		name: "[Gen 8] National Dex Draft Pre-DLC",
 
 		mod: 'gen8predlc',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
-		name: "[Gen 8] National Dex Dynamax (Pre-DLC)",
+		name: "[Gen 8] National Dex Dynamax Pre-DLC",
 
 		mod: 'gen8predlc',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Dex Legacy (Pre-DLC)",
+		name: "[Gen 8] National Dex Legacy Pre-DLC",
 
 		mod: 'gen8predlc',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
-		name: "[Gen 8] National Dex Unrestricted (Pre-DLC)",
+		name: "[Gen 8] National Dex Unrestricted Pre-DLC",
 
 		mod: 'gen8predlc',
 		ruleset: ['Draft', '+Unreleased', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+PastMove', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Dex Wifi (Pre-DLC)",
+		name: "[Gen 8] National Dex Wifi Pre-DLC",
 
 		mod: 'gen8predlc',
 		maxForcedLevel: 50,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Dex Doubles (Pre-DLC)",
+		name: "[Gen 8] National Dex Doubles Pre-DLC",
 
 		mod: 'gen8predlc',
 		gameType: 'doubles',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Dex VGC (Pre-DLC)",
+		name: "[Gen 8] National Dex VGC Pre-DLC",
 
 		mod: 'gen8predlc',
 		gameType: 'doubles',
@@ -414,7 +414,7 @@ const Formats = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] LC National Dex Draft (Pre-DLC)",
+		name: "[Gen 8] LC National Dex Draft Pre-DLC",
 
 		mod: 'gen8predlc',
 		maxLevel: 5,
@@ -422,7 +422,7 @@ const Formats = [
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	{
-		name: "[Gen 8] LC National Dex Legacy (Pre-DLC)",
+		name: "[Gen 8] LC National Dex Legacy Pre-DLC",
 
 		mod: 'gen8predlc',
 		maxLevel: 5,
@@ -430,39 +430,39 @@ const Formats = [
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC Draft (Pre-DLC)",
+		name: "[Gen 8] National Dex DLC1 Draft",
 
 		mod: 'gen8predlc',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC Dynamax (Pre-DLC)",
+		name: "[Gen 8] National Dex DLC1 Dynamax",
 
 		mod: 'gen8predlc',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC Legacy (Pre-DLC)",
+		name: "[Gen 8] National Dex DLC1 Legacy",
 
 		mod: 'gen8predlc',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC Wifi (Pre-DLC)",
+		name: "[Gen 8] National Dex DLC1 Wifi",
 
 		mod: 'gen8predlc',
 		maxForcedLevel: 50,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC Doubles (Pre-DLC)",
+		name: "[Gen 8] National Dex DLC1 Doubles",
 
 		mod: 'gen8predlc',
 		gameType: 'doubles',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC VGC (Pre-DLC)",
+		name: "[Gen 8] National Dex DLC1 VGC",
 
 		mod: 'gen8predlc',
 		gameType: 'doubles',
@@ -474,7 +474,7 @@ const Formats = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] LC National Dex DLC Draft (Pre-DLC)",
+		name: "[Gen 8] LC National Dex DLC1",
 
 		mod: 'gen8predlc',
 		maxLevel: 5,
@@ -482,7 +482,7 @@ const Formats = [
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	{
-		name: "[Gen 8] LC National Dex DLC Legacy (Pre-DLC)",
+		name: "[Gen 8] LC National Dex DLC1",
 
 		mod: 'gen8predlc',
 		maxLevel: 5,
@@ -497,7 +497,7 @@ const Formats = [
 
 	{
 		section: "Other Metagames",
-		column: 2,
+		column: 3,
 	},
 	{
 		name: "[Gen 8] Almost Any Ability",
@@ -895,7 +895,7 @@ const Formats = [
 
 	{
 		section: "Sports Randomized Metas",
-		column: 2,
+		column: 3,
 	},
 	{
 		name: "[Gen 8] Random Battle",
@@ -1271,7 +1271,7 @@ const Formats = [
 
 	{
 		section: "Classic Randomized Metas",
-		column: 3,
+		column: 4,
 	},
 	{
 		name: "[Gen 8] Random Doubles Battle",
@@ -1449,7 +1449,7 @@ const Formats = [
 
 	{
 		section: "Sw/Sh",
-		column: 3,
+		column: 4,
 	},
 	{
 		name: "[Gen 8] OU",
@@ -1604,7 +1604,7 @@ const Formats = [
 	///////////////////////////////////////////////////////////////////
 	{
 		section: "Past Gens Draft League",
-		column: 4,
+		column: 5,
 	},
 	{
 		name: "[Gen 7] Draft League",
@@ -1651,7 +1651,7 @@ const Formats = [
 	
 	{
 		section: "US/UM",
-		column: 4,
+		column: 5,
 	},
 	{
 		name: "[Gen 7] OU",
@@ -1809,7 +1809,7 @@ const Formats = [
 	
 	{
 		section: "OR/AS",
-		column: 4,
+		column: 5,
 	},
 	{
 		name: "[Gen 6] OU",
@@ -1932,7 +1932,7 @@ const Formats = [
 	
 	{
 		section: "B2/W2",
-		column: 5,
+		column: 6,
 	},
 	{
 		name: "[Gen 5] OU",
@@ -2038,7 +2038,7 @@ const Formats = [
 	
 	{
 		section: "DPP",
-		column: 5,
+		column: 6,
 	},
 	{
 		name: "[Gen 4] OU",
@@ -2129,7 +2129,7 @@ const Formats = [
 	
 	{
 		section: "ADV",
-		column: 5,
+		column: 6,
 	},
 	{
 		name: "[Gen 3] OU",
@@ -2181,7 +2181,7 @@ const Formats = [
 	
 	{
 		section: "GSC",
-		column: 5,
+		column: 6,
 	},
 	{
 		name: "[Gen 2] OU",
@@ -2223,7 +2223,7 @@ const Formats = [
 	
 	{
 		section: "RBY",
-		column: 5,
+		column: 6,
 	},
 	{
 		name: "[Gen 1] OU",
@@ -2265,7 +2265,7 @@ const Formats = [
 
 	{
 		section: "Other Other Metagames",
-		column: 5,
+		column: 6,
 	},
 	{
 		name: "[Gen 8] Rock Paper Scissors",

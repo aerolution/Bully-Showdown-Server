@@ -1478,7 +1478,7 @@ export class TeamValidator {
 		const dex = this.dex;
 		let name = set.species;
 		const species = dex.getSpecies(set.species);
-		const maxSourceGen = this.ruleTable.has('allowtradeback') ? 2 : dex.gen;
+		const maxSourceGen = this.ruleTable.has('allowtradeback') ? dex.gen + 1 : dex.gen;
 		if (!eventSpecies) eventSpecies = species;
 		if (set.name && set.species !== set.name && species.baseSpecies !== set.name) name = `${set.name} (${set.species})`;
 

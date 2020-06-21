@@ -738,6 +738,17 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 				return 0;
 			}
 		},
+		onCriticalHit(target, source, move) {
+			if (!target) return;
+			if (!['mimikyu', 'mimikyutotem'].includes(target.species.id) || target.transformed) {
+				return;
+			}
+			const hitSub = target.volatiles['substitute'] && !move.flags['authentic'] && !(move.infiltrates && this.gen >= 6);
+			if (hitSub) return;
+
+			if (!target.runImmunity(move.type)) return;
+			return false;
+		},
 		onEffectiveness(typeMod, target, type, move) {
 			if (!target) return;
 			if (!['mimikyu', 'mimikyutotem'].includes(target.species.id) || target.transformed) {
@@ -1534,6 +1545,13 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 				this.effectData.busted = true;
 				return 0;
 			}
+		},
+		onCriticalHit(target, type, move) {
+			if (!target) return;
+			if (move.category !== 'Physical' || target.species.id !== 'eiscue' || target.transformed) return;
+			if (target.volatiles['substitute'] && !(move.flags['authentic'] || move.infiltrates)) return;
+			if (!target.runImmunity(move.type)) return;
+			return false;
 		},
 		onEffectiveness(typeMod, target, type, move) {
 			if (!target) return;
@@ -2947,6 +2965,19 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 		name: "Queenly Majesty",
 		rating: 2,
 		num: 214,
+	},
+	quickdraw: {
+		shortDesc: "This Pokemon has a 20% chance to move first in its priority bracket.",
+		onFractionalPriorityPriority: -1,
+		onFractionalPriority(priority, pokemon) {
+			if (this.randomChance(1, 5)) {
+				this.add('-activate', pokemon, 'ability: Quick Draw');
+				return Math.round(priority) + 0.1;
+			}
+		},
+		name: "Quick Draw",
+		rating: 1.5,
+		num: 259,
 	},
 	quickfeet: {
 		desc: "If this Pokemon has a major status condition, its Speed is multiplied by 1.5; the Speed drop from paralysis is ignored.",

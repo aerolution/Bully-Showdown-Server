@@ -1478,6 +1478,7 @@ export class TeamValidator {
 		const dex = this.dex;
 		let name = set.species;
 		const species = dex.getSpecies(set.species);
+		const maxSourceGen = this.ruleTable.has('allowtradeback') ? 2 : dex.gen;
 		if (!eventSpecies) eventSpecies = species;
 		if (set.name && set.species !== set.name && species.baseSpecies !== set.name) name = `${set.name} (${set.species})`;
 
@@ -1491,7 +1492,7 @@ export class TeamValidator {
 			if (fastReturn) return true;
 			problems.push(`This format requires Pokemon from gen ${this.minSourceGen} or later and ${name} is from gen ${eventData.generation}${etc}.`);
 		}
-		if (dex.gen < eventData.generation) {
+		if (maxSourceGen < eventData.generation) {
 			if (fastReturn) return true;
 			problems.push(`This format is in gen ${dex.gen} and ${name} is from gen ${eventData.generation}${etc}.`);
 		}
@@ -1860,13 +1861,11 @@ export class TeamValidator {
 					}
 
 					// Gen 8 egg moves can be taught to any pokemon from any source
-					if (learned === '8E') learned = '8T';
-
-					if ('LMTR'.includes(learned.charAt(1))) {
+					if (learned === '8E' || 'LMTR'.includes(learned.charAt(1))) {
 						if (learnedGen === dex.gen && learned.charAt(1) !== 'R') {
 							// current-gen level-up, TM or tutor moves:
 							//   always available
-							if (babyOnly) setSources.babyOnly = babyOnly;
+							if (learned !== '8E' && babyOnly) setSources.babyOnly = babyOnly;
 							if (!moveSources.moveEvoCarryCount) return null;
 						}
 						// past-gen level-up, TM, or tutor moves:
@@ -1995,9 +1994,11 @@ export class TeamValidator {
 			species = this.dex.getSpecies(species.prevo);
 			if (species.gen > Math.max(2, this.dex.gen)) return null;
 			return species;
-		} else if (species.changesFrom) {
+		} else if (species.changesFrom && species.baseSpecies !== 'Kyurem') {
 			// For Pokemon like Rotom, Necrozma, and Gmax formes whose movesets are extensions are their base formes
 			return this.dex.getSpecies(species.changesFrom);
+		} else if (species.baseSpecies === 'Pumpkaboo') {
+			return this.dex.getSpecies('Pumpkaboo');
 		}
 		return null;
 	}

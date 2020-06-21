@@ -2282,6 +2282,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Brown",
 		prevo: "Tyrogue",
 		evoLevel: 20,
+		evoCondition: "with an Atk stat > its Def stat",
 		eggGroups: ["Human-Like"],
 	},
 	hitmonchan: {
@@ -2296,6 +2297,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Brown",
 		prevo: "Tyrogue",
 		evoLevel: 20,
+		evoCondition: "with an Atk stat < its Def stat",
 		eggGroups: ["Human-Like"],
 	},
 	lickitung: {
@@ -4303,6 +4305,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Brown",
 		prevo: "Tyrogue",
 		evoLevel: 20,
+		evoCondition: "with an Atk stat equal to its Def stat",
 		eggGroups: ["Human-Like"],
 	},
 	smoochum: {
@@ -11446,6 +11449,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		color: "White",
 		prevo: "Pancham",
 		evoLevel: 32,
+		evoCondition: "with a Dark-type in the party",
 		eggGroups: ["Field", "Human-Like"],
 	},
 	furfrou: {
@@ -11651,6 +11655,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Blue",
 		prevo: "Inkay",
 		evoLevel: 30,
+		evoCondition: "with the console turned upside-down",
 		eggGroups: ["Water 1", "Water 2"],
 	},
 	binacle: {
@@ -15942,7 +15947,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Red",
 		evos: ["Volkraken"],
 		eggGroups: ["Water 1", "Water 2"],
-		gen: 5,
+		gen: 6,
 	},
 	volkraken: {
 		num: -33,
@@ -15956,7 +15961,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		prevo: "Volkritter",
 		evoLevel: 34,
 		eggGroups: ["Water 1", "Water 2"],
-		gen: 5,
+		gen: 6,
 	},
 	snugglow: {
 		num: -34,
@@ -16260,7 +16265,7 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		gen: 7,
 	},
 	equilibra: {
-		num: -54,
+		num: -55,
 		name: "Equilibra",
 		types: ["Steel", "Ground"],
 		gender: "N",
@@ -16271,6 +16276,18 @@ export const BattlePokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Brown",
 		eggGroups: ["Mineral"],
 		gen: 7,
+	},
+	astrolotl: {
+		num: -57,
+		name: "Astrolotl",
+		types: ["Fire", "Dragon"],
+		baseStats: {hp: 108, atk: 108, def: 74, spa: 92, spd: 64, spe: 114},
+		abilities: {0: "Regenerator", 1: "Vital Spirit", H: "Magician"},
+		heightm: 1.9,
+		weightkg: 50,
+		color: "Red",
+		eggGroups: ["Dragon", "Fairy"],
+		gen: 8,
 	},
 	// NOTE: PokeStar "formes" are not actually formes and thus do not have a formeOrder
 	pokestarsmeargle: {

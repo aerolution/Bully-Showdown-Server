@@ -205,10 +205,11 @@ const Formats = [
 	{
 		section: "Custom League Tiers",
 	},
-	{
+	/*{
 		name: "[Gen 8] (National Dex) APA Gym Challenge",
 
 		mod: 'gen8',
+		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview', 'Dynamax Clause'],
 		unbanlist: [
 			'Buginium Z', 'Darkinium Z', 'Dragonium Z', 'Electrium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 
@@ -216,13 +217,14 @@ const Formats = [
 			'Steelium Z', 'Waterium Z', 'Aloraichium Z', 'Decidium Z', 'Eevium Z', 'Incinium Z', 'Kommonium Z', 'Lunalium Z', 
 			'Lycanium Z', 'Marshadium Z', 'Mewnium Z', 'Mimikium Z', 'Pikanium Z', 'Pikashunium Z', 'Primarium Z', 'Snorlium Z', 
 			'Solganium Z', 'Tapunium Z', 'Ultranecrozium Z',
-		]
+		],
 	},
 	{
 		name: "[Gen 8] (National Dex) APA Gym Challenge Doubles",
 
 		mod: 'gen8',
 		gameType: 'doubles',
+		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview', 'Dynamax Clause'],
 		unbanlist: [
 			'Buginium Z', 'Darkinium Z', 'Dragonium Z', 'Electrium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 
@@ -230,12 +232,13 @@ const Formats = [
 			'Steelium Z', 'Waterium Z', 'Aloraichium Z', 'Decidium Z', 'Eevium Z', 'Incinium Z', 'Kommonium Z', 'Lunalium Z', 
 			'Lycanium Z', 'Marshadium Z', 'Mewnium Z', 'Mimikium Z', 'Pikanium Z', 'Pikashunium Z', 'Primarium Z', 'Snorlium Z', 
 			'Solganium Z', 'Tapunium Z', 'Ultranecrozium Z',
-		]
-	},
+		],
+	},*/
 	{
 		name: "[Gen 8] (National Dex) BBL",
 
 		mod: 'gen8',
+		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 		
 		onBegin() {
@@ -248,12 +251,14 @@ const Formats = [
 		name: "[Gen 8] (National Dex) CAPtyLtd",
 
 		mod: 'gen8',
+		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+CAP', '+Past', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
 		name: "[Gen 8] (National Dex) EBL",
 
 		mod: 'gen8',
+		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
 		unbanlist: [
 			'Buginium Z', 'Darkinium Z', 'Dragonium Z', 'Electrium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Ghostium Z', 
@@ -280,12 +285,14 @@ const Formats = [
 		name: "[Gen 8] (National Dex) Elimlocke",
 
 		mod: 'elimlocke',
+		searchShow: false,
 		ruleset: ['Draft', '+Unreleased', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+Past', '+PastMove'],
 	},
 	{
 		name: "[Gen 8] (National Dex) PICA",
 
 		mod: 'gen8',
+		searchShow: false,
 		ruleset: ['Obtainable', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause', 'Sleep Clause Mod', 'OHKO Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod'],
 		banlist: [
 			// Items
@@ -310,6 +317,7 @@ const Formats = [
 		name: "[Gen 8] (National Dex) The Hive",
 
 		mod: 'gen8',
+		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
 		banlist: [
 			'Bright Powder', "King's Rock", 'Razor Fang', 'Focus Band', 'Quick Claw', 'Moody', 'Stench', 'Baton Pass > 1',
@@ -509,7 +517,6 @@ const Formats = [
 		],
 
 		mod: 'gen8',
-		searchShow: false,
 		ruleset: ['-Nonexistent', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
 	},
 	{
@@ -531,7 +538,6 @@ const Formats = [
 		],
 
 		mod: 'gen8',
-		searchShow: false,
 		ruleset: ['Standard', 'Dynamax Clause'],
 		banlist: [
 			'Darmanitan-Galar', 'Eternatus', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow', 'Melmetal',
@@ -622,7 +628,6 @@ const Formats = [
 		],
 
 		mod: 'gen8',
-		searchShow: false,
 		ruleset: ['[Gen 8] OU', '-Melmetal'],
 		banlist: ['Damp Rock', 'Heat Rock'],
 		onModifySpecies(species, target, source, effect) {

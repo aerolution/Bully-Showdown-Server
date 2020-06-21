@@ -67,7 +67,7 @@ export const commands: ChatCommands = {
 		// 'makeroom' lets you set any rank, no limit
 		const threshold = user.can('makeroom') ? Infinity :
 			user.can('modchatall', null, room) ? Config.groupsranking.indexOf(room.auth.get(user.id)) :
-			1;
+			Math.max(Config.groupsranking.indexOf('+'), 1);
 
 		if (room.settings.modchat &&
 				room.settings.modchat.length <= 1 &&
@@ -180,7 +180,7 @@ export const commands: ChatCommands = {
 		} else if (room.battle) {
 			if (!this.can('editprivacy', null, room)) return;
 			const prefix = room.battle.forcedPublic();
-			if (prefix && !user.can('editprivacy')) {
+			if (prefix) {
 				return this.errorReply(`This battle is required to be public due to a player having a name prefixed by '${prefix}'.`);
 			}
 		} else {
@@ -387,8 +387,8 @@ export const commands: ChatCommands = {
 			// Most of the regex code is copied from the client. TODO: unify them?
 			// Regex banwords can have commas in the {1,5} pattern
 			let words = (regex ? target.match(/[^,]+(,\d*}[^,]*)?/g)! : target.split(','))
-				.map(word => word.replace(/\n/g, '').trim());
-			if (!words) return this.parse('/help banword');
+				.map(word => word.replace(/\n/g, '').trim()).filter(word => word.length > 0);
+			if (!words || words.length === 0) return this.parse('/help banword');
 
 			// Escape any character with a special meaning in regex
 			if (!regex) {
@@ -451,7 +451,7 @@ export const commands: ChatCommands = {
 			let words = target.match(/[^,]+(,\d*}[^,]*)?/g);
 			if (!words) return this.parse('/help banword');
 
-			words = words.map(word => word.replace(/\n/g, '').trim());
+			words = words.map(word => word.replace(/\n/g, '').trim()).filter(word => word.length > 0);
 
 			for (const word of words) {
 				if (!room.settings.banwords.includes(word)) return this.errorReply(`${word} is not a banned phrase in this room.`);
@@ -510,9 +510,12 @@ export const commands: ChatCommands = {
 		} else if (this.meansYes(target)) {
 			if (room.settings.requestShowEnabled) return this.errorReply(`Approvals are already enabled.`);
 			room.settings.requestShowEnabled = true;
-			this.privateModAction(`${user.name} enabled approvals in this room.`);
+			this.privateModAction(`${user.name} enabled the use of media approvals in this room.`);
 			if (!room.settings.showEnabled || room.settings.showEnabled === '@') {
-				this.privateModAction(`Note: Drivers aren't allowed to use /show directly, but will be able to request and approve each other's /requestshow`);
+				this.privateModAction(
+					`Note: Due to this room's settings, Drivers aren't allowed to use /show directly, ` +
+					`but will be able to request and approve each other's /requestshow`
+				);
 			}
 		} else {
 			return this.errorReply(`Unrecognized setting for approvals. Use 'on' or 'off'.`);
@@ -546,7 +549,10 @@ export const commands: ChatCommands = {
 		this.modlog(`SHOWMEDIA`, null, `to ${target}`);
 		this.privateModAction(`(${user.name} set /show permissions to ${target}.)`);
 		if (room.settings.requestShowEnabled && (!room.settings.showEnabled || room.settings.showEnabled === '@')) {
-			this.privateModAction(`Note: Drivers aren't allowed to use /show directly, but will be able to request and approve each other's /requestshow`);
+			this.privateModAction(
+				`Note: Due to this room's settings, Drivers aren't allowed to use /show directly,` +
+				` but will be able to request and approve each other's /requestshow`
+			);
 		}
 	},
 
@@ -657,7 +663,9 @@ export const commands: ChatCommands = {
 		// Even though they're different namespaces, to cut down on confusion, you
 		// can't share names with registered chatrooms.
 		const existingRoom = Rooms.search(toID(title));
-		if (existingRoom && !existingRoom.settings.modjoin) return this.errorReply(`The room '${title}' already exists.`);
+		if (existingRoom && !existingRoom.settings.modjoin) {
+			return this.errorReply(`Your group chat name is too similar to existing chat room '${title}'.`);
+		}
 		// Room IDs for groupchats are groupchat-TITLEID
 		let titleid = toID(title);
 		if (!titleid) {
@@ -679,7 +687,7 @@ export const commands: ChatCommands = {
 		const targetRoom = Rooms.createChatRoom(roomid, `[G] ${title}`, {
 			isPersonal: true,
 			isPrivate: 'hidden',
-			creationTime: parent ? null : Date.now(),
+			creationTime: Date.now(),
 			modjoin: parent ? null : '+',
 			parentid: parent,
 			auth: {},
@@ -688,30 +696,33 @@ export const commands: ChatCommands = {
 			staffMessage: `` +
 				`<p>Groupchats are temporary rooms, and will expire if there hasn't been any activity in 40 minutes.</p><p>You can invite new users using <code>/invite</code>. Be careful with who you invite!</p><p>Commands: <button class="button" name="send" value="/roomhelp">Room Management</button> | <button class="button" name="send" value="/roomsettings">Room Settings</button> | <button class="button" name="send" value="/tournaments help">Tournaments</button></p><p>As creator of this groupchat, <u>you are entirely responsible for what occurs in this chatroom</u>. Global rules apply at all times.</p><p>If this room is used to break global rules or disrupt other areas of the server, <strong>you as the creator will be held accountable and punished</strong>.</p>`,
 		});
-		if (targetRoom) {
-			// The creator is a Room Owner in subroom groupchats and a Host otherwise..
-			targetRoom.auth.set(user.id, parent ? '#' : Users.HOST_SYMBOL);
-			// Join after creating room. No other response is given.
-			user.joinRoom(targetRoom.roomid);
-			user.popup(`You've just made a groupchat; it is now your responsibility, regardless of whether or not you actively partake in the room. For more info, read your groupchat's staff intro.`);
-			if (parent) this.modlog('SUBROOMGROUPCHAT', null, title);
-			return;
+		if (!targetRoom) {
+			return this.errorReply(`An unknown error occurred while trying to create the room '${title}'.`);
 		}
-		return this.errorReply(`An unknown error occurred while trying to create the room '${title}'.`);
+		// The creator is a Room Owner in subroom groupchats and a Host otherwise..
+		targetRoom.auth.set(user.id, parent ? '#' : Users.HOST_SYMBOL);
+		// Join after creating room. No other response is given.
+		user.joinRoom(targetRoom.roomid);
+		user.popup(`You've just made a groupchat; it is now your responsibility, regardless of whether or not you actively partake in the room. For more info, read your groupchat's staff intro.`);
+		if (parent) this.modlog('SUBROOMGROUPCHAT', null, title);
 	},
 	makegroupchathelp: [
 		`/makegroupchat [roomname] - Creates an invite-only group chat named [roomname].`,
 		`/subroomgroupchat [roomname] - Creates a subroom groupchat of the current room. Can only be used in a public room you have staff in.`,
 	],
 
-	'!groupchatuptime': true,
-	groupchatuptime(target, room, user) {
-		if (!room || !room.creationTime) return this.errorReply("Can only be used in a groupchat.");
+	'!roomuptime': true,
+	groupchatuptime: 'roomuptime',
+	roomuptime(target, room, user, connection, cmd) {
 		if (!this.runBroadcast()) return;
-		const uptime = Chat.toDurationString(Date.now() - room.creationTime);
-		this.sendReplyBox(`Groupchat uptime: <b>${uptime}</b>`);
+		if (!room) return this.errorReply(`Can only be used in a room.`);
+
+		// for hotpatching
+		if (!room.settings.creationTime) room.settings.creationTime = Date.now();
+		const uptime = Chat.toDurationString(Date.now() - room.settings.creationTime);
+		this.sendReplyBox(`Room uptime: <b>${uptime}</b>`);
 	},
-	groupchatuptimehelp: [`/groupchatuptime - Displays the uptime if the current room is a groupchat.`],
+	roomuptimehelp: [`/roomuptime - Displays the uptime of the room.`],
 
 	deregisterchatroom(target, room, user) {
 		if (!this.can('makeroom')) return;
@@ -822,7 +833,7 @@ export const commands: ChatCommands = {
 	},
 
 	async renameroom(target, room) {
-		if (!this.can('declare')) return;
+		if (!this.can('makeroom')) return;
 		if (room.minorActivity || room.game || room.tour) {
 			return this.errorReply("Cannot rename room when there's a tour/game/poll/announcement running.");
 		}
@@ -869,7 +880,7 @@ export const commands: ChatCommands = {
 		} else if (room.battle) {
 			if (!this.can('editprivacy', null, room)) return;
 			const prefix = room.battle.forcedPublic();
-			if (prefix && !user.can('editprivacy')) {
+			if (prefix) {
 				return this.errorReply(`This battle is required to be public due to a player having a name prefixed by '${prefix}'.`);
 			}
 		} else {
@@ -1114,7 +1125,7 @@ export const commands: ChatCommands = {
 			this.sendReplyBox(Utils.html`The room description is: ${room.settings.desc}`);
 			return;
 		}
-		if (!this.can('declare')) return false;
+		if (!this.can('makeroom')) return false;
 		if (target.length > 80) {
 			return this.errorReply(`Error: Room description is too long (must be at most 80 characters).`);
 		}
@@ -1374,13 +1385,13 @@ export const roomSettings: SettingsHandler[] = [
 			// groupchat ROs can set modjoin, but only to +
 			// first rank is for modjoin off
 			...RANKS.slice(1, room.settings.isPersonal && !user.can('makeroom') ? 2 : undefined),
-		].map(rank => [rank, rank === (room.settings.modjoin || 'off') || `modchat ${rank || 'off'}`]),
+		].map(rank => [rank, rank === (room.settings.modjoin || 'off') || `modjoin ${rank || 'off'}`]),
 	}),
 	room => ({
 		label: "Language",
 		permission: 'editroom',
 		options: [...Chat.languages].map(
-			([id, name]) => [name, id === (room.settings.language || 'off') || `roomlanguage ${id || 'off'}`]
+			([id, name]) => [name, id === (room.settings.language || 'english') || `roomlanguage ${id || 'off'}`]
 		),
 	}),
 	room => ({
@@ -1409,7 +1420,7 @@ export const roomSettings: SettingsHandler[] = [
 	}),
 	room => ({
 		label: "Slowchat",
-		permission: room.userCount < SLOWCHAT_USER_REQUIREMENT ? 'bypassall' : 'editroom',
+		permission: room.userCount < SLOWCHAT_USER_REQUIREMENT ? 'bypassall' as any : 'editroom',
 		options: ['off', 5, 10, 20, 30, 60].map(
 			time => [`${time}`, time === (room.settings.slowchat || 'off') || `slowchat ${time || 'off'}`]
 		),
@@ -1427,16 +1438,16 @@ export const roomSettings: SettingsHandler[] = [
 		label: "/requestshow",
 		permission: 'declare',
 		options: [
-			[`Off`, !room.settings.requestShowEnabled || `showapprovals off`],
-			[`On`, room.settings.requestShowEnabled || `showapprovals on`],
+			[`off`, !room.settings.requestShowEnabled || `showapprovals off`],
+			[`on`, room.settings.requestShowEnabled || `showapprovals on`],
 		],
 	}),
 	room => ({
 		label: "/show",
 		permission: 'declare',
 		options: [
-			[`Off`, !room.settings.showEnabled || `showmedia off`],
-			[`Whitelisted`, room.settings.showEnabled === true || `showmedia on`],
+			[`off`, !room.settings.showEnabled || `showmedia off`],
+			[`whitelist`, room.settings.showEnabled === true || `showmedia on`],
 			[`+`, room.settings.showEnabled === '+' || `showmedia +`],
 			[`%`, room.settings.showEnabled === '%' || `showmedia %`],
 			[`@`, room.settings.showEnabled === '@' || `showmedia @`],

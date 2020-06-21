@@ -1,38 +1,4 @@
-/*
-
-Ratings and how they work:
-
--1: Detrimental
-	  An ability that severely harms the user.
-	ex. Defeatist, Slow Start
-
- 0: Useless
-	  An ability with no overall benefit in a singles battle.
-	ex. Color Change, Plus
-
- 1: Ineffective
-	  An ability that has minimal effect or is only useful in niche situations.
-	ex. Light Metal, Suction Cups
-
- 2: Useful
-	  An ability that can be generally useful.
-	ex. Flame Body, Overcoat
-
- 3: Effective
-	  An ability with a strong effect on the user or foe.
-	ex. Chlorophyll, Natural Cure
-
- 4: Very useful
-	  One of the more popular abilities. It requires minimal support to be effective.
-	ex. Adaptability, Magic Bounce
-
- 5: Essential
-	  The sort of ability that defines metagames.
-	ex. Imposter, Shadow Tag
-
-*/
-
-export const BattleAbilities: {[abilityid: string]: AbilityData} = {
+export const BattleAbilities: {[k: string]: ModdedAbilityData} = {
 	noability: {
 		shortDesc: "Does nothing.",
 		isNonstandard: "Past",
@@ -55,9 +21,7 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "This Pokemon's Normal-type moves become Flying type and have 1.2x power.",
 		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
-			const noModifyType = [
-				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
-			];
+			const noModifyType = ['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'];
 			if (move.type === 'Normal' && !noModifyType.includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = 'Flying';
 				move.aerilateBoosted = true;
@@ -1222,9 +1186,7 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "This Pokemon's Normal-type moves become Electric type and have 1.2x power.",
 		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
-			const noModifyType = [
-				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
-			];
+			const noModifyType = ['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'];
 			if (move.type === 'Normal' && !noModifyType.includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = 'Electric';
 				move.galvanizeBoosted = true;
@@ -1701,12 +1663,6 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 		onTryAddVolatile(status, pokemon) {
 			if (status.id === 'flinch') return null;
 		},
-		onBoost(boost, target, source, effect) {
-			if (effect.id === 'intimidate') {
-				delete boost.atk;
-				this.add('-immune', target, '[from] ability: Inner Focus');
-			}
-		},
 		name: "Inner Focus",
 		rating: 1.5,
 		num: 39,
@@ -1743,6 +1699,8 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 				}
 				if (target.volatiles['substitute']) {
 					this.add('-immune', target);
+				} else if (target.hasAbility(['Inner Focus', 'Oblivious', 'Own Tempo', 'Scrappy'])) {
+					this.add('-immune', target, `[from] ability: ${target.getAbility().name}`);
 				} else {
 					this.boost({atk: -1}, target, pokemon, null, true);
 				}
@@ -2454,7 +2412,7 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 		onModifyTypePriority: 1,
 		onModifyType(move, pokemon) {
 			const noModifyType = [
-				'hiddenpower', 'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'struggle', 'technoblast', 'terrainpulse', 'weatherball',
+				'hiddenpower', 'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'struggle', 'technoblast', 'weatherball',
 			];
 			if (!(move.isZ && move.category !== 'Status') && !noModifyType.includes(move.id)) {
 				move.type = 'Normal';
@@ -2491,12 +2449,6 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 			if (move.id === 'attract' || move.id === 'captivate' || move.id === 'taunt') {
 				this.add('-immune', pokemon, '[from] ability: Oblivious');
 				return null;
-			}
-		},
-		onBoost(boost, target, source, effect) {
-			if (effect.id === 'intimidate') {
-				delete boost.atk;
-				this.add('-immune', target, '[from] ability: Oblivious');
 			}
 		},
 		name: "Oblivious",
@@ -2555,12 +2507,6 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 		onHit(target, source, move) {
 			if (move?.volatileStatus === 'confusion') {
 				this.add('-immune', target, 'confusion', '[from] ability: Own Tempo');
-			}
-		},
-		onBoost(boost, target, source, effect) {
-			if (effect.id === 'intimidate') {
-				delete boost.atk;
-				this.add('-immune', target, '[from] ability: Own Tempo');
 			}
 		},
 		name: "Own Tempo",
@@ -2705,9 +2651,7 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "This Pokemon's Normal-type moves become Fairy type and have 1.2x power.",
 		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
-			const noModifyType = [
-				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
-			];
+			const noModifyType = ['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'];
 			if (move.type === 'Normal' && !noModifyType.includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = 'Fairy';
 				move.pixilateBoosted = true;
@@ -2988,19 +2932,6 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 		rating: 2,
 		num: 214,
 	},
-	quickdraw: {
-		shortDesc: "This Pokemon has a 20% chance to move first in its priority bracket with attacking moves.",
-		onFractionalPriorityPriority: -1,
-		onFractionalPriority(priority, pokemon, target, move) {
-			if (move.category !== "Status" && this.randomChance(1, 5)) {
-				this.add('-activate', pokemon, 'ability: Quick Draw');
-				return Math.round(priority) + 0.1;
-			}
-		},
-		name: "Quick Draw",
-		rating: 2,
-		num: 259,
-	},
 	quickfeet: {
 		desc: "If this Pokemon has a major status condition, its Speed is multiplied by 1.5; the Speed drop from paralysis is ignored.",
 		shortDesc: "If this Pokemon is statused, its Speed is 1.5x; ignores Speed drop from paralysis.",
@@ -3079,9 +3010,7 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 		shortDesc: "This Pokemon's Normal-type moves become Ice type and have 1.2x power.",
 		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
-			const noModifyType = [
-				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
-			];
+			const noModifyType = ['judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'weatherball'];
 			if (move.type === 'Normal' && !noModifyType.includes(move.id) && !(move.isZ && move.category !== 'Status')) {
 				move.type = 'Ice';
 				move.refrigerateBoosted = true;
@@ -3342,12 +3271,6 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 			if (move.ignoreImmunity !== true) {
 				move.ignoreImmunity['Fighting'] = true;
 				move.ignoreImmunity['Normal'] = true;
-			}
-		},
-		onBoost(boost, target, source, effect) {
-			if (effect.id === 'intimidate') {
-				delete boost.atk;
-				this.add('-immune', target, '[from] ability: Scrappy');
 			}
 		},
 		name: "Scrappy",
@@ -4327,16 +4250,6 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 		rating: 1.5,
 		num: 127,
 	},
-	unseenfist: {
-		desc: "All of this Pokemon's moves that make contact bypass protection.",
-		shortDesc: "All contact moves hit through protection.",
-		onModifyMove(move) {
-			if (move.flags['contact']) delete move.flags['protect'];
-		},
-		name: "Unseen Fist",
-		rating: 2,
-		num: 260,
-	},
 	victorystar: {
 		shortDesc: "This Pokemon and its allies' moves have their accuracy multiplied by 1.1.",
 		onAllyModifyMove(move) {
@@ -4611,68 +4524,5 @@ export const BattleAbilities: {[abilityid: string]: AbilityData} = {
 		name: "Zen Mode",
 		rating: 0,
 		num: 161,
-	},
-
-	// CAP
-	mountaineer: {
-		shortDesc: "On switch-in, this Pokemon avoids all Rock-type attacks and Stealth Rock.",
-		onDamage(damage, target, source, effect) {
-			if (effect && effect.id === 'stealthrock') {
-				return false;
-			}
-		},
-		onTryHit(target, source, move) {
-			if (move.type === 'Rock' && !target.activeTurns) {
-				this.add('-immune', target, '[from] ability: Mountaineer');
-				return null;
-			}
-		},
-		isNonstandard: "CAP",
-		name: "Mountaineer",
-		rating: 3,
-		num: -2,
-	},
-	rebound: {
-		desc: "On switch-in, this Pokemon blocks certain status moves and instead uses the move against the original user.",
-		shortDesc: "On switch-in, blocks certain status moves and bounces them back to the user.",
-		isNonstandard: "CAP",
-		name: "Rebound",
-		onTryHitPriority: 1,
-		onTryHit(target, source, move) {
-			if (this.effectData.target.activeTurns) return;
-
-			if (target === source || move.hasBounced || !move.flags['reflectable']) {
-				return;
-			}
-			const newMove = this.dex.getActiveMove(move.id);
-			newMove.hasBounced = true;
-			this.useMove(newMove, target, source);
-			return null;
-		},
-		onAllyTryHitSide(target, source, move) {
-			if (this.effectData.target.activeTurns) return;
-
-			if (target.side === source.side || move.hasBounced || !move.flags['reflectable']) {
-				return;
-			}
-			const newMove = this.dex.getActiveMove(move.id);
-			newMove.hasBounced = true;
-			this.useMove(newMove, this.effectData.target, source);
-			return null;
-		},
-		effect: {
-			duration: 1,
-		},
-		rating: 3,
-		num: -3,
-	},
-	persistent: {
-		desc: "The duration of Gravity, Heal Block, Magic Room, Safeguard, Tailwind, Trick Room, and Wonder Room is increased by 2 turns if the effect is started by this Pokemon.",
-		shortDesc: "When used, Gravity/Heal Block/Safeguard/Tailwind/Room effects last 2 more turns.",
-		isNonstandard: "CAP",
-		name: "Persistent",
-		// implemented in the corresponding move
-		rating: 3,
-		num: -4,
 	},
 };

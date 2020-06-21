@@ -23,6 +23,9 @@ To reload chat commands:
 
 */
 
+type RoomPermission = import('./user-groups').RoomPermission;
+type GlobalPermission = import('./user-groups').GlobalPermission;
+
 export type PageHandler = (this: PageContext, query: string[], user: User, connection: Connection)
 => Promise<string | null | void> | string | null | void;
 export interface PageTable {
@@ -48,7 +51,7 @@ export type SettingsHandler = (
 	connection: Connection
 ) => {
 	label: string,
-	permission: boolean | string,
+	permission: boolean | RoomPermission,
 	// button label, command | disabled
 	options: [string, string | true][],
 };
@@ -215,8 +218,10 @@ export class PageContext extends MessageContext {
 		this.title = 'Page';
 	}
 
+	can(permission: RoomPermission, target: User | null, room: Room): boolean;
+	can(permission: GlobalPermission, target?: User | null): boolean;
 	can(permission: string, target: User | null = null, room: Room | null = null) {
-		if (!this.user.can(permission, target, room)) {
+		if (!this.user.can(permission as any, target, room as any)) {
 			this.send(`<h2>Permission denied.</h2>`);
 			return false;
 		}
@@ -759,8 +764,10 @@ export class CommandContext extends MessageContext {
 	statusfilter(status: string) {
 		return Chat.statusfilter(status, this.user);
 	}
+	can(permission: RoomPermission, target: User | null, room: Room): boolean;
+	can(permission: GlobalPermission, target?: User | null): boolean;
 	can(permission: string, target: User | null = null, room: Room | null = null) {
-		if (!this.user.can(permission, target, room)) {
+		if (!this.user.can(permission as any, target, room as any)) {
 			this.errorReply(this.cmdToken + this.fullCmd + " - Access denied.");
 			return false;
 		}
@@ -1006,7 +1013,7 @@ export class CommandContext extends MessageContext {
 			this.errorReply(this.tr(`Your status message contains a phrase banned by this room.`));
 			return null;
 		}
-		if (!this.checkBanwords(room, message) && !user.can('mute', null, room)) {
+		if (!this.checkBanwords(room, message) && !user.can('mute', null, room!)) {
 			this.errorReply(this.tr("Your message contained banned words in this room."));
 			return null;
 		}
@@ -1146,7 +1153,7 @@ export class CommandContext extends MessageContext {
 				}
 
 				if (tagName === 'img') {
-					if (this.room.settings.isPersonal && !this.user.can('announce')) {
+					if (this.room.settings.isPersonal && !this.user.can('lock')) {
 						this.errorReply(`This tag is not allowed: <${tagContent}>`);
 						this.errorReply(`Images are not allowed in personal rooms.`);
 						return null;
@@ -1721,6 +1728,31 @@ export const Chat = new class {
 		htmlContent = htmlContent.replace(/\n/g, '&#10;');
 		return htmlContent;
 	}
+	/**
+	 * Takes a string of code and transforms it into a block of html using the details tag.
+	 * If it has a newline, will make the 3 lines the preview, and fill the rest in.
+	 * @param str string to block
+	 */
+	getReadmoreCodeBlock(str: string, cutoff = 3) {
+		const params = str.slice(+str.startsWith('\n')).split('\n');
+		const output = [];
+		for (const param of params) {
+			if (output.length < cutoff && param.length > 80 && cutoff > 2) cutoff--;
+			output.push(Utils.escapeHTML(param));
+		}
+
+		if (output.length > cutoff) {
+			return `<details class="readmore code" style="white-space: pre-wrap; display: table; tab-size: 3"><summary>${
+				output.slice(0, cutoff).join('<br />')
+			}</summary>${
+				output.slice(cutoff).join('<br />')
+			}</details>`;
+		} else {
+			return `<code style="white-space: pre-wrap; display: table; tab-size: 3">${
+				output.join('<br />')
+			}</code>`;
+		}
+	}
 
 	getDataPokemonHTML(species: Species, gen = 7, tier = '') {
 		if (typeof species === 'string') species = Dex.deepClone(Dex.getSpecies(species));
@@ -1814,10 +1846,8 @@ export const Chat = new class {
 	/**
 	 * Gets the dimension of the image at url. Returns 0x0 if the image isn't found, as well as the relevant error.
 	 */
-	getImageDimensions(url: string): Promise<{height: number, width: number, err?: Error}> {
-		return new Promise(resolve => {
-			probe(url).then(dimensions => resolve(dimensions), (err: Error) => resolve({height: 0, width: 0, err}));
-		});
+	getImageDimensions(url: string): Promise<{height: number, width: number}> {
+		return probe(url);
 	}
 
 	/**
@@ -1838,20 +1868,17 @@ export const Chat = new class {
 	/**
 	 * Generates dimensions to fit an image at url into a maximum size of maxWidth x maxHeight,
 	 * preserving aspect ratio.
+	 *
+	 * @return [width, height, resized]
 	 */
-	async fitImage(url: string, maxHeight = 300, maxWidth = 300) {
+	async fitImage(url: string, maxHeight = 300, maxWidth = 300): Promise<[number, number, boolean]> {
 		const {height, width} = await Chat.getImageDimensions(url);
 
-		if (width <= maxWidth && height <= maxHeight) return [width, height];
+		if (width <= maxWidth && height <= maxHeight) return [width, height, false];
 
-		let ratio;
-		if (height * (maxWidth / maxHeight) > width) {
-			ratio = maxHeight / height;
-		} else {
-			ratio = maxWidth / width;
-		}
+		const ratio = Math.min(maxHeight / height, maxWidth / width);
 
-		return [Math.round(width * ratio), Math.round(height * ratio)];
+		return [Math.round(width * ratio), Math.round(height * ratio), true];
 	}
 
 	/**

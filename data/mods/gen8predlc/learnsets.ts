@@ -8557,7 +8557,6 @@ export const BattleLearnsets: {[speciesid: string]: ModdedLearnsetData} = {
 			encore: ["9M"],
 			uproar: ["9M"],
 			muddywater: ["9M"],
-			allyswitch: ["9M"],
 			liquidation: ["9M"],
 		},
 		eventData: [
@@ -23707,7 +23706,6 @@ export const BattleLearnsets: {[speciesid: string]: ModdedLearnsetData} = {
 			futuresight: ["9M"],
 			uproar: ["9M"],
 			muddywater: ["9M"],
-			highhorsepower: ["9M"],
 		},
 		encounters: [
 			{generation: 5, level: 5},

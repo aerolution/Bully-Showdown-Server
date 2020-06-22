@@ -1496,7 +1496,7 @@ export const BattleFormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	azumarill: {
-		randomBattleMoves: ["aquajet", "bellydrum", "knockoff", "liquidation", "playrough", "highhorsepower"],
+		randomBattleMoves: ["aquajet", "bellydrum", "knockoff", "liquidation", "playrough", "superpower"],
 		randomBattleLevel: 82,
 		randomDoubleBattleMoves: ["aquajet", "icepunch", "knockoff", "liquidation", "playrough", "protect", "superpower"],
 		tier: "OU",

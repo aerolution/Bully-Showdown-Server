@@ -8648,7 +8648,6 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 			waterpulse: ["7T", "6T", "4M", "3M"],
 			weatherball: ["8M", "9M"],
 			whirlpool: ["8M", "7V", "4M", "9M"],
-			allyswitch: ["9M"],
 		},
 		eventData: [
 			{generation: 5, level: 50, gender: "M", nature: "Calm", ivs: {hp: 31, atk: 13, def: 31, spa: 5, spd: 31, spe: 5}, isHidden: true, moves: ["scald", "icebeam", "perishsong", "protect"], pokeball: "cherishball"},
@@ -24087,7 +24086,6 @@ export const BattleLearnsets: {[speciesid: string]: LearnsetData} = {
 			watersport: ["7L1", "6L1", "5L1"],
 			whirlpool: ["8M", "7V", "4M", "9M"],
 			workup: ["8M", "7M", "5M", "9M"],
-			highhorsepower: ["9M"],
 		},
 		encounters: [
 			{generation: 5, level: 5},

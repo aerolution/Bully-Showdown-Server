@@ -321,14 +321,14 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		column: 2,
 	},
 	{
-		name: "[Gen 8] Galar Dex Draft Pre-DLC",
+		name: "[Gen 8] Pre-DLC Galar Draft",
 
 		mod: 'gen8predlc',
 		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] Galar Dex Draft Pre-Home",
+		name: "[Gen 8] Pre-Home Galar Draft",
 
 		mod: 'gen8predlc',
 		searchShow: false,
@@ -350,7 +350,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		minSourceGen: 8,
 	},
 	{
-		name: "[Gen 8] Galar Dex Wifi Pre-DLC",
+		name: "[Gen 8] Pre-DLC Galar Wifi",
 
 		mod: 'gen8predlc',
 		searchShow: false,
@@ -358,7 +358,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] Galar Dex VGC Pre-DLC",
+		name: "[Gen 8] Pre-DLC Galar VGC",
 
 		mod: 'gen8predlc',
 		searchShow: false,
@@ -380,35 +380,35 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		column: 2,
 	},
 	{
-		name: "[Gen 8] National Dex Draft Pre-DLC",
+		name: "[Gen 8] Pre-DLC National Draft",
 
 		mod: 'gen8predlc',
 		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
-		name: "[Gen 8] National Dex Dynamax Pre-DLC",
+		name: "[Gen 8] Pre-DLC National Dynamax",
 
 		mod: 'gen8predlc',
 		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Dex Legacy Pre-DLC",
+		name: "[Gen 8] Pre-DLC National Legacy",
 
 		mod: 'gen8predlc',
 		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
-		name: "[Gen 8] National Dex Unrestricted Pre-DLC",
+		name: "[Gen 8] Pre-DLC National Unrestricted",
 
 		mod: 'gen8predlc',
 		searchShow: false,
 		ruleset: ['Draft', '+Unreleased', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+PastMove', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Dex Wifi Pre-DLC",
+		name: "[Gen 8] Pre-DLC National Wifi",
 
 		mod: 'gen8predlc',
 		searchShow: false,
@@ -416,7 +416,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Dex Doubles Pre-DLC",
+		name: "[Gen 8] Pre-DLC National Doubles",
 
 		mod: 'gen8predlc',
 		searchShow: false,
@@ -424,7 +424,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Dex VGC Pre-DLC",
+		name: "[Gen 8] Pre-DLC National VGC",
 
 		mod: 'gen8predlc',
 		searchShow: false,
@@ -437,7 +437,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] LC National Dex Draft Pre-DLC",
+		name: "[Gen 8] Pre-DLC LC National Draft",
 
 		mod: 'gen8predlc',
 		searchShow: false,
@@ -446,7 +446,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	{
-		name: "[Gen 8] LC National Dex Legacy Pre-DLC",
+		name: "[Gen 8] Pre-DLC LC National Legacy",
 
 		mod: 'gen8predlc',
 		searchShow: false,
@@ -457,35 +457,35 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 	
 	
 	
-	// National DLC1 Draft Tiers
+	// Pre-DLC National DLC Draft Tiers
 	///////////////////////////////////////////////////////////////////
 	{
-		section: "National DLC1 Draft Tiers",
+		section: "Pre-DLC National DLC Draft Tiers",
 		column: 2,
 	},
 	{
-		name: "[Gen 8] National Dex DLC1 Draft",
+		name: "[Gen 8] Pre-DLC National DLC Draft",
 
 		mod: 'gen8predlc',
 		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC1 Dynamax",
+		name: "[Gen 8] Pre-DLC National DLC Dynamax",
 
 		mod: 'gen8predlc',
 		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC1 Legacy",
+		name: "[Gen 8] Pre-DLC National DLC Legacy",
 
 		mod: 'gen8predlc',
 		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC1 Wifi",
+		name: "[Gen 8] Pre-DLC National DLC Wifi",
 
 		mod: 'gen8predlc',
 		searchShow: false,
@@ -493,7 +493,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC1 Doubles",
+		name: "[Gen 8] Pre-DLC National DLC Doubles",
 
 		mod: 'gen8predlc',
 		searchShow: false,
@@ -501,7 +501,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC1 VGC",
+		name: "[Gen 8] Pre-DLC National DLC VGC",
 
 		mod: 'gen8predlc',
 		searchShow: false,
@@ -514,7 +514,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] LC National Dex DLC1 Draft",
+		name: "[Gen 8] Pre-DLC LC National DLC Draft",
 
 		mod: 'gen8predlc',
 		searchShow: false,
@@ -523,7 +523,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	{
-		name: "[Gen 8] LC National Dex DLC1 Legacy",
+		name: "[Gen 8] Pre-DLC LC National DLC Legacy",
 
 		mod: 'gen8predlc',
 		searchShow: false,

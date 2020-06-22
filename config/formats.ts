@@ -544,14 +544,12 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 7] Draft League",
 
 		mod: 'gen7',
-		searchShow: false,
 		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview'],
 	},
 	{
 		name: "[Gen 7] Wifi Draft League",
 
 		mod: 'gen7',
-		searchShow: false,
 		maxForcedLevel: 50,
 		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview', 'VGC Timer'],
 	},
@@ -559,14 +557,12 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 7] DS Timer Draft League",
 
 		mod: 'gen7',
-		searchShow: false,
 		ruleset: ['[Gen 7] Draft League'],
 	},
 	{
 		name: "[Gen 7] LC Draft League",
 
 		mod: 'gen7',
-		searchShow: false,
 		maxLevel: 5,
 		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview', 'Double Item Clause', 'Little Cup'],
 		banlist: ['Eevium Z', 'Dragon Rage', 'Sonic Boom'],
@@ -575,7 +571,6 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 7] Unrestricted Draft League",
 
 		mod: 'gen7',
-		searchShow: false,
 		ruleset: ['-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', 'Draft', 'Team Preview'],
 	},
 	
@@ -1166,7 +1161,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8',
 		team: 'random',
 		forcedTimer: true,
-		timer: {starting: 5, addPerTurn: 0, maxPerTurn: 5, maxFirstTurn: 10, timeoutAutoChoose: true},
+		timer: {starting: 10, addPerTurn: 0, maxPerTurn: 10, maxFirstTurn: 10, timeoutAutoChoose: true},
 		ruleset: ['[Gen 8] Random Battle'],
 	},
 	{

@@ -1103,7 +1103,7 @@ export const commands: ChatCommands = {
 			}
 			return this.sendReply(`The game timer is ON (requested by ${[...timer.timerRequesters].join(', ')})`);
 		}
-		const force = user.can('timer', null, room);
+		const force = user.can('timer');
 		if (!force && !room.game.playerTable[user.id]) {
 			return this.errorReply(`Access denied.`);
 		}

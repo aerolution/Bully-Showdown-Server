@@ -437,7 +437,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] Pre-DLC LC National Draft",
+		name: "[Gen 8] LC Pre-DLC National Draft",
 
 		mod: 'gen8predlc',
 		searchShow: false,
@@ -446,7 +446,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	{
-		name: "[Gen 8] Pre-DLC LC National Legacy",
+		name: "[Gen 8] LC Pre-DLC National Legacy",
 
 		mod: 'gen8predlc',
 		searchShow: false,
@@ -514,7 +514,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] Pre-DLC LC National DLC Draft",
+		name: "[Gen 8] LC Pre-DLC National DLC Draft",
 
 		mod: 'gen8predlc',
 		searchShow: false,
@@ -523,7 +523,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	{
-		name: "[Gen 8] Pre-DLC LC National DLC Legacy",
+		name: "[Gen 8] LC Pre-DLC National DLC Legacy",
 
 		mod: 'gen8predlc',
 		searchShow: false,
@@ -1161,7 +1161,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8',
 		team: 'random',
 		forcedTimer: true,
-		timer: {starting: 10, addPerTurn: 0, maxPerTurn: 10, maxFirstTurn: 10, timeoutAutoChoose: true},
+		timer: {starting: 7, addPerTurn: 0, maxPerTurn: 7, maxFirstTurn: 10, timeoutAutoChoose: true},
 		ruleset: ['[Gen 8] Random Battle'],
 	},
 	{

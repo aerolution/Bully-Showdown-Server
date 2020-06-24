@@ -1637,6 +1637,8 @@ export class Battle {
 		}
 
 		this.residualEvent('TeamPreview');
+		
+		this.add('html', `<button name="send" class="button" value="/timer ds"><i class="fa fa-hourglass-start"></i> DS Timer</button> <button name="send" class="button" value="/timer smogon"><i class="fa fa-hourglass-start"></i> Smogon Timer</button>`);
 
 		this.queue.addChoice({choice: 'start'});
 		this.midTurn = true;

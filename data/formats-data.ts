@@ -249,8 +249,8 @@ export const BattleFormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "(DUber)",
 	},
 	pikachuworld: {
-		tier: "PU",
-		doublesTier: "(DUU)",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	raichu: {
 		randomBattleMoves: ["encore", "focusblast", "grassknot", "nastyplot", "thunderbolt", "voltswitch"],
@@ -339,7 +339,7 @@ export const BattleFormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	vulpix: {
 		randomBattleMoves: ["fireblast", "willowisp", "energyball", "flamecharge", "overheat", "memento"],
-		tier: "LC Uber",
+		tier: "LC",
 	},
 	vulpixalola: {
 		randomBattleMoves: ["auroraveil", "blizzard", "freezedry", "encore", "hypnosis"],
@@ -6024,6 +6024,7 @@ export const BattleFormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	zarudedada: {
 		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	missingno: {
 		isNonstandard: "Custom",

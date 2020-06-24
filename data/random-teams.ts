@@ -786,12 +786,12 @@ export class RandomTeams {
 				case 'partingshot':
 					if (!!counter['speedsetup'] || hasMove['bulkup'] || hasMove['uturn']) rejected = true;
 					break;
-				case 'protect':
+				/* case 'protect':
 					if (counter.setupType || hasMove['rest'] && hasMove['sleeptalk']) rejected = true;
 					if (counter.Status < 2 && !hasAbility['Hunger Switch'] && !hasAbility['Speed Boost'] && !isDoubles) rejected = true;
 					if (movePool.includes('leechseed') || movePool.includes('toxic') && !hasMove['wish']) rejected = true;
 					if (isDoubles && (movePool.includes('fakeout') || hasMove['tailwind'])) rejected = true;
-					break;
+					break; */
 				case 'rapidspin':
 					if (hasMove['curse'] || hasMove['nastyplot'] || hasMove['shellsmash'] || teamDetails.rapidSpin) rejected = true;
 					if (counter.setupType && counter['Fighting'] >= 2) rejected = true;
@@ -983,9 +983,6 @@ export class RandomTeams {
 					break;
 				case 'bravebird':
 					if (hasMove['hurricane']) rejected = true;
-					break;
-				case 'hex':
-					if (!hasMove['willowisp']) rejected = true;
 					break;
 				case 'shadowball':
 					if (hasMove['hex'] && hasMove['willowisp']) rejected = true;

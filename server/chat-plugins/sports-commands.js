@@ -3,15 +3,8 @@
 exports.commands = {
 	
 	sportstiers(target, room, user, connection) {
-		return connection.popup(`__All Draft formats use a DS-style timer by default. If you want to change timer settings, use:__
-__- **/timer ds**: fixed 100s per turn, auto pick on timeout__
-__- **/timer smogon**: 300s timer, get an extra 10s every turn, forfeit on timeout__
-__- **/timer default**: resets the timer to the format's default settings__
-
-
-
-**Galar Dex Draft**:
-+ Galar Dex Pokemon only are allowed
+		return connection.popup(`**Galar Dex Draft**:
++ only Pokemon that are currently obtainable in Sword/Shield are allowed
 + unreleased Pokemon and abilities found in Sword/Shield are allowed
 + Dynamax and Gigantamax are allowed
 - cut moves are not allowed
@@ -109,7 +102,6 @@ Princess Furfrou (Princess#6721)
 **Moderators** (@):
 angryairair (woodlandapple#5780)
 Kaltchre (Kalt#7849)
-KmjNext (Spacegirl | KmjNext#8246)
 Venuaur (Venuaur#2153)
 
 

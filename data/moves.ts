@@ -2688,7 +2688,7 @@ export const BattleMovedex: {[moveid: string]: MoveData} = {
 			let move: Move | ActiveMove | null = this.lastMove;
 			if (!move) return;
 
-			if ((move as ActiveMove).isZOrMaxPowered) move = this.dex.getMove(move.baseMove);
+			if (move.isMax && move.baseMove) move = this.dex.getMove(move.baseMove);
 			if (noCopycat.includes(move.id) || move.isZ || move.isMax) {
 				return false;
 			}
@@ -4547,7 +4547,7 @@ export const BattleMovedex: {[moveid: string]: MoveData} = {
 				let move: Move | ActiveMove | null = target.lastMove;
 				if (!move || target.volatiles['dynamax']) return false;
 
-				if ((move as ActiveMove).isZOrMaxPowered) move = this.dex.getMove(move.baseMove);
+				if (move.isMax && move.baseMove) move = this.dex.getMove(move.baseMove);
 				const moveIndex = target.moves.indexOf(move.id);
 				if (move.isZ || noEncore.includes(move.id) || !target.moveSlots[moveIndex] || target.moveSlots[moveIndex].pp <= 0) {
 					// it failed
@@ -6235,7 +6235,7 @@ export const BattleMovedex: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1},
 		onBasePower(basePower, pokemon) {
-			if (this.lastMoveThisTurn && this.lastMoveThisTurn.id === 'fusionflare') {
+			if (this.lastSuccessfulMoveThisTurn === 'fusionflare') {
 				this.debug('double power');
 				return this.chainModify(2);
 			}
@@ -6257,7 +6257,7 @@ export const BattleMovedex: {[moveid: string]: MoveData} = {
 		priority: 0,
 		flags: {protect: 1, mirror: 1, defrost: 1},
 		onBasePower(basePower, pokemon) {
-			if (this.lastMoveThisTurn && this.lastMoveThisTurn.id === 'fusionbolt') {
+			if (this.lastSuccessfulMoveThisTurn === 'fusionbolt') {
 				this.debug('double power');
 				return this.chainModify(2);
 			}
@@ -6759,10 +6759,10 @@ export const BattleMovedex: {[moveid: string]: MoveData} = {
 	gmaxdrumsolo: {
 		num: 1000,
 		accuracy: true,
-		basePower: 10,
+		basePower: 160,
 		category: "Physical",
-		desc: "Power is equal to the base move's Max Move power. This move ignores the abilities of opposing Pokemon.",
-		shortDesc: "Base move affects power. Ignores abilities.",
+		desc: "This move will always have 160 Base Power, and it ignores the abilities of opposing Pokemon.",
+		shortDesc: "Stronger than other Max Moves. Ignores abilities.",
 		name: "G-Max Drum Solo",
 		pp: 5,
 		priority: 0,
@@ -6801,10 +6801,10 @@ export const BattleMovedex: {[moveid: string]: MoveData} = {
 	gmaxfireball: {
 		num: 1000,
 		accuracy: true,
-		basePower: 10,
+		basePower: 160,
 		category: "Physical",
-		desc: "Power is equal to the base move's Max Move power. This move ignores the abilities of opposing Pokemon.",
-		shortDesc: "Base move affects power. Ignores abilities.",
+		desc: "This move will always have 160 Base Power, and it ignores the abilities of opposing Pokemon.",
+		shortDesc: "Stronger than other Max Moves. Ignores abilities.",
 		name: "G-Max Fire Ball",
 		pp: 5,
 		priority: 0,
@@ -6886,10 +6886,10 @@ export const BattleMovedex: {[moveid: string]: MoveData} = {
 	gmaxhydrosnipe: {
 		num: 1000,
 		accuracy: true,
-		basePower: 10,
+		basePower: 160,
 		category: "Physical",
-		desc: "Power is equal to the base move's Max Move power. This move ignores the abilities of opposing Pokemon.",
-		shortDesc: "Base move affects power. Ignores abilities.",
+		desc: "This move will always have 160 Base Power, and it ignores the abilities of opposing Pokemon.",
+		shortDesc: "Stronger than other Max Moves. Ignores abilities.",
 		name: "G-Max Hydrosnipe",
 		pp: 5,
 		priority: 0,
@@ -12548,6 +12548,7 @@ export const BattleMovedex: {[moveid: string]: MoveData} = {
 		target: "normal",
 		type: "Normal",
 		zMove: {basePower: 185},
+		maxMove: {basePower: 95},
 		contestType: "Tough",
 	},
 	mysticalfire: {
@@ -14478,7 +14479,7 @@ export const BattleMovedex: {[moveid: string]: MoveData} = {
 						for (const [actionIndex, action] of this.queue.entries()) {
 							if (action.pokemon === source && action.choice === 'megaEvo') {
 								this.runMegaEvo(source);
-								this.queue.splice(actionIndex, 1);
+								this.queue.list.splice(actionIndex, 1);
 								break;
 							}
 						}

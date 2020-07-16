@@ -1,13 +1,9 @@
 export const BattleMovedex: {[k: string]: ModdedMoveData} = {
-	/**
-	 * Artificial priority
-	 *
-	 */
 	pursuit: {
 		inherit: true,
 		beforeTurnCallback(pokemon, target) {
 			// @ts-ignore
-			let linkedMoves = pokemon.getLinkedMoves();
+			const linkedMoves: [string, string] = pokemon.getLinkedMoves();
 			if (linkedMoves.length) {
 				if (linkedMoves[0] !== 'pursuit' && linkedMoves[1] === 'pursuit') return;
 			}
@@ -22,12 +18,14 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 	mefirst: {
 		inherit: true,
 		onTryHit(target, pokemon) {
-			let action = this.willMove(target);
+			const action = this.queue.willMove(target);
 			if (action) {
-				let noMeFirst = ['chatter', 'counter', 'covet', 'focuspunch', 'mefirst', 'metalburst', 'mirrorcoat', 'struggle', 'thief'];
+				const noMeFirst = [
+					'chatter', 'counter', 'covet', 'focuspunch', 'mefirst', 'metalburst', 'mirrorcoat', 'struggle', 'thief',
+				];
 				// Mod-specific: Me First copies the first move in the link
 				// @ts-ignore
-				let move = this.dex.getActiveMove(action.linked ? action.linked[0] : action.move);
+				const move = this.dex.getActiveMove(action.linked ? action.linked[0] : action.move);
 				if (move.category !== 'Status' && !noMeFirst.includes(move.id)) {
 					pokemon.addVolatile('mefirst');
 					this.useMove(move, pokemon, target);
@@ -38,16 +36,11 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 		},
 	},
 
-	/**
-	 *	Sucker Punch
-	 *	Will miss on two linked Status moves
-	 *
-	 */
-
+	// Modify Sucker Punch to check if both moves in a link are status
 	suckerpunch: {
 		inherit: true,
 		onTry(source, target) {
-			let action = this.willMove(target);
+			const action = this.queue.willMove(target);
 			if (!action || action.choice !== 'move') {
 				this.attrLastMove('[still]');
 				this.add('-fail', source);
@@ -79,23 +72,18 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 		},
 	},
 
-	/**
-	 * Mimic and Sketch
-	 * When any of them is linked, the link will get updated for the new move
-	 * They will copy the last absolute single move used by the foe.
-	 *
-	 **/
-
+	// Copy the last used move of a link
 	sketch: {
 		inherit: true,
 		onHit(target, source) {
-			let disallowedMoves = ['chatter', 'sketch', 'struggle'];
-			let lastMove = target.m.lastMoveAbsolute;
-			if (source.transformed || !lastMove || disallowedMoves.includes(lastMove.id) || source.moves.indexOf(lastMove.id) >= 0 || lastMove.isZ) return false;
-			let sketchIndex = source.moves.indexOf('sketch');
+			const disallowedMoves = ['chatter', 'sketch', 'struggle'];
+			const lastMove: Move = target.m.lastMoveAbsolute;
+			if (source.transformed || !lastMove || disallowedMoves.includes(lastMove.id) ||
+				source.moves.includes(lastMove.id) || lastMove.isZ) return false;
+			const sketchIndex = source.moves.indexOf('sketch');
 			if (sketchIndex < 0) return false;
-			let move = this.dex.getMove(lastMove);
-			let sketchedMove = {
+			const move = this.dex.getMove(lastMove);
+			const sketchedMove = {
 				move: move.name,
 				id: move.id,
 				pp: move.pp,
@@ -112,12 +100,13 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 	mimic: {
 		inherit: true,
 		onHit(target, source) {
-			let disallowedMoves = ['chatter', 'mimic', 'sketch', 'struggle', 'transform'];
-			let lastMove = target.m.lastMoveAbsolute;
-			if (source.transformed || !lastMove || disallowedMoves.includes(lastMove.id) || source.moves.indexOf(lastMove.id) >= 0 || lastMove.isZ) return false;
-			let mimicIndex = source.moves.indexOf('mimic');
+			const disallowedMoves = ['chatter', 'mimic', 'sketch', 'struggle', 'transform'];
+			const lastMove: Move = target.m.lastMoveAbsolute;
+			if (source.transformed || !lastMove || disallowedMoves.includes(lastMove.id) ||
+				source.moves.includes(lastMove.id) || lastMove.isZ) return false;
+			const mimicIndex = source.moves.indexOf('mimic');
 			if (mimicIndex < 0) return false;
-			let move = this.dex.getMove(lastMove);
+			const move = this.dex.getMove(lastMove);
 			source.moveSlots[mimicIndex] = {
 				move: move.name,
 				id: move.id,
@@ -132,20 +121,22 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 		},
 	},
 
-	/**
-	 * Instruct and Mirror Move
-	 * Copy/call the last absolute move used by the target
-	 *
-	 */
-
+	// Copy/call last move of a link
 	instruct: {
 		inherit: true,
 		onHit(target, source) {
-			let lastMove = target.m.lastMoveAbsolute;
-			if (!lastMove) return false;
-			let moveIndex = target.moves.indexOf(lastMove.id);
-			let noInstruct = ['assist', 'beakblast', 'bide', 'copycat', 'focuspunch', 'iceball', 'instruct', 'mefirst', 'metronome', 'mimic', 'mirrormove', 'naturepower', 'outrage', 'petaldance', 'rollout', 'shelltrap', 'sketch', 'sleeptalk', 'thrash', 'transform'];
-			if (noInstruct.includes(lastMove.id) || lastMove.isZ || lastMove.flags['charge'] || lastMove.flags['recharge'] || target.volatiles['beakblast'] || target.volatiles['focuspunch'] || target.volatiles['shelltrap'] || (target.moveSlots[moveIndex] && target.moveSlots[moveIndex].pp <= 0)) {
+			const lastMove: Move | ActiveMove | null = target.m.lastMoveAbsolute;
+			if (!lastMove || target.volatiles['dynamax']) return false;
+			const moveIndex = target.moves.indexOf(lastMove.id);
+			const noInstruct = [
+				'assist', 'beakblast', 'bide', 'celebrate', 'copycat', 'dynamaxcannon', 'focuspunch', 'iceball', 'instruct', 'kingsshield', 'mefirst', 'metronome', 'mimic', 'mirrormove', 'naturepower', 'outrage', 'petaldance', 'rollout', 'shelltrap', 'sketch', 'sleeptalk', 'thrash', 'transform',
+			];
+			if (
+				noInstruct.includes(lastMove.id) || lastMove.isZ || lastMove.isMax ||
+				lastMove.flags['charge'] || lastMove.flags['recharge'] ||
+				target.volatiles['beakblast'] || target.volatiles['focuspunch'] || target.volatiles['shelltrap'] ||
+				(target.moveSlots[moveIndex] && target.moveSlots[moveIndex].pp <= 0)
+			) {
 				return false;
 			}
 			this.add('-singleturn', target, 'move: Instruct', '[of] ' + source);
@@ -156,30 +147,28 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 	mirrormove: {
 		inherit: true,
 		onTryHit(target, pokemon) {
-			let lastMove = target.m.lastMoveAbsolute;
-			if (!lastMove || !lastMove.flags['mirror']) {
+			const move: Move | ActiveMove | null = target.m.lastMoveAbsolute;
+			if (!move || !move.flags['mirror'] || move.isZ || move.isMax) {
 				return false;
 			}
-			this.useMove(lastMove.id, pokemon, target);
+			this.useMove(move.id, pokemon, target);
 			return null;
 		},
 	},
 
-	/**
-	 * Disable, Encore, and Torment
-	 * Disabling effects
-	 *
-	 */
-
+	// Disabling effects
 	disable: {
 		inherit: true,
 		effect: {
-			duration: 4,
+			duration: 5,
 			noCopy: true, // doesn't get copied by Baton Pass
 			onStart(pokemon, source, effect) {
-				let lastMove = pokemon.m.lastMoveAbsolute;
-				if (!this.willMove(pokemon)) {
-					this.effectData.duration++;
+				const lastMove: Move | ActiveMove | null = pokemon.m.lastMoveAbsolute;
+				if (
+					this.queue.willMove(pokemon) ||
+					(pokemon === this.activePokemon && this.activeMove && !this.activeMove.isExternal)
+				) {
+					this.effectData.duration--;
 				}
 				if (!lastMove) {
 					this.debug('pokemon hasn\'t moved yet');
@@ -209,7 +198,7 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 			},
 			onBeforeMovePriority: 7,
 			onBeforeMove(attacker, defender, move) {
-				if (move.id === this.effectData.move) {
+				if (!move.isZ && move.id === this.effectData.move) {
 					this.add('cant', attacker, 'Disable', move);
 					return false;
 				}
@@ -229,17 +218,22 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 			duration: 3,
 			noCopy: true, // doesn't get copied by Z-Baton Pass
 			onStart(target) {
-				let noEncore = ['assist', 'copycat', 'encore', 'mefirst', 'metronome', 'mimic', 'mirrormove', 'naturepower', 'sketch', 'sleeptalk', 'struggle', 'transform'];
-				let lastMove = target.m.lastMoveAbsolute;
+				const noEncore = [
+					'assist', 'copycat', 'encore', 'mefirst', 'metronome', 'mimic', 'mirrormove', 'naturepower', 'sketch', 'sleeptalk', 'struggle', 'transform',
+				];
+				let lastMove: Move | ActiveMove | null = target.m.lastMoveAbsolute;
+				if (!lastMove || target.volatiles['dynamax']) return false;
+				if ((lastMove as ActiveMove).isZOrMaxPowered) lastMove = this.dex.getMove(lastMove.baseMove);
 				// @ts-ignore
-				let linkedMoves = target.getLinkedMoves(true);
-				let moveIndex = lastMove ? target.moves.indexOf(lastMove.id) : -1;
-				if (lastMove && linkedMoves.includes(lastMove.id) && noEncore.includes(linkedMoves[0]) && noEncore.includes(linkedMoves[1])) {
+				const linkedMoves: [string, string] = target.getLinkedMoves(true);
+				const moveIndex = target.moves.indexOf(lastMove.id);
+				if (linkedMoves.includes(lastMove.id) && noEncore.includes(linkedMoves[0]) && noEncore.includes(linkedMoves[1])) {
 					// both moves cannot be encored
 					delete target.volatiles['encore'];
 					return false;
 				}
-				if (!lastMove || lastMove.isZ || noEncore.includes(lastMove.id) || (target.moveSlots[moveIndex] && target.moveSlots[moveIndex].pp <= 0)) {
+				if (lastMove.isZ || noEncore.includes(lastMove.id) ||
+					(target.moveSlots[moveIndex] && target.moveSlots[moveIndex].pp <= 0)) {
 					// it failed
 					delete target.volatiles['encore'];
 					return false;
@@ -250,7 +244,7 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 				if (linkedMoves.includes(lastMove.id)) {
 					this.effectData.move = linkedMoves;
 				}
-				if (!this.willMove(target)) {
+				if (!this.queue.willMove(target)) {
 					this.effectData.duration++;
 				}
 			},
@@ -258,14 +252,15 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 				if (!this.effectData.turnsActivated[this.turn]) {
 					// Initialize Encore effect for this turn
 					this.effectData.turnsActivated[this.turn] = 0;
-				} else if (this.effectData.turnsActivated[this.turn] >= (Array.isArray(this.effectData.move) ? this.effectData.move.length : 1)) {
+				} else if (
+					this.effectData.turnsActivated[this.turn] >= (Array.isArray(this.effectData.move) ?
+						this.effectData.move.length : 1)) {
 					// Finish Encore effect for this turn
 					return;
 				}
 				this.effectData.turnsActivated[this.turn]++;
 				if (!Array.isArray(this.effectData.move)) {
-					let nextAction = this.willMove(pokemon);
-					if (nextAction) this.queue.splice(this.queue.indexOf(nextAction), 1);
+					this.queue.cancelAction(pokemon);
 					if (move.id !== this.effectData.move) return this.effectData.move;
 					return;
 				}
@@ -284,8 +279,8 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 			onResidualOrder: 13,
 			onResidual(target) {
 				// early termination if you run out of PP
-				let lastMove = target.m.lastMoveAbsolute;
-				let index = target.moves.indexOf(lastMove.id);
+				const lastMove = target.m.lastMoveAbsolute;
+				const index = target.moves.indexOf(lastMove.id);
 				if (index === -1) return; // no last move
 
 				// @ts-ignore
@@ -327,14 +322,19 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 	torment: {
 		inherit: true,
 		effect: {
+			noCopy: true,
 			onStart(pokemon) {
+				if (pokemon.volatiles['dynamax']) {
+					delete pokemon.volatiles['torment'];
+					return false;
+				}
 				this.add('-start', pokemon, 'Torment');
 			},
 			onEnd(pokemon) {
 				this.add('-end', pokemon, 'Torment');
 			},
 			onDisableMove(pokemon) {
-				let lastMove = pokemon.lastMove;
+				const lastMove = pokemon.lastMove;
 				if (!lastMove || lastMove.id === 'struggle') return;
 
 				if (Array.isArray(lastMove)) {
@@ -348,13 +348,7 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 		},
 	},
 
-	/**
-	 * Spite and Grudge
-	 * Decrease the PP of the last absolute move used by the target
-	 * Also, Grudge's effect won't be removed by its linked move, if any
-	 *
-	 */
-
+	// PP-decreasing moves
 	grudge: {
 		inherit: true,
 		effect: {
@@ -363,7 +357,7 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 			},
 			onFaint(target, source, effect) {
 				if (!source || source.fainted || !effect) return;
-				let lastMove = source.m.lastMoveAbsolute;
+				const lastMove: Move | ActiveMove | null = source.m.lastMoveAbsolute;
 				if (effect.effectType === 'Move' && !effect.isFutureMove && lastMove) {
 					for (const moveSlot of source.moveSlots) {
 						if (moveSlot.id === lastMove.id) {
@@ -384,31 +378,25 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 	spite: {
 		inherit: true,
 		onHit(target) {
-			let lastMove = target.m.lastMoveAbsolute;
-			if (lastMove && target.deductPP(lastMove.id, 4)) {
-				this.add("-activate", target, 'move: Spite', this.dex.getMove(lastMove.id).name, 4);
-				return;
-			}
-			return false;
+			const lastMove: Move | ActiveMove | null = target.m.lastMoveAbsolute;
+			if (!lastMove || lastMove.isZ || lastMove.isMax) return false;
+			const ppDeducted = target.deductPP(lastMove.id, 4);
+			if (!ppDeducted) return false;
+			this.add("-activate", target, 'move: Spite', lastMove.name, ppDeducted);
 		},
 	},
 
-	/**
-	 * Other moves that check `pokemon.lastMove`
-	 * (may behave counter-intuitively if left unmodded)
-	 *
-	 **/
-
+	// Other lastMove checks
 	conversion2: {
 		inherit: true,
 		onHit(target, source) {
-			let lastMove = target.m.lastMoveAbsolute;
+			const lastMove: Move | ActiveMove | null = target.m.lastMoveAbsolute;
 			if (!lastMove) return false;
-			let possibleTypes = [];
-			let attackType = lastMove.type;
-			for (let type in this.data.TypeChart) {
-				if (source.hasType(type) || target.hasType(type)) continue;
-				let typeCheck = this.data.TypeChart[type].damageTaken[attackType];
+			const possibleTypes = [];
+			const attackType = lastMove.type;
+			for (const type in this.dex.data.TypeChart) {
+				if (source.hasType(type)) continue;
+				const typeCheck = this.dex.data.TypeChart[type].damageTaken[attackType];
 				if (typeCheck === 2 || typeCheck === 3) {
 					possibleTypes.push(type);
 				}
@@ -416,7 +404,7 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 			if (!possibleTypes.length) {
 				return false;
 			}
-			let randomType = this.sample(possibleTypes);
+			const randomType = this.sample(possibleTypes);
 
 			if (!source.setType(randomType)) return false;
 			this.add('-start', source, 'typechange', randomType);
@@ -431,6 +419,10 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 			onFaint(target, source, effect) {
 				if (!source || !effect || target.side === source.side) return;
 				if (effect.effectType === 'Move' && !effect.isFutureMove) {
+					if (source.volatiles['dynamax']) {
+						this.add('-hint', "Dynamaxed Pokémon are immune to Destiny Bond.");
+						return;
+					}
 					this.add('-activate', target, 'move: Destiny Bond');
 					source.faint();
 				}
@@ -443,10 +435,6 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 				pokemon.removeVolatile('destinybond');
 			},
 			onMoveAborted(pokemon, target, move) {
-				pokemon.removeVolatile('destinybond');
-			},
-			onBeforeSwitchOutPriority: 1,
-			onBeforeSwitchOut(pokemon) {
 				pokemon.removeVolatile('destinybond');
 			},
 		},
@@ -467,8 +455,8 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 			},
 			onResidual(target) {
 				// This is just to ensure the volatile is deleted correctly
-				let lastMove = target.m.lastMoveAbsolute;
-				if (lastMove && lastMove.id === 'struggle') {
+				const lastMove: Move | ActiveMove | null = target.m.lastMoveAbsolute;
+				if (lastMove?.id === 'struggle') {
 					delete target.volatiles['iceball'];
 				}
 			},
@@ -490,8 +478,8 @@ export const BattleMovedex: {[k: string]: ModdedMoveData} = {
 			},
 			onResidual(target) {
 				// This is just to ensure the volatile is deleted correctly
-				let lastMove = target.m.lastMoveAbsolute;
-				if (lastMove && lastMove.id === 'struggle') {
+				const lastMove: Move | ActiveMove | null = target.m.lastMoveAbsolute;
+				if (lastMove?.id === 'struggle') {
 					delete target.volatiles['rollout'];
 				}
 			},

@@ -96,6 +96,7 @@ export const BattleScripts: BattleScriptsData = {
 			pokemon.side.zMoveUsed = true;
 		}
 		const moveDidSomething = this.useMove(baseMove, pokemon, target, sourceEffect, zMove, maxMove);
+		this.lastSuccessfulMoveThisTurn = moveDidSomething ? this.activeMove && this.activeMove.id : null;
 		if (this.activeMove) move = this.activeMove;
 		this.singleEvent('AfterMove', move, null, pokemon, target, move);
 		this.runEvent('AfterMove', pokemon, target, move);
@@ -1182,11 +1183,6 @@ export const BattleScripts: BattleScriptsData = {
 				mustStruggle = false;
 			}
 			const move = this.dex.getMove(moveSlot.move);
-			// National Dex mechanic
-			if (move.gen > 7) {
-				zMoves.push(null);
-				continue;
-			}
 			let zMoveName = this.getZMove(move, pokemon, true) || '';
 			if (zMoveName) {
 				const zMove = this.dex.getMove(zMoveName);
@@ -1269,8 +1265,9 @@ export const BattleScripts: BattleScriptsData = {
 				if (gMaxMove.exists && gMaxMove.type === move.type) maxMove = gMaxMove;
 			}
 			if (!move.maxMove?.basePower) throw new Error(`${move.name} doesn't have a maxMove basePower`);
-			maxMove.basePower = move.maxMove.basePower;
-			if (['gmaxdrumsolo', 'gmaxfireball', 'gmaxhydrosnipe'].includes(maxMove.id)) maxMove.basePower = 160;
+			if (!['gmaxdrumsolo', 'gmaxfireball', 'gmaxhydrosnipe'].includes(maxMove.id)) {
+				maxMove.basePower = move.maxMove.basePower;
+			}
 			maxMove.category = move.category;
 		}
 		maxMove.baseMove = move.id;

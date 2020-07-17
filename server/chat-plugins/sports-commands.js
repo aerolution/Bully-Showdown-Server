@@ -15,6 +15,10 @@ exports.commands = {
 + Galar Dex Draft rules
 + Pokemon are set to level 50
 
+**Galar Dex No Dynamax**:
++ Galar Dex Draft rules
+- Dynamax and Gigantamax are not allowed
+
 **Galar Dex VGC**:
 + Galar Dex Draft rules
 + Doubles format
@@ -86,7 +90,7 @@ __NOTE: all leaked moves will show up as Illegal in the Teambuilder, this is jus
 	sportsavatar(target, room, user, connection) {
 		return connection.popup(`**Custom Avatars**:
 If you want to request a custom avatar, check out the __**#avatar-submissions**__ channel on our Discord server. There you can find instructions to make and upload your image.
-Requests through DMs here on Showdown will be ignored.`);
+Requests through DMs here or on Discord will be ignored.`);
 	},
 	
 	sportsstaff(target, room, user, connection) {

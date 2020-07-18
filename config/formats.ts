@@ -230,7 +230,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			validate: [4, 6],
 			battle: 4,
 		},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview', 'Dynamax Clause', '-Sleep Clause Mod', '-OHKO Clause'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview', 'Dynamax Clause', '!Sleep Clause Mod', '-OHKO Clause'],
 	},
 	{
 		name: "[Gen 8] (National Dex) BBL",

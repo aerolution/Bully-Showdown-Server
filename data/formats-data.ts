@@ -6444,7 +6444,6 @@ export const BattleFormatsData: {[k: string]: SpeciesFormatsData} = {
 		randomBattleLevel: 80,
 		randomDoubleBattleMoves: ["closecombat", "darkestlariat", "junglehealing", "powerwhip", "protect", "rockslide"],
 		randomDoubleBattleLevel: 80,
-		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
 	},
 	zarudedada: {

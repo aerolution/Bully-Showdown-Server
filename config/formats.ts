@@ -224,6 +224,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8] (National Dex) Astrea Cup",
 
 		mod: 'gen8',
+		searchShow: false,
 		gameType: 'doubles',
 		forcedLevel: 50,
 		teamLength: {

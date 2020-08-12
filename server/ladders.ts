@@ -16,7 +16,7 @@ const LadderStore: typeof LadderStoreT = (typeof Config === 'object' && Config.r
 const SECONDS = 1000;
 const PERIODIC_MATCH_INTERVAL = 60 * SECONDS;
 
-type ChallengeType = import('./room-battle').ChallengeType;
+import type {ChallengeType} from './room-battle';
 
 /**
  * This represents a user's search for a battle under a format.
@@ -247,6 +247,14 @@ class Ladder extends LadderStore {
 		if (Date.now() < user.lastChallenge + 10 * SECONDS) {
 			// 10 seconds ago, probable misclick
 			connection.popup(`You challenged less than 10 seconds after your last challenge! It's cancelled in case it's a misclick.`);
+			return false;
+		}
+		const currentChallenges = Ladders.challenges.get(targetUser.id);
+		if (currentChallenges && currentChallenges.length >= 3 && !user.autoconfirmed) {
+			connection.popup(
+				`This user already has 3 pending challenges.\n` +
+				`You must be autoconfirmed to challenge them.`
+			);
 			return false;
 		}
 		const ready = await this.prepBattle(connection, 'challenge');

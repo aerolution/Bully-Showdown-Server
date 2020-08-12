@@ -125,62 +125,86 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 	{
 		name: "[Gen 8] National Dex DLC2 Draft",
 
-		mod: 'gen8',
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview', 'Dynamax Clause'],
+		mod: 'gen8leaks',
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
+		onBegin() {
+			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://www.smogon.com/forums/threads/3668142/">this doc</a> for the full list of new moves.</strong></div>');
+		},
 	},
 	{
 		name: "[Gen 8] National Dex DLC2 Dynamax",
 
-		mod: 'gen8',
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
+		mod: 'gen8leaks',
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
+		onBegin() {
+			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://www.smogon.com/forums/threads/3668142/">this doc</a> for the full list of new moves.</strong></div>');
+		},
 	},
 	{
 		name: "[Gen 8] National Dex DLC2 Legacy",
 
-		mod: 'gen8',
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
+		mod: 'gen8leaks',
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
+		onBegin() {
+			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://www.smogon.com/forums/threads/3668142/">this doc</a> for the full list of new moves.</strong></div>');
+		},
 	},
 	{
 		name: "[Gen 8] National Dex DLC2 Wifi",
 
-		mod: 'gen8',
+		mod: 'gen8leaks',
 		maxForcedLevel: 50,
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
+		onBegin() {
+			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://www.smogon.com/forums/threads/3668142/">this doc</a> for the full list of new moves.</strong></div>');
+		},
 	},
 	{
 		name: "[Gen 8] National Dex DLC2 Doubles",
 
-		mod: 'gen8',
+		mod: 'gen8leaks',
 		gameType: 'doubles',
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
+		onBegin() {
+			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://www.smogon.com/forums/threads/3668142/">this doc</a> for the full list of new moves.</strong></div>');
+		},
 	},
 	{
 		name: "[Gen 8] National Dex DLC2 VGC",
 
-		mod: 'gen8',
+		mod: 'gen8leaks',
 		gameType: 'doubles',
 		forcedLevel: 50,
 		teamLength: {
 			validate: [4, 6],
 			battle: 4,
 		},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
+		onBegin() {
+			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://www.smogon.com/forums/threads/3668142/">this doc</a> for the full list of new moves.</strong></div>');
+		},
 	},
 	{
 		name: "[Gen 8] LC National Dex DLC2 Draft",
 
-		mod: 'gen8',
+		mod: 'gen8leaks',
 		maxLevel: 5,
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
+		onBegin() {
+			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://www.smogon.com/forums/threads/3668142/">this doc</a> for the full list of new moves.</strong></div>');
+		},
 	},
 	{
 		name: "[Gen 8] LC National Dex DLC2 Legacy",
 
-		mod: 'gen8',
+		mod: 'gen8leaks',
 		maxLevel: 5,
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', '+PastMove', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
+		onBegin() {
+			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://www.smogon.com/forums/threads/3668142/">this doc</a> for the full list of new moves.</strong></div>');
+		},
 	},
 	
 	
@@ -223,7 +247,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 	{
 		name: "[Gen 8] (National Dex) Astrea Cup",
 
-		mod: 'gen8',
+		mod: 'gen8leaks',
 		searchShow: false,
 		gameType: 'doubles',
 		forcedLevel: 50,
@@ -231,7 +255,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			validate: [4, 6],
 			battle: 4,
 		},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause', '!Sleep Clause Mod', '!OHKO Clause', 'Item Clause'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause', '!Sleep Clause Mod', '!OHKO Clause', 'Item Clause'],
 	},
 	{
 		name: "[Gen 8] (National Dex) BBL",
@@ -315,14 +339,14 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 	{
 		name: "[Gen 8] (National Dex) The Hive",
 
-		mod: 'gen8',
+		mod: 'gen8leaks',
 		searchShow: false,
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview', 'Dynamax Clause'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
 		banlist: [
 			'Bright Powder', "King's Rock", 'Razor Fang', 'Focus Band', 'Quick Claw', 'Moody', 'Stench', 'Baton Pass > 1',
 			// Complex bans
-			'Landorus + Sheer Force', 'Greninja + Protean', 'Greninja + Battle Bond', 'Blaziken + Speed Boost', 'Kangaskhan-Mega + Seismic Toss',
-			'Blastoise-Mega + Shell Smash',
+			'Landorus + Sheer Force', 'Greninja + Protean', 'Greninja + Battle Bond', 'Blaziken + Speed Boost', 'Cinderace + Libero',
+			'Kangaskhan-Mega + Seismic Toss', 'Blastoise-Mega + Shell Smash', 'Tapu Koko + Rising Voltage', 'Tapu Lele + Expanding Force',
 		],
 	},
 	
@@ -631,12 +655,13 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			'Neutralizing Gas', 'Parental Bond', 'Protean', 'Pure Power', 'Shadow Tag', 'Stakeout', 'Water Bubble', 'Wonder Guard',
 		],
 		onValidateSet(set) {
-			if (set.species === 'Zacian-Crowned' && (toID(set.item) !== 'rustedsword' || toID(set.ability) !== 'intrepidsword')) {
+			if (set.species === 'Zacian-Crowned' &&
+				(this.dex.toID(set.item) !== 'rustedsword' || this.dex.toID(set.ability) !== 'intrepidsword')) {
 				return [set.species + " is banned."];
 			}
 		},
 		onChangeSet(set) {
-			const item = toID(set.item);
+			const item = this.dex.toID(set.item);
 			if (set.species === 'Zacian' && item === 'rustedsword') {
 				set.species = 'Zacian-Crowned';
 				set.ability = 'Intrepid Sword';
@@ -663,6 +688,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		],
 
 		mod: 'gen8',
+		searchShow: false,
 		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Dynamax Clause', 'Sleep Clause Mod', 'Endless Battle Clause'],
 		banlist: [
 			'Darmanitan-Galar', 'Dracovish', 'Eternatus', 'Hydreigon', 'Kyurem', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow', 'Melmetal',
@@ -705,6 +731,42 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		},
 	},
 	{
+		name: "[Gen 8] Godly Gift",
+		desc: `Each Pok&eacute;mon receives one base stat from a God (Uber Pok&eacute;mon) depending on its position in the team. If there is no Uber Pok&eacute;mon, it uses the Pok&eacute;mon in the first slot.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3660461/">Godly Gift</a>`,
+		],
+
+		mod: 'gen8',
+		// searchShow: false,
+		ruleset: ['Standard', 'Dynamax Clause'],
+		banlist: ['Blissey', 'Chansey', 'Toxapex', 'Uber > 1', 'AG + Uber > 1', 'Arena Trap', 'Huge Power', 'Moody', 'Pure Power', 'Shadow Tag', 'Baton Pass'],
+		onModifySpecies(species, target, source) {
+			if (source || !target || !target.side) return;
+			const god = target.side.team.find(set => {
+				let godSpecies = this.dex.getSpecies(set.species);
+				const validator = this.dex.getRuleTable(this.dex.getFormat(`gen${this.gen}ou`));
+				if (this.toID(set.ability) === 'powerconstruct' && this.gen === 7) {
+					return true;
+				}
+				if (set.item) {
+					const item = this.dex.getItem(set.item);
+					if (item.megaEvolves === set.species) godSpecies = this.dex.getSpecies(item.megaStone);
+				}
+				const isBanned = validator.isBannedSpecies(godSpecies);
+				return isBanned;
+			}) || target.side.team[0];
+			const stat = ['hp', 'atk', 'def', 'spa', 'spd', 'spe'][target.side.team.indexOf(target.set)];
+			const newSpecies = this.dex.deepClone(species);
+			let godSpecies = this.dex.getSpecies(god.species);
+			if (godSpecies.forme === 'Crowned') {
+				godSpecies = this.dex.getSpecies(godSpecies.changesFrom || godSpecies.baseSpecies);
+			}
+			newSpecies.baseStats[stat] = godSpecies.baseStats[stat as StatName];
+			return newSpecies;
+		},
+	},
+	{
 		name: "[Gen 8] Mix and Mega",
 		desc: `Mega evolve any Pok&eacute;mon with any mega stone and no limit. Boosts based on mega evolution from gen 7.`,
 		threads: [
@@ -719,15 +781,14 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			'Beedrillite', 'Blazikenite', 'Gengarite', 'Kangaskhanite', 'Mawilite', 'Medichamite', 'Pidgeotite',
 		],
 		restricted: ['Gengar', 'Kyurem-Black', 'Kyurem-White', 'Marshadow', 'Melmetal', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Solgaleo', 'Zacian', 'Zekrom', 'Zeraora'],
-		onValidateTeam(team, format) {
-			const restrictedPokemon = format.restricted || [];
+		onValidateTeam(team) {
 			const itemTable = new Set<ID>();
 			for (const set of team) {
 				const item = this.dex.getItem(set.item);
 				if (!item || !item.megaStone) continue;
 				const species = this.dex.getSpecies(set.species);
 				if (species.isNonstandard) return [`${species.baseSpecies} does not exist in gen 8.`];
-				if (restrictedPokemon.includes(species.name)) {
+				if (this.ruleTable.isRestrictedSpecies(species)) {
 					return [`${species.name} is not allowed to hold ${item.name}.`];
 				}
 				if (itemTable.has(item.id)) {
@@ -769,6 +830,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		],
 
 		mod: 'gen8',
+		searchShow: false,
 		ruleset: ['-Nonexistent', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Endless Battle Clause'],
 	},
 	{
@@ -797,15 +859,16 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Shedinja', 'Solgaleo', 'Toxapex',
 			'Zacian', 'Zamazenta', 'Zekrom', 'Leppa Berry', 'Baton Pass',
 			'Arena Trap', 'Contrary', 'Drizzle ++ Swift Swim', 'Drought ++ Chlorophyll', 'Electric Surge ++ Surge Surfer',
-			'Flare Boost', 'Fur Coat', 'Guts', 'Huge Power', 'Imposter', 'Innards Out', 'Magic Bounce', 'Magic Guard',
-			'Mirror Armor', 'Mold Breaker', 'Moody', 'Neutralizing Gas', 'Regenerator ++ Emergency Exit',
+			'Flare Boost', 'Fur Coat', 'Guts', 'Harvest', 'Huge Power', 'Imposter', 'Innards Out', 'Libero', 'Magic Bounce',
+			'Magic Guard', 'Mold Breaker', 'Moody', 'Neutralizing Gas', 'Regenerator ++ Emergency Exit',
 			'Regenerator ++ Wimp Out', 'Sand Rush', 'Sand Veil', 'Shadow Tag', 'Simple', 'Slush Rush', 'Snow Cloak',
-			'Speed Boost', 'Steelworker ++ Steely Spirit', 'Tinted Lens', 'Trace', 'Unaware', 'Unburden', 'Water Bubble',
+			'Speed Boost', 'Steelworker ++ Steely Spirit', 'Tinted Lens', 'Unaware', 'Unburden', 'Water Bubble',
 		],
 		getSharedPower(pokemon) {
 			const sharedPower = new Set<string>();
 			for (const ally of pokemon.side.pokemon) {
 				if (ally.previouslySwitchedIn > 0) {
+					if (['mirrorarmor', 'trace'].includes(ally.baseAbility)) continue;
 					sharedPower.add(ally.baseAbility);
 				}
 			}
@@ -817,7 +880,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			if (!format.getSharedPower) format = this.dex.getFormat('gen8sharedpower');
 			for (const ability of format.getSharedPower!(pokemon)) {
 				const effect = 'ability:' + ability;
-				pokemon.volatiles[effect] = {id: toID(effect), target: pokemon};
+				pokemon.volatiles[effect] = {id: this.toID(effect), target: pokemon};
 			}
 		},
 		onSwitchInPriority: 2,
@@ -846,7 +909,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			hasAbility(ability) {
 				if (this.ignoringAbility()) return false;
 				if (Array.isArray(ability)) return ability.some(abil => this.hasAbility(abil));
-				const abilityid = toID(ability);
+				const abilityid = this.battle.toID(ability);
 				return this.ability === abilityid || !!this.volatiles['ability:' + abilityid];
 			},
 		},
@@ -862,11 +925,11 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8',
 		ruleset: ['Standard', 'STABmons Move Legality', 'Dynamax Clause'],
 		banlist: [
-			'Darmanitan', 'Darmanitan-Galar', 'Dracovish', 'Dragapult', 'Eternatus', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow',
-			'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Silvally', 'Solgaleo', 'Zacian', 'Zamazenta', 'Zekrom',
+			'Darmanitan', 'Darmanitan-Galar', 'Dracovish', 'Dragapult', 'Eternatus', 'Gengar', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow',
+			'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Porygon-Z', 'Reshiram', 'Silvally', 'Solgaleo', 'Zacian', 'Zamazenta', 'Zekrom',
 			'King\'s Rock', 'Moody', 'Shadow Tag', 'Baton Pass',
 		],
-		restricted: ['Acupressure', 'Belly Drum', 'Bolt Beak', 'Double Iron Bash', 'Electrify', 'Extreme Speed', 'Fishious Rend', 'Shell Smash', 'Shift Gear', 'Spore'],
+		restricted: ['Acupressure', 'Belly Drum', 'Bolt Beak', 'Double Iron Bash', 'Electrify', 'Extreme Speed', 'Fishious Rend', 'Shell Smash', 'Shift Gear', 'Spore', 'Wicked Blow'],
 	},
 	{
 		name: "[Gen 8] Tier Shift",
@@ -876,7 +939,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		],
 
 		mod: 'gen8',
-		// searchShow: false,
+		searchShow: false,
 		ruleset: ['[Gen 8] OU'],
 		banlist: ['Damp Rock', 'Eviolite', 'Heat Rock'],
 		onModifySpecies(species, target, source, effect) {
@@ -893,7 +956,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 				lcuber: 40,
 				lc: 40,
 			};
-			const tier = toID(species.tier) || 'ou';
+			const tier = this.toID(species.tier) || 'ou';
 			if (!(tier in boosts)) return;
 			const pokemon: Species = this.dex.deepClone(species);
 			const boost = boosts[tier];
@@ -913,24 +976,36 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['[Gen 8] OU'],
+		searchShow: false,
+		ruleset: ['Standard', 'Dynamax Clause'],
+		banlist: [
+			'Darmanitan-Galar', 'Dracovish', 'Dragapult', 'Eternatus', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Magearna', 'Marshadow',
+			'Melmetal', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Solgaleo', 'Zacian', 'Zamazenta', 'Zekrom',
+			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
+		],
 		restricted: [
-			'Baneful Bunker', 'Block', 'Copycat', 'Detect', 'Destiny Bond', 'Ingrain', 'King\'s Shield', 'Mean Look', 'Metronome', 'Obstruct',
-			'Octolock', 'Nature Power', 'Parting Shot', 'Protect', 'Roar', 'Skill Swap', 'Sleep Talk', 'Spiky Shield', 'Teleport', 'Whirlwind', 'Wish',
+			'Baneful Bunker', 'Block', 'Copycat', 'Detect', 'Destiny Bond', 'Ingrain', 'King\'s Shield', 'Mean Look', 'move:Metronome', 'Obstruct', 'Octolock',
+			'Nature Power', 'Parting Shot', 'Protect', 'Roar', 'Skill Swap', 'Sleep Talk', 'Spiky Shield', 'Substitute', 'Teleport', 'Whirlwind', 'Wish', 'Yawn',
 		],
 		onValidateTeam(team, format, teamHas) {
+			const problems = [];
 			for (const trademark in teamHas.trademarks) {
-				if (teamHas.trademarks[trademark] > 1) return [`You are limited to 1 of each Trademark.`, `(You have ${teamHas.trademarks[trademark]} of ${trademark}).`];
+				if (teamHas.trademarks[trademark] > 1) {
+					problems.push(`You are limited to 1 of each Trademark.`, `(You have ${teamHas.trademarks[trademark]} Pok\u00e9mon with ${trademark} as a Trademark.)`);
+				}
 			}
+			return problems;
 		},
 		validateSet(set, teamHas) {
-			const restrictedMoves = (this.format.restricted || []).concat('Yawn');
 			const dex = this.dex;
 			const ability = dex.getMove(set.ability);
-			if (ability.category !== 'Status' || ability.status === 'slp' || restrictedMoves.includes(ability.name) || set.moves.map(toID).includes(ability.id)) return this.validateSet(set, teamHas);
-			let customRules = this.format.customRules || [];
+			if (ability.category !== 'Status' || ability.status === 'slp' ||
+				this.ruleTable.isRestricted(`move:${ability.id}`) || set.moves.map(this.dex.toID).includes(ability.id)) {
+				return this.validateSet(set, teamHas);
+			}
+			const customRules = this.format.customRules || [];
 			if (!customRules.includes('!obtainableabilities')) customRules.push('!obtainableabilities');
-			const TeamValidator = /** @type {new(format: string | Format) => TeamValidator} */ (this.constructor);
+			// const TeamValidator: new (format: string | Format) => TeamValidator = this.constructor as TeamValidator;
 			const validator = new TeamValidator(dex.getFormat(`${this.format.id}@@@${customRules.join(',')}`));
 			const moves = set.moves;
 			set.moves = [ability.id];
@@ -947,7 +1022,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		},
 		pokemon: {
 			getAbility() {
-				const move = this.battle.dex.getMove(toID(this.ability));
+				const move = this.battle.dex.getMove(this.battle.toID(this.ability));
 				if (!move.exists) return Object.getPrototypeOf(this).getAbility.call(this);
 				return {
 					id: move.id,
@@ -1265,6 +1340,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			'Venusaurite', 
 		],
 		onBegin() {
+			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Mega evolve any Pok&eacute;mon with any mega stone and no limit. Boosts based on mega evolution stat boosts from gen 7.</div>`);
 			for (const pokemon of this.getAllPokemon()) {
 				pokemon.m.originalSpecies = pokemon.baseSpecies.name;
 			}
@@ -1326,6 +1402,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			const sharedPower = new Set<string>();
 			for (const ally of pokemon.side.pokemon) {
 				if (ally.previouslySwitchedIn > 0) {
+					if (['mirrorarmor', 'trace'].includes(ally.baseAbility)) continue;
 					sharedPower.add(ally.baseAbility);
 				}
 			}
@@ -1337,7 +1414,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			if (!format.getSharedPower) format = this.dex.getFormat('gen8sharedpower');
 			for (const ability of format.getSharedPower!(pokemon)) {
 				const effect = 'ability:' + ability;
-				pokemon.volatiles[effect] = {id: toID(effect), target: pokemon};
+				pokemon.volatiles[effect] = {id: this.toID(effect), target: pokemon};
 			}
 		},
 		onSwitchInPriority: 2,
@@ -1366,7 +1443,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			hasAbility(ability) {
 				if (this.ignoringAbility()) return false;
 				if (Array.isArray(ability)) return ability.some(abil => this.hasAbility(abil));
-				const abilityid = toID(ability);
+				const abilityid = this.battle.toID(ability);
 				return this.ability === abilityid || !!this.volatiles['ability:' + abilityid];
 			},
 		},
@@ -1398,7 +1475,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 				lcuber: 50,
 				lc: 50,
 			};
-			const tier = toID(species.tier) || 'ou';
+			const tier = this.toID(species.tier) || 'ou';
 			if (!(tier in boosts)) return;
 			const pokemon: Species = this.dex.deepClone(species);
 			const boost = boosts[tier];

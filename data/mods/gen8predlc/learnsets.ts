@@ -1,4 +1,4 @@
-export const BattleLearnsets: {[speciesid: string]: ModdedLearnsetData} = {
+export const Learnsets: {[speciesid: string]: ModdedLearnsetData} = {
 	missingno: {
 		learnset: {
 			blizzard: ["3L1"],

@@ -1,4 +1,4 @@
-export const BattleScripts: ModdedBattleScriptsData = {
+export const Scripts: ModdedBattleScriptsData = {
 	getZMove(move, pokemon, skipChecks) {
 		let item = pokemon.getItem();
 		if (!skipChecks) {

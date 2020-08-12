@@ -1,4 +1,4 @@
-export const BattleScripts: ModdedBattleScriptsData = {
+export const Scripts: ModdedBattleScriptsData = {
 	init() {
 		let learnsets = Object.assign({}, this.data.Learnsets);
 		let dex = [];

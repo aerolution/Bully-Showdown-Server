@@ -1,4 +1,4 @@
-export const BattleScripts: ModdedBattleScriptsData = {
+export const Scripts: ModdedBattleScriptsData = {
 	getEffect(name) {
 		if (name && typeof name !== 'string') {
 			return name;

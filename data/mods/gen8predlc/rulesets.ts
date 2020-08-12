@@ -1,4 +1,4 @@
-export const BattleFormats: {[k: string]: ModdedFormatsData} = {
+export const Formats: {[k: string]: ModdedFormatsData} = {
 	draft: {
 		effectType: 'ValidatorRule',
 		name: 'Draft',

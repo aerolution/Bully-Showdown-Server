@@ -1,4 +1,4 @@
-export const BattleScripts: ModdedBattleScriptsData = {
+export const Scripts: ModdedBattleScriptsData = {
 	init() {
 		for (let i in this.data.Pokedex) {
 			let pokemon = this.data.Pokedex[i];

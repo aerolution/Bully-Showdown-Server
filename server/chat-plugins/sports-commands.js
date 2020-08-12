@@ -82,9 +82,10 @@ exports.commands = {
 
 **National Dex DLC2 Formats**:
 + Same rules as the corresponding National Dex format
-+ moveset additions from the Pokemon Home leaks are allowed
++ moveset additions from the Pokemon Home and Isle of Armor leaks are allowed
 
-__NOTE: all leaked moves will show up as Illegal in the Teambuilder, this is just a visual issue and they will validate as intended. If you're not sure a move is legal always refer to the Validate button.__`);
+__NOTE: all leaked moves will show up as Illegal in the Teambuilder, this is just a visual issue and they will validate as intended. If you're not sure a move is legal always refer to the Validate button.
+You can find a full list of leaked moves by clicking the Leaked Moves List button.__`);
 	},
 	
 	sportsavatar(target, room, user, connection) {

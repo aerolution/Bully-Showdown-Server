@@ -1,4 +1,4 @@
-export const BattleStatuses: {[k: string]: ModdedPureEffectData} = {
+export const Statuses: {[k: string]: ModdedPureEffectData} = {
 	init: function () {
 		for (let pokemon in this.data.FormatsData) {
 			let pokeData = this.modData('FormatsData', pokemon);

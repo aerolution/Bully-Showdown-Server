@@ -128,7 +128,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8leaks',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
 		onBegin() {
-			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://www.smogon.com/forums/threads/3668142/">this doc</a> for the full list of new moves.</strong></div>');
+			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://docs.google.com/spreadsheets/d/19xPdnVPoBPwrCNogvgIWo2I0js-tq7ppR2IC47E_aPQ/edit?usp=sharing">this doc</a> for the full list of new moves or visit <a href="https://discordapp.com/invite/V6jxMW7/">our Discord</a> for more info on this update.</strong></div>');
 		},
 	},
 	{
@@ -137,7 +137,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8leaks',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 		onBegin() {
-			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://www.smogon.com/forums/threads/3668142/">this doc</a> for the full list of new moves.</strong></div>');
+			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://docs.google.com/spreadsheets/d/19xPdnVPoBPwrCNogvgIWo2I0js-tq7ppR2IC47E_aPQ/edit?usp=sharing">this doc</a> for the full list of new moves or visit <a href="https://discordapp.com/invite/V6jxMW7/">our Discord</a> for more info on this update.</strong></div>');
 		},
 	},
 	{
@@ -146,7 +146,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8leaks',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
 		onBegin() {
-			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://www.smogon.com/forums/threads/3668142/">this doc</a> for the full list of new moves.</strong></div>');
+			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://docs.google.com/spreadsheets/d/19xPdnVPoBPwrCNogvgIWo2I0js-tq7ppR2IC47E_aPQ/edit?usp=sharing">this doc</a> for the full list of new moves or visit <a href="https://discordapp.com/invite/V6jxMW7/">our Discord</a> for more info on this update.</strong></div>');
 		},
 	},
 	{
@@ -156,7 +156,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		maxForcedLevel: 50,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 		onBegin() {
-			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://www.smogon.com/forums/threads/3668142/">this doc</a> for the full list of new moves.</strong></div>');
+			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://docs.google.com/spreadsheets/d/19xPdnVPoBPwrCNogvgIWo2I0js-tq7ppR2IC47E_aPQ/edit?usp=sharing">this doc</a> for the full list of new moves or visit <a href="https://discordapp.com/invite/V6jxMW7/">our Discord</a> for more info on this update.</strong></div>');
 		},
 	},
 	{
@@ -166,7 +166,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		gameType: 'doubles',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 		onBegin() {
-			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://www.smogon.com/forums/threads/3668142/">this doc</a> for the full list of new moves.</strong></div>');
+			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://docs.google.com/spreadsheets/d/19xPdnVPoBPwrCNogvgIWo2I0js-tq7ppR2IC47E_aPQ/edit?usp=sharing">this doc</a> for the full list of new moves or visit <a href="https://discordapp.com/invite/V6jxMW7/">our Discord</a> for more info on this update.</strong></div>');
 		},
 	},
 	{
@@ -181,7 +181,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		},
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 		onBegin() {
-			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://www.smogon.com/forums/threads/3668142/">this doc</a> for the full list of new moves.</strong></div>');
+			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://docs.google.com/spreadsheets/d/19xPdnVPoBPwrCNogvgIWo2I0js-tq7ppR2IC47E_aPQ/edit?usp=sharing">this doc</a> for the full list of new moves or visit <a href="https://discordapp.com/invite/V6jxMW7/">our Discord</a> for more info on this update.</strong></div>');
 		},
 	},
 	{
@@ -192,7 +192,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 		onBegin() {
-			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://www.smogon.com/forums/threads/3668142/">this doc</a> for the full list of new moves.</strong></div>');
+			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://docs.google.com/spreadsheets/d/19xPdnVPoBPwrCNogvgIWo2I0js-tq7ppR2IC47E_aPQ/edit?usp=sharing">this doc</a> for the full list of new moves or visit <a href="https://discordapp.com/invite/V6jxMW7/">our Discord</a> for more info on this update.</strong></div>');
 		},
 	},
 	{
@@ -203,7 +203,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 		onBegin() {
-			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://www.smogon.com/forums/threads/3668142/">this doc</a> for the full list of new moves.</strong></div>');
+			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://docs.google.com/spreadsheets/d/19xPdnVPoBPwrCNogvgIWo2I0js-tq7ppR2IC47E_aPQ/edit?usp=sharing">this doc</a> for the full list of new moves or visit <a href="https://discordapp.com/invite/V6jxMW7/">our Discord</a> for more info on this update.</strong></div>');
 		},
 	},
 	
@@ -343,7 +343,8 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
 		banlist: [
-			'Bright Powder', "King's Rock", 'Razor Fang', 'Focus Band', 'Quick Claw', 'Moody', 'Stench', 'Baton Pass > 1',
+			'Bright Powder', "King's Rock", 'Razor Fang', 'Focus Band', 'Quick Claw', 'Moody', 'Stench',
+			'Flash', 'Kinesis', 'Mud-Slap', 'Sand Attack', 'Smokescreen',
 			// Complex bans
 			'Landorus + Sheer Force', 'Greninja + Protean', 'Greninja + Battle Bond', 'Blaziken + Speed Boost', 'Cinderace + Libero',
 			'Kangaskhan-Mega + Seismic Toss', 'Blastoise-Mega + Shell Smash', 'Tapu Koko + Rising Voltage', 'Tapu Lele + Expanding Force',

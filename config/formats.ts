@@ -38,7 +38,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			validate: [4, 6],
 			battle: 4,
 		},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', '!Sleep Clause Mod'],
 	},
 	
 	
@@ -96,7 +96,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			validate: [4, 6],
 			battle: 4,
 		},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', '!Sleep Clause Mod'],
 	},
 	{
 		name: "[Gen 8] LC National Dex Draft",
@@ -179,7 +179,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			validate: [4, 6],
 			battle: 4,
 		},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', '!Sleep Clause Mod'],
 		onBegin() {
 			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://docs.google.com/spreadsheets/d/19xPdnVPoBPwrCNogvgIWo2I0js-tq7ppR2IC47E_aPQ/edit?usp=sharing">this doc</a> for the full list of new moves or visit <a href="https://discordapp.com/invite/V6jxMW7/">our Discord</a> for more info on this update.</strong></div>');
 		},
@@ -280,7 +280,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 	{
 		name: "[Gen 8] (National Dex) EBL",
 
-		mod: 'gen8predlc',
+		mod: 'gen8leaks',
 		searchShow: false,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
 		unbanlist: [
@@ -407,7 +407,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			validate: [4, 6],
 			battle: 4,
 		},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', '!Sleep Clause Mod'],
 	},
 	
 	
@@ -473,7 +473,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			validate: [4, 6],
 			battle: 4,
 		},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', '!Sleep Clause Mod'],
 	},
 	{
 		name: "[Gen 8] LC Pre-DLC National Draft",
@@ -550,7 +550,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			validate: [4, 6],
 			battle: 4,
 		},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+Past', 'Team Preview','!Sleep Clause Mod'],
 	},
 	{
 		name: "[Gen 8] LC Pre-DLC National DLC Draft",

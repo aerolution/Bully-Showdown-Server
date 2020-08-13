@@ -1643,6 +1643,8 @@ export class RandomTeams {
 		const exclude = pokemon.map(p => toID(p.species));
 		const pokemonPool = [];
 		for (const id in this.dex.data.FormatsData) {
+			let species = this.dex.getSpecies(id);
+			if (species.gen > this.gen || exclude.includes(species.id)) continue;
 			if (species.isMega || species.isPrimal) continue;
 			if (!species.randomBattleMoves) continue;
 			// Remove banned Pokemon

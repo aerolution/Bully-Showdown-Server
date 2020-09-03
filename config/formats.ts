@@ -602,7 +602,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			'Floette-Eternal', 'Xerneas', 'Yveltal', 'Zygarde', 'Diancie', 'Hoopa', 'Volcanion', 'Cosmog', 'Cosmoem', 'Solgaleo', 'Lunala',
 			'Necrozma', 'Magearna', 'Marshadow', 'Zeraora', 'Meltan', 'Melmetal', 'Zacian', 'Zamazenta', 'Eternatus', 'Zarude',
 			'Battle Bond', 'Mega',
-			'Ally Switch', 'Guard Split', 'Fishious Rend', 'Bolt Beak', 'Wicked Blow', 'Surging Strikes'
+			'Ally Switch', 'Guard Split', 'Fishious Rend', 'Bolt Beak', 'Wicked Blow', 'Surging Strikes',
 			'Buginium Z', 'Darkinium Z', 'Dragonium Z', 'Electrium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 
 			'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Normalium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 
 			'Steelium Z', 'Waterium Z', 'Aloraichium Z', 'Decidium Z', 'Eevium Z', 'Incinium Z', 'Kommonium Z', 'Lunalium Z', 

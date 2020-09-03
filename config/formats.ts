@@ -127,27 +127,18 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen8leaks',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
-		onBegin() {
-			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://docs.google.com/spreadsheets/d/19xPdnVPoBPwrCNogvgIWo2I0js-tq7ppR2IC47E_aPQ/edit?usp=sharing">this doc</a> for the full list of new moves or visit <a href="https://discordapp.com/invite/V6jxMW7/">our Discord</a> for more info on this update.</strong></div>');
-		},
 	},
 	{
 		name: "[Gen 8] National Dex DLC2 Dynamax",
 
 		mod: 'gen8leaks',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
-		onBegin() {
-			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://docs.google.com/spreadsheets/d/19xPdnVPoBPwrCNogvgIWo2I0js-tq7ppR2IC47E_aPQ/edit?usp=sharing">this doc</a> for the full list of new moves or visit <a href="https://discordapp.com/invite/V6jxMW7/">our Discord</a> for more info on this update.</strong></div>');
-		},
 	},
 	{
 		name: "[Gen 8] National Dex DLC2 Legacy",
 
 		mod: 'gen8leaks',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
-		onBegin() {
-			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://docs.google.com/spreadsheets/d/19xPdnVPoBPwrCNogvgIWo2I0js-tq7ppR2IC47E_aPQ/edit?usp=sharing">this doc</a> for the full list of new moves or visit <a href="https://discordapp.com/invite/V6jxMW7/">our Discord</a> for more info on this update.</strong></div>');
-		},
 	},
 	{
 		name: "[Gen 8] National Dex DLC2 Wifi",
@@ -155,9 +146,6 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8leaks',
 		maxForcedLevel: 50,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
-		onBegin() {
-			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://docs.google.com/spreadsheets/d/19xPdnVPoBPwrCNogvgIWo2I0js-tq7ppR2IC47E_aPQ/edit?usp=sharing">this doc</a> for the full list of new moves or visit <a href="https://discordapp.com/invite/V6jxMW7/">our Discord</a> for more info on this update.</strong></div>');
-		},
 	},
 	{
 		name: "[Gen 8] National Dex DLC2 Doubles",
@@ -165,9 +153,6 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8leaks',
 		gameType: 'doubles',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
-		onBegin() {
-			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://docs.google.com/spreadsheets/d/19xPdnVPoBPwrCNogvgIWo2I0js-tq7ppR2IC47E_aPQ/edit?usp=sharing">this doc</a> for the full list of new moves or visit <a href="https://discordapp.com/invite/V6jxMW7/">our Discord</a> for more info on this update.</strong></div>');
-		},
 	},
 	{
 		name: "[Gen 8] National Dex DLC2 VGC",
@@ -180,9 +165,6 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			battle: 4,
 		},
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', '!Sleep Clause Mod'],
-		onBegin() {
-			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://docs.google.com/spreadsheets/d/19xPdnVPoBPwrCNogvgIWo2I0js-tq7ppR2IC47E_aPQ/edit?usp=sharing">this doc</a> for the full list of new moves or visit <a href="https://discordapp.com/invite/V6jxMW7/">our Discord</a> for more info on this update.</strong></div>');
-		},
 	},
 	{
 		name: "[Gen 8] LC National Dex DLC2 Draft",
@@ -191,9 +173,6 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		maxLevel: 5,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
-		onBegin() {
-			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://docs.google.com/spreadsheets/d/19xPdnVPoBPwrCNogvgIWo2I0js-tq7ppR2IC47E_aPQ/edit?usp=sharing">this doc</a> for the full list of new moves or visit <a href="https://discordapp.com/invite/V6jxMW7/">our Discord</a> for more info on this update.</strong></div>');
-		},
 	},
 	{
 		name: "[Gen 8] LC National Dex DLC2 Legacy",
@@ -202,9 +181,6 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		maxLevel: 5,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
-		onBegin() {
-			this.add('html', '<div class="broadcast-red"><strong>All DLC2 formats have been updated to include the new Isle of Armor Move Tutors leaks. Check out <a href="https://docs.google.com/spreadsheets/d/19xPdnVPoBPwrCNogvgIWo2I0js-tq7ppR2IC47E_aPQ/edit?usp=sharing">this doc</a> for the full list of new moves or visit <a href="https://discordapp.com/invite/V6jxMW7/">our Discord</a> for more info on this update.</strong></div>');
-		},
 	},
 	
 	
@@ -244,19 +220,6 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			'Solganium Z', 'Tapunium Z', 'Ultranecrozium Z',
 		],
 	},*/
-	{
-		name: "[Gen 8] (National Dex) Astrea Cup",
-
-		mod: 'gen8leaks',
-		searchShow: false,
-		gameType: 'doubles',
-		forcedLevel: 50,
-		teamLength: {
-			validate: [4, 6],
-			battle: 4,
-		},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause', '!Sleep Clause Mod', '!OHKO Clause', 'Item Clause'],
-	},
 	{
 		name: "[Gen 8] (National Dex) BBL",
 
@@ -623,6 +586,32 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		column: 3,
 	},
 	{
+        name: "[Gen 8] (National Dex) Astrea Cup",
+
+        mod: 'gen8',
+        gameType: 'doubles',
+        forcedLevel: 50,
+        teamLength: {
+            validate: [4, 6],
+            battle: 4,
+        },
+        ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', '+Past', 'Dynamax Clause', '!Sleep Clause Mod', '!OHKO Clause', 'Item Clause'],
+        banlist: [
+			'Mewtwo', 'Mew', 'Lugia', 'Ho-oh', 'Celebi', 'Kyogre', 'Groudon', 'Rayquaza', 'Jirachi', 'Deoxys', 'Dialga', 'Palkia', 'Giratina',
+			'Phione', 'Manaphy', 'Darkrai', 'Shaymin', 'Arceus', 'Victini', 'Reshiram', 'Zekrom', 'Kyurem', 'Keldeo', 'Meloetta', 'Genesect',
+			'Floette-Eternal', 'Xerneas', 'Yveltal', 'Zygarde', 'Diancie', 'Hoopa', 'Volcanion', 'Cosmog', 'Cosmoem', 'Solgaleo', 'Lunala',
+			'Necrozma', 'Magearna', 'Marshadow', 'Zeraora', 'Meltan', 'Melmetal', 'Zacian', 'Zamazenta', 'Eternatus', 'Zarude',
+			'Battle Bond', 'Mega',
+			'Ally Switch', 'Guard Split', 'Fishious Rend', 'Bolt Beak', 'Wicked Blow', 'Surging Strikes'
+			'Buginium Z', 'Darkinium Z', 'Dragonium Z', 'Electrium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 
+			'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Normalium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 
+			'Steelium Z', 'Waterium Z', 'Aloraichium Z', 'Decidium Z', 'Eevium Z', 'Incinium Z', 'Kommonium Z', 'Lunalium Z', 
+			'Lycanium Z', 'Marshadium Z', 'Mewnium Z', 'Mimikium Z', 'Pikanium Z', 'Pikashunium Z', 'Primarium Z', 'Snorlium Z', 
+			'Solganium Z', 'Tapunium Z', 'Ultranecrozium Z',
+		],
+        minSourceGen: 7,
+    },
+	{
 		name: "[Gen 8] Almost Any Ability",
 		desc: `Pok&eacute;mon have access to almost any ability.`,
 		threads: [
@@ -642,20 +631,31 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 	},
 	{
 		name: "[Gen 8] Balanced Hackmons",
-		desc: `Anything that can be hacked in-game and is usable in local battles is allowed.`,
+		desc: `Balanced Hackmons with National Dex elements mixed in.`,
 		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3656408/">Balanced Hackmons</a>`,
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3659817/">BH Resources</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3658587/">More Balanced Hackmons</a>`,
 		],
 
 		mod: 'gen8',
-		ruleset: ['-Nonexistent', 'OHKO Clause', 'Evasion Moves Clause', 'Forme Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Endless Battle Clause'],
+		ruleset: ['-Nonexistent', 'Standard NatDex', 'Forme Clause', 'Sleep Clause Mod', '2 Ability Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Dynamax Clause', 'CFZ Clause', '!Obtainable'],
 		banlist: [
-			'Eternatus-Eternamax', 'Shedinja', 'Comatose + Sleep Talk', 'Double Iron Bash', 'Octolock', 'Shell Smash',
+			// Pokemon
+			'Groudon-Primal', 'Rayquaza-Mega', 'Shedinja',
+			// Abilities
 			'Arena Trap', 'Contrary', 'Gorilla Tactics', 'Huge Power', 'Illusion', 'Innards Out', 'Libero', 'Magnet Pull', 'Moody',
 			'Neutralizing Gas', 'Parental Bond', 'Protean', 'Pure Power', 'Shadow Tag', 'Stakeout', 'Water Bubble', 'Wonder Guard',
+			// Items
+			'Gengarite',
+			// Moves
+			'Chatter', 'Double Iron Bash', 'Octolock', 'Shell Smash',
+			// Other
+			'Comatose + Sleep Talk',
 		],
 		onValidateSet(set) {
+			if (this.dex.toID(set.ability) === 'intrepidsword' &&
+				!this.dex.toID(set.species).startsWith('zacian') && this.dex.toID(set.item) !== 'rustedsword') {
+				return [`${set.ability} is banned.`];
+			}
 			if (set.species === 'Zacian-Crowned' &&
 				(this.dex.toID(set.item) !== 'rustedsword' || this.dex.toID(set.ability) !== 'intrepidsword')) {
 				return [set.species + " is banned."];
@@ -680,6 +680,16 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 				}
 			}
 		},
+		onValidateTeam(team) {
+			let arceus = 0;
+			for (const set of team) {
+				const species = this.dex.getSpecies(set.species);
+				if (species.baseSpecies === "Arceus") arceus++;
+			}
+			if (arceus > 1) {
+				return [`You are limited to one Arceus forme.`, `(You have ${arceus} Arceus formes.)`];
+			}
+		},
 	},
 	{
 		name: "[Gen 8] Camomons",
@@ -692,8 +702,8 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		searchShow: false,
 		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Dynamax Clause', 'Sleep Clause Mod', 'Endless Battle Clause'],
 		banlist: [
-			'Darmanitan-Galar', 'Dracovish', 'Eternatus', 'Hydreigon', 'Kyurem', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow', 'Melmetal',
-			'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Shedinja', 'Solgaleo', 'Zacian', 'Zamazenta', 'Zekrom', 'Zeraora',
+			'Darmanitan-Galar', 'Dracovish', 'Eternatus', 'Heracross', 'Hydreigon', 'Kyurem', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Marshadow',
+			'Melmetal', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Shedinja', 'Solgaleo', 'Zacian', 'Zamazenta', 'Zekrom', 'Zeraora',
 			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
 		],
 		onModifySpecies(species, target, source, effect) {
@@ -717,19 +727,9 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['[Gen 8] OU'],
+		ruleset: ['[Gen 8] OU', 'Flipped Mod'],
 		banlist: ['Psychic Surge', 'Psychic Terrain', 'Shell Smash'],
 		unbanlist: ['Darmanitan-Galar'],
-		onModifySpecies(species, target, source, effect) {
-			const newSpecies = this.dex.deepClone(species);
-			/** @type {number[]} */
-			const reversedNums = Object.values(newSpecies.baseStats).reverse();
-			newSpecies.baseStats = this.dex.deepClone(newSpecies.baseStats);
-			for (const [i, statName] of Object.keys(newSpecies.baseStats).entries()) {
-				newSpecies.baseStats[statName] = reversedNums[i];
-			}
-			return newSpecies;
-		},
 	},
 	{
 		name: "[Gen 8] Godly Gift",
@@ -739,7 +739,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		],
 
 		mod: 'gen8',
-		// searchShow: false,
+		searchShow: false,
 		ruleset: ['Standard', 'Dynamax Clause'],
 		banlist: ['Blissey', 'Chansey', 'Toxapex', 'Uber > 1', 'AG + Uber > 1', 'Arena Trap', 'Huge Power', 'Moody', 'Pure Power', 'Shadow Tag', 'Baton Pass'],
 		onModifySpecies(species, target, source) {
@@ -765,6 +765,155 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			}
 			newSpecies.baseStats[stat] = godSpecies.baseStats[stat as StatName];
 			return newSpecies;
+		},
+	},
+	{
+		name: "[Gen 8] Inheritance",
+		desc: `Pok&eacute;mon may use the ability and moves of another, as long as they forfeit their own learnset.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3656811/">Inheritance</a>`,
+		],
+
+		mod: 'gen8',
+		// searchShow: false,
+		ruleset: ['Standard', 'Dynamax Clause'],
+		banlist: [
+			'Blissey', 'Chansey', 'Darmanitan-Galar', 'Dracovish', 'Eternatus', 'Kyurem-Black', 'Kyurem-White', 'Lunala', 'Magearna', 'Marshadow', 'Melmetal',
+			'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Reshiram', 'Shedinja', 'Solgaleo', 'Urshifu-Base', 'Zacian', 'Zamazenta', 'Zekrom',
+			'Arena Trap', 'Huge Power', 'Imposter', 'Innards Out', 'Libero', 'Moody', 'Pure Power', 'Shadow Tag', 'Simple', 'Water Bubble',
+			'Baton Pass', 'Bolt Beak', 'Fishious Rend', 'Shell Smash',
+		],
+		restricted: ['Torkoal', 'Toxtricity'],
+		getEvoFamily(speciesid) {
+			let species = Dex.getSpecies(speciesid);
+			while (species.prevo) {
+				species = Dex.getSpecies(species.prevo);
+			}
+			return species.id;
+		},
+		validateSet(set, teamHas) {
+			const unreleased = (pokemon: Species) => pokemon.tier === "Unreleased" && pokemon.isNonstandard === "Unobtainable";
+			if (!teamHas.abilityMap) {
+				teamHas.abilityMap = Object.create(null);
+				for (const speciesid in Dex.data.Pokedex) {
+					const pokemon = this.dex.getSpecies(speciesid);
+					if (pokemon.isNonstandard || unreleased(pokemon)) continue;
+					if (pokemon.requiredAbility || pokemon.requiredItem || pokemon.requiredMove) continue;
+					if (this.ruleTable.isRestrictedSpecies(pokemon)) continue;
+
+					for (const key of Object.values(pokemon.abilities)) {
+						const abilityId = this.dex.toID(key);
+						if (abilityId in teamHas.abilityMap) {
+							teamHas.abilityMap[abilityId][pokemon.evos ? 'push' : 'unshift'](speciesid);
+						} else {
+							teamHas.abilityMap[abilityId] = [speciesid];
+						}
+					}
+				}
+			}
+
+			const problem = this.validateForme(set);
+			if (problem.length) return problem;
+
+			const species = this.dex.getSpecies(set.species);
+			if (!species.exists || species.num < 1) return [`The Pok\u00e9mon "${set.species}" does not exist.`];
+			if (species.isNonstandard || unreleased(species)) {
+				return [`${species.name} is not obtainable in Generation ${this.dex.gen}.`];
+			}
+
+			const name = set.name;
+			if (this.ruleTable.isBannedSpecies(species)) {
+				return this.validateSet(set, teamHas);
+			}
+
+			const ability = this.dex.getAbility(set.ability);
+			if (!ability.exists || ability.isNonstandard) return [`${name} needs to have a valid ability.`];
+			const pokemonWithAbility = teamHas.abilityMap[ability.id];
+			if (!pokemonWithAbility) return [`${this.dex.getAbility(set.ability).name} is not available on a legal Pok\u00e9mon.`];
+
+			// @ts-ignore
+			this.format.debug = true;
+
+			if (!teamHas.abilitySources) teamHas.abilitySources = Object.create(null);
+			const validSources: string[] = teamHas.abilitySources[this.dex.toID(set.species)] = []; // Evolution families
+
+			let canonicalSource = ''; // Specific for the basic implementation of Donor Clause (see onValidateTeam).
+
+			for (const donor of pokemonWithAbility) {
+				const donorSpecies = this.dex.getSpecies(donor);
+				let format = this.format;
+				if (!format.getEvoFamily) format = this.dex.getFormat('gen8inheritance');
+				const evoFamily = format.getEvoFamily!(donorSpecies.id);
+				if (validSources.includes(evoFamily)) continue;
+
+				set.species = donorSpecies.name;
+				set.name = donorSpecies.baseSpecies;
+				const problems = this.validateSet(set, teamHas) || [];
+				if (!problems.length) {
+					validSources.push(evoFamily);
+					canonicalSource = donorSpecies.name;
+				}
+				// Specific for the basic implementation of Donor Clause (see onValidateTeam).
+				if (validSources.length > 1) break;
+			}
+			// @ts-ignore
+			this.format.debug = false;
+
+			set.name = name;
+			set.species = species.name;
+			if (!validSources.length) {
+				if (pokemonWithAbility.length > 1) return [`${name}'s set is illegal.`];
+				return [`${name} has an illegal set with an ability from ${this.dex.getSpecies(pokemonWithAbility[0]).name}.`];
+			}
+
+			// Protocol: Include the data of the donor species in the `ability` data slot.
+			// Afterwards, we are going to reset the name to what the user intended.
+			set.ability = `${set.ability}0${canonicalSource}`;
+			return null;
+		},
+		onValidateTeam(team, f, teamHas) {
+			// Donor Clause
+			const evoFamilyLists = [];
+			for (const set of team) {
+				const abilitySources = teamHas.abilitySources?.[this.dex.toID(set.species)];
+				if (!abilitySources) continue;
+				let format = this.format;
+				if (!format.getEvoFamily) format = this.dex.getFormat('gen8inheritance');
+				evoFamilyLists.push(abilitySources.map(format.getEvoFamily!));
+			}
+
+			// Checking actual full incompatibility would require expensive algebra.
+			// Instead, we only check the trivial case of multiple Pokémon only legal for exactly one family. FIXME?
+			const requiredFamilies = Object.create(null);
+			for (const evoFamilies of evoFamilyLists) {
+				if (evoFamilies.length !== 1) continue;
+				const [familyId] = evoFamilies;
+				if (!(familyId in requiredFamilies)) requiredFamilies[familyId] = 1;
+				requiredFamilies[familyId]++;
+				if (requiredFamilies[familyId] > 2) {
+					return [
+						`You are limited to up to two inheritances from each evolution family by the Donor Clause.`,
+						`(You inherit more than twice from ${this.dex.getSpecies(familyId).name}).`,
+					];
+				}
+			}
+		},
+		onBegin() {
+			for (const pokemon of this.getAllPokemon()) {
+				if (pokemon.baseAbility.includes('0')) {
+					const donor = pokemon.baseAbility.split('0')[1];
+					pokemon.m.donor = this.toID(donor);
+					pokemon.baseAbility = this.toID(pokemon.baseAbility.split('0')[0]);
+					pokemon.ability = pokemon.baseAbility;
+				}
+			}
+		},
+		onSwitchIn(pokemon) {
+			if (!pokemon.m.donor) return;
+			const donorTemplate = this.dex.getSpecies(pokemon.m.donor);
+			if (!donorTemplate.exists) return;
+			// Place volatiles on the Pokémon to show the donor details.
+			this.add('-start', pokemon, donorTemplate.name, '[silent]');
 		},
 	},
 	{
@@ -930,7 +1079,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Porygon-Z', 'Reshiram', 'Silvally', 'Solgaleo', 'Zacian', 'Zamazenta', 'Zekrom',
 			'King\'s Rock', 'Moody', 'Shadow Tag', 'Baton Pass',
 		],
-		restricted: ['Acupressure', 'Belly Drum', 'Bolt Beak', 'Double Iron Bash', 'Electrify', 'Extreme Speed', 'Fishious Rend', 'Shell Smash', 'Shift Gear', 'Spore', 'Wicked Blow'],
+		restricted: ['Acupressure', 'Belly Drum', 'Bolt Beak', 'Double Iron Bash', 'Electrify', 'Extreme Speed', 'Fishious Rend', 'Shell Smash', 'Shift Gear', 'Spore', 'V-create', 'Wicked Blow'],
 	},
 	{
 		name: "[Gen 8] Tier Shift",
@@ -985,8 +1134,8 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
 		],
 		restricted: [
-			'Baneful Bunker', 'Block', 'Copycat', 'Detect', 'Destiny Bond', 'Ingrain', 'King\'s Shield', 'Mean Look', 'move:Metronome', 'Obstruct', 'Octolock',
-			'Nature Power', 'Parting Shot', 'Protect', 'Roar', 'Skill Swap', 'Sleep Talk', 'Spiky Shield', 'Substitute', 'Teleport', 'Whirlwind', 'Wish', 'Yawn',
+			'Baneful Bunker', 'Block', 'Copycat', 'Detect', 'Destiny Bond', 'Ingrain', 'King\'s Shield', 'Mean Look', 'move:Metronome', 'Obstruct', 'Octolock', 'Nature Power',
+			'Parting Shot', 'Psycho Shift', 'Protect', 'Roar', 'Skill Swap', 'Sleep Talk', 'Spiky Shield', 'Substitute', 'Teleport', 'Whirlwind', 'Wish', 'Yawn',
 		],
 		onValidateTeam(team, format, teamHas) {
 			const problems = [];

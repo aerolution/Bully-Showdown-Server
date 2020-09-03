@@ -10,6 +10,7 @@
  * @license MIT
  */
 
+import * as path from 'path';
 import * as child_process from 'child_process';
 import {FS} from '../../lib/fs';
 import {Utils} from '../../lib/utils';
@@ -391,9 +392,8 @@ export const commands: ChatCommands = {
 				}
 				if (requiresForce(patch)) return this.errorReply(requiresForceMessage);
 
-				let streams = [];
-				streams = Rooms.Modlog.getActiveStreamIDs();
-				await Rooms.Modlog.destroyAll();
+				const streams = Rooms.Modlog.streams;
+				const sharedStreams = Rooms.Modlog.sharedStreams;
 
 				const processManagers = ProcessManager.processManagers;
 				for (const manager of processManagers.slice()) {
@@ -402,9 +402,8 @@ export const commands: ChatCommands = {
 
 				Rooms.Modlog = require('../modlog').modlog;
 				this.sendReply("Modlog has been hot-patched.");
-				for (const stream of streams) {
-					Rooms.Modlog.initialize(stream);
-				}
+				Rooms.Modlog.streams = streams;
+				Rooms.Modlog.sharedStreams = sharedStreams;
 				this.sendReply("Modlog streams have been re-initialized.");
 			} else if (target.startsWith('disable')) {
 				this.sendReply("Disabling hot-patch has been moved to its own command:");
@@ -547,7 +546,7 @@ export const commands: ChatCommands = {
 			curRoom.addRaw(`<div class="broadcast-red">${innerHTML}</div>`).update();
 		}
 		for (const u of Users.users.values()) {
-			if (u.connected) u.send(`|pm|&|${u.group}${u.name}|/raw <div class="broadcast-red">${innerHTML}</div>`);
+			if (u.connected) u.send(`|pm|&|${u.tempGroup}${u.name}|/raw <div class="broadcast-red">${innerHTML}</div>`);
 		}
 	},
 
@@ -570,7 +569,7 @@ export const commands: ChatCommands = {
 			curRoom.addRaw(`<div class="broadcast-green">${innerHTML}</div>`).update();
 		}
 		for (const u of Users.users.values()) {
-			if (u.connected) u.send(`|pm|&|${u.group}${u.name}|/raw <div class="broadcast-green">${innerHTML}</div>`);
+			if (u.connected) u.send(`|pm|&|${u.tempGroup}${u.name}|/raw <div class="broadcast-green">${innerHTML}</div>`);
 		}
 	},
 
@@ -644,7 +643,7 @@ export const commands: ChatCommands = {
 				curRoom.addRaw(message).update();
 			}
 			for (const curUser of Users.users.values()) {
-				curUser.send(`|pm|&|${curUser.group}${curUser.name}|/raw ${message}`);
+				curUser.send(`|pm|&|${curUser.tempGroup}${curUser.name}|/raw ${message}`);
 			}
 		} else {
 			this.sendReply("Preparation for the server shutdown was canceled.");
@@ -739,6 +738,9 @@ export const commands: ChatCommands = {
 		if (Monitor.updateServerLock) {
 			return this.errorReply(`/updateserver - Another update is already in progress (or a previous update crashed).`);
 		}
+		if (isPrivate && (!Config.privatecodepath || !path.isAbsolute(Config.privatecodepath))) {
+			return this.errorReply("`Config.privatecodepath` must be set to an absolute path before using /updateserver private.");
+		}
 
 		Monitor.updateServerLock = true;
 
@@ -746,7 +748,7 @@ export const commands: ChatCommands = {
 			this.stafflog(`$ ${command}`);
 			return new Promise((resolve, reject) => {
 				child_process.exec(command, {
-					cwd: `${__dirname}/../../${isPrivate ? Config.privatecodepath || '../main-private/' : ``}`,
+					cwd: isPrivate ? Config.privatecodepath : `${__dirname}/../..`,
 				}, (error, stdout, stderr) => {
 					let log = `[o] ${stdout}[e] ${stderr}`;
 					if (error) log = `[c] ${error.code}\n${log}`;
@@ -756,18 +758,22 @@ export const commands: ChatCommands = {
 			});
 		};
 
+		const rebuild = async () => {
+			[code, stdout, stderr] = await exec('node ./build');
+			if (stderr) {
+				throw new Chat.ErrorMessage(`Crash while rebuilding: ${stderr}`);
+			}
+			this.sendReply(`Rebuilt.`);
+		};
+
 		this.sendReply(`Fetching newest version...`);
-		this.addGlobalModAction(`${user.name} used /updateserver ${isPrivate ? `private` : `public`}`);
+		this.addGlobalModAction(`${user.name} used /updateserver${isPrivate ? ` private` : ``}`);
 
 		let [code, stdout, stderr] = await exec(`git fetch`);
 		if (code) throw new Error(`updateserver: Crash while fetching - make sure this is a Git repository`);
-		if (!isPrivate && !stdout && !stderr) {
+		if (!stdout && !stderr) {
 			this.sendReply(`There were no updates.`);
-			[code, stdout, stderr] = await exec('node ./build');
-			if (stderr) {
-				return this.errorReply(`Crash while rebuilding: ${stderr}`);
-			}
-			this.sendReply(`Rebuilt.`);
+			if (!isPrivate) await rebuild();
 			Monitor.updateServerLock = false;
 			return;
 		}
@@ -776,7 +782,7 @@ export const commands: ChatCommands = {
 		if (code || stderr) throw new Error(`updateserver: Crash while grabbing hash`);
 		const oldHash = String(stdout).trim();
 
-		[code, stdout, stderr] = await exec(`git stash save --include-untracked "PS /updateserver autostash"`);
+		[code, stdout, stderr] = await exec(`git stash save "PS /updateserver autostash"`);
 		let stashedChanges = true;
 		if (code) throw new Error(`updateserver: Crash while stashing`);
 		if ((stdout + stderr).includes("No local changes")) {
@@ -790,7 +796,7 @@ export const commands: ChatCommands = {
 		// errors can occur while rebasing or popping the stash; make sure to recover
 		try {
 			this.sendReply(`Rebasing...`);
-			[code] = await exec(`git rebase FETCH_HEAD`);
+			[code] = await exec(`git rebase --no-autostash FETCH_HEAD`);
 			if (code) {
 				// conflict while rebasing
 				await exec(`git rebase --abort`);
@@ -815,13 +821,7 @@ export const commands: ChatCommands = {
 			await exec(`git stash pop`);
 			this.sendReply(`FAILED, old changes restored.`);
 		}
-		if (!isPrivate) {
-			[code, stdout, stderr] = await exec('node ./build');
-			if (stderr) {
-				return this.errorReply(`Crash while rebuilding: ${stderr}`);
-			}
-			this.sendReply(`Rebuilt.`);
-		}
+		if (!isPrivate) await rebuild();
 		Monitor.updateServerLock = false;
 	},
 

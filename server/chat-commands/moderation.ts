@@ -842,6 +842,8 @@ export const commands: ChatCommands = {
 		this.addGlobalModAction(`The name '${target}' was unlocked by ${user.name}.`);
 		this.globalModlog("UNLOCKNAME", userid, ` by ${user.name}`);
 	},
+	unrangelock: 'unlockip',
+	rangeunlock: 'unlockip',
 	unlockip(target, room, user) {
 		target = target.trim();
 		if (!target) return this.parse('/help unlock');
@@ -849,7 +851,9 @@ export const commands: ChatCommands = {
 		const range = target.charAt(target.length - 1) === '*';
 		if (range && !this.can('rangeban')) return false;
 
-		if (!IPTools.ipRegex.test(target)) return this.errorReply("Please enter a valid IP address.");
+		if (!(range ? IPTools.ipRangeRegex : IPTools.ipRegex).test(target)) {
+			return this.errorReply("Please enter a valid IP address.");
+		}
 
 		const punishment = Punishments.ips.get(target);
 		if (!punishment) return this.errorReply(`${target} is not a locked/banned IP or IP range.`);
@@ -858,9 +862,15 @@ export const commands: ChatCommands = {
 		Punishments.savePunishments();
 
 		for (const curUser of Users.findUsers([], [target])) {
-			if (curUser.locked && !curUser.locked.startsWith('#') && !Punishments.getPunishType(curUser.id)) {
+			if (
+				(range ? curUser.locked === '#rangelock' : !curUser.locked?.startsWith('#')) &&
+				!Punishments.getPunishType(curUser.id)
+			) {
 				curUser.locked = null;
-				curUser.namelocked = null;
+				if (curUser.namelocked) {
+					curUser.namelocked = null;
+					curUser.resetName();
+				}
 				curUser.updateIdentity();
 			}
 		}
@@ -1087,9 +1097,6 @@ export const commands: ChatCommands = {
 		`Existing users on the IP will not be banned. Requires: &`,
 	],
 
-	unrangelock: 'unlockip',
-	rangeunlock: 'unlockip',
-
 	/*********************************************************
 	 * Moderating: Other
 	 *********************************************************/
@@ -1126,7 +1133,7 @@ export const commands: ChatCommands = {
 
 		if (!userid) return this.parse('/help promote');
 
-		const currentGroup = targetUser?.group || Users.globalAuth.get(userid);
+		const currentGroup = targetUser?.tempGroup || Users.globalAuth.get(userid);
 		let nextGroup = target as GroupSymbol;
 		if (target === 'deauth') nextGroup = Users.Auth.defaultSymbol();
 		if (!nextGroup) {
@@ -1338,7 +1345,7 @@ export const commands: ChatCommands = {
 		if (!target) return;
 
 		for (const u of Users.users.values()) {
-			if (u.connected) u.send(`|pm|&|${u.group}${u.name}|/raw <div class="broadcast-blue"><b>${target}</b></div>`);
+			if (u.connected) u.send(`|pm|&|${u.tempGroup}${u.name}|/raw <div class="broadcast-blue"><b>${target}</b></div>`);
 		}
 		this.globalModlog(`GLOBALDECLARE`, null, target);
 	},
@@ -1520,15 +1527,12 @@ export const commands: ChatCommands = {
 	hidealtstext: 'hidetext',
 	htext: 'hidetext',
 	forcehidetext: 'hidetext',
-	forcehtext: 'hidetext',
 	hidelines: 'hidetext',
-	forcehidelines: 'hidetext',
 	hlines: 'hidetext',
 	cleartext: 'hidetext',
 	clearaltstext: 'hidetext',
 	clearlines: 'hidetext',
 	forcecleartext: 'hidetext',
-	forceclearlines: 'hidetext',
 	hidetext(target, room, user, connection, cmd) {
 		if (!target) return this.parse(`/help hidetext`);
 		if (!room) return this.requiresRoom();
@@ -1565,9 +1569,6 @@ export const commands: ChatCommands = {
 		const userid = toID(this.inputUsername);
 
 		if (!this.can('mute', null, room)) return;
-		if (targetUser?.trusted && targetUser !== user && !cmd.includes('force')) {
-			return this.errorReply(`${name} is a trusted user, are you sure you want to hide their messages? Use /forcehidetext if you're sure.`);
-		}
 
 		// if the user hiding their own text, it would clear the "cleared" message,
 		// so we can't attribute it in that case
@@ -1581,7 +1582,7 @@ export const commands: ChatCommands = {
 			this.modlog('HIDEALTSTEXT', targetUser, reason, {noip: 1});
 			room.hideText([
 				userid,
-				...Object.keys(targetUser.prevNames),
+				...targetUser.previousIDs,
 				...targetUser.getAltUsers(true).map((curUser: User) => curUser.getLastId()),
 			] as ID[]);
 		} else {

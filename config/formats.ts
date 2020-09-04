@@ -618,9 +618,6 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			'Lycanium Z', 'Marshadium Z', 'Mewnium Z', 'Mimikium Z', 'Pikanium Z', 'Pikashunium Z', 'Primarium Z', 'Snorlium Z', 
 			'Solganium Z', 'Tapunium Z', 'Ultranecrozium Z',
 		],
-		unbanlist: [
-			'Entei + Inner Focus', 'Raikou + Inner Focus', 'Suicune + Inner Focus',
-		],
         minSourceGen: 7,
     },
 	{

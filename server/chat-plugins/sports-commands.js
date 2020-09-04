@@ -78,6 +78,10 @@ exports.commands = {
 + LC format
 + Double Item Clause
 
+**National Dex CAP**:
++ National Dex Draft rules
++ CAP Pokemon and moves are allowed
+
 
 
 **National Dex DLC2 Formats**:

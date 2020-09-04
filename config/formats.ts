@@ -114,6 +114,12 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
+	{
+		name: "[Gen 8] National Dex CAP",
+
+		mod: 'gen8',
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+CAP', 'Team Preview', 'Dynamax Clause'],
+	},
 	
 	
 	
@@ -182,6 +188,12 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
+	{
+		name: "[Gen 8] National Dex DLC2 CAP",
+
+		mod: 'gen8leaks',
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+CAP', 'Team Preview', 'Dynamax Clause'],
+	},
 	
 	
 	
@@ -232,13 +244,6 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 				if (!pokemon.canGigantamax) pokemon.canDynamax = false;
 			}
 		},
-	},
-	{
-		name: "[Gen 8] (National Dex) CAPtyLtd",
-
-		mod: 'gen8predlc',
-		searchShow: false,
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Allow Tradeback', '+CAP', '+Past', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
 		name: "[Gen 8] (National Dex) EBL",
@@ -595,14 +600,19 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
             validate: [4, 6],
             battle: 4,
         },
-        ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', '+Past', 'Dynamax Clause', '!Sleep Clause Mod', '!OHKO Clause', 'Item Clause'],
+        ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', '+Past', '+PastMove', 'Dynamax Clause', '!Sleep Clause Mod', '!OHKO Clause', 'Item Clause'],
         banlist: [
+			// Mons
 			'Mewtwo', 'Mew', 'Lugia', 'Ho-oh', 'Celebi', 'Kyogre', 'Groudon', 'Rayquaza', 'Jirachi', 'Deoxys', 'Dialga', 'Palkia', 'Giratina',
 			'Phione', 'Manaphy', 'Darkrai', 'Shaymin', 'Arceus', 'Victini', 'Reshiram', 'Zekrom', 'Kyurem', 'Keldeo', 'Meloetta', 'Genesect',
 			'Floette-Eternal', 'Xerneas', 'Yveltal', 'Zygarde', 'Diancie', 'Hoopa', 'Volcanion', 'Cosmog', 'Cosmoem', 'Solgaleo', 'Lunala',
 			'Necrozma', 'Magearna', 'Marshadow', 'Zeraora', 'Meltan', 'Melmetal', 'Zacian', 'Zamazenta', 'Eternatus', 'Zarude',
+			// Forms
 			'Battle Bond', 'Mega',
+			// Moves + Abilities
 			'Ally Switch', 'Guard Split', 'Fishious Rend', 'Bolt Beak', 'Wicked Blow', 'Surging Strikes',
+			'Entei + Inner Focus', 'Raikou + Inner Focus', 'Suicune + Inner Focus',
+			// Z-Moves
 			'Buginium Z', 'Darkinium Z', 'Dragonium Z', 'Electrium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 
 			'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Normalium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 
 			'Steelium Z', 'Waterium Z', 'Aloraichium Z', 'Decidium Z', 'Eevium Z', 'Incinium Z', 'Kommonium Z', 'Lunalium Z', 

@@ -108,7 +108,7 @@ exports.commands = {
 		*/
 
 		toggle: function (target, room, user) {
-			if (!this.can('editroom', null, room)) return this.sendReply(`Access denied.`);
+			this.checkCan('editroom', null, room);
 			if (!room.disableEmoticons) {
 				room.disableEmoticons = true;
 				Rooms.global.writeChatRoomData();

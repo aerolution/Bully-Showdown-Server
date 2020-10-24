@@ -6,24 +6,33 @@ exports.commands = {
 		return connection.popup(`**Galar Dex Draft**:
 + only Pokemon that are currently obtainable in Sword/Shield are allowed
 + unreleased Pokemon and abilities found in Sword/Shield are allowed
-+ Dynamax and Gigantamax are allowed
+- Dynamax and Gigantamax are not allowed
 - cut moves are not allowed
 - Megas are not allowed
 - Z-Moves are not allowed
+
+**Galar Dex Dynamax**:
++ Galar Dex Draft rules
++ Dynamax and Gigantamax are allowed
 
 **Galar Dex Wifi**:
 + Galar Dex Draft rules
 + Pokemon are set to level 50
 
-**Galar Dex No Dynamax**:
-+ Galar Dex Draft rules
-- Dynamax and Gigantamax are not allowed
+**Galar Dex Doubles**:
++ Galar Dex Dynamax rules
++ Doubles format
 
 **Galar Dex VGC**:
-+ Galar Dex Draft rules
++ Galar Dex Dynamax rules
 + Doubles format
 + Pokemon are set to level 50
 + Bring 4 out of 6 Pokemon
+
+**LC Galar Dex Draft**:
++ Galar Dex Draft rules
++ LC format
++ Double Item Clause
 
 
 
@@ -36,20 +45,13 @@ exports.commands = {
 - Z-Moves are not allowed
 
 **National Dex Dynamax**:
-+ all Pokemon are allowed
-+ unreleased Pokemon and abilities are allowed
-+ Megas are allowed
++ National Dex Draft rules
 + Dynamax and Gigantamax are allowed
-- cut moves are not allowed
-- Z-Moves are not allowed
 
 **National Dex Legacy**:
-+ all Pokemon are allowed
-+ unreleased Pokemon and abilities are allowed
++ National Dex Draft rules
 + cut moves are allowed
-+ Megas are allowed
 + Z-Moves are allowed
-- Dynamax and Gigantamax are not allowed
 
 **National Dex Unrestricted**:
 + everything is allowed, including illegal Pokemon and CAP
@@ -84,12 +86,12 @@ exports.commands = {
 
 
 
-**National Dex DLC2 Formats**:
-+ Same rules as the corresponding National Dex format
+**National Dex DLC Formats**:
++ same rules as the corresponding National Dex format
 + moveset additions from the Pokemon Home and Isle of Armor leaks are allowed
 
 __NOTE: all leaked moves will show up as Illegal in the Teambuilder, this is just a visual issue and they will validate as intended. If you're not sure a move is legal always refer to the Validate button.__
-__You can find a full list of leaked moves by clicking the Leaked Moves List button.__`);
+__You can find a full list of leaked moves by clicking the Leaked Moves List button in our Lobby chat.__`);
 	},
 	
 	sportsavatar(target, room, user, connection) {

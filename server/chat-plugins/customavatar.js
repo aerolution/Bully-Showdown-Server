@@ -52,7 +52,7 @@ loadCustomAvatars();
 exports.commands = {
 	customavatar: {
 		set: function (target, room, user) {
-			if (!this.can('ban')) return false;
+			this.checkCan('announce', null, room);
 			let parts = target.split(',').map(param => param.trim());
 			if (parts.length < 2) return this.parse('/help customavatar');
 
@@ -75,8 +75,7 @@ exports.commands = {
 
 		remove: 'delete',
 		delete: function (target, room, user) {
-			if (!this.can('ban')) return false;
-
+			this.checkCan('announce', null, room);
 			let userid = toID(target);
 			let image = Config.customavatars[userid];
 

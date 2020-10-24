@@ -393,24 +393,31 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		isNonstandard: "Past",
 	},
 	regieleki: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	regidrago: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	glastrier: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	spectrier: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	calyrex: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	calyrexice: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	calyrexshadow: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 };

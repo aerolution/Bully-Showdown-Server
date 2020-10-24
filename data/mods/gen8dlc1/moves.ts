@@ -1,7 +1,7 @@
 export const Moves: {[k: string]: ModdedMoveData} = {
 	aeroblast: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	astralbarrage: {
 		inherit: true,
@@ -9,19 +9,19 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	},
 	coreenforcer: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	crushgrip: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	diamondstorm: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	dragonascent: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	dragonenergy: {
 		inherit: true,
@@ -41,7 +41,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	},
 	geomancy: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	glaciallance: {
 		inherit: true,
@@ -49,83 +49,87 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	},
 	landswrath: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	lovelykiss: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	lunardance: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	lusterpurge: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	magmastorm: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	mindblown: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	mistball: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	naturesmadness: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	oblivionwing: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	originpulse: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	precipiceblades: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	roaroftime: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	sacredfire: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	searingshot: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	shadowforce: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	spacialrend: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	steameruption: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
+	},
+	tailglow: {
+		inherit: true,
+		isNonstandard: "Past",
 	},
 	technoblast: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	thousandarrows: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	thousandwaves: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	thundercage: {
 		inherit: true,

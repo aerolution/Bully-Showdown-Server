@@ -16,6 +16,7 @@ databases/*.db*
 
 # Sports
 !/config/emoticons.json
+package.json
 
 # Typescript build artifacts
 .*-dist/

@@ -1,50 +1,50 @@
 export const Items: {[k: string]: ModdedItemData} = {
 	adamantorb: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	burndrive: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	chilldrive: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	custapberry: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	dousedrive: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	enigmaberry: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	griseousorb: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	jabocaberry: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	lustrousorb: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	rowapberry: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	shockdrive: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 	souldew: {
 		inherit: true,
-		isNonstandard: "Unobtainable",
+		isNonstandard: "Past",
 	},
 };

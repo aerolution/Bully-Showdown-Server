@@ -13,19 +13,26 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8] Galar Dex Draft",
 
 		mod: 'gen8',
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
-		name: "[Gen 8] Galar Dex No Dynamax",
+		name: "[Gen 8] Galar Dex Dynamax",
 
 		mod: 'gen8',
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', 'Dynamax Clause'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
 	},
 	{
 		name: "[Gen 8] Galar Dex Wifi",
 
 		mod: 'gen8',
 		maxForcedLevel: 50,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
+	},
+	{
+		name: "[Gen 8] Galar Dex Doubles",
+
+		mod: 'gen8',
+		gameType: 'doubles',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
 	},
 	{
@@ -39,6 +46,14 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			battle: 4,
 		},
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', '!Sleep Clause Mod'],
+	},
+	{
+		name: "[Gen 8] LC Galar Dex Draft",
+
+		mod: 'gen8',
+		maxLevel: 5,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
+		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	
 	

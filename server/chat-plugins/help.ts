@@ -3,7 +3,8 @@
  * Uses Regex to match room frequently asked question (RFAQ) entries,
  * and replies if a match is found.
  * Supports configuration.
- * Written by mia-pi.
+ * Written by Mia.
+ * @author mia-pi-git
  */
 
 import {FS} from '../../lib/fs';
@@ -141,17 +142,17 @@ export class HelpResponder {
 		}
 		return null;
 	}
-	getFaqID(faq: string) {
+	getFaqID(faq?: string) {
+		if (!faq) throw new Chat.ErrorMessage(`Your input must be in the format [input] => [faq].`);
 		faq = faq.trim();
-		if (!faq) return;
+		if (!faq) throw new Chat.ErrorMessage(`Your FAQ ID can't be empty.`);
 		const room = this.getRoom();
-		if (!room) return;
+		if (!room) throw new Chat.ErrorMessage(`The Help filter room is not configured, and so cannot be used.`);
 		const entry: string = roomFaqs[room.roomid][faq];
-		if (!entry) return;
-		// ignore short aliases, they cause too many false positives
-		if (faq.length <= MINIMUM_LENGTH || entry.startsWith('>') && entry.slice(1).length <= MINIMUM_LENGTH) return;
-		if (entry.charAt(0) !== '>') return faq; // not an alias
-		return entry.replace('>', '');
+		if (!entry) throw new Chat.ErrorMessage(`FAQ ID "${faq}" not found.`);
+
+		if (!entry.startsWith('>')) return faq; // not an alias
+		return entry.slice(1);
 	}
 	/**
 	 * Checks if the FAQ exists. If not, deletes all references to it.
@@ -239,9 +240,8 @@ export class HelpResponder {
 		return FS(PATH).writeUpdate(() => JSON.stringify(this.data));
 	}
 	tryAddRegex(inputString: string, raw?: boolean) {
-		let [args, faq] = inputString.split('=>').map(item => item.trim());
-		faq = this.getFaqID(toID(faq)) as string;
-		if (!faq) throw new Chat.ErrorMessage("Invalid FAQ.");
+		let [args, faq] = inputString.split('=>').map(item => item.trim()) as [string, string | undefined];
+		faq = this.getFaqID(toID(faq));
 		if (!this.data.pairs) this.data.pairs = {};
 		if (!this.data.pairs[faq]) this.data.pairs[faq] = [];
 		const regex = raw ? args.trim() : this.stringRegex(args, raw);
@@ -253,8 +253,7 @@ export class HelpResponder {
 		return this.writeState();
 	}
 	tryRemoveRegex(faq: string, index: number) {
-		faq = this.getFaqID(faq) as string;
-		if (!faq) throw new Chat.ErrorMessage("Invalid FAQ.");
+		faq = this.getFaqID(faq);
 		if (!this.data.pairs) this.data.pairs = {};
 		if (!this.data.pairs[faq]) throw new Chat.ErrorMessage(`There are no regexes for ${faq}.`);
 		if (!this.data.pairs[faq][index]) throw new Chat.ErrorMessage("Your provided index is invalid.");
@@ -345,7 +344,7 @@ export const commands: ChatCommands = {
 			return this.parse(`/join view-helpfilter-${target}`);
 		},
 		toggle(target, room, user) {
-			if (!room) return this.requiresRoom();
+			room = this.requireRoom();
 			const helpRoom = Answerer.getRoom();
 			if (!helpRoom) HelpResponder.roomNotFound();
 			if (room.roomid !== helpRoom.roomid) return this.errorReply(`This command is only available in the Help room.`);
@@ -354,7 +353,7 @@ export const commands: ChatCommands = {
 					`The Help auto-response filter is currently set to: ${Answerer.settings.filterDisabled ? 'OFF' : "ON"}`
 				);
 			}
-			if (!this.can('ban', null, room)) return false;
+			this.checkCan('ban', null, room);
 			if (this.meansYes(target)) {
 				if (!Answerer.settings.filterDisabled) return this.errorReply(`The Help auto-response filter is already enabled.`);
 				Answerer.settings.filterDisabled = false;
@@ -369,7 +368,7 @@ export const commands: ChatCommands = {
 		},
 		forceadd: 'add',
 		add(target, room, user, connection, cmd) {
-			if (!room) return this.requiresRoom();
+			room = this.requireRoom();
 			const helpRoom = Answerer.getRoom();
 			if (!helpRoom) HelpResponder.roomNotFound();
 			if (room.roomid !== helpRoom.roomid) return this.errorReply(`This command is only available in the Help room.`);
@@ -377,7 +376,7 @@ export const commands: ChatCommands = {
 			if (force && !HelpResponder.canOverride(user)) {
 				return this.errorReply(`You cannot use raw regex - use /helpfilter add instead.`);
 			}
-			if (!this.can('ban', null, helpRoom)) return false;
+			this.checkCan('ban', null, helpRoom);
 			Answerer.tryAddRegex(target, force);
 			this.privateModAction(`${user.name} added regex for "${target.split('=>')[0]}" to the filter.`);
 			this.modlog(`HELPFILTER ADD`, null, target);
@@ -385,7 +384,7 @@ export const commands: ChatCommands = {
 		remove(target, room, user) {
 			const helpRoom = Answerer.getRoom();
 			if (!helpRoom) return this.errorReply(`There is no room configured for use of this filter.`);
-			if (!this.can('ban', null, helpRoom)) return false;
+			this.checkCan('ban', null, helpRoom);
 			const [faq, index] = target.split(',');
 			// intended for use mainly within the page, so supports being used in all rooms
 			this.room = helpRoom;
@@ -396,7 +395,7 @@ export const commands: ChatCommands = {
 			this.modlog('HELPFILTER REMOVE', null, index);
 		},
 		suggest(target, room, user) {
-			if (!room) return this.requiresRoom();
+			room = this.requireRoom();
 			const helpRoom = Answerer.getRoom();
 			if (!helpRoom) HelpResponder.roomNotFound();
 			if (room.roomid !== helpRoom.roomid) return this.errorReply(`This command is only available in the Help room.`);
@@ -404,8 +403,11 @@ export const commands: ChatCommands = {
 			if (!user.autoconfirmed) {
 				return this.errorReply(`You must be autoconfirmed to suggest regexes to the Help filter.`);
 			}
-			const faq = Answerer.getFaqID(target.split('=>')[1]);
-			if (this.filter(this.message) !== target) {
+
+			// validate
+			Answerer.getFaqID(target.split('=>')[1]);
+
+			if (this.filter(this.message) !== this.message) {
 				return this.errorReply(`Invalid suggestion.`);
 			}
 			if (Answerer.settings.queueDisabled) {
@@ -414,7 +416,6 @@ export const commands: ChatCommands = {
 			if (Answerer.isBanned(user)) {
 				return this.errorReply(`You are banned from making suggestions to the Help filter.`);
 			}
-			if (!faq) return this.errorReply(`Invalid FAQ.`);
 			const regex = Answerer.stringRegex(target);
 			const entry = {
 				regexString: target,
@@ -434,7 +435,7 @@ export const commands: ChatCommands = {
 		approve(target, room, user) {
 			const helpRoom = Answerer.getRoom();
 			if (!helpRoom) HelpResponder.roomNotFound();
-			if (!this.can('ban', null, helpRoom)) return false;
+			this.checkCan('ban', null, helpRoom);
 			// intended for use mainly within the page, so supports being used in all rooms
 			this.room = helpRoom;
 			const index = parseInt(target) - 1;
@@ -444,9 +445,10 @@ export const commands: ChatCommands = {
 			}
 			const {regexString, userid} = Answerer.queue[index];
 			const regex = Answerer.stringRegex(regexString);
-			// validated on submission
+
+			// validated on submission but FAQs may have changed since then
 			const faq = Answerer.getFaqID(regexString.split('=>')[1].trim());
-			if (!faq) return this.errorReply(`Invalid FAQ.`);
+
 			if (!Answerer.data.pairs[faq]) helpData.pairs[faq] = [];
 			Answerer.data.pairs[faq].push(regex);
 			Answerer.queue.splice(index, 1);
@@ -458,8 +460,8 @@ export const commands: ChatCommands = {
 		},
 		deny(target, room, user) {
 			const helpRoom = Answerer.getRoom();
-			if (!helpRoom) HelpResponder.roomNotFound();
-			if (!this.can('ban', null, helpRoom)) return false;
+		  if (!helpRoom) HelpResponder.roomNotFound();
+			this.checkCan('ban', null, helpRoom);
 			// intended for use mainly within the page, so supports being used in all rooms
 			this.room = helpRoom;
 			target = target.trim();
@@ -481,7 +483,7 @@ export const commands: ChatCommands = {
 			let [userid, reason] = target.split(',').map(item => item.trim());
 			userid = toID(userid);
 			const targetUser = Users.get(userid);
-			if (!this.can('ban', targetUser, this.room)) return false;
+			this.checkCan('ban', targetUser, this.room);
 			const unban = cmd === 'unban';
 			const isBanned = Answerer.isBanned(userid);
 			if (unban) {
@@ -504,12 +506,12 @@ export const commands: ChatCommands = {
 			return this.modlog(`HELPFILTER ${unban ? 'UN' : ''}SUGGESTIONBAN`, userid, reason);
 		},
 		queue(target, room, user) {
-			if (!room) return this.requiresRoom();
+			if (!room) return this.requireRoom();
 			const helpRoom = Answerer.getRoom();
 			if (!helpRoom) HelpResponder.roomNotFound();
 			if (room.roomid !== helpRoom.roomid) return this.errorReply(`Must be used in the Help room.`);
-			if (!this.can('ban', null, room)) return false;
 			target = target.trim();
+			this.checkCan('ban', null, room);
 			if (!target) {
 				return this.sendReply(`The Help suggestion queue is currently ${Answerer.settings.queueDisabled ? 'OFF' : 'ON'}.`);
 			}
@@ -544,7 +546,7 @@ export const commands: ChatCommands = {
 			`<code>/helpfilter add [input] => [faq]</code> - Adds regex made from the input string to the Help filter, to respond with [faq] to matches.`,
 			`<code>/helpfilter remove [faq], [regex index]</code> - removes the regex matching the [index] from the Help filter's responses for [faq].`,
 			`<code>/helpfilter suggest [regex] => [faq]</code> - Adds [regex] for [faq] to the queue for Help staff to review.`,
-			`<code>/helpfilter [ban|unban] [username], [reason] - Bans or unbans a user from making suggestions to the Help filter.`,
+			`<code>/helpfilter [ban|unban] [username], [reason]</code> - Bans or unbans a user from making suggestions to the Help filter.`,
 			`<code>/helpfilter approve [index]</code> - Approves the regex at position [index] in the queue for use in the Help filter.`,
 			`<code>/helpfilter deny [index]</code> - Denies the regex at position [index] in the Help filter queue.`,
 			`Indexes can be found in /helpfilter keys.`,
@@ -570,7 +572,7 @@ export const pages: PageTable = {
 		switch (args[0]) {
 		case 'stats':
 			args.shift();
-			if (!this.can('mute', null, helpRoom)) return;
+			this.checkCan('mute', null, helpRoom);
 			const date = args.join('-') || '';
 			if (!!date && isNaN(new Date(date).getTime())) {
 				return `<h2>Invalid date.</h2>`;
@@ -601,7 +603,7 @@ export const pages: PageTable = {
 		case 'pairs':
 		case 'keys':
 			this.title = '[Help Regexes]';
-			if (!this.can('show', null, helpRoom)) return;
+			this.checkCan('show', null, helpRoom);
 			buf = `<div class="pad"><h2>Help filter regexes and responses:</h2>${back}${refresh('keys')}<hr />`;
 			buf += Object.keys(helpData.pairs).map(item => {
 				const regexes = helpData.pairs[item];

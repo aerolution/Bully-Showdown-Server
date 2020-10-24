@@ -325,7 +325,7 @@ export class User extends Chat.MessageContext {
 	id: ID;
 	tempGroup: GroupSymbol;
 	avatar: string | number;
-	language: string | null;
+	language: ID | null;
 
 	connected: boolean;
 	connections: Connection[];
@@ -646,7 +646,7 @@ export class User extends Chat.MessageContext {
 			}
 		}
 
-		if (!token || token.charAt(0) === ';') {
+		if (!token || token.startsWith(';')) {
 			this.send(`|nametaken|${name}|Your authentication token was invalid.`);
 			return false;
 		}
@@ -754,9 +754,9 @@ export class User extends Chat.MessageContext {
 				this.autoconfirmed = userid;
 			} else if (userType === '5') {
 				this.permalocked = userid;
-				void Punishments.lock(this, Date.now() + PERMALOCK_CACHE_TIME, userid, true, `Permalocked as ${name}`);
+				void Punishments.lock(this, Date.now() + PERMALOCK_CACHE_TIME, userid, true, `Permalocked as ${name}`, true);
 			} else if (userType === '6') {
-				void Punishments.lock(this, Date.now() + PERMALOCK_CACHE_TIME, userid, true, `Permabanned as ${name}`);
+				void Punishments.lock(this, Date.now() + PERMALOCK_CACHE_TIME, userid, true, `Permabanned as ${name}`, true);
 				this.disconnectAll();
 			}
 		}
@@ -907,11 +907,9 @@ export class User extends Chat.MessageContext {
 			oldUser.locked !== oldUser.id &&
 			this.locked !== this.id &&
 			// Only unlock if no previous names are locked
-			!oldUser.previousIDs.some(id => {
-				return !!Punishments.search(id)
-					.filter(punishment => punishment[2][0] === 'LOCK' && punishment[2][1] === id)
-					.length;
-			})
+			!oldUser.previousIDs.some(id => !!Punishments.search(id)
+				.filter(punishment => punishment[2][0] === 'LOCK' && punishment[2][1] === id)
+				.length)
 		) {
 			this.locked = null;
 		} else if (this.locked !== this.id) {
@@ -926,9 +924,8 @@ export class User extends Chat.MessageContext {
 		// active enough that the user should no longer be in the 'idle' state.
 		// Doing this before merging connections ensures the updateuser message
 		// shows the correct idle state.
-		if (this.statusType === 'busy' || oldUser.statusType === 'busy') {
-			this.setStatusType('busy');
-		}
+		const isBusy = this.statusType === 'busy' || oldUser.statusType === 'busy';
+		this.setStatusType(isBusy ? 'busy' : 'online');
 
 		for (const connection of oldUser.connections) {
 			this.mergeConnection(connection);
@@ -1134,9 +1131,6 @@ export class User extends Chat.MessageContext {
 				}
 				for (const roomid of connection.inRooms) {
 					this.leaveRoom(Rooms.get(roomid)!, connection);
-				}
-				if (!this.connections.some(curConnection => curConnection.ip === connection.ip)) {
-					this.ips = this.ips.filter(ip => ip !== connection.ip);
 				}
 				break;
 			}
@@ -1584,7 +1578,7 @@ function socketReceive(worker: StreamWorker, workerid: number, socketid: string,
 	// from propagating out of this function.
 
 	// drop legacy JSON messages
-	if (message.charAt(0) === '{') return;
+	if (message.startsWith('{')) return;
 
 	const pipeIndex = message.indexOf('|');
 	if (pipeIndex < 0) {

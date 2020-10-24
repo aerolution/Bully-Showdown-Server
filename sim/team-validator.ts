@@ -456,11 +456,16 @@ export class TeamValidator {
 		if (set.happiness !== undefined && isNaN(set.happiness)) {
 			problems.push(`${name} has an invalid happiness value.`);
 		}
-		if (set.hpType && (!dex.getType(set.hpType).exists || ['normal', 'fairy'].includes(toID(set.hpType)))) {
-			problems.push(`${name}'s Hidden Power type (${set.hpType}) is invalid.`);
+		if (set.hpType) {
+			const type = dex.getType(set.hpType);
+			if (!type.exists || ['normal', 'fairy'].includes(type.id)) {
+				problems.push(`${name}'s Hidden Power type (${set.hpType}) is invalid.`);
+			} else {
+				set.hpType = type.name;
+			}
 		}
 
-		if (ruleTable.has('obtainableformes')) {
+		if (ruleTable.has('obtainableformes') && (dex.gen <= 7 || this.format.id.includes('nationaldex'))) {
 			if (item.megaEvolves === species.name) {
 				if (!item.megaStone) throw new Error(`Item ${item.name} has no base form for mega evolution`);
 				tierSpecies = dex.getSpecies(item.megaStone);
@@ -509,10 +514,8 @@ export class TeamValidator {
 
 					if (unreleasedHidden && ruleTable.has('-unreleased')) {
 						problems.push(`${name}'s Hidden Ability is unreleased.`);
-					/* (Astrea Cup is annoying)
-					} else if (['entei', 'suicune', 'raikou'].includes(species.id) && this.minSourceGen > 1) {
+					} else if (dex.gen === 7 && ['entei', 'suicune', 'raikou'].includes(species.id) && this.minSourceGen > 1) {
 						problems.push(`${name}'s Hidden Ability is only available from Virtual Console, which is not allowed in this format.`);
-					*/
 					} else if (dex.gen === 6 && ability.name === 'Symbiosis' &&
 						(set.species.endsWith('Orange') || set.species.endsWith('White'))) {
 						problems.push(`${name}'s Hidden Ability is unreleased for the Orange and White forms.`);
@@ -661,7 +664,7 @@ export class TeamValidator {
 			// Ability Capsule allows this in Gen 6+
 			problems.push(`${name} has a Gen 4 ability and isn't evolved - it can't use moves from Gen 3.`);
 		}
-		if (setSources.maxSourceGen() < 5 && setSources.isHidden) {
+		if (setSources.maxSourceGen() < 5 && setSources.isHidden && (dex.gen <= 7 || format.mod === 'gen8dlc1')) {
 			problems.push(`${name} has a Hidden Ability - it can't use moves from before Gen 5.`);
 		}
 		if (
@@ -774,9 +777,9 @@ export class TeamValidator {
 
 		const cantBreedNorEvolve = (species.eggGroups[0] === 'Undiscovered' && !species.prevo && !species.nfe);
 		const isLegendary = (cantBreedNorEvolve && ![
-			'Unown', 'Pikachu',
+			'Pikachu', 'Unown', 'Dracozolt', 'Arctozolt', 'Dracovish', 'Arctovish',
 		].includes(species.baseSpecies)) || [
-			'Cosmog', 'Cosmoem', 'Solgaleo', 'Lunala', 'Manaphy', 'Meltan', 'Melmetal',
+			'Manaphy', 'Cosmog', 'Cosmoem', 'Solgaleo', 'Lunala',
 		].includes(species.baseSpecies);
 		const diancieException = species.name === 'Diancie' && set.shiny;
 		const has3PerfectIVs = setSources.minSourceGen() >= 6 && isLegendary && !diancieException;
@@ -794,7 +797,7 @@ export class TeamValidator {
 				if (set.ivs[stat as 'hp'] >= 31) perfectIVs++;
 			}
 			if (perfectIVs < 3) {
-				const reason = (this.minSourceGen === 6 ? ` and this format requires gen ${dex.gen} Pokémon` : ` in gen 6`);
+				const reason = (this.minSourceGen === 6 ? ` and this format requires gen ${dex.gen} Pokémon` : ` in gen 6 or later`);
 				problems.push(`${name} must have at least three perfect IVs because it's a legendary${reason}.`);
 			}
 		}
@@ -1265,6 +1268,11 @@ export class TeamValidator {
 		const doublesTierTag = 'pokemontag:' + toID(doublesTier);
 		setHas[doublesTierTag] = true;
 
+		// Only pokemon that can gigantamax should have the Gmax flag
+		if (!tierSpecies.canGigantamax && set.gigantamax) {
+			return `${tierSpecies.name} cannot Gigantamax but is flagged as being able to.`;
+		}
+
 		let banReason = ruleTable.check('pokemon:' + species.id);
 		if (banReason) {
 			return `${species.name} is ${banReason}.`;
@@ -1564,9 +1572,6 @@ export class TeamValidator {
 			}
 		} else {
 			requiredIVs = eventData.perfectIVs || 0;
-			if (eventData.generation >= 6 && eventData.perfectIVs === undefined && TeamValidator.hasLegendaryIVs(species)) {
-				requiredIVs = 3;
-			}
 		}
 		if (requiredIVs && set.ivs) {
 			// Legendary Pokemon must have at least 3 perfect IVs in gen 6
@@ -1580,8 +1585,6 @@ export class TeamValidator {
 				if (fastReturn) return true;
 				if (eventData.perfectIVs) {
 					problems.push(`${name} must have at least ${requiredIVs} perfect IVs${etc}.`);
-				} else {
-					problems.push(`${name} is a legendary and must have at least three perfect IVs${etc}.`);
 				}
 			}
 			// The perfect IV count affects Hidden Power availability
@@ -1624,7 +1627,8 @@ export class TeamValidator {
 			if (species.abilities['H']) {
 				const isHidden = (set.ability === species.abilities['H']);
 
-				if (isHidden !== !!eventData.isHidden) {
+				if ((!isHidden && eventData.isHidden) ||
+					(isHidden && !eventData.isHidden && (dex.gen <= 7 || this.format.mod === 'gen8dlc1'))) {
 					if (fastReturn) return true;
 					problems.push(`${name} must ${eventData.isHidden ? 'have' : 'not have'} its Hidden Ability${etc}.`);
 				}
@@ -1685,7 +1689,7 @@ export class TeamValidator {
 				source => parseInt(source.charAt(0)) >= 5
 			);
 			if (setSources.sourcesBefore < 5) setSources.sourcesBefore = 0;
-			if (!setSources.sourcesBefore && !setSources.sources.length) {
+			if (!setSources.sourcesBefore && !setSources.sources.length && (dex.gen <= 7 || this.format.mod === 'gen8dlc1')) {
 				problems.push(`${name} has a hidden ability - it can't have moves only learned before gen 5.`);
 				return problems;
 			}
@@ -1841,7 +1845,7 @@ export class TeamValidator {
 					if (learnedGen <= moveSources.sourcesBefore) continue;
 
 					if (
-						learnedGen < 7 && setSources.isHidden &&
+						learnedGen < 7 && setSources.isHidden && (dex.gen <= 7 || format.mod === 'gen8dlc1') &&
 						!dex.mod('gen' + learnedGen).getSpecies(baseSpecies.name).abilities['H']
 					) {
 						// check if the Pokemon's hidden ability was available
@@ -2017,11 +2021,6 @@ export class TeamValidator {
 			return this.dex.getSpecies(species.changesFrom);
 		}
 		return null;
-	}
-
-	static hasLegendaryIVs(species: Species) {
-		return ((species.eggGroups[0] === 'Undiscovered' || species.name === 'Manaphy') &&
-			!species.prevo && !species.nfe && species.name !== 'Unown' && species.baseSpecies !== 'Pikachu');
 	}
 
 	static fillStats(stats: SparseStatsTable | null, fillNum = 0): StatsTable {

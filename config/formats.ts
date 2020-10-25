@@ -210,7 +210,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	{
-		name: "[Gen 8] National Dex CAP",
+		name: "[Gen 8] National Dex DLC CAP",
 
 		mod: 'gen8',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+CAP', 'Team Preview', 'Dynamax Clause'],

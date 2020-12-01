@@ -545,6 +545,24 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		inherit: true,
 		isNonstandard: null,
 	},
+	lunardance: {
+		inherit: true,
+		condition: {
+			duration: 2,
+			onSwitchInPriority: 1,
+			onSwitchIn(target) {
+				if (!target.fainted) {
+					target.heal(target.maxhp);
+					target.setStatus('');
+					for (const moveSlot of target.moveSlots) {
+						moveSlot.pp = moveSlot.maxpp;
+					}
+					this.add('-heal', target, target.getHealth, '[from] move: Lunar Dance');
+					target.side.removeSlotCondition(target, 'lunardance');
+				}
+			},
+		},
+	},
 	magnetbomb: {
 		inherit: true,
 		isNonstandard: null,
@@ -886,7 +904,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		inherit: true,
 		priority: 0,
 		selfSwitch: false,
-		onTryHit: false,
+		onTry: false,
 	},
 	toxicthread: {
 		inherit: true,

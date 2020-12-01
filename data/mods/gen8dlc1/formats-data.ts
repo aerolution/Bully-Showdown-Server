@@ -308,6 +308,22 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	genesect: {
 		isNonstandard: "Past",
 	},
+	genesectburn: {
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
+	},
+	genesectchill: {
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
+	},
+	genesectdouse: {
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
+	},
+	genesectshock: {
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
+	},
 	tyrunt: {
 		isNonstandard: "Past",
 	},

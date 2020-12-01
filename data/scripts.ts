@@ -1,3 +1,5 @@
+import type {Dex} from '../sim/dex';
+
 const CHOOSABLE_TARGETS = new Set(['normal', 'any', 'adjacentAlly', 'adjacentAllyOrSelf', 'adjacentFoe']);
 
 export const Scripts: BattleScriptsData = {
@@ -206,7 +208,7 @@ export const Scripts: BattleScriptsData = {
 
 		let movename = move.name;
 		if (move.id === 'hiddenpower') movename = 'Hidden Power';
-		if (sourceEffect) attrs += '|[from]' + this.dex.getEffect(sourceEffect);
+		if (sourceEffect) attrs += `|[from]${sourceEffect.fullname}`;
 		if (zMove && move.isZ === true) {
 			attrs = '|[anim]' + movename + attrs;
 			movename = 'Z-' + movename;
@@ -570,11 +572,16 @@ export const Scripts: BattleScriptsData = {
 	tryMoveHit(target, pokemon, move) {
 		this.setActiveMove(move, pokemon, target);
 
-		if (!this.singleEvent('Try', move, null, pokemon, target, move)) {
+		let hitResult = this.singleEvent('Try', move, null, pokemon, target, move);
+		if (!hitResult) {
+			if (hitResult === false) {
+				this.add('-fail', pokemon);
+				this.attrLastMove('[still]');
+			}
 			return false;
 		}
 
-		let hitResult = this.singleEvent('PrepareHit', move, {}, target, pokemon, move);
+		hitResult = this.singleEvent('PrepareHit', move, {}, target, pokemon, move);
 		if (!hitResult) {
 			if (hitResult === false) {
 				this.add('-fail', pokemon);
@@ -610,7 +617,8 @@ export const Scripts: BattleScriptsData = {
 			// yes, it's hardcoded... meh
 			if (targetHits[0] === 2 && targetHits[1] === 5) {
 				if (this.gen >= 5) {
-					targetHits = this.sample([2, 2, 3, 3, 4, 5]);
+					// 35-35-15-15 out of 100 for 2-3-4-5 hits
+					targetHits = this.sample([2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 5, 5, 5]);
 				} else {
 					targetHits = this.sample([2, 2, 2, 3, 3, 3, 4, 5]);
 				}
@@ -746,7 +754,8 @@ export const Scripts: BattleScriptsData = {
 				// The previous check was for `move.multihit`, but that fails for Dragon Darts
 				const curDamage = targets.length === 1 ? move.totalDamage : d;
 				if (typeof curDamage === 'number' && targets[i].hp) {
-					if (targets[i].hp <= targets[i].maxhp / 2 && targets[i].hp + curDamage > targets[i].maxhp / 2) {
+					const targetHPBeforeDamage = (targets[i].hurtThisTurn || 0) + curDamage;
+					if (targets[i].hp <= targets[i].maxhp / 2 && targetHPBeforeDamage > targets[i].maxhp / 2) {
 						this.runEvent('EmergencyExit', targets[i], pokemon);
 					}
 				}
@@ -1036,11 +1045,14 @@ export const Scripts: BattleScriptsData = {
 			if (target === false) continue;
 			if (moveData.self && !move.selfDropped) {
 				if (!isSecondary && moveData.self.boosts) {
-					// This is done solely to mimic in-game RNG behaviour. All self drops have a 100% chance of happening but still grab a random number.
-					this.random(100);
+					const secondaryRoll = this.random(100);
+					if (typeof moveData.self.chance === 'undefined' || secondaryRoll < moveData.self.chance) {
+						this.moveHit(pokemon, pokemon, move, moveData.self, isSecondary, true);
+					}
 					if (!move.multihit) move.selfDropped = true;
+				} else {
+					this.moveHit(pokemon, pokemon, move, moveData.self, isSecondary, true);
 				}
-				this.moveHit(pokemon, pokemon, move, moveData.self, isSecondary, true);
 			}
 		}
 	},
@@ -1048,7 +1060,7 @@ export const Scripts: BattleScriptsData = {
 		if (!moveData.secondaries) return;
 		for (const target of targets) {
 			if (target === false) continue;
-			const secondaries: SecondaryEffect[] =
+			const secondaries: Dex.SecondaryEffect[] =
 				this.runEvent('ModifySecondaries', target, pokemon, moveData, moveData.secondaries.slice());
 			for (const secondary of secondaries) {
 				const secondaryRoll = this.random(100);

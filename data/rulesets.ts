@@ -126,6 +126,7 @@ export const Formats: {[k: string]: FormatData} = {
 			let kyuremCount = 0;
 			let necrozmaDMCount = 0;
 			let necrozmaDWCount = 0;
+			let calyrexCount = 0;
 			for (const set of team) {
 				if (set.species === 'Kyurem-White' || set.species === 'Kyurem-Black') {
 					if (kyuremCount > 0) {
@@ -153,6 +154,15 @@ export const Formats: {[k: string]: FormatData} = {
 						];
 					}
 					necrozmaDWCount++;
+				}
+				if (set.species === 'Calyrex-Ice' || set.species === 'Calyrex-Shadow') {
+					if (calyrexCount > 0) {
+						return [
+							`You cannot have more than one Calyrex-Ice/Calyrex-Shadow.`,
+							`(It's untradeable and you can only make one with the Reins of Unity.)`,
+						];
+					}
+					calyrexCount++;
 				}
 			}
 			return [];
@@ -308,8 +318,7 @@ export const Formats: {[k: string]: FormatData} = {
 				"Nidoran-F", "Nidorina", "Nidoqueen", "Nidoran-M", "Nidorino", "Nidoking", "Clefairy", "Clefable", "Zubat", "Golbat", "Ponyta", "Rapidash", "Mr. Mime", "Jynx", "Electabuzz", "Magmar", "Magikarp", "Gyarados", "Lapras", "Eevee", "Vaporeon", "Jolteon", "Flareon", "Omanyte", "Omastar", "Kabuto", "Kabutops", "Aerodactyl", "Snorlax", "Articuno", "Zapdos", "Moltres", "Dratini", "Dragonair", "Dragonite", "Crobat", "Cleffa", "Espeon", "Umbreon", "Shuckle", "Sneasel", "Swinub", "Piloswine", "Delibird", "Smoochum", "Elekid", "Magby", "Larvitar", "Pupitar", "Tyranitar", "Zigzagoon", "Linoone", "Sableye", "Mawile", "Aron", "Lairon", "Aggron", "Swablu", "Altaria", "Barboach", "Whiscash", "Baltoy", "Claydol", "Lileep", "Cradily", "Anorith", "Armaldo", "Feebas", "Milotic", "Absol", "Snorunt", "Glalie", "Spheal", "Sealeo", "Walrein", "Relicanth", "Bagon", "Shelgon", "Salamence", "Beldum", "Metang", "Metagross", "Regirock", "Regice", "Registeel", "Bronzor", "Bronzong", "Spiritomb", "Gible", "Gabite", "Garchomp", "Munchlax", "Riolu", "Lucario", "Snover", "Abomasnow", "Weavile", "Electivire", "Magmortar", "Leafeon", "Glaceon", "Mamoswine", "Froslass", "Audino", "Timburr", "Gurdurr", "Conkeldurr", "Cottonee", "Whimsicott", "Basculin", "Darumaka", "Darmanitan", "Tirtouga", "Carracosta", "Archen", "Archeops", "Gothita", "Gothorita", "Gothitelle", "Solosis", "Duosion", "Reuniclus", "Vanillite", "Vanillish", "Vanilluxe", "Karrablast", "Escavalier", "Joltik", "Galvantula", "Ferroseed", "Ferrothorn", "Litwick", "Lampent", "Chandelure", "Cubchoo", "Beartic", "Cryogonal", "Shelmet", "Accelgor", "Druddigon", "Golett", "Golurk", "Heatmor", "Durant", "Deino", "Zweilous", "Hydreigon", "Cobalion", "Terrakion", "Virizion", "Tyrunt", "Tyrantrum", "Amaura", "Aurorus", "Sylveon", "Carbink", "Phantump", "Trevenant", "Bergmite", "Avalugg", "Noibat", "Noivern", "Dewpider", "Araquanid", "Mimikyu", "Dhelmise", "Skwovet", "Greedent", "Rookidee", "Corvisquire", "Corviknight", "Gossifleur", "Eldegoss", "Wooloo", "Dubwool", "Yamper", "Boltund", "Rolycoly", "Carkol", "Coalossal", "Sizzlipede", "Centiskorch", "Sinistea", "Polteageist", "Hatenna", "Hattrem", "Hatterene", "Impidimp", "Morgrem", "Grimmsnarl", "Obstagoon", "Mr. Rime", "Pincurchin", "Snom", "Frosmoth", "Stonjourner", "Eiscue", "Indeedee", "Morpeko", "Cufant", "Copperajah", "Dreepy", "Drakloak", "Dragapult", "Regieleki", "Regidrago", "Glastrier", "Spectrier",
 			];
 			const species = this.dex.getSpecies(set.species || set.name);
-			if (!tundraDex.includes(species.baseSpecies) && !tundraDex.includes(species.name) &&
-				this.ruleTable.isBannedSpecies(species)) {
+			if (!tundraDex.includes(species.baseSpecies) && !tundraDex.includes(species.name)) {
 				return [`${species.baseSpecies} is not in the Crown Tundra Pokédex.`];
 			}
 		},
@@ -852,6 +861,16 @@ export const Formats: {[k: string]: FormatData} = {
 			this.add('rule', 'Switch Priority Clause Mod: Faster Pokémon switch first');
 		},
 	},
+	desyncclausemod: {
+		effectType: 'Rule',
+		name: 'Desync Clause Mod',
+		desc: 'If a desync would happen, the move fails instead. This rule currently covers Psywave and Counter.',
+		onBegin() {
+			this.add('rule', 'Desync Clause Mod: Desyncs changed to move failure.');
+		},
+		// Hardcoded in gen1/moves.ts
+		// Can't be disabled (no precedent for how else to handle desyncs)
+	},
 	freezeclausemod: {
 		effectType: 'Rule',
 		name: 'Freeze Clause Mod',
@@ -892,7 +911,7 @@ export const Formats: {[k: string]: FormatData} = {
 				}
 				if (this.gen >= 7) {
 					const item = this.dex.getItem(set.item);
-					if (item.megaStone && species.name === item.megaEvolves) {
+					if (item.megaStone && species.baseSpecies === item.megaEvolves) {
 						species = this.dex.getSpecies(item.megaStone);
 						typeTable = typeTable.filter(type => species.types.includes(type));
 					}
@@ -933,19 +952,6 @@ export const Formats: {[k: string]: FormatData} = {
 				pokemon.canDynamax = false;
 			}
 			this.add('rule', 'Dynamax Clause: You cannot dynamax');
-		},
-	},
-	dynamaxubersclause: {
-		effectType: 'Rule',
-		name: 'Dynamax Ubers Clause',
-		desc: "Prevents Pok&eacute;mon on the Ubers dynamax banlist from dynamaxing",
-		onBegin() {
-			for (const pokemon of this.getAllPokemon()) {
-				if (this.ruleTable.isRestrictedSpecies(pokemon.species)) {
-					pokemon.canDynamax = false;
-				}
-			}
-			this.add('html', 'Ubers Dynamax Clause: Pokémon on the <a href="https://www.smogon.com/dex/ss/formats/uber/">Ubers Dynamax Banlist</a> cannot Dynamax.');
 		},
 	},
 	arceusevlimit: {
@@ -1033,6 +1039,25 @@ export const Formats: {[k: string]: FormatData} = {
 			return this.checkLearnset(move, species, setSources, set);
 		},
 	},
+	alphabetcupmovelegality: {
+		effectType: 'ValidatorRule',
+		name: 'Alphabet Cup Move Legality',
+		desc: "Allows Pok&eacute;mon to use any move that shares the same first letter as their name or a previous evolution's name.",
+		checkLearnset(move, species, setSources, set) {
+			const nonstandard = move.isNonstandard === 'Past' && !this.ruleTable.has('standardnatdex');
+			if (!nonstandard && !move.isZ && !move.isMax && !this.ruleTable.isRestricted(`move:${move.id}`)) {
+				const letters = [species.id[0]];
+				let prevo = species.prevo;
+				while (prevo) {
+					const prevoSpecies = this.dex.getSpecies(prevo);
+					letters.push(prevoSpecies.id[0]);
+					prevo = prevoSpecies.prevo;
+				}
+				if (letters.includes(move.id[0])) return null;
+			}
+			return this.checkLearnset(move, species, setSources, set);
+		},
+	},
 	allowtradeback: {
 		effectType: 'ValidatorRule',
 		name: 'Allow Tradeback',
@@ -1062,6 +1087,12 @@ export const Formats: {[k: string]: FormatData} = {
 		name: 'Mimic Glitch',
 		desc: "Allows any Pokemon with access to Assist, Copycat, Metronome, Mimic, or Transform to gain access to almost any other move.",
 		// Implemented in sim/team-validator.ts
+	},
+	overflowstatmod: {
+		effectType: 'Rule',
+		name: 'Overflow Stat Mod',
+		desc: "Caps stats at 654 after a positive nature, or 655 after a negative nature",
+		// Implemented in sim/battle.ts
 	},
 	formeclause: {
 		effectType: 'ValidatorRule',

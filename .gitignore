@@ -2,6 +2,7 @@
 !/config/formats.ts
 /logs/*
 /test/modlogs
+/test/replays/*.html
 /node_modules
 /eslint-cache
 /server/chat-plugins/private
@@ -13,6 +14,8 @@ npm-debug.log
 package-lock.json
 /tools/set-import/sets
 databases/*.db*
+*.o
+*.o.dSYM
 
 # Sports
 !/config/emoticons.json

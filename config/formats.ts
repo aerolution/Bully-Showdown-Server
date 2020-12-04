@@ -606,15 +606,35 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		],
 
 		mod: 'gen8',
-		searchShow: false,
 		ruleset: ['Obtainable', '!Obtainable Abilities', 'Species Clause', 'Nickname Clause', '2 Ability Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Dynamax Clause', 'Sleep Clause Mod', 'Endless Battle Clause'],
 		banlist: [
-			'Calyrex-Ice', 'Calyrex-Shadow', 'Dialga', 'Dracovish', 'Eternatus', 'Giratina', 'Groudon', 'Ho-Oh', 'Keldeo', 'Kyogre', 'Kyurem-Black',
-			'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Melmetal', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Rayquaza',
-			'Regigigas', 'Reshiram', 'Shedinja', 'Solgaleo', 'Urshifu', 'Urshifu-Rapid-Strike', 'Xerneas', 'Yveltal', 'Zacian', 'Zamazenta', 'Zekrom',
+			'Buzzwole', 'Calyrex-Ice', 'Calyrex-Shadow', 'Dialga', 'Dracovish', 'Dragapult', 'Dragonite', 'Eternatus', 'Giratina', 'Giratina-Origin', 'Groudon', 'Ho-Oh', 'Kartana', 'Keldeo', 'Kyogre',
+			'Kyurem-Black', 'Kyurem-White', 'Lugia', 'Lunala', 'Magearna', 'Marshadow', 'Melmetal', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Pheromosa', 'Rayquaza',
+			'Regigigas', 'Reshiram', 'Shedinja', 'Solgaleo', 'Urshifu', 'Urshifu-Rapid-Strike', 'Xerneas', 'Yveltal', 'Zacian', 'Zacian-Crowned', 'Zamazenta', 'Zamazenta-Crowned', 'Zekrom', 'Zygarde-Base',
 			'Arena Trap', 'Comatose', 'Contrary', 'Fluffy', 'Fur Coat', 'Gorilla Tactics', 'Huge Power', 'Ice Scales', 'Illusion', 'Imposter', 'Innards Out', 'Intrepid Sword', 'Libero',
 			'Moody', 'Neutralizing Gas', 'Parental Bond', 'Power Construct', 'Protean', 'Pure Power', 'Shadow Tag', 'Simple', 'Stakeout', 'Speed Boost', 'Water Bubble', 'Wonder Guard',
 			'Baton Pass',
+		],
+	},
+	{
+		name: "[Gen 8] Alphabet Cup",
+		desc: `Pok&eacute;mon gain access to moves that share the same starting letter as their name or the name of a pre-evolution.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3672756/">Alphabet Cup</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['Standard', 'Alphabet Cup Move Legality', 'Dynamax Clause'],
+		banlist: [
+			'Calyrex-Ice', 'Calyrex-Shadow', 'Cinderace', 'Darmanitan-Galar', 'Dialga', 'Dracovish', 'Eternatus', 'Genesect', 'Giratina',
+			'Giratina-Origin', 'Groudon', 'Ho-Oh', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Landorus-Base', 'Lugia', 'Lunala',
+			'Marshadow', 'Melmetal', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Pheromosa', 'Rayquaza',
+			'Reshiram', 'Solgaleo', 'Spectrier', 'Weavile', 'Xerneas', 'Yveltal', 'Zacian', 'Zacian-Crowned', 'Zekrom', 'Zygarde-Base',
+			'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'Acupressure', 'Baton Pass',
+		],
+		restricted: [
+			'Astral Barrage', 'Bolt Beak', 'Double Iron Bash', 'Electrify', 'Geomancy', 'Glacial Lance',
+			'Lovely Kiss', 'Shell Smash', 'Shift Gear', 'Sleep Powder', 'Spore', 'Surging Strikes', 'Thousand Arrows',
 		],
 	},
 	{
@@ -626,17 +646,21 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		],
 
 		mod: 'gen8',
-		searchShow: false,
-		ruleset: ['-Nonexistent', 'OHKO Clause', 'Evasion Moves Clause', 'Forme Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Endless Battle Clause'],
+		ruleset: ['-Nonexistent', 'OHKO Clause', 'Evasion Moves Clause', 'Forme Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Dynamax Clause', 'Sleep Clause Mod', 'Endless Battle Clause'],
 		banlist: [
-			'Eternatus-Eternamax', 'Shedinja', 'Comatose + Sleep Talk', 'Double Iron Bash', 'Octolock', 'Shell Smash',
+			'Darmanitan-Galar-Zen', 'Eternatus-Eternamax', 'Shedinja', 'Comatose + Sleep Talk', 'Double Iron Bash', 'Octolock', 'Shell Smash',
 			'Arena Trap', 'Contrary', 'Gorilla Tactics', 'Huge Power', 'Illusion', 'Innards Out', 'Libero', 'Magnet Pull', 'Moody',
 			'Neutralizing Gas', 'Parental Bond', 'Protean', 'Pure Power', 'Shadow Tag', 'Stakeout', 'Water Bubble', 'Wonder Guard',
 		],
+		restricted: ['Zacian-Crowned'],
 		onValidateSet(set) {
-			if (set.species === 'Zacian-Crowned' &&
-				(this.dex.toID(set.item) !== 'rustedsword' || this.dex.toID(set.ability) !== 'intrepidsword')) {
-				return [set.species + " is banned."];
+			const ability = this.dex.getAbility(set.ability);
+			if (set.species === 'Zacian-Crowned') {
+				if (this.dex.toID(set.item) !== 'rustedsword' || ability.id !== 'intrepidsword') {
+					return [`${set.species} is banned.`];
+				}
+			} else if (ability.id === 'intrepidsword') {
+				return [`${set.name}'s ability ${ability.name} is banned.`];
 			}
 		},
 		onChangeSet(set) {
@@ -669,9 +693,9 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8',
 		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Dynamax Clause', 'Sleep Clause Mod', 'Endless Battle Clause'],
 		banlist: [
-			'Calyrex-Ice', 'Calyrex-Shadow', 'Darmanitan-Galar', 'Dialga', 'Eternatus', 'Giratina', 'Groudon', 'Ho-Oh', 'Kyogre',
-			'Kyurem-Black', 'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane',
-			'Palkia', 'Rayquaza', 'Reshiram', 'Shedinja', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zacian', 'Zamazenta', 'Zekrom',
+			'Calyrex-Ice', 'Calyrex-Shadow', 'Darmanitan-Galar', 'Dialga', 'Dragonite', 'Eternatus', 'Genesect', 'Giratina', 'Giratina-Origin', 'Groudon', 'Ho-Oh',
+			'Kartana', 'Kyogre', 'Kyurem', 'Kyurem-Black', 'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia',
+			'Rayquaza', 'Reshiram', 'Shedinja', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zacian', 'Zacian-Crowned', 'Zamazenta', 'Zamazenta-Crowned', 'Zekrom', 'Zygarde-Base',
 			'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'Baton Pass',
 		],
 		onModifySpecies(species, target, source, effect) {
@@ -681,10 +705,10 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			return {...species, types: types};
 		},
 		onSwitchIn(pokemon) {
-			this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
+			this.add('-start', pokemon, 'typechange', (pokemon.illusion || pokemon).getTypes(true).join('/'), '[silent]');
 		},
 		onAfterMega(pokemon) {
-			this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
+			this.add('-start', pokemon, 'typechange', (pokemon.illusion || pokemon).getTypes(true).join('/'), '[silent]');
 		},
 	},
 	{
@@ -730,7 +754,9 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			if (godSpecies.forme === 'Crowned') {
 				godSpecies = this.dex.getSpecies(godSpecies.changesFrom || godSpecies.baseSpecies);
 			}
+			newSpecies.bst -= newSpecies.baseStats[stat];
 			newSpecies.baseStats[stat] = godSpecies.baseStats[stat as StatName];
+			newSpecies.bst += newSpecies.baseStats[stat];
 			return newSpecies;
 		},
 	},
@@ -744,13 +770,13 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8',
 		ruleset: ['Standard', 'Dynamax Clause'],
 		banlist: [
-			'Blissey', 'Chansey', 'Calyrex-Ice', 'Calyrex-Shadow', 'Darmanitan-Galar', 'Dialga', 'Dracovish', 'Eternatus', 'Giratina', 'Groudon', 'Kyogre',
-			'Kyurem-Black', 'Kyurem-White', 'Lugia', 'Lunala', 'Magearna', 'Marshadow', 'Melmetal', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane',
-			'Palkia', 'Rayquaza', 'Reshiram', 'Shedinja', 'Solgaleo', 'Urshifu-Base', 'Xerneas', 'Yveltal', 'Zacian', 'Zamazenta', 'Zekrom',
-			'Arena Trap', 'Huge Power', 'Imposter', 'Innards Out', 'Libero', 'Moody', 'Pure Power', 'Shadow Tag', 'Simple', 'Water Bubble',
+			'Calyrex-Ice', 'Calyrex-Shadow', 'Darmanitan-Galar', 'Dialga', 'Dracovish', 'Eternatus', 'Giratina', 'Giratina-Origin', 'Groudon', 'Kartana', 'Kyogre', 'Kyurem-Black',
+			'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Melmetal', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Rayquaza', 'Regieleki', 'Regigigas',
+			'Reshiram', 'Shedinja', 'Solgaleo', 'Spectrier', 'Urshifu-Base', 'Xerneas', 'Yveltal', 'Zacian', 'Zacian-Crowned', 'Zamazenta', 'Zamazenta-Crowned', 'Zekrom',
+			'Arena Trap', 'Huge Power', 'Imposter', 'Innards Out', 'Libero', 'Moody', 'Pure Power', 'Shadow Tag', 'Simple', 'Unaware', 'Water Bubble',
 			'Baton Pass', 'Bolt Beak', 'Fishious Rend', 'Shell Smash',
 		],
-		restricted: ['Torkoal', 'Toxtricity'],
+		restricted: ['Blaziken', 'Butterfree', 'Torkoal', 'Toxtricity'],
 		getEvoFamily(speciesid) {
 			let species = Dex.getSpecies(speciesid);
 			while (species.prevo) {
@@ -892,15 +918,16 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		],
 
 		mod: 'mixandmega',
-		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Dynamax Clause', 'Sleep Clause Mod', 'Endless Battle Clause'],
+		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Overflow Stat Mod', 'Dynamax Clause', 'Sleep Clause Mod', 'Endless Battle Clause'],
 		banlist: [
+			'Calyrex-Shadow', 'Kyogre', 'Zacian-Crowned',
 			'Beedrillite', 'Blazikenite', 'Gengarite', 'Kangaskhanite', 'Mawilite', 'Medichamite', 'Pidgeotite',
 			'Moody', 'Shadow Tag', 'Baton Pass', 'Electrify',
 		],
 		restricted: [
-			'Calyrex-Ice', 'Calyrex-Shadow', 'Dialga', 'Eternatus', 'Giratina', 'Groudon', 'Ho-Oh', 'Kyogre', 'Kyurem-Black',
-			'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane',
-			'Palkia', 'Rayquaza', 'Regigigas', 'Reshiram', 'Xerneas', 'Yveltal', 'Zacian', 'Zekrom',
+			'Calyrex-Ice', 'Dialga', 'Eternatus', 'Gengar', 'Giratina', 'Groudon', 'Ho-Oh', 'Kyurem-Black', 'Kyurem-White',
+			'Lugia', 'Lunala', 'Marshadow', 'Melmetal', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane',
+			'Palkia', 'Rayquaza', 'Regigigas', 'Reshiram', 'Xerneas', 'Yveltal', 'Zacian', 'Zekrom', 'Zygarde-Complete',
 		],
 		onValidateTeam(team) {
 			const itemTable = new Set<ID>();
@@ -909,7 +936,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 				if (!item || !item.megaStone) continue;
 				const species = this.dex.getSpecies(set.species);
 				if (species.isNonstandard) return [`${species.baseSpecies} does not exist in gen 8.`];
-				if (this.ruleTable.isRestrictedSpecies(species)) {
+				if (this.ruleTable.isRestrictedSpecies(species) || this.toID(set.ability) === 'powerconstruct') {
 					return [`${species.name} is not allowed to hold ${item.name}.`];
 				}
 				if (itemTable.has(item.id)) {
@@ -975,9 +1002,9 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8',
 		ruleset: ['Standard', 'Dynamax Clause'],
 		banlist: [
-			'Calyrex-Ice', 'Calyrex-Shadow', 'Darmanitan-Galar', 'Dialga', 'Eternatus', 'Giratina', 'Groudon', 'Ho-Oh', 'Kyogre',
-			'Kyurem-Black', 'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Melmetal', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane',
-			'Palkia', 'Rayquaza', 'Reshiram', 'Shedinja', 'Solgaleo', 'Toxapex', 'Xerneas', 'Yveltal', 'Zacian', 'Zamazenta', 'Zekrom',
+			'Calyrex-Ice', 'Calyrex-Shadow', 'Darmanitan-Galar', 'Dialga', 'Eternatus', 'Giratina', 'Giratina-Origin', 'Groudon', 'Ho-Oh', 'Kyogre',
+			'Kyurem-Black', 'Kyurem-White', 'Lugia', 'Lunala', 'Marshadow', 'Melmetal', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia',
+			'Rayquaza', 'Reshiram', 'Shedinja', 'Solgaleo', 'Toxapex', 'Xerneas', 'Yveltal', 'Zacian', 'Zacian-Crowned', 'Zamazenta', 'Zamazenta-Crowned', 'Zekrom',
 			'Arena Trap', 'Contrary', 'Drizzle ++ Swift Swim', 'Drought ++ Chlorophyll', 'Electric Surge ++ Surge Surfer',
 			'Flare Boost', 'Fur Coat', 'Guts', 'Harvest', 'Huge Power', 'Imposter', 'Innards Out', 'Libero', 'Magic Bounce',
 			'Magic Guard', 'Mold Breaker', 'Moody', 'Neutralizing Gas', 'Power Construct', 'Regenerator ++ Emergency Exit',
@@ -1045,13 +1072,13 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8',
 		ruleset: ['Standard', 'STABmons Move Legality', 'Dynamax Clause'],
 		banlist: [
-			'Calyrex-Ice', 'Calyrex-Shadow', 'Darmanitan-Galar', 'Dialga', 'Dracovish', 'Dragapult', 'Eternatus', 'Genesect', 'Giratina', 'Groudon', 'Ho-Oh',
-			'Kartana', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Landorus-Base', 'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane',
-			'Palkia', 'Pheromosa', 'Porygon-Z', 'Rayquaza', 'Reshiram', 'Silvally', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zacian', 'Zamazenta', 'Zekrom',
-			'King\'s Rock', 'Moody', 'Power Construct', 'Shadow Tag', 'Baton Pass',
+			'Calyrex-Ice', 'Calyrex-Shadow', 'Darmanitan-Galar', 'Dialga', 'Dracovish', 'Dragapult', 'Eternatus', 'Genesect', 'Giratina', 'Giratina-Origin', 'Groudon', 'Ho-Oh', 'Kartana',
+			'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Landorus-Base', 'Lugia', 'Lunala', 'Marshadow', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Pheromosa',
+			'Porygon-Z', 'Rayquaza', 'Reshiram', 'Silvally', 'Solgaleo', 'Thundurus-Base', 'Xerneas', 'Yveltal', 'Zacian', 'Zacian-Crowned', 'Zamazenta', 'Zamazenta-Crowned', 'Zekrom', 'Zygarde-Base',
+			'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'King\'s Rock', 'Baton Pass',
 		],
 		restricted: [
-			'Acupressure', 'Belly Drum', 'Bolt Beak', 'Double Iron Bash', 'Electrify', 'Extreme Speed', 'Fishious Rend',
+			'Acupressure', 'Astral Barrage', 'Belly Drum', 'Bolt Beak', 'Double Iron Bash', 'Electrify', 'Extreme Speed', 'Fishious Rend',
 			'Geomancy', 'Lovely Kiss', 'Shell Smash', 'Shift Gear', 'Spore', 'Thousand Arrows', 'V-create', 'Wicked Blow',
 		],
 	},
@@ -1063,7 +1090,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		],
 
 		mod: 'gen8',
-		ruleset: ['[Gen 8] OU'],
+		ruleset: ['[Gen 8] OU', 'Overflow Stat Mod'],
 		banlist: ['Damp Rock', 'Eviolite', 'Heat Rock'],
 		onModifySpecies(species, target, source, effect) {
 			if (!species.baseStats) return;
@@ -1081,12 +1108,14 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			};
 			const tier = this.toID(species.tier) || 'ou';
 			if (!(tier in boosts)) return;
-			const pokemon: Species = this.dex.deepClone(species);
+			const pokemon = this.dex.deepClone(species);
+			pokemon.bst = 0;
 			const boost = boosts[tier];
 			let statName: StatName;
-			for (statName in pokemon.baseStats) {
+			for (statName in pokemon.baseStats as StatsTable) {
 				if (statName === 'hp') continue;
 				pokemon.baseStats[statName] = this.clampIntRange(pokemon.baseStats[statName] + boost, 1, 255);
+				pokemon.bst += pokemon.baseStats[statName];
 			}
 			return pokemon;
 		},
@@ -1102,14 +1131,15 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Standard', 'Dynamax Clause'],
 		banlist: [
 			'Calyrex-Ice', 'Calyrex-Shadow', 'Darmanitan-Galar', 'Dialga', 'Dracovish', 'Dragapult', 'Eternatus', 'Kyurem-Black', 'Kyurem-White',
-			'Giratina', 'Groudon', 'Ho-Oh', 'Kyogre', 'Lugia', 'Lunala', 'Magearna', 'Marshadow', 'Melmetal', 'Mewtwo', 'Necrozma-Dawn-Wings',
-			'Necrozma-Dusk-Mane', 'Palkia', 'Rayquaza', 'Reshiram', 'Solgaleo', 'Xerneas', 'Yveltal', 'Zacian', 'Zamazenta', 'Zekrom',
-			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
+			'Giratina', 'Giratina-Origin', 'Genesect', 'Groudon', 'Ho-Oh', 'Kartana', 'Kyogre', 'Lugia', 'Lunala', 'Magearna', 'Marshadow',
+			'Melmetal', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Pheromosa', 'Rayquaza', 'Reshiram',
+			'Solgaleo', 'Urshifu-Base', 'Xerneas', 'Yveltal', 'Zacian', 'Zacian-Crowned', 'Zamazenta', 'Zamazenta-Crowned', 'Zekrom', 'Zygarde-Base',
+			'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'Baton Pass',
 		],
 		restricted: [
-			'Baneful Bunker', 'Block', 'Copycat', 'Detect', 'Destiny Bond', 'Disable', 'Encore', 'Ingrain', 'King\'s Shield',
-			'Mean Look', 'move:Metronome', 'Obstruct', 'Octolock', 'Nature Power', 'Parting Shot', 'Psycho Shift', 'Protect',
-			'Roar', 'Skill Swap', 'Sleep Talk', 'Spiky Shield', 'Substitute', 'Teleport', 'Whirlwind', 'Wish', 'Yawn',
+			'Baneful Bunker', 'Block', 'Copycat', 'Corrosive Gas', 'Detect', 'Destiny Bond', 'Disable', 'Encore', 'Fairy Lock', 'Ingrain', 'Instruct',
+			'King\'s Shield', 'Mat Block', 'Mean Look', 'move:Metronome', 'Obstruct', 'Octolock', 'Nature Power', 'Parting Shot', 'Psycho Shift',
+			'Protect', 'Roar', 'Skill Swap', 'Sleep Talk', 'Spiky Shield', 'Substitute', 'Teleport', 'Whirlwind', 'Wish', 'Yawn',
 		],
 		onValidateTeam(team, format, teamHas) {
 			const problems = [];
@@ -1127,9 +1157,18 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 				this.ruleTable.isRestricted(`move:${ability.id}`) || set.moves.map(this.dex.toID).includes(ability.id)) {
 				return this.validateSet(set, teamHas);
 			}
+			if (ability.forceSwitch || ability.selfSwitch) {
+				return [
+					`Force-switching and self-switching moves are banned from being used as trademarks.`,
+					`(${ability.name} is a ${ability.forceSwitch ? 'force' : 'self'}-switching move.)`,
+				];
+			}
 			const customRules = this.format.customRules || [];
 			if (!customRules.includes('!obtainableabilities')) customRules.push('!obtainableabilities');
-			// const TeamValidator: new (format: string | Format) => TeamValidator = this.constructor as TeamValidator;
+
+			const TeamValidator: typeof import('../sim/team-validator').TeamValidator =
+				require('../sim/team-validator').TeamValidator;
+
 			const validator = new TeamValidator(dex.getFormat(`${this.format.id}@@@${customRules.join(',')}`));
 			const moves = set.moves;
 			set.moves = [ability.id];
@@ -1151,7 +1190,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 				return {
 					id: move.id,
 					name: move.name,
-					onStart(pokemon) {
+					onStart(this: Battle, pokemon: Pokemon) {
 						this.add('-activate', pokemon, 'ability: ' + move.name);
 						this.useMove(move, pokemon);
 					},
@@ -1397,10 +1436,10 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			return {...species, types: types};
 		},
 		onSwitchIn(pokemon) {
-			this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
+			this.add('-start', pokemon, 'typechange', (pokemon.illusion || pokemon).getTypes(true).join('/'), '[silent]');
 		},
 		onAfterMega(pokemon) {
-			this.add('-start', pokemon, 'typechange', pokemon.getTypes(true).join('/'), '[silent]');
+			this.add('-start', pokemon, 'typechange', (pokemon.illusion || pokemon).getTypes(true).join('/'), '[silent]');
 		},
 	},
 	{
@@ -1603,12 +1642,14 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			};
 			const tier = this.toID(species.tier) || 'ou';
 			if (!(tier in boosts)) return;
-			const pokemon: Species = this.dex.deepClone(species);
+			const pokemon = this.dex.deepClone(species);
+			pokemon.bst = 0;
 			const boost = boosts[tier];
 			let statName: StatName;
-			for (statName in pokemon.baseStats) {
+			for (statName in pokemon.baseStats as StatsTable) {
 				if (statName === 'hp') continue;
 				pokemon.baseStats[statName] = this.clampIntRange(pokemon.baseStats[statName] + boost, 1, 255);
+				pokemon.bst += pokemon.baseStats[statName];
 			}
 			return pokemon;
 		},

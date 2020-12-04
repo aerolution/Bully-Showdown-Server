@@ -7853,7 +7853,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		isNonstandard: "Past",
+		isNonstandard: "PastMove",
 		name: "Heart Swap",
 		pp: 10,
 		priority: 0,

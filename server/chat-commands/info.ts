@@ -898,7 +898,7 @@ export const commands: ChatCommands = {
 		if (!target) return this.parse('/help weakness');
 		if (!this.runBroadcast()) return;
 		target = target.trim();
-		const targets = target.split(/[,\/]/).map(toID);
+		const targets = target.split(/[,/]/).map(toID);
 		const maybeMod = targets[targets.length - 1];
 		let mod = Dex;
 		let format: Format | null = null;
@@ -1083,7 +1083,7 @@ export const commands: ChatCommands = {
 		if (!this.runBroadcast()) return;
 		if (!target) return this.parse("/help coverage");
 
-		const targets = target.split(/[,+]/);
+		const targets = target.split(/[,+/]/);
 		const sources: (string | Move)[] = [];
 		let dex = Dex;
 		if (room?.battle) {

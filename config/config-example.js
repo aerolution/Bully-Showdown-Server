@@ -96,12 +96,10 @@ exports.proxyip = false;
  *
  * Write heapdumps if that processs run out of memory.
  *
- * If you wish to enable this, you will need to install node-oom-heapdump:
+ * If you wish to enable this, you will need to install node-oom-heapdump,
+ * as it is sometimes not installed by default:
  *
- *     $ npm install --no-save node-oom-heapdump
- *
- * We don't install it by default because it's super flaky and frequently
- * crashes the installation process.
+ *     $ npm install node-oom-heapdump
  *
  * You might also want to signal processes to put them in debug mode, for
  * access to on-demand heapdumps.
@@ -240,7 +238,7 @@ exports.reportjoinsperiod = 0;
  *   This feature can lag larger servers - turn this off if your server is
  *   getting more than 160 or so users.
  */
-exports.reportbattles = true;
+exports.reportbattles = false;
 
 /**
  * report joins and leaves in battle - shows messages like "<USERNAME> joined" in battle
@@ -282,7 +280,7 @@ exports.punishmentautolock = false;
  *   If this is set to `true`, only autoconfirmed users can send links to either chatrooms or other users, except for staff members.
  *   This option can be used if your server has trouble with spammers mass PMing links to users, or trolls sending malicious links.
  */
-exports.restrictLinks = false;
+exports.restrictLinks = true;
 
 /**
  * whitelist - prevent users below a certain group from doing things
@@ -365,7 +363,7 @@ exports.watchconfig = true;
 /**
  * logchat - whether to log chat rooms.
  */
-exports.logchat = false;
+exports.logchat = true;
 
 /**
  * logchallenges - whether to log challenge battles. Useful for tournament servers.
@@ -488,6 +486,7 @@ exports.lastfmkey = '';
  * @type {'ripgrep' | 'fs'}
  */
 exports.chatlogreader = 'fs';
+
 /**
  * permissions and groups:
  *   Each entry in `grouplist` is a seperate group. Some of the members are "special"
@@ -563,8 +562,8 @@ exports.grouplist = [
 		inherit: '@',
 		jurisdiction: 'u',
 		globalonly: true,
-		
-		promote: '&u',
+	
+		promote: '@u',
 		roomowner: true,
 		roombot: true,
 		roommod: true,
@@ -572,7 +571,6 @@ exports.grouplist = [
 		globalban: true,
 		forcewin: true,
 		declare: true,
-		addhtml: true,
 		rangeban: true,
 		makeroom: true,
 		editroom: true,
@@ -622,38 +620,40 @@ exports.grouplist = [
 		inherit: '%',
 		jurisdiction: 'u',
 
-		announce: true,
-        warn: '\u2606u',
-        kick: true,
-        mute: '\u2606u',
-        lock: true,
-        forcerename: true,
-        ban: true,
-        modlog: true,
-        modchatall: true,
-        roomvoice: true,
-        forcerename: true,
-        ip: true,
-        alts: '@u',
-        receiveauthmessages: true,
-        gamemoderation: true,
-        jeopardy: true,
-        minigame: true,
-        modchat: true,
-        tournaments: true,
-        game: true,
+		ban: true,
+		modchat: 'a',
+		roomvoice: true,
+		roomwhitelist: true,
+		forcerename: true,
+		ip: true,
+		alts: '@u',
+		game: true,
 	},
 	{
 		symbol: '%',
 		id: "driver",
-		name: "Big Fan",
+		name: "Driver",
 		inherit: '+',
 		jurisdiction: 'u',
+		globalGroupInPersonalRoom: '@',
 
+		announce: true,
+		warn: '\u2605u',
+		kick: true,
+		mute: '\u2605u',
+		lock: true,
+		forcerename: true,
 		timer: true,
-        alts: '%u',
-        bypassblocks: 'u%@&~',
-        joinbattle: true,
+		modlog: true,
+		alts: '%u',
+		bypassblocks: 'u%@&~',
+		receiveauthmessages: true,
+		gamemoderation: true,
+		jeopardy: true,
+		joinbattle: true,
+		minigame: true,
+		modchat: true,
+		hiderank: true,
 	},
 	{
 		// Bots are ranked below Driver/Mod so that Global Bots can be kept out
@@ -689,6 +689,7 @@ exports.grouplist = [
 		modchat: true,
 		editprivacy: true,
 		gamemanagement: true,
+		tournaments: true,
 		joinbattle: true,
 		nooverride: true,
 	},
@@ -708,9 +709,15 @@ exports.grouplist = [
 	},
 	{
 		symbol: '^',
-		id: "prizewinner",
-		name: "Prize Winner",
-		roomonly: true,
+		id: "bigfan",
+		name: "Big Fan",
+		inherit: ' ',
+
+		altsself: true,
+		show: true,
+		showmedia: true,
+		exportinputlog: true,
+		importinputlog: true,
 	},
 	{
 		symbol: 'whitelist',

@@ -106,18 +106,19 @@ Free Baton Pass (GoodMorningCrono#1726)
 Jackinev (Jackinev#9756)
 
 **Leaders** (&):
-Beezle (Beezle#2412)
-Miocchi (Mio#1041)
-Princess Furfrou (Princess#6721)
-
-**Moderators** (@):
 angryairair (woodlandapple#5780)
+Beezle (Beezle#2412)
 Kaltchre (Kalt#7849)
+Miocchi (Mia#5683)
+Princess Furfrou (thanks sj#6721)
 Venuaur (Venuaur#2153)
 
-
-
-__NOTE: If you're a league owner/admin, you can request the Big Fan role to gain timer and modjoin permissions. Please contact us on Discord.__`);
+**Moderators** (@):
+BoomBoomBoo (consequences#0352)
+Hikertoad (Hikertoad#0648)
+NarthVader (Narth#1623)
+PerfecteBlu (Blu#9129)
+st. ihiihuio ♫ (Saint#0007)`);
 	},
 	
 };

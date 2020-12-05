@@ -482,7 +482,7 @@ export const Formats: {[k: string]: FormatData} = {
 		onValidateTeam(team) {
 			const itemTable: {[k: string]: number} = {};
 			for (const set of team) {
-				const item = toID(set.item);
+				const item = this.toID(set.item);
 				if (!item) continue;
 				if (item in itemTable) {
 					if (itemTable[item] >= 2) {

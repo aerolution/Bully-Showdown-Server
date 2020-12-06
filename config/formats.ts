@@ -545,6 +545,12 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		searchShow: false,
 		ruleset: ['-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', 'Draft', 'Team Preview'],
 	},
+	{
+		name: "[Gen 6] Draft League",
+
+		mod: 'gen6',
+		ruleset: ['Obtainable', '+Unreleased', 'Draft', 'Team Preview'],
+	},
 	
 	
 	

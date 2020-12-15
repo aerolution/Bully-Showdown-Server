@@ -150,7 +150,7 @@ st. ihiihuio ♫ (Saint#0007)`);
 					`</td>` + 
 				`</tr>` + 
 			`</table>`;
-		return this.sendReply(`|raw|<div>${reply}</div>`);
+		return this.sendReply(`|raw|<div class="infobox infobox-limited">${reply}</div>`);
 	},
 	
 };

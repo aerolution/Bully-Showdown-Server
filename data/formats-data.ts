@@ -292,7 +292,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	sandslash: {
-		randomBattleMoves: ["earthquake", "swordsdance", "rapidspin", "toxic", "stealthrock", "knockoff", "spikes"],
+		randomBattleMoves: ["earthquake", "swordsdance", "rapidspin", "stoneedge", "stealthrock", "knockoff", "spikes"],
 		randomBattleLevel: 88,
 		randomDoubleBattleMoves: ["drillrun", "knockoff", "protect", "stealthrock", "stoneedge", "swordsdance"],
 		randomDoubleBattleLevel: 88,
@@ -551,7 +551,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	arcanine: {
-		randomBattleMoves: ["closecombat", "extremespeed", "flareblitz", "morningsun", "toxic", "wildcharge", "willowisp"],
+		randomBattleMoves: ["closecombat", "extremespeed", "flareblitz", "morningsun", "wildcharge", "willowisp"],
 		randomBattleLevel: 84,
 		randomDoubleBattleMoves: ["closecombat", "extremespeed", "flareblitz", "morningsun", "protect", "snarl", "willowisp"],
 		randomDoubleBattleLevel: 84,
@@ -706,7 +706,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	slowpoke: {
-		randomBattleMoves: ["calmmind", "icebeam", "psyshock", "scald", "slackoff", "teleport", "toxic"],
+		randomBattleMoves: ["calmmind", "icebeam", "psyshock", "scald", "slackoff", "teleport", "thunderwave"],
 		tier: "LC",
 	},
 	slowpokegalar: {
@@ -715,7 +715,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	slowbro: {
-		randomBattleMoves: ["futuresight", "icebeam", "scald", "slackoff", "teleport", "thunderwave"],
+		randomBattleMoves: ["calmmind", "psyshock", "icebeam", "scald", "slackoff", "teleport", "thunderwave"],
 		randomBattleLevel: 84,
 		randomDoubleBattleMoves: ["calmmind", "fireblast", "icebeam", "psychic", "scald", "slackoff", "trickroom"],
 		randomDoubleBattleLevel: 84,
@@ -735,7 +735,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "(DUU)",
 	},
 	slowking: {
-		randomBattleMoves: ["fireblast", "futuresight", "psyshock", "scald", "slackoff", "teleport", "toxic", "trick"],
+		randomBattleMoves: ["fireblast", "futuresight", "scald", "slackoff", "teleport", "thunderwave", "nastyplot"],
 		randomBattleLevel: 86,
 		randomDoubleBattleMoves: ["fireblast", "icebeam", "nastyplot", "psychic", "scald", "slackoff", "trickroom"],
 		randomDoubleBattleLevel: 84,
@@ -760,7 +760,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "NFE",
 	},
 	magnezone: {
-		randomBattleMoves: ["bodypress", "flashcannon", "toxic", "thunderbolt", "voltswitch"],
+		randomBattleMoves: ["bodypress", "flashcannon", "substitute", "thunderbolt", "voltswitch", "irondefense"],
 		randomBattleLevel: 84,
 		randomDoubleBattleMoves: ["allyswitch", "bodypress", "electroweb", "flashcannon", "protect", "thunderbolt", "voltswitch"],
 		randomDoubleBattleLevel: 88,
@@ -1362,7 +1362,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		doublesTier: "NFE",
 	},
 	porygonz: {
-		randomBattleMoves: ["triattack", "icebeam", "thunderbolt", "shadowball", "trick", "nastyplot", "recover"],
+		randomBattleMoves: ["triattack", "icebeam", "thunderbolt", "trick", "nastyplot", "recover"],
 		randomBattleLevel: 82,
 		randomDoubleBattleMoves: ["darkpulse", "icebeam", "protect", "thunderbolt", "triattack", "trick"],
 		randomDoubleBattleLevel: 84,
@@ -2981,7 +2981,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Illegal",
 	},
 	jirachi: {
-		randomBattleMoves: ["bodyslam", "firepunch", "ironhead", "stealthrock", "toxic", "trick", "uturn"],
+		randomBattleMoves: ["bodyslam", "firepunch", "ironhead", "stealthrock", "healingwish", "trick", "uturn"],
 		randomBattleLevel: 82,
 		randomDoubleBattleMoves: ["firepunch", "followme", "ironhead", "lifedew", "protect", "thunderwave"],
 		randomDoubleBattleLevel: 76,

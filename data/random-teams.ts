@@ -728,7 +728,7 @@ export class RandomTeams {
 					}
 					break;
 				case 'solarbeam':
-					if (!hasMove['sunnyday']) rejected = true;
+					if (!hasMove['sunnyday'] && !teamDetails.sun) rejected = true;
 					break;
 				case 'switcheroo': case 'trick':
 					if (counter.Physical + counter.Special < 3 || hasMove['futuresight'] || hasMove['rapidspin']) rejected = true;
@@ -745,6 +745,9 @@ export class RandomTeams {
 				case 'zenheadbutt':
 					if (movePool.includes('boltstrike')) rejected = true;
 					if (hasMove['psychic'] || movePool.includes('bellydrum') || movePool.includes('highjumpkick') || hasMove['bellydrum'] && hasMove['substitute']) rejected = true;
+					break;
+				case 'irondefense':
+					if (!hasMove['bodypress']) rejected = true;
 					break;
 
 				// Set up once and only if we have the moves for it
@@ -903,8 +906,8 @@ export class RandomTeams {
 					if (hasMove['scald'] && ((counter.Special < 4 && !hasMove['uturn']) || (species.types.length > 1 && counter.stab < 3))) rejected = true;
 					break;
 				case 'liquidation':
-					if (hasMove['scald']) rejected = true;
-					if (!hasMove['raindance'] && movePool.includes('scald')) rejected = true;
+					if (hasMove['scald'] || hasMove['hydropump']) rejected = true;
+					if (!hasMove['raindance'] && !teamDetails.rain && movePool.includes('scald')) rejected = true;
 					break;
 				case 'scald':
 					if (hasMove['waterpulse'] || hasMove['originpulse']) rejected = true;

@@ -64,6 +64,10 @@ export const commands: ChatCommands = {
 + National Dex Dynamax rules
 + Doubles format
 
+**National Dex Doubles Unrestricted**:
++ National Dex Unrestricted rules
++ Doubles format
+
 **National Dex VGC**:
 + National Dex Dynamax rules
 + Doubles format
@@ -127,26 +131,32 @@ st. ihiihuio ♫ (Saint#0007)`);
 			`<table style="text-align: center; line-height: 1.5; width: 100%; border-collapse: collapse">` +
 				`<tr style="border: 1px solid black; background: rgba(0 , 0 , 0 , 0.2)">` + 
 					`<td style="width: 50%; padding: 10px;"><img src="https://i.imgur.com/pUDYSMe.png" width="120" height="120" /></td>` + 
-					`<td>` + 
-						`<span style="font-size: 16px;"><b>DGBA</b></span><br>` + 
-						`Owner(s): <button style="color: blue; text-decoration: underline; border: none; background: none; padding: 0; height: -20em; font-family: verdana, sans-serif; font-size: 12px; cursor: pointer" name="parseCommand" value="/user CRU Jack">Jack</button>, <button style="color: blue; text-decoration: underline; border: none; background: none; padding: 0; height: -20em; font-family: verdana, sans-serif; font-size: 12px; cursor: pointer" name="parseCommand" value="/user Bontz">Haz</button><br><br>` + 
-						`<b><a href="https://forms.gle/wVSRLJruWjWByfvYA">DGBA Aspire S1 Application</a></b>` +
-						`<a href="DGBA">Chatroom</a> | <a href="https://discord.gg/7N9nhtacpS">Discord</a>` + 
+					`<td style="padding: 5px 0 5px 0">` +
+						`<img src="https://i.imgur.com/Uha1RwV.png" width="133" height="30" /><br>` +
+						`Owner(s):<br>` +
+						`<button style="color: blue; text-decoration: underline; border: none; background: none; padding: 0; height: -20em; font-family: verdana, sans-serif; font-size: 12px; cursor: pointer" name="parseCommand" value="/user CRU Jack">Jack</button>, <button style="color: blue; text-decoration: underline; border: none; background: none; padding: 0; height: -20em; font-family: verdana, sans-serif; font-size: 12px; cursor: pointer" name="parseCommand" value="/user Bontz">Haz</button><br>` +
+						`Links:<br>` +
+						`<b><a href="https://forms.gle/wVSRLJruWjWByfvYA">DGBA Aspire S1 Application</a></b><br>` +
+						`<a href="DGBA">Chatroom</a>, <a href="https://discord.gg/7N9nhtacpS">Discord</a>` + 
 					`</td>` + 
 				`</tr>` + 
 				`<tr style="border: 1px solid black; background: rgba(0 , 0 , 0 , 0.1)">` + 
 					`<td style="width: 50%; padding: 10px;"><img src="https://i.imgur.com/z6GPTw6.png" width="138" height="120" /></td>` + 
-					`<td>` + 
-						`<span style="font-size: 16px;"><b>DPL</b></span><br>` + 
-						`Owner(s): <button style="color: blue; text-decoration: underline; border: none; background: none; padding: 0; height: -20em; font-family: verdana, sans-serif; font-size: 12px; cursor: pointer" name="parseCommand" value="/user King L5">King L5</button>, <button style="color: blue; text-decoration: underline; border: none; background: none; padding: 0; height: -20em; font-family: verdana, sans-serif; font-size: 12px; cursor: pointer" name="parseCommand" value="/user PerfecteBlu">Blu</button><br><br>` + 
+					`<td style="padding: 5px 0 5px 0">` + 
+						`<img src="https://i.imgur.com/xgLd1lI.png" width="133" height="30" /><br>` +
+						`Owner(s):<br>` +
+						`<button style="color: blue; text-decoration: underline; border: none; background: none; padding: 0; height: -20em; font-family: verdana, sans-serif; font-size: 12px; cursor: pointer" name="parseCommand" value="/user King L5">King L5</button>, <button style="color: blue; text-decoration: underline; border: none; background: none; padding: 0; height: -20em; font-family: verdana, sans-serif; font-size: 12px; cursor: pointer" name="parseCommand" value="/user PerfecteBlu">Blu</button><br>` +
+						`Links:<br>` +
 						`<a href="DPL">Chatroom</a> | <a href="https://discord.gg/zVQZgaMksw">Discord</a>` + 
 					`</td>` + 
 				`</tr>` + 
 				`<tr style="border: 1px solid black; background: rgba(0 , 0 , 0 , 0.2)">` + 
 					`<td style="width: 50%; padding: 10px;"><img src="https://i.imgur.com/D6N6RnX.png" width="120" height="120" /></td>` + 
-					`<td>` + 
-						`<span style="font-size: 16px;"><b>OLT</b></span><br>` + 
-						`Owner(s): <button style="color: blue; text-decoration: underline; border: none; background: none; padding: 0; height: -20em; font-family: verdana, sans-serif; font-size: 12px; cursor: pointer" name="parseCommand" value="/user st. ihiihuio">Saint</button><br><br>` + 
+					`<td style="padding: 5px 0 5px 0">` +  
+						`<img src="https://i.imgur.com/QfnNJen.png" width="133" height="30" /><br>` +
+						`Owner(s):<br>` +
+						`<button style="color: blue; text-decoration: underline; border: none; background: none; padding: 0; height: -20em; font-family: verdana, sans-serif; font-size: 12px; cursor: pointer" name="parseCommand" value="/user st. ihiihuio">Saint</button><br>` + 
+						`Links:<br>` +
 						`<a href="OLT">Chatroom</a>` + 
 					`</td>` + 
 				`</tr>` + 

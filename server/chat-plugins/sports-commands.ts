@@ -130,7 +130,8 @@ st. ihiihuio ♫ (Saint#0007)`);
 					`<td>` + 
 						`<span style="font-size: 16px;"><b>DGBA</b></span><br>` + 
 						`Owner(s): <button style="color: blue; text-decoration: underline; border: none; background: none; padding: 0; height: -20em; font-family: verdana, sans-serif; font-size: 12px; cursor: pointer" name="parseCommand" value="/user CRU Jack">Jack</button>, <button style="color: blue; text-decoration: underline; border: none; background: none; padding: 0; height: -20em; font-family: verdana, sans-serif; font-size: 12px; cursor: pointer" name="parseCommand" value="/user Bontz">Haz</button><br><br>` + 
-						`| <a href="DGBA">Chatroom</a> | <a href="https://discord.gg/7N9nhtacpS">Discord</a> |` + 
+						`<b><a href="https://forms.gle/wVSRLJruWjWByfvYA">DGBA Aspire S1 Application</a></b>` +
+						`<a href="DGBA">Chatroom</a> | <a href="https://discord.gg/7N9nhtacpS">Discord</a>` + 
 					`</td>` + 
 				`</tr>` + 
 				`<tr style="border: 1px solid black; background: rgba(0 , 0 , 0 , 0.1)">` + 
@@ -138,7 +139,7 @@ st. ihiihuio ♫ (Saint#0007)`);
 					`<td>` + 
 						`<span style="font-size: 16px;"><b>DPL</b></span><br>` + 
 						`Owner(s): <button style="color: blue; text-decoration: underline; border: none; background: none; padding: 0; height: -20em; font-family: verdana, sans-serif; font-size: 12px; cursor: pointer" name="parseCommand" value="/user King L5">King L5</button>, <button style="color: blue; text-decoration: underline; border: none; background: none; padding: 0; height: -20em; font-family: verdana, sans-serif; font-size: 12px; cursor: pointer" name="parseCommand" value="/user PerfecteBlu">Blu</button><br><br>` + 
-						`| <a href="DPL">Chatroom</a> | <a href="https://discord.gg/zVQZgaMksw">Discord</a> |` + 
+						`<a href="DPL">Chatroom</a> | <a href="https://discord.gg/zVQZgaMksw">Discord</a>` + 
 					`</td>` + 
 				`</tr>` + 
 				`<tr style="border: 1px solid black; background: rgba(0 , 0 , 0 , 0.2)">` + 
@@ -146,7 +147,7 @@ st. ihiihuio ♫ (Saint#0007)`);
 					`<td>` + 
 						`<span style="font-size: 16px;"><b>OLT</b></span><br>` + 
 						`Owner(s): <button style="color: blue; text-decoration: underline; border: none; background: none; padding: 0; height: -20em; font-family: verdana, sans-serif; font-size: 12px; cursor: pointer" name="parseCommand" value="/user st. ihiihuio">Saint</button><br><br>` + 
-						`| <a href="OLT">Chatroom</a> |` + 
+						`<a href="OLT">Chatroom</a>` + 
 					`</td>` + 
 				`</tr>` + 
 			`</table>`;

@@ -408,6 +408,10 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	melmetalgmax: {
 		isNonstandard: "Past",
 	},
+	zarudedada: {
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
+	},
 	regieleki: {
 		isNonstandard: "Unobtainable",
 		tier: "Unreleased",

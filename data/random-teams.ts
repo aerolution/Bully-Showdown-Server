@@ -970,6 +970,7 @@ export class RandomTeams {
 					break;
 				case 'poisonjab':
 					if (!hasType['Poison'] && counter.Status >= 2) rejected = true;
+					if (hasMove['gunkshot']) rejected = true;
 					break;
 				case 'earthpower':
 					if (hasMove['earthquake'] && counter.setupType !== 'Special') rejected = true;
@@ -1050,6 +1051,9 @@ export class RandomTeams {
 					break;
 				case 'scaleshot':
 					if (!hasMove['swordsdance']) rejected = true;
+					break;
+				case 'crunch':
+					if (hasMove['suckerpunch']) rejected = true;
 					break;
 				case 'darkestlariat':
 					if (hasMove['knockoff']) rejected = true;

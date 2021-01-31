@@ -106,7 +106,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen8',
 		gameType: 'doubles',
-		ruleset: ['Draft', '+Unreleased', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+PastMove', 'Team Preview' '!Sleep Clause Mod'],
+		ruleset: ['Draft', '+Unreleased', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+PastMove', 'Team Preview', '!Sleep Clause Mod'],
 	},
 	{
 		name: "[Gen 8] National Dex VGC",
@@ -226,7 +226,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		column: 2,
 	},
 	{
-		name: "[Gen 8] DGBA Aspire",
+		name: "[Gen 8] (National Dex) DGBA Aspire",
 
 		mod: 'gen8',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],

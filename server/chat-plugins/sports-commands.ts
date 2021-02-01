@@ -147,7 +147,7 @@ st. ihiihuio ♫ (Saint#0007)`);
 						`Owner(s):<br>` +
 						`<button style="color: blue; text-decoration: underline; border: none; background: none; padding: 0; height: -20em; font-family: verdana, sans-serif; font-size: 12px; cursor: pointer" name="parseCommand" value="/user King L5">King L5</button>, <button style="color: blue; text-decoration: underline; border: none; background: none; padding: 0; height: -20em; font-family: verdana, sans-serif; font-size: 12px; cursor: pointer" name="parseCommand" value="/user PerfecteBlu">Blu</button><br>` +
 						`Links:<br>` +
-						`<a href="DPL">Chatroom</a> | <a href="https://discord.gg/zVQZgaMksw">Discord</a>` + 
+						`<a href="DPL">Chatroom</a>, <a href="https://discord.gg/zVQZgaMksw">Discord</a>` + 
 					`</td>` + 
 				`</tr>` + 
 				`<tr style="border: 1px solid black; background: rgba(0 , 0 , 0 , 0.2)">` + 

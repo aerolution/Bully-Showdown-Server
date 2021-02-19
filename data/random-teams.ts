@@ -1073,6 +1073,12 @@ export class RandomTeams {
 			const stabs = counter[species.types[0]] + (counter[species.types[1]] || 0);
 			if (!hasType[move.type] || stabs > 1 || counter[move.category] < 2) return {cull: true};
 		}
+		
+		// Reject move if banned by the format
+		if (this.format.randomBanlist && this.format.randomBanlist.includes(moveid)) return {cull: true};
+				
+		// Limit to 3 set up Pokemon per teams
+		if (!['bellydrum', 'shellsmash', 'clangoroussoul', 'quiverdance', 'superpower'].includes(moveid) && isSetup && teamDetails.setup && teamDetails.setup > 2) return {cull: true};
 
 		return {cull: false};
 	}
@@ -1221,7 +1227,7 @@ export class RandomTeams {
 		case 'Unaware':
 			return (counter.setupType || hasMove['fireblast']);
 		case 'Unburden':
-			return (hasAbility['Prankster'] || !counter.setupType && !isDoubles);
+			return (this.format.forceItem || hasAbility['Prankster'] || !counter.setupType && !isDoubles && !hasMove['acrobatics']);
 		case 'Volt Absorb':
 			return (this.dex.getEffectiveness('Electric', species) < -1);
 		case 'Water Absorb':
@@ -1710,8 +1716,16 @@ export class RandomTeams {
 		if (species.baseSpecies === 'Pikachu') {
 			forme = 'Pikachu' + this.sample(['', '-Original', '-Hoenn', '-Sinnoh', '-Unova', '-Kalos', '-Alola', '-Partner', '-World']);
 		}
+		
+		// forceItem
+		if (this.format.forceItem) item = this.sample(this.format.forceItem);
 
-		const level: number = (isDoubles ? species.randomDoubleBattleLevel : species.randomBattleLevel) || 80;
+		let level: number = (isDoubles ? species.randomDoubleBattleLevel : species.randomBattleLevel) || 80;
+		
+		// level100
+		if (this.format.level100) {
+			level = 100;
+		}
 
 		// Prepare optimal HP
 		const srImmunity = ability === 'Magic Guard' || item === 'Heavy-Duty Boots';
@@ -1776,6 +1790,12 @@ export class RandomTeams {
 		for (const id in this.dex.data.FormatsData) {
 			let species = this.dex.getSpecies(id);
 			if (species.gen > this.gen || exclude.includes(species.id)) continue;
+			if (!species.randomBattleMoves) continue;
+			// Remove banned Pokemon
+			if (this.format.randomBanlist && this.format.randomBanlist.includes(species.name)) continue;
+			if (this.format.randomBanlist && this.format.randomBanlist.includes(species.baseSpecies)) continue;
+			// Remove unevolved Pokemon, unless they're specifically allowed by the format
+			if (!this.format.allowUnevolved && (species.nfe || species.name === 'Meltan') && (this.format.forceItem || !allowedNFE.includes(species.name))) continue;
 			if (isMonotype) {
 				if (!species.types.includes(type)) continue;
 				if (typeof species.battleOnly === 'string') {

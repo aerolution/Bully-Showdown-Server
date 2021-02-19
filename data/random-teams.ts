@@ -1075,10 +1075,7 @@ export class RandomTeams {
 		}
 		
 		// Reject move if banned by the format
-		if (this.format.randomBanlist && this.format.randomBanlist.includes(moveid)) return {cull: true};
-				
-		// Limit to 3 set up Pokemon per teams
-		if (!['bellydrum', 'shellsmash', 'clangoroussoul', 'quiverdance', 'superpower'].includes(moveid) && isSetup && teamDetails.setup && teamDetails.setup > 2) return {cull: true};
+		if (this.format.randomBanlist && this.format.randomBanlist.includes(move.id)) return {cull: true};
 
 		return {cull: false};
 	}
@@ -1720,7 +1717,38 @@ export class RandomTeams {
 		// forceItem
 		if (this.format.forceItem) item = this.sample(this.format.forceItem);
 
-		let level: number = (isDoubles ? species.randomDoubleBattleLevel : species.randomBattleLevel) || 80;
+		let level: number;
+
+		if (!isDoubles) {
+			if (species.randomBattleLevel) level = species.randomBattleLevel;
+			else {
+				const levelScale: {[tier: string]: number} = {
+					uber: 72, ou: 80, uu: 82, ru: 84, nu: 86, pu: 88,
+				};
+				const customScale: {[species: string]: number} = {
+					Glalie: 72, 'Darmanitan-Galar-Zen': 80, Wobbuffet: 80, Zygarde: 80,
+					Delibird: 100, Shedinja: 100,
+				};
+				let tier = toID((species.isGigantamax ? this.dex.getSpecies(species.baseSpecies) : species).tier).replace('bl', '');
+				// For future DLC Pokemon
+				if (tier === 'illegal') {
+					tier = toID(this.dex.mod('gen7').getSpecies(species.name).tier);
+					switch (tier) {
+					case 'uubl': case 'uu':
+						tier = 'ou';
+						break;
+					case 'rubl': case 'ru':
+						tier = 'uu';
+						break;
+					case 'nubl': case 'nu': case 'publ': case 'pu':
+						tier = 'ru';
+						break;
+					}
+				}
+				level = levelScale[tier] || (species.nfe ? 90 : 80);
+				if (customScale[species.name]) level = customScale[species.name];
+			}
+		} else level = species.randomDoubleBattleLevel || 80;
 		
 		// level100
 		if (this.format.level100) {

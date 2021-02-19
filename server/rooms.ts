@@ -28,9 +28,7 @@ const LAST_BATTLE_WRITE_THROTTLE = 10;
 
 const RETRY_AFTER_LOGIN = null;
 
-import {FS} from '../lib/fs';
-import {Utils} from '../lib/utils';
-import {WriteStream} from '../lib/streams';
+import {FS, Utils, Streams} from '../lib';
 import {GTSGiveaway, LotteryGiveaway, QuestionGiveaway} from './chat-plugins/wifi';
 import {QueuedHunt} from './chat-plugins/scavengers';
 import {ScavengerGameTemplate} from './chat-plugins/scavenger-games';
@@ -958,6 +956,7 @@ export abstract class BasicRoom {
 			this.reportJoin('n', user.getIdentityWithStatus(this.roomid) + '|' + oldid, user);
 		}
 		this.minorActivity?.onRename?.(user, oldid, joining);
+		this.checkAutoModchat(user);
 		return true;
 	}
 	/**
@@ -986,7 +985,7 @@ export abstract class BasicRoom {
 			this.reportJoin('l', user.getIdentity(this.roomid), user);
 		}
 		if (this.game && this.game.onLeave) this.game.onLeave(user);
-
+		this.runAutoModchat();
 
 		return true;
 	}
@@ -1100,7 +1099,7 @@ export class GlobalRoomState {
 	 * Rooms that users autojoin upon logging in
 	 */
 	readonly modjoinedAutojoinList: RoomID[];
-	readonly ladderIpLog: WriteStream;
+	readonly ladderIpLog: Streams.WriteStream;
 	readonly reportUserStatsInterval: NodeJS.Timeout;
 	lockdown: boolean | 'pre' | 'ddos';
 	battleCount: number;
@@ -1182,7 +1181,7 @@ export class GlobalRoomState {
 		} else {
 			// Prevent there from being two possible hidden classes an instance
 			// of GlobalRoom can have.
-			this.ladderIpLog = new WriteStream({write() { return undefined; }});
+			this.ladderIpLog = new Streams.WriteStream({write() { return undefined; }});
 		}
 		// Create writestream for modlog
 		Rooms.Modlog.initialize('global');

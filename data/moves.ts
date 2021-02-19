@@ -793,7 +793,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 					}
 					if (!target.getMoveHitData(move).crit && !move.infiltrates) {
 						this.debug('Aurora Veil weaken');
-						if (target.side.active.length > 1) return this.chainModify([0xAAC, 0x1000]);
+						if (target.side.active.length > 1) return this.chainModify([2732, 4096]);
 						return this.chainModify(0.5);
 					}
 				}
@@ -4069,7 +4069,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onBasePower(basePower, attacker, defender, move) {
 				if (move.type === 'Electric' && attacker.isGrounded() && !attacker.isSemiInvulnerable()) {
 					this.debug('electric terrain boost');
-					return this.chainModify([0x14CD, 0x1000]);
+					return this.chainModify([5325, 4096]);
 				}
 			},
 			onStart(battle, source, effect) {
@@ -5483,6 +5483,9 @@ export const Moves: {[moveid: string]: MoveData} = {
 				if (move.category !== 'Status') {
 					pokemon.volatiles['focuspunch'].lostFocus = true;
 				}
+			},
+			onTryAddVolatile(status, pokemon) {
+				if (status.id === 'flinch') return null;
 			},
 		},
 		secondary: null,
@@ -7178,7 +7181,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				}
 				if (move.type === 'Grass' && attacker.isGrounded()) {
 					this.debug('grassy terrain boost');
-					return this.chainModify([0x14CD, 0x1000]);
+					return this.chainModify([5325, 4096]);
 				}
 			},
 			onStart(battle, source, effect) {
@@ -7285,7 +7288,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			},
 			onModifyAccuracy(accuracy) {
 				if (typeof accuracy !== 'number') return;
-				return this.chainModify([0x1AB8, 0x1000]);
+				return this.chainModify([6840, 4096]);
 			},
 			onDisableMove(pokemon) {
 				for (const moveSlot of pokemon.moveSlots) {
@@ -9670,7 +9673,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				if (target !== source && target.side === this.effectData.target && this.getCategory(move) === 'Special') {
 					if (!target.getMoveHitData(move).crit && !move.infiltrates) {
 						this.debug('Light Screen weaken');
-						if (target.side.active.length > 1) return this.chainModify([0xAAC, 0x1000]);
+						if (target.side.active.length > 1) return this.chainModify([2732, 4096]);
 						return this.chainModify(0.5);
 					}
 				}
@@ -11627,7 +11630,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onBasePower(basePower, attacker, defender, move) {
 				if (move.type === 'Electric') {
 					this.debug('mud sport weaken');
-					return this.chainModify([0x548, 0x1000]);
+					return this.chainModify([1352, 4096]);
 				}
 			},
 			onResidualOrder: 21,
@@ -13211,7 +13214,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onBasePower(basePower, attacker, defender, move) {
 				if (move.type === 'Psychic' && attacker.isGrounded() && !attacker.isSemiInvulnerable()) {
 					this.debug('psychic terrain boost');
-					return this.chainModify([0x14CD, 0x1000]);
+					return this.chainModify([5325, 4096]);
 				}
 			},
 			onStart(battle, source, effect) {
@@ -13839,7 +13842,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				if (target !== source && target.side === this.effectData.target && this.getCategory(move) === 'Physical') {
 					if (!target.getMoveHitData(move).crit && !move.infiltrates) {
 						this.debug('Reflect weaken');
-						if (target.side.active.length > 1) return this.chainModify([0xAAC, 0x1000]);
+						if (target.side.active.length > 1) return this.chainModify([2732, 4096]);
 						return this.chainModify(0.5);
 					}
 				}
@@ -17427,7 +17430,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 		onHit(target, source, move) {
 			const yourItem = target.takeItem(source);
 			const myItem = source.takeItem();
-			if (target.item || source.item || (!yourItem && !myItem)) {
+			const orbUser = ([382, 383].includes(target.baseSpecies.num) || [382, 383].includes(source.baseSpecies.num));
+			if (target.item || source.item || (!yourItem && !myItem) || (!yourItem && orbUser) || (!myItem && orbUser)) {
 				if (yourItem) target.item = yourItem.id;
 				if (myItem) source.item = myItem.id;
 				return false;
@@ -18437,7 +18441,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 		onHit(target, source, move) {
 			const yourItem = target.takeItem(source);
 			const myItem = source.takeItem();
-			if (target.item || source.item || (!yourItem && !myItem)) {
+			const orbUser = ([382, 383].includes(target.baseSpecies.num) || [382, 383].includes(source.baseSpecies.num));
+			if (target.item || source.item || (!yourItem && !myItem) || (!yourItem && orbUser) || (!myItem && orbUser)) {
 				if (yourItem) target.item = yourItem.id;
 				if (myItem) source.item = myItem.id;
 				return false;
@@ -19099,7 +19104,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onBasePower(basePower, attacker, defender, move) {
 				if (move.type === 'Fire') {
 					this.debug('water sport weaken');
-					return this.chainModify([0x548, 0x1000]);
+					return this.chainModify([1352, 4096]);
 				}
 			},
 			onResidualOrder: 21,

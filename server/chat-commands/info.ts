@@ -10,8 +10,7 @@
  */
 import * as net from 'net';
 import {YoutubeInterface} from '../chat-plugins/youtube';
-import {Utils} from '../../lib/utils';
-import {Net} from '../../lib/net';
+import {Net, Utils} from '../../lib';
 
 const ONLINE_SYMBOL = ` \u25C9 `;
 const OFFLINE_SYMBOL = ` \u25CC `;
@@ -413,7 +412,7 @@ export const commands: ChatCommands = {
 
 	async host(target, room, user, connection, cmd) {
 		if (!target) return this.parse('/help host');
-		this.checkCan('ip');
+		this.checkCan('alts');
 		target = target.trim();
 		if (!net.isIPv4(target)) return this.errorReply('You must pass a valid IPv4 IP to /host.');
 		const {dnsbl, host, hostType} = await IPTools.lookup(target);
@@ -477,46 +476,6 @@ export const commands: ChatCommands = {
 		return this.sendReply(results.join('; '));
 	},
 	ipsearchhelp: [`/ipsearch [ip|range|host], (room) - Find all users with specified IP, IP range, or host. If a room is provided only users in the room will be shown. Requires: &`],
-
-	us: 'usersearch',
-	usersearch(target) {
-		this.checkCan('lock');
-		target = toID(target);
-		if (!target) {
-			return this.parse(`/help usersearch`);
-		}
-		if (target.length < 3) {
-			return this.errorReply(`That's too short of a term to search for.`);
-		}
-		const results: {offline: string[], online: string[]} = {
-			offline: [],
-			online: [],
-		};
-
-		for (const curUser of Users.users.values()) {
-			if (!curUser.id.includes(target) || curUser.id.startsWith('guest')) continue;
-			if (curUser.connected) {
-				results.online.push(Utils.html`${ONLINE_SYMBOL} ${curUser.name}`);
-			} else {
-				results.offline.push(Utils.html`${OFFLINE_SYMBOL} ${curUser.name}`);
-			}
-		}
-		for (const k in results) {
-			Utils.sortBy(results[k as keyof typeof results], result => toID(result));
-		}
-		let resultString = `Users with a name matching '${target}':<br />`;
-		if (!results.offline.length && !results.online.length) {
-			resultString += `No users found.`;
-		} else {
-			resultString += results.online.join('; ');
-			if (results.offline.length) {
-				resultString += `<br /><br />`;
-				resultString += results.offline.join('; ');
-			}
-		}
-		return this.sendReplyBox(resultString);
-	},
-	usersearchhelp: [`/usersearch [pattern]: Looks for all names matching the [pattern]. Requires: % @ &`],
 
 	checkchallenges(target, room, user) {
 		room = this.requireRoom();
@@ -1651,7 +1610,6 @@ export const commands: ChatCommands = {
 			`<strong>lock</strong> - Locks a user (makes them unable to talk in any rooms or PM non-staff) for 2 days.`,
 			`<strong>weeklock</strong> - Locks a user for a week.`,
 			`<strong>namelock</strong> - Locks a user and prevents them from having a username for 2 days.`,
-			`<strong>groupchatban</strong> — Bans a user from creating or joining groupchats for a week or a month.`,
 			`<strong>globalban</strong> - Globally bans (makes them unable to connect and play games) for a week.`,
 		];
 
@@ -1757,7 +1715,8 @@ export const commands: ChatCommands = {
 			`- <a href="https://www.smogon.com/dp/articles/intro_comp_pokemon">An introduction to competitive Pok&eacute;mon</a><br />` +
 			`- <a href="https://www.smogon.com/sm/articles/sm_tiers">What do 'OU', 'UU', etc mean?</a><br />` +
 			`- <a href="https://www.smogon.com/dex/ss/formats/">What are the rules for each format?</a><br />` +
-			`- <a href="https://www.smogon.com/ss/articles/clauses">What is 'Sleep Clause' and other clauses?</a>`
+			`- <a href="https://www.smogon.com/ss/articles/clauses">What is 'Sleep Clause' and other clauses?</a><br />` +
+			`- <a href="https://www.smogon.com/articles/getting-started">Next Steps for Competitive Battling</a>`
 		);
 	},
 	introhelp: [
@@ -1832,6 +1791,7 @@ export const commands: ChatCommands = {
 		this.sendReplyBox(
 			`An introduction to the Create-A-Pok&eacute;mon project:<br />` +
 			`- <a href="https://www.smogon.com/cap/">CAP project website and description</a><br />` +
+			`- <a href="https://www.smogon.com/forums/forums/66/">CAP project discussion forum</a><br />` +
 			`- <a href="https://www.smogon.com/forums/threads/48782/">What Pok&eacute;mon have been made?</a><br />` +
 			`- <a href="https://www.smogon.com/forums/forums/477">Talk about the metagame here</a><br />` +
 			`- <a href="https://www.smogon.com/forums/threads/3671157/">Sample SS CAP teams</a>`

@@ -2,7 +2,7 @@
  * Poll chat plugin
  * By bumbadadabum and Zarel.
  */
-import {Utils} from '../../lib/utils';
+import {Utils} from '../../lib';
 
 const MINUTES = 60000;
 
@@ -436,45 +436,47 @@ export const commands: ChatCommands = {
 		},
 		viewqueuehelp: [`/viewqueue - view the queue of polls in the room. Requires: % @ # &`],
 
-		clearqueue: 'deletequeue',
-		deletequeue(target, room, user, connection, cmd) {
+		deletequeue(target, room, user) {
+			room = this.requireRoom();
+			if (!target) return this.parse('/help deletequeue');
+
+			this.checkCan('mute', null, room);
+			const queue = room.getMinorActivityQueue();
+			if (!queue) {
+				return this.errorReply(this.tr`The queue is already empty.`);
+			}
+			const slot = parseInt(target);
+			if (isNaN(slot)) {
+				return this.errorReply(this.tr`Can't delete poll at slot ${target} - "${target}" is not a number.`);
+			}
+			if (!queue[slot - 1]) return this.errorReply(this.tr`There is no poll in queue at slot ${slot}.`);
+
+			room.clearMinorActivityQueue(slot - 1);
+
+			room.modlog({
+				action: 'DELETEQUEUE',
+				loggedBy: user.id,
+				note: slot.toString(),
+			});
+			room.sendMods(this.tr`(${user.name} deleted the queued poll in slot ${slot}.)`);
+			room.update();
+			this.refreshPage(`pollqueue-${room.roomid}`);
+		},
+		deletequeuehelp: [
+			`/poll deletequeue [number] - deletes poll at the corresponding queue slot (1 = next, 2 = the one after that, etc). Requires: % @ # &`,
+		],
+		clearqueue(target, room, user, connection, cmd) {
 			room = this.requireRoom();
 			this.checkCan('mute', null, room);
 			const queue = room.getMinorActivityQueue();
 			if (!queue) {
 				return this.errorReply(this.tr`The queue is already empty.`);
 			}
-			if (cmd === 'deletequeue' && queue.length !== 1 && !target) {
-				return this.parse('/help deletequeue');
-			}
-			if (!target) {
-				room.clearMinorActivityQueue();
-				this.modlog('CLEARQUEUE');
-				this.sendReply(this.tr`Cleared poll queue.`);
-			} else {
-				const [slotString, roomid] = target.split(',');
-				const slot = parseInt(slotString);
-				const curRoom = roomid ? Rooms.search(roomid) : room;
-				if (!curRoom) return this.errorReply(this.tr`Room "${roomid}" not found.`);
-				if (isNaN(slot)) {
-					return this.errorReply(this.tr`Can't delete poll at slot ${slotString} - "${slotString}" is not a number.`);
-				}
-				if (!queue[slot - 1]) return this.errorReply(this.tr`There is no poll in queue at slot ${slot}.`);
-
-				curRoom.clearMinorActivityQueue(slot - 1);
-
-				curRoom.modlog({
-					action: 'DELETEQUEUE',
-					loggedBy: user.id,
-					note: slot.toString(),
-				});
-				curRoom.sendMods(this.tr`(${user.name} deleted the queued poll in slot ${slot}.)`);
-				curRoom.update();
-				this.refreshPage(`pollqueue-${curRoom.roomid}`);
-			}
+			room.clearMinorActivityQueue();
+			this.modlog('CLEARQUEUE');
+			this.sendReply(this.tr`Cleared poll queue.`);
 		},
-		deletequeuehelp: [
-			`/poll deletequeue [number] - deletes poll at the corresponding queue slot (1 = next, 2 = the one after that, etc). Requires: % @ # &`,
+		clearqueuehelp: [
 			`/poll clearqueue - deletes the queue of polls. Requires: % @ # &`,
 		],
 
@@ -617,7 +619,7 @@ export const pages: PageTable = {
 			const number = i + 1; // for translation convienence
 			const button = (
 				`<strong>${this.tr`#${number} in queue`} </strong>` +
-				`<button class="button" name="send" value="/poll deletequeue ${i + 1},${room.roomid}">` +
+				`<button class="button" name="send" value="/msgroom ${room.roomid},/poll deletequeue ${i + 1}">` +
 				`(${this.tr`delete`})</button>`
 			);
 			buf += `<hr />`;

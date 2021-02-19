@@ -504,6 +504,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 				possibleMoves.splice(moveIndex, 1);
 			}
 			const newMoveSlots = changeMoves(this, target, newMoves);
+			target.m.datacorrupt = true;
 			target.moveSlots = newMoveSlots;
 			// @ts-ignore
 			target.baseMoveSlots = newMoveSlots;
@@ -1768,7 +1769,9 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			this.boost(oppBoost, target);
 			target.trySetStatus('tox', source);
 			if (source.species.baseSpecies === 'Alcremie') {
-				const newSet = ['Finland', 'Finland-Tsikhe', 'Finland-Nezavisa', 'Finland-Järvilaulu'][this.random(4)];
+				const formes = ['Finland', 'Finland-Tsikhe', 'Finland-Nezavisa', 'Finland-Järvilaulu']
+					.filter(forme => ssbSets[forme].species !== source.species.name);
+				const newSet = this.sample(formes);
 				changeSet(this, source, ssbSets[newSet]);
 			}
 		},
@@ -3410,7 +3413,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		},
 		condition: {
 			onStart(pokemon) {
-				this.add('-singleturn', pokemon, 'move: Wistful Thinking');
+				this.add('-start', pokemon, 'move: Wistful Thinking');
 			},
 			onResidualOrder: 5,
 			onResidualSubOrder: 5,
@@ -3593,7 +3596,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "Imprisons and traps the target, and then transforms into them. The user faints if the target faints.",
+		desc: "Imprisons and traps the target, and then transforms into them. The user will be trapped after the use of this move. The user faints if the target faints.",
 		shortDesc: "Trap + ImprisonForm. Faints if the target faints.",
 		name: "Ghost of 1v1 Past",
 		isNonstandard: "Custom",
@@ -5105,7 +5108,8 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			this.attrLastMove('[still]');
 		},
 		onPrepareHit(foe, source, move) {
-			const formes = ['Cleric', 'Ninja', 'Dancer', 'Songstress', 'Jester'];
+			const formes = ['Cleric', 'Ninja', 'Dancer', 'Songstress', 'Jester']
+				.filter(forme => ssbSets[`yuki-${forme}`].species !== source.species.name);
 			source.m.yukiCosplayForme = this.sample(formes);
 			switch (source.m.yukiCosplayForme) {
 			case 'Cleric':
@@ -5288,7 +5292,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		desc: "For 5 turns, the user and its party members take 0.5x damage from physical and special attacks, or 0.66x damage if in a Double Battle; does not reduce damage further with Reflect or Light Screen. Critical hits ignore this protection. It is removed from the user's side if the user or an ally is successfully hit by Brick Break, Psychic Fangs, or Defog. Brick Break and Psychic Fangs remove the effect before damage is calculated. Lasts for 8 turns if the user is holding Light Clay. Fails unless the weather is Heavy Hailstorm or Hail.",
 		shortDesc: "For 5 turns, damage to allies is halved. Hail-like weather only.",
 		onTryHitSide() {
-			if (!this.field.isWeather(['heavyhailstorm', 'hail'])) return false;
+			if (!this.field.isWeather(['winterhail', 'heavyhailstorm', 'hail'])) return false;
 		},
 	},
 	blizzard: {
@@ -5296,7 +5300,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		desc: "Has a 10% chance to freeze the target. If the weather is Heavy Hailstorm or Hail, this move does not check accuracy.",
 		shortDesc: "10% freeze foe(s). Can't miss in Hail-like weather.",
 		onModifyMove(move) {
-			if (this.field.isWeather(['heavyhailstorm', 'hail'])) move.accuracy = true;
+			if (this.field.isWeather(['winterhail', 'heavyhailstorm', 'hail'])) move.accuracy = true;
 		},
 	},
 	dig: {
@@ -5304,7 +5308,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		condition: {
 			duration: 2,
 			onImmunity(type, pokemon) {
-				if (['sandstorm', 'heavyhailstorm', 'hail'].includes(type)) return false;
+				if (['sandstorm', 'winterhail', 'heavyhailstorm', 'hail'].includes(type)) return false;
 			},
 			onInvulnerability(target, source, move) {
 				if (['earthquake', 'magnitude'].includes(move.id)) {
@@ -5324,7 +5328,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		condition: {
 			duration: 2,
 			onImmunity(type, pokemon) {
-				if (['sandstorm', 'heavyhailstorm', 'hail'].includes(type)) return false;
+				if (['sandstorm', 'winterhail', 'heavyhailstorm', 'hail'].includes(type)) return false;
 			},
 			onInvulnerability(target, source, move) {
 				if (['surf', 'whirlpool'].includes(move.id)) {
@@ -5387,7 +5391,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		inherit: true,
 		desc: "This attack charges on the first turn and executes on the second. Power is halved if the weather is Heavy Hailstorm, Hail, Primordial Sea, Rain Dance, or Sandstorm and the user is not holding Utility Umbrella. If the user is holding a Power Herb or the weather is Desolate Land or Sunny Day, the move completes in one turn. If the user is holding Utility Umbrella and the weather is Desolate Land or Sunny Day, the move still requires a turn to charge.",
 		onBasePower(basePower, pokemon, target) {
-			const weathers = ['raindance', 'primordialsea', 'sandstorm', 'heavyhailstorm', 'hail'];
+			const weathers = ['raindance', 'primordialsea', 'sandstorm', 'winterhail', 'heavyhailstorm', 'hail'];
 			if (weathers.includes(pokemon.effectiveWeather())) {
 				this.debug('weakened by weather');
 				return this.chainModify(0.5);
@@ -5398,7 +5402,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		inherit: true,
 		desc: "This attack charges on the first turn and executes on the second. Power is halved if the weather is Heavy Hailstorm, Hail, Primordial Sea, Rain Dance, or Sandstorm and the user is not holding Utility Umbrella. If the user is holding a Power Herb or the weather is Desolate Land or Sunny Day, the move completes in one turn. If the user is holding Utility Umbrella and the weather is Desolate Land or Sunny Day, the move still requires a turn to charge.",
 		onBasePower(basePower, pokemon, target) {
-			const weathers = ['raindance', 'primordialsea', 'sandstorm', 'heavyhailstorm', 'hail'];
+			const weathers = ['raindance', 'primordialsea', 'sandstorm', 'winterhail', 'heavyhailstorm', 'hail'];
 			if (weathers.includes(pokemon.effectiveWeather())) {
 				this.debug('weakened by weather');
 				return this.chainModify(0.5);

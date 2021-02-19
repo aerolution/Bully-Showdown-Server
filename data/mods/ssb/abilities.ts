@@ -51,10 +51,12 @@ export function changeSet(context: Battle, pokemon: Pokemon, newSet: SSBSet, cha
 		if (typeof item !== 'string') item = item[context.random(item.length)];
 		if (context.toID(item) !== (pokemon.item || pokemon.lastItem)) pokemon.setItem(item);
 	}
-	const newMoves = changeMoves(context, pokemon, newSet.moves.concat(newSet.signatureMove));
-	pokemon.moveSlots = newMoves;
-	// @ts-ignore Necessary so pokemon doesn't get 8 moves
-	pokemon.baseMoveSlots = newMoves;
+	if (!pokemon.m.datacorrupt) {
+		const newMoves = changeMoves(context, pokemon, newSet.moves.concat(newSet.signatureMove));
+		pokemon.moveSlots = newMoves;
+		// @ts-ignore Necessary so pokemon doesn't get 8 moves
+		pokemon.baseMoveSlots = newMoves;
+	}
 	context.add('-ability', pokemon, `${pokemon.getAbility().name}`);
 	context.add('message', `${pokemon.name} changed form!`);
 }
@@ -116,7 +118,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			this.add('-clearallboost');
 			for (const pokemon of this.getAllActive()) {
 				const boostTotal = Object.values(pokemon.boosts).reduce((num, add) => num + add);
-				if (boostTotal !== 0) successes++;
+				if (boostTotal !== 0 || pokemon.positiveBoosts()) successes++;
 				pokemon.clearBoosts();
 				if (pokemon.removeVolatile('substitute')) successes++;
 			}
@@ -382,23 +384,11 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	// Archas
 	indomitable: {
 		desc: "This Pokemon cures itself if it is confused or has a major status condition. Single use.",
-		onTryAddVolatile(status, pokemon) {
-			if (status.id === 'confusion' && !this.effectData.indomitableActivated) {
-				this.effectData.indomitableActivated = true;
-				return null;
-			}
-		},
-		onSetStatus(status, target, source, effect) {
-			if (!target.status) return;
-			if (this.effectData.indomitableActivated) return;
-			this.add('-immune', target, '[from] ability: Indomitable');
-			this.effectData.indomitableActivated = true;
-			return false;
-		},
 		onUpdate(pokemon) {
 			if ((pokemon.status || pokemon.volatiles['confusion']) && !this.effectData.indomitableActivated) {
 				this.add('-activate', pokemon, 'ability: Indomitable');
 				pokemon.cureStatus();
+				pokemon.removeVolatile('confusion');
 				this.effectData.indomitableActivated = true;
 			}
 		},
@@ -585,7 +575,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onBasePower(basePower, attacker, defender, move) {
 			if (move.flags['sound']) {
 				this.debug('Old Manpa boost');
-				return this.chainModify([0x14CD, 0x1000]);
+				return this.chainModify([5325, 4096]);
 			}
 		},
 		onSourceModifyDamage(damage, source, target, move) {
@@ -673,7 +663,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onBasePowerPriority: 23,
 		onBasePower(basePower, pokemon, target, move) {
 			// @ts-ignore
-			if (move.drakeskinBoosted) return this.chainModify([0x1333, 0x1000]);
+			if (move.drakeskinBoosted) return this.chainModify([4915, 4096]);
 		},
 		isNonstandard: "Custom",
 		gen: 8,
@@ -709,7 +699,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			if (this.field.isWeather('sandstorm')) {
 				if (move.type === 'Rock' || move.type === 'Ground' || move.type === 'Steel') {
 					this.debug('Sands of Time boost');
-					return this.chainModify([0x14CD, 0x1000]);
+					return this.chainModify([5325, 4096]);
 				}
 			}
 		},
@@ -899,7 +889,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onBasePowerPriority: 23,
 		onBasePower(basePower, pokemon, target, move) {
-			if (move.refrigerateBoosted) return this.chainModify([0x1333, 0x1000]);
+			if (move.refrigerateBoosted) return this.chainModify([4915, 4096]);
 		},
 		onModifyMovePriority: -2,
 		onModifyMove(move, attacker) {
@@ -1150,7 +1140,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onBasePowerPriority: 23,
 		onBasePower(basePower, pokemon, target, move) {
 			// @ts-ignore
-			if (move.venomizeBoosted) return this.chainModify([0x1333, 0x1000]);
+			if (move.venomizeBoosted) return this.chainModify([4915, 4096]);
 		},
 		name: "Venomize",
 		isNonstandard: "Custom",
@@ -1360,7 +1350,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onBasePowerPriority: 23,
 		onBasePower(basePower, pokemon, target, move) {
 			if (move.type === 'Electric' && this.field.getWeather().id === 'raindance') {
-				return this.chainModify([0x1333, 0x1000]);
+				return this.chainModify([4915, 4096]);
 			}
 		},
 	},
@@ -1484,7 +1474,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 	// Notater517
 	lastminutelag: {
 		desc: "This Pokemon applies the Recharge status to the opposing Pokemon if this Pokemon needs to recharge. If this Pokemon KOs an opposing Pokemon with a recharge move, then the user does not need to recharge.",
-		shortDesc: "Gives Recharge to the opposing Pokemon if this Pokemon has it. KO: No recharge.",
+		shortDesc: "Gives Recharge to the target if this Pokemon has it. KO: No recharge.",
 		onModifyMove(move, pokemon, target) {
 			if (move.self?.volatileStatus === 'mustrecharge') {
 				if (!move.volatileStatus) {
@@ -1501,6 +1491,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 					this.add('-ability', pokemon, 'Last Minute Lag');
 					this.add('-end', pokemon, 'mustrecharge');
 					delete pokemon.volatiles['mustrecharge'];
+					this.hint('It may look like this Pokemon is going to recharge next turn, but it will not recharge.');
 				}
 			}
 		},
@@ -2085,8 +2076,8 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 
 	// Volco
 	speedrunning: {
-		desc: "This Pokemon's Special Attack is raised by 1 stage when another Pokemon faints. Moves used by this Pokemon that are 60 Base Power or lower gain an additional 25 Base Power. No moves can defrost a frozen Pokemon while this Pokemon is active.",
-		shortDesc: "Soul Heart + Weak moves get +25 BP. Moves cannot defrost, only natural thaws.",
+		desc: "This Pokemon's Special Attack is raised by 1 stage when another Pokemon faints. Moves used by this Pokemon that are 60 Base Power or lower gain an additional 25 Base Power. No moves can defrost a frozen Pokemon while this Pokemon is active. However, using a move that would defrost will still go through freeze.",
+		shortDesc: "Soul Heart + Weak moves get +25 BP. Moves can't defrost. Defrost moves go thru frz.",
 		onAnyFaintPriority: 1,
 		onAnyFaint() {
 			this.boost({spa: 1}, this.effectData.target);
@@ -2123,7 +2114,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onBasePowerPriority: 21,
 		onBasePower(basePower, pokemon, target, move) {
-			if (move.hasSheerForce) return this.chainModify([0x14CD, 0x1000]);
+			if (move.hasSheerForce) return this.chainModify([5325, 4096]);
 		},
 		onDamagingHit(damage, target, source, move) {
 			if (move.type === 'Fire') {

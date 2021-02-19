@@ -655,6 +655,7 @@ exports.grouplist = [
 		minigame: true,
 		modchat: true,
 		hiderank: true,
+		tournaments: true,
 	},
 	{
 		// Bots are ranked below Driver/Mod so that Global Bots can be kept out

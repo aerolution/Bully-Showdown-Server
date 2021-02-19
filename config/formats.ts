@@ -234,9 +234,9 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			// Move restrictions
 			'Deoxys-Speed + Nasty Plot', 'Latios-Mega + Aura Sphere', 'Latios-Mega + Mystical Fire', 'Shaymin-Sky + Seed Flare', 'Shaymin-Sky + Air Slash',
 			'Naganadel + Nasty Plot', 'Greninja + Protean + Gunk Shot', 'Greninja + Protean + U-Turn', 'Greninja + Battle Bond', 'Darkrai + Nasty Plot',
-			'Darkrai + Calm Mind', 'Kyurem-Black + Dragon Dance', 'Genesect + Flame Charge', 'Genesect + Rock Polish', 'Genesect + Shift Gear', 'Cinderace + U-Turn',
+			'Darkrai + Calm Mind', 'Kyurem-Black + Dragon Dance', 'Genesect + Flame Charge', 'Genesect + Rock Polish', 'Genesect + Shift Gear', 'Cinderace + Libero + U-Turn',
 			// Item restrictions
-			'Kyurem-Black + Heavy-Duty Boots', 'Cinderace + Heavy-Duty Boots',
+			'Kyurem-Black + Heavy-Duty Boots', 'Cinderace + Libero + Heavy-Duty Boots',
 		],
 	},
 	{

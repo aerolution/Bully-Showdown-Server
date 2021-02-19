@@ -1275,7 +1275,7 @@ export class RandomTeams {
 		if (hasMove['bellydrum'] && hasMove['substitute']) return 'Salac Berry';
 
 		// Misc item generation logic
-		if (species.evos.length && !hasMove['uturn']) return 'Eviolite';
+		if (!this.format.allowUnevolved && species.evos.length) return (ability === 'Technician' && counter.Physical >= 4) ? 'Choice Band' : 'Eviolite';
 
 		// Ability based logic and miscellaneous logic
 		if (species.name === 'Wobbuffet' || ['Cheek Pouch', 'Harvest', 'Ripen'].includes(ability)) return 'Sitrus Berry';

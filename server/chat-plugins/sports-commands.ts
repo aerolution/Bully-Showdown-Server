@@ -1,6 +1,23 @@
-'use strict';
+import {FS, Utils} from '../../lib';
+
+export const PARTNERS_FILE = 'config/chat-plugins/partners.json';
+
+export const partnerJSON: {[k: string]: string};
+
+function saveRoomFaqs() {
+	FS(PARTNERS_FILE).writeUpdate(() => JSON.stringify(partnerJSON));
+}
 
 export const commands: ChatCommands = {
+	sportsavatar(target, room, user, connection) {
+		return connection.popup(`**Custom Avatars**:
+If you want to request a custom avatar, check out the __**#avatar-submissions**__ channel on our Discord server. There you can find instructions to make and upload your image.
+Requests through DMs here or on Discord will be ignored.`);
+	},
+	
+	sportspartners(target, room, user) {
+		return this.parse(`/join view-partners`);
+	},
 	
 	sportstiers(target, room, user, connection) {
 		return connection.popup(`**Galar Dex Draft**:
@@ -97,31 +114,26 @@ export const commands: ChatCommands = {
 __NOTE: all leaked moves will show up as Illegal in the Teambuilder, this is just a visual issue and they will validate as intended. If you're not sure a move is legal always refer to the Validate button.__
 __You can find a full list of leaked moves by clicking the Leaked Moves List button in our Lobby chat.__`);
 	},
-	
-	sportsavatar(target, room, user, connection) {
-		return connection.popup(`**Custom Avatars**:
-If you want to request a custom avatar, check out the __**#avatar-submissions**__ channel on our Discord server. There you can find instructions to make and upload your image.
-Requests through DMs here or on Discord will be ignored.`);
-	},
-	
-	sportsstaff(target, room, user, connection) {
-		return connection.popup(`**Administrators** (~):
-Free Baton Pass (GoodMorningCrono#1726)
-Jackinev (Jackinev#9756)
+};
 
-**Leaders** (&):
-angryairair (woodlandapple#5780)
-Beezle (Beezle#2412)
-Kaltchre (Kalt#7849)
-Miocchi (Mia#5683)
-Princess Furfrou (thanks sj#6721)
-Venuaur (Venuaur#2153)
-
-**Moderators** (@):
-BoomBoomBoo (consequences#0352)
-Hikertoad (Hikertoad#0648)
-NarthVader (Narth#1623)
-PerfecteBlu (Blu#9129)
-st. ihiihuio ♫ (Saint#0007)`);
+export const pages: PageTable = {
+	partners(args, user) {
+		this.title = `Sports Partners`;
+		let buf = `<center><h2>Sports Partners</h2><br>`;
+		buf += `<table style='text-align: center; font-size: 12px; line-height: 1.5; width: 80%; border-collapse: collapse'>`;
+		partnerJSON = JSON.parse(FS(PARTNERS_FILE).readIfExistsSync() || "{}")
+		const keys = Object.keys(partnerJSON);
+		const sortedKeys = keys.sort((a, b) => a.localeCompare(b));
+		let i = 1;
+		for (const key of sortedKeys) {
+			const row = partnerJSON[key];
+			if (i) buf += `<tr style='border: 1px solid black; background: rgba(0 , 0 , 0 , 0.2)'>`;
+			else buf += `<tr style='border: 1px solid black; background: rgba(0 , 0 , 0 , 0.1)'>`;
+			buf += row;
+			buf += `</tr>`;
+			i = !i;
+		}
+		buf += `</table><br><br></center>`;
+		return buf;
 	},
 };

@@ -2161,8 +2161,11 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen4',
 		gameType: 'doubles',
 		searchShow: false,
-		ruleset: ['[Gen 4] OU'],
-		banlist: ['Explosion'],
+		ruleset: ['Standard'],
+		banlist: [
+			'AG', 'Uber', 'Arena Trap', 'Sand Veil', 'Swinub + Snow Cloak', 'Piloswine + Snow Cloak', 'Mamoswine + Snow Cloak', 'Soul Dew', 'Baton Pass',
+			'Explosion'
+		],
 		unbanlist: ['Garchomp', 'Latias', 'Latios', 'Manaphy', 'Mew', 'Salamence', 'Wobbuffet', 'Wynaut'],
 	},
 	{

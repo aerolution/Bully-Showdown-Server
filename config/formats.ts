@@ -532,7 +532,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 				teamHas.abilityMap = Object.create(null);
 				for (const speciesid in Dex.data.Pokedex) {
 					const pokemon = this.dex.getSpecies(speciesid);
-					if (pokemon.isNonstandard || unreleased(pokemon)) continue;
+					if ((pokemon.isNonstandard && pokemon.isNonstandard !== 'Past') || unreleased(pokemon)) continue;
 					if (pokemon.requiredAbility || pokemon.requiredItem || pokemon.requiredMove) continue;
 					if (this.ruleTable.isRestrictedSpecies(pokemon)) continue;
 
@@ -552,8 +552,8 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 			const species = this.dex.getSpecies(set.species);
 			if (!species.exists || species.num < 1) return [`The Pok\u00e9mon "${set.species}" does not exist.`];
-			if (species.isNonstandard || unreleased(species)) {
-				return [`${species.name} is not obtainable in Generation ${this.dex.gen}.`];
+			if ((species.isNonstandard && species.isNonstandard !== 'Past') || unreleased(species)) {
+				return [`${species.name} is not obtainable in Gen ${this.dex.gen}.`];
 			}
 
 			const name = set.name;
@@ -674,7 +674,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 				const item = this.dex.getItem(set.item);
 				if (!item || !item.megaStone) continue;
 				const species = this.dex.getSpecies(set.species);
-				if (species.isNonstandard) return [`${species.baseSpecies} does not exist in gen 8.`];
+				if (species.isNonstandard && species.isNonstandard !== 'Past') return [`${species.baseSpecies} does not exist in Gen 8.`];
 				if (this.ruleTable.isRestrictedSpecies(species) || this.toID(set.ability) === 'powerconstruct') {
 					return [`${species.name} is not allowed to hold ${item.name}.`];
 				}

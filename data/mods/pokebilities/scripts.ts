@@ -1,83 +1,145 @@
 export const Scripts: ModdedBattleScriptsData = {
-	getEffect: function (name) {
-		if (name && typeof name !== 'string') {
-			return name;
-		}
-		let id = toId(name);
-		if (id.startsWith('ability')) return Object.assign(Object.create(this.dex.getAbility(id.slice(7))), {id});
-		return Object.getPrototypeOf(this).getEffect.call(this, name);
-	},
-	suppressingWeather() {
-		let pokemon;
-		for (let i = 0; i < this.sides.length; i++) {
-			for (let j = 0; j < this.sides[i].active.length; j++) {
-				pokemon = this.sides[i].active[j];
-				if (pokemon && !pokemon.ignoringAbility() && pokemon.hasAbility('Cloud Nine')) {
+	gen: 8,
+	field: {
+		suppressingWeather() {
+			for (const pokemon of this.battle.getAllActive()) {
+				if (pokemon && !pokemon.fainted && !pokemon.ignoringAbility() &&
+					(pokemon.getAbility().suppressWeather ||
+						pokemon.m.innates?.some((k: string) => this.battle.dex.getAbility(k).suppressWeather))) {
 					return true;
 				}
 			}
-		}
-		return false;
+			return false;
+		},
 	},
 	pokemon: {
-		hasAbility: function (ability) {
-			if (this.ignoringAbility()) return false;
-			if (Array.isArray(ability)) return ability.some(ability => this.hasAbility(ability));
-			ability = toId(ability);
-			return this.ability === ability || !!this.volatiles['ability' + ability];
+		ignoringAbility() {
+			// Check if any active pokemon have the ability Neutralizing Gas
+			let neutralizinggas = false;
+			for (const pokemon of this.battle.getAllActive()) {
+				// can't use hasAbility because it would lead to infinite recursion
+				if (
+					(pokemon.ability === ('neutralizinggas' as ID) || pokemon.m.innates?.some((k: string) => k === 'neutralizinggas')) &&
+					!pokemon.volatiles['gastroacid'] && !pokemon.abilityData.ending
+				) {
+					neutralizinggas = true;
+					break;
+				}
+			}
+
+			return !!(
+				(this.battle.gen >= 5 && !this.isActive) ||
+				((this.volatiles['gastroacid'] ||
+					(neutralizinggas && (this.ability !== ('neutralizinggas' as ID) ||
+						this.m.innates?.some((k: string) => k === 'neutralizinggas'))
+					)) && !this.getAbility().isPermanent
+				)
+			);
 		},
-		transformInto: function (pokemon, user, effect) {
-			let template = pokemon.template;
-			if (pokemon.fainted || pokemon.illusion || (pokemon.volatiles['substitute'] && this.battle.gen >= 5)) {
+		hasAbility(ability) {
+			if (this.ignoringAbility()) return false;
+			if (Array.isArray(ability)) return ability.some(abil => this.hasAbility(abil));
+			ability = this.battle.toID(ability);
+			return this.ability === ability || !!this.volatiles['ability:' + ability];
+		},
+		transformInto(pokemon, effect) {
+			const species = pokemon.species;
+			if (pokemon.fainted || pokemon.illusion || (pokemon.volatiles['substitute'] && this.battle.gen >= 5) ||
+				(pokemon.transformed && this.battle.gen >= 2) || (this.transformed && this.battle.gen >= 5) ||
+				species.name === 'Eternatus-Eternamax') {
 				return false;
 			}
-			if (!template.abilities || (pokemon && pokemon.transformed && this.battle.gen >= 2) || (user && user.transformed && this.battle.gen >= 5)) {
-				return false;
-			}
-			if (!this.formeChange(template, null)) {
-				return false;
-			}
+
+			if (!this.setSpecies(species, effect, true)) return false;
+
 			this.transformed = true;
+			this.weighthg = pokemon.weighthg;
 
-			this.types = pokemon.types;
+			const types = pokemon.getTypes(true);
+			this.setType(pokemon.volatiles['roost'] ? pokemon.volatiles['roost'].typeWas : types, true);
 			this.addedType = pokemon.addedType;
-			this.knownType = this.side === pokemon.side && pokemon.knownType;
+			this.knownType = this.isAlly(pokemon) && pokemon.knownType;
+			this.apparentType = pokemon.apparentType;
 
-			for (let statName in this.stats) {
-				this.stats[statName] = pokemon.stats[statName];
+			let statName: StatNameExceptHP;
+			for (statName in this.storedStats) {
+				this.storedStats[statName] = pokemon.storedStats[statName];
 			}
 			this.moveSlots = [];
 			this.set.ivs = (this.battle.gen >= 5 ? this.set.ivs : pokemon.set.ivs);
 			this.hpType = (this.battle.gen >= 5 ? this.hpType : pokemon.hpType);
 			this.hpPower = (this.battle.gen >= 5 ? this.hpPower : pokemon.hpPower);
-			for (let i = 0; i < pokemon.moveSlots.length; i++) {
-				let moveData = pokemon.moveSlots[i];
-				let moveName = moveData.move;
-				if (moveData.id === 'hiddenpower') {
+			for (const moveSlot of pokemon.moveSlots) {
+				let moveName = moveSlot.move;
+				if (moveSlot.id === 'hiddenpower') {
 					moveName = 'Hidden Power ' + this.hpType;
 				}
 				this.moveSlots.push({
 					move: moveName,
-					id: moveData.id,
-					pp: moveData.maxpp === 1 ? 1 : 5,
-					maxpp: this.battle.gen >= 5 ? (moveData.maxpp === 1 ? 1 : 5) : moveData.maxpp,
-					target: moveData.target,
+					id: moveSlot.id,
+					pp: moveSlot.maxpp === 1 ? 1 : 5,
+					maxpp: this.battle.gen >= 5 ? (moveSlot.maxpp === 1 ? 1 : 5) : moveSlot.maxpp,
+					target: moveSlot.target,
 					disabled: false,
 					used: false,
 					virtual: true,
 				});
 			}
-			for (let j in pokemon.boosts) {
-				this.boosts[j] = pokemon.boosts[j];
+			let boostName: BoostName;
+			for (boostName in pokemon.boosts) {
+				this.boosts[boostName] = pokemon.boosts[boostName]!;
+			}
+			if (this.battle.gen >= 6) {
+				const volatilesToCopy = ['focusenergy', 'gmaxchistrike', 'laserfocus'];
+				for (const volatile of volatilesToCopy) {
+					if (pokemon.volatiles[volatile]) {
+						this.addVolatile(volatile);
+						if (volatile === 'gmaxchistrike') this.volatiles[volatile].layers = pokemon.volatiles[volatile].layers;
+					} else {
+						this.removeVolatile(volatile);
+					}
+				}
 			}
 			if (effect) {
 				this.battle.add('-transform', this, pokemon, '[from] ' + effect.fullname);
 			} else {
 				this.battle.add('-transform', this, pokemon);
 			}
-			this.setAbility(pokemon.ability, this, {id: 'transform'});
-			this.innates.forEach(innate => this.removeVolatile('ability' + innate, this));
-			pokemon.innates.forEach(innate => this.addVolatile('ability' + innate, this));
+			if (this.battle.gen > 2) {
+				this.setAbility(pokemon.ability, this, true);
+				if (this.m.innates) {
+					for (const innate of this.m.innates) {
+						this.removeVolatile('ability:' + innate);
+					}
+				}
+				if (pokemon.m.innates) {
+					for (const innate of pokemon.m.innates) {
+						this.addVolatile('ability:' + innate, this);
+					}
+				}
+			}
+
+			// Change formes based on held items (for Transform)
+			// Only ever relevant in Generation 4 since Generation 3 didn't have item-based forme changes
+			if (this.battle.gen === 4) {
+				if (this.species.num === 487) {
+					// Giratina formes
+					if (this.species.name === 'Giratina' && this.item === 'griseousorb') {
+						this.formeChange('Giratina-Origin');
+					} else if (this.species.name === 'Giratina-Origin' && this.item !== 'griseousorb') {
+						this.formeChange('Giratina');
+					}
+				}
+				if (this.species.num === 493) {
+					// Arceus formes
+					const item = this.getItem();
+					const targetForme = (item?.onPlate ? 'Arceus-' + item.onPlate : 'Arceus');
+					if (this.species.name !== targetForme) {
+						this.formeChange(targetForme);
+					}
+				}
+			}
+
 			return true;
 		},
 	},

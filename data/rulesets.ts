@@ -898,13 +898,13 @@ export const Formats: {[k: string]: FormatData} = {
 			this.add('rule', 'Sleep Clause Mod: Limit one foe put to sleep');
 		},
 		onSetStatus(status, target, source) {
-			if (source && source.side === target.side) {
+			if (source && source.isAlly(target)) {
 				return;
 			}
 			if (status.id === 'slp') {
 				for (const pokemon of target.side.pokemon) {
 					if (pokemon.hp && pokemon.status === 'slp') {
-						if (!pokemon.statusData.source || pokemon.statusData.source.side !== pokemon.side) {
+						if (!pokemon.statusData.source || !pokemon.statusData.source.isAlly(pokemon)) {
 							this.add('-message', 'Sleep Clause Mod activated.');
 							return false;
 						}
@@ -921,7 +921,7 @@ export const Formats: {[k: string]: FormatData} = {
 			this.add('rule', 'Stadium Sleep Clause: Limit one foe put to sleep');
 		},
 		onSetStatus(status, target, source) {
-			if (source && source.side === target.side) {
+			if (source && source.isAlly(target)) {
 				return;
 			}
 			if (status.id === 'slp') {
@@ -969,7 +969,7 @@ export const Formats: {[k: string]: FormatData} = {
 			this.add('rule', 'Freeze Clause Mod: Limit one foe frozen');
 		},
 		onSetStatus(status, target, source) {
-			if (source && source.side === target.side) {
+			if (source && source.isAlly(target)) {
 				return;
 			}
 			if (status.id === 'frz') {
@@ -1038,8 +1038,8 @@ export const Formats: {[k: string]: FormatData} = {
 			}
 		},
 		onBegin() {
-			for (const pokemon of this.getAllPokemon()) {
-				pokemon.canDynamax = false;
+			for (const side of this.sides) {
+				side.dynamaxUsed = true;
 			}
 			this.add('rule', 'Dynamax Clause: You cannot dynamax');
 		},
@@ -1221,6 +1221,7 @@ export const Formats: {[k: string]: FormatData} = {
 		onBegin() {
 			this.add('rule', '350 Cup Mod: If a Pokemon\'s BST is 350 or lower, all of its stats get doubled.');
 		},
+		onModifySpeciesPriority: 2,
 		onModifySpecies(species) {
 			const newSpecies = this.dex.deepClone(species);
 			if (newSpecies.bst <= 350) {
@@ -1240,6 +1241,7 @@ export const Formats: {[k: string]: FormatData} = {
 		onBegin() {
 			this.add('rule', 'Flipped Mod: Pokemon have their stats flipped (HP becomes Spe, vice versa).');
 		},
+		onModifySpeciesPriority: 2,
 		onModifySpecies(species) {
 			const newSpecies = this.dex.deepClone(species);
 			const reversedNums = Object.values(newSpecies.baseStats).reverse();
@@ -1256,6 +1258,7 @@ export const Formats: {[k: string]: FormatData} = {
 		onBegin() {
 			this.add('rule', 'Scalemons Mod: Every Pokemon\'s stats, barring HP, are scaled to come as close to a BST of 600 as possible');
 		},
+		onModifySpeciesPriority: 1,
 		onModifySpecies(species) {
 			const newSpecies = this.dex.deepClone(species);
 			const bstWithoutHp: number = newSpecies.bst - newSpecies.baseStats['hp'];
@@ -1293,6 +1296,23 @@ export const Formats: {[k: string]: FormatData} = {
 		},
 		onTeamPreview() {
 			this.makeRequest('teampreview');
+		},
+	},
+	aaarestrictedabilities: {
+		effectType: 'ValidatorRule',
+		name: 'AAA Restricted Abilities',
+		desc: "Allows validation for AAA formats to use restricted abilities instead of banned ones.",
+		onValidateSet(set) {
+			const ability = this.dex.getAbility(set.ability);
+			if (this.ruleTable.isRestricted(`ability:${ability.id}`)) {
+				const species = this.dex.getSpecies(set.species);
+				if (!Object.values(species.abilities).includes(ability.name)) {
+					return [
+						`The Ability "${ability.name}" is restricted.`,
+						`(Only Pok\u00e9mon that get ${ability.name} naturally can use it.)`,
+					];
+				}
+			}
 		},
 	},
 };

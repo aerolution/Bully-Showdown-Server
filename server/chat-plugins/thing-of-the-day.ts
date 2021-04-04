@@ -11,54 +11,6 @@ export const prenoms: {[k: string]: [string, AnyObject][]} = JSON.parse(FS(PRENO
 export const otdData: OtdData = JSON.parse(FS(DATA_FILE).readIfExistsSync() || "{}");
 export const otds: Map<string, OtdHandler> = new Map();
 
-const LEGACY_DATA: {[k: string]: {file: string, roomid: string, keyLabels: string[], title: string}} = {
-	aotd: {
-		file: 'config/chat-plugins/thestudio.tsv',
-		keyLabels: ['Artist', 'Nominator', 'Quote', 'Song', 'Link', 'Image', 'Timestamp'],
-		title: 'Artist', roomid: 'thestudio',
-	},
-	fotd: {
-		file: 'config/chat-plugins/tvbf-films.tsv', title: 'Film',
-		keyLabels: ['Film', 'Nominator', 'Quote', 'Link', 'Image', 'Timestamp'],
-		roomid: 'tvfilms',
-	},
-	sotd: {
-		file: 'config/chat-plugins/tvbf-shows.tsv', title: 'Show',
-		keyLabels: ['Show', 'Nominator', 'Quote', 'Link', 'Image', 'Timestamp'],
-		roomid: 'tvfilms',
-	},
-	cotw: {
-		file: 'config/chat-plugins/youtube-channels.tsv', title: "Channel",
-		keyLabels: ['Channel', 'Nominator', 'Link', 'Tagline', 'Image', 'Timestamp'],
-		roomid: 'youtube',
-	},
-	botw: {
-		file: 'config/chat-plugins/thelibrary.tsv', title: 'Book',
-		keyLabels: ['Book', 'Nominator', 'Link', 'Quote', 'Author', 'Image', 'Timestamp'],
-		roomid: 'thelibrary',
-	},
-	motw: {
-		file: 'config/chat-plugins/prowrestling-matches.tsv', title: 'Match',
-		keyLabels: ['Match', 'Nominator', 'Link', 'Tagline', 'Event', 'Image', 'Timestamp'],
-		roomid: 'prowrestling',
-	},
-	anotd: {
-		file: 'config/chat-plugins/animeandmanga-shows.tsv', title: 'Animanga',
-		keyLabels: ['Show', 'Nominator', 'Link', 'Tagline', 'Image', 'Timestamp'],
-		roomid: 'animeandmanga',
-	},
-	athotd: {
-		file: 'config/chat-plugins/sports-athletes.tsv', title: 'Athlete',
-		keyLabels: ['Athlete', 'Nominator', 'Image', 'Sport', 'Team', 'Country', 'Age', 'Quote', 'Timestamp'],
-		roomid: 'sports',
-	},
-	vgotd: {
-		file: 'config/chat-plugins/videogames-games.tsv', title: "Video Game",
-		keyLabels: ['Video Game', 'Nominator', 'Link', 'Tagline', 'Image', 'Timestamp'],
-		roomid: 'videogames',
-	},
-};
-
 const FINISH_HANDLERS: {[k: string]: (winner: AnyObject) => void} = {
 	cotw: async winner => {
 		const {channel, nominator} = winner;
@@ -261,7 +213,7 @@ class OtdHandler {
 			}
 		}
 
-		if (!this.settings.updateOnNom) {
+		if (this.settings.updateOnNom) {
 			this.display(updateOnly);
 		}
 	}
@@ -523,34 +475,6 @@ class OtdHandler {
 		return buf;
 	}
 }
-
-if (!Object.keys(otdData).length) {
-	for (const otd in LEGACY_DATA) {
-		const {keyLabels, file, roomid, title} = LEGACY_DATA[otd];
-		const keys = keyLabels.map(toNominationId);
-		const timeLabel = otd.endsWith('w') ? 'week' : 'day';
-		try {
-			const content = FS(file).readSync();
-			const winners = OtdHandler.parseOldWinners(content, keyLabels, keys);
-			otdData[otd] = {
-				settings: {
-					keyLabels, keys, title, timeLabel, roomid: roomid as RoomID, id: otd,
-				},
-				winners,
-			};
-		} catch (e) {
-			if (e.code !== 'ENOENT') {
-				throw e;
-			}
-			otdData[otd] = {
-				settings: {keyLabels, title, roomid: roomid as RoomID, keys, timeLabel},
-				winners: [],
-			};
-		}
-	}
-	FS(DATA_FILE).writeUpdate(() => JSON.stringify(otdData));
-}
-
 
 function selectHandler(message: string) {
 	const id = toID(message.substring(1).split(' ')[0]);
@@ -848,18 +772,6 @@ export const otdCommands: ChatCommands = {
 		if (!text) return this.errorReply("There is no winner yet.");
 		this.sendReplyBox(text);
 	},
-	help: [
-		`Thing of the Day plugin commands (aotd, fotd, sotd, cotd, botw, motw, anotd):`,
-		`- /-otd - View the current Thing of the Day.`,
-		`- /-otd start - Starts nominations for the Thing of the Day. Requires: % @ # &`,
-		`- /-otd nom [nomination] - Nominate something for Thing of the Day.`,
-		`- /-otd remove [username] - Remove a user's nomination for the Thing of the Day and prevent them from voting again until the next round. Requires: % @ # &`,
-		`- /-otd end - End nominations for the Thing of the Day and set it to a randomly selected nomination. Requires: % @ # &`,
-		`- /-otd force [nomination] - Forcibly sets the Thing of the Day without a nomination round. Requires: # &`,
-		`- /-otd delay - Turns off the automatic 20 minute timer for Thing of the Day voting rounds. Requires: % @ # &`,
-		`- /-otd set property: value[, property: value] - Set the winner, quote, song, link or image for the current Thing of the Day. Requires: % @ # &`,
-		`- /-otd winners - Displays a list of previous things of the day.`,
-	],
 };
 
 export const pages: PageTable = {};
@@ -955,13 +867,27 @@ export const commands: ChatCommands = {
 			this.globalModlog(`OTD DELETE`, null, target);
 			this.privateGlobalModAction(`${user.name} deleted the OTD ${otd.name} of the ${otd.timeLabel}`);
 		},
-		help: [
-			`/otd create [title], [time], [...labels] - Creates a Thing of the Day with the given [name], [time], and [labels]. Requires: &`,
-			`/otd updateroom [otd], [room] - Updates the room for the given [otd] to the new [room]. Requires: &`,
-			`/otd delete [otd] - Removes the given Thing of the Day. Requires: &`,
-		],
 	},
+	otdhelp: [
+		`/otd create [title], [time], [...labels] - Creates a Thing of the Day with the given [name], [time], and [labels]. Requires: &`,
+		`/otd updateroom [otd], [room] - Updates the room for the given [otd] to the new [room]. Requires: &`,
+		`/otd delete [otd] - Removes the given Thing of the Day. Requires: &`,
+	],
 };
+
+const otdHelp = [
+	`Thing of the Day plugin commands (aotd, fotd, sotd, cotd, botw, motw, anotd):`,
+	`- /-otd - View the current Thing of the Day.`,
+	`- /-otd start - Starts nominations for the Thing of the Day. Requires: % @ # &`,
+	`- /-otd nom [nomination] - Nominate something for Thing of the Day.`,
+	`- /-otd remove [username] - Remove a user's nomination for the Thing of the Day and prevent them from voting again until the next round. Requires: % @ # &`,
+	`- /-otd end - End nominations for the Thing of the Day and set it to a randomly selected nomination. Requires: % @ # &`,
+	`- /-otd force [nomination] - Forcibly sets the Thing of the Day without a nomination round. Requires: # &`,
+	`- /-otd delay - Turns off the automatic 20 minute timer for Thing of the Day voting rounds. Requires: % @ # &`,
+	`- /-otd set property: value[, property: value] - Set the winner, quote, song, link or image for the current Thing of the Day. Requires: % @ # &`,
+	`- /-otd winners - Displays a list of previous things of the day.`,
+	`- /-otd toggleupdate [on|off] - Changes the Thing of the Day to display on nomination ([on] to update, [off] to turn off updates). Requires: % @ # &`,
+];
 
 for (const otd in otdData) {
 	const data = otdData[otd];
@@ -979,4 +905,17 @@ for (const [k, v] of otds) {
 		return v.generateWinnerList(this);
 	};
 	commands[k] = otdCommands;
+	commands[`${k}help`] = otdHelp;
 }
+
+export const onRenameRoom: Rooms.RenameHandler = (oldID, newID, room) => {
+	for (const otd in otdData) {
+		const data = otdData[otd];
+		if (data.settings.roomid === oldID) {
+			data.settings.roomid = newID;
+			const handler = otds.get(otd);
+			handler!.room = room as Room;
+			handler!.save();
+		}
+	}
+};

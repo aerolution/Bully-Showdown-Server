@@ -658,6 +658,14 @@ exports.grouplist = [
 		tournaments: true,
 	},
 	{
+		symbol: '\u25B8',
+		id: "sectionleader",
+		name: "Section Leader",
+		inherit: '+',
+
+		roomonly: true,
+	},
+	{
 		// Bots are ranked below Driver/Mod so that Global Bots can be kept out
 		// of modjoin % rooms (namely, Staff).
 		// (They were previously above Driver/Mod so they can have game management

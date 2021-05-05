@@ -1,39 +1,39 @@
 export const Items: {[k: string]: ModdedItemData} = {
 	adamantorb: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
 	},
 	burndrive: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
 	},
 	chilldrive: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
 	},
 	custapberry: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
 	},
 	dousedrive: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
 	},
 	enigmaberry: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
 	},
 	griseousorb: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
 	},
 	jabocaberry: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
 	},
 	lustrousorb: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
 	},
 	micleberry: {
 		inherit: true,
@@ -41,14 +41,14 @@ export const Items: {[k: string]: ModdedItemData} = {
 	},
 	rowapberry: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
 	},
 	shockdrive: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
 	},
 	souldew: {
 		inherit: true,
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
 	},
 };

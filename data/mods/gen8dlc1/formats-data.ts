@@ -1,312 +1,411 @@
 export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	pikachuworld: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	nidoranf: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	nidorina: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	nidoqueen: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	nidoranm: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	nidorino: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	nidoking: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	zubat: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	golbat: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	crobat: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	slowkinggalar: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	smoochum: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	jynx: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	elekid: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	electabuzz: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	electivire: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	magby: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	magmar: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	magmortar: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	omanyte: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	omastar: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	kabuto: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	kabutops: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	aerodactyl: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	articuno: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	articunogalar: {
 		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
 	},
 	zapdos: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	zapdosgalar: {
 		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
 	},
 	moltres: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	moltresgalar: {
 		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
 	},
 	dratini: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	dragonair: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	dragonite: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	raikou: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	entei: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	suicune: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	lugia: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	hooh: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	treecko: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	grovyle: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	sceptile: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	torchic: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	combusken: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	blaziken: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	mudkip: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	marshtomp: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	swampert: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	aron: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	lairon: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	aggron: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	swablu: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	altaria: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	lileep: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	cradily: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	anorith: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	armaldo: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	absol: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	spheal: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	sealeo: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	walrein: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	bagon: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	shelgon: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	salamence: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	beldum: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	metang: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	metagross: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	regirock: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	regice: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	registeel: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	latias: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	latios: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	kyogre: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	groudon: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	rayquaza: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	spiritomb: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	gible: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	gabite: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	garchomp: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	uxie: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	mesprit: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	azelf: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	dialga: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	palkia: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	heatran: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	regigigas: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	giratina: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	giratinaorigin: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	cresselia: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	victini: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	audino: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	tirtouga: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	carracosta: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	archen: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	archeops: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	cryogonal: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	tornadus: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	tornadustherian: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	thundurus: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	thundurustherian: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	landorus: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	landorustherian: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	genesect: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	genesectburn: {
 		isNonstandard: "Unobtainable",
@@ -325,88 +424,115 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "Unreleased",
 	},
 	tyrunt: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	tyrantrum: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	amaura: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	aurorus: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	carbink: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	xerneas: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	yveltal: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	zygarde: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	zygarde10: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	diancie: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	volcanion: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	tapukoko: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	tapulele: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	tapubulu: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	tapufini: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	nihilego: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	buzzwole: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	pheromosa: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	xurkitree: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	celesteela: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	kartana: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	guzzlord: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	poipole: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	naganadel: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	stakataka: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	blacephalon: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	melmetal: {
 		gmaxUnreleased: true,
 	},
 	melmetalgmax: {
-		isNonstandard: "Past",
+		isNonstandard: "Unobtainable",
+		tier: "Unreleased",
 	},
 	zarudedada: {
 		isNonstandard: "Unobtainable",

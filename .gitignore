@@ -19,6 +19,7 @@ databases/*.db*
 
 # Sports
 !/config/emoticons.json
+!/config/chat-plugins/partners.json
 package.json
 
 # Typescript build artifacts

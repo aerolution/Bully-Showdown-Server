@@ -119,21 +119,18 @@ __You can find a full list of leaked moves by clicking the Leaked Moves List but
 export const pages: PageTable = {
 	partners(args, user) {
 		this.title = `Sports Partners`;
-		let buf = `<center><h2>Sports Partners</h2><br>`;
-		buf += `<table style='text-align: center; font-size: 12px; line-height: 1.5; width: 80%; border-collapse: collapse'>`;
+		let buf = `<div style="background: url(&quot;http://34.222.148:8000/avatars/resources/bg_tile.png&quot;) center; background-size: 40px 40px; width: 100%; padding-top: 10px;">`;
+		buf += `<center style="color: #ffba00;"><h2>Sports Partners</h2><br>`;
 		partnerJSON = JSON.parse(FS(PARTNERS_FILE).readIfExistsSync() || "{}")
 		const keys = Object.keys(partnerJSON);
 		const sortedKeys = keys.sort((a, b) => a.localeCompare(b));
-		let i = 1;
 		for (const key of sortedKeys) {
 			const row = partnerJSON[key];
-			if (i) buf += `<tr style='border: 1px solid black; background: rgba(0 , 0 , 0 , 0.2)'>`;
-			else buf += `<tr style='border: 1px solid black; background: rgba(0 , 0 , 0 , 0.1)'>`;
+			buf += `<div style="width: 80%; display: table; margin-bottom: 15px">`;
 			buf += row;
-			buf += `</tr>`;
-			i = !i;
+			buf += `</div></br>`;
 		}
-		buf += `</table><br><br></center>`;
+		buf += `<br><br></div></center>`;
 		return buf;
 	},
 };

@@ -778,6 +778,9 @@ export class RandomTeams {
 		}
 
 		const hasRestTalk = moves.has('rest') && moves.has('sleeptalk');
+		
+		//S// Reject move if banned by the format
+		if (this.format.randomBanlist && this.format.randomBanlist.includes(move.id)) return {cull: true};
 
 		// Reject moves that need support
 		switch (move.id) {
@@ -1189,18 +1192,6 @@ export class RandomTeams {
 			// Special case for Calyrex to prevent Leech Seed + Calm Mind
 			return {cull: !!counter.setupType};
 		}
-
-		if (move.id !== 'photongeyser' && (
-			(move.category === 'Physical' && counter.setupType === 'Special') ||
-			(move.category === 'Special' && counter.setupType === 'Physical')
-		)) {
-			// Reject STABs last in case the setup type changes later on
-			const stabs = counter[species.types[0]] + (counter[species.types[1]] || 0);
-			if (!hasType[move.type] || stabs > 1 || counter[move.category] < 2) return {cull: true};
-		}
-		
-		// Reject move if banned by the format
-		if (this.format.randomBanlist && this.format.randomBanlist.includes(move.id)) return {cull: true};
 
 		return {cull: false};
 	}

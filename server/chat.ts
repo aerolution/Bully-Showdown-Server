@@ -79,6 +79,7 @@ export type SettingsHandler = (
 };
 
 export type CRQHandler = (this: CommandContext, target: string, user: User, trustable?: boolean) => any;
+export type RoomCloseHandler = (id: string, user: User, connection: Connection, page: boolean) => any;
 
 /**
  * Chat filters can choose to:
@@ -544,11 +545,7 @@ export class CommandContext extends MessageContext {
 		}
 
 		if (this.room && !(this.user.id in this.room.users)) {
-			if (this.room.roomid === 'lobby') {
-				this.room = null;
-			} else {
-				return this.popupReply(`You tried to send "${message}" to the room "${this.room.roomid}" but it failed because you were not in that room.`);
-			}
+			return this.popupReply(`You tried to send "${message}" to the room "${this.room.roomid}" but it failed because you were not in that room.`);
 		}
 
 		if (this.user.statusType === 'idle' && !['unaway', 'unafk', 'back'].includes(this.cmd)) {
@@ -748,15 +745,25 @@ export class CommandContext extends MessageContext {
 		if (!this.room?.game || !this.room.game.onChatMessage) return;
 		return this.room.game.onChatMessage(this.message, this.user);
 	}
-	pmTransform(originalMessage: string) {
-		if (this.room) throw new Error(`Not a PM`);
-		const targetIdentity = this.pmTarget ? this.pmTarget.getIdentity() : '~';
-		const prefix = `|pm|${this.user.getIdentity()}|${targetIdentity}|`;
+	pmTransform(originalMessage: string, sender?: User, receiver?: User | null | string) {
+		if (!sender) {
+			if (this.room) throw new Error(`Not a PM`);
+			sender = this.user;
+			receiver = this.pmTarget;
+		}
+		const targetIdentity = typeof receiver === 'string' ? ` ${receiver}` : receiver ? receiver.getIdentity() : '~';
+		const prefix = `|pm|${sender.getIdentity()}|${targetIdentity}|`;
 		return originalMessage.split('\n').map(message => {
 			if (message.startsWith('||')) {
 				return prefix + `/text ` + message.slice(2);
 			} else if (message.startsWith(`|html|`)) {
 				return prefix + `/raw ` + message.slice(6);
+			} else if (message.startsWith(`|uhtml|`)) {
+				const [uhtmlid, html] = Utils.splitFirst(message.slice(7), '|');
+				return prefix + `/uhtml ${uhtmlid},${html}`;
+			} else if (message.startsWith(`|uhtmlchange|`)) {
+				const [uhtmlid, html] = Utils.splitFirst(message.slice(13), '|');
+				return prefix + `/uhtmlchange ${uhtmlid},${html}`;
 			} else if (message.startsWith(`|modaction|`)) {
 				return prefix + `/log ` + message.slice(11);
 			} else if (message.startsWith(`|raw|`)) {
@@ -902,17 +909,18 @@ export class CommandContext extends MessageContext {
 		}
 		(this.room || Rooms.global).modlog(entry);
 	}
-	parseSpoiler(str: string) {
-		let privateReason = "";
-		if (!str) return {publicReason: "", privateReason};
+	parseSpoiler(reason: string) {
+		if (!reason) return {publicReason: "", privateReason: ""};
 
-		let publicReason = str;
-		const targetLowercase = str.toLowerCase();
+		let publicReason = reason;
+		let privateReason = reason;
+		const targetLowercase = reason.toLowerCase();
 		if (targetLowercase.includes('spoiler:') || targetLowercase.includes('spoilers:')) {
 			const proofIndex = targetLowercase.indexOf(targetLowercase.includes('spoilers:') ? 'spoilers:' : 'spoiler:');
-			const bump = (targetLowercase.includes('spoilers:') ? 9 : 8);
-			privateReason = `(PROOF: ${str.substr(proofIndex + bump, str.length).trim()}) `;
-			publicReason = str.substr(0, proofIndex).trim();
+			const proofOffset = (targetLowercase.includes('spoilers:') ? 9 : 8);
+			const proof = reason.slice(proofIndex + proofOffset).trim();
+			publicReason = reason.slice(0, proofIndex).trim();
+			privateReason = `${publicReason}${proof ? ` (PROOF: ${proof})` : ''}`;
 		}
 		return {publicReason, privateReason};
 	}
@@ -1435,6 +1443,7 @@ export const Chat = new class {
 	readonly destroyHandlers: (() => void)[] = [];
 	readonly crqHandlers: {[k: string]: CRQHandler} = {};
 	readonly renameHandlers: Rooms.RenameHandler[] = [];
+	readonly closeRoomHandlers: RoomCloseHandler[] = [];
 	/** The key is the name of the plugin. */
 	readonly plugins: {[k: string]: ChatPlugin} = {};
 	/** Will be empty except during hotpatch */
@@ -1820,6 +1829,7 @@ export const Chat = new class {
 		if (plugin.nicknamefilter) Chat.nicknamefilters.push(plugin.nicknamefilter);
 		if (plugin.statusfilter) Chat.statusfilters.push(plugin.statusfilter);
 		if (plugin.onRenameRoom) Chat.renameHandlers.push(plugin.onRenameRoom);
+		if (plugin.onCloseRoom) Chat.closeRoomHandlers.push(plugin.onCloseRoom);
 		Chat.plugins[name] = plugin;
 	}
 	loadPlugins(oldPlugins?: {[k: string]: ChatPlugin}) {
@@ -1888,6 +1898,12 @@ export const Chat = new class {
 	handleRoomRename(oldID: RoomID, newID: RoomID, room: Room) {
 		for (const handler of Chat.renameHandlers) {
 			handler(oldID, newID, room);
+		}
+	}
+
+	handleRoomClose(roomid: RoomID, user: User, connection: Connection) {
+		for (const handler of Chat.closeRoomHandlers) {
+			handler(roomid, user, connection, roomid.startsWith('view-'));
 		}
 	}
 

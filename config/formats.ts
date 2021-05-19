@@ -25,8 +25,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8] Galar Dex Wifi",
 
 		mod: 'gen8',
-		maxForcedLevel: 50,
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', 'Adjust Level Down = 50'],
 	},
 	{
 		name: "[Gen 8] Galar Dex Doubles",
@@ -40,18 +39,12 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen8',
 		gameType: 'doubles',
-		forcedLevel: 50,
-		teamLength: {
-			validate: [4, 6],
-			battle: 4,
-		},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', '!Sleep Clause Mod'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', '!Sleep Clause Mod', 'Adjust Level = 50', 'Picked Team Size = 4'],
 	},
 	{
 		name: "[Gen 8] LC Galar Dex Draft",
 
 		mod: 'gen8',
-		maxLevel: 5,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
@@ -91,8 +84,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8] National Dex Wifi",
 
 		mod: 'gen8',
-		maxForcedLevel: 50,
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Adjust Level Down = 50'],
 	},
 	{
 		name: "[Gen 8] National Dex Doubles",
@@ -113,18 +105,12 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen8',
 		gameType: 'doubles',
-		forcedLevel: 50,
-		teamLength: {
-			validate: [4, 6],
-			battle: 4,
-		},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', '!Sleep Clause Mod'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', '!Sleep Clause Mod', 'Adjust Level = 50', 'Picked Team Size = 4'],
 	},
 	{
 		name: "[Gen 8] LC National Dex Draft",
 
 		mod: 'gen8',
-		maxLevel: 5,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
@@ -132,7 +118,6 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8] LC National Dex Legacy",
 
 		mod: 'gen8',
-		maxLevel: 5,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
@@ -172,8 +157,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8] National Dex DLC Wifi",
 
 		mod: 'gen8leaks',
-		maxForcedLevel: 50,
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Adjust Level Down = 50'],
 	},
 	{
 		name: "[Gen 8] National Dex DLC Doubles",
@@ -187,18 +171,12 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen8leaks',
 		gameType: 'doubles',
-		forcedLevel: 50,
-		teamLength: {
-			validate: [4, 6],
-			battle: 4,
-		},
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', '!Sleep Clause Mod'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', '!Sleep Clause Mod', 'Adjust Level = 50', 'Picked Team Size = 4'],
 	},
 	{
 		name: "[Gen 8] LC National Dex DLC Draft",
 
 		mod: 'gen8leaks',
-		maxLevel: 5,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
@@ -206,7 +184,6 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8] LC National Dex DLC Legacy",
 
 		mod: 'gen8leaks',
-		maxLevel: 5,
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
@@ -251,6 +228,168 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 	
 	
 	
+	// Multi Draft Tiers
+	///////////////////////////////////////////////////////////////////
+	{
+		section: "Multi Draft Tiers",
+		column: 2,
+	},
+	{
+		name: "[Gen 8] Galar Dex Multi Draft",
+
+		mod: 'gen8',
+		gameType: 'multi',
+		tournamentShow: false,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', 'Dynamax Clause', 'Max Team Size = 3'],
+	},
+	{
+		name: "[Gen 8] Galar Dex Multi Dynamax",
+
+		mod: 'gen8',
+		gameType: 'multi',
+		tournamentShow: false,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', 'Max Team Size = 3'],
+	},
+	{
+		name: "[Gen 8] National Dex Multi Draft",
+
+		mod: 'gen8',
+		gameType: 'multi',
+		tournamentShow: false,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause', 'Max Team Size = 3'],
+	},
+	{
+		name: "[Gen 8] National Dex Multi Legacy",
+
+		mod: 'gen8',
+		gameType: 'multi',
+		tournamentShow: false,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause', 'Max Team Size = 3'],
+	},
+	{
+		name: "[Gen 8] National Dex Multi Dynamax",
+
+		mod: 'gen8',
+		gameType: 'multi',
+		tournamentShow: false,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Max Team Size = 3'],
+	},
+	{
+		name: "[Gen 8] National Dex DLC Multi Draft",
+
+		mod: 'gen8leaks',
+		gameType: 'multi',
+		tournamentShow: false,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause', 'Max Team Size = 3'],
+	},
+	{
+		name: "[Gen 8] National Dex DLC Multi Dynamax",
+
+		mod: 'gen8leaks',
+		gameType: 'multi',
+		tournamentShow: false,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Max Team Size = 3'],
+	},
+	{
+		name: "[Gen 8] National Dex DLC Multi Legacy",
+
+		mod: 'gen8leaks',
+		gameType: 'multi',
+		tournamentShow: false,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause', 'Max Team Size = 3'],
+	},
+	{
+		name: "[Gen 8] National Dex Multi Unrestricted",
+
+		mod: 'gen8',
+		gameType: 'multi',
+		tournamentShow: false,
+		ruleset: ['Draft', '+Unreleased', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+PastMove', 'Team Preview', 'Max Team Size = 3'],
+	},
+	
+	
+	
+	// FFA Draft Tiers
+	///////////////////////////////////////////////////////////////////
+	{
+		section: "FFA Draft Tiers",
+		column: 2,
+	},
+	{
+		name: "[Gen 8] Galar Dex FFA Draft",
+
+		mod: 'gen8',
+		gameType: 'freeforall',
+		tournamentShow: false,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', 'Dynamax Clause'],
+	},
+	{
+		name: "[Gen 8] Galar Dex FFA Dynamax",
+
+		mod: 'gen8',
+		gameType: 'freeforall',
+		tournamentShow: false,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
+	},
+	{
+		name: "[Gen 8] National Dex FFA Draft",
+
+		mod: 'gen8',
+		gameType: 'freeforall',
+		tournamentShow: false,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
+	},
+	{
+		name: "[Gen 8] National Dex FFA Legacy",
+
+		mod: 'gen8',
+		gameType: 'freeforall',
+		tournamentShow: false,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
+	},
+	{
+		name: "[Gen 8] National Dex FFA Dynamax",
+
+		mod: 'gen8',
+		gameType: 'freeforall',
+		tournamentShow: false,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
+	},
+	{
+		name: "[Gen 8] National Dex DLC FFA Draft",
+
+		mod: 'gen8leaks',
+		gameType: 'freeforall',
+		tournamentShow: false,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
+	},
+	{
+		name: "[Gen 8] National Dex DLC FFA Dynamax",
+
+		mod: 'gen8leaks',
+		gameType: 'freeforall',
+		tournamentShow: false,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
+	},
+	{
+		name: "[Gen 8] National Dex DLC FFA Legacy",
+
+		mod: 'gen8leaks',
+		gameType: 'freeforall',
+		tournamentShow: false,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
+	},
+	{
+		name: "[Gen 8] National Dex FFA Unrestricted",
+
+		mod: 'gen8',
+		gameType: 'freeforall',
+		tournamentShow: false,
+		ruleset: ['Draft', '+Unreleased', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+PastMove', 'Team Preview'],
+	},
+	
+	
+	
 	// Past Gens Draft League
 	///////////////////////////////////////////////////////////////////
 	{
@@ -268,8 +407,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen7',
 		searchShow: false,
-		maxForcedLevel: 50,
-		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview'],
+		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview', 'Adjust Level Down = 50'],
 	},
 	{
 		name: "[Gen 7] DS Timer Draft League",
@@ -283,7 +421,6 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen7',
 		searchShow: false,
-		maxLevel: 5,
 		ruleset: ['Obtainable', '+Unreleased', '+LGPE', 'Draft', 'Team Preview', 'Double Item Clause', 'Little Cup'],
 		banlist: ['Eevium Z', 'Dragon Rage', 'Sonic Boom'],
 	},
@@ -308,19 +445,14 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 	{
 		section: "Other Metagames",
-		column: 2,
+		column: 3,
 	},
 	{
         name: "[Gen 8] (National Dex) Astrea Cup",
 
         mod: 'gen8',
         gameType: 'doubles',
-        forcedLevel: 50,
-        teamLength: {
-            validate: [4, 6],
-            battle: 4,
-        },
-        ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', '+Past', '+PastMove', 'Dynamax Clause', '!Sleep Clause Mod', '!OHKO Clause', 'Item Clause'],
+        ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', '+Past', '+PastMove', 'Dynamax Clause', '!Sleep Clause Mod', '!OHKO Clause', 'Item Clause', 'Adjust Level = 50', 'Picked Team Size = 4', 'Min Source Gen = 7'],
         banlist: [
 			// Mons
 			'Mewtwo', 'Mew', 'Lugia', 'Ho-oh', 'Celebi', 'Kyogre', 'Groudon', 'Rayquaza', 'Jirachi', 'Deoxys', 'Dialga', 'Palkia', 'Giratina',
@@ -351,7 +483,6 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			'Smeargle + Corrosive Gas', 'Smeargle + Coaching', 'Smeargle + Flip Turn', 'Smeargle + Triple Axel', 'Smeargle + Dual Wingbeat', 
 			'Smeargle + Scorching Sands', 'Clefairy + Teleport', 'Clefable + Teleport', 'Arcanine + Teleport',
 		],
-        minSourceGen: 7,
     },
 	{
 		name: "[Gen 8] Almost Any Ability",
@@ -378,7 +509,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8',
 		ruleset: ['[Gen 8] National Dex Draft', 'Alphabet Cup Move Legality'],
 		banlist: [
-			'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'Acupressure', 'Baton Pass',
+			'Acupressure', 'Baton Pass',
 		],
 		restricted: [
 			'Astral Barrage', 'Bolt Beak', 'Double Iron Bash', 'Electrify', 'Geomancy', 'Glacial Lance',
@@ -396,7 +527,6 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8',
 		ruleset: ['-Nonexistent', 'OHKO Clause', 'Evasion Moves Clause', 'Forme Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Dynamax Clause', 'Sleep Clause Mod', 'Endless Battle Clause'],
 		banlist: [
-			'Calyrex-Shadow', 'Darmanitan-Galar-Zen', 'Eternatus-Eternamax', 'Shedinja',
 			'Arena Trap', 'Contrary', 'Gorilla Tactics', 'Huge Power', 'Illusion', 'Innards Out', 'Libero', 'Magnet Pull', 'Moody',
 			'Neutralizing Gas', 'Parental Bond', 'Protean', 'Pure Power', 'Shadow Tag', 'Stakeout', 'Water Bubble', 'Wonder Guard',
 			'Comatose + Sleep Talk', 'Double Iron Bash', 'Octolock', 'Shell Smash',
@@ -442,7 +572,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8',
 		ruleset: ['[Gen 8] National Dex Draft'],
 		banlist: [
-			'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass',
+			//
 		],
 		onModifySpecies(species, target, source, effect) {
 			if (!target) return; // Chat command
@@ -467,8 +597,12 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8',
 		searchShow: false,
 		ruleset: ['[Gen 8] National Dex Draft', 'Overflow Stat Mod'],
-		banlist: ['Corsola-Galar', 'Sneasel', 'Type: Null', 'Arena Trap', 'Ice Scales', 'Moody', 'King\'s Rock', 'Baton Pass'],
-		restricted: ['Chansey', 'Lunala', 'Shedinja', 'Solgaleo', 'Gorilla Tactics', 'Huge Power', 'Pure Power', 'Shadow Tag'],
+		banlist: [
+			'Arena Trap', 'Ice Scales', 'Moody', 'King\'s Rock',
+		],
+		restricted: [
+			'Chansey', 'Lunala', 'Shedinja', 'Solgaleo', 'Gorilla Tactics', 'Huge Power', 'Pure Power', 'Shadow Tag'
+		],
 		onValidateTeam(team) {
 			const names = new Set<ID>();
 			for (const set of team) {
@@ -509,15 +643,13 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			const onChangeSet = this.dex.formats.get('Pokemon').onChangeSet;
 			let problems = onChangeSet?.call(this, set, this.format) || null;
 			if (Array.isArray(problems) && problems.length) return problems;
-			const crossNonstandard = !this.ruleTable.has('standardnatdex') && crossSpecies.isNonstandard === 'Past';
 			const crossIsCap = !this.ruleTable.has('+pokemontag:cap') && crossSpecies.isNonstandard === 'CAP';
-			if (!crossSpecies.exists || crossNonstandard || crossIsCap) return this.validateSet(set, teamHas);
+			if (!crossSpecies.exists || crossIsCap) return this.validateSet(set, teamHas);
 			const species = this.dex.species.get(set.species);
 			const check = this.checkSpecies(set, species, species, {});
 			if (check) return [check];
-			const nonstandard = !this.ruleTable.has('standardnatdex') && species.isNonstandard === 'Past';
 			const isCap = !this.ruleTable.has('+pokemontag:cap') && species.isNonstandard === 'CAP';
-			if (!species.exists || nonstandard || isCap || species === crossSpecies) return this.validateSet(set, teamHas);
+			if (!species.exists || isCap || species === crossSpecies) return this.validateSet(set, teamHas);
 			if (!species.nfe) return [`${species.name} cannot cross evolve because it doesn't evolve.`];
 			const crossIsUnreleased = (crossSpecies.tier === "Unreleased" && crossSpecies.isNonstandard === "Unobtainable");
 			if (crossSpecies.battleOnly || crossIsUnreleased || !crossSpecies.prevo) {
@@ -608,7 +740,9 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen8',
 		ruleset: ['[Gen 8] National Dex Draft'],
-		banlist: ['Uber > 1', 'AG + Uber > 1', 'Arena Trap', 'Huge Power', 'Moody', 'Pure Power', 'Shadow Tag', 'Baton Pass'],
+		banlist: [
+			'Uber > 1', 'AG + Uber > 1', 'Huge Power', 'Pure Power',
+		],
 		onModifySpeciesPriority: 3,
 		onModifySpecies(species, target, source) {
 			if (source || !target?.side) return;
@@ -785,6 +919,16 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		},
 	},
 	{
+		name: "[Gen 8] Inverse",
+		desc: `The type chart is inverted. Normal is super effective against Ghost, and vice versa, etc.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666858/">Inverse</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['[Gen 8] National Dex Draft', 'Inverse Mod'],
+	},
+	{
 		name: "[Gen 8] Mix and Mega",
 		desc: `Mega evolve any Pok&eacute;mon with any mega stone and no limit. Boosts based on mega evolution from gen 7.`,
 		threads: [
@@ -795,8 +939,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'mixandmega',
 		ruleset: ['[Gen 8] National Dex Draft', 'Overflow Stat Mod'],
 		banlist: [
-			'Beedrillite', 'Blazikenite', 'Gengarite', 'Kangaskhanite', 'Mawilite', 'Medichamite', 'Pidgeotite',
-			'Moody', 'Shadow Tag', 'Baton Pass', 'Electrify',
+			'Beedrillite', 'Blazikenite', 'Gengarite', 'Kangaskhanite', 'Mawilite', 'Medichamite', 'Pidgeotite', 'Electrify',
 		],
 		restricted: [
 			//
@@ -853,11 +996,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		searchShow: false,
 		ruleset: ['[Gen 8] National Dex Draft'],
 		banlist: [
-			'Blissey', 'Calyrex-Ice', 'Calyrex-Shadow', 'Chansey', 'Cloyster', 'Dialga', 'Eternatus', 'Genesect', 'Giratina',
-			'Giratina-Origin', 'Groudon', 'Ho-Oh', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Landorus-Base', 'Lugia', 'Lunala',
-			'Marshadow', 'Melmetal', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Rayquaza', 'Reshiram',
-			'Solgaleo', 'Xerneas', 'Yveltal', 'Zacian', 'Zacian-Crowned', 'Zamazenta', 'Zamazenta-Crowned', 'Zekrom', 'Zygarde-Base',
-			'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'Baton Pass',
+			//
 		],
 		battle: {
 			spreadModify(baseStats, set) {
@@ -917,7 +1056,9 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen8',
 		ruleset: ['[Gen 8] National Dex Draft', 'Scalemons Mod'],
-		banlist: ['Arena Trap', 'Drizzle', 'Drought', 'Huge Power', 'Moody', 'Shadow Tag', 'Baton Pass', 'Rain Dance', 'Sunny Day', 'Eviolite', 'Light Ball'],
+		banlist: [
+			'Drizzle', 'Drought', 'Huge Power', 'Rain Dance', 'Sunny Day', 'Eviolite', 'Light Ball'
+		],
 	},
 	{
 		name: "[Gen 8] Shared Power",
@@ -934,7 +1075,6 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			'Magnet Pull', 'Mold Breaker', 'Moody', 'Neutralizing Gas', 'Power Construct', 'Queenly Majesty', 'Quick Draw',
 			'Regenerator', 'Sand Rush', 'Sand Veil', 'Shadow Tag', 'Simple', 'Snow Cloak', 'Snow Warning ++ Slush Rush', 'Speed Boost',
 			'Stakeout', 'Steelworker ++ Steely Spirit', 'Tinted Lens', 'Triage', 'Unaware', 'Unburden', 'Water Bubble',
-			'Baton Pass',
 		],
 		getSharedPower(pokemon) {
 			const sharedPower = new Set<string>();
@@ -975,6 +1115,48 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		},
 	},
 	{
+		name: "[Gen 8] Sketchmons",
+		desc: `Pok&eacute;mon can learn one of any move they don't normally learn, barring the few that are banned.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3680298/">Sketchmons</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['[Gen 8] National Dex Draft'],
+		banlist: [
+			'King\'s Rock', 'Baton Pass',
+		],
+		restricted: [
+			'Acupressure', 'Astral Barrage', 'Belly Drum', 'Bolt Beak', 'Clangorous Soul', 'Double Iron Bash', 'Electrify', 'Extreme Speed',
+			'Fishious Rend', 'Geomancy', 'Glacial Lance', 'Lovely Kiss', 'Octolock', 'Quiver Dance', 'Secret Sword', 'Shell Smash', 'Shift Gear',
+			'Sleep Powder', 'Spore', 'Thousand Arrows', 'V-create', 'Wicked Blow',
+		],
+		checkCanLearn(move, species, lsetData, set) {
+			const problem = this.checkCanLearn(move, species, lsetData, set);
+			if (!problem) return null;
+			if (move.isZ || move.isMax || this.ruleTable.isRestricted(`move:${move.id}`)) return problem;
+			if ((set as any).sketchMove) {
+				return ` already has ${(set as any).sketchMove} as a sketched move.\n(${species.name} doesn't learn ${move.name}.)`;
+			}
+			(set as any).sketchMove = move.name;
+			return null;
+		},
+		onValidateTeam(team) {
+			const sketches = new Utils.Multiset<string>();
+			for (const set of team) {
+				if ((set as any).sketchMove) {
+					sketches.add((set as any).sketchMove);
+				}
+			}
+			const overSketched = [...sketches.entries()].filter(([moveName, count]) => count > 1);
+			if (overSketched.length) {
+				return overSketched.map(([moveName, count]) => (
+					`You are limited to 1 of ${moveName} by Sketch Clause.\n(You have sketched ${moveName} ${count} times.)`
+				));
+			}
+		},
+	},
+	{
 		name: "[Gen 8] STABmons",
 		desc: `Pok&eacute;mon can use any move of their typing, in addition to the moves they can normally learn.`,
 		threads: [
@@ -984,7 +1166,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8',
 		ruleset: ['[Gen 8] National Dex Draft', 'STABmons Move Legality'],
 		banlist: [
-			'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'King\'s Rock', 'Baton Pass',
+			'King\'s Rock', 'Baton Pass',
 		],
 		restricted: [
 			'Acupressure', 'Astral Barrage', 'Belly Drum', 'Bolt Beak', 'Double Iron Bash', 'Electrify', 'Extreme Speed', 'Fishious Rend',
@@ -1041,13 +1223,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3657270/">The Loser's Game</a>`,
 		],
 
-		mod: 'gen8',
-		forcedLevel: 100,
-		teamLength: {
-			validate: [6, 6],
-		},
-		searchShow: false,
-		ruleset: ['Standard', '!OHKO Clause'],
+		ruleset: ['[Gen 8] National Dex Draft', '!OHKO Clause', 'Picked Team Size = 6', 'Adjust Level = 100'],
 		banlist: [
 			'Sandshrew-Alola', 'Shedinja', 'Infiltrator', 'Magic Guard', 'Choice Scarf',
 			'Explosion', 'Final Gambit', 'Healing Wish', 'Lunar Dance', 'Magic Room', 'Memento', 'Misty Explosion', 'Self-Destruct',
@@ -1183,7 +1359,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8',
 		ruleset: ['[Gen 8] National Dex Draft'],
 		banlist: [
-			'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'Baton Pass',
+			'Baton Pass',
 		],
 		restricted: [
 			'Baneful Bunker', 'Block', 'Copycat', 'Corrosive Gas', 'Detect', 'Destiny Bond', 'Disable', 'Encore', 'Fairy Lock', 'Ingrain', 'Instruct',
@@ -1306,30 +1482,6 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['[Gen 8] Random Battle'],
 	},
 	{
-		name: "[Gen 8] Free-For-All Random Battle",
-
-		mod: 'gen8',
-		team: 'random',
-		gameType: 'freeforall',
-		tournamentShow: false,
-		rated: false,
-		ruleset: ['Obtainable', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
-	},
-	{
-		name: "[Gen 8] Multi Random Battle",
-
-		mod: 'gen8',
-		team: 'random',
-		gameType: 'multi',
-		searchShow: false,
-		tournamentShow: false,
-		rated: false,
-		teamLength: {
-			battle: 3,
-		},
-		ruleset: ['Obtainable', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
-	},
-	{
 		name: "[Gen 8] Random Camomons",
 		desc: `Pok&eacute;mon change type to match their first two moves.`,
 
@@ -1362,11 +1514,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen8',
 		team: 'random',
-		teamLength: {
-			validate: [6, 6],
-			battle: 6,
-		},
-		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Team Preview', 'Dynamax Clause'],
+		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Team Preview', 'Dynamax Clause', 'Picked Team Size = 6'],
 		randomBanlist: ['Arceus', 'Zoroark', 'Shedinja', 'Darmanitan-Galar', 'Huge Power', 'Pure Power'],
 		level100: true,
 		onBegin() {
@@ -1673,6 +1821,39 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			}
 		},
 	},
+	
+	
+	
+	// Other Randomized Metas
+	///////////////////////////////////////////////////////////////////
+
+	{
+		section: "Other Randomized Metas",
+		column: 4,
+	},
+	{
+		name: "[Gen 8] Free-For-All Random Battle",
+
+		mod: 'gen8',
+		team: 'random',
+		gameType: 'freeforall',
+		tournamentShow: false,
+		rated: false,
+		ruleset: ['Obtainable', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
+	},
+	{
+		name: "[Gen 8] Multi Random Battle",
+
+		mod: 'gen8',
+		team: 'random',
+		gameType: 'multi',
+		tournamentShow: false,
+		rated: false,
+		ruleset: [
+			'Max Team Size = 3',
+			'Obtainable', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod',
+		],
+	},
 	{
 		name: "[Gen 8] Random Doubles Battle",
 
@@ -1689,14 +1870,19 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Obtainable', 'Same Type Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
 	},
 	{
+		name: "[Gen 8] Challenge Cup",
+
+		mod: 'gen8',
+		team: 'randomCC',
+		searchShow: false,
+		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod'],
+	},
+	{
 		name: "[Gen 8] Challenge Cup 1v1",
 
 		mod: 'gen8',
 		team: 'randomCC',
-		teamLength: {
-			battle: 1,
-		},
-		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Dynamax Clause'],
+		ruleset: ['[Gen 8] Challenge Cup', 'Team Preview', 'Dynamax Clause', 'Picked Team Size = 1'],
 	},
 	{
 		name: "[Gen 8] Challenge Cup 2v2",
@@ -1704,11 +1890,8 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8',
 		team: 'randomCC',
 		gameType: 'doubles',
-		teamLength: {
-			battle: 2,
-		},
 		searchShow: false,
-		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod', 'Team Preview', 'Dynamax Clause'],
+		ruleset: ['[Gen 8] Challenge Cup 1v1', '!! Picked Team Size = 2'],
 	},
 	{
 		name: "[Gen 8] Hackmons Cup",
@@ -1727,6 +1910,117 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		searchShow: false,
 		ruleset: ['HP Percentage Mod', 'Cancel Mod'],
 	},
+	{
+		name: "[Gen 7] Random Battle",
+		desc: `Randomized teams of level-balanced Pok&eacute;mon with sets that are generated to be competitively viable.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3591157/">Sets and Suggestions</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3616946/">Role Compendium</a>`,
+		],
+
+		mod: 'gen7',
+		team: 'random',
+		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+	},
+	{
+		name: "[Gen 7] Random Doubles Battle",
+		threads: [`&bullet; <a href="https://www.smogon.com/forums/threads/3601525/">Sets and Suggestions</a>`],
+
+		mod: 'gen7',
+		gameType: 'doubles',
+		team: 'random',
+		searchShow: false,
+		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod'],
+	},
+	{
+		name: "[Gen 7] Battle Factory",
+		desc: `Randomized teams of Pok&eacute;mon for a generated Smogon tier with sets that are competitively viable.`,
+
+		mod: 'gen7',
+		team: 'randomFactory',
+		searchShow: false,
+		ruleset: ['Obtainable', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
+	},
+	{
+		name: "[Gen 7] BSS Factory",
+		desc: `Randomized 3v3 Singles featuring Pok&eacute;mon and movesets popular in Battle Spot Singles.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3604845/">Information and Suggestions Thread</a>`,
+		],
+
+		mod: 'gen7',
+		team: 'randomBSSFactory',
+		searchShow: false,
+		ruleset: ['Flat Rules'],
+	},
+	{
+		name: "[Gen 7 Let's Go] Random Battle",
+
+		mod: 'letsgo',
+		team: 'random',
+		searchShow: false,
+		ruleset: ['Obtainable', 'Allow AVs', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
+	},
+	{
+		name: "[Gen 6] Random Battle",
+
+		mod: 'gen6',
+		team: 'random',
+		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+	},
+	{
+		name: "[Gen 6] Battle Factory",
+		desc: `Randomized teams of Pok&eacute;mon for a generated Smogon tier with sets that are competitively viable.`,
+
+		mod: 'gen6',
+		team: 'randomFactory',
+		searchShow: false,
+		ruleset: ['Obtainable', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
+	},
+	{
+		name: "[Gen 5] Random Battle",
+
+		mod: 'gen5',
+		team: 'random',
+		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+	},
+	{
+		name: "[Gen 4] Random Battle",
+
+		mod: 'gen4',
+		team: 'random',
+		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
+	},
+	{
+		name: "[Gen 3] Random Battle",
+
+		mod: 'gen3',
+		team: 'random',
+		ruleset: ['Standard'],
+	},
+	{
+		name: "[Gen 2] Random Battle",
+
+		mod: 'gen2',
+		team: 'random',
+		ruleset: ['Standard'],
+	},
+	{
+		name: "[Gen 1] Random Battle",
+
+		mod: 'gen1',
+		team: 'random',
+		ruleset: ['Standard'],
+	},
+	{
+		name: "[Gen 1] Challenge Cup",
+
+		mod: 'gen1',
+		team: 'randomCC',
+		searchShow: false,
+		challengeShow: false,
+		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod'],
+	},
 	
 	
 	
@@ -1735,19 +2029,15 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 	{
 		section: "Other Other Metagames",
-		column: 3,
+		column: 4,
 	},
 	{
 		name: "[Gen 8] Rock Paper Scissors",
 
 		mod: 'rps',
 		team: 'randomRPS',
-		teamLength: {
-			validate: [1, 3],
-			battle: 1,
-		},
 		searchShow: false,
-		ruleset: ['Dynamax Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod'],
+		ruleset: ['Dynamax Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Picked Team Size = 1'],
 	},
 	{
 		name: "[Gen 8] Rhet Clause 2.0",
@@ -1891,131 +2181,6 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 	
 	
 	
-	// Past Randomized Metas
-	///////////////////////////////////////////////////////////////////
-
-	{
-		section: "Past Randomized Metas",
-		column: 4,
-	},
-	{
-		name: "[Gen 7] Random Battle",
-		desc: `Randomized teams of level-balanced Pok&eacute;mon with sets that are generated to be competitively viable.`,
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3591157/">Sets and Suggestions</a>`,
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3616946/">Role Compendium</a>`,
-		],
-
-		mod: 'gen7',
-		team: 'random',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-	},
-	{
-		name: "[Gen 7] Random Doubles Battle",
-		threads: [`&bullet; <a href="https://www.smogon.com/forums/threads/3601525/">Sets and Suggestions</a>`],
-
-		mod: 'gen7',
-		gameType: 'doubles',
-		team: 'random',
-		searchShow: false,
-		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod'],
-	},
-	{
-		name: "[Gen 7] Battle Factory",
-		desc: `Randomized teams of Pok&eacute;mon for a generated Smogon tier with sets that are competitively viable.`,
-
-		mod: 'gen7',
-		team: 'randomFactory',
-		searchShow: false,
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
-	},
-	{
-		name: "[Gen 7] BSS Factory",
-		desc: `Randomized 3v3 Singles featuring Pok&eacute;mon and movesets popular in Battle Spot Singles.`,
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3604845/">Information and Suggestions Thread</a>`,
-		],
-
-		mod: 'gen7',
-		team: 'randomBSSFactory',
-		searchShow: false,
-		teamLength: {
-			validate: [3, 6],
-			battle: 3,
-		},
-		ruleset: ['Standard GBU'],
-	},
-	{
-		name: "[Gen 7 Let's Go] Random Battle",
-
-		mod: 'letsgo',
-		team: 'random',
-		searchShow: false,
-		ruleset: ['Obtainable', 'Allow AVs', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
-	},
-	{
-		name: "[Gen 6] Random Battle",
-
-		mod: 'gen6',
-		team: 'random',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-	},
-	{
-		name: "[Gen 6] Battle Factory",
-		desc: `Randomized teams of Pok&eacute;mon for a generated Smogon tier with sets that are competitively viable.`,
-
-		mod: 'gen6',
-		team: 'randomFactory',
-		searchShow: false,
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Mega Rayquaza Clause'],
-	},
-	{
-		name: "[Gen 5] Random Battle",
-
-		mod: 'gen5',
-		team: 'random',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-	},
-	{
-		name: "[Gen 4] Random Battle",
-
-		mod: 'gen4',
-		team: 'random',
-		ruleset: ['Obtainable', 'Sleep Clause Mod', 'HP Percentage Mod', 'Cancel Mod'],
-	},
-	{
-		name: "[Gen 3] Random Battle",
-
-		mod: 'gen3',
-		team: 'random',
-		ruleset: ['Standard'],
-	},
-	{
-		name: "[Gen 2] Random Battle",
-
-		mod: 'gen2',
-		team: 'random',
-		ruleset: ['Standard'],
-	},
-	{
-		name: "[Gen 1] Random Battle",
-
-		mod: 'gen1',
-		team: 'random',
-		ruleset: ['Standard'],
-	},
-	{
-		name: "[Gen 1] Challenge Cup",
-
-		mod: 'gen1',
-		team: 'randomCC',
-		searchShow: false,
-		challengeShow: false,
-		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod'],
-	},
-	
-	
-	
 	// Sw/Sh
 	///////////////////////////////////////////////////////////////////
 
@@ -2033,7 +2198,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen8',
 		ruleset: ['Standard', 'Dynamax Clause'],
-		banlist: ['Uber', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'Baton Pass'],
+		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'Baton Pass'],
 	},
 	{
 		name: "[Gen 8] Ubers",
@@ -2045,7 +2210,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen8',
 		ruleset: ['Standard', 'Dynamax Clause'],
-		banlist: ['AG', 'Baton Pass'],
+		banlist: ['AG', 'Shadow Tag', 'Baton Pass'],
 	},
 	{
 		name: "[Gen 8] LC",
@@ -2057,10 +2222,9 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen8',
 		searchShow: false,
-		maxLevel: 5,
 		ruleset: ['Little Cup', 'Standard', 'Dynamax Clause'],
 		banlist: [
-			'Corsola-Galar', 'Cutiefly', 'Drifloon', 'Gastly', 'Gothita', 'Rufflet', 'Scyther', 'Sneasel', 'Swirlix', 'Tangela', 'Vulpix-Alola',
+			'Corsola-Galar', 'Cutiefly', 'Drifloon', 'Gastly', 'Gothita', 'Rufflet', 'Scyther', 'Sneasel', 'Swirlix', 'Tangela', 'Vulpix-Alola', 'Woobat',
 			'Chlorophyll', 'Moody', 'Baton Pass',
 		],
 	},
@@ -2081,7 +2245,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3656824/">CAP Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3671157/">CAP Sample Teams</a>`,
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3658514/">CAP Viability Rankings</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3674024/">CAP Viability Rankings</a>`,
 		],
 
 		mod: 'gen8',
@@ -2100,12 +2264,12 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8',
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Sleep Clause Mod'],
 		banlist: [
-			'Alakazam-Mega', 'Arceus', 'Blastoise-Mega', 'Blaziken', 'Calyrex-Ice', 'Calyrex-Shadow', 'Darkrai', 'Darmanitan-Galar', 'Deoxys-Attack',
-			'Deoxys-Base', 'Deoxys-Speed', 'Dialga', 'Dracovish', 'Dragapult', 'Eternatus', 'Genesect', 'Gengar-Mega', 'Giratina', 'Giratina-Origin',
-			'Groudon', 'Ho-Oh', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Landorus-Base', 'Lucario-Mega', 'Lugia', 'Lunala',
-			'Marshadow', 'Metagross-Mega', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Necrozma-Ultra', 'Palkia', 'Pheromosa',
-			'Rayquaza', 'Reshiram', 'Salamence-Mega', 'Shaymin-Sky', 'Solgaleo', 'Spectrier', 'Tornadus-Therian', 'Urshifu-Base', 'Xerneas', 'Yveltal',
-			'Zacian', 'Zacian-Crowned', 'Zamazenta', 'Zamazenta-Crowned', 'Zekrom', 'Zygarde-Base', 'Zygarde-Complete',
+			'Alakazam-Mega', 'Arceus', 'Blastoise-Mega', 'Blaziken', 'Calyrex-Ice', 'Calyrex-Shadow', 'Cinderace', 'Darkrai', 'Darmanitan-Galar',
+			'Deoxys-Attack', 'Deoxys-Base', 'Deoxys-Speed', 'Dialga', 'Dracovish', 'Dragapult', 'Eternatus', 'Genesect', 'Gengar-Mega', 'Giratina',
+			'Giratina-Origin', 'Groudon', 'Ho-Oh', 'Kangaskhan-Mega', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Landorus-Base', 'Lucario-Mega',
+			'Lugia', 'Lunala', 'Magearna', 'Marshadow', 'Metagross-Mega', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane',
+			'Necrozma-Ultra', 'Palkia', 'Pheromosa', 'Rayquaza', 'Reshiram', 'Salamence-Mega', 'Shaymin-Sky', 'Solgaleo', 'Spectrier', 'Tornadus-Therian',
+			'Urshifu-Base', 'Xerneas', 'Yveltal', 'Zacian', 'Zacian-Crowned', 'Zamazenta', 'Zamazenta-Crowned', 'Zekrom', 'Zygarde-Base', 'Zygarde-Complete',
 			'Arena Trap', 'Moody', 'Power Construct', 'Shadow Tag', 'Baton Pass',
 		],
 	},
@@ -2125,15 +2289,9 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8',
 		searchShow: false,
 		debug: true,
-		maxLevel: 9999,
 		battle: {trunc: Math.trunc},
-		defaultLevel: 100,
-		teamLength: {
-			validate: [1, 24],
-			battle: 24,
-		},
 		// no restrictions, for serious (other than team preview)
-		ruleset: ['Team Preview', 'Cancel Mod'],
+		ruleset: ['Team Preview', 'Cancel Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 	},
 	{
 		name: "[Gen 8] Doubles Ubers",
@@ -2148,20 +2306,11 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		banlist: [],
 	},
 	{
-		name: "[Gen 8] VGC 2021",
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3672129/">VGC 2021 Metagame Discussion & Resources</a>`,
-		],
+		name: "[Gen 8] VGC 2021 Series 9",
 
 		mod: 'gen8',
 		gameType: 'doubles',
-		forcedLevel: 50,
-		teamLength: {
-			validate: [4, 6],
-			battle: 4,
-		},
-		ruleset: ['Single Restricted GBU', 'VGC Timer'],
-		minSourceGen: 8,
+		ruleset: ['Flat Rules', '!! Adjust Level = 50', 'Min Source Gen = 8', 'VGC Timer'],
 	},
 	{
 		name: "[Gen 8] Doubles Custom Game",
@@ -2169,16 +2318,10 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8',
 		gameType: 'doubles',
 		searchShow: false,
-		maxLevel: 9999,
 		battle: {trunc: Math.trunc},
-		defaultLevel: 100,
 		debug: true,
-		teamLength: {
-			validate: [2, 24],
-			battle: 24,
-		},
 		// no restrictions, for serious (other than team preview)
-		ruleset: ['Team Preview', 'Cancel Mod'],
+		ruleset: ['Team Preview', 'Cancel Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 	},
 	
 
@@ -2204,20 +2347,16 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 	{
 		name: "[Gen 7] LC",
 		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3587196/">LC Metagame Discussion</a>`,
-			`&bullet; <a href="https://www.smogon.com/dex/sm/formats/lc/">LC Banlist</a>`,
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3621440/">LC Viability Rankings</a>`,
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3639319/">LC Sample Teams</a>`,
+			`&bullet; <a href="https://www.smogon.com/dex/sm/formats/lc/">USM LC Banlist</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3639319/">USM LC Sample Teams</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3621440/">USM LC Viability Rankings</a>`,
 		],
 
 		mod: 'gen7',
 		searchShow: false,
-		maxLevel: 5,
 		ruleset: ['Little Cup', 'Standard', 'Swagger Clause'],
 		banlist: [
-			'Aipom', 'Cutiefly', 'Drifloon', 'Gligar', 'Gothita', 'Meditite', 'Misdreavus', 'Murkrow', 'Porygon',
-			'Scyther', 'Sneasel', 'Swirlix', 'Tangela', 'Trapinch', 'Vulpix-Base', 'Wingull', 'Yanma',
-			'Eevium Z', 'Baton Pass', 'Dragon Rage', 'Sonic Boom',
+			'Dragon Rage', 'Sonic Boom',
 		],
 	},
 	{
@@ -2226,15 +2365,9 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen7',
 		searchShow: false,
 		debug: true,
-		maxLevel: 9999,
-		trunc(n) { return Math.trunc(n); },
-		defaultLevel: 100,
-		teamLength: {
-			validate: [1, 24],
-			battle: 24,
-		},
+		battle: {trunc: Math.trunc},
 		// no restrictions, for serious (other than team preview)
-		ruleset: ['Team Preview', 'Cancel Mod'],
+		ruleset: ['Team Preview', 'Cancel Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 	},
 	{
 		name: "[Gen 7] Doubles Ubers",
@@ -2251,42 +2384,35 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen7',
 		gameType: 'doubles',
 		searchShow: false,
-		maxLevel: 9999,
-		trunc(n) { return Math.trunc(n); },
-		defaultLevel: 100,
+		battle: {trunc: Math.trunc},
 		debug: true,
-		teamLength: {
-			validate: [2, 24],
-			battle: 24,
-		},
 		// no restrictions, for serious (other than team preview)
-		ruleset: ['Team Preview', 'Cancel Mod'],
+		ruleset: ['Team Preview', 'Cancel Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 	},
 	{
 		name: "[Gen 7 Let's Go] OU",
 		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3658931/">LGPE OU Metagame Discussion</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3667865/">LGPE OU Metagame Discussion</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3656868/">LGPE OU Viability Rankings</a>`,
 		],
 
 		mod: 'letsgo',
 		searchShow: false,
-		forcedLevel: 50,
-		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
+		ruleset: ['Adjust Level = 50', 'Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
 		banlist: ['Uber'],
 	},
 	{
 		name: "[Gen 7 Let's Go] Doubles OU",
 		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3645303/">LGPE DOU</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3667865/">LGPE OU Metagame Discussion</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3656868/">LGPE OU Viability Rankings</a>`,
 		],
 
 		mod: 'letsgo',
 		gameType: 'doubles',
 		searchShow: false,
-		forcedLevel: 50,
-		ruleset: ['Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
-		banlist: ['Mewtwo'],
+		ruleset: ['Adjust Level = 50', 'Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
+		banlist: ['Uber'],
 	},
 	{
 		name: "[Gen 6] Ubers",
@@ -2307,11 +2433,9 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen6',
 		searchShow: false,
-		maxLevel: 5,
 		ruleset: ['Standard', 'Little Cup'],
 		banlist: [
-			'Drifloon', 'Gligar', 'Meditite', 'Misdreavus', 'Murkrow', 'Scyther', 'Sneasel', 'Swirlix', 'Tangela', 'Yanma',
-			'Baton Pass', 'Dragon Rage', 'Sonic Boom', 'Swagger',
+			'Baton Pass', 'Dragon Rage', 'Sonic Boom',
 		],
 	},
 	{
@@ -2320,11 +2444,9 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen6',
 		searchShow: false,
 		debug: true,
-		maxLevel: 9999,
-		trunc(n) { return Math.trunc(n); },
-		defaultLevel: 100,
+		battle: {trunc: Math.trunc},
 		// no restrictions, for serious (other than team preview)
-		ruleset: ['Team Preview', 'Cancel Mod'],
+		ruleset: ['Team Preview', 'Cancel Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 	},
 	{
 		name: "[Gen 6] Doubles OU",
@@ -2346,12 +2468,10 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen6',
 		gameType: 'doubles',
 		searchShow: false,
-		maxLevel: 9999,
-		trunc(n) { return Math.trunc(n); },
-		defaultLevel: 100,
+		battle: {trunc: Math.trunc},
 		debug: true,
 		// no restrictions, for serious (other than team preview)
-		ruleset: ['Team Preview', 'Cancel Mod'],
+		ruleset: ['Team Preview', 'Cancel Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 	},
 	{
 		name: "[Gen 6] Triples Custom Game",
@@ -2359,12 +2479,10 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen6',
 		gameType: 'triples',
 		searchShow: false,
-		maxLevel: 9999,
-		trunc(n) { return Math.trunc(n); },
-		defaultLevel: 100,
+		battle: {trunc: Math.trunc},
 		debug: true,
 		// no restrictions, for serious (other than team preview)
-		ruleset: ['Team Preview', 'Cancel Mod'],
+		ruleset: ['Team Preview', 'Cancel Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 	},
 	{
 		name: "[Gen 5] Ubers",
@@ -2374,22 +2492,20 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen5',
 		searchShow: false,
-		ruleset: ['Standard', '!Evasion Moves Clause', 'Sleep Clause Mod'],
+		ruleset: ['Standard', 'Sleep Clause Mod'],
 	},
 	{
 		name: "[Gen 5] LC",
 		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3485860/">BW2 LC Viability Ranking</a>`,
 			`&bullet; <a href="https://www.smogon.com/forums/posts/6431094/">BW2 Sample Teams</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3485860/">BW2 LC Viability Rankings</a>`,
 		],
 
 		mod: 'gen5',
 		searchShow: false,
-		maxLevel: 5,
 		ruleset: ['Standard', 'Little Cup', 'Sleep Moves Clause'],
 		banlist: [
-			'Gligar', 'Meditite', 'Misdreavus', 'Murkrow', 'Scraggy', 'Scyther', 'Sneasel', 'Tangela', 'Vulpix', 'Yanma',
-			'Sand Rush', 'Berry Juice', 'Soul Dew', 'Dragon Rage', 'Sonic Boom',
+			'Baton Pass', 'Dragon Rage', 'Sonic Boom',
 		],
 	},
 	{
@@ -2398,11 +2514,9 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen5',
 		searchShow: false,
 		debug: true,
-		maxLevel: 9999,
-		trunc(n) { return Math.trunc(n); },
-		defaultLevel: 100,
+		battle: {trunc: Math.trunc},
 		// no restrictions, for serious (other than team preview)
-		ruleset: ['Team Preview', 'Cancel Mod'],
+		ruleset: ['Team Preview', 'Cancel Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 	},
 	{
 		name: "[Gen 5] Doubles OU",
@@ -2416,7 +2530,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		gameType: 'doubles',
 		searchShow: false,
 		ruleset: ['Standard', 'Evasion Abilities Clause', 'Swagger Clause', 'Sleep Clause Mod'],
-		banlist: ['DUber', 'Soul Dew', 'Dark Void', 'Sky Drop'],
+		banlist: ['DUber', 'Soul Dew', 'Dark Void', 'Gravity'],
 	},
 	{
 		name: "[Gen 5] Doubles Custom Game",
@@ -2425,11 +2539,9 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		gameType: 'doubles',
 		searchShow: false,
 		debug: true,
-		maxLevel: 9999,
-		trunc(n) { return Math.trunc(n); },
-		defaultLevel: 100,
+		battle: {trunc: Math.trunc},
 		// no restrictions, for serious (other than team preview)
-		ruleset: ['Team Preview', 'Cancel Mod'],
+		ruleset: ['Team Preview', 'Cancel Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 	},
 	{
 		name: "[Gen 5] Triples Custom Game",
@@ -2438,9 +2550,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		gameType: 'triples',
 		searchShow: false,
 		debug: true,
-		maxLevel: 9999,
-		trunc(n) { return Math.trunc(n); },
-		defaultLevel: 100,
+		battle: {trunc: Math.trunc},
 		// no restrictions, for serious (other than team preview)
 		ruleset: ['Team Preview', 'Cancel Mod'],
 	},
@@ -2452,22 +2562,21 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen4',
 		searchShow: false,
-		ruleset: ['Standard', 'Arceus EV Limit'],
+		ruleset: ['Standard'],
+		banlist: ['AG'],
 	},
 	{
 		name: "[Gen 4] LC",
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/dp/articles/little_cup_guide">DPP LC Guide</a>`,
-			`&bullet; <a href="https://www.smogon.com/forums/posts/7336500/">DPP LC Viability Ranking</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/posts/7336500/">DPP LC Viability Rankings</a>`,
 		],
 
 		mod: 'gen4',
 		searchShow: false,
-		maxLevel: 5,
-		ruleset: ['Standard', 'Little Cup'],
+		ruleset: ['Standard', 'Little Cup', 'Sleep Moves Clause'],
 		banlist: [
-			'Meditite', 'Misdreavus', 'Murkrow', 'Scyther', 'Sneasel', 'Tangela', 'Yanma',
-			'Berry Juice', 'Deep Sea Tooth', 'Dragon Rage', 'Hypnosis', 'Sonic Boom',
+			'Dragon Rage', 'Sonic Boom',
 		],
 	},
 	{
@@ -2476,11 +2585,9 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen4',
 		searchShow: false,
 		debug: true,
-		maxLevel: 9999,
-		trunc(n) { return Math.trunc(n); },
-		defaultLevel: 100,
+		battle: {trunc: Math.trunc},
 		// no restrictions
-		ruleset: ['Cancel Mod'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 	},
 	{
 		name: "[Gen 4] Doubles OU",
@@ -2489,11 +2596,8 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen4',
 		gameType: 'doubles',
 		searchShow: false,
-		ruleset: ['Standard'],
-		banlist: [
-			'AG', 'Uber', 'Arena Trap', 'Sand Veil', 'Swinub + Snow Cloak', 'Piloswine + Snow Cloak', 'Mamoswine + Snow Cloak', 'Soul Dew', 'Baton Pass',
-			'Explosion'
-		],
+		ruleset: ['[Gen 4] Ubers'],
+		banlist: ['Explosion'],
 		unbanlist: ['Garchomp', 'Latias', 'Latios', 'Manaphy', 'Mew', 'Salamence', 'Wobbuffet', 'Wynaut'],
 	},
 	{
@@ -2503,11 +2607,9 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		gameType: 'doubles',
 		searchShow: false,
 		debug: true,
-		maxLevel: 9999,
-		trunc(n) { return Math.trunc(n); },
-		defaultLevel: 100,
+		battle: {trunc: Math.trunc},
 		// no restrictions
-		ruleset: ['Cancel Mod'],
+		ruleset: ['Cancel Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 	},
 	{
 		name: "[Gen 3] Ubers",
@@ -2517,7 +2619,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen3',
 		searchShow: false,
-		ruleset: ['Standard'],
+		ruleset: ['Standard', 'Deoxys Camouflage Clause'],
 		banlist: ['Wobbuffet + Leftovers'],
 	},
 	{
@@ -2526,10 +2628,8 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen3',
 		searchShow: false,
 		debug: true,
-		maxLevel: 9999,
-		trunc(n) { return Math.trunc(n); },
-		defaultLevel: 100,
-		ruleset: ['HP Percentage Mod', 'Cancel Mod'],
+		battle: {trunc: Math.trunc},
+		ruleset: ['HP Percentage Mod', 'Cancel Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 	},
 	{
 		name: "[Gen 3] Doubles Custom Game",
@@ -2538,7 +2638,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		gameType: 'doubles',
 		searchShow: false,
 		debug: true,
-		ruleset: ['HP Percentage Mod', 'Cancel Mod'],
+		ruleset: ['HP Percentage Mod', 'Cancel Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 	},
 	{
 		name: "[Gen 2] Ubers",
@@ -2556,10 +2656,8 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen2',
 		searchShow: false,
 		debug: true,
-		maxLevel: 9999,
-		trunc(n) { return Math.trunc(n); },
-		defaultLevel: 100,
-		ruleset: ['HP Percentage Mod', 'Cancel Mod'],
+		battle: {trunc: Math.trunc},
+		ruleset: ['HP Percentage Mod', 'Cancel Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 	},
 	{
 		name: "[Gen 1] Ubers",
@@ -2577,10 +2675,8 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen1',
 		searchShow: false,
 		debug: true,
-		maxLevel: 9999,
-		trunc(n) { return Math.trunc(n); },
-		defaultLevel: 100,
-		ruleset: ['HP Percentage Mod', 'Cancel Mod'],
+		battle: {trunc: Math.trunc},
+		ruleset: ['HP Percentage Mod', 'Cancel Mod', 'Desync Clause Mod', 'Max Team Size = 24', 'Max Move Count = 24', 'Max Level = 9999', 'Default Level = 100'],
 	},
 	
 ];

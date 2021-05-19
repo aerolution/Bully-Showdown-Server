@@ -1187,6 +1187,9 @@ export const pages: Chat.PageTable = {
 		if (isNaN(new Date(date).getTime())) {
 			return this.errorReply(`Invalid date.`);
 		}
+		if (!/[0-9]{4}-[0-9]{2}/.test(date)) {
+			return this.errorReply(`You must specify a full date - both a year and a month.`);
+		}
 		this.title = `[Log Stats] ${date}`;
 		return LogSearcher.runLinecountSearch(this, room ? room.roomid : args[2] as RoomID, date, toID(target));
 	},
@@ -1237,6 +1240,7 @@ export const pages: Chat.PageTable = {
 };
 
 export const commands: Chat.ChatCommands = {
+	chatlogs: 'chatlog',
 	chatlog(target, room, user) {
 		const [tarRoom, ...opts] = target.split(',');
 		const targetRoom = tarRoom ? Rooms.search(tarRoom) : room;

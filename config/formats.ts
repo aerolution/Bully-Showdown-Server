@@ -225,6 +225,12 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			'Dragapult', 'Shadow Tag', 'Landorus + Sheer Force',
 		],
 	},
+	{
+		name: "[Gen 4] Trick House Elimlocke",
+
+		mod: 'sgss',
+		ruleset: ['Standard', '!Obtainable Moves', '!Obtainable Abilities'],
+	},
 	
 	
 	

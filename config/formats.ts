@@ -229,7 +229,17 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 4] Trick House Elimlocke",
 
 		mod: 'sgss',
-		ruleset: ['Standard', '!Obtainable Moves', '!Obtainable Abilities'],
+		ruleset: ['Standard', '!Species Clause', '!Obtainable Moves', '!Obtainable Abilities'],
+		newTypes: [
+			'Venomoth', 'Farfetch\u2019d', 'Masquerain', 'Volbeat', 'Illumise', 'Glalie', 'Luxio', 'Luxray', 'Carnivine', 'Electivire', 'Rotom-Heat', 
+			'Rotom-Wash', 'Rotom-Frost', 'Rotom-Fan', 'Rotom-Mow', 'Clefairy', 'Clefable', 'Jigglypuff', 'Wigglytuff', 'Mr. Mime', 'Cleffa', 'Igglybuff', 
+			'Togepi', 'Togetic', 'Marill', 'Azumarill', 'Snubbull', 'Granbull', 'Ralts', 'Kirlia', 'Gardevoir', 'Azurill', 'Mawile', 'Mime Jr.', 'Togekiss'
+		],
+		onSwitchIn(pokemon) {
+			if (this.format.newTypes.includes(pokemon.species.name)) {
+				this.add('-start', pokemon, 'typechange', (pokemon.illusion || pokemon).getTypes(true).join('/'), '[silent]');
+			}
+		},
 	},
 	
 	

@@ -12,7 +12,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData} = {
 		inherit: true,
 		types: ["Bug", "Water"],
 	},
-	volebat: {
+	volbeat: {
 		inherit: true,
 		types: ["Bug", "Electric"],
 	},

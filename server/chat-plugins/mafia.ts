@@ -353,11 +353,16 @@ class Mafia extends Rooms.RoomGame {
 	}
 
 	static isGameBanned(room: Room, user: User) {
-		return Punishments.getRoomPunishType(room, toID(user)) === 'MAFIAGAMEBAN';
+		return Punishments.hasRoomPunishType(room, toID(user), 'MAFIAGAMEBAN');
 	}
 
 	static gameBan(room: Room, user: User, reason: string, duration: number) {
-		Punishments.roomPunish(room, user, ['MAFIAGAMEBAN', toID(user), Date.now() + (duration * 24 * 60 * 60 * 1000), reason]);
+		Punishments.roomPunish(room, user, {
+			type: 'MAFIAGAMEBAN',
+			id: toID(user),
+			expireTime: Date.now() + (duration * 24 * 60 * 60 * 1000),
+			reason,
+		});
 	}
 
 	static ungameBan(room: Room, user: User) {
@@ -365,12 +370,16 @@ class Mafia extends Rooms.RoomGame {
 	}
 
 	static isHostBanned(room: Room, user: User) {
-		const punishment = Punishments.getRoomPunishType(room, toID(user));
-		return punishment === 'MAFIAHOSTBAN' || punishment === 'MAFIAGAMEBAN';
+		return Mafia.isGameBanned(room, user) || Punishments.hasRoomPunishType(room, toID(user), 'MAFIAGAMEBAN');
 	}
 
 	static hostBan(room: Room, user: User, reason: string, duration: number) {
-		Punishments.roomPunish(room, user, ['MAFIAHOSTBAN', toID(user), Date.now() + (duration * 24 * 60 * 60 * 1000), reason]);
+		Punishments.roomPunish(room, user, {
+			type: 'MAFIAHOSTBAN',
+			id: toID(user),
+			expireTime: Date.now() + (duration * 24 * 60 * 60 * 1000),
+			reason,
+		});
 	}
 
 	static unhostBan(room: Room, user: User) {
@@ -3399,16 +3408,14 @@ export const commands: Chat.ChatCommands = {
 				return this.errorReply("The reason is too long. It cannot exceed 300 characters.");
 			}
 
-			const punishment = Punishments.getRoomPunishType(room, targetUser.name);
-			if (punishment) {
-				if (punishment === `MAFIA${this.cmd.toUpperCase()}`) {
-					return this.errorReply(`User '${targetUser.name}' is already ${this.cmd}ned in this room.`);
-				} else if (punishment === 'MAFIAGAMEBAN') {
-					return this.errorReply(`User '${targetUser.name}' is already gamebanned in this room, which also means they can't host.`);
-				} else if (punishment === 'MAFIAHOSTBAN') {
-					user.sendTo(room, `User '${targetUser.name}' is already hostbanned in this room, but they will now be gamebanned.`);
-					this.parse(`/mafia unhostban ${targetUser.name}`);
-				}
+			const userid = toID(targetUser);
+			if (Punishments.hasRoomPunishType(room, userid, `MAFIA${this.cmd.toUpperCase()}`)) {
+				return this.errorReply(`User '${targetUser.name}' is already ${this.cmd}ned in this room.`);
+			} else if (Punishments.hasRoomPunishType(room, userid, `MAFIAGAMEBAN`)) {
+				return this.errorReply(`User '${targetUser.name}' is already gamebanned in this room, which also means they can't host.`);
+			} else if (Punishments.hasRoomPunishType(room, userid, `MAFIAHOSTBAN`)) {
+				user.sendTo(room, `User '${targetUser.name}' is already hostbanned in this room, but they will now be gamebanned.`);
+				this.parse(`/mafia unhostban ${targetUser.name}`);
 			}
 
 			if (cmd === 'hostban') {

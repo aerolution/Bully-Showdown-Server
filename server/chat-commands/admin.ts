@@ -467,17 +467,22 @@ export const commands: Chat.ChatCommands = {
 	],
 
 	botmsg(target, room, user, connection) {
-		if (!target || !target.includes(',')) return this.parse('/help botmsg');
+		if (!target || !target.includes(',')) {
+			return this.parse('/help botmsg');
+		}
+		this.checkRecursion();
+
 		let {targetUser, rest: message} = this.requireUser(target);
 
 		const auth = this.room ? this.room.auth : Users.globalAuth;
-		if (auth.get(targetUser) !== '*') {
+		if (!['*', '#'].includes(auth.get(targetUser))) {
 			return this.popupReply(`The user "${targetUser.name}" is not a bot in this room.`);
 		}
 		this.room = null; // shouldn't be in a room
 		this.pmTarget = targetUser;
 
 		message = this.checkChat(message);
+		if (!message) return;
 		Chat.sendPM(`/botmsg ${message}`, user, targetUser, targetUser);
 	},
 	botmsghelp: [`/botmsg [username], [message] - Send a private message to a bot without feedback. For room bots, must use in the room the bot is auth in.`],
@@ -1240,7 +1245,6 @@ export const commands: Chat.ChatCommands = {
 	bashhelp: [`/bash [command] - Executes a bash command on the server. Requires: & console access`],
 
 	async eval(target, room, user, connection) {
-		room = this.requireRoom();
 		this.canUseConsole();
 		if (!this.runBroadcast(true)) return;
 		const logRoom = Rooms.get('upperstaff') || Rooms.get('staff');
@@ -1259,13 +1263,13 @@ export const commands: Chat.ChatCommands = {
 		let uhtmlId = null;
 		try {
 			/* eslint-disable no-eval, @typescript-eslint/no-unused-vars */
-			const battle = room.battle;
+			const battle = room?.battle;
 			const me = user;
 			let result = eval(target);
 			/* eslint-enable no-eval, @typescript-eslint/no-unused-vars */
 
 			if (result?.then) {
-				uhtmlId = `eval-${room.nextGameNumber()}`;
+				uhtmlId = `eval-${Date.now().toString().slice(-6)}-${Math.random().toFixed(6).slice(-6)}`;
 				this.sendReply(`|uhtml|${uhtmlId}|${generateHTML('<', 'Promise pending')}`);
 				this.update();
 				result = `Promise -> ${Utils.visualize(await result)}`;
@@ -1447,7 +1451,7 @@ export const pages: Chat.PageTable = {
 		let canSend = Users.globalAuth.get(bot) === '*';
 		let room;
 		for (const curRoom of Rooms.global.chatRooms) {
-			if (curRoom.auth.getDirect(bot.id) === '*') {
+			if (['*', '#'].includes(curRoom.auth.getDirect(bot.id))) {
 				canSend = true;
 				room = curRoom;
 			}

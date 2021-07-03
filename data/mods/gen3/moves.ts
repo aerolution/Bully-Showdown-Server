@@ -98,6 +98,15 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		accuracy: 100,
 		ignoreAccuracy: true,
 	},
+	brickbreak: {
+		inherit: true,
+		onTryHit(target, source) {
+			// will shatter screens through sub, before you hit
+			const foe = source.side.foe;
+			foe.removeSideCondition('reflect');
+			foe.removeSideCondition('lightscreen');
+		},
+	},
 	charge: {
 		inherit: true,
 		boosts: null,
@@ -137,7 +146,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			},
 			onDamagePriority: -101,
 			onDamage(damage, target, source, effect) {
-				if (effect.effectType === 'Move' && !source.isAlly(target) && this.getCategory(effect.id) === 'Physical') {
+				if (
+					effect.effectType === 'Move' && !source.isAlly(target) &&
+					(effect.category === 'Physical' || effect.id === 'hiddenpower')
+				) {
 					this.effectState.slot = source.getSlot();
 					this.effectState.damage = 2 * damage;
 				}
@@ -323,6 +335,25 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		inherit: true,
 		basePower: 70,
 	},
+	followme: {
+		inherit: true,
+		volatileStatus: undefined,
+		slotCondition: 'followme',
+		condition: {
+			duration: 1,
+			onStart(target, source, effect) {
+				this.add('-singleturn', target, 'move: Follow Me');
+				this.effectState.slot = target.getSlot();
+			},
+			onFoeRedirectTargetPriority: 1,
+			onFoeRedirectTarget(target, source, source2, move) {
+				const userSlot = this.getAtSlot(this.effectState.slot);
+				if (this.validTarget(userSlot, source, move.target)) {
+					return userSlot;
+				}
+			},
+		},
+	},
 	furycutter: {
 		inherit: true,
 		onHit(target, source) {
@@ -414,7 +445,10 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			},
 			onDamagePriority: -101,
 			onDamage(damage, target, source, effect) {
-				if (effect.effectType === 'Move' && !source.isAlly(target) && this.getCategory(effect.id) === 'Special') {
+				if (
+					effect.effectType === 'Move' && !source.isAlly(target) &&
+					effect.category === 'Special' && effect.id !== 'hiddenpower'
+				) {
 					this.effectState.slot = source.getSlot();
 					this.effectState.damage = 2 * damage;
 				}

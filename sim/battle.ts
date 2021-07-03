@@ -2,8 +2,18 @@
  * Simulator Battle
  * Pokemon Showdown - http://pokemonshowdown.com/
  *
+ * This file is where the battle simulation itself happens.
+ *
+ * The most important part of the simulation is the event system:
+ * see the `runEvent` function definition for details.
+ *
+ * General battle mechanics are in `battle-actions`; move-specific,
+ * item-specific, etc mechanics are in the corresponding file in
+ * `data`.
+ *
  * @license MIT
  */
+
 import {Dex, toID} from './dex';
 import {Teams} from './teams';
 import {Field} from './field';
@@ -14,6 +24,7 @@ import {State} from './state';
 import {BattleQueue, Action} from './battle-queue';
 import {BattleActions} from './battle-actions';
 import {Utils} from '../lib';
+declare const __version: any;
 
 interface BattleOptions {
 	format?: Format;
@@ -126,6 +137,7 @@ export class Battle {
 	/** The last damage dealt by a move in the battle - only used by Gen 1 Counter. */
 	lastDamage: number;
 	abilityOrder: number;
+	quickClawRoll: boolean;
 
 	teamGenerator: ReturnType<typeof Teams.getGenerator> | null;
 
@@ -210,6 +222,7 @@ export class Battle {
 		this.lastSuccessfulMoveThisTurn = null;
 		this.lastDamage = 0;
 		this.abilityOrder = 0;
+		this.quickClawRoll = false;
 
 		this.teamGenerator = null;
 
@@ -226,12 +239,12 @@ export class Battle {
 			formatid: options.formatid, seed: this.prng.seed,
 		};
 		if (this.rated) inputOptions.rated = this.rated;
-		if (global.__version) {
-			if (global.__version.head) {
-				this.inputLog.push(`>version ${global.__version.head}`);
+		if (typeof __version !== 'undefined') {
+			if (__version.head) {
+				this.inputLog.push(`>version ${__version.head}`);
 			}
-			if (global.__version.origin) {
-				this.inputLog.push(`>version-origin ${global.__version.origin}`);
+			if (__version.origin) {
+				this.inputLog.push(`>version-origin ${__version.origin}`);
 			}
 		}
 		this.inputLog.push(`>start ` + JSON.stringify(inputOptions));
@@ -863,7 +876,7 @@ export class Battle {
 			}
 			return handlers;
 		}
-		if (target instanceof Pokemon && target.isActive) {
+		if (target instanceof Pokemon && (target.isActive || source?.isActive)) {
 			handlers = this.findPokemonEventHandlers(target, `on${eventName}`);
 			for (const allyActive of target.alliesAndSelf()) {
 				handlers.push(...this.findPokemonEventHandlers(allyActive, `onAlly${eventName}`));
@@ -1513,6 +1526,8 @@ export class Battle {
 				}
 			}
 		}
+		if (this.gen === 2) this.quickClawRoll = this.randomChance(60, 256);
+		if (this.gen === 3) this.quickClawRoll = this.randomChance(1, 5);
 
 		this.makeRequest('move');
 	}
@@ -1535,6 +1550,33 @@ export class Battle {
 			}
 			const turnsLeftText = (turnsLeft === 1 ? `1 turn` : `${turnsLeft} turns`);
 			this.add('bigerror', `You will auto-tie if the battle doesn't end in ${turnsLeftText} (on turn 1000).`);
+		}
+
+		// Gen 1 Endless Battle Clause triggers
+		if (this.gen <= 1) {
+			const noProgressPossible = this.sides.every(side => {
+				const foeAllGhosts = side.foe.pokemon.every(pokemon => pokemon.types.includes('Ghost'));
+				const foeAllTransform = side.foe.pokemon.every(pokemon => (
+					// true if transforming into this pokemon would lead to an endless battle
+					// Transform will fail (depleting PP) if used against Ditto in Stadium 1
+					(this.dex.currentMod !== 'gen1stadium' || pokemon.species.id !== 'ditto') &&
+					// there are some subtleties such as a Mew with only Transform and auto-fail moves,
+					// but it's unlikely to come up in a real game so there's no need to handle it
+					pokemon.moves.every(moveid => moveid === 'transform')
+				));
+				return side.pokemon.every(pokemon => (
+					// frozen pokemon can't thaw in gen 1 without outside help
+					pokemon.status === 'frz' ||
+					// a pokemon can't lose PP if it Transforms into a pokemon with only Transform
+					(pokemon.moves.every(moveid => moveid === 'transform') && foeAllTransform) ||
+					// Struggle can't damage yourself if every foe is a Ghost
+					pokemon.moveSlots.every(slot => slot.pp === 0) && foeAllGhosts
+				));
+			});
+			if (noProgressPossible) {
+				this.add('-message', `This battle cannot progress. Endless Battle Clause activated!`);
+				return this.tie();
+			}
 		}
 
 		// Are all Pokemon on every side stale, with at least one side containing an externally stale Pokemon?
@@ -1740,8 +1782,8 @@ export class Battle {
 		}
 		this.runEvent('AfterBoost', target, source, effect, boost);
 		if (success) {
-			if (Object.values(boost).some(x => x! > 0)) target.statsRaisedThisTurn = true;
-			if (Object.values(boost).some(x => x! < 0)) target.statsLoweredThisTurn = true;
+			if (Object.values(boost).some(x => x > 0)) target.statsRaisedThisTurn = true;
+			if (Object.values(boost).some(x => x < 0)) target.statsLoweredThisTurn = true;
 		}
 		return success;
 	}
@@ -2192,8 +2234,9 @@ export class Battle {
 			this.faintQueue.unshift(this.faintQueue[this.faintQueue.length - 1]);
 			this.faintQueue.pop();
 		}
-		let faintData;
+		let faintQueueLeft, faintData;
 		while (this.faintQueue.length) {
+			faintQueueLeft = this.faintQueue.length;
 			faintData = this.faintQueue.shift()!;
 			const pokemon: Pokemon = faintData.target;
 			if (!pokemon.fainted &&
@@ -2208,6 +2251,7 @@ export class Battle {
 				pokemon.isActive = false;
 				pokemon.isStarted = false;
 				pokemon.side.faintedThisTurn = pokemon;
+				if (this.faintQueue.length >= faintQueueLeft) checkWin = true;
 			}
 		}
 

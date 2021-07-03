@@ -1,10 +1,9 @@
-
 /**
  * Tests for Gen 6 randomized formats
  */
 'use strict';
 
-const {testNotBothMoves, testAlwaysHasMove} = require('./tools');
+const {testNotBothMoves, testAlwaysHasMove, testHiddenPower} = require('./tools');
 
 describe('[Gen 6] Random Battle', () => {
 	const options = {format: 'gen6randombattle'};
@@ -17,4 +16,6 @@ describe('[Gen 6] Random Battle', () => {
 		testAlwaysHasMove('hariyama', options, 'closecombat');
 		testAlwaysHasMove('rapidash', options, 'flareblitz');
 	});
+
+	it('should prevent double Hidden Power', () => testHiddenPower('thundurustherian', options));
 });

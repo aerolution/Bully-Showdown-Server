@@ -1464,6 +1464,7 @@ export class RandomTeams {
 		if (ability === 'Magic Guard' && counter.damagingMoves.size > 1) {
 			return moves.has('counter') ? 'Focus Sash' : 'Life Orb';
 		}
+		if (ability === 'Poison Heal' || ability === 'Toxic Boost') return 'Toxic Orb';
 		if (ability === 'Sheer Force' && counter.get('sheerforce')) return 'Life Orb';
 		if (ability === 'Unburden') return (moves.has('closecombat') || moves.has('curse')) ? 'White Herb' : 'Sitrus Berry';
 
@@ -1478,6 +1479,7 @@ export class RandomTeams {
 		if (moves.has('rest') && !moves.has('sleeptalk') && ability !== 'Shed Skin') return 'Chesto Berry';
 		if (moves.has('hypnosis') && ability === 'Beast Boost') return 'Blunder Policy';
 		if (moves.has('bellydrum')) return 'Sitrus Berry';
+		if (moves.has('relicsong')) return 'Life Orb';
 
 		if (this.dex.getEffectiveness('Rock', species) >= 2 && !isDoubles) return 'Heavy-Duty Boots';
 	}
@@ -1882,8 +1884,36 @@ export class RandomTeams {
 			} while (rejectAbility);
 
 			// Hardcoded abilities for certain contexts
-			if (forme === 'Copperajah' && gmax) {
+			if (forme === 'Copperajah') {
 				ability = 'Heavy Metal';
+			} else if (forme === 'Deerling') {
+				ability = 'Serene Grace';
+			} else if (forme === 'Gloom') {
+				ability = 'Stench';
+			} else if (forme === 'Golett' || forme === 'Golurk') {
+				ability = moves.has('dynamicpunch') ? 'No Guard' : 'Iron Fist';
+			} else if (forme === 'Greninja') {
+				ability = 'Protean';
+			} else if (forme === 'Hitmonlee') {
+				ability = moves.has('highjumpkick') ? 'Reckless' : 'Unburden';
+			} else if (forme === 'Marill') {
+				ability = 'Thick Fat';
+			} else if (forme === 'Rattata') {
+				ability = 'Hustle';
+			} else if (forme === 'Seadra') {
+				ability = 'Sniper';
+			} else if (forme === 'Snorunt' || forme === 'Glalie') {
+				ability = 'Moody';
+			} else if (forme === 'Trumbeak') {
+				ability = 'Keen Eye';
+			} else if (forme === 'Vileplume') {
+				ability = 'Effect Spore';
+			} else if (forme === 'Yanmega') {
+				ability = moves.has('protect') ? 'Speed Boost' : 'Tinted Lens';
+			} else if (forme === 'Zangoose') {
+				ability = 'Toxic Boost';
+			} else if (abilities.has('Scrappy') && moves.has('boomburst')) {
+				ability = 'Scrappy';
 			} else if (abilities.has('Guts') && (
 				species.id === 'gurdurr' || species.id === 'throh' ||
 				moves.has('facade') || (moves.has('rest') && moves.has('sleeptalk'))

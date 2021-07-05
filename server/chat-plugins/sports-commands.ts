@@ -107,7 +107,7 @@ Requests through DMs here or on Discord will be ignored.`);
 
 
 
-**National Dex DLC Formats**:
+**National Dex Leaks Formats**:
 + same rules as the corresponding National Dex format
 + moveset additions from the Pokemon Home and Isle of Armor leaks are allowed
 

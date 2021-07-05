@@ -130,65 +130,65 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 
 
-	// National DLC Draft Tiers
+	// National Leaks Draft Tiers
 	///////////////////////////////////////////////////////////////////
 	{
-		section: "National DLC Draft Tiers",
+		section: "National Leaks Draft Tiers",
 	},
 	{
-		name: "[Gen 8] National Dex DLC Draft",
+		name: "[Gen 8] National Dex Leaks Draft",
 
 		mod: 'gen8leaks',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC Dynamax",
+		name: "[Gen 8] National Dex Leaks Dynamax",
 
 		mod: 'gen8leaks',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC Legacy",
+		name: "[Gen 8] National Dex Leaks Legacy",
 
 		mod: 'gen8leaks',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC Wifi",
+		name: "[Gen 8] National Dex Leaks Wifi",
 
 		mod: 'gen8leaks',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Adjust Level Down = 50'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC Doubles",
+		name: "[Gen 8] National Dex Leaks Doubles",
 
 		mod: 'gen8leaks',
 		gameType: 'doubles',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', '!Sleep Clause Mod'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC VGC",
+		name: "[Gen 8] National Dex Leaks VGC",
 
 		mod: 'gen8leaks',
 		gameType: 'doubles',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', '!Sleep Clause Mod', 'Adjust Level = 50', 'Picked Team Size = 4'],
 	},
 	{
-		name: "[Gen 8] LC National Dex DLC Draft",
+		name: "[Gen 8] LC National Dex Leaks Draft",
 
 		mod: 'gen8leaks',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	{
-		name: "[Gen 8] LC National Dex DLC Legacy",
+		name: "[Gen 8] LC National Dex Leaks Legacy",
 
 		mod: 'gen8leaks',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+PastMove', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC CAP",
+		name: "[Gen 8] National Dex Leaks CAP",
 
 		mod: 'gen8',
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', '+CAP', 'Team Preview', 'Dynamax Clause'],
@@ -291,7 +291,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Max Team Size = 3'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC Multi Draft",
+		name: "[Gen 8] National Dex Leaks Multi Draft",
 
 		mod: 'gen8leaks',
 		gameType: 'multi',
@@ -299,7 +299,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause', 'Max Team Size = 3'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC Multi Dynamax",
+		name: "[Gen 8] National Dex Leaks Multi Dynamax",
 
 		mod: 'gen8leaks',
 		gameType: 'multi',
@@ -307,7 +307,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Max Team Size = 3'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC Multi Legacy",
+		name: "[Gen 8] National Dex Leaks Multi Legacy",
 
 		mod: 'gen8leaks',
 		gameType: 'multi',
@@ -372,7 +372,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC FFA Draft",
+		name: "[Gen 8] National Dex Leaks FFA Draft",
 
 		mod: 'gen8leaks',
 		gameType: 'freeforall',
@@ -380,7 +380,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC FFA Dynamax",
+		name: "[Gen 8] National Dex Leaks FFA Dynamax",
 
 		mod: 'gen8leaks',
 		gameType: 'freeforall',
@@ -388,7 +388,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview'],
 	},
 	{
-		name: "[Gen 8] National Dex DLC FFA Legacy",
+		name: "[Gen 8] National Dex Leaks FFA Legacy",
 
 		mod: 'gen8leaks',
 		gameType: 'freeforall',
@@ -464,43 +464,6 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		column: 3,
 	},
 	{
-        name: "[Gen 8] (National Dex) Astrea Cup",
-
-        mod: 'gen8',
-        gameType: 'doubles',
-        ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', '+Past', '+PastMove', 'Dynamax Clause', '!Sleep Clause Mod', '!OHKO Clause', 'Item Clause', 'Adjust Level = 50', 'Picked Team Size = 4', 'Min Source Gen = 7'],
-        banlist: [
-			// Mons
-			'Mewtwo', 'Mew', 'Lugia', 'Ho-oh', 'Celebi', 'Kyogre', 'Groudon', 'Rayquaza', 'Jirachi', 'Deoxys', 'Dialga', 'Palkia', 'Giratina',
-			'Phione', 'Manaphy', 'Darkrai', 'Shaymin', 'Arceus', 'Victini', 'Reshiram', 'Zekrom', 'Kyurem', 'Keldeo', 'Meloetta', 'Genesect',
-			'Floette-Eternal', 'Xerneas', 'Yveltal', 'Zygarde', 'Diancie', 'Hoopa', 'Volcanion', 'Cosmog', 'Cosmoem', 'Solgaleo', 'Lunala',
-			'Necrozma', 'Magearna', 'Marshadow', 'Zeraora', 'Meltan', 'Melmetal', 'Zacian', 'Zamazenta', 'Eternatus', 'Zarude', 'Calyrex',
-			'Calyrex-Ice', 'Calyrex-Shadow',
-			// Forms
-			'Battle Bond', 'Mega',
-			// Moves + Abilities
-			'Ally Switch', 'Guard Split', 'Fishious Rend', 'Bolt Beak', 'Wicked Blow', 'Surging Strikes',
-			// Z-Moves
-			'Buginium Z', 'Darkinium Z', 'Dragonium Z', 'Electrium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 
-			'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Normalium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 
-			'Steelium Z', 'Waterium Z', 'Aloraichium Z', 'Decidium Z', 'Eevium Z', 'Incinium Z', 'Kommonium Z', 'Lunalium Z', 
-			'Lycanium Z', 'Marshadium Z', 'Mewnium Z', 'Mimikium Z', 'Pikanium Z', 'Pikashunium Z', 'Primarium Z', 'Snorlium Z', 
-			'Solganium Z', 'Tapunium Z', 'Ultranecrozium Z',
-			// Illegal moves
-			'Smeargle + Grassy Glide', 'Smeargle + Dynamax Cannon', 'Smeargle + Snipe Shot', 'Smeargle + Jaw Lock', 'Smeargle + Stuff Cheeks', 
-			'Smeargle + No Retreat', 'Smeargle + Tar Shot', 'Smeargle + Magic Powder', 'Smeargle + Dragon Darts', 'Smeargle + Teatime', 
-			'Smeargle + Octolock', 'Smeargle + Court Change', 'Smeargle + Clangorous Soul', 'Smeargle + Body Press', 'Smeargle + Decorate', 
-			'Smeargle + Drum Beating', 'Smeargle + Snap Trap', 'Smeargle + Pyro Ball', 'Smeargle + Behemoth Blade', 'Smeargle + Behemoth Bash', 
-			'Smeargle + Aura Wheel', 'Smeargle + Breaking Swipe', 'Smeargle + Branch Poke', 'Smeargle + Overdrive', 'Smeargle + Apple Acid', 
-			'Smeargle + Grav Apple', 'Smeargle + Spirit Break', 'Smeargle + Strange Steam', 'Smeargle + Life Dew', 'Smeargle + Obstruct', 
-			'Smeargle + False Surrender', 'Smeargle + Meteor Assault', 'Smeargle + Eternabeam', 'Smeargle + Steel Beam', 'Smeargle + Expanding Force', 
-			'Smeargle + Steel Roller', 'Smeargle + Scale Shot', 'Smeargle + Meteor Beam', 'Smeargle + Misty Explosion', 'Smeargle + Rising Voltage', 
-			'Smeargle + Terrain Pulse', 'Smeargle + Skitter Smack', 'Smeargle + Burning Jealousy', 'Smeargle + Lash Out', 'Smeargle + Poltergeist', 
-			'Smeargle + Corrosive Gas', 'Smeargle + Coaching', 'Smeargle + Flip Turn', 'Smeargle + Triple Axel', 'Smeargle + Dual Wingbeat', 
-			'Smeargle + Scorching Sands', 'Clefairy + Teleport', 'Clefable + Teleport', 'Arcanine + Teleport',
-		],
-    },
-	{
 		name: "[Gen 8] Almost Any Ability",
 		desc: `Pok&eacute;mon have access to almost any ability.`,
 		threads: [
@@ -547,17 +510,6 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			'Neutralizing Gas', 'Parental Bond', 'Protean', 'Pure Power', 'Shadow Tag', 'Stakeout', 'Water Bubble', 'Wonder Guard',
 			'Comatose + Sleep Talk', 'Double Iron Bash', 'Octolock', 'Shell Smash',
 		],
-		restricted: ['Zacian-Crowned'],
-		onValidateSet(set) {
-			const ability = this.dex.abilities.get(set.ability);
-			if (set.species === 'Zacian-Crowned') {
-				if (this.dex.toID(set.item) !== 'rustedsword' || ability.id !== 'intrepidsword') {
-					return [`${set.species} is banned.`];
-				}
-			} else if (ability.id === 'intrepidsword') {
-				return [`${set.name}'s ability ${ability.name} is banned.`];
-			}
-		},
 		onChangeSet(set) {
 			const item = this.dex.toID(set.item);
 			if (set.species === 'Zacian' && item === 'rustedsword') {
@@ -602,6 +554,17 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		onAfterMega(pokemon) {
 			this.add('-start', pokemon, 'typechange', (pokemon.illusion || pokemon).getTypes(true).join('/'), '[silent]');
 		},
+	},
+	{
+		name: "[Gen 8] Chimera 1v1",
+		desc: `Bring 6 Pok&eacute;mon and choose their order at Team Preview. The lead Pok&eacute;mon then receives the item, ability, stats, and moves of the other five Pok&eacute;mon, which play no further part in the battle.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3661215/">Chimera 1v1</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['Chimera 1v1 Rule', 'Standard', 'Dynamax Clause', 'Sleep Moves Clause'],
+		banlist: ['Shedinja', 'Huge Power', 'Moody', 'Neutralizing Gas', 'Perish Body', 'Truant', 'Eviolite', 'Focus Sash', 'Perish Song', 'Transform', 'Trick', 'Fishious Rend', 'Bolt Beak', 'Disable', 'Double Iron Bash', 'Switcheroo'],
 	},
 	{
 		name: "[Gen 8] Cross Evolution",
@@ -735,6 +698,27 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			for (const pokemon of this.getAllPokemon()) {
 				pokemon.baseSpecies = pokemon.species;
 			}
+		},
+	},
+	{
+		name: "[Gen 8] First Blood",
+		desc: `The first team to have a Pok&eacute;mon faint loses.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3682954/">First Blood</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['[Gen 8] National Dex Draft'],
+		banlist: [
+			'Calyrex-Ice', 'Calyrex-Shadow', 'Cinderace', 'Darmanitan-Galar', 'Dialga', 'Dracovish', 'Eternatus', 'Genesect', 'Giratina',
+			'Giratina-Origin', 'Groudon', 'Heatran', 'Ho-Oh', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Lugia', 'Lunala', 'Landorus-Base',
+			'Magearna', 'Marshadow', 'Mewtwo', 'Naganadel', 'Necrozma-Dawn-Wings', 'Necrozma-Dusk-Mane', 'Palkia', 'Pheromosa', 'Porygon-Z',
+			'Rayquaza', 'Reshiram', 'Solgaleo', 'Spectrier', 'Urshifu-Base', 'Xerneas', 'Yveltal', 'Zacian', 'Zacian-Crowned', 'Zamazenta',
+			'Zamazenta-Crowned', 'Zekrom', 'Zygarde-Base', 'Arena Trap', 'Magnet Pull', 'Moody', 'Power Construct', 'Shadow Tag', 'Eject Button',
+			'Baton Pass', 'Swagger',
+		],
+		onFaint(target) {
+			this.lose(target.side);
 		},
 	},
 	{
@@ -1522,41 +1506,30 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		},
 	},
 	{
-		name: "[Gen 8] Random Chimera",
-		desc: `Bring 6 Pok&eacute;mon and choose their order at Team Preview. The lead Pok&eacute;mon then receives the item, ability, stats, and moves of the other five Pok&eacute;mon, who play no further part in the battle.`,
-		threads: [
-			`&bullet; <a href="https://www.smogon.com/forums/threads/3607451/">Chimera</a>`,
-		],
+		name: "[Gen 8] Random Chimera 1v1",
+		desc: `Bring 6 Pok&eacute;mon and choose their order at Team Preview. The lead Pok&eacute;mon then receives the item, ability, stats, and moves of the other five Pok&eacute;mon, which play no further part in the battle.`,
 
 		mod: 'gen8',
 		team: 'random',
-		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Team Preview', 'Dynamax Clause', 'Picked Team Size = 6'],
+		ruleset: ['Chimera 1v1 Rule', 'Obtainable', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Dynamax Clause'],
 		randomBanlist: ['Arceus', 'Zoroark', 'Shedinja', 'Darmanitan-Galar', 'Huge Power', 'Pure Power'],
 		level100: true,
 		onBegin() {
 			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">Your 6 Pok&eacute;mon are combined into one according to team order, passing off respectively:<br>* Slot 1: Species and typing<br>* Slot 2: Item<br>* Slot 3: Ability<br>* Slot 4: Stats<br>* Slot 5: Moves 1+2<br>* Slot 6: Moves 3+4</div>`);
 		},
-		onBeforeSwitchIn(pokemon) {
-			const allies = pokemon.side.pokemon.splice(1);
-			pokemon.side.pokemonLeft = 1;
-			const species = this.dex.deepClone(pokemon.baseSpecies);
-			pokemon.item = allies[0].item;
-			species.abilities = allies[1].baseSpecies.abilities;
-			pokemon.ability = pokemon.baseAbility = allies[1].ability;
+	},
+	{
+		name: "[Gen 8] Random First Blood",
+		desc: `The first team to have a Pok&eacute;mon faint loses.`,
 
-			// Stats
-			species.baseStats = allies[2].baseSpecies.baseStats;
-			pokemon.hp = pokemon.maxhp = species.maxHP = allies[2].maxhp;
-			pokemon.set.evs = allies[2].set.evs;
-			pokemon.set.nature = allies[2].getNature().name;
-			// @ts-ignore
-			pokemon.set.ivs = pokemon.baseIvs = allies[2].set.ivs;
-			// @ts-ignore
-			pokemon.hpType = pokemon.baseHpType = allies[2].baseHpType;
-
-			// @ts-ignore
-			pokemon.moveSlots = pokemon.baseMoveSlots = allies[3].baseMoveSlots.slice(0, 2).concat(allies[4].baseMoveSlots.slice(2)).filter((move, index, moveSlots) => moveSlots.find(othermove => othermove.id === move.id) === move);
-			pokemon.setSpecies(species);
+		mod: 'gen8',
+		team: 'random',
+		ruleset: ['Obtainable', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Dynamax Clause'],
+		onBegin() {
+			this.add('html', `<div style="margin: 5px 0 0 0 ; padding: 3px ; border: 1px solid #ccc">The first team to have a Pok&eacute;mon faint loses.</div>`);
+		},
+		onFaint(target) {
+			this.lose(target.side);
 		},
 	},
 	{

@@ -12,6 +12,8 @@ try {
 	Users.ignoreEmotes = JSON.parse(fs.readFileSync('config/ignoreemotes.json', 'utf8'));
 } catch (e) {}
 
+const SIZE = 32;
+
 function loadEmoticons() {
 	try {
 		emoticons = JSON.parse(fs.readFileSync('config/emoticons.json', 'utf8'));
@@ -53,7 +55,7 @@ function parseMessage(message) {
 function parseEmoticons(message) {
 	if (emoteRegex.test(message)) {
 		message = parseMessage(message).replace(emoteRegex, function (match) {
-			return `<img src="${emoticons[match]}" title="${match}" height="40" width="40">`;
+			return `<img src="${emoticons[match]}" title="${match}" height="${SIZE}" width="${SIZE}">`;
 		});
 		return message;
 	}
@@ -91,7 +93,7 @@ exports.commands = {
 			if (emoticons[parts[0]]) return this.sendReply(`"${parts[0]}" is already an emoticon.`);
 			emoticons[parts[0]] = parts[1];
 			saveEmoticons();
-			this.sendReply(`|raw|The emoticon "${Chat.escapeHTML(parts[0])}" has been added: <img src="${parts[1]}" width="40" height="40">`);
+			this.sendReply(`|raw|The emoticon "${Chat.escapeHTML(parts[0])}" has been added: <img src="${parts[1]}" width="${SIZE}" height="${SIZE}">`);
 		},
 
 		remove: 'delete',
@@ -126,8 +128,8 @@ exports.commands = {
 		list: 'view',
 		view: function (target, room, user) {
 			if (!this.runBroadcast()) return;
-			let reply = `<b><u>Emotes (${Object.keys(emoticons).length}):</u></b><br />`;
-			for (let emote in emoticons) reply += `<img src="${emoticons[emote]}" height="40" width="40" title="${emote}"> `;
+			let reply = `<b><u>Emotes</u> <i>(hover for name)</i></b><br />`;
+			for (let emote in emoticons) reply += `<img src="${emoticons[emote]}" height="${SIZE}" width="${SIZE}" title="${emote}"> `;
 			this.sendReply(`|raw|<div class="infobox infobox-limited">${reply}</div>`);
 		},
 
@@ -156,8 +158,7 @@ exports.commands = {
 		/emoticon view/list - Displays the list of emoticons.
 		/emoticon ignore - Ignores emoticons in chat messages.
 		/emoticon unignore - Unignores emoticons in chat messages.
-		/emoticon help - Displays this help command.
-		Emoticon Plugin by: jd`,
+		/emoticon help - Displays this help command.`,
 	],
 };
 

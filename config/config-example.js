@@ -223,7 +223,7 @@ exports.allowrequestingties = true;
  *   This feature can lag larger servers - turn this off if your server is
  *   getting more than 80 or so users.
  */
-exports.reportjoins = true;
+exports.reportjoins = false;
 
 /**
  * report joins and leaves periodically - sends silent join and leave messages in batches
@@ -629,6 +629,8 @@ exports.grouplist = [
 		ip: true,
 		alts: '@u',
 		game: true,
+		modlog: true,
+		receiveauthmessages: true,
 	},
 	{
 		symbol: '%',
@@ -643,12 +645,9 @@ exports.grouplist = [
 		kick: true,
 		mute: '\u2605u',
 		lock: true,
-		forcerename: true,
 		timer: true,
-		modlog: true,
 		alts: '%u',
 		bypassblocks: 'u%@&~',
-		receiveauthmessages: true,
 		gamemoderation: true,
 		jeopardy: true,
 		joinbattle: true,
@@ -704,18 +703,18 @@ exports.grouplist = [
 		nooverride: true,
 	},
 	{
-		symbol: '+',
-		id: "voice",
-		name: "Voice",
+		symbol: '$',
+		id: "gamemaster",
+		name: "Game Master",
 		inherit: ' ',
+		roomonly: true,
 
-		altsself: true,
-		makegroupchat: true,
-		joinbattle: true,
 		show: true,
-		showmedia: true,
-		exportinputlog: true,
-		importinputlog: true,
+		tournaments: true,
+		gamemoderation: true,
+		minigame: true,
+		game: true,
+		joinbattle: true,
 	},
 	{
 		symbol: '^',
@@ -724,6 +723,20 @@ exports.grouplist = [
 		inherit: ' ',
 
 		altsself: true,
+		show: true,
+		showmedia: true,
+		exportinputlog: true,
+		importinputlog: true,
+	},
+	{
+		symbol: '+',
+		id: "voice",
+		name: "Voice",
+		inherit: ' ',
+
+		altsself: true,
+		makegroupchat: true,
+		joinbattle: true,
 		show: true,
 		showmedia: true,
 		exportinputlog: true,

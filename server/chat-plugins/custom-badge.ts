@@ -25,7 +25,7 @@ export const commands: ChatCommands = {
 		);
 		
 		this.sendReply("|raw|" + name + "'s badge was successfully set. Badge:<br /><img src='" + badgeUrl + "' width='40' height='30'>");
-		Monitor.adminlog(name + "'s badge was successfully set by " + user.name + "."); //no reason to show the avatar in upper staff
+		Monitor.adminlog(name + "'s badge was successfully set by " + user.name + ".");
 	},
 	cb: 'custombadge',
 

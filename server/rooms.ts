@@ -956,7 +956,8 @@ export abstract class BasicRoom {
 			if (line.startsWith('|c')) {
 				let lineSplits = line.split('|');
 				let index = (line.startsWith('|c:|')) ? 4 : 3;
-				lineSplits[index] = '/html ' + Chat.parseEmoticons(lineSplits[index]);
+				let emoticons = Chat.parseEmoticons(lineSplits[index]);
+				if (emoticons) lineSplits[index] = '/html ' + emoticons;
 				emoticonsLine = lineSplits.join('|');
 			}
 			emoticonsLog = emoticonsLog + emoticonsLine + '\n';

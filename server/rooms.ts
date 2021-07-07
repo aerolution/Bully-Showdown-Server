@@ -945,12 +945,30 @@ export abstract class BasicRoom {
 
 		void this.log.rename(newID);
 	}
+	
+	// [Sports] Parse emotes in chat logs too
+	
+	parseEmoticonsLog(log: string, user: User) {
+		if (this.disableEmoticons || Users.ignoreEmotes[user.id]) return log;
+		let emoticonsLog = '';
+		for (const line of log.split('\n')) {
+			let emoticonsLine = line;
+			if (line.startsWith('|c')) {
+				let lineSplits = line.split('|');
+				let index = (line.startsWith('|c:|')) ? 4 : 3;
+				lineSplits[index] = '/html ' + Chat.parseEmoticons(lineSplits[index]);
+				emoticonsLine = lineSplits.join('|');
+			}
+			emoticonsLog = emoticonsLog + emoticonsLine + '\n';
+		}
+		return emoticonsLog;
+	}
 
 	onConnect(user: User, connection: Connection) {
 		const userList = this.userList ? this.userList : this.getUserList();
 		this.sendUser(
 			connection,
-			'|init|chat\n|title|' + this.title + '\n' + userList + '\n' + this.log.getScrollback() + this.getIntroMessage(user)
+			'|init|chat\n|title|' + this.title + '\n' + userList + '\n' + this.parseEmoticonsLog(this.log.getScrollback(), user) + this.getIntroMessage(user)
 		);
 		this.minorActivity?.onConnect?.(user, connection);
 		this.game?.onConnect?.(user, connection);
@@ -1770,9 +1788,9 @@ export class GameRoom extends BasicRoom {
 		return this.log.getScrollback(channel);
 	}
 	getLogForUser(user: User) {
-		if (!(user.id in this.game.playerTable)) return this.getLog();
+		if (!(user.id in this.game.playerTable)) return this.parseEmoticonsLog(this.getLog(), user);
 		// @ts-ignore
-		return this.getLog(this.game.playerTable[user.id].num);
+		return this.parseEmoticonsLog(this.getLog(this.game.playerTable[user.id].num), user);
 	}
 	update(excludeUser: User | null = null) {
 		if (!this.log.broadcastBuffer.length) return;

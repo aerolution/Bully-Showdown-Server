@@ -134,15 +134,15 @@ exports.commands = {
 		},
 
 		ignore: function (target, room, user) {
-			if (Users.ignoreEmotes[user.userid]) return this.errorReply("You are already ignoring emoticons.");
-			Users.ignoreEmotes[user.userid] = true;
+			if (Users.ignoreEmotes[user.id]) return this.errorReply("You are already ignoring emoticons.");
+			Users.ignoreEmotes[user.id] = true;
 			fs.writeFileSync('config/ignoreemotes.json', JSON.stringify(Users.ignoreEmotes));
 			this.sendReply(`You are now ignoring emoticons.`);
 		},
 
 		unignore: function (target, room, user) {
-			if (!Users.ignoreEmotes[user.userid]) return this.errorReply("You aren't ignoring emoticons.");
-			delete Users.ignoreEmotes[user.userid];
+			if (!Users.ignoreEmotes[user.id]) return this.errorReply("You aren't ignoring emoticons.");
+			delete Users.ignoreEmotes[user.id];
 			fs.writeFileSync('config/ignoreemotes.json', JSON.stringify(Users.ignoreEmotes));
 			this.sendReply(`You are no longer ignoring emoticons.`);
 		},

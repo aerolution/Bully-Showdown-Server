@@ -4,7 +4,7 @@ const customCss = FS(`config/custom.css`).createAppendStream();
 
 export const commands: ChatCommands = {
 	async custombadge(target, room, user) {
-		this.checkCan('announce', null, room);
+		this.checkCan('ban', null, room);
 		let parts = target.split(',').map(param => param.trim());
 		if (parts.length < 2) return this.parse('/help custombadge');
 

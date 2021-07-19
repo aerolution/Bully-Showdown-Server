@@ -226,6 +226,13 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		],
 	},
 	{
+		name: "[Gen 8] (National Dex) SPS Ability Draft",
+
+		mod: 'abilitydraft',
+		ruleset: ['[Gen 8] National Dex Draft', '!Obtainable Abilities'],
+		
+	},
+	{
 		name: "[Gen 4] Trick House Elimlocke",
 
 		mod: 'sgss',

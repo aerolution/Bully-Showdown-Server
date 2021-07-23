@@ -4456,7 +4456,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	vullaby: {
 		randomBattleMoves: ["defog", "foulplay", "roost", "taunt", "toxic", "uturn", "knockoff"],
-		tier: "NFE",
+		tier: "LC",
 	},
 	mandibuzz: {
 		randomBattleMoves: ["defog", "foulplay", "roost", "toxic", "uturn", "knockoff"],

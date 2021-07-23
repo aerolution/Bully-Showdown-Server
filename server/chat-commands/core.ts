@@ -140,8 +140,8 @@ const avatarTable = new Set([
 	'harlequin',
 	'hexmaniac-gen3jp', 'hexmaniac-gen3',
 	'hiker-gen1', 'hiker-gen1rb', 'hiker-gen2', 'hiker-gen3', 'hiker-gen3rs', 'hiker-gen4', 'hiker',
-	'hilbert-wonderlauncher', 'hilbert',
-	'hilda-wonderlauncher', 'hilda',
+	'hilbert-dueldisk', 'hilbert',
+	'hilda-dueldisk', 'hilda',
 	'hooligans',
 	'hoopster',
 	'hugh',
@@ -197,7 +197,7 @@ const avatarTable = new Set([
 	'morty-gen2', 'morty',
 	'mrfuji-gen3',
 	'musician',
-	'nate-wonderlauncher', 'nate',
+	'nate-dueldisk', 'nate',
 	'ninjaboy-gen3', 'ninjaboy',
 	'noland-gen3',
 	'norman-gen3', 'norman',
@@ -244,7 +244,7 @@ const avatarTable = new Set([
 	'rocketexecutivef-gen2',
 	'rocketexecutive-gen2',
 	'rood',
-	'rosa-wonderlauncher', 'rosa',
+	'rosa-dueldisk', 'rosa',
 	'roughneck-gen4', 'roughneck',
 	'roxanne-gen3', 'roxanne',
 	'roxie',
@@ -587,7 +587,7 @@ export const commands: Chat.ChatCommands = {
 			}
 		}
 	},
-	avatarhelp: [`/avatar [avatar name or number] - Change your trainer sprite.`],
+	avatarhelp: [`/avatar [avatar number 1 to 293] - Change your trainer sprite.`],
 
 	signout: 'logout',
 	logout(target, room, user) {
@@ -716,10 +716,7 @@ export const commands: Chat.ChatCommands = {
 		} else if (target === 'autoconfirmed' || target === 'trusted' || target === 'unlocked') {
 			user.settings.blockPMs = target;
 			target = this.tr(target);
-			this.sendReply(this.tr `You are now blocking private messages, except from staff and ${target} users.`);
-		} else if (target === 'friends') {
-			user.settings.blockPMs = target;
-			this.sendReply(this.tr`You are now blocking private messages, except from staff and friends.`);
+			this.sendReply(this.tr`You are now blocking private messages, except from staff and ${target} users.`);
 		} else {
 			user.settings.blockPMs = true;
 			this.sendReply(this.tr`You are now blocking private messages, except from staff.`);
@@ -1906,7 +1903,7 @@ process.nextTick(() => {
 	// We might want to migrate most of this to a JSON schema of command attributes.
 	Chat.multiLinePattern.register(
 		'>>>? ', '/(?:room|staff)intro ', '/(?:staff)?topic ', '/(?:add|widen)datacenters ', '/bash ', '!code ', '/code ', '/modnote ', '/mn ',
-		'/eval', '!eval', '/evalbattle', '/evalsql', '>>sql',
+		'/eval', '!eval', '/evalbattle',
 		'/importinputlog '
 	);
 });

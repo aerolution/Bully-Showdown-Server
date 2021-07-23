@@ -16564,9 +16564,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		onHit() {
 			this.field.clearTerrain();
 		},
-		onAfterSubDamage() {
-			this.field.clearTerrain();
-		},
 		isZ: "lycaniumz",
 		secondary: null,
 		target: "normal",
@@ -16735,9 +16732,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 			return !this.field.isTerrain('');
 		},
 		onHit() {
-			this.field.clearTerrain();
-		},
-		onAfterSubDamage() {
 			this.field.clearTerrain();
 		},
 		secondary: null,

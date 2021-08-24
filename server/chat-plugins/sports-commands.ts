@@ -1,12 +1,6 @@
 import {FS, Utils} from '../../lib';
 
-export const PARTNERS_FILE = 'config/chat-plugins/partners.json';
-
-export const partnerJSON: {[k: string]: string};
-
-function saveRoomFaqs() {
-	FS(PARTNERS_FILE).writeUpdate(() => JSON.stringify(partnerJSON));
-}
+const PARTNERS_FILE = 'config/chat-plugins/partners.json';
 
 export const commands: ChatCommands = {
 	sportsavatar(target, room, user, connection) {
@@ -121,7 +115,7 @@ export const pages: PageTable = {
 		this.title = `Sports Partners`;
 		let buf = `<div style="background: url(&quot;http://34.222.148.43:8000/avatars/resources/bg_tile.png&quot;) center; background-size: 40px 40px; width: 100%; padding-top: 10px;">`;
 		buf += `<center style="color: #ffba00;"><h2>Sports Partners</h2><br>`;
-		partnerJSON = JSON.parse(FS(PARTNERS_FILE).readIfExistsSync() || "{}")
+		const partnerJSON = JSON.parse(FS(PARTNERS_FILE).readIfExistsSync() || "{}")
 		const keys = Object.keys(partnerJSON);
 		const sortedKeys = keys.sort((a, b) => a.localeCompare(b));
 		for (const key of sortedKeys) {

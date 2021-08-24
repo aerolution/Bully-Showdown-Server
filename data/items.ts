@@ -1396,7 +1396,7 @@ export const Items: {[itemid: string]: ItemData} = {
 		onAfterMoveSecondaryPriority: 2,
 		onAfterMoveSecondary(target, source, move) {
 			if (source && source !== target && target.hp && move && move.category !== 'Status' && !move.isFutureMove) {
-				if (!this.canSwitch(target.side) || target.forceSwitchFlag || target.beingCalledBack) return;
+				if (!this.canSwitch(target.side) || target.forceSwitchFlag || target.beingCalledBack || target.isSkyDropped()) return;
 				for (const pokemon of this.getAllActive()) {
 					if (pokemon.switchFlag === true) return;
 				}
@@ -2825,7 +2825,7 @@ export const Items: {[itemid: string]: ItemData} = {
 				return critRatio + 2;
 			}
 		},
-		itemUser: ["Farfetch\u2019d", "Sirfetch\u2019d"],
+		itemUser: ["Farfetch\u2019d", "Farfetch\u2019d-Galar", "Sirfetch\u2019d"],
 		num: 259,
 		gen: 8,
 	},
@@ -2930,7 +2930,7 @@ export const Items: {[itemid: string]: ItemData} = {
 				return this.chainModify(2);
 			}
 		},
-		itemUser: ["Pikachu"],
+		itemUser: ["Pikachu", "Pikachu-Cosplay", "Pikachu-Rock-Star", "Pikachu-Belle", "Pikachu-Pop-Star", "Pikachu-PhD", "Pikachu-Libre", "Pikachu-Original", "Pikachu-Hoenn", "Pikachu-Sinnoh", "Pikachu-Unova", "Pikachu-Kalos", "Pikachu-Alola", "Pikachu-Partner", "Pikachu-Starter", "Pikachu-World"],
 		num: 236,
 		gen: 2,
 	},
@@ -3388,8 +3388,12 @@ export const Items: {[itemid: string]: ItemData} = {
 				}
 				if (this.effectState.lastMove === move.id && pokemon.moveLastTurnResult) {
 					this.effectState.numConsecutive++;
-				} else if (pokemon.volatiles['twoturnmove'] && this.effectState.lastMove !== move.id) {
-					this.effectState.numConsecutive = 1;
+				} else if (pokemon.volatiles['twoturnmove']) {
+					if (this.effectState.lastMove !== move.id) {
+						this.effectState.numConsecutive = 1;
+					} else {
+						this.effectState.numConsecutive++;
+					}
 				} else {
 					this.effectState.numConsecutive = 0;
 				}
@@ -5456,7 +5460,7 @@ export const Items: {[itemid: string]: ItemData} = {
 				return this.chainModify(2);
 			}
 		},
-		itemUser: ["Marowak", "Cubone"],
+		itemUser: ["Marowak", "Marowak-Alola", "Marowak-Alola-Totem", "Cubone"],
 		num: 258,
 		gen: 2,
 	},
@@ -6813,9 +6817,12 @@ export const Items: {[itemid: string]: ItemData} = {
 		name: "Berserk Gene",
 		spritenum: 388,
 		onUpdate(pokemon) {
-			this.boost({atk: 2});
-			pokemon.addVolatile('confusion');
-			pokemon.setItem('');
+			if (pokemon.useItem()) {
+				pokemon.addVolatile('confusion');
+			}
+		},
+		boosts: {
+			atk: 2,
 		},
 		num: 0,
 		gen: 2,

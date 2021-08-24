@@ -217,29 +217,20 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		],
 	},
 	{
+		name: "[Gen 8] (National Dex) OLT",
+
+		mod: 'gen8leaks',
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', 'Dynamax Clause'],
+		banlist: [
+			'Dragapult', 'Shadow Tag', 'Landorus + Sheer Force',
+		],
+	},
+	{
 		name: "[Gen 8] (National Dex) SPS Ability Draft",
 
 		mod: 'abilitydraft',
 		ruleset: ['[Gen 8] National Dex Draft', '!Obtainable Abilities'],
 		
-	},
-	{
-		name: "[Gen 8] National Dex OLT",
-
-		mod: 'gen8',
-		ruleset: ['[Gen 8] National Dex Draft'],
-		banlist: [
-			'Heavy-Duty Boots', 'Shadow Tag',
-		],
-	},
-	{
-		name: "[Gen 8] Galar Dex OLT",
-
-		mod: 'gen8',
-		ruleset: ['[Gen 8] Galar Dex Draft'],
-		banlist: [
-			'Heavy-Duty Boots', 'Shadow Tag',
-		],
 	},
 	{
 		name: "[Gen 4] Trick House Elimlocke",
@@ -928,7 +919,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			'Acupressure', 'Baton Pass',
 		],
 		restricted: [
-			'Astral Barrage', 'Belly Drum', 'Bolt Beak', 'Double Iron Bash', 'Electrify', 'Geomancy', 'Glacial Lance',
+			'Astral Barrage', 'Bolt Beak', 'Double Iron Bash', 'Electrify', 'Geomancy', 'Glacial Lance',
 			'Lovely Kiss', 'Shell Smash', 'Shift Gear', 'Sleep Powder', 'Spore', 'Surging Strikes', 'Thousand Arrows',
 		],
 	},
@@ -2084,7 +2075,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 	{
 		name: "[Gen 7 Let's Go] Random Battle",
 
-		mod: 'gen7letsgo',
+		mod: 'letsgo',
 		team: 'random',
 		searchShow: false,
 		ruleset: ['Obtainable', 'Allow AVs', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
@@ -2524,7 +2515,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3656868/">LGPE OU Viability Rankings</a>`,
 		],
 
-		mod: 'gen7letsgo',
+		mod: 'letsgo',
 		searchShow: false,
 		ruleset: ['Adjust Level = 50', 'Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],
 		banlist: ['Uber'],
@@ -2536,7 +2527,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3656868/">LGPE OU Viability Rankings</a>`,
 		],
 
-		mod: 'gen7letsgo',
+		mod: 'letsgo',
 		gameType: 'doubles',
 		searchShow: false,
 		ruleset: ['Adjust Level = 50', 'Obtainable', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Team Preview', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod'],

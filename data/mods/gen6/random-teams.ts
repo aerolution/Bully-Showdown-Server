@@ -7,7 +7,6 @@ import {toID} from '../../../sim/dex';
 export class RandomGen6Teams extends RandomGen7Teams {
 	constructor(format: Format | string, prng: PRNG | PRNGSeed | null) {
 		super(format, prng);
-		this.noStab = [...this.noStab, 'aquajet', 'fakeout', 'iceshard', 'machpunch', 'quickattack', 'vacuumwave'];
 
 		this.moveEnforcementCheckers = {
 			Bug: movePool => movePool.includes('megahorn') || movePool.includes('pinmissile'),
@@ -315,8 +314,6 @@ export class RandomGen6Teams extends RandomGen7Teams {
 			)};
 		case 'shadowsneak':
 			return {cull: restTalk || (types.has('Ghost') && species.types.length > 1 && counter.get('stab') < 2)};
-		case 'hex':
-			return {cull: moves.has('shadowball') && !moves.has('willowisp')};
 		case 'gigadrain': case 'powerwhip':
 			return {cull: (
 				moves.has('seedbomb') ||
@@ -867,12 +864,11 @@ export class RandomGen6Teams extends RandomGen7Teams {
 					cull = true;
 				}
 
-				const runEnforcementChecker = (checkerName: string) => {
-					if (!this.moveEnforcementCheckers[checkerName]) return false;
-					return this.moveEnforcementCheckers[checkerName](
+				const runEnforcementChecker = (checkerName: string) => (
+					this.moveEnforcementCheckers[checkerName]?.(
 						movePool, moves, abilities, types, counter, species as Species, teamDetails
-					);
-				};
+					)
+				);
 
 				// Pokemon should have moves that benefit their Type/Ability/Weather, as well as moves required by its forme
 				if (

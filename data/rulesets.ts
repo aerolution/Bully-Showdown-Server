@@ -1106,45 +1106,35 @@ export const Rulesets: {[k: string]: FormatData} = {
 		checkCanLearn(move, species, setSources, set) {
 			const nonstandard = move.isNonstandard === 'Past' && !this.ruleTable.has('standardnatdex');
 			if (!nonstandard && !move.isZ && !move.isMax && !this.ruleTable.isRestricted(`move:${move.id}`)) {
-				const speciesTypes: string[] = [];
-				const moveTypes: string[] = [];
-				for (let i = this.dex.gen; i >= species.gen && i >= move.gen; i--) {
-					const dex = this.dex.forGen(i);
-					moveTypes.push(dex.moves.get(move.name).type);
-
-					const pokemon = dex.species.get(species.name);
-					if (pokemon.forme || pokemon.otherFormes) {
-						const baseSpecies = dex.species.get(pokemon.baseSpecies);
-						const originalForme = dex.species.get(pokemon.changesFrom || pokemon.name);
-						speciesTypes.push(...originalForme.types);
-						if (baseSpecies.otherFormes) {
-							for (const formeName of baseSpecies.otherFormes) {
-								if (baseSpecies.prevo) {
-									const prevo = dex.species.get(baseSpecies.prevo);
-									if (prevo.evos.includes(formeName)) continue;
-								}
-								const forme = dex.species.get(formeName);
-								if (
-									forme.changesFrom === originalForme.name && !forme.battleOnly &&
-									// Temporary workaround
-									forme.forme !== 'Crowned'
-								) {
-									speciesTypes.push(...forme.types);
-								}
+				const dex = this.dex;
+				let types: string[];
+				if (species.forme || species.otherFormes) {
+					const baseSpecies = dex.species.get(species.baseSpecies);
+					const originalForme = dex.species.get(species.changesFrom || species.name);
+					types = originalForme.types;
+					if (baseSpecies.otherFormes) {
+						for (const formeName of baseSpecies.otherFormes) {
+							if (baseSpecies.prevo) {
+								const prevo = dex.species.get(baseSpecies.prevo);
+								if (prevo.evos.includes(formeName)) continue;
+							}
+							const forme = dex.species.get(formeName);
+							if (forme.changesFrom === originalForme.name && !forme.battleOnly) {
+								types = types.concat(forme.types);
 							}
 						}
-					} else {
-						speciesTypes.push(...pokemon.types);
 					}
-
-					let prevo = pokemon.prevo;
-					while (prevo) {
-						const prevoSpecies = dex.species.get(prevo);
-						speciesTypes.push(...prevoSpecies.types);
-						prevo = prevoSpecies.prevo;
-					}
+				} else {
+					types = species.types;
 				}
-				if (moveTypes.some(m => speciesTypes.includes(m))) return null;
+
+				let prevo = species.prevo;
+				while (prevo) {
+					const prevoSpecies = dex.species.get(prevo);
+					types = types.concat(prevoSpecies.types);
+					prevo = prevoSpecies.prevo;
+				}
+				if (types.includes(move.type)) return null;
 			}
 			return this.checkCanLearn(move, species, setSources, set);
 		},
@@ -1156,15 +1146,14 @@ export const Rulesets: {[k: string]: FormatData} = {
 		checkCanLearn(move, species, setSources, set) {
 			const nonstandard = move.isNonstandard === 'Past' && !this.ruleTable.has('standardnatdex');
 			if (!nonstandard && !move.isZ && !move.isMax && !this.ruleTable.isRestricted(`move:${move.id}`)) {
-				const letters = [species.id.charAt(0)];
+				const letters = [species.id[0]];
 				let prevo = species.prevo;
-				if (species.changesFrom === 'Silvally') prevo = 'Type: Null';
 				while (prevo) {
 					const prevoSpecies = this.dex.species.get(prevo);
-					letters.push(prevoSpecies.id.charAt(0));
+					letters.push(prevoSpecies.id[0]);
 					prevo = prevoSpecies.prevo;
 				}
-				if (letters.includes(move.id.charAt(0))) return null;
+				if (letters.includes(move.id[0])) return null;
 			}
 			return this.checkCanLearn(move, species, setSources, set);
 		},
@@ -1207,7 +1196,7 @@ export const Rulesets: {[k: string]: FormatData} = {
 	allowavs: {
 		effectType: 'ValidatorRule',
 		name: 'Allow AVs',
-		desc: "Tells formats with the 'gen7letsgo' mod to take Awakening Values into consideration when calculating stats",
+		desc: "Tells formats with the 'letsgo' mod to take Awakening Values into consideration when calculating stats",
 		// implemented in TeamValidator#validateStats
 	},
 	nfeclause: {
@@ -1624,17 +1613,6 @@ export const Rulesets: {[k: string]: FormatData} = {
 		},
 		onAfterMega(pokemon) {
 			this.add('-start', pokemon, 'typechange', (pokemon.illusion || pokemon).getTypes(true).join('/'), '[silent]');
-		},
-	},
-	firstbloodrule: {
-		effectType: "Rule",
-		name: "First Blood Rule",
-		desc: `The first team to have a Pok&eacute;mon faint loses.`,
-		onBegin() {
-			this.add('rule', 'First Blood Rule: The first team to have a Pok\u00e9mon faint loses.');
-		},
-		onFaint(target) {
-			this.lose(target.side);
 		},
 	},
 };

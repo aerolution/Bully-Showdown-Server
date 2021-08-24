@@ -445,7 +445,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	dewgong: {
 		randomBattleMoves: ["surf", "blizzard", "bodyslam"],
 		exclusiveMoves: ["rest", "rest", "mimic", "hyperbeam"],
-		tier: "UU",
+		tier: "NU",
 	},
 	grimer: {
 		randomBattleMoves: ["sludge", "bodyslam"],
@@ -719,7 +719,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	},
 	aerodactyl: {
 		randomBattleMoves: ["skyattack", "fireblast", "doubleedge", "hyperbeam"],
-		tier: "UU",
+		tier: "NU",
 	},
 	snorlax: {
 		randomBattleMoves: ["rest", "thunderbolt", "bodyslam", "selfdestruct"],

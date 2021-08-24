@@ -29,7 +29,7 @@ interface RoomlogOptions {
  * The modlog is stored in
  * `logs/modlog/modlog_<ROOMID>.txt`
  * It contains moderator messages, formatted for ease of search.
- * Direct modlog access is handled in server/modlog/; this file is just
+ * Direct modlog access is handled in modlog.ts; this file is just
  * a wrapper to make other code more readable.
  *
  * The roomlog is stored in
@@ -80,6 +80,7 @@ export class Roomlog {
 
 		this.numTruncatedLines = 0;
 
+		Rooms.Modlog.initialize(this.roomid);
 		void this.setupRoomlogStream(true);
 	}
 	getScrollback(channel = 0) {
@@ -232,7 +233,7 @@ export class Roomlog {
 	async rename(newID: RoomID): Promise<true> {
 		const roomlogPath = `logs/chat`;
 		const roomlogStreamExisted = this.roomlogStream !== null;
-		await this.destroy();
+		await this.destroy(false); // don't destroy modlog, since it's renamed later
 		const [roomlogExists, newRoomlogExists] = await Promise.all([
 			FS(roomlogPath + `/${this.roomid}`).exists(),
 			FS(roomlogPath + `/${newID}`).exists(),
@@ -279,12 +280,13 @@ export class Roomlog {
 		return this.log.length + this.numTruncatedLines;
 	}
 
-	destroy() {
+	destroy(destroyModlog?: boolean) {
 		const promises = [];
 		if (this.roomlogStream) {
 			promises.push(this.roomlogStream.writeEnd());
 			this.roomlogStream = null;
 		}
+		if (destroyModlog) promises.push(Rooms.Modlog.destroy(this.roomid));
 		Roomlogs.roomlogs.delete(this.roomid);
 		return Promise.all(promises);
 	}

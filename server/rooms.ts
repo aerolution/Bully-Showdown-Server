@@ -40,7 +40,7 @@ import {MinorActivity, MinorActivityData} from './room-minor-activity';
 import {Roomlogs} from './roomlogs';
 import * as crypto from 'crypto';
 import {RoomAuth} from './user-groups';
-import {PartialModlogEntry, mainModlog} from './modlog';
+import {MODLOG_PATH, MODLOG_DB_PATH, mainModlog, PartialModlogEntry} from './modlog';
 
 /*********************************************************
  * the Room object.
@@ -943,8 +943,6 @@ export abstract class BasicRoom {
 		this.settings.title = newTitle;
 		this.saveSettings();
 
-		Punishments.renameRoom(oldID, newID);
-
 		void this.log.rename(newID);
 	}
 	
@@ -1145,7 +1143,7 @@ export abstract class BasicRoom {
 		}
 		this.logUserStatsInterval = null;
 
-		void this.log.destroy();
+		void this.log.destroy(true);
 
 		Rooms.rooms.delete(this.roomid);
 		if (this.roomid === 'lobby') Rooms.lobby = null;
@@ -1196,7 +1194,7 @@ export class GlobalRoomState {
 				auth: {},
 				creationTime: Date.now(),
 				isPrivate: 'hidden',
-				modjoin: Users.SECTIONLEADER_SYMBOL,
+				modjoin: '%',
 				autojoin: true,
 			}];
 		}
@@ -1250,6 +1248,8 @@ export class GlobalRoomState {
 			// of GlobalRoom can have.
 			this.ladderIpLog = new Streams.WriteStream({write() { return undefined; }});
 		}
+		// Create writestream for modlog
+		Rooms.Modlog.initialize('global');
 
 		this.reportUserStatsInterval = setInterval(
 			() => this.reportUserStats(),
@@ -1360,9 +1360,8 @@ export class GlobalRoomState {
 			if (!Config.groups[rank] || !rank) continue;
 
 			const tarGroup = Config.groups[rank];
-			let groupType = tarGroup.id === 'bot' || (!tarGroup.mute && !tarGroup.root) ?
+			const groupType = tarGroup.id === 'bot' || (!tarGroup.mute && !tarGroup.root) ?
 				'normal' : (tarGroup.root || tarGroup.declare) ? 'leadership' : 'staff';
-			if (tarGroup.id === 'sectionleader') groupType = 'staff';
 
 			rankList.push({
 				symbol: rank,
@@ -1502,9 +1501,6 @@ export class GlobalRoomState {
 		if (Config.logladderip && options.rated) {
 			const ladderIpLogString = players.map(p => `${p.id}: ${p.latestIp}\n`).join('');
 			void this.ladderIpLog.write(ladderIpLogString);
-		}
-		for (const player of players) {
-			Chat.runHandlers('BattleStart', player, room);
 		}
 	}
 
@@ -1897,6 +1893,8 @@ function getRoom(roomid?: string | BasicRoom) {
 }
 
 export const Rooms = {
+	MODLOG_PATH,
+	MODLOG_DB_PATH,
 	Modlog: mainModlog,
 	/**
 	 * The main roomid:Room table. Please do not hold a reference to a

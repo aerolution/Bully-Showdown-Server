@@ -3,8 +3,7 @@
  */
 'use strict';
 
-const assert = require('../assert');
-const {testNotBothMoves, testAlwaysHasMove, testHiddenPower, testSet} = require('./tools');
+const {testNotBothMoves, testAlwaysHasMove, testHiddenPower} = require('./tools');
 
 describe('[Gen 6] Random Battle', () => {
 	const options = {format: 'gen6randombattle'};
@@ -16,15 +15,6 @@ describe('[Gen 6] Random Battle', () => {
 	it('should enforce STAB properly', () => {
 		testAlwaysHasMove('hariyama', options, 'closecombat');
 		testAlwaysHasMove('rapidash', options, 'flareblitz');
-	});
-
-	it('should only give Drifblim only one Ghost-type attack', () => {
-		testSet('drifblim', options, set => {
-			assert.equal(set.moves.filter(m => {
-				const move = Dex.moves.get(m);
-				return move.type === 'Ghost' && move.category !== 'Status';
-			}).length, 1, `got ${JSON.stringify(set.moves)}`);
-		});
 	});
 
 	it('should prevent double Hidden Power', () => testHiddenPower('thundurustherian', options));

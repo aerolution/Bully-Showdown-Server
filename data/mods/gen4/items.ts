@@ -32,27 +32,15 @@ export const Items: {[k: string]: ModdedItemData} = {
 	},
 	choiceband: {
 		inherit: true,
-		onStart() {},
-		onModifyMove() {},
-		onAfterMove(pokemon) {
-			pokemon.addVolatile('choicelock');
-		},
+		onStart() { },
 	},
 	choicescarf: {
 		inherit: true,
-		onStart() {},
-		onModifyMove() {},
-		onAfterMove(pokemon) {
-			pokemon.addVolatile('choicelock');
-		},
+		onStart() { },
 	},
 	choicespecs: {
 		inherit: true,
-		onStart() {},
-		onModifyMove() {},
-		onAfterMove(pokemon) {
-			pokemon.addVolatile('choicelock');
-		},
+		onStart() { },
 	},
 	chopleberry: {
 		inherit: true,
@@ -206,9 +194,12 @@ export const Items: {[k: string]: ModdedItemData} = {
 	},
 	lightball: {
 		inherit: true,
-		onModifyAtk() {},
-		onModifySpA() {},
-		onBasePower(basePower, pokemon) {
+		onModifyAtk(atk, pokemon) {
+			if (pokemon.species.name === 'Pikachu') {
+				return this.chainModify(2);
+			}
+		},
+		onModifySpA(spa, pokemon) {
 			if (pokemon.species.name === 'Pikachu') {
 				return this.chainModify(2);
 			}

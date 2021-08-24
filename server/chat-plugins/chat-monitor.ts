@@ -339,7 +339,6 @@ Chat.registerMonitor('battlefilter', {
 				} else {
 					Monitor.log(text);
 				}
-				void (room as GameRoom).uploadReplay(user, this.connection, 'forpunishment');
 			}
 			return false;
 		}
@@ -442,7 +441,7 @@ export const namefilter: Chat.NameFilter = (name, user) => {
 	lcName = lcName.replace('herapist', '').replace('grape', '').replace('scrape', '');
 
 	for (const list in filterWords) {
-		if (!Chat.monitors[list] || Chat.monitors[list].location === 'BATTLES') continue;
+		if (Chat.monitors[list].location === 'BATTLES') continue;
 		const punishment = Chat.monitors[list].punishment;
 		for (const line of filterWords[list]) {
 			const regex = (punishment === 'EVASION' ? Filters.stripWordBoundaries(line.regex) : line.regex);
@@ -490,7 +489,6 @@ export const nicknamefilter: Chat.NicknameFilter = (name, user) => {
 	lcName = lcName.replace('herapist', '').replace('grape', '').replace('scrape', '');
 
 	for (const list in filterWords) {
-	        if (!Chat.monitors[list]) continue;
 		if (Chat.monitors[list].location === 'BATTLES') continue;
 		for (const line of filterWords[list]) {
 			let {regex, word} = line;
@@ -541,7 +539,6 @@ export const statusfilter: Chat.StatusFilter = (status, user) => {
 	if (!user.can('lock') && impersonationRegex.test(lcStatus)) return '';
 
 	for (const list in filterWords) {
-		if (!Chat.monitors[list]) continue;
 		const punishment = Chat.monitors[list].punishment;
 		for (const line of filterWords[list]) {
 			const regex = (punishment === 'EVASION' ? Filters.stripWordBoundaries(line.regex) : line.regex);

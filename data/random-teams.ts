@@ -78,7 +78,6 @@ export class RandomTeams {
 	factoryTier: string;
 	format: Format;
 	prng: PRNG;
-	noStab: string[];
 	readonly maxTeamSize: number;
 	readonly forceMonotype: string | undefined;
 
@@ -93,7 +92,6 @@ export class RandomTeams {
 		format = Dex.formats.get(format);
 		this.dex = Dex.forFormat(format);
 		this.gen = this.dex.gen;
-		this.noStab = NoStab;
 
 		const ruleTable = Dex.formats.getRuleTable(format);
 		this.maxTeamSize = ruleTable.maxTeamSize;
@@ -657,7 +655,7 @@ export class RandomTeams {
 				if (types.includes(moveType)) {
 					// STAB:
 					// Certain moves aren't acceptable as a Pokemon's only STAB attack
-					if (!this.noStab.includes(moveid) && (!moveid.startsWith('hiddenpower') || types.length === 1)) {
+					if (!NoStab.includes(moveid) && (!moveid.startsWith('hiddenpower') || types.length === 1)) {
 						counter.add('stab');
 						// Ties between Physical and Special setup should broken in favor of STABs
 						categories[move.category] += 0.1;
@@ -665,7 +663,7 @@ export class RandomTeams {
 				} else if (
 					// Less obvious forms of STAB
 					(moveType === 'Normal' && (['Aerilate', 'Galvanize', 'Pixilate', 'Refrigerate'].some(abil => abilities.has(abil)))) ||
-					(move.priority === 0 && (abilities.has('Libero') || abilities.has('Protean')) && !this.noStab.includes(moveid)) ||
+					(move.priority === 0 && (abilities.has('Libero') || abilities.has('Protean')) && !NoStab.includes(moveid)) ||
 					(moveType === 'Steel' && abilities.has('Steelworker'))
 				) {
 					counter.add('stab');
@@ -1448,12 +1446,7 @@ export class RandomTeams {
 		if (moves.has('bellydrum') && moves.has('substitute')) return 'Salac Berry';
 
 		// Misc item generation logic
-		const HDBBetterThanEviolite = (
-			!isLead &&
-			this.dex.getEffectiveness('Rock', species) >= 2 &&
-			!isDoubles
-		);
-		if (!this.format.allowUnevolved && species.evos.length && !HDBBetterThanEviolite) return 'Eviolite';
+		if (!this.format.allowUnevolved && species.evos.length) return 'Eviolite';
 
 		// Ability based logic and miscellaneous logic
 		if (species.name === 'Wobbuffet' || ['Cheek Pouch', 'Harvest', 'Ripen'].includes(ability)) return 'Sitrus Berry';
@@ -1755,12 +1748,11 @@ export class RandomTeams {
 			}
 
 			counter = this.queryMoves(moves, species.types, abilities, movePool);
-			const runEnforcementChecker = (checkerName: string) => {
-				if (!this.moveEnforcementCheckers[checkerName]) return false;
-				return this.moveEnforcementCheckers[checkerName](
+			const runEnforcementChecker = (checkerName: string) => (
+				this.moveEnforcementCheckers[checkerName]?.(
 					movePool, moves, abilities, types, counter, species as Species, teamDetails
-				);
-			};
+				)
+			);
 
 			// Iterate through the moves again, this time to cull them:
 			for (const moveid of moves) {
@@ -2166,7 +2158,6 @@ export class RandomTeams {
 			case 'Magearna': case 'Toxtricity': case 'Zacian': case 'Zamazenta': case 'Zarude':
 			case 'Appletun': case 'Blastoise': case 'Butterfree': case 'Copperajah': case 'Grimmsnarl':
 			case 'Inteleon': case 'Rillaboom': case 'Snorlax': case 'Urshifu': case 'Giratina': case 'Genesect':
-			case 'Cinderace':
 				if (this.gen >= 8 && this.randomChance(1, 2)) continue;
 				break;
 			}

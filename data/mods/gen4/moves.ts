@@ -1428,8 +1428,12 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	},
 	sleeptalk: {
 		inherit: true,
-		onTryHit(pokemon) {
-			return !pokemon.volatiles['choicelock'] && !pokemon.volatiles['encore'];
+		beforeMoveCallback(pokemon) {
+			if (pokemon.volatiles['choicelock'] || pokemon.volatiles['encore']) {
+				this.addMove('move', pokemon, 'Sleep Talk');
+				this.add('-fail', pokemon);
+				return true;
+			}
 		},
 	},
 	spikes: {

@@ -616,7 +616,7 @@ export const commands: Chat.ChatCommands = {
 		if (!args[0]) return this.parse(`/help randombattles`);
 
 		const {dex} = this.splitFormat(target, true);
-		const isLetsGo = (dex.currentMod === 'gen7letsgo');
+		const isLetsGo = (dex.currentMod === 'letsgo');
 
 		const species = dex.species.get(args[0]);
 		if (!species.exists) {
@@ -673,26 +673,29 @@ export const commands: Chat.ChatCommands = {
 		const {dex} = this.splitFormat(target, true);
 		if (dex.gen < 4) return this.parse(`/help randomdoublesbattle`);
 
-		const species = dex.species.get(args[0]);
+		let species = dex.species.get(args[0]);
 		const formatName = dex.gen > 6 ? dex.formats.get(`gen${dex.gen}randomdoublesbattle`).name : dex.gen === 6 ?
 			'[Gen 6] Random Doubles Battle' : dex.gen === 5 ?
 				'[Gen 5] Random Doubles Battle' : '[Gen 4] Random Doubles Battle';
 		if (!species.exists) {
 			return this.errorReply(`Error: Pok\u00e9mon '${args[0].trim()}' does not exist.`);
 		}
-
-		const setsToCheck = [species];
-		if (dex.gen > 7) setsToCheck.push(dex.species.get(`${args[0]}gmax`));
-		if (species.otherFormes) setsToCheck.push(...species.otherFormes.map(pkmn => dex.species.get(pkmn)));
-
-		const movesets = [];
-		for (const pokemon of setsToCheck) {
-			if (!pokemon.randomDoubleBattleMoves) continue;
-			const moves: string[] = [...pokemon.randomDoubleBattleMoves];
-			const m = moves.sort().map(formatMove);
-			movesets.push(`<span style="color:#999999;">Doubles moves for ${pokemon.name} in ${formatName}:</span><br />${m.join(`, `)}`);
+		let randomMoves = species.randomDoubleBattleMoves;
+		if (!randomMoves) {
+			const gmaxSpecies = dex.species.get(`${args[0]}gmax`);
+			if (!gmaxSpecies.exists || !gmaxSpecies.randomDoubleBattleMoves) {
+				return this.errorReply(`Error: No doubles moves data found for ${species.name}${`gen${dex.gen}` in GEN_NAMES ? ` in ${GEN_NAMES[`gen${dex.gen}`]}` : ``}.`);
+			}
+			species = gmaxSpecies;
+			randomMoves = gmaxSpecies.randomDoubleBattleMoves;
 		}
-		this.sendReplyBox(movesets.join('<hr />'));
+		const moves: string[] = [];
+		// Done because species.randomDoubleBattleMoves is readonly
+		for (const move of randomMoves) {
+			moves.push(move);
+		}
+		const m = moves.sort().map(formatMove);
+		this.sendReplyBox(`<span style="color:#999999;">Doubles moves for ${species.name} in ${formatName}:</span><br />${m.join(`, `)}`);
 	},
 	randomdoublesbattlehelp: [
 		`/randomdoublesbattle OR /randdubs [pokemon], [gen] - Displays a Pok\u00e9mon's Random Doubles Battle Moves. Supports Gens 4-8. Defaults to Gen 8. If used in a battle, defaults to that gen.`,

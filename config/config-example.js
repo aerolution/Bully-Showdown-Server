@@ -657,12 +657,11 @@ exports.grouplist = [
 		tournaments: true,
 	},
 	{
-		symbol: '\u25B8',
+		symbol: '\u00a7',
 		id: "sectionleader",
 		name: "Section Leader",
 		inherit: '+',
-
-		roomonly: true,
+		jurisdiction: 'u',
 	},
 	{
 		// Bots are ranked below Driver/Mod so that Global Bots can be kept out

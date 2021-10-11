@@ -900,6 +900,31 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		column: 3,
 	},
 	{
+		name: "[Gen 8] 350 Cup",
+		desc: `Pok&eacute;mon with a BST of 350 or lower get their base stats doubled.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3656554/">350 Cup</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['[Gen 8] National Dex Draft'],
+		banlist: [
+			'Arena Trap', 'Shadow Tag', 'Eviolite', 'Light Ball', 'Baton Pass'
+		],
+		onModifySpecies(species, target, source, effect) {
+			if (effect && ['imposter', 'transform'].includes(effect.id)) return;
+			const newSpecies = this.dex.deepClone(species);
+			if (newSpecies.bst <= 350) {
+				newSpecies.bst = 0;
+				for (const stat in newSpecies.baseStats) {
+					newSpecies.baseStats[stat] *= 2;
+					newSpecies.bst += newSpecies.baseStats[stat];
+				}
+			}
+			return newSpecies;
+		},
+	},
+	{
 		name: "[Gen 8] Almost Any Ability",
 		desc: `Pok&eacute;mon have access to almost any ability.`,
 		threads: [
@@ -1463,6 +1488,156 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 			if (oMegaSpecies.exists && pokemon.m.originalSpecies !== oMegaSpecies.baseSpecies) {
 				this.add('-end', pokemon, oMegaSpecies.requiredItem || oMegaSpecies.requiredMove, '[silent]');
 			}
+		},
+	},
+	{
+		name: "[Gen 8] Multibility",
+		desc: `Run a second ability at the cost of giving up a Pok&eacute;mon's item slot.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3688892/">Multibility</a>`,
+		],
+
+		mod: 'gen8',
+		ruleset: ['[Gen 8] National Dex Draft', '2 Ability Clause', 'Sleep Moves Clause', '!Sleep Clause Mod'],
+		banlist: [
+			'Arena Trap', 'Magnet Pull', 'Moody', 'Power Construct', 'Shadow Tag', 'Stench', 'Trace', 'King\'s Rock', 'Baton Pass',
+		],
+		restricted: [
+			'Comatose', 'Contrary', 'Fluffy', 'Fur Coat', 'Huge Power', 'Ice Scales', 'Illusion', 'Imposter', 'Innards Out',
+			'Intrepid Sword', 'Libero', 'Neutralizing Gas', 'Parental Bond', 'Protean', 'Pure Power', 'Simple', 'Speed Boost',
+			'Stakeout', 'Unaware', 'Water Bubble', 'Wonder Guard', 'Emergency Exit + Regenerator', 'Wimp Out + Regenerator',
+		],
+		validateSet(set, teamHas) {
+			const ability = this.dex.abilities.get(set.ability);
+			const item = this.dex.abilities.get(set.item);
+			if (!item.exists) return this.validateSet(set, teamHas);
+			const problems = [];
+			if (item.isNonstandard && !this.ruleTable.has(`+ability:${item.id}`)) {
+				problems.push(`${item.name} is banned.`);
+			}
+			if (ability.id === item.id) {
+				problems.push(`${set.species} has ${ability.name} as an ability and as an item.`);
+			}
+			if (this.ruleTable.isRestricted(`ability:${item.id}`) || this.ruleTable.isBanned(`ability:${item.id}`)) {
+				problems.push(`${set.species}'s second ability (${item.name}) can only be used as an ability.`);
+			}
+			if ((ability.id === 'regenerator' && ['emergencyexit', 'wimpout'].includes(item.id)) ||
+				(item.id === 'regenerator' && ['emergencyexit', 'wimpout'].includes(ability.id))) {
+				problems.push(`${ability.name} and ${item.name} are banned together.`);
+			}
+			const itemStr = set.item;
+			set.item = '';
+			const problem = this.validateSet(set, teamHas);
+			if (problem?.length) problems.push(...problem);
+			set.item = itemStr;
+			return problems;
+		},
+		onValidateTeam(team) {
+			if (!this.ruleTable.has('2abilityclause')) return;
+			const abilityTable = new Map<string, number>();
+			const base: {[k: string]: string} = {
+				airlock: 'cloudnine',
+				battlearmor: 'shellarmor',
+				clearbody: 'whitesmoke',
+				dazzling: 'queenlymajesty',
+				emergencyexit: 'wimpout',
+				filter: 'solidrock',
+				gooey: 'tanglinghair',
+				insomnia: 'vitalspirit',
+				ironbarbs: 'roughskin',
+				libero: 'protean',
+				minus: 'plus',
+				moxie: 'chillingneigh',
+				powerofalchemy: 'receiver',
+				propellertail: 'stalwart',
+				teravolt: 'moldbreaker',
+				turboblaze: 'moldbreaker',
+			};
+			const abilities: [string, string][] = [];
+			for (const set of team) {
+				abilities.push([set.ability, set.item].map((abil) => {
+					const id = this.toID(abil);
+					return base[id] || id;
+				}) as [string, string]);
+			}
+			for (const [abilityid, itemid] of abilities) {
+				const ability = this.dex.abilities.get(abilityid);
+				const item = this.dex.abilities.get(itemid);
+				if (ability.exists) abilityTable.set(ability.id, (abilityTable.get(ability.id) || 0) + 1);
+				if (item.exists) abilityTable.set(item.id, (abilityTable.get(item.id) || 0) + 1);
+			}
+			for (const [abilityid, size] of abilityTable) {
+				if (size > 2) {
+					return [
+						`You are limited to two of each ability by 2 Ability Clause.`,
+						`(You have more than two ${this.dex.abilities.get(abilityid).name} variants)`,
+					];
+				}
+			}
+		},
+		onSwitchOut(pokemon) {
+			const item = this.dex.abilities.get(pokemon.item);
+			if (item.exists) {
+				this.singleEvent('End', item, pokemon.itemState, pokemon);
+			}
+		},
+		onFaint(pokemon) {
+			const item = this.dex.abilities.get(pokemon.item);
+			if (item.exists) {
+				this.singleEvent('End', item, pokemon.itemState, pokemon);
+			}
+		},
+		field: {
+			suppressingWeather() {
+				for (const pokemon of this.battle.getAllActive()) {
+					const item = this.battle.dex.abilities.get(pokemon.item);
+					if (pokemon && !pokemon.ignoringAbility() &&
+						(pokemon.getAbility().suppressWeather || (item.exists && item.suppressWeather))) {
+						return true;
+					}
+				}
+				return false;
+			},
+		},
+		pokemon: {
+			getItem() {
+				const ability = this.battle.dex.abilities.get(this.item);
+				if (!ability.exists) return Object.getPrototypeOf(this).getItem.call(this);
+				return {...ability, onTakeItem: false};
+			},
+			hasItem(item) {
+				const ownItem = this.item;
+				if (this.battle.dex.abilities.get(ownItem).exists) return false;
+				if (this.ignoringItem()) return false;
+				if (!Array.isArray(item)) return ownItem === this.battle.toID(item);
+				return item.map(this.battle.toID).includes(ownItem);
+			},
+			hasAbility(ability) {
+				if (this.ignoringAbility()) return false;
+				if (Array.isArray(ability)) return ability.some(abil => this.hasAbility(abil));
+				const abilityid = this.battle.toID(ability);
+				const item = this.battle.dex.abilities.get(this.item);
+				return this.ability === abilityid || (item.exists && item.id === abilityid);
+			},
+			ignoringAbility() {
+				// Check if any active pokemon have the ability Neutralizing Gas
+				let neutralizinggas = false;
+				for (const pokemon of this.battle.getAllActive()) {
+					// can't use hasAbility because it would lead to infinite recursion
+					if ((pokemon.ability === ('neutralizinggas' as ID) || pokemon.item === ('neutralizinggas' as ID)) &&
+						!pokemon.volatiles['gastroacid'] && !pokemon.abilityState.ending) {
+						neutralizinggas = true;
+						break;
+					}
+				}
+				const item = this.battle.dex.abilities.get(this.item);
+				return !!(
+					(this.battle.gen >= 5 && !this.isActive) ||
+					((this.volatiles['gastroacid'] || (neutralizinggas &&
+						this.ability !== ('neutralizinggas' as ID) && this.item !== ('neutralizinggas' as ID))) &&
+						(!this.getAbility().isPermanent || (item.exists && !item.isPermanent)))
+				);
+			},
 		},
 	},
 	{

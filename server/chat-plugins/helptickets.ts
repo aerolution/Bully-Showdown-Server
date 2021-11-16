@@ -7,12 +7,15 @@ import type {PartialModlogEntry, ModlogID} from '../modlog';
 const TICKET_FILE = 'config/tickets.json';
 const TICKET_CACHE_TIME = 24 * 60 * 60 * 1000; // 24 hours
 const TICKET_BAN_DURATION = 48 * 60 * 60 * 1000; // 48 hours
-const BATTLES_REGEX = /battle-(?:[a-z0-9]+)-(?:[0-9]+)(?:-[a-z0-9]+pw)?/g;
+const BATTLES_REGEX = /\bbattle-(?:[a-z0-9]+)-(?:[0-9]+)(?:-[a-z0-9]{31}pw)?/g;
 const REPLAY_REGEX = new RegExp(
-	`${Utils.escapeRegex(Config.routes.replays)}/(?:[a-z0-9]-)?(?:[a-z0-9]+)-(?:[0-9]+)(?:-[a-z0-9]+pw)?`, "g"
+	`${Utils.escapeRegex(Config.routes.replays)}/(?:[a-z0-9]-)?(?:[a-z0-9]+)-(?:[0-9]+)(?:-[a-z0-9]{31}pw)?`, "g"
 );
 
-Punishments.addPunishmentType('TICKETBAN', 'banned from creating help tickets');
+Punishments.addPunishmentType({
+	type: 'TICKETBAN',
+	desc: 'banned from creating help tickets',
+});
 
 interface TicketState {
 	creator: string;
@@ -301,9 +304,18 @@ export class HelpTicket extends Rooms.RoomGame {
 		const creator = (
 			this.ticket.claimed ? Utils.html`${this.ticket.creator}` : Utils.html`<strong>${this.ticket.creator}</strong>`
 		);
+		const user = Users.get(this.ticket.creator);
+		let namelockedDisplay = '';
+		if (user?.namelocked && !this.ticket.state?.namelocked) {
+			if (!this.ticket.state) this.ticket.state = {};
+			this.ticket.state.namelocked = user.namelocked;
+		}
+		if (this.ticket.state?.namelocked) {
+			namelockedDisplay = ` [${this.ticket.state?.namelocked}]`;
+		}
 		return (
 			`<a class="button ${color}" href="/help-${this.ticket.userid}"` +
-			` ${this.getPreview()}>Help ${creator}: ${this.ticket.type}</a> `
+			` ${this.getPreview()}>Help ${creator}${namelockedDisplay}: ${this.ticket.type}</a> `
 		);
 	}
 
@@ -508,9 +520,8 @@ export class HelpTicket extends Rooms.RoomGame {
 	static uploadReplaysFrom(text: string, user: User, conn: Connection) {
 		const rooms = getBattleLinks(text);
 		for (const roomid of rooms) {
-			const room = Rooms.get(roomid);
-			if (!room || !('uploadReplay' in (room as GameRoom))) continue;
-			void (room as GameRoom).uploadReplay(user, conn, "forpunishment");
+			const room = Rooms.get(roomid) as GameRoom | undefined;
+			void room?.uploadReplay?.(user, conn, "forpunishment");
 		}
 	}
 	static formatBattleLog(logs: string[], title: string, url: string) {
@@ -574,10 +585,19 @@ export class HelpTicket extends Rooms.RoomGame {
 			.join('&#10;');
 		const notes = ticket.notes ? `&#10;Staff notes:&#10;${noteBuf}` : '';
 		const title = `title="${titleBuf.join('&#10;')}${notes}"`;
-		const language = Users.get(ticket.userid)?.language || '';
-		const languageDisplay = language && language !== 'english' ? ` <small>(${language})</small>` : '';
+		const user = Users.get(ticket.userid);
+		let namelockDisplay = '';
+		if (user?.namelocked && !ticket.state?.namelocked) {
+			if (!ticket.state) ticket.state = {};
+			ticket.state.namelocked = user.namelocked;
+		}
+		if (ticket.state?.namelocked) {
+			namelockDisplay = ` <small>[${ticket.state.namelocked}]</small>`;
+		}
 		buf += `<a class="button${ticket.claimed ? `` : ` notifying`}" ${title} href="/view-help-text-${ticket.userid}">`;
-		buf +=	ticket.claimed ? `${ticket.userid}${languageDisplay}:` : `<strong>${ticket.userid}</strong>${languageDisplay}:`;
+		buf += ticket.claimed ?
+			`${ticket.userid}${namelockDisplay}:` :
+			`<strong>${ticket.userid}</strong>${namelockDisplay}:`;
 		buf += ` ${ticket.type}</a>`;
 		return buf;
 	}
@@ -768,7 +788,7 @@ export function notifyStaff() {
 
 function checkIp(ip: string) {
 	for (const t in tickets) {
-		if (tickets[t].ip === ip && tickets[t].open && !Punishments.sharedIps.has(ip)) {
+		if (tickets[t].ip === ip && tickets[t].open && !Punishments.isSharedIp(ip)) {
 			return tickets[t];
 		}
 	}
@@ -776,14 +796,37 @@ function checkIp(ip: string) {
 }
 
 export function getBattleLinks(text: string) {
-	const rooms: string[] = [];
+	const rooms = new Set<string>();
 	const battles = text.match(BATTLES_REGEX);
 	// typescript-eslint is having trouble detecting REPLAY_REGEX as a global regex
 	// eslint-disable-next-line @typescript-eslint/prefer-regexp-exec
 	const replays = text.match(REPLAY_REGEX);
-	if (battles) rooms.push(...battles);
-	if (replays) rooms.push(...replays.map(r => `battle-${r.split('/').pop()!}`));
-	return rooms;
+	if (battles) {
+		for (const battle of battles) rooms.add(battle);
+	}
+	if (replays) {
+		for (const r of replays) {
+			rooms.add(`battle-${r.split('/').pop()!}`);
+		}
+	}
+	return [...rooms];
+}
+
+function getReportedUser(ticket: TicketState) {
+	if (!ticket.meta?.startsWith('user-')) return null;
+	return toID(ticket.meta.slice(5)) || null;
+}
+
+export async function listOpponentsFrom(
+	ticket: TicketState & {text: [string, string]}
+) {
+	const opps = new Utils.Multiset<string>();
+	const links = getBattleLinks(ticket.text[0]).concat(getBattleLinks(ticket.text[1]));
+	for (const link of links) {
+		const opp = await getOpponent(link, ticket.userid);
+		if (opp && opp !== ticket.userid) opps.add(opp);
+	}
+	return Utils.sortBy([...opps], ([, count]) => -count).map(opp => toID(opp[0]));
 }
 
 export async function getOpponent(link: string, submitter: ID): Promise<string | null> {
@@ -818,7 +861,7 @@ export async function getBattleLog(battle: string): Promise<BattleInfo | null> {
 			url: `/${battle}`,
 		};
 	}
-	battle = battle.replace(`battle-`, '').replace(/-[a-z0-9]pw/, '');
+	battle = battle.replace(`battle-`, ''); // don't wanna strip passwords
 	try {
 		const raw = await Net(`https://${Config.routes.replays}/${battle}.json`).get();
 		const data = JSON.parse(raw);
@@ -1027,20 +1070,30 @@ export const textTickets: {[k: string]: TextTicketInfo} = {
 	},
 	battleharassment: {
 		title: "Please provide a link to the battle (taken from the \"Upload and share\" button or copied from the browser URL)",
-		checker(input) {
-			if (BATTLES_REGEX.test(input) || REPLAY_REGEX.test(input)) return true;
-			return ['Please provide at least one valid battle or replay URL.'];
+		async checker(input, context) {
+			const replays = getBattleLinks(input).concat(getBattleLinks(context));
+			if (!replays.length) {
+				return ['Please provide at least one valid battle or replay URL.'];
+			}
+			let atLeastOne = false;
+			for (const replay of replays) {
+				const log = await getBattleLog(replay);
+				if (log) {
+					atLeastOne = true;
+					break;
+				}
+			}
+			if (!atLeastOne) {
+				return [
+					'None of the battle links provided are valid.',
+					'They may have expired, or you may have misspelled the URL.',
+				];
+			}
+			return true;
 		},
-		async onSubmit(ticket, text, submitter, conn) {
+		onSubmit(ticket, text, submitter, conn) {
 			for (const part of text) {
 				HelpTicket.uploadReplaysFrom(part, submitter, conn);
-			}
-			// if there's no report meta, or there is and it isn't a user
-			if (!ticket.meta || ticket.meta.startsWith('room-')) {
-				const replays = getBattleLinks(text[0]);
-				const link = replays.shift()!;
-				const opp = await getOpponent(link, submitter.id);
-				if (opp) ticket.meta = `user-${opp}`;
 			}
 		},
 		async getReviewDisplay(ticket, staff, connection) {
@@ -1051,6 +1104,9 @@ export const textTickets: {[k: string]: TextTicketInfo} = {
 			if (context) {
 				rooms.push(...getBattleLinks(context));
 			}
+			if (ticket.meta?.startsWith('room-')) {
+				rooms.push(...getBattleLinks(ticket.meta.slice(5)));
+			}
 			rooms = rooms.filter((url, index) => rooms.indexOf(url) === index);
 			const proof = rooms.map(u => `https://${Config.routes.client}/${u}`).join(', ');
 			buf += HelpTicket.displayPunishmentList(
@@ -1060,20 +1116,16 @@ export const textTickets: {[k: string]: TextTicketInfo} = {
 				`Punish <strong>${ticket.userid}</strong> (reporter)`,
 				`<h2 style="color:red">You are about to punish the reporter. Are you sure you want to do this?</h2>`
 			);
-			if (ticket.meta) {
-				const [type, meta] = ticket.meta.split('-');
-				if (type === 'user') {
-					buf += `<br /><strong>Reported user:</strong> ${meta} `;
-					buf += `<button class="button" name="send" value="/modlog room=global,user='${toID(meta)}'">Global Modlog</button><br />`;
-					buf += HelpTicket.displayPunishmentList(
-						toID(meta),
-						proof,
-						ticket,
-						`Punish <strong>${toID(meta)}</strong> (reported user)`
-					);
-				} else if (type === 'room' && BATTLES_REGEX.test(meta)) {
-					rooms.push(meta);
-				}
+			const opp = getReportedUser(ticket) || (await listOpponentsFrom(ticket))[0];
+			if (opp) {
+				buf += `<br /><strong>Reported user:</strong> ${opp} `;
+				buf += `<button class="button" name="send" value="/modlog room=global,user='${opp}'">Global Modlog</button><br />`;
+				buf += HelpTicket.displayPunishmentList(
+					opp,
+					proof,
+					ticket,
+					`Punish <strong>${opp}</strong> (reported user)`
+				);
 			}
 			buf += `<strong>Battle links:</strong> ${rooms.map(url => Chat.formatText(`<<${url}>>`)).join(', ')}<br />`;
 			buf += `<br />`;
@@ -1121,6 +1173,23 @@ export const textTickets: {[k: string]: TextTicketInfo} = {
 			const [text, context] = ticket.text;
 			let links = getBattleLinks(text);
 			if (context) links.push(...getBattleLinks(context));
+			const proof = links.join(', ');
+			const opp = getReportedUser(ticket) || (await listOpponentsFrom(ticket))[0];
+			buf += HelpTicket.displayPunishmentList(
+				ticket.userid,
+				proof,
+				ticket,
+				`Punish <strong>${ticket.userid}</strong> (reporter)`,
+				`<h2 style="color:red">You are about to punish the reporter. Are you sure you want to do this?</h2>`
+			);
+			if (opp) {
+				buf += HelpTicket.displayPunishmentList(
+					opp,
+					proof,
+					ticket,
+					`Punish <strong>${ticket.userid}</strong> (reported)`,
+				);
+			}
 			buf += `<p><strong>Battle links given:</strong><p>`;
 			links = links.filter((url, i) => links.indexOf(url) === i);
 			buf += links.map(uri => Chat.formatText(`<<${uri}>>`)).join(', ');
@@ -1134,7 +1203,9 @@ export const textTickets: {[k: string]: TextTicketInfo} = {
 						if (!user) continue;
 						const team = await room.battle!.getTeam(user);
 						if (team) {
-							const teamNames = team.map(p => p.name ? `${p.name} (${p.species})` : p.species);
+							const teamNames = team.map(p => (
+								p.name !== p.species ? Utils.html`${p.name} (${p.species})` : p.species
+							));
 							names.push(`<strong>${user.id}:</strong> ${teamNames.join(', ')}`);
 						}
 					}
@@ -1245,14 +1316,16 @@ export const pages: Chat.PageTable = {
 			if (ticket?.open || ipTicket) {
 				if (!ticket && ipTicket) ticket = ipTicket;
 				const helpRoom = Rooms.get(`help-${ticket.userid}`);
-				if (!helpRoom) {
+				if (!helpRoom && !ticket.text) {
 					// Should never happen
 					tickets[ticket.userid].open = false;
 					writeTickets();
 				} else {
-					if (!helpRoom.auth.has(user.id)) helpRoom.auth.set(user.id, '+');
+					if (helpRoom) {
+						if (!helpRoom.auth.has(user.id)) helpRoom.auth.set(user.id, '+');
+						user.joinRoom(`help-${ticket.userid}` as RoomID);
+					}
 					connection.popup(this.tr`You already have a Help ticket.`);
-					user.joinRoom(`help-${ticket.userid}` as RoomID);
 					return this.close();
 				}
 			}
@@ -1614,11 +1687,8 @@ export const pages: Chat.PageTable = {
 					}
 				}
 
-				const ticketRoom = Rooms.get(`help-${ticket.userid}`);
 				buf += `<tr><td>${icon}</td>`;
-				const language = Chat.languages.get(ticketRoom?.settings.language || '');
-				const languageString = language && toID(language) !== "english" ? ` <small>(${language})</small>` : '';
-				buf += `<td>${Utils.escapeHTML(ticket.creator)}${languageString}</td>`;
+				buf += `<td>${Utils.escapeHTML(ticket.creator)}</td>`;
 				buf += `<td>${ticket.type}</td>`;
 				buf += Utils.html`<td>${ticket.claimed ? ticket.claimed : `-`}</td>`;
 				buf += `<td>`;
@@ -2050,7 +2120,7 @@ export const commands: Chat.ChatCommands = {
 				return this.parse(`/join help-${ticket.userid}`);
 			}
 			if (Monitor.countTickets(user.latestIp)) {
-				const maxTickets = Punishments.sharedIps.has(user.latestIp) ? `50` : `5`;
+				const maxTickets = Punishments.isSharedIp(user.latestIp) ? `50` : `5`;
 				return this.popupReply(this.tr`Due to high load, you are limited to creating ${maxTickets} tickets every hour.`);
 			}
 			let [
@@ -2177,10 +2247,8 @@ export const commands: Chat.ChatCommands = {
 			let reportTargetInfo = '';
 			if (reportTargetType === 'room') {
 				reportTargetInfo = `Reported in room: <a href="/${reportTarget}">${reportTarget}</a>`;
-				const reportRoom = Rooms.get(reportTarget);
-				if (reportRoom && (reportRoom as GameRoom).uploadReplay) {
-					void (reportRoom as GameRoom).uploadReplay(user, connection, 'forpunishment');
-				}
+				const reportRoom = Rooms.get(reportTarget) as GameRoom | undefined;
+				void reportRoom?.uploadReplay?.(user, connection, 'forpunishment');
 			} else if (reportTargetType === 'user') {
 				reportTargetInfo = `Reported user: <strong class="username">${reportTarget}</strong><p></p>`;
 
@@ -2464,8 +2532,8 @@ export const commands: Chat.ChatCommands = {
 				displayMessage = `${username}'s ac account: ${acAccount}`;
 				this.privateModAction(displayMessage);
 			}
-			if (user.previousIDs.length) {
-				affected.push(...user.previousIDs);
+			if (targetUser?.previousIDs.length) {
+				affected.push(...targetUser.previousIDs);
 			}
 
 			this.globalModlog(`TICKETBAN`, targetUser || userid, reason);

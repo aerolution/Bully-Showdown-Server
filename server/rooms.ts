@@ -30,7 +30,6 @@ const RETRY_AFTER_LOGIN = null;
 
 import {FS, Utils, Streams} from '../lib';
 import {RoomSection, RoomSections} from './chat-commands/room-settings';
-import {GTSGiveaway, LotteryGiveaway, QuestionGiveaway} from './chat-plugins/wifi';
 import {QueuedHunt} from './chat-plugins/scavengers';
 import {ScavengerGameTemplate} from './chat-plugins/scavenger-games';
 import {RepeatedPhrase} from './chat-plugins/repeats';
@@ -200,8 +199,6 @@ export abstract class BasicRoom {
 
 	scavgame: ScavengerGameTemplate | null;
 	scavLeaderboard: AnyObject;
-	giveaway?: QuestionGiveaway | LotteryGiveaway | null;
-	gtsga?: GTSGiveaway | null;
 	responder?: AutoResponder | null;
 	privacySetter?: Set<ID> | null;
 	hideReplay: boolean;
@@ -400,19 +397,19 @@ export abstract class BasicRoom {
 	 * highlight the user.
 	 */
 	addByUser(user: User, text: string): this {
-		return this.add('|c|' + user.getIdentity(this.roomid) + '|/log ' + text);
+		return this.add('|c|' + user.getIdentity(this) + '|/log ' + text);
 	}
 	/**
 	 * Like addByUser, but without logging
 	 */
 	sendByUser(user: User | null, text: string) {
-		this.send('|c|' + (user ? user.getIdentity(this.roomid) : '&') + '|/log ' + text);
+		this.send('|c|' + (user ? user.getIdentity(this) : '&') + '|/log ' + text);
 	}
 	/**
 	 * Like addByUser, but sends to mods only.
 	 */
 	sendModsByUser(user: User, text: string) {
-		this.sendMods('|c|' + user.getIdentity(this.roomid) + '|/log ' + text);
+		this.sendMods('|c|' + user.getIdentity(this) + '|/log ' + text);
 	}
 	update() {
 		if (!this.log.broadcastBuffer.length) return;
@@ -436,7 +433,7 @@ export abstract class BasicRoom {
 				continue;
 			}
 			counter++;
-			buffer += ',' + this.users[i].getIdentityWithStatus(this.roomid);
+			buffer += ',' + this.users[i].getIdentityWithStatus(this);
 		}
 		const msg = `|users|${counter}${buffer}`;
 		return msg;
@@ -445,6 +442,7 @@ export abstract class BasicRoom {
 	nextGameNumber() {
 		const gameNumber = (this.settings.gameNumber || 0) + 1;
 		this.settings.gameNumber = gameNumber;
+		this.saveSettings();
 		return gameNumber;
 	}
 
@@ -498,8 +496,9 @@ export abstract class BasicRoom {
 	}
 	// I think putting the `new` before the signature is confusing the linter
 	// eslint-disable-next-line @typescript-eslint/type-annotation-spacing
-	getGame<T extends RoomGame>(constructor: new (...args: any[]) => T): T | null {
+	getGame<T extends RoomGame>(constructor: new (...args: any[]) => T, subGame = false): T | null {
 		// TODO: switch to `static readonly gameid` when all game files are TypeScripted
+		if (subGame && this.subGame && this.subGame.constructor.name === constructor.name) return this.subGame as T;
 		if (this.game && this.game.constructor.name === constructor.name) return this.game as T;
 		return null;
 	}
@@ -986,7 +985,7 @@ export abstract class BasicRoom {
 		if (this.users[user.id]) return false;
 
 		if (user.named) {
-			this.reportJoin('j', user.getIdentityWithStatus(this.roomid), user);
+			this.reportJoin('j', user.getIdentityWithStatus(this), user);
 		}
 
 		const staffIntro = this.getStaffIntroMessage(user);
@@ -1014,13 +1013,13 @@ export abstract class BasicRoom {
 		delete this.users[oldid];
 		this.users[user.id] = user;
 		if (joining) {
-			this.reportJoin('j', user.getIdentityWithStatus(this.roomid), user);
+			this.reportJoin('j', user.getIdentityWithStatus(this), user);
 			const staffIntro = this.getStaffIntroMessage(user);
 			if (staffIntro) this.sendUser(user, staffIntro);
 		} else if (!user.named) {
 			this.reportJoin('l', oldid, user);
 		} else {
-			this.reportJoin('n', user.getIdentityWithStatus(this.roomid) + '|' + oldid, user);
+			this.reportJoin('n', user.getIdentityWithStatus(this) + '|' + oldid, user);
 		}
 		this.minorActivity?.onRename?.(user, oldid, joining);
 		this.checkAutoModchat(user);
@@ -1033,7 +1032,7 @@ export abstract class BasicRoom {
 		if (user?.connected) {
 			if (!this.users[user.id]) return false;
 			if (user.named) {
-				this.reportJoin('n', user.getIdentityWithStatus(this.roomid) + '|' + user.id, user);
+				this.reportJoin('n', user.getIdentityWithStatus(this) + '|' + user.id, user);
 			}
 		}
 		return true;
@@ -1049,7 +1048,7 @@ export abstract class BasicRoom {
 		this.userCount--;
 
 		if (user.named) {
-			this.reportJoin('l', user.getIdentity(this.roomid), user);
+			this.reportJoin('l', user.getIdentity(this), user);
 		}
 		if (this.game && this.game.onLeave) this.game.onLeave(user);
 		this.runAutoModchat();
@@ -1905,6 +1904,7 @@ export class GameRoom extends BasicRoom {
 		// (also include all the data, including a hash of the replay itself,
 		// so it can't be spoofed.)
 
+		battle.replaySaved = true;
 		const [success] = await LoginServer.request('prepreplay', {
 			id: id,
 			loghash: datahash,
@@ -1916,7 +1916,6 @@ export class GameRoom extends BasicRoom {
 				'2' : this.settings.isPrivate || this.hideReplay ? '1' : '',
 			inputlog: battle.inputLog?.join('\n') || null,
 		});
-		if (success) battle.replaySaved = true;
 		if (success?.errorip) {
 			connection.popup(`This server's request IP ${success.errorip} is not a registered server.`);
 			return;

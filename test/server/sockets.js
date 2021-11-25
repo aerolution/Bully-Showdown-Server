@@ -62,7 +62,7 @@ describe('Sockets', function () {
 		const chain = (eventHandler, msg) => worker => {
 			worker.once('message', eventHandler(worker));
 			msg = msg || `$
-				const {Session} = require('sockjs/lib/transport');
+				const {Session} = require('sockjs/.lib-dist/transport');
 				const socket = new Session('aaaaaaaa', server);
 				socket.remoteAddress = '127.0.0.1';
 				if (!('headers' in socket)) socket.headers = {};

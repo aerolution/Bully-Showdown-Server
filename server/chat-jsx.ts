@@ -3,6 +3,7 @@
  * By Mia and Zarel
  */
 import preact from 'preact';
+import {h, Fragment} from "preact";
 import render from 'preact-render-to-string';
 import {Utils} from '../lib';
 
@@ -34,5 +35,5 @@ export {render};
 
 export type VNode = preact.VNode;
 
-export const h = preact.h;
-export const Fragment = preact.Fragment;
+export const h = h;
+export const Fragment = Fragment;

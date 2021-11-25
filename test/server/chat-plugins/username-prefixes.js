@@ -5,7 +5,7 @@
 'use strict';
 
 const assert = require('assert').strict;
-const {PrefixManager} = require('../../../server/chat-plugins/username-prefixes');
+const {PrefixManager} = require('../../../.server-dist/chat-plugins/username-prefixes');
 
 describe('PrefixManager', function () {
 	beforeEach(() => {

@@ -9,7 +9,7 @@
     "preact-render-to-string": "^5.1.19",
     "probe-image-size": "^5.0.0",
     "sockjs": "^0.3.21",
-    "ts-node": "^10.0.0"
+	"sucrase": "^3.15.0"
   },
   "optionalDependencies": {
     "better-sqlite3": "^7.1.0",
@@ -20,8 +20,7 @@
     "nodemailer": "^6.4.6",
     "permessage-deflate": "^0.1.7",
     "sql-template-strings": "^2.2.2",
-    "sqlite": "^3.0.6",
-    "sucrase": "^3.15.0"
+    "sqlite": "^3.0.6"
   },
   "secretDependencies": {
     "node-oom-heapdump": "^1.2.0"
@@ -37,10 +36,10 @@
     "lint": "eslint . --cache --ext .js,.ts,.tsx",
     "fix": "eslint . --cache --ext .js,.ts,.tsx --fix",
     "full-lint": "eslint . --cache --ext .js,.ts --max-warnings 0",
-    "pretest": "npm run lint",
+    "pretest": "npm run lint && npm run build",
     "test": "mocha",
     "posttest": "npm run tsc",
-    "full-test": "npm run full-lint && npm run tsc && mocha --timeout 8000 --forbid-only -g \".*\""
+    "full-test": "npm run full-lint && npm run build && npm run tsc && mocha --forbid-only -g \".*\""
   },
   "husky": {
     "hooks": {

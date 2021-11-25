@@ -3,7 +3,7 @@
 const assert = require('assert').strict;
 
 const {makeUser} = require('../../users-utils');
-const trivia = require('../../../server/chat-plugins/trivia/trivia');
+const trivia = require('../../../.server-dist/chat-plugins/trivia/trivia');
 const Trivia = trivia.Trivia;
 const FirstModeTrivia = trivia.FirstModeTrivia;
 const TimerModeTrivia = trivia.TimerModeTrivia;

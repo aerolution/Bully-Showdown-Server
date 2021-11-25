@@ -504,7 +504,7 @@ export class DexFormats {
 		// Load formats
 		let customFormats;
 		try {
-			customFormats = require(`${__dirname}/../config/custom-formats`).Formats;
+			customFormats = require(`${__dirname}/../.config-dist/custom-formats`).Formats;
 			if (!Array.isArray(customFormats)) {
 				throw new TypeError(`Exported property 'Formats' from "./config/custom-formats.ts" must be an array`);
 			}
@@ -513,7 +513,7 @@ export class DexFormats {
 				throw e;
 			}
 		}
-		let Formats: AnyObject[] = require(`${__dirname}/../config/formats`).Formats;
+		let Formats: AnyObject[] = require(`${__dirname}/../.config-dist/formats`).Formats;
 		if (!Array.isArray(Formats)) {
 			throw new TypeError(`Exported property 'Formats' from "./config/formats.ts" must be an array`);
 		}

@@ -8,11 +8,11 @@ const child_process = require("child_process");
 let force = false;
 
 function needsSucrase(source, dest, path = "") {
-	if (path.endsWith(".ts")) {
+	if (path.endsWith(".ts") || path.endsWith(".tsx")) {
 		if (path.endsWith(".d.ts")) return false;
 		const sourceStat = fs.lstatSync(source + path);
 		try {
-			const destStat = fs.lstatSync(dest + path.slice(0, -2) + "js");
+			const destStat = fs.lstatSync(dest + (path.endsWith(".ts") ? path.slice(0, -2) : path.slice(0, -3)) + "js");
 			return sourceStat.ctimeMs > destStat.ctimeMs;
 		} catch (e) {
 			// dest doesn't exist
@@ -220,6 +220,12 @@ exports.transpile = (doForce, decl) => {
 	if (sucrase('./tools', './tools', null, ['.', 'sets', 'simulate'])) {
 		replace('tools', [
 			{regex: /(require\(.*?)(lib|sim|server)/g, replace: `$1.$2-dist`},
+		]);
+	}
+	
+	if (sucrase('./tools/modlog', './tools/modlog')) {
+		replace('./tools/modlog/converter.js', [
+			{regex: /(require\(.*?)(server|lib)/g, replace: `$1.$2-dist`},
 		]);
 	}
 

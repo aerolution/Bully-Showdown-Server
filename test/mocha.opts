@@ -1,4 +1,4 @@
-test/main.js test/lib/**/*.js test/server/**/*.js test/sim/**/*.js
+test/main.js test/.lib-dist/**/*.js test/.server-dist/**/*.js test/.sim-dist/**/*.js
 -g "^((?!\(slow\)).)*$"
 -R dot
 -u bdd

@@ -1692,7 +1692,7 @@ export const Chat = new class {
 			const languageID = Dex.toID(dirname);
 			const files = await dir.readdir();
 			for (const filename of files) {
-				if (!filename.endsWith('.ts')) continue;
+				if (!filename.endsWith('.js')) continue;
 
 				const content: Translations = require(`${TRANSLATION_DIRECTORY}/${dirname}/${filename}`).translations;
 
@@ -1898,28 +1898,17 @@ export const Chat = new class {
 
 	packageData: AnyObject = {};
 
-	loadPluginFile(file: string) {
-		if (!VALID_PLUGIN_ENDINGS.some(ext => file.endsWith(ext))) return;
-		const filename = file.split('/').pop() || "";
-		this.loadPlugin(require(file), filename.slice(0, filename.lastIndexOf('.')) || file);
-	}
-
-	loadPluginDirectory(dir: string, depth = 0) {
-		for (const file of FS(dir).readdirSync()) {
-			const path = resolve(dir, file);
-			if (FS(path).isDirectorySync()) {
-				depth++;
-				if (depth > MAX_PLUGIN_LOADING_DEPTH) continue;
-				this.loadPluginDirectory(path, depth);
-			} else {
-				try {
-					this.loadPluginFile(path);
-				} catch (e) {
-					Monitor.crashlog(e, "A loading chat plugin");
-					continue;
-				}
-			}
+	loadPlugin(file: string) {
+		let plugin;
+		if (file.endsWith('.ts')) {
+			plugin = require(`./${file.slice(0, -3)}`);
+		} else if (file.endsWith('.js')) {
+			// Switch to server/ because we'll be in .server-dist/ after this file is compiled
+			plugin = require(`../server/${file}`);
+		} else {
+			return;
 		}
+		this.loadPluginData(plugin, file.split('/').pop()?.slice(0, -3) || file);
 	}
 	annotateCommands(commandTable: AnyObject, namespace = ''): AnnotatedChatCommands {
 		for (const cmd in commandTable) {
@@ -1963,7 +1952,7 @@ export const Chat = new class {
 		}
 		return commandTable;
 	}
-	loadPlugin(plugin: AnyObject, name: string) {
+	loadPluginData(plugin: AnyObject, name: string) {
 		if (plugin.commands) {
 			Object.assign(Chat.commands, this.annotateCommands(plugin.commands));
 		}
@@ -2014,21 +2003,55 @@ export const Chat = new class {
 		});
 
 		// Install plug-in commands and chat filters
-
+		
+		// All resulting filenames will be relative to basePath
+		const getFiles = (basePath: string, path: string): string[] => {
+			const filesInThisDir = FS(`${basePath}/${path}`).readdirSync();
+			let allFiles: string[] = [];
+			for (const file of filesInThisDir) {
+				const fileWithPath = path + (path ? '/' : '') + file;
+				if (FS(`${basePath}/${fileWithPath}`).isDirectorySync()) {
+					if (file.startsWith('.')) continue;
+					allFiles = allFiles.concat(getFiles(basePath, fileWithPath));
+				} else {
+					allFiles.push(fileWithPath);
+				}
+			}
+			return allFiles;
+		};
 
 		Chat.commands = Object.create(null);
 		Chat.pages = Object.create(null);
-		this.loadPluginDirectory('server/chat-commands');
+		const coreFiles = FS('server/chat-commands').readdirSync();
+		for (const file of coreFiles) {
+			this.loadPlugin(`chat-commands/${file}`);
+		}
 		Chat.baseCommands = Chat.commands;
 		Chat.basePages = Chat.pages;
 		Chat.commands = Object.assign(Object.create(null), Chat.baseCommands);
 		Chat.pages = Object.assign(Object.create(null), Chat.basePages);
 
 		// Load filters from Config
-		this.loadPlugin(Config, 'config');
-		this.loadPlugin(Tournaments, 'tournaments');
+		this.loadPluginData(Config, 'config');
+		this.loadPluginData(Tournaments, 'tournaments');
 
-		this.loadPluginDirectory('server/chat-plugins');
+		let files = FS('server/chat-plugins').readdirSync();
+		try {
+			if (FS('server/chat-plugins/private').isDirectorySync()) {
+				files = files.concat(getFiles('server/chat-plugins', 'private'));
+			}
+		} catch (err) {
+			if (err.code !== 'ENOENT') throw err;
+		}
+
+		for (const file of files) {
+			try {
+				this.loadPlugin(`chat-plugins/${file}`);
+			} catch (e) {
+				Monitor.crashlog(e, "A loading chat plugin");
+				continue;
+			}
+		}
 		Chat.oldPlugins = {};
 		// lower priority should run later
 		Utils.sortBy(Chat.filters, filter => -(filter.priority || 0));

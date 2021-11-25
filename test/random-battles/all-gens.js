@@ -5,9 +5,9 @@
 'use strict';
 
 const assert = require('../assert');
-const {Utils} = require('../../lib');
+const {Utils} = require('../../.lib-dist');
 const {testTeam, assertSetValidity, validateLearnset} = require('./tools');
-const {default: Dex} = require('../../sim/dex');
+const {default: Dex} = require('../../.sim-dist/dex');
 
 describe('value rule support', () => {
 	it('should generate teams of the proper length for the format (i.e. support Max Team Size)', () => {
@@ -43,7 +43,7 @@ describe('Battle Factory and BSS Factory data should be valid (slow)', () => {
 	for (const filename of ['bss-factory-sets', 'mods/gen7/bss-factory-sets', 'mods/gen7/factory-sets', 'mods/gen6/factory-sets']) {
 		it(`${filename}.json should contain valid sets (slow)`, function () {
 			this.timeout(0);
-			const setsJSON = require(`../../data/${filename}.json`);
+			const setsJSON = require(`../../.data-dist/${filename}.json`);
 			const mod = filename.split('/')[1] || 'gen' + Dex.gen;
 			const genNum = isNaN(mod[3]) ? Dex.gen : mod[3];
 

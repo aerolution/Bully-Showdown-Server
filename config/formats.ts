@@ -205,7 +205,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8 BDSP] BDSP Draft",
 
 		mod: 'gen8bdsp',
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', 'Dynamax Clause'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
 	},
 	{
 		name: "[Gen 8 BDSP] BDSP Wifi",
@@ -231,7 +231,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8 BDSP] LC BDSP Draft",
 
 		mod: 'gen8bdsp',
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', 'Double Item Clause', 'Little Cup', 'Dynamax Clause'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', 'Double Item Clause', 'Little Cup'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	
@@ -379,6 +379,14 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		tournamentShow: false,
 		ruleset: ['Draft', '+Unreleased', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+PastMove', 'Team Preview', 'Max Team Size = 3'],
 	},
+	{
+		name: "[Gen 8 BDSP] BDSP Multi Draft",
+
+		mod: 'gen8bdsp',
+		gameType: 'multi',
+		tournamentShow: false,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', 'Dynamax Clause', 'Max Team Size = 3'],
+	},
 	
 	
 	
@@ -459,6 +467,14 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		gameType: 'freeforall',
 		tournamentShow: false,
 		ruleset: ['Draft', '+Unreleased', '-Nonexistent', 'Obtainable Formes', 'Obtainable Misc', '+CAP', '+Past', '+PastMove', 'Team Preview'],
+	},
+	{
+		name: "[Gen 8 BDSP] BDSP FFA Draft",
+
+		mod: 'gen8bdsp',
+		gameType: 'freeforall',
+		tournamentShow: false,
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', 'Dynamax Clause'],
 	},
 	
 	

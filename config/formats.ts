@@ -205,33 +205,33 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 8 BDSP] BDSP Draft",
 
 		mod: 'gen8bdsp',
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview'],
+		ruleset: ['Obtainable', 'Draft', '+Unobtainable', '+Unreleased', 'Team Preview'],
 	},
 	{
 		name: "[Gen 8 BDSP] BDSP Wifi",
 
 		mod: 'gen8bdsp',
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', 'Adjust Level Down = 50'],
+		ruleset: ['Obtainable', 'Draft', '+Unobtainable', '+Unreleased', 'Team Preview', 'Adjust Level Down = 50'],
 	},
 	{
 		name: "[Gen 8 BDSP] BDSP Doubles",
 
 		mod: 'gen8bdsp',
 		gameType: 'doubles',
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', '!Sleep Clause Mod'],
+		ruleset: ['Obtainable', 'Draft', '+Unobtainable', '+Unreleased', 'Team Preview', '!Sleep Clause Mod'],
 	},
 	{
 		name: "[Gen 8 BDSP] BDSP VGC",
 
 		mod: 'gen8bdsp',
 		gameType: 'doubles',
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', '!Sleep Clause Mod', 'Adjust Level = 50', 'Picked Team Size = 4'],
+		ruleset: ['Obtainable', 'Draft', '+Unobtainable', '+Unreleased', 'Team Preview', '!Sleep Clause Mod', 'Adjust Level = 50', 'Picked Team Size = 4'],
 	},
 	{
 		name: "[Gen 8 BDSP] LC BDSP Draft",
 
 		mod: 'gen8bdsp',
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', 'Double Item Clause', 'Little Cup'],
+		ruleset: ['Obtainable', 'Draft', '+Unobtainable', '+Unreleased', 'Team Preview', 'Double Item Clause', 'Little Cup'],
 		banlist: ['Dragon Rage', 'Sonic Boom'],
 	},
 	
@@ -385,7 +385,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8bdsp',
 		gameType: 'multi',
 		tournamentShow: false,
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', 'Dynamax Clause', 'Max Team Size = 3'],
+		ruleset: ['Obtainable', 'Draft', '+Unobtainable', '+Unreleased', 'Team Preview', 'Dynamax Clause', 'Max Team Size = 3'],
 	},
 	
 	
@@ -474,7 +474,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		mod: 'gen8bdsp',
 		gameType: 'freeforall',
 		tournamentShow: false,
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', 'Dynamax Clause'],
+		ruleset: ['Obtainable', 'Draft', '+Unobtainable', '+Unreleased', 'Team Preview', 'Dynamax Clause'],
 	},
 	
 	

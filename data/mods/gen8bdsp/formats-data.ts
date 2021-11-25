@@ -1108,7 +1108,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		randomBattleMoves: ["sacredfire", "roost", "substitute", "earthquake"],
 	},
 	celebi: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
 		randomBattleMoves: ["nastyplot", "psychic", "leafstorm", "gigadrain", "shadowball"],
 	},
@@ -1685,22 +1685,22 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		randomBattleMoves: ["uturn", "stealthrock", "thunderwave", "healingwish", "zenheadbutt"],
 	},
 	deoxys: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
 		randomBattleMoves: ["stealthrock", "toxicspikes", "icebeam", "psychoboost", "knockoff", "focusblast"],
 	},
 	deoxysattack: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
 		randomBattleMoves: ["psychoboost", "icebeam", "thunderbolt", "focusblast"],
 	},
 	deoxysdefense: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
 		randomBattleMoves: ["psychic", "stealthrock", "toxicspikes", "recover", "knockoff", "taunt"],
 	},
 	deoxysspeed: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
 		randomBattleMoves: ["psychic", "stealthrock", "toxicspikes", "knockoff", "taunt"],
 	},
@@ -2056,91 +2056,91 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		randomBattleMoves: ["surf", "tailglow", "icebeam", "psychic", "substitute"],
 	},
 	darkrai: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
 		randomBattleMoves: ["darkpulse", "nastyplot", "hypnosis", "focusblast"],
 	},
 	shaymin: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
 		randomBattleMoves: ["seedflare", "healingwish", "synthesis", "leechseed", "psychic"],
 	},
 	shayminsky: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
 		randomBattleMoves: ["airslash", "seedflare", "substitute", "synthesis", "leechseed"],
 	},
 	arceus: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		tier: "Unreleased",
 		randomBattleMoves: ["swordsdance", "recover", "extremespeed", "earthquake", "shadowclaw"],
 	},
 	arceusbug: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		randomBattleMoves: ["swordsdance", "recover", "extremespeed", "earthquake", "stoneedge", "xscissor"],
 	},
 	arceusdark: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		randomBattleMoves: ["calmmind", "judgment", "fireblast", "sludgebomb", "recover"],
 	},
 	arceusdragon: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		randomBattleMoves: ["calmmind", "judgment", "fireblast", "sludgebomb", "recover"],
 	},
 	arceuselectric: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		randomBattleMoves: ["calmmind", "judgment", "icebeam", "earthpower", "recover"],
 	},
 	arceusfairy: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		randomBattleMoves: ["calmmind", "judgment", "earthpower", "defog", "recover"],
 	},
 	arceusfighting: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		randomBattleMoves: ["calmmind", "judgment", "icebeam", "shadowball", "recover"],
 	},
 	arceusfire: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		randomBattleMoves: ["thunderbolt", "judgment", "fireblast", "surf", "recover"],
 	},
 	arceusflying: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		randomBattleMoves: ["calmmind", "judgment", "icebeam", "earthpower", "recover", "fireblast"],
 	},
 	arceusghost: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		randomBattleMoves: ["swordsdance", "shadowclaw", "brickbreak", "extremespeed", "recover"],
 	},
 	arceusgrass: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		randomBattleMoves: ["calmmind", "judgment", "fireblast", "icebeam", "recover"],
 	},
 	arceusground: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		randomBattleMoves: ["swordsdance", "earthquake", "stoneedge", "extremespeed", "recover"],
 	},
 	arceusice: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		randomBattleMoves: ["calmmind", "judgment", "fireblast", "thunderbolt", "recover"],
 	},
 	arceuspoison: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		randomBattleMoves: ["calmmind", "defog", "icebeam", "sludgebomb", "recover"],
 	},
 	arceuspsychic: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		randomBattleMoves: ["calmmind", "judgment", "fireblast", "icebeam", "recover"],
 	},
 	arceusrock: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		randomBattleMoves: ["swordsdance", "earthquake", "stoneedge", "extremespeed", "recover"],
 	},
 	arceussteel: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		randomBattleMoves: ["calmmind", "judgment", "surf", "thunderbolt", "recover"],
 	},
 	arceuswater: {
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 		randomBattleMoves: ["roar", "judgment", "defog", "icebeam", "recover"],
 	},
 	// Because it's marked as Unreleased in the main file for some reason

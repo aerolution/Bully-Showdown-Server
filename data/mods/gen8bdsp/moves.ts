@@ -101,7 +101,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	},
 	darkvoid: {
 		inherit: true,
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 	},
 	decorate: {
 		inherit: true,
@@ -501,7 +501,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	},
 	judgment: {
 		inherit: true,
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 	},
 	junglehealing: {
 		inherit: true,
@@ -693,7 +693,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	},
 	psychoboost: {
 		inherit: true,
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 	},
 	purify: {
 		inherit: true,
@@ -733,7 +733,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 	},
 	seedflare: {
 		inherit: true,
-		isNonstandard: "Unreleased",
+		isNonstandard: "Unobtainable",
 	},
 	shadowbone: {
 		inherit: true,

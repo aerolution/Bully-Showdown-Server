@@ -1752,12 +1752,19 @@ export class RandomTeams {
 
 		const moves = new Set<string>();
 		let counter: MoveCounter;
+		// This is just for BDSP Unown;
+		// it can be removed from this file if BDSP gets its own random-teams file in the future.
+		let hasHiddenPower = false;
 
 		do {
 			// Choose next 4 moves from learnset/viable moves and add them to moves list:
 			const pool = (movePool.length ? movePool : rejectedPool);
 			while (moves.size < 4 && pool.length) {
 				const moveid = this.sampleNoReplace(pool);
+				if (moveid.startsWith('hiddenpower')) {
+					if (hasHiddenPower) continue;
+					hasHiddenPower = true;
+				}
 				moves.add(moveid);
 			}
 
@@ -1848,11 +1855,13 @@ export class RandomTeams {
 
 				// Remove rejected moves from the move list
 				if (cull && movePool.length) {
+					if (moveid.startsWith('hiddenpower')) hasHiddenPower = false;
 					if (move.category !== 'Status' && !move.damage) rejectedPool.push(moveid);
 					moves.delete(moveid);
 					break;
 				}
 				if (cull && rejectedPool.length) {
+					if (moveid.startsWith('hiddenpower')) hasHiddenPower = false;
 					moves.delete(moveid);
 					break;
 				}
@@ -1984,7 +1993,7 @@ export class RandomTeams {
 		if (item === 'Leftovers' && types.has('Poison')) {
 			item = 'Black Sludge';
 		}
-		if (species.baseSpecies === 'Pikachu' && !gmax) {
+		if (species.baseSpecies === 'Pikachu' && !gmax && this.dex.currentMod !== 'gen8bdsp') {
 			forme = 'Pikachu' + this.sample(['', '-Original', '-Hoenn', '-Sinnoh', '-Unova', '-Kalos', '-Alola', '-Partner', '-World']);
 		}
 		
@@ -2023,22 +2032,8 @@ export class RandomTeams {
 			level = customScale[species.id] || tierScale[tier];
 		// BDSP tier levelling
 		} else if (this.dex.currentMod === 'gen8bdsp') {
-			const tierScale: {[k: string]: number} = {
-				Uber: 76,
-				OU: 80,
-				UUBL: 81,
-				UU: 82,
-				RUBL: 83,
-				RU: 84,
-				NUBL: 85,
-				NU: 86,
-				PUBL: 87,
-				PU: 88, "(PU)": 88, NFE: 88,
-			};
-			// to override tier scaling if needed
-			const customScale: {[k: string]: number} = {};
-
-			level = customScale[species.id] || tierScale[species.tier];
+			// TODO: figure out BDSP levelling based on the in-room poll
+			level = 80;
 		// Arbitrary levelling base on data files (typically winrate-influenced)
 		} else if (species.randomBattleLevel) {
 			level = species.randomBattleLevel;
@@ -2125,11 +2120,14 @@ export class RandomTeams {
 		for (let species of this.dex.species.all()) {
 			if (species.gen > this.gen || exclude.includes(species.id)) continue;
 			if (!species.randomBattleMoves) continue;
-			// Remove banned Pokemon
+			
+			//S// Remove banned Pokemon
 			if (this.format.randomBanlist && this.format.randomBanlist.includes(species.name)) continue;
 			if (this.format.randomBanlist && this.format.randomBanlist.includes(species.baseSpecies)) continue;
-			// Remove unevolved Pokemon, unless they're specifically allowed by the format
+			//S// Remove unevolved Pokemon, unless they're specifically allowed by the format
 			if (!this.format.allowUnevolved && (species.nfe || species.name === 'Meltan') && (this.format.forceItem || !allowedNFE.includes(species.name))) continue;
+			
+			if (this.dex.currentMod === 'gen8bdsp' && species.gen > 4) continue;
 			if (isMonotype) {
 				if (!species.types.includes(type)) continue;
 				if (typeof species.battleOnly === 'string') {
@@ -2170,9 +2168,9 @@ export class RandomTeams {
 
 			// Check if the forme has moves for random battle
 			if (this.format.gameType === 'singles') {
-				if (!species.randomBattleMoves) continue;
+				if (!species.randomBattleMoves?.length) continue;
 			} else {
-				if (!species.randomDoubleBattleMoves) continue;
+				if (!species.randomDoubleBattleMoves?.length) continue;
 			}
 
 			// Limit to one of each species (Species Clause)
@@ -2221,7 +2219,10 @@ export class RandomTeams {
 			const limitFactor = Math.round(this.maxTeamSize / 6) || 1;
 
 			// Limit one Pokemon per tier, two for Monotype
+			// This limitation is not applied to BD/SP team generation, because tiering for BD/SP is not yet complete,
+			// meaning that most Pokémon are in OU.
 			if (
+				this.dex.currentMod !== 'gen8bdsp' &&
 				(tierCount[tier] >= (this.forceMonotype || isMonotype ? 2 : 1) * limitFactor) &&
 				!this.randomChance(1, Math.pow(5, tierCount[tier]))
 			) {
@@ -2251,7 +2252,6 @@ export class RandomTeams {
 
 			// Okay, the set passes, add it to our team
 			pokemon.push(set);
-
 			if (pokemon.length === this.maxTeamSize) {
 				// Set Zoroark's level to be the same as the last Pokemon
 				const illusion = teamDetails.illusion;

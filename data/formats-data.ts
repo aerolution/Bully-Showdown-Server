@@ -2151,7 +2151,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 	},
 	zigzagoon: {
 		randomBattleMoves: ["trick", "hypervoice", "icebeam", "thunderbolt", "shadowball", "thunderwave"],
-		tier: "LC",
+		tier: "NFE",
 	},
 	zigzagoongalar: {
 		randomBattleMoves: ["doubleedge", "knockoff", "partingshot", "gunkshot", "seedbomb", "thunderwave"],

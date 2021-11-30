@@ -31,7 +31,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	blastoise: {
 		tier: "OU",
 		doublesTier: "DOU",
-		randomBattleMoves: ["earthquake", "icebeam", "protect", "rapidspin", "roar", "scald"],
+		randomBattleMoves: ["earthquake", "icebeam", "protect", "rapidspin", "roar", "scald", "shellsmash"],
 	},
 	caterpie: {
 		tier: "LC",
@@ -1130,7 +1130,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "NFE",
 	},
 	blaziken: {
-		tier: "OU",
+		tier: "Uber",
 		doublesTier: "DOU",
 		randomBattleMoves: ["swordsdance", "stoneedge", "closecombat", "flareblitz", "earthquake"],
 	},

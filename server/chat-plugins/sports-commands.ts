@@ -113,7 +113,7 @@ __You can find a full list of leaked moves by clicking the Leaked Moves List but
 export const pages: PageTable = {
 	partners(args, user) {
 		this.title = `Sports Partners`;
-		let buf = `<div style="background: url(&quot;http://54.70.189.219:8000/avatars/resources/bg_tile.png&quot;) center; background-size: 40px 40px; width: 100%; padding-top: 10px;">`;
+		let buf = `<div style="background: url(&quot;http://54.202.92.100:8000/avatars/resources/bg_tile.png&quot;) center; background-size: 40px 40px; width: 100%; padding-top: 10px;">`;
 		buf += `<center style="color: #ffba00;"><h2>Sports Partners</h2><br>`;
 		const partnerJSON = JSON.parse(FS(PARTNERS_FILE).readIfExistsSync() || "{}")
 		const keys = Object.keys(partnerJSON);

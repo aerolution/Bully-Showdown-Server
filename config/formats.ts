@@ -283,14 +283,19 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		],
 	},
 	{
-		name: "[Gen 4] Trick House Elimlocke",
+		name: "[Gen 4] Trick House Renegade Platinum",
 
-		mod: 'sgss',
-		ruleset: ['Standard', '!Species Clause', '!Obtainable Moves', '!Obtainable Abilities'],
+		mod: 'renpt',
+		ruleset: ['Standard', '+PastMove', '+Future', '!Species Clause', '!Obtainable Moves', '!Obtainable Abilities'],
 		newTypes: [
-			'Venomoth', 'Farfetch\u2019d', 'Masquerain', 'Volbeat', 'Illumise', 'Glalie', 'Luxio', 'Luxray', 'Carnivine', 'Electivire', 'Rotom-Heat', 
-			'Rotom-Wash', 'Rotom-Frost', 'Rotom-Fan', 'Rotom-Mow', 'Clefairy', 'Clefable', 'Jigglypuff', 'Wigglytuff', 'Mr. Mime', 'Cleffa', 'Igglybuff', 
-			'Togepi', 'Togetic', 'Marill', 'Azumarill', 'Snubbull', 'Granbull', 'Ralts', 'Kirlia', 'Gardevoir', 'Azurill', 'Mawile', 'Mime Jr.', 'Togekiss'
+			// New types
+			'Charizard', 'Ninetales', 'Golduck', 'Farfetch\u2019d', 'Meganium', 'Feraligatr', 'Noctowl', 'Ampharos', 'Misdreavus', 
+			'Sceptile', 'Masquerain', 'Volbeat', 'Illumise', 'Trapinch', 'Vibrava', 'Flygon', 'Swablu', 'Altaria', 'Seviper', 
+			'Milotic', 'Glalie', 'Luvdisc', 'Luxray', 'Lopunny', 'Mismagius', 'Electivire', 'Rotom-Heat', 'Rotom-Wash', 'Rotom-Frost', 
+			'Rotom-Fan', 'Rotom-Mow', 'Uxie', 'Mesprit', 'Azelf',
+			// Fairy
+			'Clefairy', 'Clefable', 'Jigglypuff', 'Wigglytuff', 'Mr. Mime', 'Cleffa', 'Igglybuff', 'Togepi', 'Togetic', 'Marill', 
+			'Azumarill', 'Snubbull', 'Granbull', 'Ralts', 'Kirlia', 'Gardevoir', 'Azurill', 'Mawile', 'Mime Jr.', 'Togekiss'
 		],
 		onSwitchIn(pokemon) {
 			if (this.format.newTypes.includes(pokemon.species.name)) {

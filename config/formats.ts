@@ -286,7 +286,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 		name: "[Gen 4] Trick House Renegade Platinum",
 
 		mod: 'renpt',
-		ruleset: ['Standard', '+PastMove', '+Future', '!Species Clause', '!Obtainable Moves', '!Obtainable Abilities'],
+		ruleset: ['Standard', '+PastMove', '+Future', '!Species Clause', '!Obtainable Moves', '!Obtainable Abilities', 'Team Preview'],
 		newTypes: [
 			// New types
 			'Charizard', 'Ninetales', 'Golduck', 'Farfetch\u2019d', 'Meganium', 'Feraligatr', 'Noctowl', 'Ampharos', 'Misdreavus', 

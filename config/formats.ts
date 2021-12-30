@@ -39,7 +39,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen8',
 		gameType: 'doubles',
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', '!Sleep Clause Mod', 'Adjust Level = 50', 'Picked Team Size = 4'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', 'Team Preview', '!Sleep Clause Mod', '!OHKO Clause', '!Evasion Moves Clause', 'Adjust Level = 50', 'Picked Team Size = 4'],
 	},
 	{
 		name: "[Gen 8] LC Galar Dex Draft",
@@ -105,7 +105,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen8',
 		gameType: 'doubles',
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', '!Sleep Clause Mod', 'Adjust Level = 50', 'Picked Team Size = 4'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', '!Sleep Clause Mod', '!OHKO Clause', '!Evasion Moves Clause', 'Adjust Level = 50', 'Picked Team Size = 4'],
 	},
 	{
 		name: "[Gen 8] LC National Dex Draft",
@@ -171,7 +171,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen8leaks',
 		gameType: 'doubles',
-		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', '!Sleep Clause Mod', 'Adjust Level = 50', 'Picked Team Size = 4'],
+		ruleset: ['Obtainable', 'Draft', '+Unreleased', '+Past', 'Team Preview', '!Sleep Clause Mod', '!OHKO Clause', '!Evasion Moves Clause', 'Adjust Level = 50', 'Picked Team Size = 4'],
 	},
 	{
 		name: "[Gen 8] LC National Dex Leaks Draft",
@@ -225,7 +225,7 @@ export const Formats: (FormatsData | {section: string, column?: number})[] = [
 
 		mod: 'gen8bdsp',
 		gameType: 'doubles',
-		ruleset: ['Obtainable', 'Draft', '+Unobtainable', '+Unreleased', 'Team Preview', '!Sleep Clause Mod', 'Adjust Level = 50', 'Picked Team Size = 4'],
+		ruleset: ['Obtainable', 'Draft', '+Unobtainable', '+Unreleased', 'Team Preview', '!Sleep Clause Mod', '!OHKO Clause', '!Evasion Moves Clause', 'Adjust Level = 50', 'Picked Team Size = 4'],
 	},
 	{
 		name: "[Gen 8 BDSP] LC BDSP Draft",

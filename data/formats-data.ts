@@ -2305,7 +2305,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "LC",
 	},
 	breloom: {
-		randomBattleMoves: ["spore", "machpunch", "bulletseed", "rocktomb", "swordsdance", "closecombat"],
+		randomBattleMoves: ["spore", "machpunch", "bulletseed", "rocktomb", "swordsdance"],
 		isNonstandard: "Past",
 		tier: "OU",
 	},
